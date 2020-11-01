@@ -9,14 +9,18 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
+import {MatListModule} from '@angular/material/list';
+import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { DashboardComponent } from './features/dashboard/dashboard.component';
+import { SideNavComponent } from './common/sidenav/sidenav.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     routingComponents,
-    DashboardComponent
+    DashboardComponent,
+    SideNavComponent
   ],
   imports: [
     BrowserModule,
@@ -27,7 +31,9 @@ import { DashboardComponent } from './features/dashboard/dashboard.component';
     MatInputModule,
     MatButtonModule,
     MatCardModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatSidenavModule,
+    MatListModule
   ],
   providers: [],
   bootstrap: [AppComponent]
