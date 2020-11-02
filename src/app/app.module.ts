@@ -15,6 +15,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import { DashboardComponent } from './features/dashboard/dashboard.component';
 import { SideNavComponent } from './common/sidenav/sidenav.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
