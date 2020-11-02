@@ -17,6 +17,7 @@ import { DashboardComponent } from './features/dashboard/dashboard.component';
 import { SideNavComponent } from './common/sidenav/sidenav.component';
 import { HeaderComponent } from './common/header/header.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
