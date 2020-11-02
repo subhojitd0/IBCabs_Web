@@ -14,6 +14,9 @@ export class LoginComponent implements OnInit {
   }
 
   login(){
+    localStorage.setItem('loggedin', "1");
+    
     this.router.navigateByUrl('/dashboard');
+    
   }
 }

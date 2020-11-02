@@ -15,13 +15,15 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { DashboardComponent } from './features/dashboard/dashboard.component';
 import { SideNavComponent } from './common/sidenav/sidenav.component';
+import { HeaderComponent } from './common/header/header.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     routingComponents,
     DashboardComponent,
-    SideNavComponent
+    SideNavComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
