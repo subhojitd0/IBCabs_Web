@@ -4,7 +4,7 @@
 	<h1 class="example-app-name">IB Cabs</h1>
 </mat-toolbar>
 <mat-sidenav-container class="example-container" autosize>
-	<mat-sidenav #sidenav class="example-sidenav" mode="side" opened="true" (mouseenter)="mouseenter()" (mouseleave)="mouseleave()">
+	<mat-sidenav *ngIf="pagerefresh == '1'" #sidenav class="example-sidenav" mode="side" opened="true" (mouseenter)="mouseenter()" (mouseleave)="mouseleave()">
 		<mat-nav-list>
 			<mat-list-item (click)="showSubmenu = !showSubmenu" class="parent">
 				<span class="full-width" *ngIf="isExpanded || isShowing">Parent Menu</span>

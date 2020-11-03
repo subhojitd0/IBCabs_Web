@@ -6,10 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-
+  pagerefrsh: any;
   constructor() { }
 
   ngOnInit(): void {
+    this.pagerefrsh = JSON.parse(localStorage.getItem('pagerefresh'));
+    if(this.pagerefrsh == "0"){
+      localStorage.setItem('pagerefresh', "1");
+      window.location.reload();
+    }
   }
 
 }

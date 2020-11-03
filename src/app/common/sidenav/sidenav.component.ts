@@ -8,11 +8,13 @@ import { MatSidenav } from '@angular/material/sidenav';
 })
 export class SideNavComponent implements OnInit {
   loggedin : any;
+  pagerefresh : any;
   constructor() { }
 
   ngOnInit(): void {
     debugger;
     this.loggedin = JSON.parse(localStorage.getItem('loggedin'));
+    this.pagerefresh = JSON.parse(localStorage.getItem('pagerefresh'));
   }
   @ViewChild('sidenav') sidenav: MatSidenav;
   isExpanded = true;

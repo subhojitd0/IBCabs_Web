@@ -1,0 +1,6 @@
+{
+    "/api": {
+      "target": "http://ibcabs.com/bills/api/",
+      "secure": false
+    }
+  }

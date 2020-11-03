@@ -16,6 +16,8 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import { DashboardComponent } from './features/dashboard/dashboard.component';
 import { SideNavComponent } from './common/sidenav/sidenav.component';
 import { HeaderComponent } from './common/header/header.component';
+import { FormsModule } from '@angular/forms';
+import { ToastrModule } from 'ngx-toastr'; 
 
 
 @NgModule({
@@ -38,7 +40,9 @@ import { HeaderComponent } from './common/header/header.component';
     MatToolbarModule,
     MatSidenavModule,
     MatListModule,
-    MatIconModule
+    MatIconModule,
+    FormsModule,
+    ToastrModule.forRoot() 
   ],
   providers: [],
   bootstrap: [AppComponent]

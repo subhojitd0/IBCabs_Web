@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import {ApiService} from '../../../shared/services/service';
+import { ToastrService } from 'ngx-toastr';
+import {LOGIN_API} from '../../../shared/services/api.url-helper';
 
 @Component({
   selector: 'app-login',
@@ -7,16 +10,34 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
-  constructor(private router: Router) { }
+  username: any;
+  password: any;
+  constructor(private router: Router,private apiService: ApiService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
+    localStorage.setItem('pagerefresh', "0");
   }
 
   login(){
+    debugger;
     localStorage.setItem('loggedin', "1");
-    
-    this.router.navigateByUrl('/dashboard');
-    
+    this.toastr.info("Please wait while we validate your credentials",'Information');
+    var json = 
+    {
+      "username":this.username,
+      "password":this.password
+    };
+    this.apiService.post(LOGIN_API, json).then((res: any)=>{ 
+      if(res.hasOwnProperty('error')){
+        this.toastr.error("You have entered wrong credentials",'Error');
+      }
+      else{
+        if(res.hasOwnProperty('username')){
+          this.toastr.success("Login Successful! Welcome " + res.username,'Success');
+          localStorage.setItem('loggedinuser', res.username);
+          this.router.navigateByUrl('/dashboard');
+        }
+      }
+    });
   }
 }
