@@ -5,11 +5,12 @@
 </mat-toolbar>
 <mat-sidenav-container class="example-container" autosize>
 	<mat-sidenav #sidenav class="example-sidenav" mode="side" opened="true" (mouseenter)="mouseenter()" (mouseleave)="mouseleave()">
+		
 		<mat-nav-list>
 			<mat-list-item (click)="showSubmenu = !showSubmenu" class="parent">
-				<span class="full-width" *ngIf="isExpanded || isShowing">Parent Menu</span>
-				<mat-icon mat-list-icon>Home</mat-icon>
-				<mat-icon class="menu-button" [ngClass]="{'rotated' : showSubmenu}" *ngIf="isExpanded || isShowing">E</mat-icon>
+				<span class="full-width" *ngIf="isExpanded || isShowing">IB Cabs</span>
+				<mat-icon mat-list-icon>home</mat-icon>
+				<mat-icon class="menu-button" [ngClass]="{'rotated' : showSubmenu}" *ngIf="isExpanded || isShowing">expand_more</mat-icon>
 			</mat-list-item>
 			<div class="submenu" [ngClass]="{'expanded' : showSubmenu}" *ngIf="isShowing || isExpanded">
 				<a mat-list-item href="...">Submenu Item 1</a>
@@ -24,8 +25,8 @@
 				</div>
 			</div>
 		</mat-nav-list>
-    <mat-nav-list>
-</mat-nav-list>
+
+    
 	</mat-sidenav>
 
 	<div class="example-sidenav-content">
