@@ -17,7 +17,7 @@ export class SideNavComponent implements OnInit {
     this.pagerefresh = JSON.parse(localStorage.getItem('pagerefresh'));
   }
   @ViewChild('sidenav') sidenav: MatSidenav;
-  isExpanded = true;
+  isExpanded = false;
   showSubmenu: boolean = false;
   isShowing = false;
   showSubSubMenu: boolean = false;

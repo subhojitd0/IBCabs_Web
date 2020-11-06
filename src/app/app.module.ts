@@ -13,11 +13,14 @@ import {MatListModule} from '@angular/material/list';
 import {MatIconModule} from '@angular/material/icon';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatGridListModule} from '@angular/material/grid-list';
+import {MatTabsModule} from '@angular/material/tabs';
 import { DashboardComponent } from './features/dashboard/dashboard.component';
 import { SideNavComponent } from './common/sidenav/sidenav.component';
 import { HeaderComponent } from './common/header/header.component';
 import { FormsModule } from '@angular/forms';
-import { ToastrModule } from 'ngx-toastr'; 
+import { ToastrModule } from 'ngx-toastr';
+import { PartyComponent } from './features/party/party.component'; 
 
 
 @NgModule({
@@ -26,7 +29,8 @@ import { ToastrModule } from 'ngx-toastr';
     routingComponents,
     DashboardComponent,
     SideNavComponent,
-    HeaderComponent
+    HeaderComponent,
+    PartyComponent
   ],
   imports: [
     BrowserModule,
@@ -42,6 +46,8 @@ import { ToastrModule } from 'ngx-toastr';
     MatListModule,
     MatIconModule,
     FormsModule,
+    MatTabsModule,
+    MatGridListModule,
     ToastrModule.forRoot() 
   ],
   providers: [],
