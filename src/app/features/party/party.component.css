@@ -1,7 +1,11 @@
 .container{
-    width:100%
+    width:100%;
 }
 
+.mat-stroked-button{
+    margin-top: 40px;
+    margin-bottom: 10px;
+}
 .row{
     padding:10px;
 }
@@ -9,4 +13,13 @@
 .full{
     width:100%;
 }
+
+.mid{
+    width:80%;
+    padding-left:40%;
+}
+
+table {
+    width: 100%;
+  }
 

@@ -20,6 +20,7 @@ import { SideNavComponent } from './common/sidenav/sidenav.component';
 import { HeaderComponent } from './common/header/header.component';
 import { FormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
+import {MatTableModule} from '@angular/material/table';
 import { PartyComponent } from './features/party/party.component'; 
 
 
@@ -48,6 +49,7 @@ import { PartyComponent } from './features/party/party.component';
     FormsModule,
     MatTabsModule,
     MatGridListModule,
+    MatTableModule,
     ToastrModule.forRoot() 
   ],
   providers: [],
