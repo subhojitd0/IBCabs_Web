@@ -22,6 +22,7 @@ import { FormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import {MatTableModule} from '@angular/material/table';
 import { PartyComponent } from './features/party/party.component'; 
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 
 @NgModule({
@@ -50,6 +51,7 @@ import { PartyComponent } from './features/party/party.component';
     MatTabsModule,
     MatGridListModule,
     MatTableModule,
+    MatPaginatorModule,
     ToastrModule.forRoot() 
   ],
   providers: [],
