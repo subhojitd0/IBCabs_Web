@@ -63,7 +63,7 @@ export class partyhead implements PartyHeadDDetails{
 })
 export class AddPartyHeadComponent implements OnInit {
   partyheadid : any;
-  isPack:boolean=true;
+  isPack:boolean=false;
   isSlab:boolean=false;
   partyheaddetails: partyhead;
   constructor(private apiService: ApiService, private toastr: ToastrService) {
