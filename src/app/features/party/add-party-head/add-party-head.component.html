@@ -1,0 +1,86 @@
+    <div class="container">
+        <form (submit)="savepartyhead()">
+            <div class="row">
+                <div class="col-sm-12">
+                    <mat-form-field appearance="outline" class="full" >
+                        <mat-label>Party Head Name</mat-label>
+                        <input name="name" matInput placeholder="Party Head Name" [(ngModel)]="partyheaddetails.name">
+                        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+                        <mat-hint>Enter the Name of the Head. It can contain multiple parties.</mat-hint>
+                    </mat-form-field>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-sm-6">
+                    <label>Bill To</label>
+                    <input name="billto" type="text" class="form-control" placeholder="Enter Bill To" [(ngModel)]="partyheaddetails.billto">
+                    
+                    <br>
+                    <label>Bill Subject</label>
+                    <input name="subject" type="text" class="form-control" placeholder="Enter Bill Subject" [(ngModel)]="partyheaddetails.billsubject">
+
+                </div>
+
+                <div class="col-sm-6">
+                    <label>Bill Address</label>
+                    <textarea name="address" class="form-control" rows="4" [(ngModel)]="partyheaddetails.billaddress"></textarea>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <label>GST</label>
+                    <input name="gst" type="text" class="form-control" placeholder="Enter GST number" [(ngModel)]="partyheaddetails.gst">
+                    
+                    <br>
+                    <label>PAN</label>
+                    <input name="pan" type="text" class="form-control" placeholder="Enter PAN number" [(ngModel)]="partyheaddetails.pan">
+
+                </div>
+                <div class="col-sm-6">
+                    <label>Rate Type</label>
+                    <br>
+                    <div class="form-control">
+                        <div class="form-check form-check-inline">
+                            <input  class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" 
+                            value="option1" (change)="selectPack()" [disabled]="partyheadid.toString() != '0'" checked>
+                            <label class="form-check-label" for="inlineRadio1">Package</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" 
+                            value="option2" [disabled]="partyheadid.toString() != '0'" (change)="selectSlab()">
+                            <label class="form-check-label" for="inlineRadio2">Slabwise</label>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12 form-inline" *ngIf="isPack">
+                    <div class = "form-group">
+                        <label class = "sr-only" for = "amount">Amount</label>
+                        <input name="amount" type = "number" class = "form-control" id = "amount" placeholder = "Enter Total Amount" [(ngModel)]="partyheaddetails.package">
+                     </div>
+                     <div class = "form-group">
+                        <label class = "sr-only" for = "name">Duration</label>
+                        <input name="duration" type = "number" class = "form-control" id = "duration" placeholder = "Enter Duration" value="30" [(ngModel)]="partyheaddetails.durationhour">
+                     </div>
+                </div>
+                <div class="col-sm-12 form-inline" *ngIf="isPack">
+                    <div class = "form-group">
+                        <label class = "sr-only" for = "amount">Amount per extra Hour</label>
+                        <input name="amountextraHr" type = "number" class = "form-control" id = "amount" placeholder = "Amount per extra hour" [(ngModel)]="partyheaddetails.extrahour">
+                     </div>
+                     <div class = "form-group">
+                        <label class = "sr-only" for = "name">Amount per extra KM</label>
+                        <input name="amountextrKM" type = "number" class = "form-control" id = "duration" placeholder = "Amount per extra km" [(ngModel)]="partyheaddetails.extrakm">
+                     </div>
+                </div>
+                <div class="col-sm-2">
+                    <button type="submit" class="btn btn-primary btn-lg">Save</button>
+                </div>
+            </div>
+        </form>
+    </div>
