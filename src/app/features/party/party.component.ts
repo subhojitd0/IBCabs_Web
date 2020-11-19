@@ -6,6 +6,7 @@ import {ApiService} from '../../../shared/services/service';
 import {PARTY_HEAD_API} from '../../../shared/services/api.url-helper';
 import {MatDialog} from '@angular/material/dialog';
 import { AddPartyHeadComponent } from './add-party-head/add-party-head.component';
+import { ToastrService } from 'ngx-toastr';
 
 export interface PartyHead {
   name: string;
@@ -27,7 +28,7 @@ export class PartyComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
   displayedColumns: string[] = ['headcode', 'name', 'ratetype', 'option'];
   dataSource: MatTableDataSource<PartyHead>;
-  constructor(private apiService: ApiService, public dialog: MatDialog) {
+  constructor(private apiService: ApiService, public dialog: MatDialog, private toastr: ToastrService) {
     /* const party: PartyHead[] =[
       {position: 1, name: 'Hydrogen', rate: "Package", option: 'H'},
       {position: 2, name: 'Helium', rate: "Package", option: 'He'},
@@ -73,6 +74,18 @@ export class PartyComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog closed`);
+    });
+  }
+  deleteParty(id: any){
+    debugger;
+    var json = 
+    {
+      "mode":3,
+      "partyheadcode": id
+    }
+    this.apiService.post(PARTY_HEAD_API, json).then((res: any)=>{ 
+      this.toastr.success("Youe data was successfully saved",'Success');
+      location.reload();
     });
   }
 }

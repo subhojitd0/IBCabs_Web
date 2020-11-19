@@ -4,6 +4,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import {ApiService} from '../../../../shared/services/service';
 import {PARTY_HEAD_API} from '../../../../shared/services/api.url-helper';
+import { ToastrService } from 'ngx-toastr';
 
 export interface PartyHeadDDetails {
     mode: number,
@@ -27,7 +28,8 @@ export interface PartyHeadDDetails {
     package:number,
     extrahour:number,
     extrakm:number,
-    durationhour:number
+    durationhour:number,
+    partyheadid: number
 }
 
 export class partyhead implements PartyHeadDDetails{
@@ -45,7 +47,6 @@ export class partyhead implements PartyHeadDDetails{
     nightcharge: number;                
     garagein:  number;                           
     garageout: number;
-    
     ratetype:  number;
     fixhour: number;
     fixkm:number;
@@ -53,6 +54,7 @@ export class partyhead implements PartyHeadDDetails{
     extrahour:number;
     extrakm:number;
     durationhour:number;
+    partyheadid:number;
 }
 @Component({
   selector: 'app-add-party-head',
@@ -64,23 +66,53 @@ export class AddPartyHeadComponent implements OnInit {
   isPack:boolean=true;
   isSlab:boolean=false;
   partyheaddetails: partyhead;
-  constructor(private apiService: ApiService) {
+  constructor(private apiService: ApiService, private toastr: ToastrService) {
     this.partyheaddetails = new partyhead();
+    debugger;
+    this.partyheadid = JSON.parse(localStorage.getItem('selectedpartyheadid'));
+    if(this.partyheadid.toString() != "0"){
+      var json = 
+      {
+        "mode":4,
+        "partyheadcode": this.partyheadid
+      } 
+      this.apiService.post(PARTY_HEAD_API, json).then((res: any)=>{ 
+        if(res.hasOwnProperty('error')){
+          this.toastr.error("You cannot edit the selected party", "Error");
+          location.reload();
+        }
+        else{
+          this.partyheaddetails = res;
+          this.partyheaddetails.mode = 2;
+          this.partyheaddetails.partyheadid = this.partyheadid;
+          if(this.partyheaddetails.ratetype == 0){
+            this.isPack = true;
+          } 
+          else{
+            this.isSlab = true;
+            this.isPack = false;
+          } 
+        }
+      });
+    }
+    else{
+      localStorage.setItem('selectedpartyheadid', "0");
+    }
    }
    ngOnInit() : void {
-    this.partyheadid = JSON.parse(localStorage.getItem('selectedpartyheadid'));
     
-   
-      /* const party: PartyHead[] = res.result;
-      this.dataSource = new MatTableDataSource(party); */
-   
    }
   savepartyhead(){
     debugger;
-    this.partyheaddetails.mode = 1;
-    this.partyheaddetails.ratetype = 0;
+    if(this.partyheaddetails.mode != 2)
+    {
+      this.partyheaddetails.mode = 1;
+      this.partyheaddetails.ratetype = 0;
+    }
+    this.toastr.info("Please wait while we are saving your data",'Information');
     this.apiService.post(PARTY_HEAD_API, this.partyheaddetails).then((res: any)=>{ 
-      debugger;
+      this.toastr.success("Youe data was successfully saved",'Success');
+      location.reload();
     });
   }
   selectPack(){

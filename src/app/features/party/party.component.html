@@ -28,7 +28,14 @@
 
                 <ng-container matColumnDef="option">
                     <mat-header-cell *matHeaderCellDef mat-sort-header> Options </mat-header-cell>
-                    <mat-cell *matCellDef="let row" [style.color]="row.option">  </mat-cell>
+                    <mat-cell *matCellDef="let row" [style.color]="row.option">
+                        <span style="margin-left: 10px; margin-right: 10px; cursor: pointer;" class="material-icons" (click)="openDialog(row.headcode)">
+                            create
+                        </span> |
+                        <span style="margin-left: 10px; margin-right: 10px; cursor: pointer;" class="material-icons" (click)="deleteParty(row.headcode)">
+                            delete
+                        </span>    
+                    </mat-cell>
                   </ng-container>
             
                 <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
