@@ -32,12 +32,15 @@
                 <div class="col-sm-6">
                     <label>GST</label>
                     <input name="gst" type="text" class="form-control" placeholder="Enter GST number" [(ngModel)]="partyheaddetails.gst">
-                    
-                    <br>
+                </div>
+                <div class="col-sm-6">
                     <label>PAN</label>
                     <input name="pan" type="text" class="form-control" placeholder="Enter PAN number" [(ngModel)]="partyheaddetails.pan">
 
                 </div>
+            </div>
+
+            <div class="row">
                 <div class="col-sm-6">
                     <label>Rate Type</label>
                     <br>
@@ -57,28 +60,29 @@
 
             </div>
 
-            <div class="row">
-                <div class="col-sm-12 form-inline" *ngIf="isPack">
-                    <div class = "form-group">
-                        <label class = "sr-only" for = "amount">Amount</label>
+            <div class="row" *ngIf="isPack">
+                <div class="col-sm-3">
+                    
+                        <label for = "amount">Amount</label>
                         <input name="amount" type = "number" class = "form-control" id = "amount" placeholder = "Enter Total Amount" [(ngModel)]="partyheaddetails.package">
-                     </div>
-                     <div class = "form-group">
-                        <label class = "sr-only" for = "name">Duration</label>
+                </div>    
+                <div class="col-sm-3">
+                        <label for = "name">Duration</label>
                         <input name="duration" type = "number" class = "form-control" id = "duration" placeholder = "Enter Duration" value="30" [(ngModel)]="partyheaddetails.durationhour">
-                     </div>
+                     
                 </div>
-                <div class="col-sm-12 form-inline" *ngIf="isPack">
-                    <div class = "form-group">
-                        <label class = "sr-only" for = "amount">Amount per extra Hour</label>
+                <div class="col-sm-3">
+                    
+                        <label for = "amount">Amount per extra Hour</label>
                         <input name="amountextraHr" type = "number" class = "form-control" id = "amount" placeholder = "Amount per extra hour" [(ngModel)]="partyheaddetails.extrahour">
-                     </div>
-                     <div class = "form-group">
-                        <label class = "sr-only" for = "name">Amount per extra KM</label>
-                        <input name="amountextrKM" type = "number" class = "form-control" id = "duration" placeholder = "Amount per extra km" [(ngModel)]="partyheaddetails.extrakm">
-                     </div>
                 </div>
-                <div class="col-sm-2">
+                <div class="col-sm-3">
+                        <label for = "name">Amount per extra KM</label>
+                        <input name="amountextrKM" type = "number" class = "form-control" id = "duration" placeholder = "Amount per extra km" [(ngModel)]="partyheaddetails.extrakm">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
                     <button type="submit" class="btn btn-primary btn-lg">Save</button>
                 </div>
             </div>
