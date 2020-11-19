@@ -25,48 +25,39 @@
 
                 <div class="col-sm-6">
                     <label>Bill Address</label>
-<<<<<<< HEAD
                     <textarea name="x" class="form-control" rows="4" [(ngModel)]="partyheaddetails.billaddress"></textarea>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-sm-6">
-=======
-                    <textarea name="address" class="form-control" rows="4" [(ngModel)]="partyheaddetails.billaddress"></textarea>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-6">
-                    <label>GST</label>
-                    <input name="gst" type="text" class="form-control" placeholder="Enter GST number" [(ngModel)]="partyheaddetails.gst">
-                    
-                    <br>
-                    <label>PAN</label>
-                    <input name="pan" type="text" class="form-control" placeholder="Enter PAN number" [(ngModel)]="partyheaddetails.pan">
-
-                </div>
-                <div class="col-sm-6">
->>>>>>> ecea660fe70d90f7b486def90c267d7560d4c7cd
                     <label>Rate Type</label>
                     <br>
                     <div class="form-control">
                         <div class="form-check form-check-inline">
                             <input  class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" 
 <<<<<<< HEAD
+<<<<<<< HEAD
                             value="option1" (change)="selectPack()" checked>
 =======
                             value="option1" (change)="selectPack()" [disabled]="partyheadid.toString() != '0'" checked>
 >>>>>>> ecea660fe70d90f7b486def90c267d7560d4c7cd
+=======
+                            value="option1" (change)="selectPack()" [disabled]="partyheadid.toString() != '0'" [checked]="partyheaddetails.ratetype == 0">
+>>>>>>> bf430808277970953e20b989cee8dbf5d02715d2
                             <label class="form-check-label" for="inlineRadio1">Package</label>
                         </div>
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" 
 <<<<<<< HEAD
+<<<<<<< HEAD
                             value="option2" (change)="selectSlab()">
 =======
                             value="option2" [disabled]="partyheadid.toString() != '0'" (change)="selectSlab()">
 >>>>>>> ecea660fe70d90f7b486def90c267d7560d4c7cd
+=======
+                            value="option2" [disabled]="partyheadid.toString() != '0'" (change)="selectSlab()" [checked]="partyheaddetails.ratetype == 1">
+>>>>>>> bf430808277970953e20b989cee8dbf5d02715d2
                             <label class="form-check-label" for="inlineRadio2">Slabwise</label>
                         </div>
                     </div>
