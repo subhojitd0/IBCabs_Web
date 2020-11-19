@@ -1,60 +1,10 @@
-<mat-tab-group>
-    <mat-tab label="Party Head"> 
-        <div class="container">
-            <button mat-stroked-button (click)="openDialog(0)">Create New Party Head</button>
-
-            <mat-form-field class="mid">
-                <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search Party Head">
-              </mat-form-field>
-              <mat-table [dataSource]="dataSource" matSort>
-
-                <!-- ID Column -->
-                <ng-container matColumnDef="headcode">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header> No.  </mat-header-cell>
-                  <mat-cell *matCellDef="let row"> {{row.headcode}} </mat-cell>
-                </ng-container>
-            
-                <!-- Name Column -->
-                <ng-container matColumnDef="name">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
-                  <mat-cell *matCellDef="let row"> {{row.name}} </mat-cell>
-                </ng-container>
-            
-                <!-- Color Column -->
-                <ng-container matColumnDef="ratetype">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header> Pricing </mat-header-cell>
-                  <mat-cell *matCellDef="let row"> {{row.ratetype}} </mat-cell>
-                </ng-container>
-
-                <ng-container matColumnDef="option">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header> Options </mat-header-cell>
-                    <mat-cell *matCellDef="let row" [style.color]="row.option">  </mat-cell>
-                  </ng-container>
-            
-                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-                <mat-row *matRowDef="let row; columns: displayedColumns;">
-                </mat-row>
-              </mat-table>
-            <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
-
-
-        </div>
-    </mat-tab>
-    
-
-
-
-
-
-
-    <mat-tab label="Party Details"> 
     <div class="container">
-        <form>
+        <form (submit)="savepartyhead()">
             <div class="row">
                 <div class="col-sm-12">
-                    <mat-form-field appearance="outline" class="full">
+                    <mat-form-field appearance="outline" class="full" >
                         <mat-label>Party Head Name</mat-label>
-                        <input matInput placeholder="Party Head Name">
+                        <input name="x" matInput placeholder="Party Head Name" [(ngModel)]="partyheaddetails.name">
                         <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
                         <mat-hint>Enter the Name of the Head. It can contain multiple parties.</mat-hint>
                     </mat-form-field>
@@ -65,17 +15,17 @@
             <div class="row">
                 <div class="col-sm-6">
                     <label>Bill To</label>
-                    <input type="text" class="form-control" placeholder="Enter Bill To">
+                    <input name="x" type="text" class="form-control" placeholder="Enter Bill To" [(ngModel)]="partyheaddetails.billto">
                     
                     <br>
                     <label>Bill Subject</label>
-                    <input type="text" class="form-control" placeholder="Enter Bill Subject">
+                    <input name="x" type="text" class="form-control" placeholder="Enter Bill Subject" [(ngModel)]="partyheaddetails.billsubject">
 
                 </div>
 
                 <div class="col-sm-6">
                     <label>Bill Address</label>
-                    <textarea class="form-control" rows="4"></textarea>
+                    <textarea name="x" class="form-control" rows="4" [(ngModel)]="partyheaddetails.billaddress"></textarea>
                 </div>
             </div>
 
@@ -85,7 +35,7 @@
                     <br>
                     <div class="form-control">
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" 
+                            <input  class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" 
                             value="option1" (change)="selectPack()" checked>
                             <label class="form-check-label" for="inlineRadio1">Package</label>
                         </div>
@@ -99,7 +49,7 @@
 
                 <div class="col-sm-6">
                     <label>Package Name</label>
-                    <input type="text" class="form-control" placeholder="Enter Package Name">
+                    <input name="x" type="text" class="form-control" placeholder="Enter Package Name" [(ngModel)]="partyheaddetails.billto">
                 </div>
             </div>
 
@@ -108,11 +58,11 @@
                 <div class="col-sm-10 form-inline" *ngIf="isPack">
                     <div class = "form-group">
                         <label class = "sr-only" for = "amount">Amount</label>
-                        <input type = "number" class = "form-control" id = "amount" placeholder = "Enter Total Amount">
+                        <input name="x" type = "number" class = "form-control" id = "amount" placeholder = "Enter Total Amount" [(ngModel)]="partyheaddetails.package">
                      </div>
                      <div class = "form-group">
                         <label class = "sr-only" for = "name">Duration</label>
-                        <input type = "number" class = "form-control" id = "duration" placeholder = "Enter Duraion" value="30">
+                        <input name="x" type = "number" class = "form-control" id = "duration" placeholder = "Enter Duraion" value="30" [(ngModel)]="partyheaddetails.durationhour">
                      </div>
                 </div>
 
@@ -195,11 +145,8 @@
                 </div>
 
                 <div class="col-sm-2">
-                    <button type="button" class="btn btn-primary btn-lg">Save</button>
+                    <button type="submit" class="btn btn-primary btn-lg">Save</button>
                 </div>
             </div>
         </form>
     </div>
-
-    </mat-tab>
-</mat-tab-group>

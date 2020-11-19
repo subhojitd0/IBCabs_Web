@@ -23,8 +23,9 @@ import { ToastrModule } from 'ngx-toastr';
 import {MatTableModule} from '@angular/material/table';
 import { PartyComponent } from './features/party/party.component'; 
 import { MatPaginatorModule } from '@angular/material/paginator';
-
-
+import { AddPartyHeadComponent } from './features/party/add-party-head/add-party-head.component'; 
+import {MatDialog, MatDialogModule} from '@angular/material/dialog';
+ 
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,7 +33,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     DashboardComponent,
     SideNavComponent,
     HeaderComponent,
-    PartyComponent
+    PartyComponent,
+    AddPartyHeadComponent
   ],
   imports: [
     BrowserModule,
@@ -51,10 +53,11 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatTabsModule,
     MatGridListModule,
     MatTableModule,
+    MatDialogModule,
     MatPaginatorModule,
     ToastrModule.forRoot() 
   ],
-  providers: [],
+  providers: [MatDialog],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
