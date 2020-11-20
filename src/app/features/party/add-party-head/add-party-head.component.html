@@ -44,22 +44,22 @@
             <div class="row">
                 <div class="col-sm-3">
                     
-                        <label for = "gin">Garrage In</label>
-                        <input name="gin" type = "time" class = "form-control" id = "gin" placeholder = "Garrage In" >
+                        <label for = "gin">Garage In</label>
+                        <input name="gin" type = "number" class = "form-control" id = "gin" placeholder = "Garage In" [(ngModel)]="partyheaddetails.garagein" >
                 </div>    
                 <div class="col-sm-3">
-                        <label for = "gout">Garrage Out</label>
-                        <input name="gout" type = "time" class = "form-control" id = "gout" placeholder = "Garrage Out">
+                        <label for = "gout">Garage Out</label>
+                        <input name="gout" type = "number" class = "form-control" id = "gout" placeholder = "Garage Out" [(ngModel)]="partyheaddetails.garageout">
                      
                 </div>
                 <div class="col-sm-3">
                     
                     <label for = "start">Start Time</label>
-                    <input name="start" type = "number" class = "form-control" id = "start" placeholder = "Start Min" [(ngModel)]="partyheaddetails.starttime" >
+                    <input name="start" type = "time" class = "form-control" id = "start" placeholder = "Start Time" >
                 </div>    
                 <div class="col-sm-3">
                     <label for = "end">End Time</label>
-                    <input name="end" type = "number" class = "form-control" id = "end" placeholder = "End Min" [(ngModel)]="partyheaddetails.endtime">
+                    <input name="end" type = "time" class = "form-control" id = "end" placeholder = "End Time" >
                  
                 </div>
             </div>
@@ -127,7 +127,7 @@
             <div class="row" *ngIf="isPack">   
                 <div class="col-sm-3">
                         <label for = "name">Fix Hr</label>
-                        <input name="fixhr" type = "number" class = "form-control" id = "fixhr" placeholder = "Enter Duration" [(ngModel)]="partyheaddetails.fixhr">
+                        <input name="fixhr" type = "number" class = "form-control" id = "fixhr" placeholder = "Enter Duration" [(ngModel)]="partyheaddetails.fixhour">
                      
                 </div>
                 <div class="col-sm-3">
