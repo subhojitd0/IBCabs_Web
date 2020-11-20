@@ -22,8 +22,10 @@ import { FormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import {MatTableModule} from '@angular/material/table';
 import { PartyComponent } from './features/party/party.component'; 
+import { PartyRatesComponent } from './features/party-rates/partyrates.component'; 
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { AddPartyHeadComponent } from './features/party/add-party-head/add-party-head.component'; 
+import { AddSlabComponent } from './features/party-rates/add-new-slab/add-slab-head.component';
 import {MatDialog, MatDialogModule} from '@angular/material/dialog';
  
 @NgModule({
@@ -34,7 +36,9 @@ import {MatDialog, MatDialogModule} from '@angular/material/dialog';
     SideNavComponent,
     HeaderComponent,
     PartyComponent,
-    AddPartyHeadComponent
+    AddPartyHeadComponent,
+    PartyRatesComponent,
+    AddSlabComponent
   ],
   imports: [
     BrowserModule,

@@ -5,6 +5,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import {ApiService} from '../../../../shared/services/service';
 import {PARTY_HEAD_API} from '../../../../shared/services/api.url-helper';
 import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 export interface PartyHeadDDetails {
     mode: number,
@@ -66,7 +67,7 @@ export class AddPartyHeadComponent implements OnInit {
   isPack:boolean=true;
   isSlab:boolean=false;
   partyheaddetails: partyhead;
-  constructor(private apiService: ApiService, private toastr: ToastrService) {
+  constructor(private router: Router, private apiService: ApiService, private toastr: ToastrService) {
     this.partyheaddetails = new partyhead();
     debugger;
     this.partyheadid = JSON.parse(localStorage.getItem('selectedpartyheadid'));
@@ -101,6 +102,9 @@ export class AddPartyHeadComponent implements OnInit {
    }
    ngOnInit() : void {
     
+   }
+   openpartyrates(){
+    this.router.navigateByUrl('/rate');
    }
   savepartyhead(){
     debugger;
