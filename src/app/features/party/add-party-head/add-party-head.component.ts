@@ -64,7 +64,7 @@ export class partyhead implements PartyHeadDDetails{
 })
 export class AddPartyHeadComponent implements OnInit {
   partyheadid : any;
-  isPack:boolean=true;
+  isPack:boolean=false;
   isSlab:boolean=false;
   partyheaddetails: partyhead;
   constructor(private router: Router, private apiService: ApiService, private toastr: ToastrService) {
@@ -88,6 +88,7 @@ export class AddPartyHeadComponent implements OnInit {
           this.partyheaddetails.partyheadid = this.partyheadid;
           if(this.partyheaddetails.ratetype == 0){
             this.isPack = true;
+            this.isSlab = false;
           } 
           else{
             this.isSlab = true;
@@ -104,6 +105,8 @@ export class AddPartyHeadComponent implements OnInit {
     
    }
    openpartyrates(){
+     debugger;
+    localStorage.setItem('selectedpartyheadname', this.partyheaddetails.name);
     this.router.navigateByUrl('/rate');
    }
   savepartyhead(){

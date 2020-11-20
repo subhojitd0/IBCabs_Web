@@ -26,6 +26,7 @@ export interface RateHead {
 })
 export class PartyRatesComponent implements OnInit {
   partyheadid: string;
+  partyheadname: string;
   isPack:boolean=true;
   isSlab:boolean=false;
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -33,7 +34,8 @@ export class PartyRatesComponent implements OnInit {
   displayedColumns: string[] = ['car', 'slab1', 'slab2', 'slab3', 'slabrest', 'option'];
   dataSource: MatTableDataSource<RateHead>;
   constructor(private apiService: ApiService, public dialog: MatDialog, private toastr: ToastrService) {
-   }
+    this.partyheadname = localStorage.getItem('selectedpartyheadname'); 
+  }
    ngOnInit() : void {
      debugger;
     this.partyheadid = JSON.parse(localStorage.getItem('selectedpartyheadid'));
@@ -52,6 +54,7 @@ export class PartyRatesComponent implements OnInit {
           rates[i].slab2 = x.twokm + "/" + x.twokmrate + " - " + x.twohr + "/" + x.twohrrate;
           rates[i].slab3 = x.threekm + "/" + x.threekmrate + " - " + x.threehr + "/" + x.threehrrate;
           rates[i].slabrest = x.restkmrate + " - " + x.resthrrate;
+          i++;
         })
         this.dataSource = new MatTableDataSource(rates);
       });

@@ -7,6 +7,7 @@ import {PARTY_HEAD_API} from '../../../shared/services/api.url-helper';
 import {MatDialog} from '@angular/material/dialog';
 import { AddPartyHeadComponent } from './add-party-head/add-party-head.component';
 import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 export interface PartyHead {
   name: string;
@@ -28,7 +29,7 @@ export class PartyComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
   displayedColumns: string[] = ['headcode', 'name', 'ratetype', 'option'];
   dataSource: MatTableDataSource<PartyHead>;
-  constructor(private apiService: ApiService, public dialog: MatDialog, private toastr: ToastrService) {
+  constructor(private router: Router,private apiService: ApiService, public dialog: MatDialog, private toastr: ToastrService) {
     /* const party: PartyHead[] =[
       {position: 1, name: 'Hydrogen', rate: "Package", option: 'H'},
       {position: 2, name: 'Helium', rate: "Package", option: 'He'},
@@ -74,6 +75,9 @@ export class PartyComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog closed`);
+    });
+    this.router.events.subscribe(() => {
+      dialogRef.close();
     });
   }
   deleteParty(id: any){

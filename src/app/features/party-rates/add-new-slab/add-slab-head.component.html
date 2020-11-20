@@ -1,86 +1,104 @@
-<!--     <div class="container">
-        <form (submit)="savepartyhead()">
+     <div class="container">
+        <form (submit)="savepartyrate()">
             <div class="row">
                 <div class="col-sm-12">
                     <mat-form-field appearance="outline" class="full" >
                         <mat-label>Party Head Name</mat-label>
-                        <input name="name" matInput placeholder="Party Head Name" [(ngModel)]="partyheaddetails.name">
+                        <input name="name" disabled matInput placeholder="Party Head Name" [(ngModel)]="slabdetails.headname">
                         <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-                        <mat-hint>Enter the Name of the Head. It can contain multiple parties.</mat-hint>
                     </mat-form-field>
                 </div>
             </div>
-
-
             <div class="row">
-                <div class="col-sm-6">
-                    <label>Bill To</label>
-                    <input name="billto" type="text" class="form-control" placeholder="Enter Bill To" [(ngModel)]="partyheaddetails.billto">
-                    
-                    <br>
-                    <label>Bill Subject</label>
-                    <input name="subject" type="text" class="form-control" placeholder="Enter Bill Subject" [(ngModel)]="partyheaddetails.billsubject">
-
-                </div>
-
-                <div class="col-sm-6">
-                    <label>Bill Address</label>
-                    <textarea name="address" class="form-control" rows="4" [(ngModel)]="partyheaddetails.billaddress"></textarea>
+                <div class="col-sm-12 form-inline">
+                    <div class = "form-group">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Choose Car type</mat-label>
+                            <mat-select [(value)]="slabdetails.car">
+                              <mat-option value="ertiga">
+                                ERTIGA
+                              </mat-option>
+                              <mat-option value="sumo">
+                                SUMO
+                              </mat-option>
+                              <mat-option value="dzire">
+                                DZIRE
+                              </mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                     </div>
                 </div>
             </div>
+            
             <div class="row">
-                <div class="col-sm-6">
-                    <label>GST</label>
-                    <input name="gst" type="text" class="form-control" placeholder="Enter GST number" [(ngModel)]="partyheaddetails.gst">
-                    
-                    <br>
-                    <label>PAN</label>
-                    <input name="pan" type="text" class="form-control" placeholder="Enter PAN number" [(ngModel)]="partyheaddetails.pan">
-
-                </div>
-                <div class="col-sm-6">
-                    <label>Rate Type</label>
-                    <br>
-                    <div class="form-control">
-                        <div class="form-check form-check-inline">
-                            <input  class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" 
-                            value="option1" (change)="selectPack()" [disabled]="partyheadid.toString() != '0'" [checked]="partyheaddetails.ratetype == 0">
-                            <label class="form-check-label" for="inlineRadio1">Package</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" 
-                            value="option2" [disabled]="partyheadid.toString() != '0'" (change)="selectSlab()" [checked]="partyheaddetails.ratetype == 1">
-                            <label class="form-check-label" for="inlineRadio2">Slabwise</label>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="row">
-                <div class="col-sm-12 form-inline" *ngIf="isPack">
-                    <div class = "form-group">
-                        <label class = "sr-only" for = "amount">Amount</label>
-                        <input name="amount" type = "number" class = "form-control" id = "amount" placeholder = "Enter Total Amount" [(ngModel)]="partyheaddetails.package">
+                <div class="col-sm-12 form-inline">
+                    <div class = "form-group aligned">
+                        <label class = "sr-only" for = "amount">1st Slab KM Value</label>
+                        <input name="1stslabkm" type = "number" class = "form-control" id = "amount" placeholder = "1st Slab KM Value" [(ngModel)]="slabdetails.onekm">
                      </div>
-                     <div class = "form-group">
-                        <label class = "sr-only" for = "name">Duration</label>
-                        <input name="duration" type = "number" class = "form-control" id = "duration" placeholder = "Enter Duration" value="30" [(ngModel)]="partyheaddetails.durationhour">
+                     <div class = "form-group aligned">
+                        <label class = "sr-only" for = "name">1st Slab KM Rate</label>
+                        <input name="1stslabkmrate" type = "number" class = "form-control" id = "duration" placeholder = "1st Slab KM Rate" value="30" [(ngModel)]="slabdetails.onekmrate">
                      </div>
                 </div>
-                <div class="col-sm-12 form-inline" *ngIf="isPack">
-                    <div class = "form-group">
-                        <label class = "sr-only" for = "amount">Amount per extra Hour</label>
-                        <input name="amountextraHr" type = "number" class = "form-control" id = "amount" placeholder = "Amount per extra hour" [(ngModel)]="partyheaddetails.extrahour">
+                <div class="col-sm-12 form-inline">
+                    <div class = "form-group aligned">
+                        <label class = "sr-only" for = "amount">1st Slab HR Value</label>
+                        <input name="1stslabhr" type = "number" class = "form-control" id = "amount" placeholder = "1st Slab HR Value" [(ngModel)]="slabdetails.onehr">
                      </div>
-                     <div class = "form-group">
-                        <label class = "sr-only" for = "name">Amount per extra KM</label>
-                        <input name="amountextrKM" type = "number" class = "form-control" id = "duration" placeholder = "Amount per extra km" [(ngModel)]="partyheaddetails.extrakm">
+                     <div class = "form-group aligned">
+                        <label class = "sr-only" for = "name">1st Slab HR Rate</label>
+                        <input name="1stslabhrrate" type = "number" class = "form-control" id = "duration" placeholder = "1st Slab HR Rate" [(ngModel)]="slabdetails.onehrrate">
                      </div>
                 </div>
-                <div class="col-sm-12 form-inline" *ngIf="isSlab">
-                     <div class = "form-group">
-                        <button type="submit" class="btn btn-primary btn-lg">Add Slab Wise Rates</button>
+                <div class="col-sm-12 form-inline">
+                    <div class = "form-group aligned">
+                        <label class = "sr-only" for = "amount">2nd Slab KM Value</label>
+                        <input name="2ndslabkm" type = "number" class = "form-control" id = "amount" placeholder = "2nd Slab KM Value" [(ngModel)]="slabdetails.twokm">
+                     </div>
+                     <div class = "form-group aligned">
+                        <label class = "sr-only" for = "name">2nd Slab KM Rate</label>
+                        <input name="2ndslabkmrate" type = "number" class = "form-control" id = "duration" placeholder = "2nd Slab KM Rate" value="30" [(ngModel)]="slabdetails.twokmrate">
+                     </div>
+                </div>
+                <div class="col-sm-12 form-inline">
+                    <div class = "form-group aligned">
+                        <label class = "sr-only" for = "amount">2nd Slab HR Value</label>
+                        <input name="2ndslabhr" type = "number" class = "form-control" id = "amount" placeholder = "2nd Slab HR Value" [(ngModel)]="slabdetails.twohr">
+                     </div>
+                     <div class = "form-group aligned">
+                        <label class = "sr-only" for = "name">2nd Slab HR Rate</label>
+                        <input name="2ndslabhrrate" type = "number" class = "form-control" id = "duration" placeholder = "2nd Slab HR Rate" [(ngModel)]="slabdetails.twohrrate">
+                     </div>
+                </div>
+                <div class="col-sm-12 form-inline">
+                    <div class = "form-group aligned">
+                        <label class = "sr-only" for = "amount">3rd Slab KM Value</label>
+                        <input name="3rdslabkm" type = "number" class = "form-control" id = "amount" placeholder = "3rd Slab KM Value" [(ngModel)]="slabdetails.threekm">
+                     </div>
+                     <div class = "form-group aligned">
+                        <label class = "sr-only" for = "name">3rd Slab KM Rate</label>
+                        <input name="3rdslabkmrate" type = "number" class = "form-control" id = "duration" placeholder = "3rd Slab KM Rate" value="30" [(ngModel)]="slabdetails.threekmrate">
+                     </div>
+                </div>
+                <div class="col-sm-12 form-inline">
+                    <div class = "form-group aligned">
+                        <label class = "sr-only" for = "amount">3rd Slab HR Value</label>
+                        <input name="3rdslabhr" type = "number" class = "form-control" id = "amount" placeholder = "3rd Slab HR Value" [(ngModel)]="slabdetails.threehr">
+                     </div>
+                     <div class = "form-group aligned">
+                        <label class = "sr-only" for = "name">3rd Slab HR Rate</label>
+                        <input name="3rdslabhrrate" type = "number" class = "form-control" id = "duration" placeholder = "3rd Slab HR Rate" [(ngModel)]="slabdetails.threehrrate">
+                     </div>
+                </div>
+                <div class="col-sm-12 form-inline">
+                    <div class = "form-group aligned">
+                        <label class = "sr-only" for = "amount">Rest Slab KM Rate</label>
+                        <input name="restkmrate" type = "number" class = "form-control" id = "amount" placeholder = "Rest Slab KM Rate" [(ngModel)]="slabdetails.restkmrate">
+                     </div>
+                     <div class = "form-group aligned">
+                        <label class = "sr-only" for = "name">Rest Slab HR Rate</label>
+                        <input name="resthrrate" type = "number" class = "form-control" id = "duration" placeholder = "Rest Slab HR Rate" [(ngModel)]="slabdetails.resthrrate">
                      </div>
                 </div>
                 <div class="col-sm-2">
@@ -88,4 +106,4 @@
                 </div>
             </div>
         </form>
-    </div> -->
+    </div> 

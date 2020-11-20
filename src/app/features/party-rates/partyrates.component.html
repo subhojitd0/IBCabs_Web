@@ -1,13 +1,15 @@
 <mat-tab-group>
     <mat-tab label="Party Head"> 
         <div class="container">
+          <span>Party Rates for {{ partyheadname }}</span><br/>
             <button mat-stroked-button (click)="opendialog()" >Create New Party Rate</button>
 
             <mat-form-field class="mid">
                 <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search Party Slab">
-              </mat-form-field>
+              </mat-form-field><br/>
               <span><i>*The figures displayed in slab are in the order of ( KM / KMRate - HR / HRRate )</i></span>
-              <mat-table [dataSource]="dataSource" matSort>
+              <br/>
+              <mat-table style="margin-top: 10px" [dataSource]="dataSource" matSort>
 
                 <!-- ID Column -->
                 <ng-container matColumnDef="car">

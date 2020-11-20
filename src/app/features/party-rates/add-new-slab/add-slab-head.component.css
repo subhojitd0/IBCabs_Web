@@ -22,4 +22,6 @@
 table {
     width: 100%;
   }
-
+.aligned{
+    margin: 10px;
+}

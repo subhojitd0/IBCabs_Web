@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-sidenav',
@@ -9,7 +10,7 @@ import { MatSidenav } from '@angular/material/sidenav';
 export class SideNavComponent implements OnInit {
   loggedin : any;
   pagerefresh : any;
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
     debugger;
@@ -32,5 +33,10 @@ export class SideNavComponent implements OnInit {
     if (!this.isExpanded) {
       this.isShowing = false;
     }
+  }
+
+  onLogout(){
+    localStorage.clear();
+    this.router.navigateByUrl('/');
   }
 }

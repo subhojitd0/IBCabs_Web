@@ -8,6 +8,7 @@ import { ToastrService } from 'ngx-toastr';
 
 export interface ISlabDetails {
   mode: number;
+  headname: string;
   partyheadcode: string;  
   onekm: string;
   onekmrate: string;
@@ -27,7 +28,8 @@ export interface ISlabDetails {
 }
 export class SlabDetails implements ISlabDetails {
   mode: number;
-  partyheadcode: string;  
+  partyheadcode: string;
+  headname: string;  
   onekm: string;
   onekmrate: string;
   onehr: string;
@@ -54,12 +56,16 @@ export class AddSlabComponent implements OnInit {
   partyheadid : any;
   slabdetails: SlabDetails;
   constructor(private apiService: ApiService, private toastr: ToastrService) {
+    let partyheadname = localStorage.getItem('selectedpartyheadname'); 
+    let partycode = localStorage.getItem('selectedpartyheadid');
     this.slabdetails = new SlabDetails();
+    this.slabdetails.headname = partyheadname;
+    this.slabdetails.partyheadcode = partycode;
    }
    ngOnInit() : void {
     
    }
-  savepartyhead(){
+  savepartyrate(){
     debugger;
     this.slabdetails.mode = 1;
     this.toastr.info("Please wait while we are saving your data",'Information');

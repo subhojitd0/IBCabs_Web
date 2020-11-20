@@ -32,12 +32,61 @@
                 <div class="col-sm-6">
                     <label>GST</label>
                     <input name="gst" type="text" class="form-control" placeholder="Enter GST number" [(ngModel)]="partyheaddetails.gst">
-                    
-                    <br>
+                </div>
+                <div class="col-sm-6">
                     <label>PAN</label>
                     <input name="pan" type="text" class="form-control" placeholder="Enter PAN number" [(ngModel)]="partyheaddetails.pan">
 
                 </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-sm-3">
+                    
+                        <label for = "gin">Garage In</label>
+                        <input name="gin" type = "number" class = "form-control" id = "gin" placeholder = "Garage In" [(ngModel)]="partyheaddetails.garagein" >
+                </div>    
+                <div class="col-sm-3">
+                        <label for = "gout">Garage Out</label>
+                        <input name="gout" type = "number" class = "form-control" id = "gout" placeholder = "Garage Out" [(ngModel)]="partyheaddetails.garageout">
+                     
+                </div>
+                <div class="col-sm-3">
+                    
+                    <label for = "start">Start Time</label>
+                    <input name="start" type = "time" class = "form-control" id = "start" placeholder = "Start Time" [(ngModel)]="partyheaddetails.starttime">
+                </div>    
+                <div class="col-sm-3">
+                    <label for = "end">End Time</label>
+                    <input name="end" type = "time" class = "form-control" id = "end" placeholder = "End Time" [(ngModel)]="partyheaddetails.endtime">
+                 
+                </div>
+            </div>
+
+
+
+            <div class="row">
+                <div class="col-sm-4">
+                    
+                        <label for = "dutyduration">Duty Duration Hrs.</label>
+                        <input name="dutyduration" type = "number" class = "form-control" id = "dutyduration" placeholder = "Enter Duration" [(ngModel)]="partyheaddetails.dutyhr">
+                </div>    
+                <div class="col-sm-4">
+                        <label for = "night">Night Charges</label>
+                        <input name="night" type = "number" class = "form-control" id = "night" placeholder = "Night Charges" [(ngModel)]="partyheaddetails.nightcharge">
+                     
+                </div>
+                <div class="col-sm-4">
+                    
+                        <label for = "ot">Over Time</label>
+                        <input name="ot" type = "number" class = "form-control" id = "ot" placeholder = "Overtime Amount" [(ngModel)]="partyheaddetails.ot">
+                </div>
+            </div>
+
+
+
+            <div class="row">
                 <div class="col-sm-6">
                     <label>Rate Type</label>
                     <br>
@@ -54,36 +103,50 @@
                         </div>
                     </div>
                 </div>
+                    
+                <div class="col-sm-3" *ngIf="isPack">
+                    
+                    <label for = "amount">Package Amount</label>
+                    <input name="amount" type = "number" class = "form-control" id = "amount" placeholder = "Total Amount" [(ngModel)]="partyheaddetails.package">
+                </div>   
+                <div class="col-sm-3" *ngIf="isPack">
+                    
+                    <label for = "duration">Package Duration</label>
+                    <input name="duration" type = "number" class = "form-control" id = "duration" placeholder = "Enter Duration" [(ngModel)]="partyheaddetails.durationhour">
+                </div>    
 
             </div>
-
-            <div class="row">
-                <div class="col-sm-12 form-inline" *ngIf="isPack">
-                    <div class = "form-group">
-                        <label class = "sr-only" for = "amount">Amount</label>
-                        <input name="amount" type = "number" class = "form-control" id = "amount" placeholder = "Enter Total Amount" [(ngModel)]="partyheaddetails.package">
-                     </div>
-                     <div class = "form-group">
-                        <label class = "sr-only" for = "name">Duration</label>
-                        <input name="duration" type = "number" class = "form-control" id = "duration" placeholder = "Enter Duration" value="30" [(ngModel)]="partyheaddetails.durationhour">
-                     </div>
+            
+            <div class="row" *ngIf="isSlab">
+                <div class="col-sm-12">
+                    <button type="button" (click)="openpartyrates()" class="btn btn-primary btn-lg">Add Slab Wise Rates</button>
                 </div>
-                <div class="col-sm-12 form-inline" *ngIf="isPack">
-                    <div class = "form-group">
-                        <label class = "sr-only" for = "amount">Amount per extra Hour</label>
+            </div>
+            
+            
+            <div class="row" *ngIf="isPack">   
+                <div class="col-sm-3">
+                        <label for = "name">Fix Hr</label>
+                        <input name="fixhr" type = "number" class = "form-control" id = "fixhr" placeholder = "Enter Duration" [(ngModel)]="partyheaddetails.fixhour">
+                     
+                </div>
+                <div class="col-sm-3">
+                    <label for = "Km">Fix Km</label>
+                    <input name="km" type = "number" class = "form-control" id = "km" placeholder = "Enter Km" [(ngModel)]="partyheaddetails.fixkm" >
+                 
+                </div>
+                <div class="col-sm-3">
+                    
+                        <label for = "amount">Amount per extra Hour</label>
                         <input name="amountextraHr" type = "number" class = "form-control" id = "amount" placeholder = "Amount per extra hour" [(ngModel)]="partyheaddetails.extrahour">
-                     </div>
-                     <div class = "form-group">
-                        <label class = "sr-only" for = "name">Amount per extra KM</label>
+                </div>
+                <div class="col-sm-3">
+                        <label for = "name">Amount per extra KM</label>
                         <input name="amountextrKM" type = "number" class = "form-control" id = "duration" placeholder = "Amount per extra km" [(ngModel)]="partyheaddetails.extrakm">
-                     </div>
                 </div>
-                <div class="col-sm-12 form-inline" *ngIf="isSlab">
-                     <div class = "form-group">
-                        <button type="button" (click)="openpartyrates()" class="btn btn-primary btn-lg">Add Slab Wise Rates</button>
-                     </div>
-                </div>
-                <div class="col-sm-2">
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
                     <button type="submit" class="btn btn-primary btn-lg">Save</button>
                 </div>
             </div>

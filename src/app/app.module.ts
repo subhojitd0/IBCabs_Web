@@ -27,6 +27,9 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { AddPartyHeadComponent } from './features/party/add-party-head/add-party-head.component'; 
 import { AddSlabComponent } from './features/party-rates/add-new-slab/add-slab-head.component';
 import {MatDialog, MatDialogModule} from '@angular/material/dialog';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatSelectModule} from '@angular/material/select';
+
  
 @NgModule({
   declarations: [
@@ -59,6 +62,8 @@ import {MatDialog, MatDialogModule} from '@angular/material/dialog';
     MatTableModule,
     MatDialogModule,
     MatPaginatorModule,
+    MatMenuModule,
+    MatSelectModule,
     ToastrModule.forRoot() 
   ],
   providers: [MatDialog],
