@@ -85,6 +85,8 @@ export class AddPartyHeadComponent implements OnInit {
         else{
           this.partyheaddetails = res;
           this.partyheaddetails.mode = 2;
+          this.partyheaddetails.starttime = this.partyheaddetails.starttime.substr(0,5);
+          this.partyheaddetails.endtime = this.partyheaddetails.endtime.substr(0,5);
           this.partyheaddetails.partyheadid = this.partyheadid;
           if(this.partyheaddetails.ratetype == 0){
             this.isPack = true;
