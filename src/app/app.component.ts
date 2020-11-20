@@ -8,6 +8,6 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'ibWeb';
   ngOnInit(): void {
-    localStorage.setItem('loggedin', "0");
+    //localStorage.setItem('loggedin', "0");
   }
 }

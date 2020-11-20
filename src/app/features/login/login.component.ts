@@ -12,7 +12,13 @@ import {LOGIN_API} from '../../../shared/services/api.url-helper';
 export class LoginComponent implements OnInit {
   username: any;
   password: any;
-  constructor(private router: Router,private apiService: ApiService, private toastr: ToastrService) { }
+  constructor(private router: Router,private apiService: ApiService, private toastr: ToastrService) {
+    debugger;
+    let isLoggedIn = localStorage.getItem('loggedin'); 
+    if(isLoggedIn && isLoggedIn == "1"){
+      this.router.navigateByUrl('/dashboard');
+    }
+  }
 
   ngOnInit(): void {
     localStorage.setItem('pagerefresh', "0");
