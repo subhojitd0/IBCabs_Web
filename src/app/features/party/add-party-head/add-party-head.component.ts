@@ -102,6 +102,7 @@ export class AddPartyHeadComponent implements OnInit {
     else{
       localStorage.setItem('selectedpartyheadid', "0");
       this.partyheaddetails.ratetype = 0;
+      this.isPack = true;
     }
    }
    ngOnInit() : void {
@@ -117,7 +118,12 @@ export class AddPartyHeadComponent implements OnInit {
     if(this.partyheaddetails.mode != 2)
     {
       this.partyheaddetails.mode = 1;
-      this.partyheaddetails.ratetype = 0;
+      if(this.isPack){
+        this.partyheaddetails.ratetype = 0;
+      }
+      else{
+        this.partyheaddetails.ratetype = 1;
+      }
     }
     this.toastr.info("Please wait while we are saving your data",'Information');
     this.apiService.post(PARTY_HEAD_API, this.partyheaddetails).then((res: any)=>{ 
