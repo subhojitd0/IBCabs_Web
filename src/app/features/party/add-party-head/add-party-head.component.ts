@@ -87,6 +87,7 @@ export class AddPartyHeadComponent implements OnInit {
           this.partyheaddetails.partyheadid = this.partyheadid;
           if(this.partyheaddetails.ratetype == 0){
             this.isPack = true;
+            this.isSlab = false;
           } 
           else{
             this.isSlab = true;
