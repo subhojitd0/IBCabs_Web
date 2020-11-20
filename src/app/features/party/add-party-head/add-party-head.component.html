@@ -113,15 +113,14 @@
                     
                     <label for = "duration">Package Duration</label>
                     <input name="duration" type = "number" class = "form-control" id = "duration" placeholder = "Enter Duration" [(ngModel)]="partyheaddetails.durationhour">
-                </div>    
-
-            </div>
-            
-            <div class="row" *ngIf="isSlab && this.partyheadid.toString() != '0'">
-                <div class="col-sm-12">
-                    <button type="button" (click)="openpartyrates()" class="btn btn-primary btn-lg">Add Slab Wise Rates</button>
+                </div>  
+                
+                <div class="col-sm-6" *ngIf="isSlab && this.partyheadid.toString() != '0'"><br>
+                    <button type="button" (click)="openpartyrates()" class="btn btn-warning btn-lg">Add Slab Wise Rates</button>
                 </div>
             </div>
+            
+           
             
             
             <div class="row" *ngIf="isPack">   
