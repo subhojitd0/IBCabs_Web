@@ -2,6 +2,12 @@
 <mat-toolbar color="primary" class="example-toolbar">
 	<button mat-icon-button (click)="isExpanded = !isExpanded"><mat-icon>menu</mat-icon></button>
 	<h1 class="example-app-name">IB Cabs</h1>
+
+	<span fxFlex></span>
+ 	<button mat-icon-button [matMenuTriggerFor]="dropdownMenu">
+  	  <mat-icon>more_vert</mat-icon>
+  	</button>
+
 </mat-toolbar>
 <mat-sidenav-container class="example-container" autosize>
 	<mat-sidenav *ngIf="pagerefresh == '1'" #sidenav class="example-sidenav" mode="side" opened="true" (mouseenter)="mouseenter()" (mouseleave)="mouseleave()">
@@ -45,3 +51,17 @@
   </div>
 
 </mat-sidenav-container>
+
+
+
+
+<mat-menu #dropdownMenu x-position="before">
+	<a mat-menu-item href="" (click)="onLogout()">
+	  <mat-icon>exit_to_app</mat-icon>
+	  <span>Logout</span>
+	</a>
+	<a mat-menu-item href="" routerLink="/about">
+	  <mat-icon>info_outline</mat-icon>
+	  <span>About</span>
+	</a>
+  </mat-menu>

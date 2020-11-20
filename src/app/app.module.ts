@@ -25,6 +25,9 @@ import { PartyComponent } from './features/party/party.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { AddPartyHeadComponent } from './features/party/add-party-head/add-party-head.component'; 
 import {MatDialog, MatDialogModule} from '@angular/material/dialog';
+import {MatMenuModule} from '@angular/material/menu';
+
+
  
 @NgModule({
   declarations: [
@@ -55,6 +58,7 @@ import {MatDialog, MatDialogModule} from '@angular/material/dialog';
     MatTableModule,
     MatDialogModule,
     MatPaginatorModule,
+    MatMenuModule,
     ToastrModule.forRoot() 
   ],
   providers: [MatDialog],
