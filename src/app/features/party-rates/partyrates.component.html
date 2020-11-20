@@ -1,13 +1,21 @@
-<mat-tab-group>
-    <mat-tab label="Party Head"> 
+
         <div class="container">
-          <span>Party Rates for {{ partyheadname }}</span><br/>
+          <mat-card>
+            <mat-card-header>
+              <div mat-card-avatar class="avatar-image-rate"></div>
+              <mat-card-title>Party Rates for {{ partyheadname }}</mat-card-title>
+              <mat-card-subtitle>The figures displayed below in slab are in the order of ( KM / KMRate - HR / HRRate )</mat-card-subtitle>
+            </mat-card-header>
+          </mat-card>
+
+
+         
             <button mat-stroked-button (click)="opendialog()" >Create New Party Rate</button>
 
             <mat-form-field class="mid">
                 <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search Party Slab">
               </mat-form-field><br/>
-              <span><i>*The figures displayed in slab are in the order of ( KM / KMRate - HR / HRRate )</i></span>
+              
               <br/>
               <mat-table style="margin-top: 10px" [dataSource]="dataSource" matSort>
 
@@ -55,5 +63,3 @@
 
 
         </div>
-    </mat-tab>
-</mat-tab-group>
