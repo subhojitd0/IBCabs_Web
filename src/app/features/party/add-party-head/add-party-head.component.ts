@@ -101,6 +101,7 @@ export class AddPartyHeadComponent implements OnInit {
     }
     else{
       localStorage.setItem('selectedpartyheadid', "0");
+      this.partyheaddetails.ratetype = 0;
     }
    }
    ngOnInit() : void {

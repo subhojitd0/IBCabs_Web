@@ -1,10 +1,10 @@
     <div class="container">
-        <form (submit)="savepartyhead()">
+        <form ngNativeValidate (submit)="savepartyhead()">
             <div class="row">
                 <div class="col-sm-12">
                     <mat-form-field appearance="outline" class="full" >
                         <mat-label>Party Head Name</mat-label>
-                        <input name="name" matInput placeholder="Party Head Name" [(ngModel)]="partyheaddetails.name">
+                        <input name="name" matInput placeholder="Party Head Name" [(ngModel)]="partyheaddetails.name" required>
                         <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
                         <mat-hint>Enter the Name of the Head. It can contain multiple parties.</mat-hint>
                     </mat-form-field>
@@ -115,10 +115,9 @@
                     <input name="duration" type = "number" class = "form-control" id = "duration" placeholder = "Enter Duration" [(ngModel)]="partyheaddetails.durationhour">
                 </div>  
                 
-                <div class="col-sm-6" *ngIf="isSlab"><br>
+                <div class="col-sm-6" *ngIf="isSlab && this.partyheadid.toString() != '0'"><br>
                     <button type="button" (click)="openpartyrates()" class="btn btn-warning btn-lg">Add Slab Wise Rates</button>
                 </div>
-
             </div>
             
            

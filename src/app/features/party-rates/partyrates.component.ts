@@ -7,6 +7,7 @@ import {RATE_SLAB_API} from '../../../shared/services/api.url-helper';
 import {MatDialog} from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 import { AddSlabComponent } from './add-new-slab/add-slab-head.component';
+import { Router } from '@angular/router';
 
 export interface RateHead {
   slabcode: string;
@@ -33,7 +34,7 @@ export class PartyRatesComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
   displayedColumns: string[] = ['car', 'slab1', 'slab2', 'slab3', 'slabrest', 'option'];
   dataSource: MatTableDataSource<RateHead>;
-  constructor(private apiService: ApiService, public dialog: MatDialog, private toastr: ToastrService) {
+  constructor(private router: Router, private apiService: ApiService, public dialog: MatDialog, private toastr: ToastrService) {
     this.partyheadname = localStorage.getItem('selectedpartyheadname'); 
   }
    ngOnInit() : void {
@@ -59,6 +60,9 @@ export class PartyRatesComponent implements OnInit {
         this.dataSource = new MatTableDataSource(rates);
       });
     }
+   }
+   backtopartyhead(){
+    this.router.navigateByUrl('/party');
    }
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim(); // Remove whitespace

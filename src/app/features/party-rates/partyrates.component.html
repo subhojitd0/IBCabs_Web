@@ -9,8 +9,9 @@
           </mat-card>
 
 
-         
+            <button style="margin-right: 10px" mat-stroked-button (click)="backtopartyhead()" >Back to Party Head</button>
             <button mat-stroked-button (click)="opendialog()" >Create New Party Rate</button>
+            
 
             <mat-form-field class="mid">
                 <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search Party Slab">
