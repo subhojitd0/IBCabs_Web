@@ -30,8 +30,10 @@ export interface PartyHeadDDetails {
     extrahour:number,
     extrakm:number,
     durationhour:number,
-    partyheadid: number
-}
+    partyheadid: number,
+    contact:string,
+    master:string
+  }
 
 export class partyhead implements PartyHeadDDetails{
   mode: number;
@@ -56,6 +58,8 @@ export class partyhead implements PartyHeadDDetails{
     extrakm:number;
     durationhour:number;
     partyheadid:number;
+    contact:string;
+    master:string;
 }
 @Component({
   selector: 'app-add-party-head',

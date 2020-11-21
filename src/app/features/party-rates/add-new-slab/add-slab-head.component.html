@@ -33,11 +33,11 @@
             <div class="row">
                 <div class="col-sm-3 form-inline">
                         <label class = "sr-only" for = "amount">1st Slab KM Value</label>
-                        <input name="1stslabkm" type = "number" class = "form-control" id = "amount" placeholder = "1st Slab KM Value" [(ngModel)]="slabdetails.onekm">
+                        <input name="1stslabkm" type = "number" class = "form-control" id = "amount" placeholder = "1st Slab KM Value" [(ngModel)]="slabdetails.onekm" required>
                 </div>  
                 <div class="col-sm-3 form-inline">   
                         <label class = "sr-only" for = "name">1st Slab KM Rate</label>
-                        <input name="1stslabkmrate" type = "number" class = "form-control" id = "duration" placeholder = "1st Slab KM Rate" value="30" [(ngModel)]="slabdetails.onekmrate">
+                        <input name="1stslabkmrate" type = "number" class = "form-control" id = "duration" placeholder = "1st Slab KM Rate" value="30" [(ngModel)]="slabdetails.onekmrate" required>
                 </div>
 
                 <div class="col-sm-3 form-inline">
@@ -102,11 +102,11 @@
             <div class="row">
                 <div class="col-sm-6">
                         <label class = "sr-only" for = "amount">Rest Slab KM Rate</label>
-                        <input name="restkmrate" type = "number" class = "form-control" id = "amount" placeholder = "Rest Slab KM Rate" [(ngModel)]="slabdetails.restkmrate">
+                        <input name="restkmrate" type = "number" class = "form-control" id = "amount" placeholder = "Rest Slab KM Rate" [(ngModel)]="slabdetails.restkmrate" required>
                 </div>
                 <div class="col-sm-6">
                         <label class = "sr-only" for = "name">Rest Slab HR Rate</label>
-                        <input name="resthrrate" type = "number" class = "form-control" id = "duration" placeholder = "Rest Slab HR Rate" [(ngModel)]="slabdetails.resthrrate">
+                        <input name="resthrrate" type = "number" class = "form-control" id = "duration" placeholder = "Rest Slab HR Rate" [(ngModel)]="slabdetails.resthrrate" required>
                 </div>
             </div>
 

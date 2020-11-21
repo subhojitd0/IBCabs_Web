@@ -19,6 +19,10 @@
     width:100%;
 }
 
+.half{
+    width:50%;
+}
+
 .mid{
     width:100%;
     padding-left:40%;

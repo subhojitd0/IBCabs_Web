@@ -1,12 +1,21 @@
     <div class="container">
         <form ngNativeValidate (submit)="savepartyhead()">
             <div class="row">
-                <div class="col-sm-12">
+                <div class="col-sm-6">
                     <mat-form-field appearance="outline" class="full" >
                         <mat-label>Party Head Name</mat-label>
                         <input name="name" matInput placeholder="Party Head Name" [(ngModel)]="partyheaddetails.name" required>
                         <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-                        <mat-hint>Enter the Name of the Head. It can contain multiple parties.</mat-hint>
+                        <mat-hint>Enter the Party Name</mat-hint>
+                    </mat-form-field>
+                </div>
+
+                <div class="col-sm-6">
+                    <mat-form-field appearance="outline" class="full" >
+                        <mat-label>Master Company</mat-label>
+                        <input name="master" matInput placeholder="Master Company Name" [(ngModel)]="partyheaddetails.master">
+                        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+                        <mat-hint>Enter the Group Name</mat-hint>
                     </mat-form-field>
                 </div>
             </div>
@@ -30,10 +39,15 @@
             </div>
             <div class="row">
                 <div class="col-sm-6">
+                    <label>Contact</label>
+                    <input name="contact" type="text" class="form-control" placeholder="Enter Contact number" [(ngModel)]="partyheaddetails.contact">
+
+                </div>
+                <div class="col-sm-3">
                     <label>GST</label>
                     <input name="gst" type="text" class="form-control" placeholder="Enter GST number" [(ngModel)]="partyheaddetails.gst">
                 </div>
-                <div class="col-sm-6">
+                <div class="col-sm-3">
                     <label>PAN</label>
                     <input name="pan" type="text" class="form-control" placeholder="Enter PAN number" [(ngModel)]="partyheaddetails.pan">
 
