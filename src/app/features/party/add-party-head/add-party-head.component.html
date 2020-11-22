@@ -34,14 +34,22 @@
 
                 <div class="col-sm-6">
                     <label>Bill Address</label>
-                    <textarea name="address" class="form-control" rows="4" [(ngModel)]="partyheaddetails.billaddress"></textarea>
+                    <textarea name="address" class="form-control" rows="2" [(ngModel)]="partyheaddetails.billaddress"></textarea>
+                <br>
+
+                <input name="contact" type="text" class="form-control" placeholder="Enter Contact number" [(ngModel)]="partyheaddetails.contact">
                 </div>
             </div>
             <div class="row">
-                <div class="col-sm-6">
-                    <label>Contact</label>
-                    <input name="contact" type="text" class="form-control" placeholder="Enter Contact number" [(ngModel)]="partyheaddetails.contact">
-
+                <div class="col-sm-3">
+                    
+                    <label for = "start">Start Time</label>
+                    <input name="start" type = "time" class = "form-control" id = "start" placeholder = "Start Time" [(ngModel)]="partyheaddetails.starttime">
+                </div>    
+                <div class="col-sm-3">
+                    <label for = "end">End Time</label>
+                    <input name="end" type = "time" class = "form-control" id = "end" placeholder = "End Time" [(ngModel)]="partyheaddetails.endtime">
+                 
                 </div>
                 <div class="col-sm-3">
                     <label>GST</label>
@@ -56,24 +64,25 @@
 
 
             <div class="row">
+                  
                 <div class="col-sm-3">
-                    
-                        <label for = "gin">Garage In</label>
-                        <input name="gin" type = "number" class = "form-control" id = "gin" placeholder = "Garage In" [(ngModel)]="partyheaddetails.garagein" >
-                </div>    
-                <div class="col-sm-3">
-                        <label for = "gout">Garage Out</label>
+                        <label for = "gout">Min Before Reporting</label>
                         <input name="gout" type = "number" class = "form-control" id = "gout" placeholder = "Garage Out" [(ngModel)]="partyheaddetails.garageout">
                      
                 </div>
                 <div class="col-sm-3">
                     
-                    <label for = "start">Start Time</label>
-                    <input name="start" type = "time" class = "form-control" id = "start" placeholder = "Start Time" [(ngModel)]="partyheaddetails.starttime">
+                    <label for = "gin">Min After Reporting</label>
+                    <input name="gin" type = "number" class = "form-control" id = "gin" placeholder = "Minute after Reporting" [(ngModel)]="partyheaddetails.garagein" >
+                </div>  
+                <div class="col-sm-3">
+                    
+                    <label for = "kmout">Km Before Reporting</label>
+                    <input name="kmout" type = "number" class = "form-control" id = "kmout" placeholder = "Km Before Reporting" [(ngModel)]="partyheaddetails.kmout">
                 </div>    
                 <div class="col-sm-3">
-                    <label for = "end">End Time</label>
-                    <input name="end" type = "time" class = "form-control" id = "end" placeholder = "End Time" [(ngModel)]="partyheaddetails.endtime">
+                    <label for = "kmin">Km After reporting</label>
+                    <input name="kmin" type = "number" class = "form-control" id = "kmin" placeholder = "Km After Reporting" [(ngModel)]="partyheaddetails.kmin">
                  
                 </div>
             </div>
