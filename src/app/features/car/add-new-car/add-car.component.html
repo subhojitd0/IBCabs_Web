@@ -1,0 +1,87 @@
+    <div class="container">
+        <form ngNativeValidate (submit)="savecar()">
+            <!-- <div class="row">
+                <div class="col-sm-12">
+                    <mat-form-field appearance="outline" class="full" >
+                        <mat-label>Owner Name</mat-label>
+                        <input name="name" matInput placeholder="Party Head Name" [(ngModel)]="partyheaddetails.name" required>
+                        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+                        <mat-hint>Enter the Name of the Head. It can contain multiple parties.</mat-hint>
+                    </mat-form-field>
+                </div>
+            </div>
+ -->
+
+            <div class="row">
+                <div class="col-sm-6">
+                    <label>Car No</label>
+                    <input name="billto" type="text" class="form-control" placeholder="Enter Car No" [(ngModel)]="carDetails.carno">
+                    
+                    <br>
+                </div>
+
+                <div class="col-sm-6">
+                    <br>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Choose Car type</mat-label>
+                        <mat-select [(value)]="carDetails.cartype">
+                          <mat-option value="ertiga">
+                            ERTIGA
+                          </mat-option>
+                          <mat-option value="sumo">
+                            SUMO
+                          </mat-option>
+                          <mat-option value="dzire">
+                            DZIRE
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-6">
+                    
+                    <label for = "start">Tax Till</label>
+                    <input name="tax" type = "date" class = "form-control" id = "start" placeholder = "Tax Till" [(ngModel)]="carDetails.tax">
+                </div>    
+                <div class="col-sm-6">
+                    <label for = "end">Insurance Till</label>
+                    <input name="ins" type = "date" class = "form-control" id = "end" placeholder = "Insurance Till" [(ngModel)]="carDetails.ins">
+                 
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-6">
+                    
+                    <label for = "start">PUC Till</label>
+                    <input name="puc" type = "date" class = "form-control" id = "start" placeholder = "PUC Till" [(ngModel)]="carDetails.puc">
+                </div>    
+                <div class="col-sm-6">
+                    <label for = "end">RC Till</label>
+                    <input name="rc" type = "date" class = "form-control" id = "end" placeholder = "RC Till" [(ngModel)]="carDetails.rc">
+                 
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-6">
+                    
+                    <label for = "start">CF Till</label>
+                    <input name="cf" type = "date" class = "form-control" id = "start" placeholder = "CF Till" [(ngModel)]="carDetails.cf">
+                </div>    
+                <div class="col-sm-6">
+                    <input  class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" 
+                    value="option1" (change)="selectbillmode()" [checked]="billmode" >
+                    <label class="form-check-label" for="inlineRadio1">Use in bill ( Bill Mode )</label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-6">
+                    <button type="submit" class="btn btn-primary btn-lg">Save</button>
+                </div>
+            </div>
+        </form>
+    </div>

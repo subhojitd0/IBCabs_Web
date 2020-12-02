@@ -1,0 +1,54 @@
+
+        <div class="container">
+          <mat-card>
+            <mat-card-header>
+              <div mat-card-avatar class="avatar-image-rate"></div>
+              <mat-card-title>Cars  <!-- for {{ partyheadname }} --></mat-card-title>
+              <mat-card-subtitle>The cars for the selected owner are displayed </mat-card-subtitle>
+            </mat-card-header>
+          </mat-card>
+
+
+            <button style="margin-right: 10px" mat-stroked-button (click)="backtoowner()" >Back to Owner</button>
+            <button mat-stroked-button (click)="opendialog(0)" >Create New Car</button>
+            
+
+            <mat-form-field class="mid">
+                <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search Car">
+              </mat-form-field><br/>
+              
+              <br/>
+              <mat-table style="margin-top: 10px" [dataSource]="dataSource" matSort>
+
+                <!-- ID Column -->
+                <ng-container matColumnDef="cartype">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> Car Type  </mat-header-cell>
+                  <mat-cell *matCellDef="let row"> {{row.cartype}} </mat-cell>
+                </ng-container>
+            
+                <!-- Name Column -->
+                <ng-container matColumnDef="carno">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> Car No.</mat-header-cell>
+                  <mat-cell *matCellDef="let row"> {{row.carno}} </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="option">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Options </mat-header-cell>
+                    <mat-cell *matCellDef="let row" [style.color]="row.option">
+                      <span style="margin-left: 10px; margin-right: 10px; cursor: pointer;" class="material-icons" (click)="opendialog(row.carcode)">
+                            edit
+                      </span>  
+                      <span style="margin-left: 10px; margin-right: 10px; cursor: pointer;" class="material-icons" (click)="deleteCar(row.carcode)">
+                            delete
+                        </span>    
+                    </mat-cell>
+                  </ng-container>
+            
+                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: displayedColumns;">
+                </mat-row>
+              </mat-table>
+            <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+
+
+        </div>

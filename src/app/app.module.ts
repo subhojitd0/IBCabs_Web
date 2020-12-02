@@ -29,7 +29,10 @@ import { AddSlabComponent } from './features/party-rates/add-new-slab/add-slab-h
 import {MatDialog, MatDialogModule} from '@angular/material/dialog';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatSelectModule} from '@angular/material/select';
-
+import { OwnerComponent } from '../app/features/owner/owner.component';
+import { AddOwnerComponent } from '../app/features/owner/add-owner/add-owner.component';
+import { CarComponent } from '../app/features/car/car.component';
+import { AddCarComponent } from '../app/features/car/add-new-car/add-car.component';
  
 @NgModule({
   declarations: [
@@ -41,7 +44,11 @@ import {MatSelectModule} from '@angular/material/select';
     PartyComponent,
     AddPartyHeadComponent,
     PartyRatesComponent,
-    AddSlabComponent
+    AddSlabComponent,
+    OwnerComponent,
+    AddOwnerComponent,
+    CarComponent,
+    AddCarComponent
   ],
   imports: [
     BrowserModule,
