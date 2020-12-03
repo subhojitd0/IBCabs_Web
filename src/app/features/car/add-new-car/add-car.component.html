@@ -72,9 +72,15 @@
                     <input name="cf" type = "date" class = "form-control" id = "start" placeholder = "CF Till" [(ngModel)]="carDetails.cf">
                 </div>    
                 <div class="col-sm-6">
+                   
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12">
                     <input  class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" 
                     value="option1" (change)="selectbillmode()" [checked]="billmode" >
-                    <label class="form-check-label" for="inlineRadio1">Use in bill ( Bill Mode )</label>
+                    <label class="form-check-label" for="inlineRadio1">Bill Mode Not Fixed</label>
                 </div>
             </div>
 

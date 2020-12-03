@@ -35,8 +35,8 @@
                 <ng-container matColumnDef="option">
                     <mat-header-cell *matHeaderCellDef mat-sort-header> Options </mat-header-cell>
                     <mat-cell *matCellDef="let row" [style.color]="row.option">
-                        <span style="margin-left: 10px; margin-right: 10px; cursor: pointer;" (click)="openCar(row.ownercode)">
-                            Cars
+                        <span style="margin-left: 10px; margin-right: 10px; cursor: pointer;" class="material-icons" (click)="openCar(row.ownercode)">
+                            commute
                         </span> |
                         <span style="margin-left: 10px; margin-right: 10px; cursor: pointer;" class="material-icons" (click)="openDialog(row.ownercode)">
                             edit
