@@ -17,7 +17,8 @@ export interface CarDetails {
   puc: string,
   rc: string,
   cf: string,
-  billmode: string
+  billmode: string,
+  fixamount: string
 }
 
 export class car implements CarDetails{
@@ -31,6 +32,7 @@ export class car implements CarDetails{
   rc: string;
   cf: string;
   billmode: string;
+  fixamount: string;
 }
 @Component({
   selector: 'app-add-car',
@@ -41,7 +43,8 @@ export class AddCarComponent implements OnInit {
   carid : any;
   carDetails: car;
   ownerid: any;
-  billmode: boolean = false;
+  billmodeyes: boolean = false;
+  billmodeno: boolean = false;
   constructor(private router: Router, private apiService: ApiService, private toastr: ToastrService) {
     this.carDetails = new car();
     debugger;
@@ -67,7 +70,8 @@ export class AddCarComponent implements OnInit {
           this.carDetails.puc =  res.pucdate;
           this.carDetails.cf =  res.cfdate;
           this.carDetails.rc =  res.rcdate;
-          this.billmode = res.billmode == "1" ? true: false;
+          this.billmodeyes = res.billmode ? true: false;
+          this.billmodeno = res.billmode ? false: true;
           //this.carDetails.tax = this.carDetails.tax.substr(8,2) + "-" + this.carDetails.tax.substr(4,2) + "-" + this.carDetails.tax.substr(0,4);
           debugger;
         }
@@ -80,8 +84,13 @@ export class AddCarComponent implements OnInit {
    ngOnInit() : void {
     
    }
-   selectbillmode(){
-    this.billmode = !this.billmode;
+   selectbillmodeyes(){
+    this.billmodeyes = true;
+    this.billmodeno = false;
+   }
+   selectbillmodeno(){
+    this.billmodeyes = false;
+    this.billmodeno = true;
    }
   savecar(){
     this.carDetails.ownercode = this.ownerid;
@@ -89,7 +98,7 @@ export class AddCarComponent implements OnInit {
     {
       this.carDetails.mode = 1;
     }
-    this.carDetails.billmode = this.billmode ? "1" : "0";
+    this.carDetails.billmode = this.billmodeyes ? "1" : "0";
     debugger;
     this.toastr.info("Please wait while we are saving your data",'Information');
     this.apiService.post(CAR_API, this.carDetails).then((res: any)=>{ 
