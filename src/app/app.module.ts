@@ -33,7 +33,10 @@ import { OwnerComponent } from '../app/features/owner/owner.component';
 import { AddOwnerComponent } from '../app/features/owner/add-owner/add-owner.component';
 import { CarComponent } from '../app/features/car/car.component';
 import { AddCarComponent } from '../app/features/car/add-new-car/add-car.component';
- 
+import { DriverComponent } from '../app/features/driver/driver.component';
+import { AddDriverComponent } from '../app/features/driver/add-driver/add-driver.component';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,7 +51,9 @@ import { AddCarComponent } from '../app/features/car/add-new-car/add-car.compone
     OwnerComponent,
     AddOwnerComponent,
     CarComponent,
-    AddCarComponent
+    AddCarComponent,
+    DriverComponent,
+    AddDriverComponent
   ],
   imports: [
     BrowserModule,
@@ -71,6 +76,7 @@ import { AddCarComponent } from '../app/features/car/add-new-car/add-car.compone
     MatPaginatorModule,
     MatMenuModule,
     MatSelectModule,
+    MatAutocompleteModule,
     ToastrModule.forRoot() 
   ],
   providers: [MatDialog],

@@ -1,0 +1,60 @@
+
+        <div class="container">
+        <mat-card>
+          <mat-card-header>
+            <div mat-card-avatar class="avatar-image-partyhead"></div>
+            <mat-card-title>Drivers</mat-card-title>
+            <mat-card-subtitle>Add, Update, Delete and View the drivers Here.</mat-card-subtitle>
+          </mat-card-header>
+        </mat-card>
+            <button mat-stroked-button (click)="openDialog(0)">Create New Driver</button>
+
+            <mat-form-field class="mid">
+                <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search Driver">
+              </mat-form-field>
+              <mat-table [dataSource]="dataSource" matSort>
+
+                <!-- ID Column -->
+                <ng-container matColumnDef="drivercode">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> No.  </mat-header-cell>
+                  <mat-cell *matCellDef="let row"> {{row.drivercode}} </mat-cell>
+                </ng-container>
+            
+                <!-- Name Column -->
+                <ng-container matColumnDef="drivername">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
+                  <mat-cell *matCellDef="let row"> {{row.drivername}} </mat-cell>
+                </ng-container>
+            
+                <!-- Color Column -->
+                <ng-container matColumnDef="license">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> License </mat-header-cell>
+                  <mat-cell *matCellDef="let row"> {{row.license}} </mat-cell>
+                </ng-container>
+
+                <!-- Color Column -->
+                <ng-container matColumnDef="licenseExpiry">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> License Expiry </mat-header-cell>
+                  <mat-cell *matCellDef="let row"> {{row.licenseExpiry}} </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="option">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Options </mat-header-cell>
+                    <mat-cell *matCellDef="let row" [style.color]="row.option">
+                        <span style="margin-left: 10px; margin-right: 10px; cursor: pointer;" class="material-icons" (click)="openDialog(row.drivercode)">
+                            edit
+                        </span> |
+                        <span style="margin-left: 10px; margin-right: 10px; cursor: pointer;" class="material-icons" (click)="deleteDriver(row.drivercode)">
+                            delete
+                        </span>    
+                    </mat-cell>
+                  </ng-container>
+            
+                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: displayedColumns;">
+                </mat-row>
+              </mat-table>
+            <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+
+
+        </div>

@@ -11,11 +11,18 @@
                 </div>
 
                 <div class="col-sm-6">
+                    
                     <mat-form-field appearance="outline" class="full" >
                         <mat-label>Master Company</mat-label>
-                        <input name="master" matInput placeholder="Master Company Name" [(ngModel)]="partyheaddetails.master">
+                        <input type="text" placeholder="Master Company Name" matInput [(ngModel)]="partyheaddetails.master"
+                        [matAutocomplete]="auto">
                         <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
                         <mat-hint>Enter the Group Name</mat-hint>
+                        <mat-autocomplete #auto="matAutocomplete">
+                            <mat-option *ngFor="let option of allparties" [value]="option.name">
+                              {{option.name}}
+                            </mat-option>
+                          </mat-autocomplete>
                     </mat-form-field>
                 </div>
             </div>

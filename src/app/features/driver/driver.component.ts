@@ -3,32 +3,31 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import {ApiService} from '../../../shared/services/service';
-import {PARTY_HEAD_API} from '../../../shared/services/api.url-helper';
+import {DRIVER_API} from '../../../shared/services/api.url-helper';
 import {MatDialog} from '@angular/material/dialog';
-import { AddPartyHeadComponent } from './add-party-head/add-party-head.component';
+import { AddDriverComponent } from './add-driver/add-driver.component';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 
-export interface PartyHead {
-  name: string;
-  headcode: number;
-  ratetype: string;
+export interface Driver {
+  drivercode: string;
+  drivername: string;
+  license: string;
+  licenseExpiry: string;
   option: string;
 }
 
 @Component({
-  selector: 'app-party',
-  templateUrl: './party.component.html',
-  styleUrls: ['./party.component.css']
+  selector: 'app-driver',
+  templateUrl: './driver.component.html',
+  styleUrls: ['./driver.component.css']
 })
-export class PartyComponent implements OnInit {
+export class DriverComponent implements OnInit {
 
-  isPack:boolean=true;
-  isSlab:boolean=false;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  displayedColumns: string[] = ['headcode', 'name', 'ratetype', 'option'];
-  dataSource: MatTableDataSource<PartyHead>;
+  displayedColumns: string[] = ['drivercode', 'drivername', 'license', 'licenseExpiry', 'option'];
+  dataSource: MatTableDataSource<Driver>;
   constructor(private router: Router,private apiService: ApiService, public dialog: MatDialog, private toastr: ToastrService) {
     /* const party: PartyHead[] =[
       {position: 1, name: 'Hydrogen', rate: "Package", option: 'H'},
@@ -49,11 +48,10 @@ export class PartyComponent implements OnInit {
     {
       "mode": 0
     };
-    this.apiService.post(PARTY_HEAD_API, json).then((res: any)=>{ 
+    this.apiService.post(DRIVER_API, json).then((res: any)=>{ 
       debugger;
-      const party: PartyHead[] = res.result;
+      const party: Driver[] = res.result;
       this.dataSource = new MatTableDataSource(party);
-      localStorage.setItem("allparties", JSON.stringify(res.result));
     });
    }
   applyFilter(filterValue: string) {
@@ -61,18 +59,9 @@ export class PartyComponent implements OnInit {
     filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
     this.dataSource.filter = filterValue;
   }
-  selectPack(){
-    this.isPack=true
-    this.isSlab=false
-  }
-
-  selectSlab(){
-    this.isSlab=true
-    this.isPack=false
-  }
   openDialog(id: any) {
-    localStorage.setItem('selectedpartyheadid', id);
-    const dialogRef = this.dialog.open(AddPartyHeadComponent);
+    localStorage.setItem('selecteddriverid', id);
+    const dialogRef = this.dialog.open(AddDriverComponent);
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog closed`);
@@ -81,15 +70,15 @@ export class PartyComponent implements OnInit {
       dialogRef.close();
     });
   }
-  deleteParty(id: any){
+  deleteDriver(id: any){
     debugger;
     var json = 
     {
       "mode":3,
-      "partyheadcode": id
+      "drivercode": id
     }
-    this.apiService.post(PARTY_HEAD_API, json).then((res: any)=>{ 
-      this.toastr.success("Youe data was successfully saved",'Success');
+    this.apiService.post(DRIVER_API, json).then((res: any)=>{ 
+      this.toastr.success("Your data was successfully saved",'Success');
       location.reload();
     });
   }

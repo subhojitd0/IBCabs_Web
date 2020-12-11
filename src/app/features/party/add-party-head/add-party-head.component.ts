@@ -34,7 +34,7 @@ export interface PartyHeadDDetails {
     contact:string,
     master:string,
     kmin:string,
-    kmout:string
+    kmout:string,
   }
 
 export class partyhead implements PartyHeadDDetails{
@@ -75,8 +75,10 @@ export class AddPartyHeadComponent implements OnInit {
   isPack:boolean=false;
   isSlab:boolean=false;
   partyheaddetails: partyhead;
+  allparties: any;
   constructor(private router: Router, private apiService: ApiService, private toastr: ToastrService) {
     this.partyheaddetails = new partyhead();
+    this.allparties = JSON.parse(localStorage.getItem('allparties'));
     debugger;
     this.partyheadid = JSON.parse(localStorage.getItem('selectedpartyheadid'));
     if(this.partyheadid.toString() != "0"){
