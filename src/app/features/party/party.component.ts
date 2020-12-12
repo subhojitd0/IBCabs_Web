@@ -82,15 +82,18 @@ export class PartyComponent implements OnInit {
     });
   }
   deleteParty(id: any){
-    debugger;
-    var json = 
-    {
-      "mode":3,
-      "partyheadcode": id
+    var r = confirm("Are you sure that you want to delete this record ?");
+    if (r == true) {
+      debugger;
+      var json = 
+      {
+        "mode":3,
+        "partyheadcode": id
+      }
+      this.apiService.post(PARTY_HEAD_API, json).then((res: any)=>{ 
+        this.toastr.success("Your data was successfully saved",'Success');
+        location.reload();
+      });
     }
-    this.apiService.post(PARTY_HEAD_API, json).then((res: any)=>{ 
-      this.toastr.success("Youe data was successfully saved",'Success');
-      location.reload();
-    });
   }
 }

@@ -58,16 +58,19 @@ export class CarComponent implements OnInit {
     this.dataSource.filter = filterValue;
   }
   deleteCar(id: any){
-    debugger;
-    var json = 
-    {
-      "mode":3,
-      "carcode": id
+    var r = confirm("Are you sure that you want to delete this record ?");
+    if (r == true) {
+      debugger;
+      var json = 
+      {
+        "mode":3,
+        "carcode": id
+      }
+      this.apiService.post(CAR_API, json).then((res: any)=>{ 
+        this.toastr.success("Your data was successfully deleted",'Success');
+        location.reload();
+      });
     }
-    this.apiService.post(CAR_API, json).then((res: any)=>{ 
-      this.toastr.success("Your data was successfully deleted",'Success');
-      location.reload();
-    });
   }
   opendialog(id: any){
     localStorage.setItem('selectedcarid', id );

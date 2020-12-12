@@ -65,15 +65,18 @@ export class OwnerComponent implements OnInit {
     });
   }
   deleteOwner(id: any){
-    debugger;
-    var json = 
-    {
-      "mode":3,
-      "ownercode": id
+    var r = confirm("Are you sure that you want to delete this record ?");
+    if (r == true) {
+      debugger;
+      var json = 
+      {
+        "mode":3,
+        "ownercode": id
+      }
+      this.apiService.post(OWNER_API, json).then((res: any)=>{ 
+        this.toastr.success("Your data was successfully saved",'Success');
+        location.reload();
+      });
     }
-    this.apiService.post(OWNER_API, json).then((res: any)=>{ 
-      this.toastr.success("Your data was successfully saved",'Success');
-      location.reload();
-    });
   }
 }

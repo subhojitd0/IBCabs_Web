@@ -70,16 +70,19 @@ export class PartyRatesComponent implements OnInit {
     this.dataSource.filter = filterValue;
   }
   deleteRate(id: any){
-    debugger;
-    var json = 
-    {
-      "mode":3,
-      "slabcode": id
+    var r = confirm("Are you sure that you want to delete this record ?");
+    if (r == true) {
+      debugger;
+      var json = 
+      {
+        "mode":3,
+        "slabcode": id
+      }
+      this.apiService.post(RATE_SLAB_API, json).then((res: any)=>{ 
+        this.toastr.success("Youe data was successfully deleted",'Success');
+        location.reload();
+      });
     }
-    this.apiService.post(RATE_SLAB_API, json).then((res: any)=>{ 
-      this.toastr.success("Youe data was successfully deleted",'Success');
-      location.reload();
-    });
   }
   opendialog(){
     localStorage.setItem('selectedpartyheadid', this.partyheadid );
