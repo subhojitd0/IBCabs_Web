@@ -18,7 +18,7 @@ import {MatTabsModule} from '@angular/material/tabs';
 import { DashboardComponent } from './features/dashboard/dashboard.component';
 import { SideNavComponent } from './common/sidenav/sidenav.component';
 import { HeaderComponent } from './common/header/header.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import {MatTableModule} from '@angular/material/table';
 import { PartyComponent } from './features/party/party.component'; 
@@ -36,7 +36,9 @@ import { AddCarComponent } from '../app/features/car/add-new-car/add-car.compone
 import { DriverComponent } from '../app/features/driver/driver.component';
 import { AddDriverComponent } from '../app/features/driver/add-driver/add-driver.component';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
-
+import {MatStepperModule} from '@angular/material/stepper';
+import {RentalDetailComponent} from '../app/features/rental-detail/rental-detail.component';
+import { EditRentalDetailComponent } from './features/edit-rental-detail/edit-rental-detail.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,7 +55,9 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
     CarComponent,
     AddCarComponent,
     DriverComponent,
-    AddDriverComponent
+    AddDriverComponent,
+    RentalDetailComponent,
+    EditRentalDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -69,6 +73,7 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
     MatListModule,
     MatIconModule,
     FormsModule,
+    ReactiveFormsModule,
     MatTabsModule,
     MatGridListModule,
     MatTableModule,
@@ -77,6 +82,7 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
     MatMenuModule,
     MatSelectModule,
     MatAutocompleteModule,
+    MatStepperModule,
     ToastrModule.forRoot() 
   ],
   providers: [MatDialog],
