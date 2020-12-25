@@ -3,19 +3,50 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import {ApiService} from '../../../shared/services/service';
-import {PARTY_HEAD_API} from '../../../shared/services/api.url-helper';
+import {PARTY_HEAD_API, RENTAL_DETAIL_API_OFFICE} from '../../../shared/services/api.url-helper';
 import {MatDialog} from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {STEPPER_GLOBAL_OPTIONS} from '@angular/cdk/stepper';
 import { MatStepper } from '@angular/material/stepper';
+import { AddPartyHeadComponent } from '../party/add-party-head/add-party-head.component';
 
-export interface PartyHead {
-  name: string;
-  headcode: number;
-  ratetype: string;
-  option: string;
+export interface NewRental {
+  mode: string,
+  dutydate: string,
+  dutytime: string,
+  party : string,
+  bookedby: string,
+  bookedbycontact: string,
+  reporttoname: string,
+  reporttonum: string,
+  goutbeforetime: string,
+  ginbeforetime: string,
+  goutbeforekm: string,
+  ginbeforekm: string,
+  transportinfo: string,
+  center: number,
+  note: string,
+  centerName: string
+}
+export class RentalAdd implements NewRental {
+  mode: string;
+  dutydate: string;
+  dutytime: string;
+  party : string;
+  bookedby: string;
+  bookedbycontact: string;
+  reporttoname: string;
+  reporttonum: string;
+  goutbeforetime: string;
+  ginbeforetime: string;
+  goutbeforekm: string;
+  ginbeforekm: string;
+  transportinfo: string;
+  center: number;
+  note: string;
+  centerName: string;
 }
 
 @Component({
@@ -27,22 +58,124 @@ export interface PartyHead {
   }]
 })
 export class RentalDetailComponent implements OnInit {
+  rentalAdd: RentalAdd;
   isLinear: boolean;
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
+  thirdFormGroup: FormGroup;
+  allparties: any;
   @ViewChild('stepper') stepper: MatStepper;
 
-  constructor(private _formBuilder: FormBuilder) {}
+  constructor(public dialog: MatDialog, private _formBuilder: FormBuilder, private router: Router, private apiService: ApiService, private toastr: ToastrService) {}
   ngAfterViewInit() {
-    this.stepper.selectedIndex = 1; 
+    //this.stepper.selectedIndex = 1; 
+  }
+  createparty(){
+    localStorage.setItem('selectedpartyheadid', "0");
+    const dialogRef = this.dialog.open(AddPartyHeadComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog closed`);
+    });
+    this.router.events.subscribe(() => {
+      dialogRef.close();
+    });
+  }
+  savedata(stepper: MatStepper){
+    if(this.rentalAdd.centerName == "Park Circus"){
+      this.rentalAdd.center = 1;
+    }
+    else{
+      this.rentalAdd.center = 0;
+    }
+    if(this.rentalAdd.mode != "2"){
+      this.rentalAdd.mode = "1";
+    }
+    debugger;
+    this.apiService.post(RENTAL_DETAIL_API_OFFICE, this.rentalAdd).then((res: any)=>{ 
+      this.toastr.success("Your data was successfully saved",'Success');
+      this.stepper.next();
+    });
+  }
+  savedatacreate(){
+    if(this.rentalAdd.centerName == "Park Circus"){
+      this.rentalAdd.center = 1;
+    }
+    else{
+      this.rentalAdd.center = 0;
+    }
+    if(this.rentalAdd.mode != "2"){
+      this.rentalAdd.mode = "1";
+    }
+    debugger;
+    this.apiService.post(RENTAL_DETAIL_API_OFFICE, this.rentalAdd).then((res: any)=>{ 
+      this.toastr.success("Your data was successfully saved",'Success');
+      window.location.reload();
+    });
   }
   ngOnInit() {
+    debugger;
+    this.rentalAdd = new RentalAdd();
+    this.allparties = JSON.parse(localStorage.getItem('allparties'));
     this.isLinear = true;
     this.firstFormGroup = this._formBuilder.group({
-      firstCtrl: ['', Validators.required]
+      PartyControl: ['', Validators.required],
+      DutyControl: ['', Validators.required],
+      DutyTimeControl: ['', Validators.required],
+      BookedByControl: ['', Validators.required],
+      BookedContactControl: ['', Validators.required],
+      ReportControl: ['', Validators.required],
+      ReportContactControl: ['', Validators.required],
+      DispatchControl: ['', Validators.required],
+      GOUTKMBufferControl: [],
+      GOUTTimeBufferControl: [],
+      GINKMBufferControl: [],
+      GINTimeBufferControl: [],
+      FlightControl: [],
+      NotesControl: []
     });
     this.secondFormGroup = this._formBuilder.group({
-      secondCtrl: ['', Validators.required]
+      DriverControl: ['', Validators.required],
+      DriverContactControl: ['', Validators.required],
+      CarTypeControl: ['', Validators.required],
+      CarNumberControl: ['', Validators.required]
     });
+    this.thirdFormGroup = this._formBuilder.group({
+      GINTIMEControl: ['', Validators.required],
+      GINKMControl: ['', Validators.required],
+      GOUTTIMEControl: ['', Validators.required],
+      GOUTKMControl: ['', Validators.required],
+      ParkingControl: ['', Validators.required],
+      OutstationControl: ['', Validators.required],
+      NightControl: ['', Validators.required]
+    });
+    var dutyid = JSON.parse(localStorage.getItem('selectedduty'));
+    if(dutyid != "0"){
+      var json = 
+      {
+        "mode":"4",
+        "dutyid":"2"
+      };
+      this.apiService.post(RENTAL_DETAIL_API_OFFICE, json).then((res: any)=>{ 
+        debugger;
+        this.rentalAdd = res;
+        
+        if(this.rentalAdd.center == 0){
+          this.rentalAdd.centerName = "Tollygunge";
+        }
+        else{
+          this.rentalAdd.centerName = "Park Circus";
+        }
+        this.rentalAdd.dutytime = this.rentalAdd.dutytime.substr(0,5);
+        this.rentalAdd.ginbeforetime = this.rentalAdd.ginbeforetime.substr(0,5);
+        this.rentalAdd.goutbeforetime = this.rentalAdd.goutbeforetime.substr(0,5);
+        this.stepper.selectedIndex = 1;
+        localStorage.setItem("rentaldetails", JSON.stringify(res.result));
+        localStorage.setItem('selectedduty', "0");
+      });
+    }
+    else{
+      localStorage.setItem('selectedduty', "0");
+    }
   }
 }

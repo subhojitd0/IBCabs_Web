@@ -41,3 +41,22 @@ table {
     width: 100%;
   }
 
+  .tab-css{
+    padding: 10px;
+      background: #e3dada;
+      border: 1px solid #d4c7c7;
+      border-radius: 5px;
+      font-weight: 500;
+      margin-right: 10px;
+      cursor: pointer;
+  }
+  .btn-first{
+    border: 1px solid #3f51b5;
+    background: #3f51b5;
+    color: white;
+  }
+  .btn-second{
+    border: 2px solid #3f51b5;
+    background: white;
+    color: #3f51b5;
+  }
