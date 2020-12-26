@@ -43,7 +43,7 @@ export class EditRentalDetailComponent implements OnInit {
    }
    ngOnInit() : void {
     this.selecteditem = "ALL";
-    this.month = new Date().getMonth();
+    this.month = new Date().getMonth() + 1;
     this.year = new Date().getFullYear();
     var json = 
     {

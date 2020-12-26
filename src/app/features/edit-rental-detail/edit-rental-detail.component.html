@@ -8,7 +8,7 @@
             <mat-card-header>
               <div mat-card-avatar class="avatar-image-partyhead"></div>
               <mat-card-title>Rental Details for  
-                <select (change)="onChangeMonth($event.target.value)">
+                <select (change)="onChangeMonth($event.target.value)" [value]="this.month">
                   <option value="1">
                     January
                   </option>
