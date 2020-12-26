@@ -182,7 +182,7 @@ export class RentalDetailComponent implements OnInit {
         this.rentalAdd.dutytime = this.rentalAdd.dutytime.substr(0,5);
         this.rentalAdd.ginbeforetime = this.rentalAdd.ginbeforetime.substr(0,5);
         this.rentalAdd.goutbeforetime = this.rentalAdd.goutbeforetime.substr(0,5);
-        this.stepper.selectedIndex = 1;
+        this.stepper.next();
         localStorage.setItem("rentaldetails", JSON.stringify(res.result));
         localStorage.setItem('selectedduty', "0");
       });
