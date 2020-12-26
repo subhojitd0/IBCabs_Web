@@ -64,6 +64,8 @@ export class RentalDetailComponent implements OnInit {
   secondFormGroup: FormGroup;
   thirdFormGroup: FormGroup;
   allparties: any;
+  alldrivers: any;
+  allcars: any;
   @ViewChild('stepper') stepper: MatStepper;
 
   constructor(public dialog: MatDialog, private _formBuilder: FormBuilder, private router: Router, private apiService: ApiService, private toastr: ToastrService) {}
@@ -126,10 +128,18 @@ export class RentalDetailComponent implements OnInit {
         this.rentalAdd.goutbeforekm = res.kmout;
       });
   }
+  changecar(){
+
+  }
+  changedriver(){
+    
+  }
   ngOnInit() {
     debugger;
     this.rentalAdd = new RentalAdd();
     this.allparties = JSON.parse(localStorage.getItem('allparties'));
+    this.allcars = JSON.parse(localStorage.getItem('allcars'));
+    this.alldrivers = JSON.parse(localStorage.getItem('alldrivers'));
     this.isLinear = true;
     this.firstFormGroup = this._formBuilder.group({
       PartyControl: ['', Validators.required],

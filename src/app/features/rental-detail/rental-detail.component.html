@@ -107,21 +107,41 @@
     <form [formGroup]="secondFormGroup">
       <mat-form-field style="width: 40%; margin-right: 40px;">
         <mat-label>Select Driver</mat-label>
-        <input matInput placeholder="Enter Report To Contact Number" formControlName="DriverControl" required>
+        <input [matAutocomplete]="autodriver" matInput placeholder="Select Driver" formControlName="DriverControl" required>
+        <mat-autocomplete #autodriver="matAutocomplete" (optionSelected)="changedriver()">
+          <mat-option *ngFor="let option of alldrivers" [value]="option.drivername" >
+            {{option.drivername}}
+          </mat-option>
+        </mat-autocomplete>
       </mat-form-field>
       <mat-form-field style="width: 40%; margin-right: 40px;">
         <mat-label>Driver Contact</mat-label>
-        <input matInput placeholder="Enter Report To Contact Number" formControlName="DriverContactControl" required>
+        <input matInput placeholder="Enter Driver Contact Number" formControlName="DriverContactControl" required>
       </mat-form-field>
       <br/>
 
       <mat-form-field style="width: 40%; margin-right: 40px;">
         <mat-label>Select Car Type</mat-label>
-        <input matInput placeholder="Enter Report To Contact Number" formControlName="CarTypeControl" required>
+        <mat-select formControlName="CarTypeControl" required>
+          <mat-option value="ertiga">
+            ERTIGA
+          </mat-option>
+          <mat-option value="sumo">
+            SUMO
+          </mat-option>
+          <mat-option value="dzire">
+            DZIRE
+          </mat-option>
+        </mat-select>
       </mat-form-field>
       <mat-form-field style="width: 40%; margin-right: 40px;">
         <mat-label>Select Car Number</mat-label>
-        <input matInput placeholder="Enter Report To Contact Number" formControlName="CarNumberControl" required>
+        <input [matAutocomplete]="autocar" matInput placeholder="Enter Car Number" formControlName="CarNumberControl" required>
+        <mat-autocomplete #autocar="matAutocomplete" (optionSelected)="changecar()">
+          <mat-option *ngFor="let option of allcars" [value]="option.carno" >
+            {{option.carno}}
+          </mat-option>
+        </mat-autocomplete>
       </mat-form-field>
       <br/>
 
