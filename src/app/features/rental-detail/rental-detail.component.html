@@ -13,8 +13,8 @@
       <mat-form-field style="width: 80%; margin-right: 20px;">
         <mat-label>Party Name</mat-label>
         <input [matAutocomplete]="auto" matInput placeholder="Enter the party name here" [(ngModel)]="rentalAdd.party" formControlName="PartyControl" required>
-        <mat-autocomplete #auto="matAutocomplete">
-          <mat-option *ngFor="let option of allparties" [value]="option.name">
+        <mat-autocomplete #auto="matAutocomplete" (optionSelected)="changeparty()">
+          <mat-option *ngFor="let option of allparties" [value]="option.name" >
             {{option.name}}
           </mat-option>
         </mat-autocomplete>

@@ -113,6 +113,19 @@ export class RentalDetailComponent implements OnInit {
       window.location.reload();
     });
   }
+  changeparty(){
+    var json = 
+      {
+        "mode":4,
+        "partyheadcode": this.allparties.filter(x=>x.name == this.rentalAdd.party)[0].headcode
+      } 
+      this.apiService.post(PARTY_HEAD_API, json).then((res: any)=>{ 
+        this.rentalAdd.ginbeforekm = res.kmin;
+        this.rentalAdd.goutbeforetime = "00:" + res.garagein;
+        this.rentalAdd.ginbeforetime = "00:" + res.garageout;
+        this.rentalAdd.goutbeforekm = res.kmout;
+      });
+  }
   ngOnInit() {
     debugger;
     this.rentalAdd = new RentalAdd();
