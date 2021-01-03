@@ -47,7 +47,7 @@
                   </option>
                 </select>
                 - 
-                <select (change)="onChangeYear($event.target.value)">
+                <select (change)="onChangeYear($event.target.value)" [value]="this.year">
                   <option value="2020">
                     2020
                   </option>

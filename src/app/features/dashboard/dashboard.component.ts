@@ -21,7 +21,11 @@ export class DashboardComponent implements OnInit {
     this.apiService.post(PARTY_HEAD_API, json).then((res: any)=>{ 
       localStorage.setItem("allparties", JSON.stringify(res.result));
     });
-    this.apiService.post(CAR_API, json).then((res: any)=>{ 
+    var jsoncar = 
+    {
+      "mode": 5
+    };
+    this.apiService.post(CAR_API, jsoncar).then((res: any)=>{ 
       localStorage.setItem("allcars", JSON.stringify(res.result));
     });
     this.apiService.post(DRIVER_API, json).then((res: any)=>{ 

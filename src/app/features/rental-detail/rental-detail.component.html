@@ -107,7 +107,7 @@
     <form [formGroup]="secondFormGroup">
       <mat-form-field style="width: 40%; margin-right: 40px;">
         <mat-label>Select Driver</mat-label>
-        <input [matAutocomplete]="autodriver" matInput placeholder="Select Driver" formControlName="DriverControl" required>
+        <input [(ngModel)]="rentalAdd.driver" [matAutocomplete]="autodriver" matInput placeholder="Select Driver" formControlName="DriverControl" required>
         <mat-autocomplete #autodriver="matAutocomplete" (optionSelected)="changedriver()">
           <mat-option *ngFor="let option of alldrivers" [value]="option.drivername" >
             {{option.drivername}}
@@ -116,13 +116,13 @@
       </mat-form-field>
       <mat-form-field style="width: 40%; margin-right: 40px;">
         <mat-label>Driver Contact</mat-label>
-        <input matInput placeholder="Enter Driver Contact Number" formControlName="DriverContactControl" required>
+        <input [(ngModel)]="rentalAdd.drivernum" matInput placeholder="Enter Driver Contact Number" formControlName="DriverContactControl" required>
       </mat-form-field>
       <br/>
 
       <mat-form-field style="width: 40%; margin-right: 40px;">
         <mat-label>Select Car Type</mat-label>
-        <mat-select formControlName="CarTypeControl" required>
+        <mat-select formControlName="CarTypeControl" required [(ngModel)]="rentalAdd.cartype">
           <mat-option value="ertiga">
             ERTIGA
           </mat-option>
@@ -136,7 +136,7 @@
       </mat-form-field>
       <mat-form-field style="width: 40%; margin-right: 40px;">
         <mat-label>Select Car Number</mat-label>
-        <input [matAutocomplete]="autocar" matInput placeholder="Enter Car Number" formControlName="CarNumberControl" required>
+        <input [(ngModel)]="rentalAdd.carnum" [matAutocomplete]="autocar" matInput placeholder="Enter Car Number" formControlName="CarNumberControl" required>
         <mat-autocomplete #autocar="matAutocomplete" (optionSelected)="changecar()">
           <mat-option *ngFor="let option of allcars" [value]="option.carno" >
             {{option.carno}}
@@ -156,35 +156,35 @@
     <form [formGroup]="thirdFormGroup">
     <mat-form-field style="width: 40%; margin-right: 40px;">
         <mat-label>Garage In Time</mat-label>
-        <input matInput  type="time" formControlName="GINTIMEControl" required>
+        <input matInput [(ngModel)]="rentalAdd.gintime"  type="time" formControlName="GINTIMEControl" required>
       </mat-form-field>
       <mat-form-field style="width: 40%; margin-right: 40px;">
         <mat-label>Garage In KM</mat-label>
-        <input matInput  type="number" formControlName="GINKMControl" required>
+        <input matInput [(ngModel)]="rentalAdd.ginkm"  type="number" formControlName="GINKMControl" required>
       </mat-form-field>
       <br/>
 
       <mat-form-field style="width: 40%; margin-right: 40px;">
         <mat-label>Garage Out Time</mat-label>
-        <input matInput  type="time" formControlName="GOUTTIMEControl" required>
+        <input matInput [(ngModel)]="rentalAdd.gouttime"  type="time" formControlName="GOUTTIMEControl" required>
       </mat-form-field>
       <mat-form-field style="width: 40%; margin-right: 40px;">
         <mat-label>Garage Out KM</mat-label>
-        <input matInput  type="number" formControlName="GOUTKMControl" required>
+        <input matInput [(ngModel)]="rentalAdd.goutkm"  type="number" formControlName="GOUTKMControl" required>
       </mat-form-field>
       <br/>
 
       <mat-form-field style="width: 30%; margin-right: 40px;">
         <mat-label>Parking</mat-label>
-        <input matInput placeholder="Enter Report To Contact Number" formControlName="ParkingControl" required>
+        <input matInput [(ngModel)]="rentalAdd.parking" placeholder="Enter Report To Contact Number" formControlName="ParkingControl" required>
       </mat-form-field>
       <mat-form-field style="width: 30%; margin-right: 40px;">
         <mat-label>Outstation</mat-label>
-        <input matInput placeholder="Enter Report To Contact Number" formControlName="OutstationControl" required>
+        <input matInput [(ngModel)]="rentalAdd.outstation" placeholder="Enter Report To Contact Number" formControlName="OutstationControl" required>
       </mat-form-field>
       <mat-form-field style="width: 30%; margin-right: 40px;">
         <mat-label>Night</mat-label>
-        <input matInput placeholder="Enter Report To Contact Number" formControlName="NightControl" required>
+        <input matInput [(ngModel)]="rentalAdd.nightcharge" placeholder="Enter Report To Contact Number" formControlName="NightControl" required>
       </mat-form-field>
       <br/>
     </form>

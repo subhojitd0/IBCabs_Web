@@ -143,7 +143,7 @@ export class EditRentalDetailComponent implements OnInit {
       var json = 
       {
         "mode":3,
-        "partyheadcode": id
+        "dutyid": id
       }
       this.apiService.post(RENTAL_DETAIL_API_OFFICE, json).then((res: any)=>{ 
         this.toastr.success("Your data was successfully saved",'Success');

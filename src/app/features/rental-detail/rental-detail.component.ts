@@ -3,7 +3,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import {ApiService} from '../../../shared/services/service';
-import {PARTY_HEAD_API, RENTAL_DETAIL_API_OFFICE} from '../../../shared/services/api.url-helper';
+import {DRIVER_API, PARTY_HEAD_API, RENTAL_DETAIL_API_OFFICE} from '../../../shared/services/api.url-helper';
 import {MatDialog} from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
@@ -28,7 +28,19 @@ export interface NewRental {
   transportinfo: string,
   center: number,
   note: string,
-  centerName: string
+  centerName: string,
+  driver: string,
+  drivernum: string,
+  cartype: string,
+  carnum: string,
+  gintime: string,
+  gouttime: string,
+  ginkm:string,
+  goutkm:string,
+  parking:string,
+  outstationtype:string,
+  outstation:string,
+  nightcharge:string
 }
 export class RentalAdd implements NewRental {
   mode: string;
@@ -47,6 +59,18 @@ export class RentalAdd implements NewRental {
   center: number;
   note: string;
   centerName: string;
+  driver: string;
+  drivernum: string;
+  cartype: string;
+  carnum: string;
+  gintime: string;
+  gouttime: string;
+  ginkm:string;
+  goutkm:string;
+  parking:string;
+  outstationtype:string;
+  outstation:string;
+  nightcharge:string;
 }
 
 @Component({
@@ -93,11 +117,24 @@ export class RentalDetailComponent implements OnInit {
     if(this.rentalAdd.mode != "2"){
       this.rentalAdd.mode = "1";
     }
-    debugger;
-    this.apiService.post(RENTAL_DETAIL_API_OFFICE, this.rentalAdd).then((res: any)=>{ 
-      this.toastr.success("Your data was successfully saved",'Success');
-      this.stepper.next();
-    });
+    var ot = "0";
+    this.rentalAdd.outstationtype = "0";
+    var json = 
+      {
+        "mode":4,
+        "partyheadcode": this.allparties.filter(x=>x.name == this.rentalAdd.party)[0].headcode
+      } 
+      debugger;
+      this.apiService.post(PARTY_HEAD_API, json).then((res: any)=>{ 
+        ot = res.ot;
+        this.rentalAdd.outstation = (parseInt(this.rentalAdd.outstation) * parseInt(ot)).toString();
+        debugger;
+        this.apiService.post(RENTAL_DETAIL_API_OFFICE, this.rentalAdd).then((res: any)=>{ 
+          this.toastr.success("Your data was successfully saved",'Success');
+          this.stepper.next();
+        });
+      });
+    
   }
   savedatacreate(){
     if(this.rentalAdd.centerName == "Park Circus"){
@@ -132,7 +169,15 @@ export class RentalDetailComponent implements OnInit {
 
   }
   changedriver(){
-    
+    var drivercode = this.alldrivers.filter(x=>x.drivername == this.rentalAdd.driver)[0].drivercode;
+    var json = 
+      {
+        "mode":4,
+        "drivercode": drivercode
+      } 
+      this.apiService.post(DRIVER_API, json).then((res: any)=>{ 
+        this.rentalAdd.drivernum = res.contact;
+      });
   }
   ngOnInit() {
     debugger;
@@ -177,7 +222,7 @@ export class RentalDetailComponent implements OnInit {
       var json = 
       {
         "mode":"4",
-        "dutyid":"2"
+        "dutyid": dutyid
       };
       this.apiService.post(RENTAL_DETAIL_API_OFFICE, json).then((res: any)=>{ 
         debugger;
@@ -192,6 +237,7 @@ export class RentalDetailComponent implements OnInit {
         this.rentalAdd.dutytime = this.rentalAdd.dutytime.substr(0,5);
         this.rentalAdd.ginbeforetime = this.rentalAdd.ginbeforetime.substr(0,5);
         this.rentalAdd.goutbeforetime = this.rentalAdd.goutbeforetime.substr(0,5);
+        this.rentalAdd.mode = "2";
         this.stepper.next();
         localStorage.setItem("rentaldetails", JSON.stringify(res.result));
         localStorage.setItem('selectedduty', "0");
