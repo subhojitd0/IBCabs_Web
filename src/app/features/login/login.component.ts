@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import {ApiService} from '../../../shared/services/service';
 import { ToastrService } from 'ngx-toastr';
 import {LOGIN_API} from '../../../shared/services/api.url-helper';
+import { ROUTE_DASHBOARD } from 'src/shared/constants/constant';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +17,7 @@ export class LoginComponent implements OnInit {
     debugger;
     let isLoggedIn = localStorage.getItem('loggedin'); 
     if(isLoggedIn && isLoggedIn == "1"){
-      this.router.navigateByUrl('/dashboard');
+      this.router.navigateByUrl('/' + ROUTE_DASHBOARD);
     }
   }
 
@@ -41,7 +42,7 @@ export class LoginComponent implements OnInit {
         if(res.hasOwnProperty('username')){
           this.toastr.success("Login Successful! Welcome " + res.username,'Success');
           localStorage.setItem('loggedinuser', res.username);
-          this.router.navigateByUrl('/dashboard');
+          this.router.navigateByUrl('/' + ROUTE_DASHBOARD);
         }
       }
     });

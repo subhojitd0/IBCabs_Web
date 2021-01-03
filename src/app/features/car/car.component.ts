@@ -8,6 +8,7 @@ import {MatDialog} from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 import { AddCarComponent } from './add-new-car/add-car.component';
 import { Router } from '@angular/router';
+import { ROUTE_OWNER } from 'src/shared/constants/constant';
 
 export interface Car {
   carcode: string;
@@ -50,7 +51,7 @@ export class CarComponent implements OnInit {
     }
    }
    backtoowner(){
-    this.router.navigateByUrl('/owner');
+    this.router.navigateByUrl('/' + ROUTE_OWNER);
    }
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim(); // Remove whitespace

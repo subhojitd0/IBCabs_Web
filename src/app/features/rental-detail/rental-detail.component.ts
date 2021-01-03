@@ -11,6 +11,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {STEPPER_GLOBAL_OPTIONS} from '@angular/cdk/stepper';
 import { MatStepper } from '@angular/material/stepper';
 import { AddPartyHeadComponent } from '../party/add-party-head/add-party-head.component';
+import { ROUTE_VIEW_DDR } from 'src/shared/constants/constant';
 
 export interface NewRental {
   mode: string,
@@ -179,6 +180,9 @@ export class RentalDetailComponent implements OnInit {
         this.rentalAdd.drivernum = res.contact;
       });
   }
+  viewallduties(){
+    this.router.navigateByUrl('/' + ROUTE_VIEW_DDR);
+  }
   ngOnInit() {
     debugger;
     this.rentalAdd = new RentalAdd();
@@ -238,6 +242,10 @@ export class RentalDetailComponent implements OnInit {
         this.rentalAdd.ginbeforetime = this.rentalAdd.ginbeforetime.substr(0,5);
         this.rentalAdd.goutbeforetime = this.rentalAdd.goutbeforetime.substr(0,5);
         this.rentalAdd.mode = "2";
+        if(this.rentalAdd.gintime)
+          this.rentalAdd.gintime = this.rentalAdd.gintime.substr(0,5);
+        if(this,this.rentalAdd.gouttime)
+          this.rentalAdd.gouttime = this.rentalAdd.gouttime.substr(0,5);
         this.stepper.next();
         localStorage.setItem("rentaldetails", JSON.stringify(res.result));
         localStorage.setItem('selectedduty', "0");

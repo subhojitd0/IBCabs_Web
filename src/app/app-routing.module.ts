@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { ROUTE_ADD_DDR, ROUTE_BASIC, ROUTE_CAR, ROUTE_DASHBOARD, ROUTE_DRIVER, ROUTE_OWNER, ROUTE_PARTY, ROUTE_RATE, ROUTE_VIEW_DDR } from 'src/shared/constants/constant';
 import { CarComponent } from './features/car/car.component';
 import { DashboardComponent } from './features/dashboard/dashboard.component';
 import { DriverComponent } from './features/driver/driver.component';
@@ -12,39 +13,39 @@ import { RentalDetailComponent } from './features/rental-detail/rental-detail.co
 
 const routes: Routes = [
   {
-    path: '',
+    path: ROUTE_BASIC,
     component:LoginComponent
   },
   {
-    path: 'dashboard',
+    path: ROUTE_DASHBOARD,
     component:DashboardComponent
   },
   {
-    path: 'party',
+    path: ROUTE_PARTY,
     component:PartyComponent
   },
   {
-    path: 'rate',
+    path: ROUTE_RATE,
     component:PartyRatesComponent
   },
   {
-    path: 'owner',
+    path: ROUTE_OWNER,
     component:OwnerComponent
   },
   {
-    path: 'car',
+    path: ROUTE_CAR,
     component:CarComponent
   },
   {
-    path: 'driver',
+    path: ROUTE_DRIVER,
     component:DriverComponent
   },
   {
-    path: 'add-ddr',
+    path: ROUTE_ADD_DDR,
     component:RentalDetailComponent
   },
   {
-    path: 'view-ddr',
+    path: ROUTE_VIEW_DDR,
     component:EditRentalDetailComponent
   }
 ];

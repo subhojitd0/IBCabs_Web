@@ -8,6 +8,7 @@ import {MatDialog} from '@angular/material/dialog';
 import { AddOwnerComponent } from './add-owner/add-owner.component';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
+import { ROUTE_CAR } from 'src/shared/constants/constant';
 
 export interface Owner {
   ownercode: string;
@@ -51,7 +52,7 @@ export class OwnerComponent implements OnInit {
   openCar(id: any){
     localStorage.setItem('selectedownerid', id);
     localStorage.setItem('selectedownername', id);
-    this.router.navigateByUrl('/car');
+    this.router.navigateByUrl('/' + ROUTE_CAR);
   }
   openDialog(id: any) {
     localStorage.setItem('selectedownerid', id);

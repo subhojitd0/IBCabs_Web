@@ -8,6 +8,7 @@ import {MatDialog} from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 import { AddSlabComponent } from './add-new-slab/add-slab-head.component';
 import { Router } from '@angular/router';
+import { ROUTE_PARTY } from 'src/shared/constants/constant';
 
 export interface RateHead {
   slabcode: string;
@@ -62,7 +63,7 @@ export class PartyRatesComponent implements OnInit {
     }
    }
    backtopartyhead(){
-    this.router.navigateByUrl('/party');
+    this.router.navigateByUrl('/' + ROUTE_PARTY);
    }
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim(); // Remove whitespace

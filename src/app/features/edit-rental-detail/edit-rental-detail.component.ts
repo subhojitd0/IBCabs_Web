@@ -9,6 +9,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {STEPPER_GLOBAL_OPTIONS} from '@angular/cdk/stepper';
+import { ROUTE_ADD_DDR } from 'src/shared/constants/constant';
 
 export interface RentalDetail {
   dutydate: string;
@@ -131,10 +132,10 @@ export class EditRentalDetailComponent implements OnInit {
   }
   edit(id: any) {
     localStorage.setItem('selectedduty', id);
-    this.router.navigateByUrl('/add-ddr');
+    this.router.navigateByUrl('/' + ROUTE_ADD_DDR);
   }
   newduty(){
-    this.router.navigateByUrl('/add-ddr');
+    this.router.navigateByUrl('/' + ROUTE_ADD_DDR);
   }
   deleteduty(id: any){
     var r = confirm("Are you sure that you want to delete this record ?");

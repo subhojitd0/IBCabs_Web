@@ -6,6 +6,7 @@ import {ApiService} from '../../../../shared/services/service';
 import {PARTY_HEAD_API} from '../../../../shared/services/api.url-helper';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
+import { ROUTE_RATE } from 'src/shared/constants/constant';
 
 export interface PartyHeadDDetails {
     mode: number,
@@ -121,7 +122,7 @@ export class AddPartyHeadComponent implements OnInit {
    openpartyrates(){
      debugger;
     localStorage.setItem('selectedpartyheadname', this.partyheaddetails.name);
-    this.router.navigateByUrl('/rate');
+    this.router.navigateByUrl('/' + ROUTE_RATE);
    }
   savepartyhead(){
     debugger;
