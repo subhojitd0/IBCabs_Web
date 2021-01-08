@@ -165,7 +165,7 @@ export class RentalDetailComponent implements OnInit {
         this.rentalAdd.goutbeforetime = "00:" + res.garagein;
         this.rentalAdd.ginbeforetime = "00:" + res.garageout;
         this.rentalAdd.goutbeforekm = res.kmout;
-        this.rentalAdd.dutytime = res.dutytime ? res.dutytime.substr(0,5) : "";
+        this.rentalAdd.dutytime = res.starttime ? res.starttime.substr(0,5) : "";
       });
   }
   changecar(){
