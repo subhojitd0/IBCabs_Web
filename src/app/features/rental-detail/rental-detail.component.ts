@@ -138,6 +138,7 @@ export class RentalDetailComponent implements OnInit {
     
   }
   savedatacreate(){
+    this.toastr.info("Please wait while we are saving your request",'Information');
     if(this.rentalAdd.centerName == "Park Circus"){
       this.rentalAdd.center = 1;
     }
@@ -164,6 +165,7 @@ export class RentalDetailComponent implements OnInit {
         this.rentalAdd.goutbeforetime = "00:" + res.garagein;
         this.rentalAdd.ginbeforetime = "00:" + res.garageout;
         this.rentalAdd.goutbeforekm = res.kmout;
+        this.rentalAdd.dutytime = res.dutytime ? res.dutytime.substr(0,5) : "";
       });
   }
   changecar(){
@@ -239,8 +241,8 @@ export class RentalDetailComponent implements OnInit {
           this.rentalAdd.centerName = "Park Circus";
         }
         this.rentalAdd.dutytime = this.rentalAdd.dutytime.substr(0,5);
-        this.rentalAdd.ginbeforetime = this.rentalAdd.ginbeforetime.substr(0,5);
-        this.rentalAdd.goutbeforetime = this.rentalAdd.goutbeforetime.substr(0,5);
+        /* this.rentalAdd.ginbeforetime = this.rentalAdd.ginbeforetime.substr(3,2);
+        this.rentalAdd.goutbeforetime = this.rentalAdd.goutbeforetime.substr(3,2); */
         this.rentalAdd.mode = "2";
         if(this.rentalAdd.gintime)
           this.rentalAdd.gintime = this.rentalAdd.gintime.substr(0,5);

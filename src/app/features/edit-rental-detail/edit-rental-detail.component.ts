@@ -141,10 +141,13 @@ export class EditRentalDetailComponent implements OnInit {
      this.isBulkEdit = false;
    }
    savebulkedit(){
+    this.toastr.info("Please wait while we are saving your request",'Information');
      debugger;
      var data = this.editRentalDetails.filter(x=>x.isSelected);
      this.apiService.post(RENTAL_DETAIL_API_OFFICE_BULKEDIT, data).then((res: any)=>{ 
        debugger;
+       this.toastr.success("Your data was successfully saved",'Success');
+       location.reload();
      });
    }
    onChangeMonth(val){
