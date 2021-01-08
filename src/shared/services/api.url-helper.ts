@@ -5,3 +5,4 @@ export const OWNER_API = "owner.php";
 export const CAR_API = "car.php";
 export const DRIVER_API = "driver.php";
 export const RENTAL_DETAIL_API_OFFICE = "ddroffice.php";
+export const RENTAL_DETAIL_API_OFFICE_BULKEDIT = "ddrofficerowedit.php";
