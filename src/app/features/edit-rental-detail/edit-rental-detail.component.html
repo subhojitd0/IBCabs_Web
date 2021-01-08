@@ -104,9 +104,9 @@
                   <ng-container matColumnDef="status">
                     <mat-header-cell *matHeaderCellDef mat-sort-header> Status </mat-header-cell>
                     <mat-cell *matCellDef="let row"> 
-                      <span *ngIf="row.status == '0'" class="yellow-icon"> Pending Driver Assign</span> 
-                      <span *ngIf="row.status == '1'" class="orange-icon"> Pending Driver Input</span> 
-                      <span *ngIf="row.status == '2'" class="blue-icon"> Pending Approval</span> 
+                      <span *ngIf="row.status == '0'" class="yellow-icon" (click)="edit(row.dutyid)"> Pending Driver Assign</span> 
+                      <span *ngIf="row.status == '1'" class="orange-icon" (click)="edit(row.dutyid)"> Pending Driver Input</span> 
+                      <span *ngIf="row.status == '2'" class="blue-icon" (click)="edit(row.dutyid)"> Pending Approval</span> 
                       <span *ngIf="row.status == '3'" class="green-icon"> Approved</span>  
                     </mat-cell>
                   </ng-container>
@@ -114,8 +114,8 @@
                   <ng-container matColumnDef="options">
                       <mat-header-cell *matHeaderCellDef mat-sort-header> Options </mat-header-cell>
                       <mat-cell *matCellDef="let row" [style.color]="row.option">
-                          <span style="margin-left: 10px; margin-right: 10px; cursor: pointer;" class="material-icons" (click)="edit(row.dutyid)">
-                              edit
+                          <span style="margin-left: 10px; margin-right: 10px; cursor: pointer;" class="material-icons" >
+                              message
                           </span> |
                           <span style="margin-left: 10px; margin-right: 10px; cursor: pointer;" class="material-icons" (click)="deleteduty(row.dutyid)">
                               delete
@@ -134,7 +134,7 @@
               <mat-table [dataSource]="bulkDataSource" matSort *ngIf="isBulkEdit">
 
                 <ng-container matColumnDef="isselected">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header> Select To Edit  </mat-header-cell>
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> Select  </mat-header-cell>
                   <mat-cell *matCellDef="let row"> <input type="checkbox" [(ngModel)]="row.isSelected"> </mat-cell>
                 </ng-container>
                 <!-- ID Column -->
@@ -152,12 +152,12 @@
                 <!-- Color Column -->
                 <ng-container matColumnDef="reportto">
                   <mat-header-cell *matHeaderCellDef mat-sort-header> Report To </mat-header-cell>
-                  <mat-cell *matCellDef="let row"> {{row.reporttoname}} </mat-cell>
+                  <mat-cell style="margin-left:10px !important" *matCellDef="let row"> {{row.reporttoname}} </mat-cell>
                 </ng-container>
 
                 <ng-container matColumnDef="driver">
                   <mat-header-cell *matHeaderCellDef mat-sort-header> Driver </mat-header-cell>
-                  <mat-cell *matCellDef="let row"> 
+                  <mat-cell style="margin-left:10px !important" *matCellDef="let row"> 
                     <input type="text" [(ngModel)]="row.driver" [matAutocomplete]="autodriver" matInput placeholder="Select Driver">
                     <mat-autocomplete #autodriver="matAutocomplete" (optionSelected)="changedriver()">
                       <mat-option *ngFor="let option of alldrivers" [value]="option.drivername" >
@@ -170,7 +170,7 @@
                 <!-- Color Column -->
                 <ng-container matColumnDef="carnumber">
                   <mat-header-cell *matHeaderCellDef mat-sort-header> Car </mat-header-cell>
-                  <mat-cell *matCellDef="let row">
+                  <mat-cell style="margin-left:10px" *matCellDef="let row">
                     <input type="text" [(ngModel)]="row.carnum" [matAutocomplete]="autocar" matInput placeholder="Enter Car Number">
                     <mat-autocomplete #autocar="matAutocomplete" (optionSelected)="changecar()">
                       <mat-option *ngFor="let option of allcars" [value]="option.carno" >
@@ -181,8 +181,8 @@
                 </ng-container>
 
                 <ng-container matColumnDef="cartype">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header> Car Type</mat-header-cell>
-                  <mat-cell *matCellDef="let row">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> Type</mat-header-cell>
+                  <mat-cell style="margin-left:10px" *matCellDef="let row">
                     <mat-select [(ngModel)]="row.cartype">
                       <mat-option value="ertiga">
                         ERTIGA
@@ -198,25 +198,25 @@
                 </ng-container>
 
                 <ng-container matColumnDef="goutkm">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header> Garage Out KM </mat-header-cell>
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> Out KM </mat-header-cell>
                   <mat-cell *matCellDef="let row"> 
                     <input type="number" matInput [(ngModel)]="row.goutkm"/>
                   </mat-cell>
                 </ng-container>
                 <ng-container matColumnDef="ginkm">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header> Garage in KM </mat-header-cell>
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> In KM </mat-header-cell>
                   <mat-cell *matCellDef="let row"> 
                     <input type="number" matInput [(ngModel)]="row.ginkm"/>
                   </mat-cell>
                 </ng-container>
                 <ng-container matColumnDef="gouttime">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header> Garage Out Time </mat-header-cell>
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> Out Time </mat-header-cell>
                   <mat-cell *matCellDef="let row"> 
                     <input type="time" matInput [(ngModel)]="row.gouttime"/>
                   </mat-cell>
                 </ng-container>
                 <ng-container matColumnDef="gintime">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header> Garage In Time </mat-header-cell>
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> In Time </mat-header-cell>
                   <mat-cell *matCellDef="let row"> 
                     <input type="time" matInput [(ngModel)]="row.gintime"/>
                   </mat-cell>
@@ -228,7 +228,7 @@
                   </mat-cell>
                 </ng-container>
                 <ng-container matColumnDef="outstation">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header> Outstation </mat-header-cell>
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> Outstation Days </mat-header-cell>
                   <mat-cell *matCellDef="let row"> 
                     <input type="number" matInput [(ngModel)]="row.outstation" />
                   </mat-cell>

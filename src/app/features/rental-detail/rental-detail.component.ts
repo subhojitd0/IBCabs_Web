@@ -108,6 +108,35 @@ export class RentalDetailComponent implements OnInit {
       dialogRef.close();
     });
   }
+  savedataandexit(stepper: MatStepper){
+    if(this.rentalAdd.centerName == "Park Circus"){
+      this.rentalAdd.center = 1;
+    }
+    else{
+      this.rentalAdd.center = 0;
+    }
+    if(this.rentalAdd.mode != "2"){
+      this.rentalAdd.mode = "1";
+    }
+    var ot = "0";
+    this.rentalAdd.outstationtype = "0";
+    var json = 
+      {
+        "mode":4,
+        "partyheadcode": this.allparties.filter(x=>x.name == this.rentalAdd.party)[0].headcode
+      } 
+      debugger;
+      this.apiService.post(PARTY_HEAD_API, json).then((res: any)=>{ 
+        ot = res.ot;
+        this.rentalAdd.outstation = (parseInt(this.rentalAdd.outstation) * parseInt(ot)).toString();
+        debugger;
+        this.apiService.post(RENTAL_DETAIL_API_OFFICE, this.rentalAdd).then((res: any)=>{ 
+          this.toastr.success("Your data was successfully saved",'Success');
+          this.router.navigateByUrl('/' + ROUTE_VIEW_DDR);
+        });
+      });
+    
+  }
   savedata(stepper: MatStepper){
     if(this.rentalAdd.centerName == "Park Circus"){
       this.rentalAdd.center = 1;
@@ -243,14 +272,25 @@ export class RentalDetailComponent implements OnInit {
         this.rentalAdd.dutytime = this.rentalAdd.dutytime.substr(0,5);
         /* this.rentalAdd.ginbeforetime = this.rentalAdd.ginbeforetime.substr(3,2);
         this.rentalAdd.goutbeforetime = this.rentalAdd.goutbeforetime.substr(3,2); */
-        this.rentalAdd.mode = "2";
+        var jsonParty ={
+          "mode":4,
+          "partyheadcode": this.allparties.filter(x=>x.name == this.rentalAdd.party)[0].headcode
+        } 
+        var ot=0;
+        debugger;
+        this.apiService.post(PARTY_HEAD_API, jsonParty).then((res: any)=>{ 
+          ot = res.ot;
+          this.rentalAdd.mode = "2";
         if(this.rentalAdd.gintime)
           this.rentalAdd.gintime = this.rentalAdd.gintime.substr(0,5);
         if(this,this.rentalAdd.gouttime)
           this.rentalAdd.gouttime = this.rentalAdd.gouttime.substr(0,5);
+        if(this.rentalAdd.outstation)
+          this.rentalAdd.outstation = (parseFloat(this.rentalAdd.outstation) / parseFloat(ot.toString())).toString();
         this.stepper.next();
         localStorage.setItem("rentaldetails", JSON.stringify(res.result));
         localStorage.setItem('selectedduty', "0");
+        });
       });
     }
     else{

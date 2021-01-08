@@ -181,7 +181,7 @@
         <input matInput [(ngModel)]="rentalAdd.parking" placeholder="Enter Report To Contact Number" formControlName="ParkingControl" required>
       </mat-form-field>
       <mat-form-field style="width: 30%; margin-right: 40px;">
-        <mat-label>Outstation</mat-label>
+        <mat-label>Outstation Days</mat-label>
         <input matInput [(ngModel)]="rentalAdd.outstation" placeholder="Enter Report To Contact Number" formControlName="OutstationControl" required>
       </mat-form-field>
       <mat-form-field style="width: 30%; margin-right: 40px;">
@@ -192,7 +192,7 @@
     </form>
 
     <div>
-      <button class="btn-first" style="margin-right: 20px;" mat-button (click)="savedata(stepper)">Save Duty & Continue</button>
+      <button class="btn-first" style="margin-right: 20px;" mat-button (click)="savedataandexit(stepper)">Save Duty</button>
       <button class="btn-second" style="margin-right: 20px;" mat-button (click)="savedatacreate()">Save Duty & Create New</button>
       <button class="btn-first" style="margin-right: 20px;" mat-button (click)="viewallduties()">View All Duties</button>
     </div>

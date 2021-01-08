@@ -83,10 +83,21 @@ export class EditRentalDetailComponent implements OnInit {
     
    }
    ngOnInit() : void {
+     var yr = JSON.parse(localStorage.getItem('rentalyr'));
+     var month = JSON.parse(localStorage.getItem('rentalmonth'));
+     if(yr && month){
+      this.month = month;
+      this.year = yr;
+     }
+     else{
+      this.month = new Date().getMonth() + 1;
+      this.year = new Date().getFullYear();
+      localStorage.setItem("rentalmonth", this.month);
+      localStorage.setItem("rentalyr", this.year);
+     }
      this.isBulkEdit = false;
     this.selecteditem = "ALL";
-    this.month = new Date().getMonth() + 1;
-    this.year = new Date().getFullYear();
+    
     var json = 
     {
       "mode": 0,
@@ -116,6 +127,16 @@ export class EditRentalDetailComponent implements OnInit {
       this.alldrivers = JSON.parse(localStorage.getItem('alldrivers'));
       this.editRentalDetails.forEach(element => {
         element.isSelected = false;
+        var allparties = JSON.parse(localStorage.getItem('allparties'));
+        var jsonParty ={
+          "mode":4,
+          "partyheadcode": allparties.filter(x=>x.name == element.party)[0].headcode
+        } 
+        var ot=0;
+        this.apiService.post(PARTY_HEAD_API, jsonParty).then((res: any)=>{ 
+          ot = res.ot;
+          element.outstation = (parseInt(element.outstation) / parseInt(ot.toString())).toString();
+        });
       });
       if(this.editRentalDetails.gintime)
           this.editRentalDetails.gintime = this.editRentalDetails.gintime.substr(0,5);
@@ -143,7 +164,19 @@ export class EditRentalDetailComponent implements OnInit {
    savebulkedit(){
     this.toastr.info("Please wait while we are saving your request",'Information');
      debugger;
+     var allparties = JSON.parse(localStorage.getItem('allparties'));
      var data = this.editRentalDetails.filter(x=>x.isSelected);
+     data.forEach(async element => {
+        var jsonParty ={
+          "mode":4,
+          "partyheadcode": allparties.filter(x=>x.name == element.party)[0].headcode
+        } 
+        var ot=0;
+        await this.apiService.post(PARTY_HEAD_API, jsonParty).then((res: any)=>{ 
+          ot = res.ot;
+          element.outstation = (parseInt(element.outstation) * parseInt(ot.toString())).toString();
+        });
+      });
      this.apiService.post(RENTAL_DETAIL_API_OFFICE_BULKEDIT, data).then((res: any)=>{ 
        debugger;
        this.toastr.success("Your data was successfully saved",'Success');
@@ -153,6 +186,8 @@ export class EditRentalDetailComponent implements OnInit {
    onChangeMonth(val){
     this.loading = true;
     this.month = val;
+    localStorage.setItem("rentalmonth", this.month);
+      localStorage.setItem("rentalyr", this.year);
     if(this.isBulkEdit){
       var json = 
       {
@@ -199,6 +234,8 @@ export class EditRentalDetailComponent implements OnInit {
    onChangeYear(val){
     this.loading = true;
     this.year = val;
+    localStorage.setItem("rentalmonth", this.month);
+      localStorage.setItem("rentalyr", this.year);
     if(this.isBulkEdit){
       var json = 
       {
@@ -305,6 +342,19 @@ export class EditRentalDetailComponent implements OnInit {
     this.rentalDetails = this.masterrentaldetails.filter(x=>x.status == "3");
     this.dataSource = new MatTableDataSource(this.rentalDetails);
     }
+  }
+  approve(id){
+    var json = 
+    {
+      "mode":"6",
+      "dutyid": id,
+      "status": "1"
+    };
+    this.toastr.info("Please wait while we approve the duty",'Information');
+    this.apiService.post(RENTAL_DETAIL_API_OFFICE, json).then((res: any)=>{ 
+        this.toastr.success("The duty was successfully approved",'Success');
+        window.location.reload();
+    });
   }
   edit(id: any) {
     localStorage.setItem('selectedduty', id);
