@@ -5,6 +5,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import {ApiService} from '../../../../shared/services/service';
 import { RATE_SLAB_API} from '../../../../shared/services/api.url-helper';
 import { ToastrService } from 'ngx-toastr';
+import { ROUTE_RATE } from 'src/shared/constants/constant';
+import { Router } from '@angular/router';
 
 export interface ISlabDetails {
   mode: number;
@@ -55,7 +57,7 @@ export class SlabDetails implements ISlabDetails {
 export class AddSlabComponent implements OnInit {
   partyheadid : any;
   slabdetails: SlabDetails;
-  constructor(private apiService: ApiService, private toastr: ToastrService) {
+  constructor(private router: Router, private apiService: ApiService, private toastr: ToastrService) {
     let partyheadname = localStorage.getItem('selectedpartyheadname'); 
     let partycode = localStorage.getItem('selectedpartyheadid');
     this.slabdetails = new SlabDetails();
@@ -71,7 +73,7 @@ export class AddSlabComponent implements OnInit {
     this.toastr.info("Please wait while we are saving your data",'Information');
     this.apiService.post(RATE_SLAB_API, this.slabdetails).then((res: any)=>{ 
       this.toastr.success("Youe data was successfully saved",'Success');
-      location.reload();
+      this.router.navigateByUrl('/' + ROUTE_RATE);
     });
   }
 }

@@ -11,7 +11,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {STEPPER_GLOBAL_OPTIONS} from '@angular/cdk/stepper';
 import { MatStepper } from '@angular/material/stepper';
 import { AddPartyHeadComponent } from '../party/add-party-head/add-party-head.component';
-import { ROUTE_VIEW_DDR } from 'src/shared/constants/constant';
+import { ROUTE_ADD_DDR, ROUTE_VIEW_DDR } from 'src/shared/constants/constant';
 
 export interface NewRental {
   mode: string,
@@ -180,7 +180,7 @@ export class RentalDetailComponent implements OnInit {
     debugger;
     this.apiService.post(RENTAL_DETAIL_API_OFFICE, this.rentalAdd).then((res: any)=>{ 
       this.toastr.success("Your data was successfully saved",'Success');
-      window.location.reload();
+      this.router.navigateByUrl('/' + ROUTE_ADD_DDR);
     });
   }
   changeparty(){
@@ -225,10 +225,10 @@ export class RentalDetailComponent implements OnInit {
       PartyControl: ['', Validators.required],
       DutyControl: ['', Validators.required],
       DutyTimeControl: ['', Validators.required],
-      BookedByControl: ['', Validators.required],
-      BookedContactControl: ['', Validators.required],
-      ReportControl: ['', Validators.required],
-      ReportContactControl: ['', Validators.required],
+      BookedByControl: [],
+      BookedContactControl: [],
+      ReportControl: [],
+      ReportContactControl: [],
       DispatchControl: ['', Validators.required],
       GOUTKMBufferControl: [],
       GOUTTimeBufferControl: [],
@@ -294,6 +294,7 @@ export class RentalDetailComponent implements OnInit {
       });
     }
     else{
+      //this.rentalAdd.dutydate = 
       localStorage.setItem('selectedduty', "0");
     }
   }

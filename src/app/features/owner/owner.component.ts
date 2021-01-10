@@ -8,7 +8,7 @@ import {MatDialog} from '@angular/material/dialog';
 import { AddOwnerComponent } from './add-owner/add-owner.component';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
-import { ROUTE_CAR } from 'src/shared/constants/constant';
+import { ROUTE_CAR, ROUTE_OWNER } from 'src/shared/constants/constant';
 
 export interface Owner {
   ownercode: string;
@@ -76,7 +76,7 @@ export class OwnerComponent implements OnInit {
       }
       this.apiService.post(OWNER_API, json).then((res: any)=>{ 
         this.toastr.success("Your data was successfully saved",'Success');
-        location.reload();
+        this.router.navigateByUrl('/' + ROUTE_OWNER);
       });
     }
   }

@@ -6,6 +6,7 @@ import {ApiService} from '../../../../shared/services/service';
 import {DRIVER_API, PARTY_HEAD_API} from '../../../../shared/services/api.url-helper';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
+import { ROUTE_DRIVER } from 'src/shared/constants/constant';
 
 export interface DriverDetails {
     mode: number,
@@ -67,7 +68,7 @@ export class AddDriverComponent implements OnInit {
       this.apiService.post(DRIVER_API, json).then((res: any)=>{ 
         if(res.hasOwnProperty('error')){
           this.toastr.error("You cannot edit the selected driver", "Error");
-          location.reload();
+          this.router.navigateByUrl('/' + ROUTE_DRIVER);
         }
         else{
           this.driverDetails = res;
@@ -104,7 +105,7 @@ export class AddDriverComponent implements OnInit {
     this.toastr.info("Please wait while we are saving your data",'Information');
     this.apiService.post(DRIVER_API, this.driverDetails).then((res: any)=>{ 
       this.toastr.success("Youe data was successfully saved",'Success');
-      location.reload();
+      this.router.navigateByUrl('/' + ROUTE_DRIVER);
     });
   }
 }

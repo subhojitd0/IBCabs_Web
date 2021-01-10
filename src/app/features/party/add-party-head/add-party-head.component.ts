@@ -6,7 +6,7 @@ import {ApiService} from '../../../../shared/services/service';
 import {PARTY_HEAD_API} from '../../../../shared/services/api.url-helper';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
-import { ROUTE_RATE } from 'src/shared/constants/constant';
+import { ROUTE_PARTY, ROUTE_RATE } from 'src/shared/constants/constant';
 
 export interface PartyHeadDDetails {
     mode: number,
@@ -76,10 +76,16 @@ export class AddPartyHeadComponent implements OnInit {
   isPack:boolean=false;
   isSlab:boolean=false;
   partyheaddetails: partyhead;
+  masterlist: any[] = [];
   allparties: any;
   constructor(private router: Router, private apiService: ApiService, private toastr: ToastrService) {
     this.partyheaddetails = new partyhead();
     this.allparties = JSON.parse(localStorage.getItem('allparties'));
+    this.allparties.forEach(element => {
+      if(!this.masterlist.includes(element.master)){
+        this.masterlist.push(element.master);
+      }
+    });
     debugger;
     this.partyheadid = JSON.parse(localStorage.getItem('selectedpartyheadid'));
     if(this.partyheadid.toString() != "0"){
@@ -91,7 +97,7 @@ export class AddPartyHeadComponent implements OnInit {
       this.apiService.post(PARTY_HEAD_API, json).then((res: any)=>{ 
         if(res.hasOwnProperty('error')){
           this.toastr.error("You cannot edit the selected party", "Error");
-          location.reload();
+          this.router.navigateByUrl('/' + ROUTE_PARTY);
         }
         else{
           this.partyheaddetails = res;
@@ -139,7 +145,7 @@ export class AddPartyHeadComponent implements OnInit {
     this.toastr.info("Please wait while we are saving your data",'Information');
     this.apiService.post(PARTY_HEAD_API, this.partyheaddetails).then((res: any)=>{ 
       this.toastr.success("Youe data was successfully saved",'Success');
-      location.reload();
+      this.router.navigateByUrl('/' + ROUTE_PARTY);
     });
   }
   selectPack(){

@@ -8,6 +8,7 @@ import {MatDialog} from '@angular/material/dialog';
 import { AddDriverComponent } from './add-driver/add-driver.component';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
+import { ROUTE_DASHBOARD } from 'src/shared/constants/constant';
 
 export interface Driver {
   drivercode: string;
@@ -81,7 +82,7 @@ export class DriverComponent implements OnInit {
       }
       this.apiService.post(DRIVER_API, json).then((res: any)=>{ 
         this.toastr.success("Your data was successfully saved",'Success');
-        location.reload();
+        this.router.navigateByUrl('/' + ROUTE_DASHBOARD);
       });
     }
   }

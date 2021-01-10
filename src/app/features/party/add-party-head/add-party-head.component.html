@@ -19,8 +19,8 @@
                         <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
                         <mat-hint>Enter the Group Name</mat-hint>
                         <mat-autocomplete #auto="matAutocomplete">
-                            <mat-option *ngFor="let option of allparties" [value]="option.name">
-                              {{option.name}}
+                            <mat-option *ngFor="let option of masterlist" [value]="option">
+                              {{option}}
                             </mat-option>
                           </mat-autocomplete>
                     </mat-form-field>

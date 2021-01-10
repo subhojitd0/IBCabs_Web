@@ -8,7 +8,7 @@ import {MatDialog} from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 import { AddSlabComponent } from './add-new-slab/add-slab-head.component';
 import { Router } from '@angular/router';
-import { ROUTE_PARTY } from 'src/shared/constants/constant';
+import { ROUTE_PARTY, ROUTE_RATE } from 'src/shared/constants/constant';
 
 export interface RateHead {
   slabcode: string;
@@ -81,7 +81,7 @@ export class PartyRatesComponent implements OnInit {
       }
       this.apiService.post(RATE_SLAB_API, json).then((res: any)=>{ 
         this.toastr.success("Youe data was successfully deleted",'Success');
-        location.reload();
+        this.router.navigateByUrl('/' + ROUTE_RATE);
       });
     }
   }

@@ -8,12 +8,14 @@ import {MatDialog} from '@angular/material/dialog';
 import { AddPartyHeadComponent } from './add-party-head/add-party-head.component';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
+import { ROUTE_PARTY } from 'src/shared/constants/constant';
 
 export interface PartyHead {
   name: string;
   headcode: number;
   ratetype: string;
   option: string;
+  master: string;
 }
 
 @Component({
@@ -92,7 +94,7 @@ export class PartyComponent implements OnInit {
       }
       this.apiService.post(PARTY_HEAD_API, json).then((res: any)=>{ 
         this.toastr.success("Your data was successfully saved",'Success');
-        location.reload();
+        this.router.navigateByUrl('/' + ROUTE_PARTY);
       });
     }
   }

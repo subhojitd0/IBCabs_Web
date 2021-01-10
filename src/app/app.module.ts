@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -85,7 +85,8 @@ import { EditRentalDetailComponent } from './features/edit-rental-detail/edit-re
     MatStepperModule,
     ToastrModule.forRoot() 
   ],
-  providers: [MatDialog],
+  providers: [MatDialog,
+    {provide: LocationStrategy, useClass: HashLocationStrategy}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

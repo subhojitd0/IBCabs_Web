@@ -6,6 +6,7 @@ import {ApiService} from '../../../../shared/services/service';
 import {CAR_API, OWNER_API, PARTY_HEAD_API} from '../../../../shared/services/api.url-helper';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
+import { ROUTE_CAR } from 'src/shared/constants/constant';
 
 export interface CarDetails {
   ownercode: string,
@@ -59,7 +60,7 @@ export class AddCarComponent implements OnInit {
       this.apiService.post(CAR_API, json).then((res: any)=>{ 
         if(res.hasOwnProperty('error')){
           this.toastr.error("You cannot edit the selected car", "Error");
-          location.reload();
+          this.router.navigateByUrl('/' + ROUTE_CAR);
         }
         else{
           this.carDetails = res;
@@ -103,7 +104,7 @@ export class AddCarComponent implements OnInit {
     this.toastr.info("Please wait while we are saving your data",'Information');
     this.apiService.post(CAR_API, this.carDetails).then((res: any)=>{ 
       this.toastr.success("Your data was successfully saved",'Success');
-      location.reload();
+      this.router.navigateByUrl('/' + ROUTE_CAR);
     });
   }
 

@@ -8,7 +8,7 @@ import {MatDialog} from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 import { AddCarComponent } from './add-new-car/add-car.component';
 import { Router } from '@angular/router';
-import { ROUTE_OWNER } from 'src/shared/constants/constant';
+import { ROUTE_CAR, ROUTE_OWNER } from 'src/shared/constants/constant';
 
 export interface Car {
   carcode: string;
@@ -69,7 +69,7 @@ export class CarComponent implements OnInit {
       }
       this.apiService.post(CAR_API, json).then((res: any)=>{ 
         this.toastr.success("Your data was successfully deleted",'Success');
-        location.reload();
+        this.router.navigateByUrl('/' + ROUTE_CAR);
       });
     }
   }

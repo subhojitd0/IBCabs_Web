@@ -9,7 +9,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {STEPPER_GLOBAL_OPTIONS} from '@angular/cdk/stepper';
-import { ROUTE_ADD_DDR } from 'src/shared/constants/constant';
+import { ROUTE_ADD_DDR, ROUTE_VIEW_DDR } from 'src/shared/constants/constant';
 
 export interface EditRentalDetail {
   isSelected: boolean;
@@ -43,6 +43,7 @@ export interface EditRentalDetail {
   outstation:string;
   nightcharge:string;
   options: string;
+  status: string;
 }
 
 export interface RentalDetail {
@@ -122,10 +123,10 @@ export class EditRentalDetailComponent implements OnInit {
     };
     this.apiService.post(RENTAL_DETAIL_API_OFFICE, json).then((res: any)=>{ 
       debugger;
-      this.editRentalDetails = res.result;
+      this.mastereditrentaldetails = res.result;
       this.allcars = JSON.parse(localStorage.getItem('allcars'));
       this.alldrivers = JSON.parse(localStorage.getItem('alldrivers'));
-      this.editRentalDetails.forEach(element => {
+      this.mastereditrentaldetails.forEach(element => {
         element.isSelected = false;
         var allparties = JSON.parse(localStorage.getItem('allparties'));
         var jsonParty ={
@@ -138,12 +139,12 @@ export class EditRentalDetailComponent implements OnInit {
           element.outstation = (parseInt(element.outstation) / parseInt(ot.toString())).toString();
         });
       });
-      if(this.editRentalDetails.gintime)
-          this.editRentalDetails.gintime = this.editRentalDetails.gintime.substr(0,5);
-        if(this,this.editRentalDetails.gouttime)
-          this.editRentalDetails.gouttime = this.editRentalDetails.gouttime.substr(0,5);
-      this.mastereditrentaldetails = res.result;
-      this.bulkDataSource = new MatTableDataSource(this.editRentalDetails);
+      if(this.mastereditrentaldetails.gintime)
+          this.mastereditrentaldetails.gintime = this.mastereditrentaldetails.gintime.substr(0,5);
+        if(this,this.mastereditrentaldetails.gouttime)
+          this.mastereditrentaldetails.gouttime = this.mastereditrentaldetails.gouttime.substr(0,5);
+      
+      this.bulkDataSource = new MatTableDataSource(this.mastereditrentaldetails);
       localStorage.setItem("editrentaldetails", JSON.stringify(res.result));
     });
    }
@@ -180,7 +181,7 @@ export class EditRentalDetailComponent implements OnInit {
      this.apiService.post(RENTAL_DETAIL_API_OFFICE_BULKEDIT, data).then((res: any)=>{ 
        debugger;
        this.toastr.success("Your data was successfully saved",'Success');
-       location.reload();
+       this.router.navigateByUrl('/' + ROUTE_VIEW_DDR);
      });
    }
    onChangeMonth(val){
@@ -296,6 +297,7 @@ export class EditRentalDetailComponent implements OnInit {
     }
   }
   selectstage1(){
+    debugger;
     //Filter rental details with only stage1 completed
     this.selecteditem = "STAGE-1";
     if(this.isBulkEdit){
@@ -308,6 +310,7 @@ export class EditRentalDetailComponent implements OnInit {
     }
   }
   selectstage2(){
+    debugger;
     //Filter rental details with only stage2 completed
     this.selecteditem = "STAGE-2";
     if(this.isBulkEdit){
@@ -320,6 +323,7 @@ export class EditRentalDetailComponent implements OnInit {
     }
   }
   selectstage3(){
+    debugger;
     //Filter rental details with only stage3 completed
     this.selecteditem = "STAGE-3";
     if(this.isBulkEdit){
@@ -353,7 +357,7 @@ export class EditRentalDetailComponent implements OnInit {
     this.toastr.info("Please wait while we approve the duty",'Information');
     this.apiService.post(RENTAL_DETAIL_API_OFFICE, json).then((res: any)=>{ 
         this.toastr.success("The duty was successfully approved",'Success');
-        window.location.reload();
+        this.router.navigateByUrl('/' + ROUTE_VIEW_DDR);
     });
   }
   edit(id: any) {
@@ -374,7 +378,7 @@ export class EditRentalDetailComponent implements OnInit {
       }
       this.apiService.post(RENTAL_DETAIL_API_OFFICE, json).then((res: any)=>{ 
         this.toastr.success("Your data was successfully saved",'Success');
-        location.reload();
+        this.router.navigateByUrl('/' + ROUTE_VIEW_DDR);
       });
     }
   }

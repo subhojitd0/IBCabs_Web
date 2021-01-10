@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ROUTE_DASHBOARD } from 'src/shared/constants/constant';
 import { CAR_API, DRIVER_API, PARTY_HEAD_API } from 'src/shared/services/api.url-helper';
 import { ApiService } from 'src/shared/services/service';
 
@@ -9,7 +11,7 @@ import { ApiService } from 'src/shared/services/service';
 })
 export class DashboardComponent implements OnInit {
   pagerefrsh: any;
-  constructor(private apiService: ApiService) { }
+  constructor(private router: Router, private apiService: ApiService) { }
 
   ngOnInit(): void {
     var json = 
@@ -33,7 +35,7 @@ export class DashboardComponent implements OnInit {
     });
     if(this.pagerefrsh == "0"){
       localStorage.setItem('pagerefresh', "1");
-      window.location.reload();
+      this.router.navigateByUrl('/' + ROUTE_DASHBOARD);
     }
   }
 

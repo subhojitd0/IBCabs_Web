@@ -6,6 +6,7 @@ import {ApiService} from '../../../../shared/services/service';
 import {OWNER_API, PARTY_HEAD_API} from '../../../../shared/services/api.url-helper';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
+import { ROUTE_OWNER } from 'src/shared/constants/constant';
 
 export interface OwnerDetails {
   ownername: string,
@@ -49,7 +50,7 @@ export class AddOwnerComponent implements OnInit {
       this.apiService.post(OWNER_API, json).then((res: any)=>{ 
         if(res.hasOwnProperty('error')){
           this.toastr.error("You cannot edit the selected owner", "Error");
-          location.reload();
+          this.router.navigateByUrl('/' + ROUTE_OWNER);
         }
         else{
           this.ownerDetails = res;
@@ -73,7 +74,7 @@ export class AddOwnerComponent implements OnInit {
     this.toastr.info("Please wait while we are saving your data",'Information');
     this.apiService.post(OWNER_API, this.ownerDetails).then((res: any)=>{ 
       this.toastr.success("Your data was successfully saved",'Success');
-      location.reload();
+      this.router.navigateByUrl('/' + ROUTE_OWNER);
     });
   }
 
