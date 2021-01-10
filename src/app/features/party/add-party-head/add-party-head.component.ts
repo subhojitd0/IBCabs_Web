@@ -97,7 +97,7 @@ export class AddPartyHeadComponent implements OnInit {
       this.apiService.post(PARTY_HEAD_API, json).then((res: any)=>{ 
         if(res.hasOwnProperty('error')){
           this.toastr.error("You cannot edit the selected party", "Error");
-          this.router.navigateByUrl('/' + ROUTE_PARTY);
+          location.reload();
         }
         else{
           this.partyheaddetails = res;
@@ -145,7 +145,7 @@ export class AddPartyHeadComponent implements OnInit {
     this.toastr.info("Please wait while we are saving your data",'Information');
     this.apiService.post(PARTY_HEAD_API, this.partyheaddetails).then((res: any)=>{ 
       this.toastr.success("Youe data was successfully saved",'Success');
-      this.router.navigateByUrl('/' + ROUTE_PARTY);
+      location.reload();
     });
   }
   selectPack(){

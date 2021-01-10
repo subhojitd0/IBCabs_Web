@@ -85,6 +85,7 @@ export class RentalAdd implements NewRental {
 export class RentalDetailComponent implements OnInit {
   rentalAdd: RentalAdd;
   isLinear: boolean;
+  cartypes: any;
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
   thirdFormGroup: FormGroup;
@@ -166,22 +167,24 @@ export class RentalDetailComponent implements OnInit {
       });
     
   }
-  savedatacreate(){
-    this.toastr.info("Please wait while we are saving your request",'Information');
-    if(this.rentalAdd.centerName == "Park Circus"){
-      this.rentalAdd.center = 1;
+  savedatacreate(stepper: MatStepper){
+    if(stepper.selected.completed){
+      this.toastr.info("Please wait while we are saving your request",'Information');
+      if(this.rentalAdd.centerName == "Park Circus"){
+        this.rentalAdd.center = 1;
+      }
+      else{
+        this.rentalAdd.center = 0;
+      }
+      if(this.rentalAdd.mode != "2"){
+        this.rentalAdd.mode = "1";
+      }
+      debugger;
+      this.apiService.post(RENTAL_DETAIL_API_OFFICE, this.rentalAdd).then((res: any)=>{ 
+        this.toastr.success("Your data was successfully saved",'Success');
+        location.reload();
+      });
     }
-    else{
-      this.rentalAdd.center = 0;
-    }
-    if(this.rentalAdd.mode != "2"){
-      this.rentalAdd.mode = "1";
-    }
-    debugger;
-    this.apiService.post(RENTAL_DETAIL_API_OFFICE, this.rentalAdd).then((res: any)=>{ 
-      this.toastr.success("Your data was successfully saved",'Success');
-      this.router.navigateByUrl('/' + ROUTE_ADD_DDR);
-    });
   }
   changeparty(){
     var json = 
@@ -220,6 +223,7 @@ export class RentalDetailComponent implements OnInit {
     this.allparties = JSON.parse(localStorage.getItem('allparties'));
     this.allcars = JSON.parse(localStorage.getItem('allcars'));
     this.alldrivers = JSON.parse(localStorage.getItem('alldrivers'));
+    this.cartypes = JSON.parse(localStorage.getItem('allcartypes'));
     this.isLinear = true;
     this.firstFormGroup = this._formBuilder.group({
       PartyControl: ['', Validators.required],

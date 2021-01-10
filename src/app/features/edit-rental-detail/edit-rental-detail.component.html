@@ -184,14 +184,8 @@
                   <mat-header-cell *matHeaderCellDef mat-sort-header> Type</mat-header-cell>
                   <mat-cell style="margin-left:10px" *matCellDef="let row">
                     <mat-select [(ngModel)]="row.cartype">
-                      <mat-option value="ertiga">
-                        ERTIGA
-                      </mat-option>
-                      <mat-option value="sumo">
-                        SUMO
-                      </mat-option>
-                      <mat-option value="dzire">
-                        DZIRE
+                      <mat-option *ngFor="let option of cartypes" [value]="option.car">
+                        {{option.car}}
                       </mat-option>
                     </mat-select>
                   </mat-cell>

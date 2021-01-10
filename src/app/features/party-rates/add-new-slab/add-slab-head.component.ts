@@ -73,7 +73,7 @@ export class AddSlabComponent implements OnInit {
     this.toastr.info("Please wait while we are saving your data",'Information');
     this.apiService.post(RATE_SLAB_API, this.slabdetails).then((res: any)=>{ 
       this.toastr.success("Youe data was successfully saved",'Success');
-      this.router.navigateByUrl('/' + ROUTE_RATE);
+      location.reload();
     });
   }
 }

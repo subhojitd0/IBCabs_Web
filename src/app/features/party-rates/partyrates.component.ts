@@ -81,7 +81,7 @@ export class PartyRatesComponent implements OnInit {
       }
       this.apiService.post(RATE_SLAB_API, json).then((res: any)=>{ 
         this.toastr.success("Youe data was successfully deleted",'Success');
-        this.router.navigateByUrl('/' + ROUTE_RATE);
+        location.reload();
       });
     }
   }

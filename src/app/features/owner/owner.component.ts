@@ -76,7 +76,7 @@ export class OwnerComponent implements OnInit {
       }
       this.apiService.post(OWNER_API, json).then((res: any)=>{ 
         this.toastr.success("Your data was successfully saved",'Success');
-        this.router.navigateByUrl('/' + ROUTE_OWNER);
+        location.reload();
       });
     }
   }

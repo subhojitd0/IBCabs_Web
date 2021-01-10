@@ -74,6 +74,7 @@ export class EditRentalDetailComponent implements OnInit {
   masterrentaldetails: any;
   mastereditrentaldetails: any;
   selecteditem: any;
+  cartypes: any;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   displayedColumns: string[] = ['dutydate', 'partyname', 'reportto', 'carnumber', 'status', 'options'];
@@ -84,6 +85,7 @@ export class EditRentalDetailComponent implements OnInit {
     
    }
    ngOnInit() : void {
+    this.cartypes = JSON.parse(localStorage.getItem('allcartypes'));
      var yr = JSON.parse(localStorage.getItem('rentalyr'));
      var month = JSON.parse(localStorage.getItem('rentalmonth'));
      if(yr && month){
@@ -357,7 +359,7 @@ export class EditRentalDetailComponent implements OnInit {
     this.toastr.info("Please wait while we approve the duty",'Information');
     this.apiService.post(RENTAL_DETAIL_API_OFFICE, json).then((res: any)=>{ 
         this.toastr.success("The duty was successfully approved",'Success');
-        this.router.navigateByUrl('/' + ROUTE_VIEW_DDR);
+        location.reload();
     });
   }
   edit(id: any) {
@@ -378,7 +380,7 @@ export class EditRentalDetailComponent implements OnInit {
       }
       this.apiService.post(RENTAL_DETAIL_API_OFFICE, json).then((res: any)=>{ 
         this.toastr.success("Your data was successfully saved",'Success');
-        this.router.navigateByUrl('/' + ROUTE_VIEW_DDR);
+        location.reload();
       });
     }
   }

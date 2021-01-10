@@ -50,7 +50,7 @@ export class AddOwnerComponent implements OnInit {
       this.apiService.post(OWNER_API, json).then((res: any)=>{ 
         if(res.hasOwnProperty('error')){
           this.toastr.error("You cannot edit the selected owner", "Error");
-          this.router.navigateByUrl('/' + ROUTE_OWNER);
+          location.reload();
         }
         else{
           this.ownerDetails = res;
@@ -74,7 +74,7 @@ export class AddOwnerComponent implements OnInit {
     this.toastr.info("Please wait while we are saving your data",'Information');
     this.apiService.post(OWNER_API, this.ownerDetails).then((res: any)=>{ 
       this.toastr.success("Your data was successfully saved",'Success');
-      this.router.navigateByUrl('/' + ROUTE_OWNER);
+      location.reload();
     });
   }
 

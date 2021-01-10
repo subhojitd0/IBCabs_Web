@@ -85,8 +85,7 @@ import { EditRentalDetailComponent } from './features/edit-rental-detail/edit-re
     MatStepperModule,
     ToastrModule.forRoot() 
   ],
-  providers: [MatDialog,
-    {provide: LocationStrategy, useClass: HashLocationStrategy}],
+  providers: [MatDialog],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ROUTE_DASHBOARD } from 'src/shared/constants/constant';
-import { CAR_API, DRIVER_API, PARTY_HEAD_API } from 'src/shared/services/api.url-helper';
+import { CAR_API, DRIVER_API, EXTRA_API, PARTY_HEAD_API } from 'src/shared/services/api.url-helper';
 import { ApiService } from 'src/shared/services/service';
 
 @Component({
@@ -23,6 +23,9 @@ export class DashboardComponent implements OnInit {
     this.apiService.post(PARTY_HEAD_API, json).then((res: any)=>{ 
       localStorage.setItem("allparties", JSON.stringify(res.result));
     });
+    this.apiService.post(EXTRA_API, json).then((res: any)=>{ 
+      localStorage.setItem("allcartypes", JSON.stringify(res.result));
+    });
     var jsoncar = 
     {
       "mode": 5
@@ -35,7 +38,7 @@ export class DashboardComponent implements OnInit {
     });
     if(this.pagerefrsh == "0"){
       localStorage.setItem('pagerefresh', "1");
-      this.router.navigateByUrl('/' + ROUTE_DASHBOARD);
+      location.reload();
     }
   }
 

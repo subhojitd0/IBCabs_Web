@@ -105,7 +105,8 @@ export class AddDriverComponent implements OnInit {
     this.toastr.info("Please wait while we are saving your data",'Information');
     this.apiService.post(DRIVER_API, this.driverDetails).then((res: any)=>{ 
       this.toastr.success("Youe data was successfully saved",'Success');
-      this.router.navigateByUrl('/' + ROUTE_DRIVER);
+      //this.router.navigateByUrl('/' + ROUTE_DRIVER);
+      location.reload();
     });
   }
 }

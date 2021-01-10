@@ -93,8 +93,8 @@ export class PartyComponent implements OnInit {
         "partyheadcode": id
       }
       this.apiService.post(PARTY_HEAD_API, json).then((res: any)=>{ 
-        this.toastr.success("Your data was successfully saved",'Success');
-        this.router.navigateByUrl('/' + ROUTE_PARTY);
+        this.toastr.success("Your data was successfully deleted",'Success');
+        location.reload();
       });
     }
   }

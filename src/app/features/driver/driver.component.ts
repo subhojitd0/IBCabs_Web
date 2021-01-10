@@ -82,7 +82,7 @@ export class DriverComponent implements OnInit {
       }
       this.apiService.post(DRIVER_API, json).then((res: any)=>{ 
         this.toastr.success("Your data was successfully saved",'Success');
-        this.router.navigateByUrl('/' + ROUTE_DASHBOARD);
+        location.reload();
       });
     }
   }

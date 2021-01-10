@@ -44,12 +44,15 @@ export class AddCarComponent implements OnInit {
   carid : any;
   carDetails: car;
   ownerid: any;
+  cartypes: any;
   billmodeyes: boolean = false;
   billmodeno: boolean = false;
   constructor(private router: Router, private apiService: ApiService, private toastr: ToastrService) {
     this.carDetails = new car();
     debugger;
     this.carid = JSON.parse(localStorage.getItem('selectedcarid'));
+    this.cartypes = JSON.parse(localStorage.getItem('allcartypes'));
+    
     this.ownerid = JSON.parse(localStorage.getItem('selectedownerid'));
     if(this.carid.toString() != "0"){
       var json = 
@@ -104,7 +107,8 @@ export class AddCarComponent implements OnInit {
     this.toastr.info("Please wait while we are saving your data",'Information');
     this.apiService.post(CAR_API, this.carDetails).then((res: any)=>{ 
       this.toastr.success("Your data was successfully saved",'Success');
-      this.router.navigateByUrl('/' + ROUTE_CAR);
+      //this.router.navigateByUrl('/' + ROUTE_CAR);
+      location.reload();
     });
   }
 
