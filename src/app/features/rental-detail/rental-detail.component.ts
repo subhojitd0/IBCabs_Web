@@ -162,13 +162,16 @@ export class RentalDetailComponent implements OnInit {
         debugger;
         this.apiService.post(RENTAL_DETAIL_API_OFFICE, this.rentalAdd).then((res: any)=>{ 
           this.toastr.success("Your data was successfully saved",'Success');
-          this.stepper.next();
+          localStorage.setItem('selectedduty', res.dutyid);
+          location.reload();
+          //this.stepper.next();
         });
       });
     
   }
   savedatacreate(stepper: MatStepper){
-    if(stepper.selected.completed){
+    debugger;
+    if(this.rentalAdd.party && this.rentalAdd.dutydate && this.rentalAdd.dutytime && this.rentalAdd.centerName){
       this.toastr.info("Please wait while we are saving your request",'Information');
       if(this.rentalAdd.centerName == "Park Circus"){
         this.rentalAdd.center = 1;
