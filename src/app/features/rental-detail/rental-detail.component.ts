@@ -158,7 +158,10 @@ export class RentalDetailComponent implements OnInit {
       debugger;
       this.apiService.post(PARTY_HEAD_API, json).then((res: any)=>{ 
         ot = res.ot;
-        this.rentalAdd.outstation = (parseInt(this.rentalAdd.outstation) * parseInt(ot)).toString();
+        if(ot)
+          this.rentalAdd.outstation = (parseInt(this.rentalAdd.outstation) * parseInt(ot)).toString();
+        else
+        this.rentalAdd.outstation = "0";
         debugger;
         this.apiService.post(RENTAL_DETAIL_API_OFFICE, this.rentalAdd).then((res: any)=>{ 
           this.toastr.success("Your data was successfully saved",'Success');
@@ -292,8 +295,17 @@ export class RentalDetailComponent implements OnInit {
           this.rentalAdd.gintime = this.rentalAdd.gintime.substr(0,5);
         if(this,this.rentalAdd.gouttime)
           this.rentalAdd.gouttime = this.rentalAdd.gouttime.substr(0,5);
-        if(this.rentalAdd.outstation)
+
+        if(this.rentalAdd.outstation != "NaN")
           this.rentalAdd.outstation = (parseFloat(this.rentalAdd.outstation) / parseFloat(ot.toString())).toString();
+        else
+          this.rentalAdd.outstation = "0";
+        
+        if(!this.rentalAdd.parking)
+          this.rentalAdd.parking = "0";
+        if(!this.rentalAdd.nightcharge)
+          this.rentalAdd.nightcharge = "0";
+
         this.stepper.next();
         localStorage.setItem("rentaldetails", JSON.stringify(res.result));
         localStorage.setItem('selectedduty', "0");

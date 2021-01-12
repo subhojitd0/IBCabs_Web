@@ -140,12 +140,20 @@ export class EditRentalDetailComponent implements OnInit {
           ot = res.ot;
           element.outstation = (parseInt(element.outstation) / parseInt(ot.toString())).toString();
         });
-      });
-      if(this.mastereditrentaldetails.gintime)
-          this.mastereditrentaldetails.gintime = this.mastereditrentaldetails.gintime.substr(0,5);
-        if(this,this.mastereditrentaldetails.gouttime)
-          this.mastereditrentaldetails.gouttime = this.mastereditrentaldetails.gouttime.substr(0,5);
+        if(element.gintime)
+          element.gintime = element.gintime.substr(0,5);
+        if(element.gouttime)
+          element.gouttime = element.gouttime.substr(0,5);
       
+        if(!element.outstation || element.outstation == "NaN")
+          element.outstation = "0";
+        if(!element.parking)
+          element.parking = "0";
+        if(!element.nightcharge)
+          element.nightcharge = "0";
+      });
+      
+
       this.bulkDataSource = new MatTableDataSource(this.mastereditrentaldetails);
       localStorage.setItem("editrentaldetails", JSON.stringify(res.result));
     });
