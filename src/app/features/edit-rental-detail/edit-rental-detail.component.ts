@@ -138,6 +138,7 @@ export class EditRentalDetailComponent implements OnInit {
         var ot=0;
         this.apiService.post(PARTY_HEAD_API, jsonParty).then((res: any)=>{ 
           ot = res.ot;
+          element.outstationtype = ot;
           element.outstation = (parseInt(element.outstation) / parseInt(ot.toString())).toString();
         });
         if(element.gintime)
@@ -178,15 +179,8 @@ export class EditRentalDetailComponent implements OnInit {
      var allparties = JSON.parse(localStorage.getItem('allparties'));
      var data = (this as any).mastereditrentaldetails.filter(x=>x.isSelected);
      data.forEach(async element => {
-        var jsonParty ={
-          "mode":4,
-          "partyheadcode": allparties.filter(x=>x.name == element.party)[0].headcode
-        } 
-        var ot=0;
-        await this.apiService.post(PARTY_HEAD_API, jsonParty).then((res: any)=>{ 
-          ot = res.ot;
-          element.outstation = (parseInt(element.outstation) * parseInt(ot.toString())).toString();
-        });
+        element.outstation = (parseInt(element.outstation) * parseInt(element.outstationtype.toString())).toString();
+        element.outstationtype = 1;
       });
      this.apiService.post(RENTAL_DETAIL_API_OFFICE_BULKEDIT, data).then((res: any)=>{ 
        debugger;
