@@ -168,7 +168,7 @@ export class EditRentalDetailComponent implements OnInit {
     this.toastr.info("Please wait while we are saving your request",'Information');
      debugger;
      var allparties = JSON.parse(localStorage.getItem('allparties'));
-     var data = this.editRentalDetails.filter(x=>x.isSelected);
+     var data = (this as any).mastereditrentaldetails.filter(x=>x.isSelected);
      data.forEach(async element => {
         var jsonParty ={
           "mode":4,
