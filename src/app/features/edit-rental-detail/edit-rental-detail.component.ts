@@ -112,6 +112,7 @@ export class EditRentalDetailComponent implements OnInit {
       this.rentalDetails = res.result;
       this.masterrentaldetails = res.result;
       this.dataSource = new MatTableDataSource(this.rentalDetails);
+      this.dataSource.paginator = this.paginator;
       localStorage.setItem("rentaldetails", JSON.stringify(res.result));
     });
    }

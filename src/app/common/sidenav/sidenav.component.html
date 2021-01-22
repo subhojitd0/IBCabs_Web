@@ -35,7 +35,8 @@
 				<mat-icon class="menu-button" [ngClass]="{'rotated' : showSubmenu}" *ngIf="isExpanded || isShowing">expand_more</mat-icon>
 			</mat-list-item>
 			<div class="submenu" [ngClass]="{'expanded' : showSubmenu}" *ngIf="isShowing || isExpanded">
-				<a mat-list-item routerLink={{addddrurl}}>Add New Duty</a>
+				<a mat-list-item routerLink={{addddrurl}}>Add New Office Duty</a>
+				<a mat-list-item routerLink={{addwalkingurl}}>Add New Walkin Duty</a>
 				<a mat-list-item routerLink={{viewddrurl}}>View / Edit Duty</a>
 			<!--	<a mat-list-item href="/party">Party Individual</a>
 				

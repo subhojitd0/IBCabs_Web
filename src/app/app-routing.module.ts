@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ROUTE_ADD_DDR, ROUTE_BASIC, ROUTE_CAR, ROUTE_DASHBOARD, ROUTE_DRIVER, ROUTE_OWNER, ROUTE_PARTY, ROUTE_RATE, ROUTE_VIEW_DDR } from 'src/shared/constants/constant';
+import { ROUTE_ADD_DDR, ROUTE_ADD_DDR_WALKIN, ROUTE_BASIC, ROUTE_CAR, ROUTE_DASHBOARD, ROUTE_DRIVER, ROUTE_OWNER, ROUTE_PARTY, ROUTE_RATE, ROUTE_VIEW_DDR } from 'src/shared/constants/constant';
 import { CarComponent } from './features/car/car.component';
 import { DashboardComponent } from './features/dashboard/dashboard.component';
 import { DriverComponent } from './features/driver/driver.component';
@@ -9,6 +9,7 @@ import { LoginComponent } from './features/login/login.component';
 import { OwnerComponent } from './features/owner/owner.component';
 import { PartyRatesComponent } from './features/party-rates/partyrates.component';
 import { PartyComponent } from './features/party/party.component';
+import { RentalDetailWalkinComponent } from './features/rental-detail-walkin/rental-detail-walkin.component';
 import { RentalDetailComponent } from './features/rental-detail/rental-detail.component';
 
 const routes: Routes = [
@@ -47,6 +48,10 @@ const routes: Routes = [
   {
     path: ROUTE_VIEW_DDR,
     component:EditRentalDetailComponent
+  },
+  {
+    path: ROUTE_ADD_DDR_WALKIN,
+    component:RentalDetailWalkinComponent
   }
 ];
 

@@ -10,6 +10,7 @@ export const ROUTE_CAR = "bills/new/car";
 export const ROUTE_DRIVER = "bills/new/driver";
 export const ROUTE_ADD_DDR = "bills/new/add-ddr";
 export const ROUTE_VIEW_DDR = "bills/new/view-ddr";
+export const ROUTE_ADD_DDR_WALKIN = "bills/new/add-ddr-walkin";
 
 //Local
 /* export const ROUTE_BASIC = "";
@@ -20,4 +21,5 @@ export const ROUTE_OWNER = "owner";
 export const ROUTE_CAR = "car";
 export const ROUTE_DRIVER = "driver";
 export const ROUTE_ADD_DDR = "add-ddr";
-export const ROUTE_VIEW_DDR = "view-ddr"; */
+export const ROUTE_VIEW_DDR = "view-ddr"; 
+export const ROUTE_ADD_DDR_WALKIN = "add-ddr-walkin"; */

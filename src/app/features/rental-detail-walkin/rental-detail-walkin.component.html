@@ -1,0 +1,247 @@
+<mat-card>
+  <mat-card-header>
+    <div mat-card-avatar class="avatar-image-partyhead"></div>
+    <mat-card-title>Rental Detail - Add Update duties here</mat-card-title>
+    <mat-card-subtitle>Add & Update DDR Here.</mat-card-subtitle>
+  </mat-card-header>
+</mat-card>
+<mat-horizontal-stepper [linear]="isLinear" #stepper>
+  <mat-step [stepControl]="firstFormGroup">
+    <form [formGroup]="firstFormGroup">
+      <ng-template matStepLabel>Fill out the duty details</ng-template>
+
+      <mat-form-field style="width: 80%; margin-right: 20px;">
+        <mat-label>Party Name</mat-label>
+        <input [matAutocomplete]="auto" matInput placeholder="Enter the party name here" [(ngModel)]="rentalAdd.party" formControlName="PartyControl" required>
+        <mat-autocomplete #auto="matAutocomplete" (optionSelected)="changeparty()">
+          <mat-option *ngFor="let option of allparties" [value]="option.name" >
+            {{option.name}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field> <span (click)="createparty()" class="tab-css"> Create New Party </span>  
+      <br/> 
+
+      <mat-form-field style="width: 40%; margin-right: 40px;">
+        <mat-label>Duty Date</mat-label>
+        <input matInput type="date" formControlName="DutyControl" [(ngModel)]="rentalAdd.dutydate" required>
+      </mat-form-field> 
+      <mat-form-field style="width: 40%; margin-right: 40px;">
+        <mat-label>Duty Time</mat-label>
+        <input matInput type="time" formControlName="DutyTimeControl" [(ngModel)]="rentalAdd.dutytime" required>
+      </mat-form-field>  
+      <br/> 
+
+      <mat-form-field style="width: 40%; margin-right: 40px;">
+        <mat-label>Booked By Name</mat-label>
+        <input matInput placeholder="Enter the booked by name here" [(ngModel)]="rentalAdd.bookedby" formControlName="BookedByControl">
+      </mat-form-field> 
+      <mat-form-field style="width: 40%; margin-right: 40px;">
+        <mat-label>Booked By Contact Number</mat-label>
+        <input matInput  type="number" placeholder="Enter the booked by contact no. here" [(ngModel)]="rentalAdd.bookedbycontact" formControlName="BookedContactControl">
+      </mat-form-field>  
+      <br/> 
+
+      <mat-form-field style="width: 30%; margin-right: 40px;">
+        <mat-label>Report To Name</mat-label>
+        <input matInput placeholder="Enter the report to name here" [(ngModel)]="rentalAdd.reporttoname" formControlName="ReportControl">
+      </mat-form-field> 
+      <mat-form-field style="width: 30%; margin-right: 40px;">
+        <mat-label>Report To Contact Number</mat-label>
+        <input matInput type="number" placeholder="Enter the report to contact no. here" [(ngModel)]="rentalAdd.reporttonum" formControlName="ReportContactControl">
+      </mat-form-field> 
+      <button class="btn-first" style="margin-right: 20px;" *ngIf="!report5visible" mat-button (click)="addreportto()">Add Report To</button>
+      <button class="btn-second" style="margin-right: 20px;" *ngIf="report2visible" mat-button (click)="removereportto()">Remove Report To</button>
+      <br/> 
+
+      <mat-form-field *ngIf="report2visible" style="width: 40%; margin-right: 40px;">
+        <mat-label>Report To Name</mat-label>
+        <input matInput placeholder="Enter the report to name here" [(ngModel)]="rentalAdd.reporttoname_2" formControlName="ReportControl2">
+      </mat-form-field> 
+      <mat-form-field *ngIf="report2visible" style="width: 40%; margin-right: 40px;">
+        <mat-label>Report To Contact Number</mat-label>
+        <input matInput type="number" placeholder="Enter the report to contact no. here" [(ngModel)]="rentalAdd.reporttonum_2" formControlName="ReportContactControl2">
+        <br/> 
+      </mat-form-field>  
+      
+
+      <mat-form-field *ngIf="report3visible" style="width: 40%; margin-right: 40px;">
+        <mat-label>Report To Name</mat-label>
+        <input matInput placeholder="Enter the report to name here" [(ngModel)]="rentalAdd.reporttoname_3" formControlName="ReportControl3">
+      </mat-form-field> 
+      <mat-form-field *ngIf="report3visible" style="width: 40%; margin-right: 40px;">
+        <mat-label>Report To Contact Number</mat-label>
+        <input matInput type="number" placeholder="Enter the report to contact no. here" [(ngModel)]="rentalAdd.reporttonum_3" formControlName="ReportContactControl3">
+        <br/> 
+      </mat-form-field>  
+
+      <mat-form-field *ngIf="report4visible" style="width: 40%; margin-right: 40px;">
+        <mat-label>Report To Name</mat-label>
+        <input matInput placeholder="Enter the report to name here" [(ngModel)]="rentalAdd.reporttoname_4" formControlName="ReportControl4">
+      </mat-form-field> 
+      <mat-form-field *ngIf="report4visible" style="width: 40%; margin-right: 40px;">
+        <mat-label>Report To Contact Number</mat-label>
+        <input matInput type="number" placeholder="Enter the report to contact no. here" [(ngModel)]="rentalAdd.reporttonum_4" formControlName="ReportContactControl4">
+        <br/> 
+      </mat-form-field>  
+
+      <mat-form-field *ngIf="report5visible" style="width: 40%; margin-right: 40px;">
+        <mat-label>Report To Name</mat-label>
+        <input matInput placeholder="Enter the report to name here" [(ngModel)]="rentalAdd.reporttoname_5" formControlName="ReportControl5">
+      </mat-form-field> 
+      <mat-form-field *ngIf="report5visible" style="width: 40%; margin-right: 40px;">
+        <mat-label>Report To Contact Number</mat-label>
+        <input matInput type="number" placeholder="Enter the report to contact no. here" [(ngModel)]="rentalAdd.reporttonum_5" formControlName="ReportContactControl5">
+        <br/>
+      </mat-form-field>  
+       
+      <mat-form-field style="width: 40%; margin-right: 40px;">
+        <mat-label>Pick Up Location</mat-label>
+        <input matInput placeholder="Enter the pickup location here" [(ngModel)]="rentalAdd.pickuploc" formControlName="PickupControl">
+      </mat-form-field> 
+      <mat-form-field style="width: 40%; margin-right: 40px;">
+        <mat-label>Drop Location</mat-label>
+        <input matInput placeholder="Enter the drop location here" [(ngModel)]="rentalAdd.droploc" formControlName="DropControl">
+        <br/>
+      </mat-form-field>
+
+      <mat-form-field style="width: 20%; margin-right: 40px;">
+        <mat-label>Garage Out Buffer Km</mat-label>
+        <input matInput type="number" formControlName="GOUTKMBufferControl" [(ngModel)]="rentalAdd.goutbeforekm">
+      </mat-form-field>
+      <mat-form-field style="width: 20%; margin-right: 40px;">
+        <mat-label>Garage Out Buffer Time</mat-label>
+        <input matInput type="number" formControlName="GOUTTimeBufferControl" [(ngModel)]="rentalAdd.goutbeforetime">
+      </mat-form-field>
+      <mat-form-field style="width: 20%; margin-right: 40px;">
+        <mat-label>Garage In Buffer Km</mat-label>
+        <input matInput  type="number" formControlName="GINKMBufferControl" [(ngModel)]="rentalAdd.ginbeforekm">
+      </mat-form-field>
+      <mat-form-field style="width: 20%; margin-right: 40px;">
+        <mat-label>Garage In Buffer Time</mat-label>
+        <input matInput  type="number" formControlName="GINTimeBufferControl" [(ngModel)]="rentalAdd.ginbeforetime">
+      </mat-form-field>
+      <br/>
+
+      <mat-form-field style="width: 40%; margin-right: 40px;">
+        <mat-label>Flight No. / Train No.</mat-label>
+        <input matInput placeholder="Enter Flight / Train no." formControlName="FlightControl" [(ngModel)]="rentalAdd.transportinfo">
+      </mat-form-field>
+      <mat-form-field style="width: 40%; margin-right: 40px;">
+        <mat-label>Select Dispatch Centre</mat-label>
+        <input  [matAutocomplete]="autoCenter" matInput placeholder="Enter Report To Contact Number"  [(ngModel)]="rentalAdd.centerName" formControlName="DispatchControl" required>
+        <mat-autocomplete #autoCenter="matAutocomplete">
+          <mat-option value="Park Circus">
+            Park Circus
+          </mat-option>
+          <mat-option value="Tollygunge">
+            Tollygunge
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+      <br/>
+
+      <mat-form-field style="width: 80%; margin-right: 40px;">
+        <mat-label>Notes / Remarks</mat-label>
+        <input matInput placeholder="Enter Notes / Remarks here" [(ngModel)]="rentalAdd.note" formControlName="NotesControl">
+      </mat-form-field>
+      <br/>
+
+      <div>
+        <button class="btn-first" style="margin-right: 20px;" mat-button (click)="savedata(stepper)">Save Duty & Continue</button>
+        <button class="btn-second" style="margin-right: 20px;" mat-button (click)="savedatacreate(stepper)">Save Duty & Create New</button>
+        <button class="btn-first" style="margin-right: 20px;" mat-button (click)="viewallduties()">View All Duties</button>
+        <!-- <button class="btn-first" style="margin-right: 20px;" mat-button matStepperNext>Next</button> -->
+      </div>
+      <div>
+        
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="secondFormGroup" label="Assign Car & Driver">
+    <form [formGroup]="secondFormGroup">
+      <mat-form-field style="width: 40%; margin-right: 40px;">
+        <mat-label>Select Driver</mat-label>
+        <input [(ngModel)]="rentalAdd.driver" [matAutocomplete]="autodriver" matInput placeholder="Select Driver" formControlName="DriverControl" required>
+        <mat-autocomplete #autodriver="matAutocomplete" (optionSelected)="changedriver()">
+          <mat-option *ngFor="let option of alldrivers" [value]="option.drivername" >
+            {{option.drivername}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+      <mat-form-field style="width: 40%; margin-right: 40px;">
+        <mat-label>Driver Contact</mat-label>
+        <input [(ngModel)]="rentalAdd.drivernum" matInput placeholder="Enter Driver Contact Number" formControlName="DriverContactControl" required>
+      </mat-form-field>
+      <br/>
+
+      <mat-form-field style="width: 40%; margin-right: 40px;">
+        <mat-label>Select Car Type</mat-label>
+        <mat-select formControlName="CarTypeControl" required [(ngModel)]="rentalAdd.cartype">
+          <mat-option *ngFor="let option of cartypes" [value]="option.car">
+            {{option.car}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field style="width: 40%; margin-right: 40px;">
+        <mat-label>Select Car Number</mat-label>
+        <input [(ngModel)]="rentalAdd.carnum" [matAutocomplete]="autocar" matInput placeholder="Enter Car Number" formControlName="CarNumberControl" required>
+        <mat-autocomplete #autocar="matAutocomplete" (optionSelected)="changecar()">
+          <mat-option *ngFor="let option of allcars" [value]="option.carno" >
+            {{option.carno}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+      <br/>
+
+      <div>
+        <button class="btn-first" style="margin-right: 20px;" mat-button (click)="savedata(stepper)">Save Duty & Continue</button>
+        <button class="btn-second" style="margin-right: 20px;" mat-button (click)="savedatacreate(stepper)">Save Duty & Create New</button>
+        <button class="btn-first" style="margin-right: 20px;" mat-button (click)="viewallduties()">View All Duties</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="thirdFormGroup">
+    <ng-template matStepLabel>Complete Duty</ng-template>
+    <form [formGroup]="thirdFormGroup">
+    <mat-form-field style="width: 40%; margin-right: 40px;">
+        <mat-label>Garage In Time</mat-label>
+        <input matInput [(ngModel)]="rentalAdd.gintime"  type="time" formControlName="GINTIMEControl" required>
+      </mat-form-field>
+      <mat-form-field style="width: 40%; margin-right: 40px;">
+        <mat-label>Garage In KM</mat-label>
+        <input matInput [(ngModel)]="rentalAdd.ginkm"  type="number" formControlName="GINKMControl" required>
+      </mat-form-field>
+      <br/>
+
+      <mat-form-field style="width: 40%; margin-right: 40px;">
+        <mat-label>Garage Out Time</mat-label>
+        <input matInput [(ngModel)]="rentalAdd.gouttime"  type="time" formControlName="GOUTTIMEControl" required>
+      </mat-form-field>
+      <mat-form-field style="width: 40%; margin-right: 40px;">
+        <mat-label>Garage Out KM</mat-label>
+        <input matInput [(ngModel)]="rentalAdd.goutkm"  type="number" formControlName="GOUTKMControl" required>
+      </mat-form-field>
+      <br/>
+
+      <mat-form-field style="width: 30%; margin-right: 40px;">
+        <mat-label>Parking</mat-label>
+        <input matInput [(ngModel)]="rentalAdd.parking" placeholder="Enter Report To Contact Number" formControlName="ParkingControl" required>
+      </mat-form-field>
+      <mat-form-field style="width: 30%; margin-right: 40px;">
+        <mat-label>Outstation Days</mat-label>
+        <input matInput [(ngModel)]="rentalAdd.outstation" placeholder="Enter Report To Contact Number" formControlName="OutstationControl" required>
+      </mat-form-field>
+      <mat-form-field style="width: 30%; margin-right: 40px;">
+        <mat-label>Night</mat-label>
+        <input matInput [(ngModel)]="rentalAdd.nightcharge" placeholder="Enter Report To Contact Number" formControlName="NightControl" required>
+      </mat-form-field>
+      <br/>
+    </form>
+
+    <div>
+      <button class="btn-first" style="margin-right: 20px;" mat-button (click)="savedataandexit(stepper)">Save Duty</button>
+      <button class="btn-second" style="margin-right: 20px;" mat-button (click)="savedatacreate(stepper)">Save Duty & Create New</button>
+      <button class="btn-first" style="margin-right: 20px;" mat-button (click)="viewallduties()">View All Duties</button>
+    </div>
+  </mat-step>
+</mat-horizontal-stepper>

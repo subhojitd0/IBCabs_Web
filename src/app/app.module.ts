@@ -38,6 +38,7 @@ import { AddDriverComponent } from '../app/features/driver/add-driver/add-driver
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatStepperModule} from '@angular/material/stepper';
 import {RentalDetailComponent} from '../app/features/rental-detail/rental-detail.component';
+import {RentalDetailWalkinComponent} from '../app/features/rental-detail-walkin/rental-detail-walkin.component';
 import { EditRentalDetailComponent } from './features/edit-rental-detail/edit-rental-detail.component';
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { EditRentalDetailComponent } from './features/edit-rental-detail/edit-re
     DriverComponent,
     AddDriverComponent,
     RentalDetailComponent,
-    EditRentalDetailComponent
+    EditRentalDetailComponent,
+    RentalDetailWalkinComponent
   ],
   imports: [
     BrowserModule,
