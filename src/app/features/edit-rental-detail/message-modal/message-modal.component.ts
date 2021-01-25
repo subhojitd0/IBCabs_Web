@@ -118,7 +118,7 @@ export class MessageModalComponent implements OnInit {
     body = body.replace("{4}", this.rentalDetails.cartype);
     body = body.replace("{5}", this.rentalDetails.dutydate);
     body = body.replace("{6}", this.rentalDetails.dutytime.substr(0,5));
-    body = body.replace("{7}", this.rentalDetails.reportto);
+    body = body.replace("{7}", this.rentalDetails.reporttoname);
     queryParam += "method=" + MESSAGE_METHOD;
     //queryParam += "&send_to=" + this.phoneNumber;
     queryParam += "&send_to=9874993247";
