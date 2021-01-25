@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {STEPPER_GLOBAL_OPTIONS} from '@angular/cdk/stepper';
 import { ROUTE_ADD_DDR, ROUTE_VIEW_DDR } from 'src/shared/constants/constant';
+import { MessageModalComponent } from './message-modal/message-modal.component';
 
 export interface EditRentalDetail {
   isSelected: boolean;
@@ -386,5 +387,13 @@ export class EditRentalDetailComponent implements OnInit {
         location.reload();
       });
     }
+  }
+  sendMessage(id: any){
+    localStorage.setItem('selectedrentalid', id );
+    const dialogRef = this.dialog.open(MessageModalComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog closed`);
+    });
   }
 }

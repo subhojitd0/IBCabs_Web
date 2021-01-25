@@ -114,7 +114,7 @@
                   <ng-container matColumnDef="options">
                       <mat-header-cell *matHeaderCellDef mat-sort-header> Options </mat-header-cell>
                       <mat-cell *matCellDef="let row" [style.color]="row.option">
-                          <span style="margin-left: 10px; margin-right: 10px; cursor: pointer;" class="material-icons" >
+                          <span style="margin-left: 10px; margin-right: 10px; cursor: pointer;" class="material-icons" (click)="sendMessage(row.dutyid)">
                               message
                           </span> |
                           <span style="margin-left: 10px; margin-right: 10px; cursor: pointer;" class="material-icons" (click)="deleteduty(row.dutyid)">

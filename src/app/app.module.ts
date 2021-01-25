@@ -40,6 +40,7 @@ import {MatStepperModule} from '@angular/material/stepper';
 import {RentalDetailComponent} from '../app/features/rental-detail/rental-detail.component';
 import {RentalDetailWalkinComponent} from '../app/features/rental-detail-walkin/rental-detail-walkin.component';
 import { EditRentalDetailComponent } from './features/edit-rental-detail/edit-rental-detail.component';
+import {MessageModalComponent} from './features/edit-rental-detail/message-modal/message-modal.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -59,7 +60,8 @@ import { EditRentalDetailComponent } from './features/edit-rental-detail/edit-re
     AddDriverComponent,
     RentalDetailComponent,
     EditRentalDetailComponent,
-    RentalDetailWalkinComponent
+    RentalDetailWalkinComponent,
+    MessageModalComponent
   ],
   imports: [
     BrowserModule,

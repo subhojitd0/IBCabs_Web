@@ -1,0 +1,30 @@
+<div class="container">
+  <div style="margin: 20px; padding: 20px">
+    <mat-label style="font-size: 20px">Choose Message Recipient</mat-label>
+                        <mat-select style="margin-top: 20px;
+                        border: 1px solid black;
+                        border-radius: 5px;
+                        padding: 10px" (selectionChange)="refreshNumber()" [(value)]="selectedType">
+                          <mat-option value="BookingConfirmation">
+                            REPORT TO - Booking Confirmed
+                          </mat-option>
+                          <mat-option value="Driver">
+                            DRIVER
+                          </mat-option>
+                          <mat-option value="CarAssigned">
+                            REPORT TO - Car Assigned
+                          </mat-option>
+                        </mat-select>
+  </div>
+  <div style="margin: 20px; padding: 20px">
+    <div *ngFor="let number of phoneNumbers">
+      <span style="font-size: 15px">Number : {{number}}</span> <br/>
+      <button style="padding: 10px;
+      width: 100%;
+      margin-top: 10px;
+      border-radius: 5px;
+      background:#3f51b5;
+      color: white" (click)="sendmessagebtn(number)">Send Message</button>
+    </div>
+  </div>
+</div>
