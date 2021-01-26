@@ -60,10 +60,10 @@ export class MessageModalComponent implements OnInit {
     body = body.replace("{1}", this.rentalDetails.bookedby);
     body = body.replace("{2}", this.rentalDetails.dutydate);
     body = body.replace("{3}", this.rentalDetails.dutytime.substr(0,5));
-    body = body.replace("{4}", "-");
+    body = body.replace("{4}", "To be Assigned");
     queryParam += "method=" + MESSAGE_METHOD;
-    //queryParam += "&send_to=" + this.phoneNumber;
-    queryParam += "&send_to=9874993247";
+    queryParam += "&send_to=" + this.phoneNumber;
+    //queryParam += "&send_to=9874993247";
     queryParam += "&msg=" + body;
     queryParam += "&msg_type=" + MESSAGE_TYPE;
     queryParam += "&userid=" + MESSAGE_USER;
@@ -91,8 +91,8 @@ export class MessageModalComponent implements OnInit {
     body = body.replace("{6}", this.rentalDetails.dutytime.substr(0,5));
     body = body.replace("{7}", this.rentalDetails.reporttoname);
     queryParam += "method=" + MESSAGE_METHOD;
-    //queryParam += "&send_to=" + this.phoneNumber;
-    queryParam += "&send_to=9874993247";
+    queryParam += "&send_to=" + this.phoneNumber;
+    //queryParam += "&send_to=9874993247";
     queryParam += "&msg=" + body;
     queryParam += "&msg_type=" + MESSAGE_TYPE;
     queryParam += "&userid=" + MESSAGE_USER;
@@ -120,8 +120,8 @@ export class MessageModalComponent implements OnInit {
     body = body.replace("{6}", this.rentalDetails.dutytime.substr(0,5));
     body = body.replace("{7}", this.rentalDetails.reporttoname);
     queryParam += "method=" + MESSAGE_METHOD;
-    //queryParam += "&send_to=" + this.phoneNumber;
-    queryParam += "&send_to=9874993247";
+    queryParam += "&send_to=" + this.phoneNumber;
+    //queryParam += "&send_to=9874993247";
     queryParam += "&msg=" + body;
     queryParam += "&msg_type=" + MESSAGE_TYPE;
     queryParam += "&userid=" + MESSAGE_USER;

@@ -5,11 +5,14 @@
 .mat-stroked-button{
     margin-top: 40px;
     margin-bottom: 10px;
+    background-color: silver;
 }
 
 .mat-card{
     margin-top:20px;
     margin-bottom:20px;
+    background-color: #3f51b5;
+    color:white;
 }
 
 .avatar-image-partyhead {
