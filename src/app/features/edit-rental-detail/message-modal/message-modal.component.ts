@@ -107,7 +107,7 @@ export class MessageModalComponent implements OnInit {
     });
   }
 
-  sendDriverMessage(){
+  sendDriverMessage(){ 
     this.toastr.info("Please wait while we are sending the message", "Information");
     let queryParam = "";
     let body = DRIVER_MESSAGE_TEMPLATE;
