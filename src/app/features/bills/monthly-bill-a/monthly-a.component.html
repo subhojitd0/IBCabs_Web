@@ -1,36 +1,96 @@
 
-        <div class="container">
-        <mat-card>
-          <mat-card-header>
-            <div mat-card-avatar class="avatar-image-partyhead"></div>
-            <mat-card-title>Bill</mat-card-title>
-          </mat-card-header>
-        </mat-card>
+        <div class="container" id="printdiv">
+          <mat-card>
+            <mat-card-header>
+              <div mat-card-avatar class="avatar-image-partyhead"></div>
+              <mat-card-title>Bill Register</mat-card-title>
+              <mat-card-subtitle>View, Delete and View the Bills Here.</mat-card-subtitle>
+            </mat-card-header>
+          </mat-card>
               <mat-table [dataSource]="dataSource" matSort>
 
                 <!-- ID Column -->
-                <ng-container matColumnDef="ownercode">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header> No.  </mat-header-cell>
-                  <mat-cell *matCellDef="let row"> {{row.ownercode}} </mat-cell>
+                <ng-container matColumnDef="sl">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> Sl. No  </mat-header-cell>
+                  <mat-cell *matCellDef="let row"> {{row.sl}} </mat-cell>
                 </ng-container>
             
                 <!-- Name Column -->
-                <ng-container matColumnDef="ownername">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
-                  <mat-cell *matCellDef="let row"> {{row.ownername}} </mat-cell>
+                <ng-container matColumnDef="dutydate">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> Date </mat-header-cell>
+                  <mat-cell *matCellDef="let row"> {{row.dutydate}} </mat-cell>
                 </ng-container>
             
                 <!-- Color Column -->
-                <ng-container matColumnDef="assignedcar">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header> Assigned Cars </mat-header-cell>
-                  <mat-cell *matCellDef="let row"> {{row.assignedcar}} </mat-cell>
+                <ng-container matColumnDef="carno">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> Car No. </mat-header-cell>
+                  <mat-cell *matCellDef="let row"> {{row.carno}} </mat-cell>
+                </ng-container>
+
+                <!-- ID Column -->
+                <ng-container matColumnDef="hour">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> Hours  </mat-header-cell>
+                  <mat-cell *matCellDef="let row"> {{row.hour}} </mat-cell>
+                </ng-container>
+            
+                <!-- Name Column -->
+                <ng-container matColumnDef="km">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> KMs </mat-header-cell>
+                  <mat-cell *matCellDef="let row"> {{row.km}} </mat-cell>
+                </ng-container>
+            
+                <!-- Color Column -->
+                <ng-container matColumnDef="parking">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> Parking </mat-header-cell>
+                  <mat-cell *matCellDef="let row"> {{row.parking}} </mat-cell>
                 </ng-container>
 
                 <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
                 <mat-row *matRowDef="let row; columns: displayedColumns;">
                 </mat-row>
               </mat-table>
-            <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
 
+              <mat-table [dataSource]="dataSource" matSort>
 
+                <!-- ID Column -->
+                <ng-container matColumnDef="sl">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> Sl. No  </mat-header-cell>
+                  <mat-cell *matCellDef="let row"> {{row.sl}} </mat-cell>
+                </ng-container>
+            
+                <!-- Name Column -->
+                <ng-container matColumnDef="dutydate">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> Date </mat-header-cell>
+                  <mat-cell *matCellDef="let row"> {{row.dutydate}} </mat-cell>
+                </ng-container>
+            
+                <!-- Color Column -->
+                <ng-container matColumnDef="carno">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> Car No. </mat-header-cell>
+                  <mat-cell *matCellDef="let row"> {{row.carno}} </mat-cell>
+                </ng-container>
+
+                <!-- ID Column -->
+                <ng-container matColumnDef="hour">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> Hours  </mat-header-cell>
+                  <mat-cell *matCellDef="let row"> {{row.hour}} </mat-cell>
+                </ng-container>
+            
+                <!-- Name Column -->
+                <ng-container matColumnDef="km">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> KMs </mat-header-cell>
+                  <mat-cell *matCellDef="let row"> {{row.km}} </mat-cell>
+                </ng-container>
+            
+                <!-- Color Column -->
+                <ng-container matColumnDef="parking">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> Parking </mat-header-cell>
+                  <mat-cell *matCellDef="let row"> {{row.parking}} </mat-cell>
+                </ng-container>
+
+                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: displayedColumns;">
+                </mat-row>
+              </mat-table>
+              <button (click)="exportAsPDF('printdiv');">Test</button>
         </div>
