@@ -1,0 +1,36 @@
+
+        <div class="container">
+        <mat-card>
+          <mat-card-header>
+            <div mat-card-avatar class="avatar-image-partyhead"></div>
+            <mat-card-title>Bill</mat-card-title>
+          </mat-card-header>
+        </mat-card>
+              <mat-table [dataSource]="dataSource" matSort>
+
+                <!-- ID Column -->
+                <ng-container matColumnDef="ownercode">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> No.  </mat-header-cell>
+                  <mat-cell *matCellDef="let row"> {{row.ownercode}} </mat-cell>
+                </ng-container>
+            
+                <!-- Name Column -->
+                <ng-container matColumnDef="ownername">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
+                  <mat-cell *matCellDef="let row"> {{row.ownername}} </mat-cell>
+                </ng-container>
+            
+                <!-- Color Column -->
+                <ng-container matColumnDef="assignedcar">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> Assigned Cars </mat-header-cell>
+                  <mat-cell *matCellDef="let row"> {{row.assignedcar}} </mat-cell>
+                </ng-container>
+
+                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: displayedColumns;">
+                </mat-row>
+              </mat-table>
+            <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+
+
+        </div>

@@ -110,6 +110,10 @@ export class RentalDetailComponent implements OnInit {
     });
   }
   savedataandexit(stepper: MatStepper){
+    if(this.rentalAdd.goutbeforekm)
+      this.rentalAdd.ginbeforekm = this.rentalAdd.goutbeforekm;
+    if(this.rentalAdd.goutbeforetime)
+      this.rentalAdd.ginbeforetime = this.rentalAdd.goutbeforetime;
     if(this.rentalAdd.centerName == "Park Circus"){
       this.rentalAdd.center = 1;
     }
@@ -139,6 +143,10 @@ export class RentalDetailComponent implements OnInit {
     
   }
   savedata(stepper: MatStepper){
+    if(this.rentalAdd.goutbeforekm)
+      this.rentalAdd.ginbeforekm = this.rentalAdd.goutbeforekm;
+    if(this.rentalAdd.goutbeforetime)
+      this.rentalAdd.ginbeforetime = this.rentalAdd.goutbeforetime;
     if(this.rentalAdd.centerName == "Park Circus"){
       this.rentalAdd.center = 1;
     }
@@ -174,6 +182,8 @@ export class RentalDetailComponent implements OnInit {
   }
   savedatacreate(stepper: MatStepper){
     debugger;
+    this.rentalAdd.ginbeforekm = this.rentalAdd.goutbeforekm;
+    this.rentalAdd.ginbeforetime = this.rentalAdd.goutbeforetime;
     if(this.rentalAdd.party && this.rentalAdd.dutydate && this.rentalAdd.dutytime && this.rentalAdd.centerName){
       this.toastr.info("Please wait while we are saving your request",'Information');
       if(this.rentalAdd.centerName == "Park Circus"){

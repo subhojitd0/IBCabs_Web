@@ -51,22 +51,22 @@
       </mat-form-field>  
       <br/> 
 
-      <mat-form-field style="width: 20%; margin-right: 40px;">
-        <mat-label>Garage Out Buffer Km</mat-label>
+      <mat-form-field style="width: 40%; margin-right: 40px;">
+        <mat-label>Garage Buffer Km</mat-label>
         <input matInput type="number" formControlName="GOUTKMBufferControl" [(ngModel)]="rentalAdd.goutbeforekm">
       </mat-form-field>
-      <mat-form-field style="width: 20%; margin-right: 40px;">
-        <mat-label>Garage Out Buffer Time</mat-label>
+      <mat-form-field style="width: 40%; margin-right: 40px;">
+        <mat-label>Garage Buffer Time</mat-label>
         <input matInput type="number" formControlName="GOUTTimeBufferControl" [(ngModel)]="rentalAdd.goutbeforetime">
       </mat-form-field>
-      <mat-form-field style="width: 20%; margin-right: 40px;">
+      <!-- <mat-form-field style="width: 20%; margin-right: 40px;">
         <mat-label>Garage In Buffer Km</mat-label>
         <input matInput  type="number" formControlName="GINKMBufferControl" [(ngModel)]="rentalAdd.ginbeforekm">
       </mat-form-field>
       <mat-form-field style="width: 20%; margin-right: 40px;">
         <mat-label>Garage In Buffer Time</mat-label>
         <input matInput  type="number" formControlName="GINTimeBufferControl" [(ngModel)]="rentalAdd.ginbeforetime">
-      </mat-form-field>
+      </mat-form-field> -->
       <br/>
 
       <mat-form-field style="width: 40%; margin-right: 40px;">
@@ -150,15 +150,7 @@
   <mat-step [stepControl]="thirdFormGroup">
     <ng-template matStepLabel>Complete Duty</ng-template>
     <form [formGroup]="thirdFormGroup">
-    <mat-form-field style="width: 40%; margin-right: 40px;">
-        <mat-label>Garage In Time</mat-label>
-        <input matInput [(ngModel)]="rentalAdd.gintime"  type="time" formControlName="GINTIMEControl" required>
-      </mat-form-field>
-      <mat-form-field style="width: 40%; margin-right: 40px;">
-        <mat-label>Garage In KM</mat-label>
-        <input matInput [(ngModel)]="rentalAdd.ginkm"  type="number" formControlName="GINKMControl" required>
-      </mat-form-field>
-      <br/>
+    
 
       <mat-form-field style="width: 40%; margin-right: 40px;">
         <mat-label>Garage Out Time</mat-label>
@@ -170,6 +162,16 @@
       </mat-form-field>
       <br/>
 
+      <mat-form-field style="width: 40%; margin-right: 40px;">
+        <mat-label>Garage In Time</mat-label>
+        <input matInput [(ngModel)]="rentalAdd.gintime"  type="time" formControlName="GINTIMEControl" required>
+      </mat-form-field>
+      <mat-form-field style="width: 40%; margin-right: 40px;">
+        <mat-label>Garage In KM</mat-label>
+        <input matInput [(ngModel)]="rentalAdd.ginkm"  type="number" formControlName="GINKMControl" required>
+      </mat-form-field>
+      <br/>
+      
       <mat-form-field style="width: 30%; margin-right: 40px;">
         <mat-label>Parking</mat-label>
         <input matInput [(ngModel)]="rentalAdd.parking" placeholder="Enter Report To Contact Number" formControlName="ParkingControl" required>
