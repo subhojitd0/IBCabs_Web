@@ -195,7 +195,7 @@ export class RentalDetailWalkinComponent implements OnInit {
       } 
       debugger;
       this.apiService.post(PARTY_HEAD_API, json).then((res: any)=>{ 
-        ot = res.ot;
+        ot = res.outstation;
         this.rentalAdd.outstation = (parseInt(this.rentalAdd.outstation) * parseInt(ot)).toString();
         debugger;
         this.apiService.post(RENTAL_DETAIL_API_OFFICE, this.rentalAdd).then((res: any)=>{ 
@@ -224,7 +224,7 @@ export class RentalDetailWalkinComponent implements OnInit {
       } 
       debugger;
       this.apiService.post(PARTY_HEAD_API, json).then((res: any)=>{ 
-        ot = res.ot;
+        ot = res.outstation;
         if(ot)
           this.rentalAdd.outstation = (parseInt(this.rentalAdd.outstation) * parseInt(ot)).toString();
         else
@@ -366,7 +366,7 @@ export class RentalDetailWalkinComponent implements OnInit {
         var ot=0;
         debugger;
         this.apiService.post(PARTY_HEAD_API, jsonParty).then((res: any)=>{ 
-          ot = res.ot;
+          ot = res.outstation;
           this.rentalAdd.mode = "2";
         if(this.rentalAdd.gintime)
           this.rentalAdd.gintime = this.rentalAdd.gintime.substr(0,5);

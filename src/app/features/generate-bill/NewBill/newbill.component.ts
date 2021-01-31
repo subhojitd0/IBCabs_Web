@@ -75,6 +75,9 @@ export class NewBillComponent implements OnInit {
     }
     debugger;
     this.toastr.info("Please wait while we are generating your bill",'Information');
+    localStorage.setItem("billfrom", this.billDetails.from);
+    localStorage.setItem("billto", this.billDetails.to);
+    localStorage.setItem("billparty", this.billDetails.party);
     this.apiService.post(billApi, this.billDetails).then((res: any)=>{ 
       debugger;
       localStorage.setItem("billdata", JSON.stringify(res));

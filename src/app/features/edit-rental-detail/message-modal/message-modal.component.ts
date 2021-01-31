@@ -21,6 +21,7 @@ export class MessageModalComponent implements OnInit {
   phoneNumber: any;
   selectedType: any;
   rentalDetails: any;
+  message: any;
   phoneNumbers: any[] = [];
   constructor(private router: Router,private apiService: ApiService, private toastr: ToastrService) {
     
@@ -38,11 +39,57 @@ export class MessageModalComponent implements OnInit {
    }
  
    refreshNumber(){
+     debugger;
      this.phoneNumbers = [];
      debugger;
-    this.selectedType == "BookingConfirmation" ? this.phoneNumbers.push(this.rentalDetails.bookedbycontact) : 
-    this.selectedType == "Driver" ? this.phoneNumbers.push(this.rentalDetails.drivernum) :
-    this.selectedType == "CarAssigned" ? this.phoneNumbers.push(this.rentalDetails.bookedbycontact) : "" ;
+    if(this.selectedType == "BookingConfirmation"){
+      this.phoneNumbers.push(this.rentalDetails.bookedbycontact);
+      let body = BOOKING_ID_CONFIRM_MESSAGE_TEMPLATE;
+      body = body.split("%20").join(" ");
+      body = body.split("%0A").join(" .");
+      body = body.split("%3A").join(": ");
+      body = body.split("%2C").join(".");
+      body = body.replace("{0}", this.rentalDetails.dutyid);
+      body = body.replace("{1}", this.rentalDetails.bookedby);
+      body = body.replace("{2}", this.rentalDetails.dutydate);
+      body = body.replace("{3}", this.rentalDetails.dutytime.substr(0,5));
+      body = body.replace("{4}", "To be Assigned");
+      this.message = body;
+    }
+    if(this.selectedType == "Driver"){
+      this.phoneNumbers.push(this.rentalDetails.drivernum);
+      let body = DRIVER_MESSAGE_TEMPLATE;
+      body = body.split("%20").join(" ");
+      body = body.split("%0A").join(" .");
+      body = body.split("%3A").join(": ");
+      body = body.split("%2C").join(".");
+      body = body.replace("{0}", this.rentalDetails.dutyid);
+      body = body.replace("{1}", this.rentalDetails.bookedby);
+      body = body.replace("{2}", this.rentalDetails.bookedbycontact);
+      body = body.replace("{3}", this.rentalDetails.carnum);
+      body = body.replace("{4}", this.rentalDetails.cartype);
+      body = body.replace("{5}", this.rentalDetails.dutydate);
+      body = body.replace("{6}", this.rentalDetails.dutytime.substr(0,5));
+      body = body.replace("{7}", this.rentalDetails.reporttoname);
+      this.message = body;
+    }
+    if(this.selectedType == "CarAssigned"){
+      this.phoneNumbers.push(this.rentalDetails.bookedbycontact);
+      let body = CAR_ASSIGNED_MESSAGE_TEMPLATE;
+      body = body.split("%20").join(" ");
+      body = body.split("%0A").join(" .");
+      body = body.split("%3A").join(": ");
+      body = body.split("%2C").join(".");
+      body = body.replace("{0}", this.rentalDetails.dutyid);
+      body = body.replace("{1}", this.rentalDetails.carnum);
+      body = body.replace("{2}", this.rentalDetails.cartype);
+      body = body.replace("{3}", this.rentalDetails.driver);
+      body = body.replace("{4}", this.rentalDetails.drivernum);
+      body = body.replace("{5}", this.rentalDetails.dutydate);
+      body = body.replace("{6}", this.rentalDetails.dutytime.substr(0,5));
+      body = body.replace("{7}", this.rentalDetails.reporttoname);
+      this.message = body;
+    } 
    }
 
    sendmessagebtn(number: any){

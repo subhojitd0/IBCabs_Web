@@ -139,7 +139,7 @@ export class EditRentalDetailComponent implements OnInit {
         } 
         var ot=0;
         this.apiService.post(PARTY_HEAD_API, jsonParty).then((res: any)=>{ 
-          ot = res.ot;
+          ot = res.outstation;
           element.outstationtype = ot;
           element.outstation = (parseInt(element.outstation) / parseInt(ot.toString())).toString();
         });

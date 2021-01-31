@@ -36,6 +36,7 @@ export interface PartyHeadDDetails {
     master:string,
     kmin:string,
     kmout:string,
+    outstation:string
   }
 
 export class partyhead implements PartyHeadDDetails{
@@ -65,6 +66,7 @@ export class partyhead implements PartyHeadDDetails{
     master:string;
     kmin:string;
     kmout:string;
+    outstation:string;
 }
 @Component({
   selector: 'app-add-party-head',

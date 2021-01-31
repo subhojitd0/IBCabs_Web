@@ -15,30 +15,47 @@
               <mat-table [dataSource]="dataSource" matSort>
 
                 <!-- ID Column -->
-                <ng-container matColumnDef="billno">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header> Bill No.  </mat-header-cell>
-                  <mat-cell *matCellDef="let row"> {{row.ownercode}} </mat-cell>
+                <ng-container matColumnDef="billid">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> Sl No.  </mat-header-cell>
+                  <mat-cell *matCellDef="let row"> {{row.billid}} </mat-cell>
                 </ng-container>
             
                 <!-- Name Column -->
-                <ng-container matColumnDef="partyname">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header> Party </mat-header-cell>
-                  <mat-cell *matCellDef="let row"> {{row.ownername}} </mat-cell>
+                <ng-container matColumnDef="billnumber">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> Bill No. </mat-header-cell>
+                  <mat-cell *matCellDef="let row"> {{row.billnumber}} </mat-cell>
                 </ng-container>
             
                 <!-- Color Column -->
-                <ng-container matColumnDef="bill_generated_date">
+                <ng-container matColumnDef="party">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> Party </mat-header-cell>
+                  <mat-cell *matCellDef="let row"> {{row.party}} </mat-cell>
+                </ng-container>
+                <!-- ID Column -->
+                <ng-container matColumnDef="billfrom">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> Bill From  </mat-header-cell>
+                  <mat-cell *matCellDef="let row"> {{row.billfrom}} </mat-cell>
+                </ng-container>
+            
+                <!-- Name Column -->
+                <ng-container matColumnDef="billto">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> Bill To </mat-header-cell>
+                  <mat-cell *matCellDef="let row"> {{row.billto}} </mat-cell>
+                </ng-container>
+            
+                <!-- Color Column -->
+                <ng-container matColumnDef="billdate">
                   <mat-header-cell *matHeaderCellDef mat-sort-header> Generated On </mat-header-cell>
-                  <mat-cell *matCellDef="let row"> {{row.assignedcar}} </mat-cell>
+                  <mat-cell *matCellDef="let row"> {{row.billdate}} </mat-cell>
                 </ng-container>
 
                 <ng-container matColumnDef="option">
                     <mat-header-cell *matHeaderCellDef mat-sort-header> Options </mat-header-cell>
                     <mat-cell *matCellDef="let row" [style.color]="row.option">
-                        <span style="margin-left: 10px; margin-right: 10px; cursor: pointer;" class="material-icons" (click)="openDialog(row.ownercode)">
+                        <span style="margin-left: 10px; margin-right: 10px; cursor: pointer;" class="material-icons" (click)="downloadBill(row.billid)">
                             download
                         </span> |
-                        <span style="margin-left: 10px; margin-right: 10px; cursor: pointer;" class="material-icons" (click)="deleteOwner(row.ownercode)">
+                        <span style="margin-left: 10px; margin-right: 10px; cursor: pointer;" class="material-icons" (click)="deleteBill(row.billid)">
                             delete
                         </span>    
                     </mat-cell>
