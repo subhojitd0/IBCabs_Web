@@ -9,6 +9,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { ROUTE_CAR, ROUTE_OWNER } from 'src/shared/constants/constant';
 import { NewBillComponent } from './NewBill/newbill.component';
+import { AdvancedBillComponent } from './AdvancedBill/advancedbill.component';
 
 export interface BillRegister {
   billid: string;
@@ -61,8 +62,17 @@ export class GenarateBillComponent implements OnInit {
     
   }
   openDialog(id: any) {
-    localStorage.setItem('selectedownerid', id);
     const dialogRef = this.dialog.open(NewBillComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog closed`);
+    });
+    this.router.events.subscribe(() => {
+      dialogRef.close();
+    });
+  }
+  openAdvancedDialog(id: any){
+    const dialogRef = this.dialog.open(AdvancedBillComponent);
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog closed`);

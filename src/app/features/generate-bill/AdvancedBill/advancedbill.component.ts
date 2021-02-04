@@ -6,7 +6,7 @@ import {ApiService} from '../../../../shared/services/service';
 import {BILL_CNN_API, OWNER_API, PARTY_HEAD_API} from '../../../../shared/services/api.url-helper';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
-import { ROUTE_OWNER, ROUTE_VIEW_BILL_CNN } from 'src/shared/constants/constant';
+import { ROUTE_OWNER, ROUTE_VIEW_BILL_CNN, ROUTE_VIEW_BILL_CNN_CONTRACT } from 'src/shared/constants/constant';
 
 export interface inewbill {
   party: string,
@@ -28,11 +28,11 @@ export class newbill implements inewbill{
   parkinggst: string;
 }
 @Component({
-  selector: 'app-newbill',
-  templateUrl: './newbill.component.html',
-  styleUrls: ['./newbill.component.css']
+  selector: 'app-advancedbill',
+  templateUrl: './advancedbill.component.html',
+  styleUrls: ['./advancedbill.component.css']
 })
-export class NewBillComponent implements OnInit {
+export class AdvancedBillComponent implements OnInit {
   newbillDet : any;
   allparties: any;
   billDetails: newbill;
@@ -66,24 +66,18 @@ export class NewBillComponent implements OnInit {
    }
   generateBill(){
     debugger;
-    let billApi = "";
     let redirectApi = "";
     if((this.billDetails.party.includes("IBN") && this.billDetails.party.includes("(M")) || 
     (this.billDetails.party.includes("CNN") && this.billDetails.party.includes("(M"))){
-      billApi = BILL_CNN_API;
-      redirectApi = ROUTE_VIEW_BILL_CNN;
+      redirectApi = ROUTE_VIEW_BILL_CNN_CONTRACT;
     }
     debugger;
     this.toastr.info("Please wait while we are generating your bill",'Information');
     localStorage.setItem("billfrom", this.billDetails.from);
     localStorage.setItem("billto", this.billDetails.to);
     localStorage.setItem("billparty", this.billDetails.party);
-    this.apiService.post(billApi, this.billDetails).then((res: any)=>{ 
-      debugger;
-      localStorage.setItem("billdata", JSON.stringify(res));
-      this.toastr.success("Your bill was successfully created",'Success');
-      this.router.navigateByUrl('/' + redirectApi);
-    });
+    localStorage.setItem("billgst", this.billDetails.gsttype);
+    this.router.navigateByUrl('/' + redirectApi);
   }
 
 }

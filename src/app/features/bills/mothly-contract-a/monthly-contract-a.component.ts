@@ -46,44 +46,78 @@ export class SaveBill implements iSaveBill {
   mode: string;
 }
 @Component({
-  selector: 'app-monthly-a',
-  templateUrl: './monthly-a.component.html',
-  styleUrls: ['./monthly-a.component.css']
+  selector: 'app-monthly-contract-a',
+  templateUrl: './monthly-contract-a.component.html',
+  styleUrls: ['./monthly-contract-a.component.css']
 })
-export class MonthlyBillAComponent implements OnInit {
+export class MonthlyContractAComponent implements OnInit {
   billno: any;
   billdate: any;
   billdetails: any;
   amountInWord: any;
+  gsttype: any;
+  billfrom: any;
+  billto: any;
+  contractAmount: any;
   isConfirmVisible: any = true;
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
-  displayedColumns: string[] = ['sl', 'dutydate', 'carno', 'hour', 'km', 'parking'];
-  dataSource: MatTableDataSource<BillDet>;
+  igstAmount: any;
+  cgstAmount: any;
+  sgstAmount: any;
+  totalwithgst: any;
+  allParties: any;
+  party: any;
+  igstpercentage: any;
+  cgstpercentage: any;
+  sgstpercentage: any;
+  partydetails: any;
   constructor(private router: Router,private apiService: ApiService, public dialog: MatDialog, private toastr: ToastrService) {
     
    }
    ngOnInit(){
-    this.billdetails = JSON.parse(localStorage.getItem("billdata"));
+    //this.billdetails = JSON.parse(localStorage.getItem("billdata"));
+    this.allParties = JSON.parse(localStorage.getItem("allparties"));
+    this.party = localStorage.getItem("billparty");
+    this.billfrom = localStorage.getItem("billfrom");
+    this.billto = localStorage.getItem("billto");
+    this.gsttype = localStorage.getItem("billgst");
     debugger;
-    if(this.billdetails){
-      let billTot : BillDet = new BillDet();
-      billTot.carno = "Total";
-      billTot.sl = "";
-      billTot.dutydate = "";
-      billTot.hour = this.billdetails.bodytotal[0].hour;
-      billTot.km = this.billdetails.bodytotal[0].km;
-      billTot.parking = this.billdetails.bodytotal[0].parking;
-      this.billdetails.body.push(billTot);
-      this.dataSource = new MatTableDataSource(this.billdetails.body);
-      //localStorage.setItem("billdata", "");
-      let index = this.billdetails.tail[0].grosstotal.toString().indexOf('.');
-      let substringVal = this.billdetails.tail[0].grosstotal;
-      if(index > 0)
-         substringVal = this.billdetails.tail[0].grosstotal.toString().substr(0, index);
-      this.amountInWord = this.apiService.convertAmountToWord(substringVal);
+    let det = this.allParties.filter(x=>x.name === this.party)[0];
+    if(det){
+      var json =
+      {
+        "mode": 4,
+        "partyheadcode": det.headcode
+      }
+      this.apiService.post(PARTY_HEAD_API, json).then((res: any)=>{ 
+        this.partydetails = res;
+        this.contractAmount = res.package;
+        if(this.gsttype === "1"){
+          this.igstpercentage = "0";
+          this.cgstpercentage = "2.5";
+          this.sgstpercentage = "2.5";
+          this.igstAmount = "0";
+          let gst = ( 2.5 * parseFloat(this.contractAmount)) / 100;
+          this.cgstAmount = gst.toString();
+          this.sgstAmount = gst.toString();
+          this.totalwithgst = parseFloat(this.contractAmount) + gst;
+        }
+        else{
+          this.igstpercentage = "5";
+          this.cgstpercentage = "";
+          this.sgstpercentage = "";
+          this.cgstAmount = "0";
+          this.sgstAmount = "0";
+          let gst = ( 5 * parseFloat(this.contractAmount)) / 100;
+          this.igstAmount = gst.toString();
+          this.totalwithgst = parseFloat(this.contractAmount) + gst;
+        }
+        let index = this.contractAmount.toString().indexOf('.');
+        let substringVal = this.contractAmount;
+        if(index > 0)
+            substringVal = this.contractAmount.toString().substr(0, index);
+        this.amountInWord = this.apiService.convertAmountToWord(substringVal);
+      });
     }
-    
    }
    save(){
      if(!(this.billno && this.billdate)){

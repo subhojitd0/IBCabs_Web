@@ -44,6 +44,8 @@ import {MessageModalComponent} from './features/edit-rental-detail/message-modal
 import {GenarateBillComponent} from './features/generate-bill/generate-bill.component';
 import {NewBillComponent} from './features/generate-bill/NewBill/newbill.component';
 import {MonthlyBillAComponent} from './features/bills/monthly-bill-a/monthly-a.component';
+import {MonthlyContractAComponent} from './features/bills/mothly-contract-a/monthly-contract-a.component';
+import {AdvancedBillComponent} from './features/generate-bill/AdvancedBill/advancedbill.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -67,7 +69,9 @@ import {MonthlyBillAComponent} from './features/bills/monthly-bill-a/monthly-a.c
     MessageModalComponent,
     GenarateBillComponent,
     NewBillComponent,
-    MonthlyBillAComponent
+    MonthlyBillAComponent,
+    AdvancedBillComponent,
+    MonthlyContractAComponent
   ],
   imports: [
     BrowserModule,
