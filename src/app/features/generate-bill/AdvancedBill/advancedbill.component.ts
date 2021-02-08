@@ -62,6 +62,7 @@ export class AdvancedBillComponent implements OnInit {
     } */
    }
    ngOnInit() : void {
+    this.billDetails.gsttype = "0";
     this.allparties = JSON.parse(localStorage.getItem('allparties'));
    }
   generateBill(){

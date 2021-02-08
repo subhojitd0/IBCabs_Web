@@ -62,6 +62,8 @@ export class NewBillComponent implements OnInit {
     } */
    }
    ngOnInit() : void {
+    this.billDetails.gsttype = "0";
+    this.billDetails.parkinggst = "1";
     this.allparties = JSON.parse(localStorage.getItem('allparties'));
    }
   generateBill(){
