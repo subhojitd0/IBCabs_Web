@@ -81,6 +81,7 @@ export class MonthlyBillAComponent implements OnInit {
       let substringVal = this.billdetails.tail[0].grosstotal;
       if(index > 0)
          substringVal = this.billdetails.tail[0].grosstotal.toString().substr(0, index);
+      substringVal = substringVal.toString().replace(',','');
       this.amountInWord = this.apiService.convertAmountToWord(substringVal);
     }
     

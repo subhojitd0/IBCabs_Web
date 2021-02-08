@@ -91,7 +91,7 @@ export class MonthlyContractAComponent implements OnInit {
       this.apiService.post(PARTY_HEAD_API, json).then((res: any)=>{ 
         this.partydetails = res;
         this.contractAmount = res.package;
-        if(this.gsttype === "1"){
+        if(this.gsttype === "0"){
           this.igstpercentage = "0";
           this.cgstpercentage = "2.5";
           this.sgstpercentage = "2.5";
@@ -99,12 +99,12 @@ export class MonthlyContractAComponent implements OnInit {
           let gst = ( 2.5 * parseFloat(this.contractAmount)) / 100;
           this.cgstAmount = gst.toString();
           this.sgstAmount = gst.toString();
-          this.totalwithgst = parseFloat(this.contractAmount) + gst;
+          this.totalwithgst = parseFloat(this.contractAmount) + gst + gst;
         }
         else{
           this.igstpercentage = "5";
-          this.cgstpercentage = "";
-          this.sgstpercentage = "";
+          this.cgstpercentage = "0";
+          this.sgstpercentage = "0";
           this.cgstAmount = "0";
           this.sgstAmount = "0";
           let gst = ( 5 * parseFloat(this.contractAmount)) / 100;
@@ -115,6 +115,7 @@ export class MonthlyContractAComponent implements OnInit {
         let substringVal = this.contractAmount;
         if(index > 0)
             substringVal = this.contractAmount.toString().substr(0, index);
+        substringVal = substringVal.toString().replace(',','');
         this.amountInWord = this.apiService.convertAmountToWord(substringVal);
       });
     }
