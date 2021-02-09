@@ -64,6 +64,14 @@
 
             <div class="row">
                 <div class="col-sm-6">
+                    <label>Bill Format</label>
+                    <mat-select name="format" [(value)]="billDetails.format">
+                        <mat-option value="1">
+                          Bill A - CNN/IBN
+                        </mat-option>
+                    </mat-select>
+                </div>
+                <div class="col-sm-6">
                     <button type="submit" class="btn btn-primary btn-lg">Generate</button>
                 </div>
             </div>

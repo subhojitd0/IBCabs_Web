@@ -15,7 +15,8 @@ export interface inewbill {
   nightstart: string,
   nightend: string,
   gsttype: string,
-  parkinggst: string
+  parkinggst: string,
+  format: string
 }
 
 export class newbill implements inewbill{
@@ -26,6 +27,7 @@ export class newbill implements inewbill{
   nightend: string;
   gsttype: string;
   parkinggst: string;
+  format: string;
 }
 @Component({
   selector: 'app-newbill',
@@ -70,8 +72,7 @@ export class NewBillComponent implements OnInit {
     debugger;
     let billApi = "";
     let redirectApi = "";
-    if((this.billDetails.party.includes("IBN") && this.billDetails.party.includes("(M")) || 
-    (this.billDetails.party.includes("CNN") && this.billDetails.party.includes("(M"))){
+    if(this.billDetails.format == "1"){
       billApi = BILL_CNN_API;
       redirectApi = ROUTE_VIEW_BILL_CNN;
     }

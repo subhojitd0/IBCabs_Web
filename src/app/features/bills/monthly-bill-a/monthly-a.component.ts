@@ -55,6 +55,7 @@ export class MonthlyBillAComponent implements OnInit {
   billdate: any;
   billdetails: any;
   amountInWord: any;
+  roundedgross: any;
   isConfirmVisible: any = true;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -77,12 +78,14 @@ export class MonthlyBillAComponent implements OnInit {
       this.billdetails.body.push(billTot);
       this.dataSource = new MatTableDataSource(this.billdetails.body);
       //localStorage.setItem("billdata", "");
-      let index = this.billdetails.tail[0].grosstotal.toString().indexOf('.');
+      this.roundedgross = Math.round(parseFloat(this.billdetails.tail[0].grosstotal.toString().replace(',','')));
+      /* let index = this.billdetails.tail[0].grosstotal.toString().indexOf('.');
       let substringVal = this.billdetails.tail[0].grosstotal;
       if(index > 0)
          substringVal = this.billdetails.tail[0].grosstotal.toString().substr(0, index);
-      substringVal = substringVal.toString().replace(',','');
-      this.amountInWord = this.apiService.convertAmountToWord(substringVal);
+      substringVal = substringVal.toString().replace(',',''); */
+      this.amountInWord = this.apiService.convertAmountToWord(this.roundedgross);
+      
     }
     
    }

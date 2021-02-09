@@ -72,6 +72,7 @@ export class RentalAdd implements NewRental {
   outstationtype:string;
   outstation:string;
   nightcharge:string;
+  dutystatus: string;
 }
 
 @Component({
@@ -109,7 +110,8 @@ export class RentalDetailComponent implements OnInit {
       dialogRef.close();
     });
   }
-  savedataandexit(stepper: MatStepper){
+  savedataandexit(stepper: MatStepper, step: any){
+    if(this.isValid(step)){
     if(this.rentalAdd.goutbeforekm)
       this.rentalAdd.ginbeforekm = this.rentalAdd.goutbeforekm;
     if(this.rentalAdd.goutbeforetime)
@@ -140,9 +142,10 @@ export class RentalDetailComponent implements OnInit {
           this.router.navigateByUrl('/' + ROUTE_VIEW_DDR);
         });
       });
-    
+    }
   }
-  savedata(stepper: MatStepper){
+  savedata(stepper: MatStepper, step: any){
+    if(this.isValid(step)){
     if(this.rentalAdd.goutbeforekm)
       this.rentalAdd.ginbeforekm = this.rentalAdd.goutbeforekm;
     if(this.rentalAdd.goutbeforetime)
@@ -178,13 +181,13 @@ export class RentalDetailComponent implements OnInit {
           //this.stepper.next();
         });
       });
-    
+    }
   }
-  savedatacreate(stepper: MatStepper){
+  savedatacreate(stepper: MatStepper, step: any){
     debugger;
-    this.rentalAdd.ginbeforekm = this.rentalAdd.goutbeforekm;
-    this.rentalAdd.ginbeforetime = this.rentalAdd.goutbeforetime;
-    if(this.rentalAdd.party && this.rentalAdd.dutydate && this.rentalAdd.dutytime && this.rentalAdd.centerName){
+    if(this.isValid(step)){
+      this.rentalAdd.ginbeforekm = this.rentalAdd.goutbeforekm;
+      this.rentalAdd.ginbeforetime = this.rentalAdd.goutbeforetime;
       this.toastr.info("Please wait while we are saving your request",'Information');
       if(this.rentalAdd.centerName == "Park Circus"){
         this.rentalAdd.center = 1;
@@ -200,6 +203,17 @@ export class RentalDetailComponent implements OnInit {
         this.toastr.success("Your data was successfully saved",'Success');
         location.reload();
       });
+    }
+  }
+  isValid(step: any){
+    if(step === "1"){
+      return (this.rentalAdd.party && this.rentalAdd.dutydate && this.rentalAdd.dutytime && this.rentalAdd.centerName);
+    }
+    if(step === "2"){
+      return (this.rentalAdd.driver && this.rentalAdd.drivernum && this.rentalAdd.carnum && this.rentalAdd.cartype);
+    }
+    if(step === "3"){
+      return (this.rentalAdd.ginkm && this.rentalAdd.goutkm && this.rentalAdd.gintime && this.rentalAdd.gouttime && this.rentalAdd.outstation && this.rentalAdd.parking && this.rentalAdd.nightcharge);
     }
   }
   changeparty(){
@@ -316,7 +330,17 @@ export class RentalDetailComponent implements OnInit {
         if(!this.rentalAdd.nightcharge)
           this.rentalAdd.nightcharge = "0";
 
-        this.stepper.next();
+        if(this.rentalAdd.dutystatus === "1")
+        {
+          this.stepper.next();
+          this.stepper.next();
+        }
+        if(this.rentalAdd.dutystatus === "2")
+        {
+          this.stepper.next();
+          this.stepper.next();
+        }
+        
         localStorage.setItem("rentaldetails", JSON.stringify(res.result));
         localStorage.setItem('selectedduty', "0");
         });

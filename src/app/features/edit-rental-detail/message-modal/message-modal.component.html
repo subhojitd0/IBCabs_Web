@@ -8,10 +8,10 @@
                           <mat-option value="BookingConfirmation">
                             REPORT TO - Booking Confirmed
                           </mat-option>
-                          <mat-option value="Driver">
+                          <mat-option value="Driver" *ngIf="this.rentalDetails.dutystatus !== '0'">
                             DRIVER
                           </mat-option>
-                          <mat-option value="CarAssigned">
+                          <mat-option value="CarAssigned" *ngIf="this.rentalDetails.dutystatus !== '0'">
                             REPORT TO - Car Assigned
                           </mat-option>
                         </mat-select>

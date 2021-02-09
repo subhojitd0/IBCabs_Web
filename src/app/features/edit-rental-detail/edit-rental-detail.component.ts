@@ -11,6 +11,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {STEPPER_GLOBAL_OPTIONS} from '@angular/cdk/stepper';
 import { ROUTE_ADD_DDR, ROUTE_VIEW_DDR } from 'src/shared/constants/constant';
 import { MessageModalComponent } from './message-modal/message-modal.component';
+import { ConfirmationModalComponent } from './confirmation-modal/confirmation-modal.component';
 
 export interface EditRentalDetail {
   isSelected: boolean;
@@ -78,7 +79,7 @@ export class EditRentalDetailComponent implements OnInit {
   cartypes: any;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  displayedColumns: string[] = ['dutydate', 'partyname', 'reportto', 'carnumber', 'status', 'options'];
+  displayedColumns: string[] = ['dutydate', 'partyname', 'carnumber', 'status', 'options'];
   bulkdisplayedColumns: string[] = ['isselected','dutydate', 'partyname', 'reportto', 'driver', 'carnumber', 'cartype', 'goutkm', 'ginkm', 'gouttime', 'gintime', 'parking', 'outstation', 'night'];
   dataSource: MatTableDataSource<RentalDetail>;
   bulkDataSource: MatTableDataSource<EditRentalDetail>;
@@ -354,16 +355,11 @@ export class EditRentalDetailComponent implements OnInit {
     }
   }
   approve(id){
-    var json = 
-    {
-      "mode":"6",
-      "dutyid": id,
-      "status": "1"
-    };
-    this.toastr.info("Please wait while we approve the duty",'Information');
-    this.apiService.post(RENTAL_DETAIL_API_OFFICE, json).then((res: any)=>{ 
-        this.toastr.success("The duty was successfully approved",'Success');
-        location.reload();
+    localStorage.setItem('selectedrentalid', id );
+    const dialogRefConf = this.dialog.open(ConfirmationModalComponent);
+
+    dialogRefConf.afterClosed().subscribe(result => {
+      console.log(`Dialog closed`);
     });
   }
   edit(id: any) {

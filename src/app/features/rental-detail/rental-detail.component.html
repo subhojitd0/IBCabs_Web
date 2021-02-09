@@ -94,8 +94,8 @@
       <br/>
 
       <div>
-        <button class="btn-first" style="margin-right: 20px;" mat-button (click)="savedata(stepper)">Save Duty & Continue</button>
-        <button class="btn-second" style="margin-right: 20px;" mat-button (click)="savedatacreate(stepper)">Save Duty & Create New</button>
+        <button class="btn-first" style="margin-right: 20px;" mat-button (click)="savedata(stepper, '1')">Save Duty & Continue</button>
+        <button class="btn-second" style="margin-right: 20px;" mat-button (click)="savedatacreate(stepper, '1')">Save Duty & Create New</button>
         <button class="btn-first" style="margin-right: 20px;" mat-button (click)="viewallduties()">View All Duties</button>
         <!-- <button class="btn-first" style="margin-right: 20px;" mat-button matStepperNext>Next</button> -->
       </div>
@@ -141,8 +141,8 @@
       <br/>
 
       <div>
-        <button class="btn-first" style="margin-right: 20px;" mat-button (click)="savedata(stepper)">Save Duty & Continue</button>
-        <button class="btn-second" style="margin-right: 20px;" mat-button (click)="savedatacreate(stepper)">Save Duty & Create New</button>
+        <button class="btn-first" style="margin-right: 20px;" mat-button (click)="savedata(stepper, '2')">Save Duty & Continue</button>
+        <button class="btn-second" style="margin-right: 20px;" mat-button (click)="savedatacreate(stepper, '2')">Save Duty & Create New</button>
         <button class="btn-first" style="margin-right: 20px;" mat-button (click)="viewallduties()">View All Duties</button>
       </div>
     </form>
@@ -188,8 +188,8 @@
     </form>
 
     <div>
-      <button class="btn-first" style="margin-right: 20px;" mat-button (click)="savedataandexit(stepper)">Save Duty</button>
-      <button class="btn-second" style="margin-right: 20px;" mat-button (click)="savedatacreate(stepper)">Save Duty & Create New</button>
+      <button class="btn-first" style="margin-right: 20px;" mat-button (click)="savedataandexit(stepper, '3')">Save Duty</button>
+      <button class="btn-second" style="margin-right: 20px;" mat-button (click)="savedatacreate(stepper, '3')">Save Duty & Create New</button>
       <button class="btn-first" style="margin-right: 20px;" mat-button (click)="viewallduties()">View All Duties</button>
     </div>
   </mat-step>
