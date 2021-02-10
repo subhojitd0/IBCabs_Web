@@ -58,6 +58,34 @@
                     2022
                   </option>
                 </select>
+                Filter By :
+                <select (change)="onChangeFilter($event.target.value)" [value]="this.filterby">
+                  <option value="party">
+                    Party
+                  </option>
+                  <option value="driver">
+                    Driver
+                  </option>
+                  <option value="car">
+                    Car
+                  </option>
+                </select>
+                Value :
+                <select *ngIf="filterby==='party'" (change)="onChangeFilterVal($event.target.value)" [value]="this.filtervalue">
+                  <option *ngFor="let option of allparties" [value]="option.name">
+                    {{option.name}}
+                  </option>
+                </select>
+                <select *ngIf="filterby==='driver'" (change)="onChangeFilterVal($event.target.value)" [value]="this.filtervalue">
+                  <option *ngFor="let option of alldrivers" [value]="option.drivercode">
+                    {{option.drivername}}
+                  </option>
+                </select>
+                <select *ngIf="filterby==='car'" (change)="onChangeFilterVal($event.target.value)" [value]="this.filtervalue">
+                  <option *ngFor="let option of allcars" [value]="option.carcode">
+                    {{option.carno}}
+                  </option>
+                </select>
               </mat-card-title>
               <mat-card-subtitle>Add, Update, Delete and View the daily duties Here.</mat-card-subtitle>
             </mat-card-header>
@@ -77,13 +105,13 @@
                 <br/><br/>
                 <mat-table [dataSource]="dataSource" matSort *ngIf="!isBulkEdit">
                   <!-- ID Column -->
-                  <ng-container matColumnDef="dutydate">
+                  <ng-container matColumnDef="dutydt">
                     <mat-header-cell *matHeaderCellDef mat-sort-header> Date  </mat-header-cell>
                     <mat-cell *matCellDef="let row"> {{row.dutydate}} </mat-cell>
                   </ng-container>
               
                   <!-- Name Column -->
-                  <ng-container matColumnDef="partyname">
+                  <ng-container matColumnDef="party">
                     <mat-header-cell *matHeaderCellDef mat-sort-header> Party </mat-header-cell>
                     <mat-cell *matCellDef="let row"> {{row.party}} </mat-cell>
                   </ng-container>
@@ -95,13 +123,13 @@
                   </ng-container> -->
   
                   <!-- Color Column -->
-                  <ng-container matColumnDef="carnumber">
+                  <ng-container matColumnDef="carno">
                     <mat-header-cell *matHeaderCellDef mat-sort-header> Car </mat-header-cell>
                     <mat-cell *matCellDef="let row"> {{row.carnumber}} </mat-cell>
                   </ng-container>
 
                   <!-- Color Column -->
-                  <ng-container matColumnDef="status">
+                  <ng-container matColumnDef="statusval">
                     <mat-header-cell *matHeaderCellDef mat-sort-header> Status </mat-header-cell>
                     <mat-cell *matCellDef="let row"> 
                       <span *ngIf="row.status == '0'" class="yellow-icon" (click)="edit(row.dutyid)"> Pending Driver Assign</span> 
@@ -134,7 +162,7 @@
               <mat-table [dataSource]="bulkDataSource" matSort *ngIf="isBulkEdit">
 
                 <ng-container matColumnDef="isselected">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header> Select  </mat-header-cell>
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> </mat-header-cell>
                   <mat-cell *matCellDef="let row"> <input type="checkbox" [(ngModel)]="row.isSelected"> </mat-cell>
                 </ng-container>
                 <!-- ID Column -->
@@ -152,12 +180,12 @@
                 <!-- Color Column -->
                 <ng-container matColumnDef="reportto">
                   <mat-header-cell *matHeaderCellDef mat-sort-header> Report To </mat-header-cell>
-                  <mat-cell style="margin-left:10px !important" *matCellDef="let row"> {{row.reporttoname}} </mat-cell>
+                  <mat-cell *matCellDef="let row"> {{row.reporttoname}} </mat-cell>
                 </ng-container>
 
                 <ng-container matColumnDef="driver">
                   <mat-header-cell *matHeaderCellDef mat-sort-header> Driver </mat-header-cell>
-                  <mat-cell style="margin-left:10px !important" *matCellDef="let row"> 
+                  <mat-cell *matCellDef="let row"> 
                     <input type="text" [(ngModel)]="row.driver" [matAutocomplete]="autodriver" matInput placeholder="Select Driver">
                     <mat-autocomplete #autodriver="matAutocomplete" (optionSelected)="changedriver()">
                       <mat-option *ngFor="let option of alldrivers" [value]="option.drivername" >
@@ -170,7 +198,7 @@
                 <!-- Color Column -->
                 <ng-container matColumnDef="carnumber">
                   <mat-header-cell *matHeaderCellDef mat-sort-header> Car </mat-header-cell>
-                  <mat-cell style="margin-left:10px" *matCellDef="let row">
+                  <mat-cell *matCellDef="let row">
                     <input type="text" [(ngModel)]="row.carnum" [matAutocomplete]="autocar" matInput placeholder="Enter Car Number">
                     <mat-autocomplete #autocar="matAutocomplete" (optionSelected)="changecar()">
                       <mat-option *ngFor="let option of allcars" [value]="option.carno" >
@@ -182,7 +210,7 @@
 
                 <ng-container matColumnDef="cartype">
                   <mat-header-cell *matHeaderCellDef mat-sort-header> Type</mat-header-cell>
-                  <mat-cell style="margin-left:10px" *matCellDef="let row">
+                  <mat-cell *matCellDef="let row">
                     <mat-select [(ngModel)]="row.cartype">
                       <mat-option *ngFor="let option of cartypes" [value]="option.car">
                         {{option.car}}

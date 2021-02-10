@@ -68,6 +68,8 @@ export class EditRentalDetailComponent implements OnInit {
   rentalDetails: any;
   editRentalDetails: any;
   month: any;
+  filterby: any;
+  filtervalue: any;
   isBulkEdit: boolean;
   year: any;
   allcars: any;
@@ -77,9 +79,10 @@ export class EditRentalDetailComponent implements OnInit {
   mastereditrentaldetails: any;
   selecteditem: any;
   cartypes: any;
+  allparties: any;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  displayedColumns: string[] = ['dutydate', 'partyname', 'carnumber', 'status', 'options'];
+  displayedColumns: string[] = ['dutydt', 'party', 'carno', 'statusval', 'options'];
   bulkdisplayedColumns: string[] = ['isselected','dutydate', 'partyname', 'reportto', 'driver', 'carnumber', 'cartype', 'goutkm', 'ginkm', 'gouttime', 'gintime', 'parking', 'outstation', 'night'];
   dataSource: MatTableDataSource<RentalDetail>;
   bulkDataSource: MatTableDataSource<EditRentalDetail>;
@@ -87,9 +90,26 @@ export class EditRentalDetailComponent implements OnInit {
     
    }
    ngOnInit() : void {
+     this.filterby = "party";
     this.cartypes = JSON.parse(localStorage.getItem('allcartypes'));
      var yr = JSON.parse(localStorage.getItem('rentalyr'));
      var month = JSON.parse(localStorage.getItem('rentalmonth'));
+     var filterby = JSON.parse(localStorage.getItem('rentalfilterby'));
+     var filterval = JSON.parse(localStorage.getItem('rentalfilterval'));
+     this.allparties = JSON.parse(localStorage.getItem('allparties'));
+     this.alldrivers = JSON.parse(localStorage.getItem('alldrivers'));
+     this.allcars = JSON.parse(localStorage.getItem('allcars'));
+     this.filtervalue = this.allparties[0].name;
+     if(filterby)
+        this.filterby = filterby;
+     else 
+        this.filterby = "party";
+
+     if(filterval)
+        this.filtervalue = filterval;
+     else 
+        this.filtervalue = this.allparties[0].name;;
+
      if(yr && month){
       this.month = month;
       this.year = yr;
@@ -107,7 +127,9 @@ export class EditRentalDetailComponent implements OnInit {
     {
       "mode": 0,
       "month": this.month,
-      "year": this.year
+      "year": this.year,
+      "filterby": this.filterby,
+      "property": this.filtervalue
     };
     this.apiService.post(RENTAL_DETAIL_API_OFFICE, json).then((res: any)=>{ 
       debugger;
@@ -119,12 +141,15 @@ export class EditRentalDetailComponent implements OnInit {
     });
    }
    showbulkedit(){
+     this.loading = true;
      this.isBulkEdit = true;
      var json = 
     {
       "mode": 5,
       "month": this.month,
-      "year": this.year
+      "year": this.year,
+      "filterby": this.filterby,
+      "property": this.filtervalue
     };
     this.apiService.post(RENTAL_DETAIL_API_OFFICE, json).then((res: any)=>{ 
       debugger;
@@ -160,6 +185,7 @@ export class EditRentalDetailComponent implements OnInit {
 
       this.bulkDataSource = new MatTableDataSource(this.mastereditrentaldetails);
       localStorage.setItem("editrentaldetails", JSON.stringify(res.result));
+      this.loading = false;
     });
    }
    changedriver(){
@@ -201,7 +227,9 @@ export class EditRentalDetailComponent implements OnInit {
       {
         "mode": 5,
         "month": val,
-        "year": this.year
+        "year": this.year,
+        "filterby": this.filterby,
+        "property": this.filtervalue
       };
       this.apiService.post(RENTAL_DETAIL_API_OFFICE, json).then((res: any)=>{ 
         debugger;
@@ -226,7 +254,9 @@ export class EditRentalDetailComponent implements OnInit {
     {
       "mode": 0,
       "month": val,
-      "year": this.year
+      "year": this.year,
+      "filterby": this.filterby,
+      "property": this.filtervalue
     };
     this.apiService.post(RENTAL_DETAIL_API_OFFICE, json).then((res: any)=>{ 
       debugger;
@@ -249,7 +279,9 @@ export class EditRentalDetailComponent implements OnInit {
       {
         "mode": 5,
         "month": this.month,
-        "year": val
+        "year": val,
+        "filterby": this.filterby,
+        "property": this.filtervalue
       };
       this.apiService.post(RENTAL_DETAIL_API_OFFICE, json).then((res: any)=>{ 
         debugger;
@@ -274,7 +306,124 @@ export class EditRentalDetailComponent implements OnInit {
     {
       "mode": 0,
       "month": this.month,
-      "year": val
+      "year": val,
+      "filterby": this.filterby,
+      "property": this.filtervalue
+    };
+    this.apiService.post(RENTAL_DETAIL_API_OFFICE, json).then((res: any)=>{ 
+      debugger;
+      this.rentalDetails = res.result;
+      this.masterrentaldetails = res.result;
+      this.dataSource = new MatTableDataSource(this.rentalDetails);
+      localStorage.setItem("rentaldetails", JSON.stringify(res.result));
+      this.loading = false;
+    });
+  }
+   }
+   onChangeFilter(val){
+    this.loading = true;
+    this.filterby = val;
+    if(val === "party"){
+      this.filtervalue = this.allparties[0].name;
+    }
+    else if(val === "driver"){
+      this.filtervalue = this.alldrivers[0].drivercode;
+    }
+    else{
+      this.filtervalue = this.allcars[0].carcode;
+    }
+    localStorage.setItem("rentalmonth", this.month);
+    localStorage.setItem("rentalyr", this.year);
+    localStorage.setItem("rentalfilterby", this.month);
+    localStorage.setItem("rentalfilterval", this.year);
+    if(this.isBulkEdit){
+      var json = 
+      {
+        "mode": 5,
+        "month": this.month,
+        "year": this.year,
+        "filterby": this.filterby,
+        "property": this.filtervalue
+      };
+      this.apiService.post(RENTAL_DETAIL_API_OFFICE, json).then((res: any)=>{ 
+        debugger;
+        this.editRentalDetails = res.result;
+        this.allcars = JSON.parse(localStorage.getItem('allcars'));
+        this.alldrivers = JSON.parse(localStorage.getItem('alldrivers'));
+        this.editRentalDetails.forEach(element => {
+          element.isSelected = false;
+        });
+        if(this.editRentalDetails.gintime)
+            this.editRentalDetails.gintime = this.editRentalDetails.gintime.substr(0,5);
+          if(this,this.editRentalDetails.gouttime)
+            this.editRentalDetails.gouttime = this.editRentalDetails.gouttime.substr(0,5);
+        this.mastereditrentaldetails = res.result;
+        this.bulkDataSource = new MatTableDataSource(this.editRentalDetails);
+        localStorage.setItem("editrentaldetails", JSON.stringify(res.result));
+        this.loading = false;
+      });
+    }
+    else{
+    var json = 
+    {
+      "mode": 0,
+      "month": this.month,
+      "year": this.year,
+      "filterby": this.filterby,
+      "property": this.filtervalue
+    };
+    this.apiService.post(RENTAL_DETAIL_API_OFFICE, json).then((res: any)=>{ 
+      debugger;
+      this.rentalDetails = res.result;
+      this.masterrentaldetails = res.result;
+      this.dataSource = new MatTableDataSource(this.rentalDetails);
+      localStorage.setItem("rentaldetails", JSON.stringify(res.result));
+      this.loading = false;
+    });
+  }
+   }
+   onChangeFilterVal(val){
+    this.loading = true;
+    this.filtervalue = val;
+    localStorage.setItem("rentalmonth", this.month);
+    localStorage.setItem("rentalyr", this.year);
+    localStorage.setItem("rentalfilterby", this.month);
+    localStorage.setItem("rentalfilterval", this.year);
+    if(this.isBulkEdit){
+      var json = 
+      {
+        "mode": 5,
+        "month": this.month,
+        "year": this.year,
+        "filterby": this.filterby,
+        "property": val
+      };
+      this.apiService.post(RENTAL_DETAIL_API_OFFICE, json).then((res: any)=>{ 
+        debugger;
+        this.editRentalDetails = res.result;
+        this.allcars = JSON.parse(localStorage.getItem('allcars'));
+        this.alldrivers = JSON.parse(localStorage.getItem('alldrivers'));
+        this.editRentalDetails.forEach(element => {
+          element.isSelected = false;
+        });
+        if(this.editRentalDetails.gintime)
+            this.editRentalDetails.gintime = this.editRentalDetails.gintime.substr(0,5);
+          if(this,this.editRentalDetails.gouttime)
+            this.editRentalDetails.gouttime = this.editRentalDetails.gouttime.substr(0,5);
+        this.mastereditrentaldetails = res.result;
+        this.bulkDataSource = new MatTableDataSource(this.editRentalDetails);
+        localStorage.setItem("editrentaldetails", JSON.stringify(res.result));
+        this.loading = false;
+      });
+    }
+    else{
+    var json = 
+    {
+      "mode": 0,
+      "month": this.month,
+      "year": this.year,
+      "filterby": this.filterby,
+      "property": val
     };
     this.apiService.post(RENTAL_DETAIL_API_OFFICE, json).then((res: any)=>{ 
       debugger;
