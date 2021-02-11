@@ -9,3 +9,4 @@ export const RENTAL_DETAIL_API_OFFICE_BULKEDIT = "ddrofficerowedit.php";
 export const EXTRA_API = "extra.php";
 export const BILL_API = "billregister.php";
 export const BILL_CNN_API = "partybilla.php";
+export const BILL_ONCALL_EXTRA_API = "partybillb.php";

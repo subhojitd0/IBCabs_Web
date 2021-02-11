@@ -14,19 +14,29 @@ import { ROUTE_CAR, ROUTE_GENERATE_BILL, ROUTE_OWNER } from 'src/shared/constant
 export interface iBillDet {
   sl: string;
   dutydate: string;
+  reportto: string;
   carno: string;
+  cartype: string;
   hour: string;
+  rate: string;
+  amount: string;
+  outstation: string;
   km: number;
   parking: string;
 }
 
 export class BillDet implements iBillDet {
-  sl: string;
-  dutydate: string;
-  carno: string;
-  hour: string;
-  km: number;
-  parking: string;
+    sl: string;
+    dutydate: string;
+    reportto: string;
+    carno: string;
+    cartype: string;
+    hour: string;
+    rate: string;
+    amount: string;
+    outstation: string;
+    km: number;
+    parking: string;
 }
 
 export interface iSaveBill {
@@ -46,22 +56,24 @@ export class SaveBill implements iSaveBill {
   mode: string;
 }
 @Component({
-  selector: 'app-monthly-a',
-  templateUrl: './monthly-a.component.html',
-  styleUrls: ['./monthly-a.component.css']
+  selector: 'app-oncall-a',
+  templateUrl: './oncall-a.component.html',
+  styleUrls: ['./oncall-a.component.css']
 })
-export class MonthlyBillAComponent implements OnInit {
+export class OnCallBillAComponent implements OnInit {
   billno: any;
   billdate: any;
   billdetails: any;
-  billfrom: any;
-  billto: any;
   amountInWord: any;
   roundedgross: any;
+  billfrom: any;
+  billto: any;
+  gstamountinwords: any;
+  totalno: any;
   isConfirmVisible: any = true;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  displayedColumns: string[] = ['sl', 'dutydate', 'carno', 'hour', 'km', 'parking'];
+  displayedColumns: string[] = ['sl', 'dutydate', 'reportto', 'carno', 'cartype', 'hour', 'km', 'rate', 'amount', 'parking', 'outstation'];
   dataSource: MatTableDataSource<BillDet>;
   constructor(private router: Router,private apiService: ApiService, public dialog: MatDialog, private toastr: ToastrService) {
     
@@ -72,24 +84,26 @@ export class MonthlyBillAComponent implements OnInit {
     this.billto = localStorage.getItem("billto");
     debugger;
     if(this.billdetails){
-      let billTot : BillDet = new BillDet();
+      /* let billTot : BillDet = new BillDet();
       billTot.carno = "Total";
       billTot.sl = "";
       billTot.dutydate = "";
       billTot.hour = this.billdetails.bodytotal[0].hour;
       billTot.km = this.billdetails.bodytotal[0].km;
       billTot.parking = this.billdetails.bodytotal[0].parking;
-      this.billdetails.body.push(billTot);
+      this.billdetails.body.push(billTot); */
       this.dataSource = new MatTableDataSource(this.billdetails.body);
       //localStorage.setItem("billdata", "");
+      this.totalno = this.billdetails.body.length;
       this.roundedgross = Math.round(parseFloat(this.billdetails.tail[0].grosstotal.toString().replace(',','')));
       /* let index = this.billdetails.tail[0].grosstotal.toString().indexOf('.');
       let substringVal = this.billdetails.tail[0].grosstotal;
       if(index > 0)
          substringVal = this.billdetails.tail[0].grosstotal.toString().substr(0, index);
       substringVal = substringVal.toString().replace(',',''); */
+      let gstRounded = Math.round(parseFloat(this.billdetails.gst[0].total.toString().replace(',','')));
       this.amountInWord = this.apiService.convertAmountToWord(this.roundedgross);
-      
+      this.gstamountinwords = this.apiService.convertAmountToWord(gstRounded);
     }
     
    }

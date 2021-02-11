@@ -3,10 +3,10 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import {ApiService} from '../../../../shared/services/service';
-import {BILL_CNN_API, OWNER_API, PARTY_HEAD_API} from '../../../../shared/services/api.url-helper';
+import {BILL_CNN_API, BILL_ONCALL_EXTRA_API, OWNER_API, PARTY_HEAD_API} from '../../../../shared/services/api.url-helper';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
-import { ROUTE_OWNER, ROUTE_VIEW_BILL_CNN } from 'src/shared/constants/constant';
+import { ROUTE_OWNER, ROUTE_VIEW_BILL_CNN, ROUTE_VIEW_BILL_ONCALL_EXTRA } from 'src/shared/constants/constant';
 
 export interface inewbill {
   party: string,
@@ -75,6 +75,10 @@ export class NewBillComponent implements OnInit {
     if(this.billDetails.format == "1"){
       billApi = BILL_CNN_API;
       redirectApi = ROUTE_VIEW_BILL_CNN;
+    }
+    if(this.billDetails.format == "2"){
+      billApi = BILL_ONCALL_EXTRA_API;
+      redirectApi = ROUTE_VIEW_BILL_ONCALL_EXTRA;
     }
     debugger;
     this.toastr.info("Please wait while we are generating your bill",'Information');
