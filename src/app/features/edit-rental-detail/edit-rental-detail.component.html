@@ -211,11 +211,12 @@
                 <ng-container matColumnDef="cartype">
                   <mat-header-cell *matHeaderCellDef mat-sort-header> Type</mat-header-cell>
                   <mat-cell *matCellDef="let row">
-                    <mat-select [(ngModel)]="row.cartype">
-                      <mat-option *ngFor="let option of cartypes" [value]="option.car">
+                    <input type="text" [(ngModel)]="row.cartype" [matAutocomplete]="autocartype" matInput placeholder="Enter Car Type">
+                    <mat-autocomplete #autocartype="matAutocomplete">
+                      <mat-option *ngFor="let option of cartypes" [value]="option.car" >
                         {{option.car}}
                       </mat-option>
-                    </mat-select>
+                    </mat-autocomplete>
                   </mat-cell>
                 </ng-container>
 
