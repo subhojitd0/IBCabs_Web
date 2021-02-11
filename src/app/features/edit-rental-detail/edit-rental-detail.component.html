@@ -77,12 +77,12 @@
                   </option>
                 </select>
                 <select *ngIf="filterby==='driver'" (change)="onChangeFilterVal($event.target.value)" [value]="this.filtervalue">
-                  <option *ngFor="let option of alldrivers" [value]="option.drivercode">
+                  <option *ngFor="let option of alldrivers" [value]="option.drivername">
                     {{option.drivername}}
                   </option>
                 </select>
                 <select *ngIf="filterby==='car'" (change)="onChangeFilterVal($event.target.value)" [value]="this.filtervalue">
-                  <option *ngFor="let option of allcars" [value]="option.carcode">
+                  <option *ngFor="let option of allcars" [value]="option.carno">
                     {{option.carno}}
                   </option>
                 </select>
