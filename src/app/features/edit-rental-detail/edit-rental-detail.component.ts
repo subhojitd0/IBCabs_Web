@@ -90,16 +90,14 @@ export class EditRentalDetailComponent implements OnInit {
     
    }
    ngOnInit() : void {
-     this.filterby = "party";
-    this.cartypes = JSON.parse(localStorage.getItem('allcartypes'));
-     var yr = JSON.parse(localStorage.getItem('rentalyr'));
-     var month = JSON.parse(localStorage.getItem('rentalmonth'));
-     var filterby = JSON.parse(localStorage.getItem('rentalfilterby'));
-     var filterval = JSON.parse(localStorage.getItem('rentalfilterval'));
+     this.cartypes = JSON.parse(localStorage.getItem('allcartypes'));
+     var yr = localStorage.getItem('rentalyr');
+     var month = localStorage.getItem('rentalmonth');
+     var filterby = localStorage.getItem('rentalfilterby');
+     var filterval = localStorage.getItem('rentalfilterval');
      this.allparties = JSON.parse(localStorage.getItem('allparties'));
      this.alldrivers = JSON.parse(localStorage.getItem('alldrivers'));
      this.allcars = JSON.parse(localStorage.getItem('allcars'));
-     this.filtervalue = this.allparties[0].name;
      if(filterby)
         this.filterby = filterby;
      else 
@@ -108,7 +106,7 @@ export class EditRentalDetailComponent implements OnInit {
      if(filterval)
         this.filtervalue = filterval;
      else 
-        this.filtervalue = this.allparties[0].name;;
+        this.filtervalue = this.allparties[0].name;
 
      if(yr && month){
       this.month = month;
@@ -119,9 +117,11 @@ export class EditRentalDetailComponent implements OnInit {
       this.year = new Date().getFullYear();
       localStorage.setItem("rentalmonth", this.month);
       localStorage.setItem("rentalyr", this.year);
+      localStorage.setItem("rentalfilterby", this.filterby);
+      localStorage.setItem("rentalfilterval", this.filtervalue);
      }
      this.isBulkEdit = false;
-    this.selecteditem = "ALL";
+     this.selecteditem = "ALL";
     
     var json = 
     {
@@ -220,105 +220,12 @@ export class EditRentalDetailComponent implements OnInit {
    onChangeMonth(val){
     this.loading = true;
     this.month = val;
-    localStorage.setItem("rentalmonth", this.month);
-      localStorage.setItem("rentalyr", this.year);
-    if(this.isBulkEdit){
-      var json = 
-      {
-        "mode": 5,
-        "month": val,
-        "year": this.year,
-        "filterby": this.filterby,
-        "property": this.filtervalue
-      };
-      this.apiService.post(RENTAL_DETAIL_API_OFFICE, json).then((res: any)=>{ 
-        debugger;
-        this.editRentalDetails = res.result;
-        this.allcars = JSON.parse(localStorage.getItem('allcars'));
-        this.alldrivers = JSON.parse(localStorage.getItem('alldrivers'));
-        this.editRentalDetails.forEach(element => {
-          element.isSelected = false;
-        });
-        if(this.editRentalDetails.gintime)
-            this.editRentalDetails.gintime = this.editRentalDetails.gintime.substr(0,5);
-          if(this,this.editRentalDetails.gouttime)
-            this.editRentalDetails.gouttime = this.editRentalDetails.gouttime.substr(0,5);
-        this.mastereditrentaldetails = res.result;
-        this.bulkDataSource = new MatTableDataSource(this.editRentalDetails);
-        localStorage.setItem("editrentaldetails", JSON.stringify(res.result));
-        this.loading = false;
-      });
-    }
-    else{
-    var json = 
-    {
-      "mode": 0,
-      "month": val,
-      "year": this.year,
-      "filterby": this.filterby,
-      "property": this.filtervalue
-    };
-    this.apiService.post(RENTAL_DETAIL_API_OFFICE, json).then((res: any)=>{ 
-      debugger;
-      this.rentalDetails = res.result;
-      this.masterrentaldetails = res.result;
-      this.dataSource = new MatTableDataSource(this.rentalDetails);
-      localStorage.setItem("rentaldetails", JSON.stringify(res.result));
-      this.loading = false;
-    });
-  
-  }
+    this.setJson();
    }
    onChangeYear(val){
     this.loading = true;
     this.year = val;
-    localStorage.setItem("rentalmonth", this.month);
-      localStorage.setItem("rentalyr", this.year);
-    if(this.isBulkEdit){
-      var json = 
-      {
-        "mode": 5,
-        "month": this.month,
-        "year": val,
-        "filterby": this.filterby,
-        "property": this.filtervalue
-      };
-      this.apiService.post(RENTAL_DETAIL_API_OFFICE, json).then((res: any)=>{ 
-        debugger;
-        this.editRentalDetails = res.result;
-        this.allcars = JSON.parse(localStorage.getItem('allcars'));
-        this.alldrivers = JSON.parse(localStorage.getItem('alldrivers'));
-        this.editRentalDetails.forEach(element => {
-          element.isSelected = false;
-        });
-        if(this.editRentalDetails.gintime)
-            this.editRentalDetails.gintime = this.editRentalDetails.gintime.substr(0,5);
-          if(this,this.editRentalDetails.gouttime)
-            this.editRentalDetails.gouttime = this.editRentalDetails.gouttime.substr(0,5);
-        this.mastereditrentaldetails = res.result;
-        this.bulkDataSource = new MatTableDataSource(this.editRentalDetails);
-        localStorage.setItem("editrentaldetails", JSON.stringify(res.result));
-        this.loading = false;
-      });
-    }
-    else{
-    var json = 
-    {
-      "mode": 0,
-      "month": this.month,
-      "year": val,
-      "filterby": this.filterby,
-      "property": this.filtervalue
-    };
-    this.apiService.post(RENTAL_DETAIL_API_OFFICE, json).then((res: any)=>{ 
-      debugger;
-      this.rentalDetails = res.result;
-      this.masterrentaldetails = res.result;
-      this.dataSource = new MatTableDataSource(this.rentalDetails);
-      localStorage.setItem("rentaldetails", JSON.stringify(res.result));
-      this.loading = false;
-    });
-  }
+    this.setJson();
    }
    onChangeFilter(val){
     this.loading = true;
@@ -332,10 +239,19 @@ export class EditRentalDetailComponent implements OnInit {
     else{
       this.filtervalue = this.allcars[0].carcode;
     }
+    this.loading = true;
+    this.setJson();
+   }
+   onChangeFilterVal(val){
+    this.loading = true;
+    this.filtervalue = val;
+    this.setJson();
+   }
+   setJson(){
     localStorage.setItem("rentalmonth", this.month);
     localStorage.setItem("rentalyr", this.year);
-    localStorage.setItem("rentalfilterby", this.month);
-    localStorage.setItem("rentalfilterval", this.year);
+    localStorage.setItem("rentalfilterby", this.filterby);
+    localStorage.setItem("rentalfilterval", this.filtervalue);
     if(this.isBulkEdit){
       var json = 
       {
@@ -345,59 +261,22 @@ export class EditRentalDetailComponent implements OnInit {
         "filterby": this.filterby,
         "property": this.filtervalue
       };
-      this.apiService.post(RENTAL_DETAIL_API_OFFICE, json).then((res: any)=>{ 
-        debugger;
-        this.editRentalDetails = res.result;
-        this.allcars = JSON.parse(localStorage.getItem('allcars'));
-        this.alldrivers = JSON.parse(localStorage.getItem('alldrivers'));
-        this.editRentalDetails.forEach(element => {
-          element.isSelected = false;
-        });
-        if(this.editRentalDetails.gintime)
-            this.editRentalDetails.gintime = this.editRentalDetails.gintime.substr(0,5);
-          if(this,this.editRentalDetails.gouttime)
-            this.editRentalDetails.gouttime = this.editRentalDetails.gouttime.substr(0,5);
-        this.mastereditrentaldetails = res.result;
-        this.bulkDataSource = new MatTableDataSource(this.editRentalDetails);
-        localStorage.setItem("editrentaldetails", JSON.stringify(res.result));
-        this.loading = false;
-      });
+      this.loadOnChange(json);
     }
     else{
-    var json = 
-    {
-      "mode": 0,
-      "month": this.month,
-      "year": this.year,
-      "filterby": this.filterby,
-      "property": this.filtervalue
-    };
-    this.apiService.post(RENTAL_DETAIL_API_OFFICE, json).then((res: any)=>{ 
-      debugger;
-      this.rentalDetails = res.result;
-      this.masterrentaldetails = res.result;
-      this.dataSource = new MatTableDataSource(this.rentalDetails);
-      localStorage.setItem("rentaldetails", JSON.stringify(res.result));
-      this.loading = false;
-    });
-  }
-   }
-   onChangeFilterVal(val){
-    this.loading = true;
-    this.filtervalue = val;
-    localStorage.setItem("rentalmonth", this.month);
-    localStorage.setItem("rentalyr", this.year);
-    localStorage.setItem("rentalfilterby", this.month);
-    localStorage.setItem("rentalfilterval", this.year);
-    if(this.isBulkEdit){
       var json = 
       {
-        "mode": 5,
+        "mode": 0,
         "month": this.month,
         "year": this.year,
         "filterby": this.filterby,
-        "property": val
+        "property": this.filtervalue
       };
+      this.loadOnChange(json);
+    }
+   }
+   loadOnChange(json: any){
+    if(this.isBulkEdit){
       this.apiService.post(RENTAL_DETAIL_API_OFFICE, json).then((res: any)=>{ 
         debugger;
         this.editRentalDetails = res.result;
@@ -417,23 +296,15 @@ export class EditRentalDetailComponent implements OnInit {
       });
     }
     else{
-    var json = 
-    {
-      "mode": 0,
-      "month": this.month,
-      "year": this.year,
-      "filterby": this.filterby,
-      "property": val
-    };
-    this.apiService.post(RENTAL_DETAIL_API_OFFICE, json).then((res: any)=>{ 
-      debugger;
-      this.rentalDetails = res.result;
-      this.masterrentaldetails = res.result;
-      this.dataSource = new MatTableDataSource(this.rentalDetails);
-      localStorage.setItem("rentaldetails", JSON.stringify(res.result));
-      this.loading = false;
-    });
-  }
+      this.apiService.post(RENTAL_DETAIL_API_OFFICE, json).then((res: any)=>{ 
+        debugger;
+        this.rentalDetails = res.result;
+        this.masterrentaldetails = res.result;
+        this.dataSource = new MatTableDataSource(this.rentalDetails);
+        localStorage.setItem("rentaldetails", JSON.stringify(res.result));
+        this.loading = false;
+      });
+    }
    }
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim(); // Remove whitespace
