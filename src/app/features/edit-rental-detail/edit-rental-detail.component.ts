@@ -97,10 +97,18 @@ export class EditRentalDetailComponent implements OnInit {
   alldrivernames: any;
   allcarno: any;
   allcartype: any;
+  carselect: FormControl;
+  driverselect: FormControl;
+  partyselect: FormControl;
+  partylist: Observable<string[]>;
+  partynames: any;
+  carlist: Observable<string[]>;
+  driverlist: Observable<string[]>;
   constructor(private router: Router,private apiService: ApiService, public dialog: MatDialog, private toastr: ToastrService) {
     
    }
    ngOnInit() : void {
+    this.assignAutoComplete();
      this.cartypes = JSON.parse(localStorage.getItem('allcartypes'));
      var yr = localStorage.getItem('rentalyr');
      var month = localStorage.getItem('rentalmonth');
@@ -112,6 +120,7 @@ export class EditRentalDetailComponent implements OnInit {
      this.alldrivernames = this.alldrivers.map(x=>x.drivername);
      this.allcarno = this.allcars.map(x=>x.carno);
      this.allcartype = this.cartypes.map(x=>x.car);
+     this.partynames = this.allparties.map(x=>x.name);
      if(filterby)
         this.filterby = filterby;
      else 
@@ -154,30 +163,30 @@ export class EditRentalDetailComponent implements OnInit {
       localStorage.setItem("rentaldetails", JSON.stringify(res.result));
     });
     this.assignAutoComplete();
+    debugger;
    }
    assignAutoComplete(){
+    this.partyselect = new FormControl();
+    this.driverselect = new FormControl();
+    this.carselect = new FormControl();
     this.carFormControl = new FormControl();
     this.carTypeFormControl = new FormControl();
     this.driverFormControl = new FormControl();
+    //party
+    this.partylist = this.partyselect.valueChanges.pipe(startWith(''),map(value => this._filterDriver(value)));
     //carno
-    this.filteredOptionsCar = this.carFormControl.valueChanges
-    .pipe(
-      startWith(''),
-      map(value => this._filterCar(value))
-    );
+    this.filteredOptionsCar = this.carFormControl.valueChanges.pipe(startWith(''),map(value => this._filterCar(value)));
+    this.carlist = this.carFormControl.valueChanges.pipe(startWith(''),map(value => this._filterCar(value)));
     //cartype
-    this.filteredOptionsCarType = this.carTypeFormControl.valueChanges
-    .pipe(
-      startWith(''),
-      map(value => this._filterCarType(value))
-    );
+    this.filteredOptionsCarType = this.carTypeFormControl.valueChanges.pipe(startWith(''),map(value => this._filterCarType(value)));
     //driver
-    this.filteredOptionsDriver = this.driverFormControl.valueChanges
-    .pipe(
-      startWith(''),
-      map(value => this._filterDriver(value))
-    );
+    this.filteredOptionsDriver = this.driverFormControl.valueChanges.pipe(startWith(''),map(value => this._filterDriver(value)));
+    this.driverlist = this.driverFormControl.valueChanges.pipe(startWith(''),map(value => this._filterDriver(value)));
    }
+   public _filterParty(value: string): string[] {
+    const filterValue = value.toLowerCase();
+    return this.partynames.filter(client => client.toLowerCase().includes(filterValue));
+  }
   public _filterCar(value: string): string[] {
     const filterValue = value.toLowerCase();
     return this.allcarno.filter(client => client.toLowerCase().includes(filterValue));
@@ -294,7 +303,7 @@ export class EditRentalDetailComponent implements OnInit {
    }
    onChangeFilterVal(val){
     this.loading = true;
-    this.filtervalue = val;
+    this.filtervalue = val.option.value;
     this.setJson();
    }
    setJson(){

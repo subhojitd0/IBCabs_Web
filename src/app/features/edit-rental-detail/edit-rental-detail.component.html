@@ -8,7 +8,7 @@
             <mat-card-header>
               <div mat-card-avatar class="avatar-image-partyhead"></div>
               <mat-card-title>Rental Details for  
-                <select (change)="onChangeMonth($event.target.value)" [value]="this.month">
+                <select (change)="onChangeMonth($event.target.value)" [value]="month">
                   <option value="1">
                     January
                   </option>
@@ -47,7 +47,7 @@
                   </option>
                 </select>
                 - 
-                <select (change)="onChangeYear($event.target.value)" [value]="this.year">
+                <select (change)="onChangeYear($event.target.value)" [value]="year">
                   <option value="2020">
                     2020
                   </option>
@@ -59,7 +59,7 @@
                   </option>
                 </select>
                 Filter By :
-                <select (change)="onChangeFilter($event.target.value)" [value]="this.filterby">
+                <select (change)="onChangeFilter($event.target.value)" [value]="filterby">
                   <option value="party">
                     Party
                   </option>
@@ -71,21 +71,30 @@
                   </option>
                 </select>
                 Value :
-                <select *ngIf="filterby==='party'" (change)="onChangeFilterVal($event.target.value)" [value]="this.filtervalue">
-                  <option *ngFor="let option of allparties" [value]="option.name">
-                    {{option.name}}
-                  </option>
-                </select>
-                <select *ngIf="filterby==='driver'" (change)="onChangeFilterVal($event.target.value)" [value]="this.filtervalue">
-                  <option *ngFor="let option of alldrivers" [value]="option.drivername">
-                    {{option.drivername}}
-                  </option>
-                </select>
-                <select *ngIf="filterby==='car'" (change)="onChangeFilterVal($event.target.value)" [value]="this.filtervalue">
-                  <option *ngFor="let option of allcars" [value]="option.carno">
-                    {{option.carno}}
-                  </option>
-                </select>
+                <mat-form-field *ngIf="filterby==='party'">
+                  <input type="text" [(ngModel)]="filterval" [formControl]="partyselect" [matAutocomplete]="party" matInput placeholder="Enter Party">
+                  <mat-autocomplete (optionSelected)="onChangeFilterVal($event)" #party="matAutocomplete">
+                    <mat-option *ngFor="let option of partylist | async" [value]="option" >
+                      {{option}}
+                    </mat-option>
+                  </mat-autocomplete>
+                </mat-form-field>
+                <mat-form-field *ngIf="filterby==='driver'">
+                  <input type="text" [(ngModel)]="filterval" [formControl]="driverselect" [matAutocomplete]="driver" matInput placeholder="Enter Driver">
+                  <mat-autocomplete (optionSelected)="onChangeFilterVal($event)" #driver="matAutocomplete">
+                    <mat-option *ngFor="let option of driverlist | async" [value]="option" >
+                      {{option}}
+                    </mat-option>
+                  </mat-autocomplete>
+                </mat-form-field>
+                <mat-form-field *ngIf="filterby==='car'">
+                  <input type="text" [(ngModel)]="filterval" [formControl]="carselect" [matAutocomplete]="car" matInput placeholder="Enter Car">
+                  <mat-autocomplete (optionSelected)="onChangeFilterVal($event)" #car="matAutocomplete">
+                    <mat-option *ngFor="let option of carlist | async" [value]="option" >
+                      {{option}}
+                    </mat-option>
+                  </mat-autocomplete>
+                </mat-form-field>
               </mat-card-title>
               <mat-card-subtitle>Add, Update, Delete and View the daily duties Here.</mat-card-subtitle>
             </mat-card-header>
