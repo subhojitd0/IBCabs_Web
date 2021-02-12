@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -63,6 +63,7 @@ export interface RentalDetail {
 @Component({
   selector: 'app-edit-rental-detail',
   templateUrl: './edit-rental-detail.component.html',
+  //changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrls: ['./edit-rental-detail.component.css']
 })
 
@@ -104,11 +105,17 @@ export class EditRentalDetailComponent implements OnInit {
   partynames: any;
   carlist: Observable<string[]>;
   driverlist: Observable<string[]>;
-  constructor(private router: Router,private apiService: ApiService, public dialog: MatDialog, private toastr: ToastrService) {
+  constructor(private cdRef:ChangeDetectorRef, private router: Router,private apiService: ApiService, public dialog: MatDialog, private toastr: ToastrService) {
     
    }
    ngOnInit() : void {
-    this.assignAutoComplete();
+    this.partyselect = new FormControl();
+    this.driverselect = new FormControl();
+    this.carselect = new FormControl();
+    this.carFormControl = new FormControl();
+    this.carTypeFormControl = new FormControl();
+    this.driverFormControl = new FormControl();
+    //this.assignAutoComplete();
      this.cartypes = JSON.parse(localStorage.getItem('allcartypes'));
      var yr = localStorage.getItem('rentalyr');
      var month = localStorage.getItem('rentalmonth');
@@ -161,26 +168,35 @@ export class EditRentalDetailComponent implements OnInit {
       this.dataSource = new MatTableDataSource(this.rentalDetails);
       this.dataSource.paginator = this.paginator;
       localStorage.setItem("rentaldetails", JSON.stringify(res.result));
+      this.assignAutoComplete();
     });
-    this.assignAutoComplete();
+   
     debugger;
    }
-   assignAutoComplete(){
-    this.partyselect = new FormControl();
-    this.driverselect = new FormControl();
-    this.carselect = new FormControl();
-    this.carFormControl = new FormControl();
-    this.carTypeFormControl = new FormControl();
-    this.driverFormControl = new FormControl();
+   ngAfterViewChecked()
+{
+  console.log( "! changement de la date du composant !" );
+  this.cdRef.detectChanges();
+}
+/* doFilter(x: any) {
+  this.filteredOptionsDriver = this.alldrivernames.map(jokes => this.filter(jokes, x)),
+  )
+}
+filter(val, x){
+  return val.filter(joke => 
+    joke.joke.toLowerCase().includes(x));
+} */
+  assignAutoComplete(){
+   
     //party
     this.partylist = this.partyselect.valueChanges.pipe(startWith(''),map(value => this._filterParty(value)));
     //carno
-    this.filteredOptionsCar = this.carFormControl.valueChanges.pipe(startWith(''),map(value => this._filterCar(value)));
+    //this.filteredOptionsCar = this.carFormControl.valueChanges.pipe(startWith(''),map(value => this._filterCar(value)));
     this.carlist = this.carselect.valueChanges.pipe(startWith(''),map(value => this._filterCar(value)));
     //cartype
-    this.filteredOptionsCarType = this.carTypeFormControl.valueChanges.pipe(startWith(''),map(value => this._filterCarType(value)));
+    //this.filteredOptionsCarType = this.carTypeFormControl.valueChanges.pipe(startWith(''),map(value => this._filterCarType(value)));
     //driver
-    this.filteredOptionsDriver = this.driverFormControl.valueChanges.pipe(startWith(''),map(value => this._filterDriver(value)));
+    //this.filteredOptionsDriver = this.driverFormControl.valueChanges.pipe(startWith(''),map(value => this._filterDriver(value)));
     this.driverlist = this.driverselect.valueChanges.pipe(startWith(''),map(value => this._filterDriver(value)));
    }
    public _filterParty(value: string): string[] {
@@ -197,8 +213,8 @@ export class EditRentalDetailComponent implements OnInit {
   }
   public _filterDriver(value: string): string[] {
     const filterValue = value.toLowerCase();
-    return this.alldrivernames.filter(client => client.toString().toLowerCase().includes(filterValue));
-  }
+    return this.alldrivernames.filter(client => client.toString().toLowerCase().includes(filterValue)); 
+  } 
    showbulkedit(){
      this.loading = true;
      this.isBulkEdit = true;
@@ -248,7 +264,7 @@ export class EditRentalDetailComponent implements OnInit {
     });
    }
    changedriver(){
-    var drivercode = this.alldrivers.filter(x=>x.drivername == this.editRentalDetails.driver)[0].drivercode;
+   /*  var drivercode = this.alldrivers.filter(x=>x.drivername == this.editRentalDetails.driver)[0].drivercode;
     var json = 
       {
         "mode":4,
@@ -256,7 +272,7 @@ export class EditRentalDetailComponent implements OnInit {
       } 
       this.apiService.post(DRIVER_API, json).then((res: any)=>{ 
         this.editRentalDetails.drivernum = res.contact;
-      });
+      }); */
   }
    showsingleedit(){
      this.isBulkEdit = false;

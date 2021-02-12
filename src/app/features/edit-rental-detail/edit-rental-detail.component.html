@@ -72,7 +72,7 @@
                 </select>
                 Value :
                 <mat-form-field *ngIf="filterby==='party'">
-                  <input type="text" [(ngModel)]="filterval" [formControl]="partyselect" [matAutocomplete]="party" matInput placeholder="Enter Party">
+                  <input name="partyfilter" type="text" [(ngModel)]="filterval" [formControl]="partyselect" [matAutocomplete]="party" matInput placeholder="Enter Party">
                   <mat-autocomplete (optionSelected)="onChangeFilterVal($event)" #party="matAutocomplete">
                     <mat-option *ngFor="let option of partylist | async" [value]="option" >
                       {{option}}
@@ -80,7 +80,7 @@
                   </mat-autocomplete>
                 </mat-form-field>
                 <mat-form-field *ngIf="filterby==='driver'">
-                  <input type="text" [(ngModel)]="filterval" [formControl]="driverselect" [matAutocomplete]="driver" matInput placeholder="Enter Driver">
+                  <input type="text"  name="driverfilter" [(ngModel)]="filterval" [formControl]="driverselect" [matAutocomplete]="driver" matInput placeholder="Enter Driver">
                   <mat-autocomplete (optionSelected)="onChangeFilterVal($event)" #driver="matAutocomplete">
                     <mat-option *ngFor="let option of driverlist | async" [value]="option" >
                       {{option}}
@@ -88,7 +88,7 @@
                   </mat-autocomplete>
                 </mat-form-field>
                 <mat-form-field *ngIf="filterby==='car'">
-                  <input type="text" [(ngModel)]="filterval" [formControl]="carselect" [matAutocomplete]="car" matInput placeholder="Enter Car">
+                  <input type="text" name="carfilter"  [(ngModel)]="filterval" [formControl]="carselect" [matAutocomplete]="car" matInput placeholder="Enter Car">
                   <mat-autocomplete (optionSelected)="onChangeFilterVal($event)" #car="matAutocomplete">
                     <mat-option *ngFor="let option of carlist | async" [value]="option" >
                       {{option}}
@@ -196,9 +196,9 @@
                   <mat-header-cell *matHeaderCellDef mat-sort-header> Driver </mat-header-cell>
                   <mat-cell *matCellDef="let row"> 
                     <mat-form-field>
-                    <input type="text" [(ngModel)]="row.driver" [formControl]="driverFormControl" [matAutocomplete]="autodriver" matInput placeholder="Select Driver">
+                    <input type="text" [(ngModel)]="row.driver" [matAutocomplete]="autodriver" matInput placeholder="Select Driver">
                     <mat-autocomplete #autodriver="matAutocomplete" (optionSelected)="changedriver()">
-                      <mat-option *ngFor="let option of filteredOptionsDriver | async" [value]="option" >
+                      <mat-option *ngFor="let option of alldrivernames" [value]="option" >
                         {{option}}
                       </mat-option>
                     </mat-autocomplete>
@@ -211,9 +211,9 @@
                   <mat-header-cell *matHeaderCellDef mat-sort-header> Car </mat-header-cell>
                   <mat-cell *matCellDef="let row">
                     <mat-form-field>
-                    <input type="text" [(ngModel)]="row.carnum" [formControl]="carFormControl" [matAutocomplete]="autocar" matInput placeholder="Enter Car Number">
+                    <input type="text" [(ngModel)]="row.carnum" [matAutocomplete]="autocar" matInput placeholder="Enter Car Number">
                     <mat-autocomplete #autocar="matAutocomplete" (optionSelected)="changecar()">
-                      <mat-option *ngFor="let option of filteredOptionsCar | async" [value]="option" >
+                      <mat-option *ngFor="let option of allcarno" [value]="option" >
                         {{option}}
                       </mat-option>
                     </mat-autocomplete>
@@ -225,9 +225,9 @@
                   <mat-header-cell *matHeaderCellDef mat-sort-header> Type</mat-header-cell>
                   <mat-cell *matCellDef="let row">
                     <mat-form-field>
-                    <input type="text" [(ngModel)]="row.cartype" [formControl]="carTypeFormControl" [matAutocomplete]="autocartype" matInput placeholder="Enter Car Type">
+                    <input type="text" [(ngModel)]="row.cartype" [matAutocomplete]="autocartype" matInput placeholder="Enter Car Type">
                     <mat-autocomplete #autocartype="matAutocomplete">
-                      <mat-option *ngFor="let option of filteredOptionsCarType | async" [value]="option" >
+                      <mat-option *ngFor="let option of allcartype" [value]="option" >
                         {{option}}
                       </mat-option>
                     </mat-autocomplete>

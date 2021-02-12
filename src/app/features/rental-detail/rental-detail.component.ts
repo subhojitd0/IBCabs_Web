@@ -12,6 +12,8 @@ import {STEPPER_GLOBAL_OPTIONS} from '@angular/cdk/stepper';
 import { MatStepper } from '@angular/material/stepper';
 import { AddPartyHeadComponent } from '../party/add-party-head/add-party-head.component';
 import { ROUTE_ADD_DDR, ROUTE_VIEW_DDR } from 'src/shared/constants/constant';
+import { map, startWith } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 export interface NewRental {
   mode: string,
@@ -84,6 +86,14 @@ export class RentalAdd implements NewRental {
   }]
 })
 export class RentalDetailComponent implements OnInit {
+  filteredOptionsCar: Observable<any[]>;
+  filteredOptionsCarType: Observable<any[]>;
+  filteredOptionsDriver: Observable<any[]>;
+  partylist: Observable<string[]>;
+  alldrivernames: any;
+  allcarno: any;
+  allcartype: any;
+  partynames: any;
   rentalAdd: RentalAdd;
   isLinear: boolean;
   cartypes: any;
@@ -247,6 +257,32 @@ export class RentalDetailComponent implements OnInit {
   viewallduties(){
     this.router.navigateByUrl('/' + ROUTE_VIEW_DDR);
   }
+  setAutoComplete(){
+    //party
+    this.partylist = this.firstFormGroup.get('PartyControl').valueChanges.pipe(startWith(''),map(value => this._filterParty(value)));
+    //carno
+    this.filteredOptionsCar = this.secondFormGroup.get('DriverControl').valueChanges.pipe(startWith(''),map(value => this._filterCar(value)));
+    //cartype
+    this.filteredOptionsCarType = this.secondFormGroup.get('CarTypeControl').valueChanges.pipe(startWith(''),map(value => this._filterCarType(value)));
+    //driver
+    this.filteredOptionsDriver = this.secondFormGroup.get('CarNumberControl').valueChanges.pipe(startWith(''),map(value => this._filterDriver(value)));
+  }
+  public _filterParty(value: string): string[] {
+    const filterValue = value.toLowerCase();
+    return this.partynames.filter(client => client.toLowerCase().includes(filterValue));
+  }
+  public _filterCar(value: string): string[] {
+    const filterValue = value.toLowerCase();
+    return this.allcarno.filter(client => client.toLowerCase().includes(filterValue));
+  }
+  public _filterCarType(value: string): string[] {
+    const filterValue = value.toLowerCase();
+    return this.allcartype.filter(client => client.toLowerCase().includes(filterValue));
+  }
+  public _filterDriver(value: string): string[] {
+    const filterValue = value.toLowerCase();
+    return this.alldrivernames.filter(client => client.toString().toLowerCase().includes(filterValue));
+  }
   ngOnInit() {
     debugger;
     this.rentalAdd = new RentalAdd();
@@ -254,6 +290,10 @@ export class RentalDetailComponent implements OnInit {
     this.allcars = JSON.parse(localStorage.getItem('allcars'));
     this.alldrivers = JSON.parse(localStorage.getItem('alldrivers'));
     this.cartypes = JSON.parse(localStorage.getItem('allcartypes'));
+    this.alldrivernames = this.alldrivers.map(x=>x.drivername);
+     this.allcarno = this.allcars.map(x=>x.carno);
+     this.allcartype = this.cartypes.map(x=>x.car);
+     this.partynames = this.allparties.map(x=>x.name);
     this.isLinear = true;
     this.firstFormGroup = this._formBuilder.group({
       PartyControl: ['', Validators.required],
@@ -286,6 +326,7 @@ export class RentalDetailComponent implements OnInit {
       OutstationControl: ['', Validators.required],
       NightControl: ['', Validators.required]
     });
+    this.setAutoComplete();
     var dutyid = JSON.parse(localStorage.getItem('selectedduty'));
     if(dutyid != "0"){
       var json = 
@@ -329,7 +370,8 @@ export class RentalDetailComponent implements OnInit {
           this.rentalAdd.parking = "0";
         if(!this.rentalAdd.nightcharge)
           this.rentalAdd.nightcharge = "0";
-
+        
+        debugger;
         if(this.rentalAdd.dutystatus === "1")
         {
           this.stepper.next();
