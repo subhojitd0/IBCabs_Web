@@ -173,15 +173,15 @@ export class EditRentalDetailComponent implements OnInit {
     this.carTypeFormControl = new FormControl();
     this.driverFormControl = new FormControl();
     //party
-    this.partylist = this.partyselect.valueChanges.pipe(startWith(''),map(value => this._filterDriver(value)));
+    this.partylist = this.partyselect.valueChanges.pipe(startWith(''),map(value => this._filterParty(value)));
     //carno
     this.filteredOptionsCar = this.carFormControl.valueChanges.pipe(startWith(''),map(value => this._filterCar(value)));
-    this.carlist = this.carFormControl.valueChanges.pipe(startWith(''),map(value => this._filterCar(value)));
+    this.carlist = this.carselect.valueChanges.pipe(startWith(''),map(value => this._filterCar(value)));
     //cartype
     this.filteredOptionsCarType = this.carTypeFormControl.valueChanges.pipe(startWith(''),map(value => this._filterCarType(value)));
     //driver
     this.filteredOptionsDriver = this.driverFormControl.valueChanges.pipe(startWith(''),map(value => this._filterDriver(value)));
-    this.driverlist = this.driverFormControl.valueChanges.pipe(startWith(''),map(value => this._filterDriver(value)));
+    this.driverlist = this.driverselect.valueChanges.pipe(startWith(''),map(value => this._filterDriver(value)));
    }
    public _filterParty(value: string): string[] {
     const filterValue = value.toLowerCase();
