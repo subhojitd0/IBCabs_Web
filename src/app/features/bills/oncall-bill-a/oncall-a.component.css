@@ -56,12 +56,20 @@ table {
 }
 .mat-header-cell{
     font-weight: bold;
-    font-size: 15px;
+    font-size: 20px;
     color: black;
+    border: 1px solid;
+    padding-left: 5px;
+    justify-content: center;
 }
 
 .mat-cell{
     color: black;
+    border: 1px solid;
+    padding-left: 5px;
+    /* font-weight: bold; */
+    font-size: 20px;
+    justify-content: center;
 }
 
 table>tr{
@@ -71,12 +79,13 @@ table>tr{
     min-height: 30px;
     text-align: center;
     color: black;
+    border-bottom-width: 0px !important;
 }
 td, th { border: 1px solid; padding: 5px }
 
-/* .mat-row:last-child {
-    font-weight: bold;
-  } */
+.mat-row:last-child {
+    /* font-weight: bold; */
+  }
 
   .center{
     position: fixed;
@@ -113,3 +122,101 @@ td, th { border: 1px solid; padding: 5px }
   .center a:hover { 
                   background: #CCC; 
               }
+
+.mat-column-sl{
+word-wrap: break-word !important;
+white-space: unset !important;
+flex: 0 0 8% !important;
+width: 8% !important;
+overflow-wrap: break-word;
+word-wrap: break-word;
+
+word-break: break-word;
+
+-ms-hyphens: auto;
+-moz-hyphens: auto;
+-webkit-hyphens: auto;
+hyphens: auto;
+}
+
+.mat-column-dutydate{
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    flex: 0 0 15% !important;
+    width: 8% !important;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    
+    word-break: break-word;
+    
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+    }
+    .mat-column-reportto{
+        word-wrap: break-word !important;
+        white-space: unset !important;
+        flex: 0 0 12% !important;
+        width: 8% !important;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        
+        word-break: break-word;
+        
+        -ms-hyphens: auto;
+        -moz-hyphens: auto;
+        -webkit-hyphens: auto;
+        hyphens: auto;
+        }
+
+    .mat-column-carno{
+        word-wrap: break-word !important;
+        white-space: unset !important;
+        flex: 0 0 15% !important;
+        width: 8% !important;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        
+        word-break: break-word;
+        
+        -ms-hyphens: auto;
+        -moz-hyphens: auto;
+        -webkit-hyphens: auto;
+        hyphens: auto;
+        }
+        .mat-column-outstation{
+            word-wrap: break-word !important;
+            white-space: unset !important;
+            flex: 0 0 10% !important;
+            width: 8% !important;
+            overflow-wrap: break-word;
+            word-wrap: break-word;
+            
+            word-break: break-word;
+            
+            -ms-hyphens: auto;
+            -moz-hyphens: auto;
+            -webkit-hyphens: auto;
+            hyphens: auto;
+            }
+        .mat-column-cartype{
+            word-wrap: break-word !important;
+            white-space: unset !important;
+            flex: 0 0 10% !important;
+            width: 8% !important;
+            overflow-wrap: break-word;
+            word-wrap: break-word;
+            
+            word-break: break-word;
+            
+            -ms-hyphens: auto;
+            -moz-hyphens: auto;
+            -webkit-hyphens: auto;
+            hyphens: auto;
+            }
+        
+
+#customer-title, #meta{
+    font-size: 20px; 
+}

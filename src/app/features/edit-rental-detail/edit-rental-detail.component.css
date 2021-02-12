@@ -317,3 +317,10 @@ table {
   -webkit-hyphens: auto;
   hyphens: auto;
 }
+.bulktable ::ng-deep .mat-form-field-underline {
+  display: none;
+}
+.mat-header-cell{
+  font-size: 15px;
+  font-weight: bold;
+}

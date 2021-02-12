@@ -3,7 +3,7 @@
     Loading...
   </div>
 </div>
-        <div class="container">
+        <div class="container" style="max-width: 1400px;">
           <mat-card>
             <mat-card-header>
               <div mat-card-avatar class="avatar-image-partyhead"></div>
@@ -159,7 +159,7 @@
   
 
 
-              <mat-table [dataSource]="bulkDataSource" matSort *ngIf="isBulkEdit">
+              <mat-table class="bulktable" [dataSource]="bulkDataSource" matSort *ngIf="isBulkEdit">
 
                 <ng-container matColumnDef="isselected">
                   <mat-header-cell *matHeaderCellDef mat-sort-header> </mat-header-cell>
@@ -186,12 +186,14 @@
                 <ng-container matColumnDef="driver">
                   <mat-header-cell *matHeaderCellDef mat-sort-header> Driver </mat-header-cell>
                   <mat-cell *matCellDef="let row"> 
-                    <input type="text" [(ngModel)]="row.driver" [matAutocomplete]="autodriver" matInput placeholder="Select Driver">
+                    <mat-form-field>
+                    <input type="text" [(ngModel)]="row.driver" [formControl]="driverFormControl" [matAutocomplete]="autodriver" matInput placeholder="Select Driver">
                     <mat-autocomplete #autodriver="matAutocomplete" (optionSelected)="changedriver()">
-                      <mat-option *ngFor="let option of alldrivers" [value]="option.drivername" >
-                        {{option.drivername}}
+                      <mat-option *ngFor="let option of filteredOptionsDriver | async" [value]="option" >
+                        {{option}}
                       </mat-option>
                     </mat-autocomplete>
+                  </mat-form-field>
                   </mat-cell>
                 </ng-container>
                 
@@ -199,24 +201,28 @@
                 <ng-container matColumnDef="carnumber">
                   <mat-header-cell *matHeaderCellDef mat-sort-header> Car </mat-header-cell>
                   <mat-cell *matCellDef="let row">
-                    <input type="text" [(ngModel)]="row.carnum" [matAutocomplete]="autocar" matInput placeholder="Enter Car Number">
+                    <mat-form-field>
+                    <input type="text" [(ngModel)]="row.carnum" [formControl]="carFormControl" [matAutocomplete]="autocar" matInput placeholder="Enter Car Number">
                     <mat-autocomplete #autocar="matAutocomplete" (optionSelected)="changecar()">
-                      <mat-option *ngFor="let option of allcars" [value]="option.carno" >
-                        {{option.carno}}
+                      <mat-option *ngFor="let option of filteredOptionsCar | async" [value]="option" >
+                        {{option}}
                       </mat-option>
                     </mat-autocomplete>
+                  </mat-form-field>
                   </mat-cell>
                 </ng-container>
 
                 <ng-container matColumnDef="cartype">
                   <mat-header-cell *matHeaderCellDef mat-sort-header> Type</mat-header-cell>
                   <mat-cell *matCellDef="let row">
-                    <input type="text" [(ngModel)]="row.cartype" [matAutocomplete]="autocartype" matInput placeholder="Enter Car Type">
+                    <mat-form-field>
+                    <input type="text" [(ngModel)]="row.cartype" [formControl]="carTypeFormControl" [matAutocomplete]="autocartype" matInput placeholder="Enter Car Type">
                     <mat-autocomplete #autocartype="matAutocomplete">
-                      <mat-option *ngFor="let option of cartypes" [value]="option.car" >
-                        {{option.car}}
+                      <mat-option *ngFor="let option of filteredOptionsCarType | async" [value]="option" >
+                        {{option}}
                       </mat-option>
                     </mat-autocomplete>
+                  </mat-form-field>
                   </mat-cell>
                 </ng-container>
 

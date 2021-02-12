@@ -7,11 +7,13 @@ import {DRIVER_API, PARTY_HEAD_API, RENTAL_DETAIL_API_OFFICE, RENTAL_DETAIL_API_
 import {MatDialog} from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {STEPPER_GLOBAL_OPTIONS} from '@angular/cdk/stepper';
 import { ROUTE_ADD_DDR, ROUTE_VIEW_DDR } from 'src/shared/constants/constant';
 import { MessageModalComponent } from './message-modal/message-modal.component';
 import { ConfirmationModalComponent } from './confirmation-modal/confirmation-modal.component';
+import { Observable, Subject } from 'rxjs';
+import {startWith, map} from 'rxjs/operators';
 
 export interface EditRentalDetail {
   isSelected: boolean;
@@ -86,6 +88,15 @@ export class EditRentalDetailComponent implements OnInit {
   bulkdisplayedColumns: string[] = ['isselected','dutydate', 'partyname', 'reportto', 'driver', 'carnumber', 'cartype', 'goutkm', 'ginkm', 'gouttime', 'gintime', 'parking', 'outstation', 'night'];
   dataSource: MatTableDataSource<RentalDetail>;
   bulkDataSource: MatTableDataSource<EditRentalDetail>;
+  filteredOptionsCar: Observable<any[]>;
+  filteredOptionsCarType: Observable<any[]>;
+  filteredOptionsDriver: Observable<any[]>;
+  carFormControl: FormControl;
+  carTypeFormControl: FormControl;
+  driverFormControl: FormControl;
+  alldrivernames: any;
+  allcarno: any;
+  allcartype: any;
   constructor(private router: Router,private apiService: ApiService, public dialog: MatDialog, private toastr: ToastrService) {
     
    }
@@ -98,6 +109,9 @@ export class EditRentalDetailComponent implements OnInit {
      this.allparties = JSON.parse(localStorage.getItem('allparties'));
      this.alldrivers = JSON.parse(localStorage.getItem('alldrivers'));
      this.allcars = JSON.parse(localStorage.getItem('allcars'));
+     this.alldrivernames = this.alldrivers.map(x=>x.drivername);
+     this.allcarno = this.allcars.map(x=>x.carno);
+     this.allcartype = this.cartypes.map(x=>x.car);
      if(filterby)
         this.filterby = filterby;
      else 
@@ -139,7 +153,43 @@ export class EditRentalDetailComponent implements OnInit {
       this.dataSource.paginator = this.paginator;
       localStorage.setItem("rentaldetails", JSON.stringify(res.result));
     });
+    this.assignAutoComplete();
    }
+   assignAutoComplete(){
+    this.carFormControl = new FormControl();
+    this.carTypeFormControl = new FormControl();
+    this.driverFormControl = new FormControl();
+    //carno
+    this.filteredOptionsCar = this.carFormControl.valueChanges
+    .pipe(
+      startWith(''),
+      map(value => this._filterCar(value))
+    );
+    //cartype
+    this.filteredOptionsCarType = this.carTypeFormControl.valueChanges
+    .pipe(
+      startWith(''),
+      map(value => this._filterCarType(value))
+    );
+    //driver
+    this.filteredOptionsDriver = this.driverFormControl.valueChanges
+    .pipe(
+      startWith(''),
+      map(value => this._filterDriver(value))
+    );
+   }
+  public _filterCar(value: string): string[] {
+    const filterValue = value.toLowerCase();
+    return this.allcarno.filter(client => client.toLowerCase().includes(filterValue));
+  }
+  public _filterCarType(value: string): string[] {
+    const filterValue = value.toLowerCase();
+    return this.allcartype.filter(client => client.toLowerCase().includes(filterValue));
+  }
+  public _filterDriver(value: string): string[] {
+    const filterValue = value.toLowerCase();
+    return this.alldrivernames.filter(client => client.toString().toLowerCase().includes(filterValue));
+  }
    showbulkedit(){
      this.loading = true;
      this.isBulkEdit = true;

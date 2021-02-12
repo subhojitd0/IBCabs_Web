@@ -70,6 +70,8 @@ export class OnCallBillAComponent implements OnInit {
   billto: any;
   gstamountinwords: any;
   totalno: any;
+  marginTop: any;
+  fontSize: any;
   isConfirmVisible: any = true;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -104,6 +106,8 @@ export class OnCallBillAComponent implements OnInit {
       let gstRounded = Math.round(parseFloat(this.billdetails.gst[0].total.toString().replace(',','')));
       this.amountInWord = this.apiService.convertAmountToWord(this.roundedgross);
       this.gstamountinwords = this.apiService.convertAmountToWord(gstRounded);
+      this.marginTop = (31-this.totalno)*2.5;
+      this.fontSize = 20 + this.marginTop * 0.03;
     }
     
    }
