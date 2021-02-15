@@ -1,0 +1,56 @@
+
+        <div class="container">
+        <mat-card>
+          <mat-card-header>
+            <div mat-card-avatar class="avatar-image-partyhead"></div>
+            <mat-card-title>Report TO</mat-card-title>
+            <mat-card-subtitle>Add, Delete and View the Report To's Here.</mat-card-subtitle>
+          </mat-card-header>
+        </mat-card>
+        <div class="row">
+            <mat-form-field class="col-xs-4" style="margin: 20px;">
+              <mat-label>Report To Name</mat-label>
+              <input matInput [(ngModel)]="reportto.report" name="reportto" placeholder="Add Report To">
+            </mat-form-field>
+            <mat-form-field class="col-xs-4" style="margin: 20px;">
+              <mat-label>Report To Contact</mat-label>
+              <input matInput [(ngModel)]="reportto.contact" name="repcontact" placeholder="Add Report To Contact">
+            </mat-form-field>
+            <button style="margin: 30px;" class="col-xs-2" mat-stroked-button (click)="addReportto()">Add Report To</button>
+          </div>
+            
+
+            <mat-form-field class="mid">
+                <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search Report To">
+              </mat-form-field>
+              <mat-table [dataSource]="dataSource" matSort>
+
+                <!-- ID Column -->
+                <ng-container matColumnDef="report">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> Name  </mat-header-cell>
+                  <mat-cell *matCellDef="let row"> {{row.report}} </mat-cell>
+                </ng-container>
+            
+                <!-- Name Column -->
+                <ng-container matColumnDef="contact">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> Contact </mat-header-cell>
+                  <mat-cell *matCellDef="let row"> {{row.contact}} </mat-cell>
+                </ng-container>
+            
+                <ng-container matColumnDef="option">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Options </mat-header-cell>
+                    <mat-cell *matCellDef="let row" [style.color]="row.option">
+                        <span style="margin-left: 10px; margin-right: 10px; cursor: pointer;" class="material-icons" (click)="deleteReportto(row.reportcode)">
+                            delete
+                        </span>    
+                    </mat-cell>
+                  </ng-container>
+            
+                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: displayedColumns;">
+                </mat-row>
+              </mat-table>
+            <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+
+
+        </div>

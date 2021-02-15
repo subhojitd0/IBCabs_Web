@@ -48,6 +48,7 @@ import {MonthlyContractAComponent} from './features/bills/mothly-contract-a/mont
 import {AdvancedBillComponent} from './features/generate-bill/AdvancedBill/advancedbill.component';
 import { ConfirmationModalComponent } from './features/edit-rental-detail/confirmation-modal/confirmation-modal.component';
 import { OnCallBillAComponent } from './features/bills/oncall-bill-a/oncall-a.component';
+import { ReportToComponent } from './features/reportto/reportto.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -75,7 +76,8 @@ import { OnCallBillAComponent } from './features/bills/oncall-bill-a/oncall-a.co
     AdvancedBillComponent,
     MonthlyContractAComponent,
     ConfirmationModalComponent,
-    OnCallBillAComponent
+    OnCallBillAComponent,
+    ReportToComponent
   ],
   imports: [
     BrowserModule,

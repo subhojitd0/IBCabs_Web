@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import {Router} from '@angular/router';
-import { ROUTE_ADD_DDR, ROUTE_ADD_DDR_WALKIN, ROUTE_BASIC, ROUTE_DASHBOARD, ROUTE_DRIVER, ROUTE_GENERATE_BILL, ROUTE_OWNER, ROUTE_PARTY, ROUTE_VIEW_DDR } from 'src/shared/constants/constant';
+import { ROUTE_ADD_DDR, ROUTE_ADD_DDR_WALKIN, ROUTE_BASIC, ROUTE_DASHBOARD, ROUTE_DRIVER, ROUTE_GENERATE_BILL, ROUTE_OWNER, ROUTE_PARTY, ROUTE_REPORTO, ROUTE_VIEW_DDR } from 'src/shared/constants/constant';
 
 @Component({
   selector: 'app-sidenav',
@@ -19,6 +19,7 @@ export class SideNavComponent implements OnInit {
   generatebillurl = "";
   loggedin : any;
   pagerefresh : any;
+  reportto: string;
   constructor(private router: Router) { }
 
   ngOnInit(): void {
@@ -33,6 +34,7 @@ export class SideNavComponent implements OnInit {
     this.viewddrurl = "/" + ROUTE_VIEW_DDR;
     this.addwalkingurl = "/" + ROUTE_ADD_DDR_WALKIN;
     this.generatebillurl = "/" + ROUTE_GENERATE_BILL;
+    this.reportto = "/" + ROUTE_REPORTO;
   }
   @ViewChild('sidenav') sidenav: MatSidenav;
   isExpanded = false;

@@ -1,6 +1,35 @@
     <div class="container">
         <form ngNativeValidate (submit)="generateBill()">
             <div class="row">
+              <div class="col-sm-12">
+                <label>Bill Format</label>
+                <mat-select name="format" [(value)]="billDetails.format">
+                    <mat-option value="1">
+                      Bill A - CNN/IBN
+                    </mat-option>
+                    <mat-option value="2">
+                      Bill B - ON CALL EXTRA 
+                    </mat-option>
+                    <mat-option value="3">
+                      Bill C - Coal India 
+                    </mat-option>
+                </mat-select>
+              </div>
+            </div>
+            <div class="row" *ngIf="billDetails.format === '3'">
+              <div class="col-sm-12">
+                <mat-form-field style="width: 80%; margin-right: 20px;">
+                  <mat-label>Report To</mat-label>
+                  <input name="party" [formControl]="partyselect" [matAutocomplete]="auto" matInput placeholder="Enter the party name here" [(ngModel)]="billDetails.party">
+                  <mat-autocomplete #auto="matAutocomplete">
+                    <mat-option *ngFor="let option of partylist | async" [value]="option" >
+                      {{option}}
+                    </mat-option>
+                  </mat-autocomplete>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="row">
                 <div class="col-sm-12">
                     <mat-form-field style="width: 80%; margin-right: 20px;">
                         <mat-label>Party Name</mat-label>
@@ -63,20 +92,7 @@
             </div>
 
             <div class="row">
-                <div class="col-sm-6">
-                    <label>Bill Format</label>
-                    <mat-select name="format" [(value)]="billDetails.format">
-                        <mat-option value="1">
-                          Bill A - CNN/IBN
-                        </mat-option>
-                        <mat-option value="2">
-                          Bill B - ON CALL EXTRA 
-                        </mat-option>
-                        <mat-option value="2">
-                          Bill C - Coal India 
-                        </mat-option>
-                    </mat-select>
-                </div>
+                
                 <div class="col-sm-6">
                     <button type="submit" class="btn btn-primary btn-lg">Generate</button>
                 </div>

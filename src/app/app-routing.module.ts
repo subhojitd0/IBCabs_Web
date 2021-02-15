@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ROUTE_ADD_DDR, ROUTE_ADD_DDR_WALKIN, ROUTE_BASIC, ROUTE_CAR, ROUTE_DASHBOARD, ROUTE_DRIVER, ROUTE_GENERATE_BILL, ROUTE_OWNER, ROUTE_PARTY, ROUTE_RATE, ROUTE_VIEW_BILL_CNN, ROUTE_VIEW_BILL_CNN_CONTRACT, ROUTE_VIEW_BILL_ONCALL_EXTRA, ROUTE_VIEW_DDR } from 'src/shared/constants/constant';
+import { ROUTE_ADD_DDR, ROUTE_ADD_DDR_WALKIN, ROUTE_BASIC, ROUTE_CAR, ROUTE_DASHBOARD, ROUTE_DRIVER, ROUTE_GENERATE_BILL, ROUTE_OWNER, ROUTE_PARTY, ROUTE_RATE, ROUTE_REPORTO, ROUTE_VIEW_BILL_CNN, ROUTE_VIEW_BILL_CNN_CONTRACT, ROUTE_VIEW_BILL_ONCALL_EXTRA, ROUTE_VIEW_DDR } from 'src/shared/constants/constant';
 import { MonthlyBillAComponent } from './features/bills/monthly-bill-a/monthly-a.component';
 import { MonthlyContractAComponent } from './features/bills/mothly-contract-a/monthly-contract-a.component';
 import { OnCallBillAComponent } from './features/bills/oncall-bill-a/oncall-a.component';
@@ -15,6 +15,7 @@ import { PartyRatesComponent } from './features/party-rates/partyrates.component
 import { PartyComponent } from './features/party/party.component';
 import { RentalDetailWalkinComponent } from './features/rental-detail-walkin/rental-detail-walkin.component';
 import { RentalDetailComponent } from './features/rental-detail/rental-detail.component';
+import { ReportToComponent } from './features/reportto/reportto.component';
 
 const routes: Routes = [
   {
@@ -72,6 +73,10 @@ const routes: Routes = [
   {
     path: ROUTE_VIEW_BILL_ONCALL_EXTRA,
     component:OnCallBillAComponent
+  },
+  {
+    path: ROUTE_REPORTO,
+    component:ReportToComponent
   }
 ];
 
