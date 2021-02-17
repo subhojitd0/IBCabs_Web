@@ -105,6 +105,7 @@ export class EditRentalDetailComponent implements OnInit {
   partynames: any;
   carlist: Observable<string[]>;
   driverlist: Observable<string[]>;
+  allcartypefilter: any;
   constructor(private cdRef:ChangeDetectorRef, private router: Router,private apiService: ApiService, public dialog: MatDialog, private toastr: ToastrService) {
     
    }
@@ -215,6 +216,18 @@ filter(val, x){
     const filterValue = value.toLowerCase();
     return this.alldrivernames.filter(client => client.toString().toLowerCase().includes(filterValue)); 
   } 
+  filterCarType(val: any){
+    debugger;
+    this.allcartype = this.cartypes.filter(x=>x.car.toString().toLowerCase().includes(val.toString().toLowerCase())).map(y=>y.car);;
+  }
+  filterCar(val: any){
+    debugger;
+    this.allcarno = this.allcars.filter(x=>x.carno.toString().toLowerCase().includes(val.toString().toLowerCase())).map(y=>y.carno);;
+  }
+  filterDriver(val: any){
+    debugger;
+    this.alldrivernames = this.alldrivers.filter(x=>x.drivername.toString().toLowerCase().includes(val.toString().toLowerCase())).map(y=>y.drivername);;
+  }
    showbulkedit(){
      this.loading = true;
      this.isBulkEdit = true;
