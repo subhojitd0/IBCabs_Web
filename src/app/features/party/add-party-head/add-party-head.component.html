@@ -73,24 +73,28 @@
             <div class="row">
                   
                 <div class="col-sm-3">
-                        <label for = "gout">Min Before Reporting</label>
+                        <label for = "gout">Buffer Reporting Min</label>
                         <input name="gout" type = "number" class = "form-control" id = "gout" placeholder = "Garage Out" [(ngModel)]="partyheaddetails.garageout">
                      
                 </div>
                 <div class="col-sm-3">
                     
-                    <label for = "gin">Min After Reporting</label>
-                    <input name="gin" type = "number" class = "form-control" id = "gin" placeholder = "Minute after Reporting" [(ngModel)]="partyheaddetails.garagein" >
-                </div>  
-                <div class="col-sm-3">
-                    
-                    <label for = "kmout">Km Before Reporting</label>
+                    <label for = "kmout">Buffer Reporting KM</label>
                     <input name="kmout" type = "number" class = "form-control" id = "kmout" placeholder = "Km Before Reporting" [(ngModel)]="partyheaddetails.kmout">
                 </div>    
-                <div class="col-sm-3">
-                    <label for = "kmin">Km After reporting</label>
-                    <input name="kmin" type = "number" class = "form-control" id = "kmin" placeholder = "Km After Reporting" [(ngModel)]="partyheaddetails.kmin">
-                 
+                <div class="col-sm-6">
+                    <mat-form-field appearance="outline" class="full" >
+                        <mat-label>Report To</mat-label>
+                        <input type="text" name="master" placeholder="Report To" matInput [(ngModel)]="partyheaddetails.reportto"
+                        [matAutocomplete]="autoreport">
+                        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+                        <mat-hint>Enter the Report To Name</mat-hint>
+                        <mat-autocomplete #autoreport="matAutocomplete">
+                            <mat-option *ngFor="let option of allreportto" [value]="option">
+                              {{option}}
+                            </mat-option>
+                          </mat-autocomplete>
+                    </mat-form-field>
                 </div>
             </div>
 

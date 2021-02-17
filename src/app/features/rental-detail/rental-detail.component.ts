@@ -104,6 +104,9 @@ export class RentalDetailComponent implements OnInit {
   alldrivers: any;
   allcars: any;
   @ViewChild('stepper') stepper: MatStepper;
+  allreportto: any;
+  filteredOptionsReport: Observable<string[]>;
+  reporttos: any;
 
   constructor(public dialog: MatDialog, private _formBuilder: FormBuilder, private router: Router, private apiService: ApiService, private toastr: ToastrService) {}
   ngAfterViewInit() {
@@ -237,6 +240,7 @@ export class RentalDetailComponent implements OnInit {
         this.rentalAdd.goutbeforetime = res.garagein;
         this.rentalAdd.ginbeforetime = res.garageout;
         this.rentalAdd.goutbeforekm = res.kmout;
+        //this.rentalAdd.reporttoname = res.reportto;
         this.rentalAdd.dutytime = res.starttime ? res.starttime.substr(0,5) : "";
       });
   }
@@ -266,10 +270,16 @@ export class RentalDetailComponent implements OnInit {
     this.filteredOptionsCarType = this.secondFormGroup.get('CarTypeControl').valueChanges.pipe(startWith(''),map(value => this._filterCarType(value)));
     //driver
     this.filteredOptionsDriver = this.secondFormGroup.get('CarNumberControl').valueChanges.pipe(startWith(''),map(value => this._filterDriver(value)));
+    //report
+    this.filteredOptionsReport = this.firstFormGroup.get('ReportControl').valueChanges.pipe(startWith(''),map(value => this._filterReport(value)));
   }
   public _filterParty(value: string): string[] {
     const filterValue = value.toLowerCase();
     return this.partynames.filter(client => client.toLowerCase().includes(filterValue));
+  }
+  public _filterReport(value: string): string[] {
+    const filterValue = value.toLowerCase();
+    return this.reporttos.filter(client => client.toLowerCase().includes(filterValue));
   }
   public _filterCar(value: string): string[] {
     const filterValue = value.toLowerCase();
@@ -290,10 +300,12 @@ export class RentalDetailComponent implements OnInit {
     this.allcars = JSON.parse(localStorage.getItem('allcars'));
     this.alldrivers = JSON.parse(localStorage.getItem('alldrivers'));
     this.cartypes = JSON.parse(localStorage.getItem('allcartypes'));
+    this.allreportto = JSON.parse(localStorage.getItem('allreportto'));
     this.alldrivernames = this.alldrivers.map(x=>x.drivername);
      this.allcarno = this.allcars.map(x=>x.carno);
      this.allcartype = this.cartypes.map(x=>x.car);
      this.partynames = this.allparties.map(x=>x.name);
+     this.reporttos = this.allreportto.map(x=>x.report);
     this.isLinear = true;
     this.firstFormGroup = this._formBuilder.group({
       PartyControl: ['', Validators.required],

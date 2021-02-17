@@ -36,7 +36,8 @@ export interface PartyHeadDDetails {
     master:string,
     kmin:string,
     kmout:string,
-    outstation:string
+    outstation:string,
+    reportto: string
   }
 
 export class partyhead implements PartyHeadDDetails{
@@ -67,6 +68,7 @@ export class partyhead implements PartyHeadDDetails{
     kmin:string;
     kmout:string;
     outstation:string;
+    reportto: string;
 }
 @Component({
   selector: 'app-add-party-head',
@@ -80,9 +82,11 @@ export class AddPartyHeadComponent implements OnInit {
   partyheaddetails: partyhead;
   masterlist: any[] = [];
   allparties: any;
+  allreportto: any;
   constructor(private router: Router, private apiService: ApiService, private toastr: ToastrService) {
     this.partyheaddetails = new partyhead();
     this.allparties = JSON.parse(localStorage.getItem('allparties'));
+    this.allreportto = JSON.parse(localStorage.getItem('allreportto'));
     this.allparties.forEach(element => {
       if(!this.masterlist.includes(element.master)){
         this.masterlist.push(element.master);
@@ -144,6 +148,8 @@ export class AddPartyHeadComponent implements OnInit {
         this.partyheaddetails.ratetype = 1;
       }
     }
+    this.partyheaddetails.garagein = this.partyheaddetails.garageout;
+    this.partyheaddetails.kmin = this.partyheaddetails.kmout;
     this.toastr.info("Please wait while we are saving your data",'Information');
     this.apiService.post(PARTY_HEAD_API, this.partyheaddetails).then((res: any)=>{ 
       this.toastr.success("Youe data was successfully saved",'Success');
