@@ -49,6 +49,10 @@ import {AdvancedBillComponent} from './features/generate-bill/AdvancedBill/advan
 import { ConfirmationModalComponent } from './features/edit-rental-detail/confirmation-modal/confirmation-modal.component';
 import { OnCallBillAComponent } from './features/bills/oncall-bill-a/oncall-a.component';
 import { ReportToComponent } from './features/reportto/reportto.component';
+import { CoalIndiaComponent } from './features/bills/coalindia/coalindia.component';
+import { RelianceMISComponent } from './features/bills/reliance/mis/mis.component';
+import { RelianceJMSComponent } from './features/bills/reliance/jms/jms.component';
+import { RelinceSummaryComponent } from './features/bills/reliance/summary/summary.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -77,7 +81,11 @@ import { ReportToComponent } from './features/reportto/reportto.component';
     MonthlyContractAComponent,
     ConfirmationModalComponent,
     OnCallBillAComponent,
-    ReportToComponent
+    ReportToComponent,
+    CoalIndiaComponent,
+    RelianceMISComponent,
+    RelianceJMSComponent,
+    RelinceSummaryComponent
   ],
   imports: [
     BrowserModule,

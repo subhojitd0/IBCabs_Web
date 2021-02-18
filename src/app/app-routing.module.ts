@@ -1,9 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ROUTE_ADD_DDR, ROUTE_ADD_DDR_WALKIN, ROUTE_BASIC, ROUTE_CAR, ROUTE_DASHBOARD, ROUTE_DRIVER, ROUTE_GENERATE_BILL, ROUTE_OWNER, ROUTE_PARTY, ROUTE_RATE, ROUTE_REPORTO, ROUTE_VIEW_BILL_CNN, ROUTE_VIEW_BILL_CNN_CONTRACT, ROUTE_VIEW_BILL_ONCALL_EXTRA, ROUTE_VIEW_DDR } from 'src/shared/constants/constant';
+import { ROUTE_ADD_DDR, ROUTE_ADD_DDR_WALKIN, ROUTE_BASIC, ROUTE_CAR, ROUTE_DASHBOARD, ROUTE_DRIVER, ROUTE_GENERATE_BILL, ROUTE_OWNER, ROUTE_PARTY, ROUTE_RATE, ROUTE_REPORTO, ROUTE_VIEW_BILL_CNN, ROUTE_VIEW_BILL_CNN_CONTRACT, ROUTE_VIEW_BILL_COAL_INDIA, ROUTE_VIEW_BILL_ONCALL_EXTRA, ROUTE_VIEW_BILL_RELIANCE_JMS, ROUTE_VIEW_BILL_RELIANCE_MIS, ROUTE_VIEW_BILL_RELIANCE_SUMMARY, ROUTE_VIEW_DDR } from 'src/shared/constants/constant';
+import { CoalIndiaComponent } from './features/bills/coalindia/coalindia.component';
 import { MonthlyBillAComponent } from './features/bills/monthly-bill-a/monthly-a.component';
 import { MonthlyContractAComponent } from './features/bills/mothly-contract-a/monthly-contract-a.component';
 import { OnCallBillAComponent } from './features/bills/oncall-bill-a/oncall-a.component';
+import { RelianceJMSComponent } from './features/bills/reliance/jms/jms.component';
+import { RelianceMISComponent } from './features/bills/reliance/mis/mis.component';
+import { RelinceSummaryComponent } from './features/bills/reliance/summary/summary.component';
 import { CarComponent } from './features/car/car.component';
 import { DashboardComponent } from './features/dashboard/dashboard.component';
 import { DriverComponent } from './features/driver/driver.component';
@@ -77,7 +81,24 @@ const routes: Routes = [
   {
     path: ROUTE_REPORTO,
     component:ReportToComponent
+  },
+  {
+    path: ROUTE_VIEW_BILL_COAL_INDIA,
+    component:CoalIndiaComponent
+  },
+  {
+    path: ROUTE_VIEW_BILL_RELIANCE_MIS,
+    component:RelianceMISComponent
+  },
+  {
+    path: ROUTE_VIEW_BILL_RELIANCE_JMS,
+    component:RelianceJMSComponent
+  },
+  {
+    path: ROUTE_VIEW_BILL_RELIANCE_SUMMARY,
+    component:RelinceSummaryComponent
   }
+  
 ];
 
 

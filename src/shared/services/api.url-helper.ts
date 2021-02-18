@@ -12,3 +12,4 @@ export const BILL_CNN_API = "partybilla.php";
 export const BILL_ONCALL_EXTRA_API = "partybillb.php";
 export const REPORT_TO_API = "report.php";
 export const BILL_ONCALL_COAL_INDIA_API = "partybillc.php";
+export const BILL_RELIANCE_API = "partybilld.php";
