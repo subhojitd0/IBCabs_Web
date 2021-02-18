@@ -3,10 +3,10 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import {ApiService} from '../../../../shared/services/service';
-import {BILL_CNN_API, BILL_ONCALL_EXTRA_API, OWNER_API, PARTY_HEAD_API} from '../../../../shared/services/api.url-helper';
+import {BILL_CNN_API, BILL_ONCALL_COAL_INDIA_API, BILL_ONCALL_EXTRA_API, OWNER_API, PARTY_HEAD_API} from '../../../../shared/services/api.url-helper';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
-import { ROUTE_OWNER, ROUTE_VIEW_BILL_CNN, ROUTE_VIEW_BILL_ONCALL_EXTRA } from 'src/shared/constants/constant';
+import { ROUTE_OWNER, ROUTE_VIEW_BILL_CNN, ROUTE_VIEW_BILL_COAL_INDIA, ROUTE_VIEW_BILL_ONCALL_EXTRA } from 'src/shared/constants/constant';
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
@@ -93,6 +93,10 @@ export class NewBillComponent implements OnInit {
     if(this.billDetails.format == "2"){
       billApi = BILL_ONCALL_EXTRA_API;
       redirectApi = ROUTE_VIEW_BILL_ONCALL_EXTRA;
+    }
+    if(this.billDetails.format == "3"){
+      billApi = BILL_ONCALL_COAL_INDIA_API;
+      redirectApi = ROUTE_VIEW_BILL_COAL_INDIA;
     }
     debugger;
     this.toastr.info("Please wait while we are generating your bill",'Information');
