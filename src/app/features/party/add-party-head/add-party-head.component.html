@@ -90,8 +90,8 @@
                         <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
                         <mat-hint>Enter the Report To Name</mat-hint>
                         <mat-autocomplete #autoreport="matAutocomplete">
-                            <mat-option *ngFor="let option of allreportto" [value]="option">
-                              {{option}}
+                            <mat-option *ngFor="let option of allreportto" [value]="option.report">
+                              {{option.report}}
                             </mat-option>
                           </mat-autocomplete>
                     </mat-form-field>

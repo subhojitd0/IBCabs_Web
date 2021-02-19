@@ -42,8 +42,12 @@ export class NewBillComponent implements OnInit {
   allparties: any;
   billDetails: newbill;
   partyselect: FormControl;
+  reportselect: FormControl;
   partylist: Observable<string[]>;
+  reportlist: Observable<string[]>;
   partynames: any;
+  reportnames: any;
+  allreports: any;
   constructor(private router: Router, private apiService: ApiService, private toastr: ToastrService) {
     this.billDetails = new newbill();
     debugger;
@@ -71,9 +75,14 @@ export class NewBillComponent implements OnInit {
    }
    ngOnInit() : void {
     this.allparties = JSON.parse(localStorage.getItem('allparties'));
+    this.allreports = JSON.parse(localStorage.getItem('allreportto'));
     this.partynames = this.allparties.map(x=>x.name);
+    this.reportnames = this.allreports.map(x=>x.report);
     this.partyselect = new FormControl();
+    this.reportselect = new FormControl();
     this.partylist = this.partyselect.valueChanges.pipe(startWith(''),map(value => this._filterParty(value)));
+    this.reportlist = this.reportselect.valueChanges.pipe(startWith(''),map(value => this._filterReport(value)));
+    
     this.billDetails.gsttype = "0";
     this.billDetails.parkinggst = "1";
     this.billDetails.format = "1";
@@ -81,6 +90,10 @@ export class NewBillComponent implements OnInit {
    public _filterParty(value: string): string[] {
     const filterValue = value.toLowerCase();
     return this.partynames.filter(client => client.toLowerCase().includes(filterValue));
+  }
+  public _filterReport(value: string): string[] {
+    const filterValue = value.toLowerCase();
+    return this.reportnames.filter(client => client.toLowerCase().includes(filterValue));
   }
   generateBill(){
     debugger;
