@@ -170,7 +170,7 @@ table {
 .mat-column-driver{
   word-wrap: break-word !important;
   white-space: unset !important;
-  flex: 0 0 16% !important;
+  flex: 0 0 10% !important;
   width: 8% !important;
   overflow-wrap: break-word;
   word-wrap: break-word;

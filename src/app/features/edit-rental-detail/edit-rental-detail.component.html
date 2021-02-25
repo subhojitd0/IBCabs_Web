@@ -277,6 +277,12 @@
                     <input type="number" matInput [(ngModel)]="row.nightcharge"/>
                   </mat-cell>
                 </ng-container>
+                <ng-container matColumnDef="slip">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> Slip No. </mat-header-cell>
+                  <mat-cell *matCellDef="let row"> 
+                    <input type="text" matInput [(ngModel)]="row.slipno"/>
+                  </mat-cell>
+                </ng-container>
                 <!-- Color Column -->
                 <!-- <ng-container matColumnDef="status">
                   <mat-header-cell *matHeaderCellDef mat-sort-header> Status </mat-header-cell>
