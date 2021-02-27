@@ -265,7 +265,7 @@ export class RentalDetailComponent implements OnInit {
     //party
     this.partylist = this.firstFormGroup.get('PartyControl').valueChanges.pipe(startWith(''),map(value => this._filterParty(value)));
     //carno
-    this.filteredOptionsCar = this.secondFormGroup.get('DriverControl').valueChanges.pipe(startWith(''),map(value => this._filterCar(value)));
+    this.filteredOptionsCar = this.secondFormGroup.get('CarNumberControl').valueChanges.pipe(startWith(''),map(value => this._filterCar(value)));
     //cartype
     this.filteredOptionsCarType = this.secondFormGroup.get('CarTypeControl').valueChanges.pipe(startWith(''),map(value => this._filterCarType(value)));
     //driver
