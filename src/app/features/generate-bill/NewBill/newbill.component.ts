@@ -3,7 +3,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import {ApiService} from '../../../../shared/services/service';
-import {BILL_CNN_API, BILL_ONCALL_COAL_INDIA_API, BILL_ONCALL_EXTRA_API, BILL_RELIANCE_API, OWNER_API, PARTY_HEAD_API} from '../../../../shared/services/api.url-helper';
+import {BILL_CNN_API, BILL_ONCALL_COAL_INDIA_API, BILL_ONCALL_EXTRA_API, BILL_RELIANCE_API, EXTRA_API, OWNER_API, PARTY_HEAD_API} from '../../../../shared/services/api.url-helper';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { ROUTE_OWNER, ROUTE_VIEW_BILL_CNN, ROUTE_VIEW_BILL_COAL_INDIA, ROUTE_VIEW_BILL_ONCALL_EXTRA, ROUTE_VIEW_BILL_RELIANCE_MIS } from 'src/shared/constants/constant';
@@ -19,7 +19,8 @@ export interface inewbill {
   nightend: string,
   gsttype: string,
   parkinggst: string,
-  format: string
+  format: string,
+  reportto: string
 }
 
 export class newbill implements inewbill{
@@ -31,6 +32,7 @@ export class newbill implements inewbill{
   gsttype: string;
   parkinggst: string;
   format: string;
+  reportto: string;
 }
 @Component({
   selector: 'app-newbill',
@@ -48,6 +50,7 @@ export class NewBillComponent implements OnInit {
   partynames: any;
   reportnames: any;
   allreports: any;
+  loading: boolean;
   constructor(private router: Router, private apiService: ApiService, private toastr: ToastrService) {
     this.billDetails = new newbill();
     debugger;
@@ -94,6 +97,37 @@ export class NewBillComponent implements OnInit {
   public _filterReport(value: string): string[] {
     const filterValue = value.toLowerCase();
     return this.reportnames.filter(client => client.toLowerCase().includes(filterValue));
+  }
+  somethingChanged(){
+    if(this.billDetails.format === '3')
+    {
+      if(!this.billDetails.party){
+        this.toastr.info("Please select a party for report to filter");
+      }
+      if(!this.billDetails.from){
+        this.toastr.info("Please select a from date for report to filter");
+      }
+      if(!this.billDetails.to){
+        this.toastr.info("Please select a to date for report to filter");
+      }
+      if(this.billDetails.party && this.billDetails.from && this.billDetails.to){
+        debugger;
+        var json = 
+        {
+          "mode":1,
+          "party": this.billDetails.party,
+          "start": this.billDetails.from,
+          "end": this.billDetails.to
+        } 
+        this.loading = true;
+        this.apiService.post(EXTRA_API, json).then((res: any)=>{ 
+          debugger;
+          this.loading = false;
+          this.reportnames = res.result.map(x=>x.user);
+          this.reportlist = this.reportselect.valueChanges.pipe(startWith(''),map(value => this._filterReport(value)));
+        });
+      }
+    }
   }
   generateBill(){
     debugger;

@@ -1,4 +1,9 @@
-    <div class="container">
+<div class="loading-screen-wrapper" *ngIf="loading">
+  <div class="loading-screen-icon">
+    Loading...
+  </div>
+</div>
+   <div class="container">
         <form ngNativeValidate (submit)="generateBill()">
             <div class="row">
               <div class="col-sm-12">
@@ -19,24 +24,12 @@
                 </mat-select>
               </div>
             </div>
-            <div class="row" *ngIf="billDetails.format === '3'">
-              <div class="col-sm-12">
-                <mat-form-field style="width: 80%; margin-right: 20px;">
-                  <mat-label>Report To</mat-label>
-                  <input name="party" [formControl]="reportselect" [matAutocomplete]="autoreport" matInput placeholder="Enter the party name here" [(ngModel)]="billDetails.party">
-                  <mat-autocomplete #autoreport="matAutocomplete">
-                    <mat-option *ngFor="let option of reportlist | async" [value]="option" >
-                      {{option}}
-                    </mat-option>
-                  </mat-autocomplete>
-                </mat-form-field>
-              </div>
-            </div>
+            
             <div class="row">
                 <div class="col-sm-12">
                     <mat-form-field style="width: 80%; margin-right: 20px;">
                         <mat-label>Party Name</mat-label>
-                        <input name="party" [formControl]="partyselect" [matAutocomplete]="auto" matInput placeholder="Enter the party name here" [(ngModel)]="billDetails.party">
+                        <input name="party" (blur)="somethingChanged()" [formControl]="partyselect" [matAutocomplete]="auto" matInput placeholder="Enter the party name here" [(ngModel)]="billDetails.party">
                         <mat-autocomplete #auto="matAutocomplete">
                           <mat-option *ngFor="let option of partylist | async" [value]="option" >
                             {{option}}
@@ -50,13 +43,26 @@
             <div class="row">
                 <div class="col-sm-6">
                     <label>Bill Date From</label>
-                    <input name="billfrom" type="date" class="form-control" placeholder="Enter Contact Number" [(ngModel)]="billDetails.from">
+                    <input name="billfrom" (blur)="somethingChanged()" type="date" class="form-control" placeholder="Enter Contact Number" [(ngModel)]="billDetails.from">
                 </div>
 
                 <div class="col-sm-6">
                     <label>Bill Date To</label>
-                    <input name="billto" type="date" class="form-control"[(ngModel)]="billDetails.to">
+                    <input name="billto" (blur)="somethingChanged()" type="date" class="form-control"[(ngModel)]="billDetails.to">
                 </div>
+            </div>
+            <div class="row" *ngIf="billDetails.format === '3'">
+              <div class="col-sm-12">
+                <mat-form-field style="width: 80%; margin-right: 20px;">
+                  <mat-label>Report To</mat-label>
+                  <input name="report" [formControl]="reportselect" [matAutocomplete]="autoreport" matInput placeholder="Enter the report to name here" [(ngModel)]="billDetails.reportto">
+                  <mat-autocomplete #autoreport="matAutocomplete">
+                    <mat-option *ngFor="let option of reportlist | async" [value]="option" >
+                      {{option}}
+                    </mat-option>
+                  </mat-autocomplete>
+                </mat-form-field>
+              </div>
             </div>
             <div class="row" *ngIf="billDetails.format !== '2'">
                 <div class="col-sm-6">

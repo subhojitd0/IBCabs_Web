@@ -48,6 +48,7 @@ export interface EditRentalDetail {
   nightcharge:string;
   options: string;
   status: string;
+  slipo: string;
 }
 
 export interface RentalDetail {
@@ -86,7 +87,7 @@ export class EditRentalDetailComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   displayedColumns: string[] = ['dutydt', 'party', 'carno', 'statusval', 'options'];
-  bulkdisplayedColumns: string[] = ['isselected','dutydate', 'partyname', 'reportto', 'driver', 'carnumber', 'cartype', 'goutkm', 'ginkm', 'gouttime', 'gintime', 'parking', 'outstation', 'night'];
+  bulkdisplayedColumns: string[] = ['isselected','dutydate', 'partyname', 'reportto', 'driver', 'carnumber', 'cartype', 'goutkm', 'ginkm', 'gouttime', 'gintime', 'parking', 'outstation', 'night', 'slip'];
   dataSource: MatTableDataSource<RentalDetail>;
   bulkDataSource: MatTableDataSource<EditRentalDetail>;
   filteredOptionsCar: Observable<any[]>;
