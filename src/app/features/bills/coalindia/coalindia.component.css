@@ -126,7 +126,7 @@ td, th { border: 1px solid; padding: 5px }
 .mat-column-sl{
 word-wrap: break-word !important;
 white-space: unset !important;
-flex: 0 0 8% !important;
+flex: 0 0 6% !important;
 width: 8% !important;
 overflow-wrap: break-word;
 word-wrap: break-word;
@@ -142,7 +142,7 @@ hyphens: auto;
 .mat-column-dutydate{
     word-wrap: break-word !important;
     white-space: unset !important;
-    flex: 0 0 15% !important;
+    flex: 0 0 11% !important;
     width: 8% !important;
     overflow-wrap: break-word;
     word-wrap: break-word;
@@ -173,7 +173,7 @@ hyphens: auto;
     .mat-column-carno{
         word-wrap: break-word !important;
         white-space: unset !important;
-        flex: 0 0 15% !important;
+        flex: 0 0 11% !important;
         width: 8% !important;
         overflow-wrap: break-word;
         word-wrap: break-word;
@@ -188,7 +188,7 @@ hyphens: auto;
         .mat-column-outstation{
             word-wrap: break-word !important;
             white-space: unset !important;
-            flex: 0 0 10% !important;
+            flex: 0 0 11% !important;
             width: 8% !important;
             overflow-wrap: break-word;
             word-wrap: break-word;
@@ -203,7 +203,7 @@ hyphens: auto;
         .mat-column-cartype{
             word-wrap: break-word !important;
             white-space: unset !important;
-            flex: 0 0 10% !important;
+            flex: 0 0 8% !important;
             width: 8% !important;
             overflow-wrap: break-word;
             word-wrap: break-word;

@@ -53,6 +53,7 @@ import { CoalIndiaComponent } from './features/bills/coalindia/coalindia.compone
 import { RelianceMISComponent } from './features/bills/reliance/mis/mis.component';
 import { RelianceJMSComponent } from './features/bills/reliance/jms/jms.component';
 import { RelinceSummaryComponent } from './features/bills/reliance/summary/summary.component';
+import { CoalIndiaModalComponent } from './features/bills/coalindia/coalindia.modal';
 @NgModule({
   declarations: [
     AppComponent,
@@ -85,7 +86,8 @@ import { RelinceSummaryComponent } from './features/bills/reliance/summary/summa
     CoalIndiaComponent,
     RelianceMISComponent,
     RelianceJMSComponent,
-    RelinceSummaryComponent
+    RelinceSummaryComponent,
+    CoalIndiaModalComponent
   ],
   imports: [
     BrowserModule,

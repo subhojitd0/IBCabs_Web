@@ -46,6 +46,7 @@ export interface iSaveBill {
   billdate: string;
   party: string;
   mode: string;
+  formData: any;
 }
 export class SaveBill implements iSaveBill {
   billnumber: string;
@@ -54,6 +55,7 @@ export class SaveBill implements iSaveBill {
   billdate: string;
   party: string;
   mode: string;
+  formData: any;
 }
 @Component({
   selector: 'app-coalindia',
@@ -62,6 +64,7 @@ export class SaveBill implements iSaveBill {
 })
 export class CoalIndiaComponent implements OnInit {
   billno: any;
+  element: HTMLElement;
   billdate: any;
   billdetails: any;
   amountInWord: any;
@@ -75,7 +78,7 @@ export class CoalIndiaComponent implements OnInit {
   isConfirmVisible: any = true;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  displayedColumns: string[] = ['sl', 'dutydate', 'reportto', 'carno', 'cartype', 'hour', 'km', 'rate', 'amount', 'parking', 'outstation'];
+  displayedColumns: string[] = ['sl', 'slipno', 'dutydate', 'reportto', 'carno', 'cartype', 'hour', 'km', 'rate', 'amount', 'parking', 'outstation'];
   dataSource: MatTableDataSource<BillDet>;
   constructor(private router: Router,private apiService: ApiService, public dialog: MatDialog, private toastr: ToastrService) {
     
@@ -111,7 +114,7 @@ export class CoalIndiaComponent implements OnInit {
     }
     
    }
-   save(){
+   async save(){
      if(!(this.billno && this.billdate)){
       alert("Please enter a proper bill number and bill date to proceed");
      }
@@ -123,19 +126,20 @@ export class CoalIndiaComponent implements OnInit {
       billSave.billto = localStorage.getItem("billto");
       billSave.party = localStorage.getItem("billparty");
       billSave.mode = "1";
-      this.apiService.post(BILL_API, billSave).then((res: any)=>{ 
+      this.downloadPFDServer("printdiv", billSave);
+      /* this.apiService.post(BILL_API, billSave).then((res: any)=>{ 
           debugger;
           if(res.status === "success"){
-          this.exportAsPDF("container");
+          //this.exportAsPDF("container");
           this.isConfirmVisible = false;
           this.toastr.success("Your bill was successfully created",'Success');
           
         }
-      });
+      }); */
      }
    }
-   exportAsPDF(div_id)
-  {
+   downloadPFDServer(div_id, billData: SaveBill){
+    var fd = new FormData(); 
     let data = document.getElementById(div_id);  
     html2canvas(data).then(canvas => {
       var margin = 0;
@@ -157,10 +161,55 @@ export class CoalIndiaComponent implements OnInit {
         doc.addImage(canvas, 'PNG', positionx, positiony, imgWidth, imgHeight);
         heightLeft -= pageHeight;
       }
-      doc.save( 'file.pdf');
-      if(this.billno){
+      doc.save('file.pdf');
+      this.element = document.getElementById('printdiv') as HTMLElement;
+      var htmlD = this.element.innerHTML;
+      (async () => {
+        billData.formData = htmlD;
+        console.log(billData);
+        this.apiService.post(BILL_API, billData).then((res: any)=>{ 
+          debugger;
+          if(res.status === "success"){
+          this.isConfirmVisible = false;
+          this.toastr.success("Your bill was successfully created",'Success');
+          this.router.navigateByUrl('/' + ROUTE_GENERATE_BILL);
+        }
+      });
+      })();
+      
+      /* if(this.billno){
         this.router.navigateByUrl('/' + ROUTE_GENERATE_BILL);
+      } */
+    }); 
+  }
+   exportAsPDF(div_id)
+  {
+    var fd = new FormData(); 
+    let data = document.getElementById(div_id);  
+    html2canvas(data).then(canvas => {
+      var margin = 0;
+      var imgWidth = 180 - 2*margin; 
+      var pageHeight = 300 + 2*margin;  
+      var imgHeight = canvas.height * imgWidth / canvas.width;
+      var heightLeft = imgHeight;
+
+      var doc = new jspdf('p', 'mm');
+      var positiony = 10;
+      var positionx = 10;
+
+      doc.addImage(canvas, 'PNG', positionx, positiony, imgWidth, imgHeight);
+      heightLeft -= pageHeight;
+
+      while (heightLeft >= 0) {
+        positiony = heightLeft - imgHeight;
+        doc.addPage();
+        doc.addImage(canvas, 'PNG', positionx, positiony, imgWidth, imgHeight);
+        heightLeft -= pageHeight;
       }
+      doc.save('file.pdf');
+      /* if(this.billno){
+        this.router.navigateByUrl('/' + ROUTE_GENERATE_BILL);
+      } */
     }); 
   }
 }

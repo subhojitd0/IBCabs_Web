@@ -52,7 +52,7 @@
                 <ng-container matColumnDef="option">
                     <mat-header-cell *matHeaderCellDef mat-sort-header> Options </mat-header-cell>
                     <mat-cell *matCellDef="let row" [style.color]="row.option">
-                        <span style="margin-left: 10px; margin-right: 10px; cursor: pointer;" class="material-icons" (click)="downloadBill(row.billid)">
+                        <span style="margin-left: 10px; margin-right: 10px; cursor: pointer;" class="material-icons" (click)="downloadBill(row.path)">
                             download
                         </span> |
                         <span style="margin-left: 10px; margin-right: 10px; cursor: pointer;" class="material-icons" (click)="deleteBill(row.billid)">
@@ -67,5 +67,9 @@
               </mat-table>
             <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
 
-
+            <div *ngFor="let option of billRegDetails" style="display: none;">
+              <div [innerHTML]="option.path" id="{{ option.billid }}">
+              </div>
+            </div>
         </div>
+        

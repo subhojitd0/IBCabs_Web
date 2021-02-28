@@ -10,6 +10,9 @@ import { Router } from '@angular/router';
 import { ROUTE_CAR, ROUTE_OWNER } from 'src/shared/constants/constant';
 import { NewBillComponent } from './NewBill/newbill.component';
 import { AdvancedBillComponent } from './AdvancedBill/advancedbill.component';
+import html2canvas from 'html2canvas';
+import jspdf from 'jspdf';
+import { CoalIndiaModalComponent } from '../bills/coalindia/coalindia.modal';
 
 export interface BillRegister {
   billid: string;
@@ -28,7 +31,7 @@ export interface BillRegister {
   styleUrls: ['./generate-bill.component.css']
 })
 export class GenarateBillComponent implements OnInit {
-
+billRegDetails: any[] = [];
   isPack:boolean=true;
   isSlab:boolean=false;
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -47,6 +50,7 @@ export class GenarateBillComponent implements OnInit {
     this.apiService.post(BILL_API, json).then((res: any)=>{ 
       debugger;
       const billReg: BillRegister[] = res.result;
+      this.billRegDetails = res.result;
       this.dataSource = new MatTableDataSource(billReg);
     });
    }
@@ -55,8 +59,16 @@ export class GenarateBillComponent implements OnInit {
     filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
     this.dataSource.filter = filterValue;
   }
-  downloadBill(billid: any){
+  downloadBill(billPath: any){
+    localStorage.setItem("billmodalbody", billPath);
+    const dialogRef = this.dialog.open(CoalIndiaModalComponent);
 
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog closed`);
+    });
+    this.router.events.subscribe(() => {
+      dialogRef.close();
+    });
   }
   deleteBill(billid: any){
     
