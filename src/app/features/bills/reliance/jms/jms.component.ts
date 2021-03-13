@@ -75,7 +75,7 @@ export class RelianceJMSComponent implements OnInit {
   isConfirmVisible: any = true;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  displayedColumns: string[] = ['sl', 'dutydate', 'reportto', 'carno', 'cartype', 'hour', 'km', 'rate', 'amount', 'parking', 'outstation'];
+  displayedColumns: string[] = ['sl', 'city', 'username', 'carno', 'sitetype', 'costcentre', 'realestate', 'pkgqty', 'pkgamount', 'kmqty', 'kmamount', 'hrqty', 'hramount', 'night', 'outstation', 'parking'];
   dataSource: MatTableDataSource<BillDet>;
   constructor(private router: Router,private apiService: ApiService, public dialog: MatDialog, private toastr: ToastrService) {
     
@@ -137,14 +137,14 @@ export class RelianceJMSComponent implements OnInit {
    exportAsPDF(div_id)
   {
     let data = document.getElementById(div_id);  
-    html2canvas(data).then(canvas => {
+    html2canvas(data, {scrollX: -window.scrollX}).then(canvas => {
       var margin = 0;
-      var imgWidth = 180 - 2*margin; 
+      var imgWidth = 120 - 2*margin; 
       var pageHeight = 300 + 2*margin;  
-      var imgHeight = canvas.height * imgWidth / canvas.width;
+      var imgHeight = canvas.height * 300 / canvas.width;
       var heightLeft = imgHeight;
 
-      var doc = new jspdf('p', 'mm');
+      var doc = new jspdf('l', 'mm','a4');
       var positiony = 10;
       var positionx = 10;
 
