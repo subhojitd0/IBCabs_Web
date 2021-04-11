@@ -53,6 +53,7 @@ export class AddOwnerComponent implements OnInit {
           location.reload();
         }
         else{
+          debugger;
           this.ownerDetails = res;
           this.ownerDetails.mode = 2;
         }
@@ -66,6 +67,9 @@ export class AddOwnerComponent implements OnInit {
     
    }
   saveowner(){
+    if(this.ownerDetails.pan){
+
+   
     if(this.ownerDetails.mode != 2)
     {
       this.ownerDetails.mode = 1;
@@ -76,6 +80,10 @@ export class AddOwnerComponent implements OnInit {
       this.toastr.success("Your data was successfully saved",'Success');
       location.reload();
     });
+  }
+  else{
+    this.toastr.error("Please enter a pan number");
+  }
   }
 
 }

@@ -37,10 +37,13 @@
                     <mat-cell *matCellDef="let row" [style.color]="row.option">
                         <span style="margin-left: 10px; margin-right: 10px; cursor: pointer;" class="material-icons" (click)="openDialog(row.headcode)">
                             create
-                        </span> |
-                        <span style="margin-left: 10px; margin-right: 10px; cursor: pointer;" class="material-icons" (click)="deleteParty(row.headcode)">
-                            delete
-                        </span>    
+                        </span> 
+                        <span *ngIf="userRole === '1'" style="margin-left: 10px; margin-right: 10px; cursor: pointer;" class="material-icons" (click)="deleteParty(row.headcode)">
+                          | &nbsp; delete
+                        </span> 
+                      <!--   |<span *ngIf="userRole === '1'" style="margin-left: 10px; margin-right: 10px; cursor: pointer;" class="material-icons" (click)="approveParty(row.headcode)">
+                          done
+                      </span>   -->  
                     </mat-cell>
                   </ng-container>
             

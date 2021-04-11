@@ -35,14 +35,17 @@
                 <ng-container matColumnDef="option">
                     <mat-header-cell *matHeaderCellDef mat-sort-header> Options </mat-header-cell>
                     <mat-cell *matCellDef="let row" [style.color]="row.option">
-                        <span style="margin-left: 10px; margin-right: 10px; cursor: pointer;" class="material-icons" (click)="openCar(row.ownercode)">
+                        <span *ngIf="(userRole === '2' && row.isApproved === '1') || userRole === '1'" style="margin-left: 10px; margin-right: 10px; cursor: pointer;" class="material-icons" (click)="openCar(row.ownercode)">
                             commute
-                        </span> |
-                        <span style="margin-left: 10px; margin-right: 10px; cursor: pointer;" class="material-icons" (click)="openDialog(row.ownercode)">
-                            edit
-                        </span> |
-                        <span style="margin-left: 10px; margin-right: 10px; cursor: pointer;" class="material-icons" (click)="deleteOwner(row.ownercode)">
-                            delete
+                        </span>
+                        <span  *ngIf="(userRole === '2' && row.isApproved === '1') || userRole === '1'" style="margin-left: 10px; margin-right: 10px; cursor: pointer;" class="material-icons" (click)="openDialog(row.ownercode)">
+                          | &nbsp;   edit
+                        </span>
+                        <span *ngIf="userRole === '1'" style="margin-left: 10px; margin-right: 10px; cursor: pointer;" class="material-icons" (click)="deleteOwner(row.ownercode)">
+                          | &nbsp; delete
+                        </span>
+                        <span *ngIf="userRole === '1' && row.isApproved === '0'" style="margin-left: 10px; margin-right: 10px; cursor: pointer;" class="material-icons" (click)="approveOwner(row.ownercode)">
+                          | &nbsp; done
                         </span>    
                     </mat-cell>
                   </ng-container>

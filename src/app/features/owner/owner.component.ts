@@ -15,6 +15,7 @@ export interface Owner {
   ownername: number;
   assignedcar: string;
   option: string;
+  isApproved: string;
 }
 
 @Component({
@@ -30,17 +31,22 @@ export class OwnerComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
   displayedColumns: string[] = ['ownercode', 'ownername', 'assignedcar', 'option'];
   dataSource: MatTableDataSource<Owner>;
+  userRole: string;
   constructor(private router: Router,private apiService: ApiService, public dialog: MatDialog, private toastr: ToastrService) {
     
    }
    ngOnInit() : void {
+    this.userRole = sessionStorage.getItem("userrole");
     var json = 
     {
       "mode": 0
     };
     this.apiService.post(OWNER_API, json).then((res: any)=>{ 
       debugger;
-      const owner: Owner[] = res.result;
+      let owner: Owner[] = res.result;
+      /* if(this.userRole === '2'){
+        owner = owner.filter(x=>x.isApproved === '1');
+      } */
       this.dataSource = new MatTableDataSource(owner);
     });
    }
@@ -64,6 +70,22 @@ export class OwnerComponent implements OnInit {
     this.router.events.subscribe(() => {
       dialogRef.close();
     });
+  }
+  approveOwner(id: any){
+    var r = confirm("Are you sure that you want to approve this owner ?");
+    if (r == true) {
+      debugger;
+      var json = 
+      {
+        "mode":5,
+        "ownercode": id,
+        "isApproved": 1
+      }
+      this.apiService.post(OWNER_API, json).then((res: any)=>{ 
+        this.toastr.success("Your data was successfully approved",'Success');
+        location.reload();
+      });
+    }
   }
   deleteOwner(id: any){
     var r = confirm("Are you sure that you want to delete this record ?");

@@ -137,6 +137,8 @@ export class AddPartyHeadComponent implements OnInit {
     this.router.navigateByUrl('/' + ROUTE_RATE);
    }
   savepartyhead(){
+    if(this.partyheaddetails.pan){
+
     debugger;
     if(this.partyheaddetails.mode != 2)
     {
@@ -155,6 +157,10 @@ export class AddPartyHeadComponent implements OnInit {
       this.toastr.success("Youe data was successfully saved",'Success');
       location.reload();
     });
+  }
+  else{
+    this.toastr.error("Please enter a pan number");
+  }
   }
   selectPack(){
     this.isPack=true

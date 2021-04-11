@@ -75,12 +75,15 @@
 
 
 
-
 <mat-menu #dropdownMenu x-position="before">
 	<a mat-menu-item href="" (click)="onLogout()">
 	  <mat-icon>exit_to_app</mat-icon>
 	  <span>Logout</span>
 	</a>
+	<a *ngIf="userrole === '1'" mat-menu-item (click)="createuser()">
+		<mat-icon>perm_identity</mat-icon>
+		<span>Create New User</span>
+	  </a>
 	<a mat-menu-item href="" routerLink="/">
 	  <mat-icon>info_outline</mat-icon>
 	  <span>About</span>

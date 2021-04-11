@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ROUTE_ADD_DDR, ROUTE_ADD_DDR_WALKIN, ROUTE_BASIC, ROUTE_CAR, ROUTE_DASHBOARD, ROUTE_DRIVER, ROUTE_GENERATE_BILL, ROUTE_OWNER, ROUTE_PARTY, ROUTE_RATE, ROUTE_REPORTO, ROUTE_VIEW_BILL_CNN, ROUTE_VIEW_BILL_CNN_CONTRACT, ROUTE_VIEW_BILL_COAL_INDIA, ROUTE_VIEW_BILL_ONCALL_EXTRA, ROUTE_VIEW_BILL_RELIANCE_JMS, ROUTE_VIEW_BILL_RELIANCE_MIS, ROUTE_VIEW_BILL_RELIANCE_SUMMARY, ROUTE_VIEW_DDR } from 'src/shared/constants/constant';
+import { ROUTE_ADD_DDR, ROUTE_ADD_DDR_WALKIN, ROUTE_BASIC, ROUTE_CAR, ROUTE_DASHBOARD, ROUTE_DRIVER, ROUTE_GENERATE_BILL, ROUTE_NEW_USER, ROUTE_OWNER, ROUTE_PARTY, ROUTE_RATE, ROUTE_REPORTO, ROUTE_VIEW_BILL_CNN, ROUTE_VIEW_BILL_CNN_CONTRACT, ROUTE_VIEW_BILL_COAL_INDIA, ROUTE_VIEW_BILL_ONCALL_EXTRA, ROUTE_VIEW_BILL_RELIANCE_JMS, ROUTE_VIEW_BILL_RELIANCE_MIS, ROUTE_VIEW_BILL_RELIANCE_SUMMARY, ROUTE_VIEW_DDR } from 'src/shared/constants/constant';
 import { CoalIndiaComponent } from './features/bills/coalindia/coalindia.component';
 import { MonthlyBillAComponent } from './features/bills/monthly-bill-a/monthly-a.component';
 import { MonthlyContractAComponent } from './features/bills/mothly-contract-a/monthly-contract-a.component';
@@ -9,6 +9,7 @@ import { RelianceJMSComponent } from './features/bills/reliance/jms/jms.componen
 import { RelianceMISComponent } from './features/bills/reliance/mis/mis.component';
 import { RelinceSummaryComponent } from './features/bills/reliance/summary/summary.component';
 import { CarComponent } from './features/car/car.component';
+import { UserComponent } from './features/create-user/user.component';
 import { DashboardComponent } from './features/dashboard/dashboard.component';
 import { DriverComponent } from './features/driver/driver.component';
 import { EditRentalDetailComponent } from './features/edit-rental-detail/edit-rental-detail.component';
@@ -97,6 +98,10 @@ const routes: Routes = [
   {
     path: ROUTE_VIEW_BILL_RELIANCE_SUMMARY,
     component:RelinceSummaryComponent
+  },
+  {
+    path: ROUTE_NEW_USER,
+    component:UserComponent
   }
   
 ];

@@ -14,7 +14,7 @@
                     
                     <mat-form-field appearance="outline" class="full" >
                         <mat-label>Master Company</mat-label>
-                        <input type="text" name="master" placeholder="Master Company Name" matInput [(ngModel)]="partyheaddetails.master"
+                        <input type="text" name="master_party" placeholder="Master Company Name" matInput [(ngModel)]="partyheaddetails.master"
                         [matAutocomplete]="auto">
                         <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
                         <mat-hint>Enter the Group Name</mat-hint>
@@ -64,7 +64,7 @@
                 </div>
                 <div class="col-sm-3">
                     <label>PAN</label>
-                    <input name="pan" type="text" class="form-control" placeholder="Enter PAN number" [(ngModel)]="partyheaddetails.pan">
+                    <input name="pan" required type="text" class="form-control" placeholder="Enter PAN number" [(ngModel)]="partyheaddetails.pan">
 
                 </div>
             </div>
@@ -176,11 +176,11 @@
                 <div class="col-sm-3">
                     
                         <label for = "amount">Amount per extra Hour</label>
-                        <input name="amountextraHr" type = "number" class = "form-control" id = "amount" placeholder = "Amount per extra hour" [(ngModel)]="partyheaddetails.extrahour">
+                        <input name="amountextraHr" type = "number"  step="0.01" class = "form-control" id = "amount" placeholder = "Amount per extra hour" [(ngModel)]="partyheaddetails.extrahour">
                 </div>
                 <div class="col-sm-3">
                         <label for = "name">Amount per extra KM</label>
-                        <input name="amountextrKM" type = "number" class = "form-control" id = "duration" placeholder = "Amount per extra km" [(ngModel)]="partyheaddetails.extrakm">
+                        <input name="amountextrKM" type = "number" step="0.01" class = "form-control" id = "duration" placeholder = "Amount per extra km" [(ngModel)]="partyheaddetails.extrakm">
                 </div>
             </div>
             <div class="row">
