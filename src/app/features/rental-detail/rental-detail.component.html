@@ -110,7 +110,7 @@
       <div>
         <!-- <button class="btn-first" style="margin-right: 20px;" mat-button (click)="savedata(stepper, '1')">Save Duty & Continue</button> -->
         <button class="btn-second" style="margin-right: 20px;" mat-button (click)="savedatacreate(stepper, '1')">Save Duty & Create New</button>
-        <button class="btn-first" style="margin-right: 20px;" mat-button (click)="viewallduties()">View All Duties</button>
+        <!-- <button class="btn-first" style="margin-right: 20px;" mat-button (click)="viewallduties()">View All Duties</button> -->
         <!-- <button class="btn-first" style="margin-right: 20px;" mat-button matStepperNext>Next</button> -->
       </div>
       <div>
@@ -120,8 +120,8 @@
   </mat-step>
   <mat-step [stepControl]="secondFormGroup" label="Assign Car & Driver">
     <form [formGroup]="secondFormGroup">
-
-      <mat-form-field style="width: 40%; margin-right: 40px;">
+      <ng-template matStepLabel>Fill out the driver details</ng-template>
+      <mat-form-field style="width: 20%; margin-right: 20px;">
         <mat-label>Select Driver</mat-label>
         <input [(ngModel)]="rentalAdd.driver" [matAutocomplete]="autodriver" matInput placeholder="Select Driver" formControlName="DriverControl" required>
         <mat-autocomplete #autodriver="matAutocomplete" (optionSelected)="changedriver()">
@@ -130,13 +130,7 @@
           </mat-option>
         </mat-autocomplete>
       </mat-form-field>
-      <mat-form-field style="width: 40%; margin-right: 40px;">
-        <mat-label>Driver Contact</mat-label>
-        <input [(ngModel)]="rentalAdd.drivernum" matInput placeholder="Enter Driver Contact Number" formControlName="DriverContactControl" required>
-      </mat-form-field>
-      <br/>
-
-      <mat-form-field style="width: 40%; margin-right: 40px;">
+      <mat-form-field style="width: 20%; margin-right: 40px;">
         <mat-label>Select Car Type</mat-label>
         <input [(ngModel)]="rentalAdd.cartype" [matAutocomplete]="autocartypesingle" matInput placeholder="Enter Car Type" formControlName="CarTypeControl" required>
         <mat-autocomplete #autocartypesingle="matAutocomplete">
@@ -145,7 +139,7 @@
           </mat-option>
         </mat-autocomplete>
       </mat-form-field>
-      <mat-form-field style="width: 40%; margin-right: 40px;">
+      <mat-form-field style="width: 20%; margin-right: 40px;">
         <mat-label>Select Car Number</mat-label>
         <input [(ngModel)]="rentalAdd.carnum" [matAutocomplete]="autocar" matInput placeholder="Enter Car Number" formControlName="CarNumberControl" required>
         <mat-autocomplete #autocar="matAutocomplete" (optionSelected)="changecar()">
@@ -153,7 +147,16 @@
             {{option}}
           </mat-option>
         </mat-autocomplete>
+      </mat-form-field> 
+      <button class="btn-second" style="margin-right: 20px;" mat-button (click)="savedatacreate(stepper, '2')">Save Duty & Create New</button>
+      <br/>
+      <mat-form-field style="width: 40%; margin-right: 40px;">
+        <mat-label>Driver Contact</mat-label>
+        <input [(ngModel)]="rentalAdd.drivernum" matInput placeholder="Enter Driver Contact Number" formControlName="DriverContactControl" required>
       </mat-form-field>
+      <br/>
+
+      
       <br/> <br/>
 
 
@@ -162,9 +165,9 @@
       
 
       <div>
-        <button class="btn-first" style="margin-right: 20px;" mat-button (click)="savedata(stepper, '2')">Save Duty & Continue</button> <br><br>
-        <button class="btn-second" style="margin-right: 20px;" mat-button (click)="savedatacreate(stepper, '2')">Save Duty & Create New</button>
-        <button class="btn-first" style="margin-right: 20px;" mat-button (click)="viewallduties()">View All Duties</button>
+        <button class="btn-first" style="margin-right: 20px;" mat-button (click)="savedata(stepper, '2')">Save Duty & Continue</button> 
+        <button class="btn-first" style="margin-right: 20px;" mat-button (click)="savedata(stepper, '0')">Save Duty</button> <br><br>
+        <!-- <button class="btn-first" style="margin-right: 20px;" mat-button (click)="viewallduties()">View All Duties</button> -->
       </div>
     </form>
   </mat-step>
@@ -211,7 +214,7 @@
     <div>
       <button class="btn-first" style="margin-right: 20px;" mat-button (click)="savedataandexit(stepper, '3')">Save Duty</button>
       <button class="btn-second" style="margin-right: 20px;" mat-button (click)="savedatacreate(stepper, '3')">Save Duty & Create New</button>
-      <button class="btn-first" style="margin-right: 20px;" mat-button (click)="viewallduties()">View All Duties</button>
+      <!-- <button class="btn-first" style="margin-right: 20px;" mat-button (click)="viewallduties()">View All Duties</button> -->
     </div>
   </mat-step>
 </mat-horizontal-stepper>
