@@ -10,17 +10,17 @@
     <form [formGroup]="firstFormGroup">
       <ng-template matStepLabel>Fill out the duty details</ng-template>
 
-      <mat-form-field style="width: 15%; margin-right: 20px;">
+      <mat-form-field style="width: 10%; margin-right: 10px;">
         <mat-label>Duty Date</mat-label>
         <input matInput type="date" formControlName="DutyControl" [(ngModel)]="rentalAdd.dutydate" required>
       </mat-form-field> 
-      <mat-form-field style="width: 15%; margin-right: 20px;">
+      <mat-form-field style="width: 5%; margin-right: 10px;">
         <mat-label>Duty Time</mat-label>
         <input matInput type="time" formControlName="DutyTimeControl" [(ngModel)]="rentalAdd.dutytime" required>
       </mat-form-field> 
 
 
-      <mat-form-field style="width: 20%; margin-right: 20px;">
+      <mat-form-field style="width: 15%; margin-right: 10px;">
         <mat-label>Party Name</mat-label>
         <input [matAutocomplete]="auto" matInput placeholder="Enter the party name here" [(ngModel)]="rentalAdd.party" formControlName="PartyControl" required>
         <mat-autocomplete #auto="matAutocomplete" (optionSelected)="changeparty()">
@@ -30,8 +30,8 @@
         </mat-autocomplete>
       </mat-form-field> 
 
-      <mat-form-field style="width: 15%; margin-right: 20px;">
-        <mat-label>Select Dispatch Centre</mat-label>
+      <mat-form-field style="width: 10%; margin-right: 10px;">
+        <mat-label>Dispatch Centre</mat-label>
         <input  [matAutocomplete]="autoCenter" matInput placeholder="Enter Report To Contact Number"  [(ngModel)]="rentalAdd.centerName" formControlName="DispatchControl" required>
         <mat-autocomplete #autoCenter="matAutocomplete">
           <mat-option value="Park Circus">
@@ -43,7 +43,22 @@
         </mat-autocomplete>
       </mat-form-field>
 
-      <button class="btn-second" mat-button (click)="savedatacreate(stepper, '1')">Save Duty & Create New</button>
+      <mat-form-field style="width: 15%; margin-right: 10px;">
+        <mat-label>Report Name</mat-label>
+        <input matInput placeholder="Enter the report to name here" [matAutocomplete]="autoreport" [(ngModel)]="rentalAdd.reporttoname" formControlName="ReportControl">
+        <mat-autocomplete #autoreport="matAutocomplete">
+          <mat-option *ngFor="let option of filteredOptionsReport | async" [value]="option" >
+            {{option}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field> 
+      <mat-form-field style="width: 10%; margin-right: 10px;">
+        <mat-label>Report Contact</mat-label>
+        <input matInput type="number" placeholder="Enter the report to contact no. here" [(ngModel)]="rentalAdd.reporttonum" formControlName="ReportContactControl">
+      </mat-form-field>  
+      
+      <button class="btn-first"  mat-button (click)="savedata(stepper, '1')">Save Duty & Continue</button>
+      <!-- <button class="btn-second" mat-button (click)="savedatacreate(stepper, '1')">Save & Create New</button> -->
       <br/> 
 
        
@@ -58,20 +73,7 @@
       </mat-form-field>  
       <br/> 
 
-      <mat-form-field style="width: 40%; margin-right: 40px;">
-        <mat-label>Report To Name</mat-label>
-        <input matInput placeholder="Enter the report to name here" [matAutocomplete]="autoreport" [(ngModel)]="rentalAdd.reporttoname" formControlName="ReportControl">
-        <mat-autocomplete #autoreport="matAutocomplete">
-          <mat-option *ngFor="let option of filteredOptionsReport | async" [value]="option" >
-            {{option}}
-          </mat-option>
-        </mat-autocomplete>
-      </mat-form-field> 
-      <mat-form-field style="width: 40%; margin-right: 40px;">
-        <mat-label>Report To Contact Number</mat-label>
-        <input matInput type="number" placeholder="Enter the report to contact no. here" [(ngModel)]="rentalAdd.reporttonum" formControlName="ReportContactControl">
-      </mat-form-field>  
-      <br/> 
+     
 
       <mat-form-field style="width: 40%; margin-right: 40px;">
         <mat-label>Garage Buffer Km</mat-label>
@@ -106,8 +108,8 @@
       <br/>
 
       <div>
-        <button class="btn-first" style="margin-right: 20px;" mat-button (click)="savedata(stepper, '1')">Save Duty & Continue</button>
-        <!-- <button class="btn-second" style="margin-right: 20px;" mat-button (click)="savedatacreate(stepper, '1')">Save Duty & Create New</button> -->
+        <!-- <button class="btn-first" style="margin-right: 20px;" mat-button (click)="savedata(stepper, '1')">Save Duty & Continue</button> -->
+        <button class="btn-second" style="margin-right: 20px;" mat-button (click)="savedatacreate(stepper, '1')">Save Duty & Create New</button>
         <button class="btn-first" style="margin-right: 20px;" mat-button (click)="viewallduties()">View All Duties</button>
         <!-- <button class="btn-first" style="margin-right: 20px;" mat-button matStepperNext>Next</button> -->
       </div>
@@ -118,6 +120,21 @@
   </mat-step>
   <mat-step [stepControl]="secondFormGroup" label="Assign Car & Driver">
     <form [formGroup]="secondFormGroup">
+
+      <mat-form-field style="width: 40%; margin-right: 40px;">
+        <mat-label>Select Driver</mat-label>
+        <input [(ngModel)]="rentalAdd.driver" [matAutocomplete]="autodriver" matInput placeholder="Select Driver" formControlName="DriverControl" required>
+        <mat-autocomplete #autodriver="matAutocomplete" (optionSelected)="changedriver()">
+          <mat-option *ngFor="let option of filteredOptionsDriver | async" [value]="option" >
+            {{option}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+      <mat-form-field style="width: 40%; margin-right: 40px;">
+        <mat-label>Driver Contact</mat-label>
+        <input [(ngModel)]="rentalAdd.drivernum" matInput placeholder="Enter Driver Contact Number" formControlName="DriverContactControl" required>
+      </mat-form-field>
+      <br/>
 
       <mat-form-field style="width: 40%; margin-right: 40px;">
         <mat-label>Select Car Type</mat-label>
@@ -140,25 +157,12 @@
       <br/> <br/>
 
 
-      <mat-form-field style="width: 40%; margin-right: 40px;">
-        <mat-label>Select Driver</mat-label>
-        <input [(ngModel)]="rentalAdd.driver" [matAutocomplete]="autodriver" matInput placeholder="Select Driver" formControlName="DriverControl" required>
-        <mat-autocomplete #autodriver="matAutocomplete" (optionSelected)="changedriver()">
-          <mat-option *ngFor="let option of filteredOptionsDriver | async" [value]="option" >
-            {{option}}
-          </mat-option>
-        </mat-autocomplete>
-      </mat-form-field>
-      <mat-form-field style="width: 40%; margin-right: 40px;">
-        <mat-label>Driver Contact</mat-label>
-        <input [(ngModel)]="rentalAdd.drivernum" matInput placeholder="Enter Driver Contact Number" formControlName="DriverContactControl" required>
-      </mat-form-field>
-      <br/>
+      
 
       
 
       <div>
-        <button class="btn-first" style="margin-right: 20px;" mat-button (click)="savedata(stepper, '2')">Save Duty & Continue</button>
+        <button class="btn-first" style="margin-right: 20px;" mat-button (click)="savedata(stepper, '2')">Save Duty & Continue</button> <br><br>
         <button class="btn-second" style="margin-right: 20px;" mat-button (click)="savedatacreate(stepper, '2')">Save Duty & Create New</button>
         <button class="btn-first" style="margin-right: 20px;" mat-button (click)="viewallduties()">View All Duties</button>
       </div>
