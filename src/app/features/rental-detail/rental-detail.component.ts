@@ -245,6 +245,7 @@ export class RentalDetailComponent implements OnInit {
         }
       this.apiService.post(RENTAL_DETAIL_API_OFFICE, this.rentalAdd).then((res: any)=>{ 
         this.toastr.success("Your data was successfully saved",'Success');
+        localStorage.setItem('selectedduty', "0");
         location.reload();
       });
     }
