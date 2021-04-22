@@ -124,6 +124,7 @@ export class RentalDetailComponent implements OnInit {
     });
   }
   savedataandexit(stepper: MatStepper, step: any){
+    let id = localStorage.getItem('selectedduty');
     if(this.isValid(step)){
     if(this.rentalAdd.goutbeforekm)
       this.rentalAdd.ginbeforekm = this.rentalAdd.goutbeforekm;
@@ -150,6 +151,12 @@ export class RentalDetailComponent implements OnInit {
         ot = res.outstation;
         this.rentalAdd.outstation = (parseInt(this.rentalAdd.outstation) * parseInt(ot)).toString();
         debugger;
+        if(isNaN(parseInt(id))|| parseInt(id) === 0){
+          this.rentalAdd.mode = "1";
+        }
+        else{
+          this.rentalAdd.mode = "2";
+        }
         this.apiService.post(RENTAL_DETAIL_API_OFFICE, this.rentalAdd).then((res: any)=>{ 
           this.toastr.success("Your data was successfully saved",'Success');
           this.router.navigateByUrl('/' + ROUTE_VIEW_DDR);
@@ -158,6 +165,7 @@ export class RentalDetailComponent implements OnInit {
     }
   }
   savedata(stepper: MatStepper, step: any){
+    let id = localStorage.getItem('selectedduty');
     if(this.isValid(step)){
     if(this.rentalAdd.goutbeforekm)
       this.rentalAdd.ginbeforekm = this.rentalAdd.goutbeforekm;
@@ -187,6 +195,12 @@ export class RentalDetailComponent implements OnInit {
         else
         this.rentalAdd.outstation = "0";
         debugger;
+        if(isNaN(parseInt(id))|| parseInt(id) === 0){
+          this.rentalAdd.mode = "1";
+        }
+        else{
+          this.rentalAdd.mode = "2";
+        }
         this.apiService.post(RENTAL_DETAIL_API_OFFICE, this.rentalAdd).then((res: any)=>{ 
           this.toastr.success("Your data was successfully saved",'Success');
           localStorage.setItem('selectedduty', res.dutyid);
@@ -202,6 +216,7 @@ export class RentalDetailComponent implements OnInit {
     }
   }
   savedatacreate(stepper: MatStepper, step: any){
+    let id = localStorage.getItem('selectedduty');
     debugger;
     if(this.isValid(step)){
       this.rentalAdd.ginbeforekm = this.rentalAdd.goutbeforekm;
@@ -217,6 +232,12 @@ export class RentalDetailComponent implements OnInit {
         this.rentalAdd.mode = "1";
       }
       debugger;
+      if(isNaN(parseInt(id)) || parseInt(id) === 0){
+          this.rentalAdd.mode = "1";
+        }
+        else{
+          this.rentalAdd.mode = "2";
+        }
       this.apiService.post(RENTAL_DETAIL_API_OFFICE, this.rentalAdd).then((res: any)=>{ 
         this.toastr.success("Your data was successfully saved",'Success');
         location.reload();
