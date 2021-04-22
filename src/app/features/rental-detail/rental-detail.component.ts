@@ -43,7 +43,8 @@ export interface NewRental {
   parking:string,
   outstationtype:string,
   outstation:string,
-  nightcharge:string
+  nightcharge:string,
+  dutyid: string
 }
 export class RentalAdd implements NewRental {
   mode: string;
@@ -75,6 +76,7 @@ export class RentalAdd implements NewRental {
   outstation:string;
   nightcharge:string;
   dutystatus: string;
+  dutyid: string;
 }
 
 @Component({
@@ -156,6 +158,7 @@ export class RentalDetailComponent implements OnInit {
         }
         else{
           this.rentalAdd.mode = "2";
+          this.rentalAdd.dutyid = id;
         }
         this.apiService.post(RENTAL_DETAIL_API_OFFICE, this.rentalAdd).then((res: any)=>{ 
           this.toastr.success("Your data was successfully saved",'Success');
@@ -200,6 +203,7 @@ export class RentalDetailComponent implements OnInit {
         }
         else{
           this.rentalAdd.mode = "2";
+          this.rentalAdd.dutyid = id;
         }
         this.apiService.post(RENTAL_DETAIL_API_OFFICE, this.rentalAdd).then((res: any)=>{ 
           this.toastr.success("Your data was successfully saved",'Success');
@@ -237,6 +241,7 @@ export class RentalDetailComponent implements OnInit {
         }
         else{
           this.rentalAdd.mode = "2";
+          this.rentalAdd.dutyid = id;
         }
       this.apiService.post(RENTAL_DETAIL_API_OFFICE, this.rentalAdd).then((res: any)=>{ 
         this.toastr.success("Your data was successfully saved",'Success');
