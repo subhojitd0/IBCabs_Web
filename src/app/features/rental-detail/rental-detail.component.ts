@@ -191,7 +191,7 @@ export class RentalDetailComponent implements OnInit {
           this.toastr.success("Your data was successfully saved",'Success');
           localStorage.setItem('selectedduty', res.dutyid);
           //location.reload();
-          if(step === '0'){
+          if(step === 'save'){
 
           }
           else{
@@ -224,6 +224,8 @@ export class RentalDetailComponent implements OnInit {
     }
   }
   isValid(step: any){
+    if(step === "save")
+      return true;
     if(step === "1"){
       return (this.rentalAdd.party && this.rentalAdd.dutydate && this.rentalAdd.dutytime && this.rentalAdd.centerName);
     }
