@@ -45,7 +45,7 @@
 
       <mat-form-field style="width: 15%; margin-right: 10px;">
         <mat-label>Report Name</mat-label>
-        <input matInput placeholder="Enter the report to name here" [matAutocomplete]="autoreport" [(ngModel)]="rentalAdd.reporttoname" formControlName="ReportControl">
+        <input matInput placeholder="Enter the report to name here" [matAutocomplete]="autoreport" [(ngModel)]="rentalAdd.reporttoname" formControlName="ReportControl" required>
         <mat-autocomplete #autoreport="matAutocomplete">
           <mat-option *ngFor="let option of filteredOptionsReport | async" [value]="option" >
             {{option}}
@@ -54,7 +54,7 @@
       </mat-form-field> 
       <mat-form-field style="width: 10%; margin-right: 10px;">
         <mat-label>Report Contact</mat-label>
-        <input matInput type="number" placeholder="Enter the report to contact no. here" [(ngModel)]="rentalAdd.reporttonum" formControlName="ReportContactControl">
+        <input matInput type="number" placeholder="Enter the report to contact no. here" [(ngModel)]="rentalAdd.reporttonum" formControlName="ReportContactControl" required>
       </mat-form-field>  
       
       <button class="btn-first"  mat-button (click)="savedata(stepper, '1')">Save Duty & Continue</button>

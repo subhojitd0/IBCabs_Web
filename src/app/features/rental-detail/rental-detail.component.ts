@@ -254,7 +254,7 @@ export class RentalDetailComponent implements OnInit {
     if(step === "save")
       return true;
     if(step === "1"){
-      return (this.rentalAdd.party && this.rentalAdd.dutydate && this.rentalAdd.dutytime && this.rentalAdd.centerName);
+      return (this.rentalAdd.party && this.rentalAdd.dutydate && this.rentalAdd.dutytime && this.rentalAdd.centerName && this.rentalAdd.reporttoname && this.rentalAdd.reporttonum);
     }
     if(step === "2"){
       return (this.rentalAdd.driver && this.rentalAdd.drivernum && this.rentalAdd.carnum && this.rentalAdd.cartype);
@@ -347,8 +347,8 @@ export class RentalDetailComponent implements OnInit {
       DutyTimeControl: ['', Validators.required],
       BookedByControl: [],
       BookedContactControl: [],
-      ReportControl: [],
-      ReportContactControl: [],
+      ReportControl: ['', Validators.required],
+      ReportContactControl: ['', Validators.required],
       DispatchControl: ['', Validators.required],
       GOUTKMBufferControl: [],
       GOUTTimeBufferControl: [],

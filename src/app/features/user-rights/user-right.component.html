@@ -1,0 +1,76 @@
+
+        <div class="container">
+        <mat-card>
+          <mat-card-header>
+            <div mat-card-avatar class="avatar-image-partyhead"></div>
+            <mat-card-title>User Rights</mat-card-title>
+            <mat-card-subtitle>Give User Rights to the users of the application here.</mat-card-subtitle>
+          </mat-card-header>
+        </mat-card>
+            <button mat-stroked-button (click)="createUser()">Create New User</button>
+            <br/><br/>
+            <mat-form-field>
+              <input name="userfilter" type="text" [(ngModel)]="selectedUser" [formControl]="userselect" [matAutocomplete]="user" matInput placeholder="Select User">
+              <mat-autocomplete (optionSelected)="selectUser()" #user="matAutocomplete">
+                <mat-option *ngFor="let option of userddr | async" [value]="option" >
+                  {{option}}
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field>
+            <div *ngIf="showRights">
+              <h3>Click on the button to change the rights</h3>
+              <div>
+                <p class="header-row">Approval Rights</p>
+                <p>
+                  <button (click)="changeApprove('0')" *ngIf="updateUser.approve === '1'" class="green-btn">Rights Granted</button>
+                  <button (click)="changeApprove('1')" *ngIf="updateUser.approve === '0'" class="red-btn">Rights Not Granted</button>
+                </p>
+              </div>
+              <div>
+                <p class="header-row">Delete Rights</p>
+                <p>
+                  <button (click)="changeDelete('0')" *ngIf="updateUser.delete === '1'" class="green-btn">Rights Granted</button>
+                  <button (click)="changeDelete('1')" *ngIf="updateUser.delete === '0'" class="red-btn">Rights Not Granted</button>
+                </p>
+              </div>
+              <div>
+                <p class="header-row">Bill Creation Rights</p>
+                <p>
+                  <button (click)="changeCreateBill('0')" *ngIf="updateUser.createbill === '1'" class="green-btn">Rights Granted</button>
+                  <button (click)="changeCreateBill('1')" *ngIf="updateUser.createbill === '0'" class="red-btn">Rights Not Granted</button>
+                </p>
+              </div>
+              <div>
+                <p class="header-row">Duty Entry Rights</p>
+                <p>
+                  <button (click)="changeEnterDdr('0')" *ngIf="updateUser.enterddr === '1'" class="green-btn">Rights Granted</button>
+                  <button (click)="changeEnterDdr('1')" *ngIf="updateUser.enterddr === '0'" class="red-btn">Rights Not Granted</button>
+                </p>
+              </div>
+              <div>
+                <p class="header-row">Owner Addition Rights</p>
+                <p>
+                  <button (click)="changeEnterOwner('0')" *ngIf="updateUser.enterowner === '1'" class="green-btn">Rights Granted</button>
+                  <button (click)="changeEnterOwner('1')" *ngIf="updateUser.enterowner === '0'" class="red-btn">Rights Not Granted</button>
+                </p>
+              </div>
+              <div>
+                <p class="header-row">Party Addition Rights</p>
+                <p>
+                  <button (click)="changeEnterParty('0')" *ngIf="updateUser.enterparty === '1'" class="green-btn">Rights Granted</button>
+                  <button (click)="changeEnterParty('1')" *ngIf="updateUser.enterparty === '0'" class="red-btn">Rights Not Granted</button>
+                </p>
+              </div>
+              <div>
+                <p class="header-row">Pay Owner Rights</p>
+                <p>
+                  <button (click)="changePayOwner('0')" *ngIf="updateUser.payowner === '1'" class="green-btn">Rights Granted</button>
+                  <button (click)="changePayOwner('1')" *ngIf="updateUser.payowner === '0'" class="red-btn">Rights Not Granted</button>
+                </p>
+              </div>
+              <br/><br/>
+              <button mat-stroked-button style="margin-left: 10px" (click)="updateUserInfo()">Set User Rights</button>
+            </div>
+
+
+        </div>
