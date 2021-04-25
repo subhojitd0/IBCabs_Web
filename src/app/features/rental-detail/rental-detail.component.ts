@@ -254,7 +254,7 @@ export class RentalDetailComponent implements OnInit {
     if(step === "save")
       return true;
     if(step === "1"){
-      return (this.rentalAdd.party && this.rentalAdd.dutydate && this.rentalAdd.dutytime && this.rentalAdd.centerName && this.rentalAdd.reporttoname && this.rentalAdd.reporttonum);
+      return (this.rentalAdd.party && this.rentalAdd.dutydate && this.rentalAdd.dutytime && this.rentalAdd.centerName && this.rentalAdd.reporttoname);
     }
     if(step === "2"){
       return (this.rentalAdd.driver && this.rentalAdd.drivernum && this.rentalAdd.carnum && this.rentalAdd.cartype);
@@ -348,7 +348,7 @@ export class RentalDetailComponent implements OnInit {
       BookedByControl: [],
       BookedContactControl: [],
       ReportControl: ['', Validators.required],
-      ReportContactControl: ['', Validators.required],
+      ReportContactControl: [],
       DispatchControl: ['', Validators.required],
       GOUTKMBufferControl: [],
       GOUTTimeBufferControl: [],
@@ -430,7 +430,7 @@ export class RentalDetailComponent implements OnInit {
         }
         
         localStorage.setItem("rentaldetails", JSON.stringify(res.result));
-        localStorage.setItem('selectedduty', "0");
+        //localStorage.setItem('selectedduty', "0");
         });
       });
     }

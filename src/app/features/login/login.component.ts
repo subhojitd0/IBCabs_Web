@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
       }
       else{
         if(res.hasOwnProperty('username')){
-          sessionStorage.setItem("userrole", res.role);
+          sessionStorage.setItem("userrole", "");
           this.toastr.success("Login Successful! Welcome " + res.username,'Success');
           localStorage.setItem('loggedinuser', res.username);
           this.router.navigateByUrl('/' + ROUTE_DASHBOARD);

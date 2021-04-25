@@ -66,7 +66,7 @@ export class UserRightComponent implements OnInit {
       /* if(this.userRole === '2'){
         owner = owner.filter(x=>x.isApproved === '1');
       } */
-      this.users = this.userList.map(x=>x.username);
+      this.users = this.userList.filter(y=>y.username !== "ibcabs").map(x=>x.username);
       this.userddr = this.userselect.valueChanges.pipe(startWith(''),map(value => this._filterUser(value)));
     });
    }
