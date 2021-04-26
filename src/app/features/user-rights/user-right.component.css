@@ -51,6 +51,7 @@ table {
     border-radius: 5px;
     /* font-weight: bold; */
     border: 0px;
+    margin-right: 10px;
 }
 .red-btn{
     background: #f22727;
@@ -58,4 +59,5 @@ table {
     border-radius: 5px;
     /* font-weight: bold; */
     border: 0px;
+    margin-right: 10px;
 }

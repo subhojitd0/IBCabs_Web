@@ -19,55 +19,70 @@
             </mat-form-field>
             <div *ngIf="showRights">
               <h3>Click on the button to change the rights</h3>
-              <div>
+              <button (click)="changeApprove('0')" *ngIf="updateUser.approve === '1'" class="green-btn">Approval Rights Granted</button>
+              <button (click)="changeApprove('1')" *ngIf="updateUser.approve === '0'" class="red-btn">Approval Rights Denied</button>
+              <button (click)="changeDelete('0')" *ngIf="updateUser.delete === '1'" class="green-btn">Delete Rights Granted</button>
+              <button (click)="changeDelete('1')" *ngIf="updateUser.delete === '0'" class="red-btn">Delete Rights Denied</button>
+              <button (click)="changeCreateBill('0')" *ngIf="updateUser.createbill === '1'" class="green-btn">Create Bill Rights Granted</button>
+              <button (click)="changeCreateBill('1')" *ngIf="updateUser.createbill === '0'" class="red-btn">Create Bill Rights Denied</button>
+              <button (click)="changeEnterDdr('0')" *ngIf="updateUser.enterddr === '1'" class="green-btn">Duty Entry Rights Granted</button>
+              <button (click)="changeEnterDdr('1')" *ngIf="updateUser.enterddr === '0'" class="red-btn">Duty Entry Rights Denied</button>
+              <br/><br/>
+              <button (click)="changeEnterOwner('0')" *ngIf="updateUser.enterowner === '1'" class="green-btn">Owner Entry Rights Granted</button>
+              <button (click)="changeEnterOwner('1')" *ngIf="updateUser.enterowner === '0'" class="red-btn">Owner Entry Rights Denied</button>
+              <button (click)="changeEnterParty('0')" *ngIf="updateUser.enterparty === '1'" class="green-btn">Party Entry Rights Granted</button>
+              <button (click)="changeEnterParty('1')" *ngIf="updateUser.enterparty === '0'" class="red-btn">Party Entry Rights Denied</button>
+              <button (click)="changePayOwner('0')" *ngIf="updateUser.ownerpay === '1'" class="green-btn">Pay Owner Rights Granted</button>
+              <button (click)="changePayOwner('1')" *ngIf="updateUser.ownerpay === '0'" class="red-btn">Pay Owner Rights Denied</button>
+           <!--    <div>
                 <p class="header-row">Approval Rights</p>
                 <p>
                   <button (click)="changeApprove('0')" *ngIf="updateUser.approve === '1'" class="green-btn">Rights Granted</button>
-                  <button (click)="changeApprove('1')" *ngIf="updateUser.approve === '0'" class="red-btn">Rights Not Granted</button>
+                  <button (click)="changeApprove('1')" *ngIf="updateUser.approve === '0'" class="red-btn">Rights Denied</button>
                 </p>
               </div>
               <div>
                 <p class="header-row">Delete Rights</p>
                 <p>
                   <button (click)="changeDelete('0')" *ngIf="updateUser.delete === '1'" class="green-btn">Rights Granted</button>
-                  <button (click)="changeDelete('1')" *ngIf="updateUser.delete === '0'" class="red-btn">Rights Not Granted</button>
+                  <button (click)="changeDelete('1')" *ngIf="updateUser.delete === '0'" class="red-btn">Rights Denied</button>
                 </p>
               </div>
               <div>
                 <p class="header-row">Bill Creation Rights</p>
                 <p>
                   <button (click)="changeCreateBill('0')" *ngIf="updateUser.createbill === '1'" class="green-btn">Rights Granted</button>
-                  <button (click)="changeCreateBill('1')" *ngIf="updateUser.createbill === '0'" class="red-btn">Rights Not Granted</button>
+                  <button (click)="changeCreateBill('1')" *ngIf="updateUser.createbill === '0'" class="red-btn">Rights Denied</button>
                 </p>
               </div>
               <div>
                 <p class="header-row">Duty Entry Rights</p>
                 <p>
                   <button (click)="changeEnterDdr('0')" *ngIf="updateUser.enterddr === '1'" class="green-btn">Rights Granted</button>
-                  <button (click)="changeEnterDdr('1')" *ngIf="updateUser.enterddr === '0'" class="red-btn">Rights Not Granted</button>
+                  <button (click)="changeEnterDdr('1')" *ngIf="updateUser.enterddr === '0'" class="red-btn">Rights Denied</button>
                 </p>
               </div>
               <div>
                 <p class="header-row">Owner Addition Rights</p>
                 <p>
                   <button (click)="changeEnterOwner('0')" *ngIf="updateUser.enterowner === '1'" class="green-btn">Rights Granted</button>
-                  <button (click)="changeEnterOwner('1')" *ngIf="updateUser.enterowner === '0'" class="red-btn">Rights Not Granted</button>
+                  <button (click)="changeEnterOwner('1')" *ngIf="updateUser.enterowner === '0'" class="red-btn">Rights Denied</button>
                 </p>
               </div>
               <div>
                 <p class="header-row">Party Addition Rights</p>
                 <p>
                   <button (click)="changeEnterParty('0')" *ngIf="updateUser.enterparty === '1'" class="green-btn">Rights Granted</button>
-                  <button (click)="changeEnterParty('1')" *ngIf="updateUser.enterparty === '0'" class="red-btn">Rights Not Granted</button>
+                  <button (click)="changeEnterParty('1')" *ngIf="updateUser.enterparty === '0'" class="red-btn">Rights Denied</button>
                 </p>
               </div>
               <div>
                 <p class="header-row">Pay Owner Rights</p>
                 <p>
-                  <button (click)="changePayOwner('0')" *ngIf="updateUser.payowner === '1'" class="green-btn">Rights Granted</button>
-                  <button (click)="changePayOwner('1')" *ngIf="updateUser.payowner === '0'" class="red-btn">Rights Not Granted</button>
+                  <button (click)="changePayOwner('0')" *ngIf="updateUser.ownerpay === '1'" class="green-btn">Rights Granted</button>
+                  <button (click)="changePayOwner('1')" *ngIf="updateUser.ownerpay === '0'" class="red-btn">Rights Denied</button>
                 </p>
-              </div>
+              </div> -->
               <br/><br/>
               <button mat-stroked-button style="margin-left: 10px" (click)="updateUserInfo()">Set User Rights</button>
             </div>

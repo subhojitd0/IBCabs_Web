@@ -38,20 +38,23 @@ export class UserComponent implements OnInit {
     /* this.ownername = localStorage.getItem('selectedownername');  */
   }
    ngOnInit() : void {
-     this.userrole = sessionStorage.getItem("userrole");
+     this.userrole = localStorage.getItem("loggedinuser");
      debugger;
      this.role = "2";
      let json ={
        "user": "ALL"
      };
+     
      this.apiService.post(ALL_USER_API, json).then((res: any)=>{ 
       debugger;
       const users: User[] = res.result;
       let i = 0;
       users.forEach((data: any)=>{
-        data.role = data.role === "1" ? "Admin User" : data.role === "2" ? "Edit User" : data.role === "3" ? "Edit / Delete User" : "";
+        data.role = data.username === "ibcabs" ? "Admin User" : "Normal User";
       })
       this.dataSource = new MatTableDataSource(users);
+      this.name = "";
+     this.password = "";
     });
     /* this.ownerid = JSON.parse(localStorage.getItem('selectedownerid'));
     if(this.ownerid && this.ownerid != "0"){
@@ -78,17 +81,16 @@ export class UserComponent implements OnInit {
       }
       this.apiService.post(DELETE_USER_API, json).then((res: any)=>{ 
         this.toastr.success("Your data was successfully deleted",'Success');
-        this.router.navigateByUrl('/' + ROUTE_NEW_USER);
+        window.location.reload();
       });
     }
    }
    addUser(){
-     if(this.username && this.password && this.name && this.role){
+     if(this.username && this.password && this.name ){
      let json= {
        "username": this.username,
        "password": this.password,
-       "name": this.name,
-       "role": this.role
+       "name": this.name
      }
      this.apiService.post(NEW_USER_API, json).then((res: any)=>{ 
       debugger;
@@ -97,7 +99,7 @@ export class UserComponent implements OnInit {
         this.username = "";
         this.password = "";
         this.name = "";
-        this.router.navigateByUrl('/' + ROUTE_NEW_USER);
+        window.location.reload();
       }
     });
   }

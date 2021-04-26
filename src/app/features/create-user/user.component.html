@@ -27,7 +27,7 @@
                       <input  type="password" matInput name="pass" [(ngModel)]="password" placeholder="Enter password of the user">
                     </mat-form-field>
               </div>
-              <div class="col-sm-3">
+              <!-- <div class="col-sm-3">
                 <mat-form-field>
                       <mat-select [(value)]="role">
                         <mat-option value="1">
@@ -41,7 +41,7 @@
                         </mat-option>
                       </mat-select>
                     </mat-form-field>
-              </div>
+              </div> -->
           </div>
           <button mat-stroked-button (click)="addUser()" >Create New User</button>
           <br/>
@@ -68,7 +68,7 @@
             <ng-container matColumnDef="option">
                 <mat-header-cell *matHeaderCellDef mat-sort-header> Options </mat-header-cell>
                 <mat-cell *matCellDef="let row" [style.color]="row.option">
-                    <span *ngIf="userrole === '1'" style="margin-left: 10px; margin-right: 10px; cursor: pointer;" class="material-icons" (click)="deleteUser(row.username)">
+                    <span *ngIf="userrole === 'ibcabs' && row.username !== 'ibcabs'" style="margin-left: 10px; margin-right: 10px; cursor: pointer;" class="material-icons" (click)="deleteUser(row.username)">
                       delete
                     </span>
                 </mat-cell>

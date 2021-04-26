@@ -14,25 +14,25 @@ import { FormControl } from '@angular/forms';
 export interface IUserRight {
   userid: string;
   username: string;
-  approve: string;
-  delete: string;
-  createbill: string;
-  enterddr: string;
-  enterowner: string;
-  enterparty: string;
-  payowner: string;
+  approve: number;
+  delete: number;
+  createbill: number;
+  enterddr: number;
+  enterowner: number;
+  enterparty: number;
+  ownerpay: number;
 }
 
 export class UserRight implements IUserRight {
   userid: string;
   username: string;
-  approve: string;
-  delete: string;
-  createbill: string;
-  enterddr: string;
-  enterowner: string;
-  enterparty: string;
-  payowner: string;
+  approve: number;
+  delete: number;
+  createbill: number;
+  enterddr: number;
+  enterowner: number;
+  enterparty: number;
+  ownerpay: number; 
 }
 
 @Component({
@@ -78,6 +78,7 @@ export class UserRightComponent implements OnInit {
      if(this.selectedUser){
        this.showRights = true;
        this.updateUser = this.userList.filter(x=>x.username === this.selectedUser)[0];
+       this.updateUser.ownerpay = this.updateUser.payowner;
      }
    }
    createUser(){
@@ -102,9 +103,10 @@ export class UserRightComponent implements OnInit {
     this.updateUser.enterparty = val;
    }
    changePayOwner(val: any){
-    this.updateUser.payowner = val;
+    this.updateUser.ownerpay = val;
    }
   updateUserInfo(){
+    debugger;
     this.apiService.post(UPDATE_USER_API, this.updateUser).then((res: any)=>{ 
       this.toastr.success("Your data was successfully updated",'Success');
       location.reload();
