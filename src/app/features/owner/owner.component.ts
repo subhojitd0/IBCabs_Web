@@ -32,10 +32,16 @@ export class OwnerComponent implements OnInit {
   displayedColumns: string[] = ['ownercode', 'ownername', 'assignedcar', 'option'];
   dataSource: MatTableDataSource<Owner>;
   userRole: string;
+  ownerrole: string;
+  approve: string;
+  delete: string;
   constructor(private router: Router,private apiService: ApiService, public dialog: MatDialog, private toastr: ToastrService) {
     
    }
    ngOnInit() : void {
+    this.ownerrole = sessionStorage.getItem("enterowner");
+    this.approve = sessionStorage.getItem("approve");
+    this.delete = sessionStorage.getItem("delete");
     this.userRole = sessionStorage.getItem("userrole");
     var json = 
     {

@@ -38,10 +38,16 @@ billRegDetails: any[] = [];
   @ViewChild(MatSort) sort: MatSort;
   displayedColumns: string[] = ['billid', 'billnumber', 'party', 'billfrom', 'billto', 'billdate', 'option'];
   dataSource: MatTableDataSource<BillRegister>;
+  billrole: string;
+  approve: string;
+  delete: string;
   constructor(private router: Router,private apiService: ApiService, public dialog: MatDialog, private toastr: ToastrService) {
     
    }
    ngOnInit() : void {
+    this.billrole = sessionStorage.getItem("createbill");
+    this.approve = sessionStorage.getItem("approve");
+    this.delete = sessionStorage.getItem("delete");
      debugger;
     var json = 
     {

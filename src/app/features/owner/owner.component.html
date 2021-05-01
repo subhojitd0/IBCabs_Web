@@ -7,7 +7,7 @@
             <mat-card-subtitle>Add, Update, Delete and View the Owners Here.</mat-card-subtitle>
           </mat-card-header>
         </mat-card>
-            <button mat-stroked-button (click)="openDialog(0)">Create New Owner</button>
+            <button *ngIf="ownerrole === '1'" mat-stroked-button (click)="openDialog(0)">Create New Owner</button>
 
             <mat-form-field class="mid">
                 <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search Owner">
@@ -35,16 +35,16 @@
                 <ng-container matColumnDef="option">
                     <mat-header-cell *matHeaderCellDef mat-sort-header> Options </mat-header-cell>
                     <mat-cell *matCellDef="let row" [style.color]="row.option">
-                        <span *ngIf="(userRole === '2' && row.isApproved === '1') || userRole === '1'" style="margin-left: 10px; margin-right: 10px; cursor: pointer;" class="material-icons" (click)="openCar(row.ownercode)">
+                        <span *ngIf="ownerrole === '1' && row.isApproved === '1'" style="margin-left: 10px; margin-right: 10px; cursor: pointer;" class="material-icons" (click)="openCar(row.ownercode)">
                             commute
                         </span>
-                        <span  *ngIf="(userRole === '2' && row.isApproved === '1') || userRole === '1'" style="margin-left: 10px; margin-right: 10px; cursor: pointer;" class="material-icons" (click)="openDialog(row.ownercode)">
+                        <span *ngIf="ownerrole === '1' && row.isApproved === '1'" style="margin-left: 10px; margin-right: 10px; cursor: pointer;" class="material-icons" (click)="openDialog(row.ownercode)">
                           | &nbsp;   edit
                         </span>
-                        <span *ngIf="userRole === '1'" style="margin-left: 10px; margin-right: 10px; cursor: pointer;" class="material-icons" (click)="deleteOwner(row.ownercode)">
+                        <span *ngIf="ownerrole === '1' && row.isApproved === '1' && delete === '1'" style="margin-left: 10px; margin-right: 10px; cursor: pointer;" class="material-icons" (click)="deleteOwner(row.ownercode)">
                           | &nbsp; delete
                         </span>
-                        <span *ngIf="userRole === '1' && row.isApproved === '0'" style="margin-left: 10px; margin-right: 10px; cursor: pointer;" class="material-icons" (click)="approveOwner(row.ownercode)">
+                        <span *ngIf="ownerrole === '1' && row.isApproved === '0' && approve === '1'" style="margin-left: 10px; margin-right: 10px; cursor: pointer;" class="material-icons" (click)="approveOwner(row.ownercode)">
                           | &nbsp; done
                         </span>    
                     </mat-cell>

@@ -109,6 +109,9 @@ export class RentalDetailComponent implements OnInit {
   allreportto: any;
   filteredOptionsReport: Observable<string[]>;
   reporttos: any;
+  ddrrole: string;
+  approve: string;
+  delete: string;
 
   constructor(public dialog: MatDialog, private _formBuilder: FormBuilder, private router: Router, private apiService: ApiService, private toastr: ToastrService) {}
   ngAfterViewInit() {
@@ -329,6 +332,9 @@ export class RentalDetailComponent implements OnInit {
   }
   ngOnInit() {
     debugger;
+    this.ddrrole = sessionStorage.getItem("enterddr");
+    this.approve = sessionStorage.getItem("approve");
+    this.delete = sessionStorage.getItem("delete");
     this.rentalAdd = new RentalAdd();
     this.allparties = JSON.parse(localStorage.getItem('allparties'));
     this.allcars = JSON.parse(localStorage.getItem('allcars'));

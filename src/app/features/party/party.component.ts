@@ -33,6 +33,9 @@ export class PartyComponent implements OnInit {
   displayedColumns: string[] = ['headcode', 'name', 'ratetype', 'option'];
   dataSource: MatTableDataSource<PartyHead>;
   userRole: string;
+  partyrole: string;
+  approve: string;
+  delete: string;
   constructor(private router: Router,private apiService: ApiService, public dialog: MatDialog, private toastr: ToastrService) {
     /* const party: PartyHead[] =[
       {position: 1, name: 'Hydrogen', rate: "Package", option: 'H'},
@@ -49,6 +52,9 @@ export class PartyComponent implements OnInit {
     this.dataSource = new MatTableDataSource(party); */
    }
    ngOnInit() : void {
+    this.partyrole = sessionStorage.getItem("enterparty");
+    this.approve = sessionStorage.getItem("approve");
+    this.delete = sessionStorage.getItem("delete");
     this.userRole = sessionStorage.getItem("userrole");
     var json = 
     {

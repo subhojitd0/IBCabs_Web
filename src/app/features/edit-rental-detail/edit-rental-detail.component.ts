@@ -107,10 +107,16 @@ export class EditRentalDetailComponent implements OnInit {
   carlist: Observable<string[]>;
   driverlist: Observable<string[]>;
   allcartypefilter: any;
+  ddrrole: string;
+  approverole: string;
+  delete: string;
   constructor(private cdRef:ChangeDetectorRef, private router: Router,private apiService: ApiService, public dialog: MatDialog, private toastr: ToastrService) {
     
    }
    ngOnInit() : void {
+    this.ddrrole = sessionStorage.getItem("enterddr");
+    this.approverole = sessionStorage.getItem("approve");
+    this.delete = sessionStorage.getItem("delete");
     this.partyselect = new FormControl();
     this.driverselect = new FormControl();
     this.carselect = new FormControl();

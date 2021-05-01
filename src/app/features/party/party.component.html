@@ -7,7 +7,7 @@
             <mat-card-subtitle>Add, Update, Delete and View the Party Heads Here.</mat-card-subtitle>
           </mat-card-header>
         </mat-card>
-            <button mat-stroked-button (click)="openDialog(0)">Create New Party Head</button>
+            <button *ngIf="partyrole === '1'" mat-stroked-button (click)="openDialog(0)">Create New Party Head</button>
 
             <mat-form-field class="mid">
                 <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search Party Head">
@@ -35,10 +35,10 @@
                 <ng-container matColumnDef="option">
                     <mat-header-cell *matHeaderCellDef mat-sort-header> Options </mat-header-cell>
                     <mat-cell *matCellDef="let row" [style.color]="row.option">
-                        <span style="margin-left: 10px; margin-right: 10px; cursor: pointer;" class="material-icons" (click)="openDialog(row.headcode)">
+                        <span *ngIf="partyrole === '1'" style="margin-left: 10px; margin-right: 10px; cursor: pointer;" class="material-icons" (click)="openDialog(row.headcode)">
                             create
                         </span> 
-                        <span *ngIf="userRole === '1'" style="margin-left: 10px; margin-right: 10px; cursor: pointer;" class="material-icons" (click)="deleteParty(row.headcode)">
+                        <span *ngIf="partyrole === '1' && delete === '1'" style="margin-left: 10px; margin-right: 10px; cursor: pointer;" class="material-icons" (click)="deleteParty(row.headcode)">
                           | &nbsp; delete
                         </span> 
                       <!--   |<span *ngIf="userRole === '1'" style="margin-left: 10px; margin-right: 10px; cursor: pointer;" class="material-icons" (click)="approveParty(row.headcode)">

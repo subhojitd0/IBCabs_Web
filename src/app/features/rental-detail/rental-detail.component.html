@@ -57,8 +57,8 @@
         <input matInput type="number" placeholder="Enter the report to contact no. here" [(ngModel)]="rentalAdd.reporttonum" formControlName="ReportContactControl">
       </mat-form-field>  
       
-      <button class="btn-first"  mat-button (click)="savedata(stepper, '1')">Save Duty & Continue</button>
-      <!-- <button class="btn-second" mat-button (click)="savedatacreate(stepper, '1')">Save & Create New</button> -->
+      <button *ngIf="ddrrole === '1'"   class="btn-first"  mat-button (click)="savedata(stepper, '1')">Save Duty & Continue</button>
+      <!-- <button *ngIf="ddrrole === '1'"   class="btn-second" mat-button (click)="savedatacreate(stepper, '1')">Save & Create New</button> -->
       <br/> 
 
        
@@ -108,10 +108,10 @@
       <br/>
 
       <div>
-        <!-- <button class="btn-first" style="margin-right: 20px;" mat-button (click)="savedata(stepper, '1')">Save Duty & Continue</button> -->
-        <button class="btn-second" style="margin-right: 20px;" mat-button (click)="savedatacreate(stepper, '1')">Save Duty & Create New</button>
-        <!-- <button class="btn-first" style="margin-right: 20px;" mat-button (click)="viewallduties()">View All Duties</button> -->
-        <!-- <button class="btn-first" style="margin-right: 20px;" mat-button matStepperNext>Next</button> -->
+        <!-- <button *ngIf="ddrrole === '1'"   class="btn-first" style="margin-right: 20px;" mat-button (click)="savedata(stepper, '1')">Save Duty & Continue</button> -->
+        <button *ngIf="ddrrole === '1'"   class="btn-second" style="margin-right: 20px;" mat-button (click)="savedatacreate(stepper, '1')">Save Duty & Create New</button>
+        <!-- <button *ngIf="ddrrole === '1'"   class="btn-first" style="margin-right: 20px;" mat-button (click)="viewallduties()">View All Duties</button> -->
+        <!-- <button *ngIf="ddrrole === '1'"   class="btn-first" style="margin-right: 20px;" mat-button matStepperNext>Next</button> -->
       </div>
       <div>
         
@@ -148,7 +148,7 @@
           </mat-option>
         </mat-autocomplete>
       </mat-form-field> 
-      <button class="btn-second" style="margin-right: 20px;" mat-button (click)="savedatacreate(stepper, '2')">Save Duty & Create New</button>
+      <button *ngIf="ddrrole === '1'"   class="btn-second" style="margin-right: 20px;" mat-button (click)="savedatacreate(stepper, '2')">Save Duty & Create New</button>
       <br/>
       <mat-form-field style="width: 40%; margin-right: 40px;">
         <mat-label>Driver Contact</mat-label>
@@ -165,9 +165,9 @@
       
 
       <div>
-        <button class="btn-first" style="margin-right: 20px;" mat-button (click)="savedata(stepper, '2')">Save Duty & Continue</button> 
-        <button class="btn-first" style="margin-right: 20px;" mat-button (click)="savedata(stepper, 'save')">Save Duty</button> <br><br>
-        <!-- <button class="btn-first" style="margin-right: 20px;" mat-button (click)="viewallduties()">View All Duties</button> -->
+        <button *ngIf="ddrrole === '1'"   class="btn-first" style="margin-right: 20px;" mat-button (click)="savedata(stepper, '2')">Save Duty & Continue</button> 
+        <button *ngIf="ddrrole === '1'"   class="btn-first" style="margin-right: 20px;" mat-button (click)="savedata(stepper, 'save')">Save Duty</button> <br><br>
+        <!-- <button *ngIf="ddrrole === '1'"   class="btn-first" style="margin-right: 20px;" mat-button (click)="viewallduties()">View All Duties</button> -->
       </div>
     </form>
   </mat-step>
@@ -212,9 +212,9 @@
     </form>
 
     <div>
-      <button class="btn-first" style="margin-right: 20px;" mat-button (click)="savedataandexit(stepper, '3')">Save Duty</button>
-      <button class="btn-second" style="margin-right: 20px;" mat-button (click)="savedatacreate(stepper, '3')">Save Duty & Create New</button>
-      <!-- <button class="btn-first" style="margin-right: 20px;" mat-button (click)="viewallduties()">View All Duties</button> -->
+      <button *ngIf="ddrrole === '1'"   class="btn-first" style="margin-right: 20px;" mat-button (click)="savedataandexit(stepper, '3')">Save Duty</button>
+      <button *ngIf="ddrrole === '1'"   class="btn-second" style="margin-right: 20px;" mat-button (click)="savedatacreate(stepper, '3')">Save Duty & Create New</button>
+      <!-- <button *ngIf="ddrrole === '1'"   class="btn-first" style="margin-right: 20px;" mat-button (click)="viewallduties()">View All Duties</button> -->
     </div>
   </mat-step>
 </mat-horizontal-stepper>
