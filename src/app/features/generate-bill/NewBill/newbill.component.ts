@@ -139,8 +139,8 @@ export class NewBillComponent implements OnInit {
     }
     if(this.billDetails.format == "2"){
       billApi = BILL_ONCALL_EXTRA_API;
-      //redirectApi = ROUTE_VIEW_BILL_ONCALL_EXTRA;
-      redirectApi = ROUTE_VIEW_BILL_RELIANCE_JMS;
+      redirectApi = ROUTE_VIEW_BILL_ONCALL_EXTRA;
+      //redirectApi = ROUTE_VIEW_BILL_RELIANCE_JMS;
     }
     if(this.billDetails.format == "3"){
       billApi = BILL_ONCALL_COAL_INDIA_API;

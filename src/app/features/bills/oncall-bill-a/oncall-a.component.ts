@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 import jspdf from 'jspdf';
 import html2canvas from 'html2canvas';
 import { ROUTE_CAR, ROUTE_GENERATE_BILL, ROUTE_OWNER } from 'src/shared/constants/constant';
+import { BillUploadComponent } from '../bill-upload/bill-upload.component';
 
 export interface iBillDet {
   sl: string;
@@ -85,7 +86,7 @@ export class OnCallBillAComponent implements OnInit {
     this.billfrom = localStorage.getItem("billfrom");
     this.billto = localStorage.getItem("billto");
     debugger;
-    if(this.billdetails){
+    if(!this.billdetails){
       /* let billTot : BillDet = new BillDet();
       billTot.carno = "Total";
       billTot.sl = "";
@@ -126,10 +127,10 @@ export class OnCallBillAComponent implements OnInit {
       this.apiService.post(BILL_API, billSave).then((res: any)=>{ 
           debugger;
           if(res.status === "success"){
-          this.exportAsPDF("container");
-          this.isConfirmVisible = false;
-          this.toastr.success("Your bill was successfully created",'Success');
-          
+            localStorage.setItem('selectedbillregid', res.id);
+            this.exportAsPDF("printdiv");
+            this.isConfirmVisible = false;
+            this.toastr.success("Your bill was successfully created",'Success');
         }
       });
      }
@@ -158,9 +159,17 @@ export class OnCallBillAComponent implements OnInit {
         heightLeft -= pageHeight;
       }
       doc.save( 'file.pdf');
-      if(this.billno){
-        this.router.navigateByUrl('/' + ROUTE_GENERATE_BILL);
-      }
+      const dialogRef = this.dialog.open(BillUploadComponent);
+
+      dialogRef.afterClosed().subscribe(result => {
+        console.log(`Dialog closed`);
+      });
+      this.router.events.subscribe(() => {
+        dialogRef.close();
+      });
+      /* if(this.billno){
+        
+      } */
     }); 
   }
 }
