@@ -184,7 +184,15 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-sm-6">
+                <div class="col-sm-3" *ngIf="isPack">
+                    <label for = "fromdate">From Date</label>
+                    <input name="fromdate" type = "date" class = "form-control" id = "fromdate" placeholder = "From Date" [(ngModel)]="partyheaddetails.fromdate">
+                </div>
+                <div class="col-sm-3" *ngIf="isPack">
+                    <label for = "todate">To Date</label>
+                    <input name="todate" type = "date" class = "form-control" id = "todate" placeholder = "To Date" [(ngModel)]="partyheaddetails.todate">
+                </div>
+                <div class="col-sm-6"><br>
                     <button type="submit" class="btn btn-primary btn-lg">Save</button>
                 </div>
             </div>

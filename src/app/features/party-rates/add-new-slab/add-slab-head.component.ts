@@ -27,6 +27,8 @@ export interface ISlabDetails {
   restkmrate: string;
   resthrrate: string;
   car: string;
+  fromdate: string;
+  todate:string;
 }
 export class SlabDetails implements ISlabDetails {
   mode: number;
@@ -47,6 +49,8 @@ export class SlabDetails implements ISlabDetails {
   restkmrate: string;
   resthrrate: string;
   car: string;
+  fromdate:string;
+  todate: string;
 }
 
 @Component({

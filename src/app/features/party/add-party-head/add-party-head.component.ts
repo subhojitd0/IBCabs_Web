@@ -37,7 +37,9 @@ export interface PartyHeadDDetails {
     kmin:string,
     kmout:string,
     outstation:string,
-    reportto: string
+    reportto: string,
+    fromdate: string,
+    todate: string
   }
 
 export class partyhead implements PartyHeadDDetails{
@@ -69,6 +71,8 @@ export class partyhead implements PartyHeadDDetails{
     kmout:string;
     outstation:string;
     reportto: string;
+    fromdate: string;
+    todate: string;
 }
 @Component({
   selector: 'app-add-party-head',

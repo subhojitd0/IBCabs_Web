@@ -19,6 +19,7 @@ export interface RateHead {
   slab3: string;
   slabrest: string;
   car: string;
+  datespan : string;
 }
 
 @Component({
@@ -33,7 +34,7 @@ export class PartyRatesComponent implements OnInit {
   isSlab:boolean=false;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  displayedColumns: string[] = ['car', 'slab1', 'slab2', 'slab3', 'slabrest', 'option'];
+  displayedColumns: string[] = ['car', 'slab1', 'slab2', 'slabrest', 'datespan','option'];
   dataSource: MatTableDataSource<RateHead>;
   constructor(private router: Router, private apiService: ApiService, public dialog: MatDialog, private toastr: ToastrService) {
     this.partyheadname = localStorage.getItem('selectedpartyheadname'); 
@@ -54,8 +55,9 @@ export class PartyRatesComponent implements OnInit {
         res.forEach((x) => {
           rates[i].slab1 = x.onekm + "/" + x.onekmrate + " - " + x.onehr + "/" + x.onehrrate;
           rates[i].slab2 = x.twokm + "/" + x.twokmrate + " - " + x.twohr + "/" + x.twohrrate;
-          rates[i].slab3 = x.threekm + "/" + x.threekmrate + " - " + x.threehr + "/" + x.threehrrate;
+          //rates[i].slab3 = x.threekm + "/" + x.threekmrate + " - " + x.threehr + "/" + x.threehrrate;
           rates[i].slabrest = x.restkmrate + " - " + x.resthrrate;
+          rates[i].datespan=x.fromdate+" - "+x.todate;
           i++;
         })
         this.dataSource = new MatTableDataSource(rates);

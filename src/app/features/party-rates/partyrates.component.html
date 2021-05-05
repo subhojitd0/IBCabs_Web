@@ -37,14 +37,19 @@
                     <mat-cell *matCellDef="let row"> {{row.slab2}} </mat-cell>
                   </ng-container>
 
-                  <ng-container matColumnDef="slab3">
+                  <!-- <ng-container matColumnDef="slab3">
                     <mat-header-cell *matHeaderCellDef mat-sort-header> Third Slab </mat-header-cell>
                     <mat-cell *matCellDef="let row"> {{row.slab3}} </mat-cell>
-                  </ng-container>
+                  </ng-container> -->
 
                   <ng-container matColumnDef="slabrest">
                     <mat-header-cell *matHeaderCellDef mat-sort-header> Rest Slabs </mat-header-cell>
                     <mat-cell *matCellDef="let row"> {{row.slabrest}} </mat-cell>
+                  </ng-container>
+
+                  <ng-container matColumnDef="datespan">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Date </mat-header-cell>
+                    <mat-cell *matCellDef="let row"> {{row.datespan}} </mat-cell>
                   </ng-container>
 
                 <ng-container matColumnDef="option">

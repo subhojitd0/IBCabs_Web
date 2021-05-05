@@ -100,13 +100,21 @@
 
 
             <div class="row">
-                <div class="col-sm-6">
+                <div class="col-sm-3">
                         <label class = "sr-only" for = "amount">Rest Slab KM Rate</label>
                         <input name="restkmrate" step="0.01" type = "number" class = "form-control" id = "amount" placeholder = "Rest Slab KM Rate" [(ngModel)]="slabdetails.restkmrate" required>
                 </div>
-                <div class="col-sm-6">
+                <div class="col-sm-3">
                         <label class = "sr-only" for = "name">Rest Slab HR Rate</label>
                         <input name="resthrrate" step="0.01" type = "number" class = "form-control" id = "duration" placeholder = "Rest Slab HR Rate" [(ngModel)]="slabdetails.resthrrate" required>
+                </div>
+                <div class="col-sm-3">
+                        <label class = "sr-only" for = "fromdate">From Date</label>
+                        <input name="fromdate" type = "date" class = "form-control" id = "fromdate" placeholder = "From Date" [(ngModel)]="slabdetails.fromdate" required>
+                </div>
+                <div class="col-sm-3">
+                        <label class = "sr-only" for = "todate">To Date</label>
+                        <input name="todate" type = "date" class = "form-control" id = "todate" placeholder = "To Date" [(ngModel)]="slabdetails.todate" required>
                 </div>
             </div>
 
