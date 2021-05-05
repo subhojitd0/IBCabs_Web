@@ -20,7 +20,8 @@ export interface inewbill {
   gsttype: string,
   parkinggst: string,
   format: string,
-  reportto: string
+  reportto: string,
+  subject: string
 }
 
 export class newbill implements inewbill{
@@ -33,6 +34,7 @@ export class newbill implements inewbill{
   parkinggst: string;
   format: string;
   reportto: string;
+  subject: string;
 }
 @Component({
   selector: 'app-newbill',
@@ -129,6 +131,16 @@ export class NewBillComponent implements OnInit {
       }
     }
   }
+  partychange(){
+    var json = 
+      {
+        "mode":4,
+        "partyheadcode": this.billDetails.party
+      } 
+      this.apiService.post(PARTY_HEAD_API, json).then((res: any)=>{ 
+        this.billDetails.subject = res.billsubject;
+      });
+  }
   generateBill(){
     debugger;
     let billApi = "";
@@ -155,6 +167,9 @@ export class NewBillComponent implements OnInit {
     localStorage.setItem("billfrom", this.billDetails.from);
     localStorage.setItem("billto", this.billDetails.to);
     localStorage.setItem("billparty", this.billDetails.party);
+    localStorage.setItem("billsubject", this.billDetails.subject);
+    localStorage.setItem("billgst", this.billDetails.gsttype);
+    localStorage.setItem("billparking", this.billDetails.parkinggst);
     this.apiService.post(billApi, this.billDetails).then((res: any)=>{ 
       debugger;
       localStorage.setItem("billdata", JSON.stringify(res));

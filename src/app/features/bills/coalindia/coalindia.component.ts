@@ -45,6 +45,11 @@ export interface iSaveBill {
   billto: string;
   billdate: string;
   party: string;
+  subject: string;
+  gsttype: string;
+  parkingtype: string;
+  billtype: string;
+  total: string;
   mode: string;
   formData: any;
 }
@@ -54,6 +59,11 @@ export class SaveBill implements iSaveBill {
   billto: string;
   billdate: string;
   party: string;
+  subject: string;
+  gsttype: string;
+  parkingtype: string;
+  billtype: string;
+  total: string;
   mode: string;
   formData: any;
 }
@@ -125,6 +135,11 @@ export class CoalIndiaComponent implements OnInit {
       billSave.billfrom = localStorage.getItem("billfrom");
       billSave.billto = localStorage.getItem("billto");
       billSave.party = localStorage.getItem("billparty");
+      billSave.subject =  localStorage.getItem("billsubject");
+      billSave.gsttype = localStorage.getItem("billgst");
+      billSave.parkingtype = localStorage.getItem("billparking");
+      billSave.billtype = "c";
+      billSave.total = this.roundedgross;
       billSave.mode = "1";
       this.downloadPFDServer("printdiv", billSave);
       /* this.apiService.post(BILL_API, billSave).then((res: any)=>{ 
