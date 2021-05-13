@@ -1,0 +1,87 @@
+
+        <div class="container">
+          <mat-card>
+            <mat-card-header>
+              <div mat-card-avatar class="avatar-image-rate"></div>
+              <mat-card-title>Matador Rate Creation  <!-- for {{ partyheadname }} --></mat-card-title>
+              <mat-card-subtitle>Crete new matador rates here </mat-card-subtitle>
+            </mat-card-header>
+          </mat-card>
+
+
+            
+
+            <div class="row">   
+              <div class="col-sm-3">
+                <mat-form-field>
+                      <input type="date" matInput name="name" [(ngModel)]="name">
+                    </mat-form-field>
+              </div>
+              <div class="col-sm-3">
+                <mat-form-field>
+                  <input type="text" name="carfilter"  [(ngModel)]="username" [formControl]="carselect" [matAutocomplete]="car" matInput placeholder="Enter Car">
+                  <mat-autocomplete (optionSelected)="onChangeFilterVal($event)" #car="matAutocomplete">
+                    <mat-option *ngFor="let option of carlist | async" [value]="option" >
+                      {{option}}
+                    </mat-option>
+                  </mat-autocomplete>
+                </mat-form-field>
+              </div>
+              <div class="col-sm-3">
+                <mat-form-field>
+                      <input  type="number" step="0.01" matInput name="pass" [(ngModel)]="password" placeholder="Enter rate of the matador">
+                    </mat-form-field>
+              </div>
+              <!-- <div class="col-sm-3">
+                <mat-form-field>
+                      <mat-select [(value)]="role">
+                        <mat-option value="1">
+                          Admin User
+                        </mat-option>
+                        <mat-option value="2">
+                          Edit User
+                        </mat-option>
+                        <mat-option value="3">
+                          Edit / Delete User
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+              </div> -->
+          </div>
+          <button mat-stroked-button (click)="addUser()" >Create New Rate</button>
+          <br/>
+          <mat-table [dataSource]="dataSource" matSort>
+
+            <!-- ID Column -->
+            <ng-container matColumnDef="date">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Duty Date  </mat-header-cell>
+              <mat-cell *matCellDef="let row"> {{row.name}} </mat-cell>
+            </ng-container>
+        
+            <!-- Name Column -->
+            <ng-container matColumnDef="carno">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Car No </mat-header-cell>
+              <mat-cell *matCellDef="let row"> {{row.username}} </mat-cell>
+            </ng-container>
+        
+            <!-- Color Column -->
+            <ng-container matColumnDef="rate">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Rate </mat-header-cell>
+              <mat-cell *matCellDef="let row"> {{row.role}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="option">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Options </mat-header-cell>
+                <mat-cell *matCellDef="let row" [style.color]="row.option">
+                    <span *ngIf="userrole === 'ibcabs' && row.username !== 'ibcabs'" style="margin-left: 10px; margin-right: 10px; cursor: pointer;" class="material-icons" (click)="deleteUser(row.username)">
+                      delete
+                    </span>
+                </mat-cell>
+              </ng-container>
+        
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;">
+            </mat-row>
+          </mat-table>
+        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+        </div>

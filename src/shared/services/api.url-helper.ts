@@ -18,3 +18,4 @@ export const ALL_USER_API = "alluser.php";
 export const DELETE_USER_API = "deleteUser.php";
 export const UPDATE_USER_API = "updateUser.php";
 export const FILEUPLOAD_API = "fileload.php";
+export const MATADOR_API = "packagerate.php";

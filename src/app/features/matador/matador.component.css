@@ -1,0 +1,38 @@
+.container{
+    width:100%;
+}
+
+.mat-stroked-button{
+    margin-top: 40px;
+    margin-bottom: 10px;
+    background-color: silver;
+}
+
+.mat-card{
+    margin-top:20px;
+    margin-bottom:20px;
+    background-color: #3f51b5;
+    color:white;
+}
+
+.avatar-image-rate {
+    background-image: url('https://images.unsplash.com/photo-1498887960847-2a5e46312788?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1650&q=80');
+    background-size: cover;
+  }
+.row{
+    padding:10px;
+}
+
+.full{
+    width:100%;
+}
+
+.mid{
+    width:80%;
+    padding-left:40%;
+}
+
+table {
+    width: 100%;
+  }
+

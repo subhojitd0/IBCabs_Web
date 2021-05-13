@@ -57,6 +57,7 @@ import { CoalIndiaModalComponent } from './features/bills/coalindia/coalindia.mo
 import { UserComponent } from './features/create-user/user.component';
 import { UserRightComponent } from './features/user-rights/user-right.component';
 import { BillUploadComponent } from './features/bills/bill-upload/bill-upload.component';
+import { MatadorComponent } from './features/matador/matador.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -93,7 +94,8 @@ import { BillUploadComponent } from './features/bills/bill-upload/bill-upload.co
     CoalIndiaModalComponent,
     UserComponent,
     UserRightComponent,
-    BillUploadComponent
+    BillUploadComponent,
+    MatadorComponent
   ],
   imports: [
     BrowserModule,
