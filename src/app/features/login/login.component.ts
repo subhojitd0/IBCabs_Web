@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import {ApiService} from '../../../shared/services/service';
 import { ToastrService } from 'ngx-toastr';
 import {LOGIN_API} from '../../../shared/services/api.url-helper';
-import { ROUTE_DASHBOARD } from 'src/shared/constants/constant';
+import { ROUTE_BASIC, ROUTE_DASHBOARD } from 'src/shared/constants/constant';
 
 @Component({
   selector: 'app-login',
@@ -51,7 +51,8 @@ export class LoginComponent implements OnInit {
 					sessionStorage.setItem("payowner", res.payowner);
           this.toastr.success("Login Successful! Welcome " + res.username,'Success');
           localStorage.setItem('loggedinuser', res.username);
-          this.router.navigateByUrl('/' + ROUTE_DASHBOARD);
+          /* this.router.navigateByUrl('/' + ROUTE_BASIC); */
+          window.location.reload();
         }
       }
     });
