@@ -55,25 +55,25 @@
             <!-- ID Column -->
             <ng-container matColumnDef="date">
               <mat-header-cell *matHeaderCellDef mat-sort-header> Duty Date  </mat-header-cell>
-              <mat-cell *matCellDef="let row"> {{row.name}} </mat-cell>
+              <mat-cell *matCellDef="let row"> {{row.dutydate}} </mat-cell>
             </ng-container>
         
             <!-- Name Column -->
             <ng-container matColumnDef="carno">
               <mat-header-cell *matHeaderCellDef mat-sort-header> Car No </mat-header-cell>
-              <mat-cell *matCellDef="let row"> {{row.username}} </mat-cell>
+              <mat-cell *matCellDef="let row"> {{row.carno}} </mat-cell>
             </ng-container>
         
             <!-- Color Column -->
             <ng-container matColumnDef="rate">
               <mat-header-cell *matHeaderCellDef mat-sort-header> Rate </mat-header-cell>
-              <mat-cell *matCellDef="let row"> {{row.role}} </mat-cell>
+              <mat-cell *matCellDef="let row"> {{row.rate}} </mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="option">
                 <mat-header-cell *matHeaderCellDef mat-sort-header> Options </mat-header-cell>
                 <mat-cell *matCellDef="let row" [style.color]="row.option">
-                    <span *ngIf="userrole === 'ibcabs' && row.username !== 'ibcabs'" style="margin-left: 10px; margin-right: 10px; cursor: pointer;" class="material-icons" (click)="deleteUser(row.username)">
+                    <span *ngIf="delete === '1'" style="margin-left: 10px; margin-right: 10px; cursor: pointer;" class="material-icons" (click)="deleteUser(row.packageid)">
                       delete
                     </span>
                 </mat-cell>

@@ -1,7 +1,7 @@
 export const API_URL = "http://ibcabs.com/bills/api/";
 export const MESSAGE_URL = " http://enterprise.smsgupshup.com/GatewayAPI/rest?";
 
-//Production
+/* //Production Old
 export const ROUTE_BASIC = "bills/new";
 export const ROUTE_DASHBOARD = "bills/new/dashboard";
 export const ROUTE_PARTY = "bills/new/party";
@@ -23,7 +23,31 @@ export const ROUTE_VIEW_BILL_RELIANCE_JMS = "bills/new/bill/reliance-jms";
 export const ROUTE_VIEW_BILL_RELIANCE_SUMMARY = "bills/new/bill/reliance-summary";
 export const ROUTE_NEW_USER = "bills/new/create-user";
 export const ROUTE_USER_RIGHTS = "bills/new/user-rights";
-export const ROUTE_MATADOR = "bills/new/matador";
+export const ROUTE_MATADOR = "bills/new/matador"; */
+
+//Production New
+export const ROUTE_BASIC = "newbill";
+export const ROUTE_DASHBOARD = "newbill/dashboard";
+export const ROUTE_PARTY = "newbill/party";
+export const ROUTE_RATE = "newbill/rate";
+export const ROUTE_OWNER = "newbill/owner";
+export const ROUTE_CAR = "newbill/car";
+export const ROUTE_DRIVER = "newbill/driver";
+export const ROUTE_ADD_DDR = "newbill/add-ddr";
+export const ROUTE_VIEW_DDR = "newbill/view-ddr";
+export const ROUTE_ADD_DDR_WALKIN = "newbill/add-ddr-walkin";
+export const ROUTE_GENERATE_BILL = "newbill/bill-register";
+export const ROUTE_VIEW_BILL_CNN = "newbill/bill/monthlybill-a";
+export const ROUTE_VIEW_BILL_CNN_CONTRACT = "newbill/bill/monthlycontractbill-a";
+export const ROUTE_VIEW_BILL_ONCALL_EXTRA = "newbill/bill/oncall-a";
+export const ROUTE_REPORTO = "newbill/report-to";
+export const ROUTE_VIEW_BILL_COAL_INDIA = "newbill/bill/oncall-b";
+export const ROUTE_VIEW_BILL_RELIANCE_MIS = "newbill/bill/reliance-mis";
+export const ROUTE_VIEW_BILL_RELIANCE_JMS = "newbill/bill/reliance-jms";
+export const ROUTE_VIEW_BILL_RELIANCE_SUMMARY = "newbill/bill/reliance-summary";
+export const ROUTE_NEW_USER = "newbill/create-user";
+export const ROUTE_USER_RIGHTS = "newbill/user-rights";
+export const ROUTE_MATADOR = "newbill/matador";
 
 //Local
 /* export const ROUTE_BASIC = "";

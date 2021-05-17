@@ -99,10 +99,10 @@
               <mat-card-subtitle>Add, Update, Delete and View the daily duties Here.</mat-card-subtitle>
             </mat-card-header>
           </mat-card>
-              <button *ngIf="ddrrole === '1'"  mat-stroked-button (click)="newduty()">Create New Duty</button>
-              <button  mat-stroked-button style="margin-left: 10px" (click)="showbulkedit()" *ngIf="ddrrole === '1' && !isBulkEdit">Do Bulk Edit</button>
-              <button  mat-stroked-button style="margin-left: 10px" (click)="showsingleedit()" *ngIf="ddrrole === '1' && isBulkEdit">Do Single Edit</button>
-              <button  mat-stroked-button style="margin-left: 10px" (click)="savebulkedit()" *ngIf="ddrrole === '1' && isBulkEdit">Save Bulk Edit</button>
+              <button mat-stroked-button (click)="newduty()">Create New Duty</button>
+              <button  mat-stroked-button style="margin-left: 10px" (click)="showbulkedit()" *ngIf="!isBulkEdit">Do Bulk Edit</button>
+              <button  mat-stroked-button style="margin-left: 10px" (click)="showsingleedit()" *ngIf="isBulkEdit">Do Single Edit</button>
+              <button  mat-stroked-button style="margin-left: 10px" (click)="savebulkedit()" *ngIf="isBulkEdit">Save Bulk Edit</button>
               <mat-form-field class="mid">
                   <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search Duty">
                 </mat-form-field> <br/> <br/>

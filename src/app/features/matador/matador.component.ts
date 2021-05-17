@@ -41,11 +41,13 @@ export class MatadorComponent implements OnInit {
   carlist: Observable<string[]>;
   allcarno: any;
   allcars: any;
+  delete: string;
   constructor(private router: Router, private apiService: ApiService, public dialog: MatDialog, private toastr: ToastrService) {
     /* this.ownername = localStorage.getItem('selectedownername');  */
     this.carselect = new FormControl();
   }
    ngOnInit() : void {
+    this.delete = sessionStorage.getItem("delete");
     this.allcars = JSON.parse(localStorage.getItem('allcars'));
     this.allcarno = this.allcars.map(x=>x.carno);
      this.userrole = localStorage.getItem("loggedinuser");
@@ -90,18 +92,19 @@ export class MatadorComponent implements OnInit {
     this.username = val.option.value;
    }
    deleteUser(name: any){
-    /* var r = confirm("Are you sure that you want to delete this record ?");
+    var r = confirm("Are you sure that you want to delete this record ?");
     if (r == true) {
       debugger;
       var json = 
       {
-        "username": name
+        "packageid": name,
+        "mode": "3"
       }
-      this.apiService.post(DELETE_USER_API, json).then((res: any)=>{ 
+      this.apiService.post(MATADOR_API, json).then((res: any)=>{ 
         this.toastr.success("Your data was successfully deleted",'Success');
         window.location.reload();
       });
-    } */
+    }
    }
    addUser(){
      if(this.username && this.password && this.name ){

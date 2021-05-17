@@ -39,6 +39,10 @@ export class SideNavComponent implements OnInit {
     this.reportto = "/" + ROUTE_REPORTO;
     this.matadorurl = "/" + ROUTE_MATADOR;
     this.userrole = localStorage.getItem("loggedinuser");
+    if(!this.loggedin)
+    {
+      this.router.navigateByUrl('/' + ROUTE_BASIC);
+    }
   }
   @ViewChild('sidenav') sidenav: MatSidenav;
   isExpanded = false;
