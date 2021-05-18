@@ -47,7 +47,7 @@ export class MatadorComponent implements OnInit {
     this.carselect = new FormControl();
   }
    ngOnInit() : void {
-    this.delete = sessionStorage.getItem("delete");
+    this.delete = localStorage.getItem("delete");
     this.allcars = JSON.parse(localStorage.getItem('allcars'));
     this.allcarno = this.allcars.map(x=>x.carno);
      this.userrole = localStorage.getItem("loggedinuser");

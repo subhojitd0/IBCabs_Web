@@ -306,7 +306,7 @@ export class RentalDetailComponent implements OnInit {
     //cartype
     this.filteredOptionsCarType = this.secondFormGroup.get('CarTypeControl').valueChanges.pipe(startWith(''),map(value => this._filterCarType(value)));
     //driver
-    this.filteredOptionsDriver = this.secondFormGroup.get('CarNumberControl').valueChanges.pipe(startWith(''),map(value => this._filterDriver(value)));
+    this.filteredOptionsDriver = this.secondFormGroup.get('DriverControl').valueChanges.pipe(startWith(''),map(value => this._filterDriver(value)));
     //report
     this.filteredOptionsReport = this.firstFormGroup.get('ReportControl').valueChanges.pipe(startWith(''),map(value => this._filterReport(value)));
   }
@@ -332,9 +332,9 @@ export class RentalDetailComponent implements OnInit {
   }
   ngOnInit() {
     debugger;
-    this.ddrrole = sessionStorage.getItem("enterddr");
-    this.approve = sessionStorage.getItem("approve");
-    this.delete = sessionStorage.getItem("delete");
+    this.ddrrole = localStorage.getItem("enterddr");
+    this.approve = localStorage.getItem("approve");
+    this.delete = localStorage.getItem("delete");
     this.rentalAdd = new RentalAdd();
     this.allparties = JSON.parse(localStorage.getItem('allparties'));
     this.allcars = JSON.parse(localStorage.getItem('allcars'));

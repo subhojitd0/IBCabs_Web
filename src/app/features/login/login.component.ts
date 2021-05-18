@@ -41,14 +41,14 @@ export class LoginComponent implements OnInit {
       }
       else{
         if(res.hasOwnProperty('username')){
-          sessionStorage.setItem("userrole", "");
-          sessionStorage.setItem("approve", res.approve);
-					sessionStorage.setItem("delete", res.delete);
-					sessionStorage.setItem("createbill", res.createbill);
-					sessionStorage.setItem("enterddr", res.enterddr);
-					sessionStorage.setItem("enterowner", res.enterowner);
-					sessionStorage.setItem("enterparty", res.enterparty);
-					sessionStorage.setItem("payowner", res.payowner);
+          localStorage.setItem("userrole", "");
+          localStorage.setItem("approve", res.approve);
+					localStorage.setItem("delete", res.delete);
+					localStorage.setItem("createbill", res.createbill);
+					localStorage.setItem("enterddr", res.enterddr);
+					localStorage.setItem("enterowner", res.enterowner);
+					localStorage.setItem("enterparty", res.enterparty);
+					localStorage.setItem("payowner", res.payowner);
           this.toastr.success("Login Successful! Welcome " + res.username,'Success');
           localStorage.setItem('loggedinuser', res.username);
           /* this.router.navigateByUrl('/' + ROUTE_BASIC); */

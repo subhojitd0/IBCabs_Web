@@ -45,9 +45,9 @@ billRegDetails: any[] = [];
     
    }
    ngOnInit() : void {
-    this.billrole = sessionStorage.getItem("createbill");
-    this.approve = sessionStorage.getItem("approve");
-    this.delete = sessionStorage.getItem("delete");
+    this.billrole = localStorage.getItem("createbill");
+    this.approve = localStorage.getItem("approve");
+    this.delete = localStorage.getItem("delete");
      debugger;
     var json = 
     {
