@@ -110,7 +110,7 @@ table {
   word-wrap: break-word !important;
   white-space: unset !important;
   flex: 0 0 5% !important;
-  width: 8% !important;
+  width: 5% !important;
   overflow-wrap: break-word;
   word-wrap: break-word;
 
@@ -124,8 +124,8 @@ table {
 .mat-column-dutydate{
   word-wrap: break-word !important;
   white-space: unset !important;
-  flex: 0 0 8% !important;
-  width: 8% !important;
+  flex: 0 0 5% !important;
+  width: 5% !important;
   overflow-wrap: break-word;
   word-wrap: break-word;
 
@@ -140,8 +140,8 @@ table {
 .mat-column-partyname{
   word-wrap: break-word !important;
   white-space: unset !important;
-  flex: 0 0 9% !important;
-  width: 8% !important;
+  flex: 0 0 5% !important;
+  width: 5% !important;
   overflow-wrap: break-word;
   word-wrap: break-word;
 
@@ -245,8 +245,8 @@ table {
 .mat-column-gouttime{
   word-wrap: break-word !important;
   white-space: unset !important;
-  flex: 0 0 6% !important;
-  width: 8% !important;
+  flex: 0 0 10% !important;
+  width: 10% !important;
   overflow-wrap: break-word;
   word-wrap: break-word;
 
@@ -260,8 +260,8 @@ table {
 .mat-column-gintime{
   word-wrap: break-word !important;
   white-space: unset !important;
-  flex: 0 0 6% !important;
-  width: 8% !important;
+  flex: 0 0 10% !important;
+  width: 10% !important;
   overflow-wrap: break-word;
   word-wrap: break-word;
 
