@@ -52,10 +52,10 @@ export class PartyComponent implements OnInit {
     this.dataSource = new MatTableDataSource(party); */
    }
    ngOnInit() : void {
-    this.partyrole = sessionStorage.getItem("enterparty");
-    this.approve = sessionStorage.getItem("approve");
-    this.delete = sessionStorage.getItem("delete");
-    this.userRole = sessionStorage.getItem("userrole");
+    this.partyrole = localStorage.getItem("enterparty");
+    this.approve = localStorage.getItem("approve");
+    this.delete = localStorage.getItem("delete");
+    this.userRole = localStorage.getItem("userrole");
     var json = 
     {
       "mode": 0

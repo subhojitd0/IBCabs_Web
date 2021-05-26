@@ -39,10 +39,10 @@ export class OwnerComponent implements OnInit {
     
    }
    ngOnInit() : void {
-    this.ownerrole = sessionStorage.getItem("enterowner");
-    this.approve = sessionStorage.getItem("approve");
-    this.delete = sessionStorage.getItem("delete");
-    this.userRole = sessionStorage.getItem("userrole");
+    this.ownerrole = localStorage.getItem("enterowner");
+    this.approve = localStorage.getItem("approve");
+    this.delete = localStorage.getItem("delete");
+    this.userRole = localStorage.getItem("userrole");
     var json = 
     {
       "mode": 0

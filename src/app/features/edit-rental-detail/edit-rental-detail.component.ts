@@ -102,24 +102,29 @@ export class EditRentalDetailComponent implements OnInit {
   carselect: FormControl;
   driverselect: FormControl;
   partyselect: FormControl;
+  reportselect: FormControl;
   partylist: Observable<string[]>;
   partynames: any;
   carlist: Observable<string[]>;
   driverlist: Observable<string[]>;
+  reportlist: Observable<string[]>;
   allcartypefilter: any;
   ddrrole: string;
   approverole: string;
   delete: string;
+  allreportto: any;
+  allreport: any;
   constructor(private cdRef:ChangeDetectorRef, private router: Router,private apiService: ApiService, public dialog: MatDialog, private toastr: ToastrService) {
     
    }
    ngOnInit() : void {
-    this.ddrrole = sessionStorage.getItem("enterddr");
-    this.approverole = sessionStorage.getItem("approve");
-    this.delete = sessionStorage.getItem("delete");
+    this.ddrrole = localStorage.getItem("enterddr");
+    this.approverole = localStorage.getItem("approve");
+    this.delete = localStorage.getItem("delete");
     this.partyselect = new FormControl();
     this.driverselect = new FormControl();
     this.carselect = new FormControl();
+    this.reportselect = new FormControl();
     this.carFormControl = new FormControl();
     this.carTypeFormControl = new FormControl();
     this.driverFormControl = new FormControl();
@@ -135,6 +140,8 @@ export class EditRentalDetailComponent implements OnInit {
      this.alldrivernames = this.alldrivers.map(x=>x.drivername);
      this.allcarno = this.allcars.map(x=>x.carno);
      this.allcartype = this.cartypes.map(x=>x.car);
+     this.allreportto = JSON.parse(localStorage.getItem('allreportto'));
+     this.allreport = this.allreportto.map(x=>x.report);
      this.partynames = this.allparties.map(x=>x.name);
      if(filterby)
         this.filterby = filterby;
@@ -202,6 +209,7 @@ filter(val, x){
     //this.filteredOptionsCar = this.carFormControl.valueChanges.pipe(startWith(''),map(value => this._filterCar(value)));
     this.carlist = this.carselect.valueChanges.pipe(startWith(''),map(value => this._filterCar(value)));
     //cartype
+    this.reportlist = this.reportselect.valueChanges.pipe(startWith(''),map(value => this._filterReport(value)));
     //this.filteredOptionsCarType = this.carTypeFormControl.valueChanges.pipe(startWith(''),map(value => this._filterCarType(value)));
     //driver
     //this.filteredOptionsDriver = this.driverFormControl.valueChanges.pipe(startWith(''),map(value => this._filterDriver(value)));
@@ -214,6 +222,10 @@ filter(val, x){
   public _filterCar(value: string): string[] {
     const filterValue = value.toLowerCase();
     return this.allcarno.filter(client => client.toLowerCase().includes(filterValue));
+  }
+  public _filterReport(value: string): string[] {
+    const filterValue = value.toLowerCase();
+    return this.allreport.filter(client => client.toLowerCase().includes(filterValue));
   }
   public _filterCarType(value: string): string[] {
     const filterValue = value.toLowerCase();
@@ -330,6 +342,9 @@ filter(val, x){
     }
     else if(val === "driver"){
       this.filtervalue = this.alldrivers[0].drivercode;
+    }
+    else if(val === "report"){
+      this.filtervalue = this.allreportto[0].drivercode;
     }
     else{
       this.filtervalue = this.allcars[0].carcode;

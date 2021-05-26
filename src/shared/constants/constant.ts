@@ -2,7 +2,7 @@ export const API_URL = "http://ibcabs.com/bills/api/";
 export const MESSAGE_URL = " http://enterprise.smsgupshup.com/GatewayAPI/rest?";
 
 //Production Old
-/* export const ROUTE_BASIC = "bills/new";
+export const ROUTE_BASIC = "bills/new";
 export const ROUTE_DASHBOARD = "bills/new/dashboard";
 export const ROUTE_PARTY = "bills/new/party";
 export const ROUTE_RATE = "bills/new/rate";
@@ -23,10 +23,10 @@ export const ROUTE_VIEW_BILL_RELIANCE_JMS = "bills/new/bill/reliance-jms";
 export const ROUTE_VIEW_BILL_RELIANCE_SUMMARY = "bills/new/bill/reliance-summary";
 export const ROUTE_NEW_USER = "bills/new/create-user";
 export const ROUTE_USER_RIGHTS = "bills/new/user-rights";
-export const ROUTE_MATADOR = "bills/new/matador";  */
+export const ROUTE_MATADOR = "bills/new/matador"; 
 
 //Production New
-export const ROUTE_BASIC = "newbill";
+/* export const ROUTE_BASIC = "newbill";
 export const ROUTE_DASHBOARD = "newbill/dashboard";
 export const ROUTE_PARTY = "newbill/party";
 export const ROUTE_RATE = "newbill/rate";
@@ -47,7 +47,7 @@ export const ROUTE_VIEW_BILL_RELIANCE_JMS = "newbill/bill/reliance-jms";
 export const ROUTE_VIEW_BILL_RELIANCE_SUMMARY = "newbill/bill/reliance-summary";
 export const ROUTE_NEW_USER = "newbill/create-user";
 export const ROUTE_USER_RIGHTS = "newbill/user-rights";
-export const ROUTE_MATADOR = "newbill/matador";
+export const ROUTE_MATADOR = "newbill/matador"; */
 
 //Local
 /* export const ROUTE_BASIC = "";

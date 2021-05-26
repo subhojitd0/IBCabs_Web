@@ -55,7 +55,7 @@ export class UserRightComponent implements OnInit {
    }
    ngOnInit() : void {
     this.userselect = new FormControl();
-    this.userRole = sessionStorage.getItem("userrole");
+    this.userRole = localStorage.getItem("userrole");
     var json = 
     {
       

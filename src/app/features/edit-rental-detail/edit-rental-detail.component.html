@@ -69,6 +69,9 @@
                   <option value="car">
                     Car
                   </option>
+                  <option value="report">
+                    Report To
+                  </option>
                 </select>
                 Value :
                 <mat-form-field *ngIf="filterby==='party'">
@@ -83,6 +86,14 @@
                   <input type="text"  name="driverfilter" [(ngModel)]="filterval" [formControl]="driverselect" [matAutocomplete]="driver" matInput placeholder="Enter Driver">
                   <mat-autocomplete (optionSelected)="onChangeFilterVal($event)" #driver="matAutocomplete">
                     <mat-option *ngFor="let option of driverlist | async" [value]="option" >
+                      {{option}}
+                    </mat-option>
+                  </mat-autocomplete>
+                </mat-form-field>
+                <mat-form-field *ngIf="filterby==='report'">
+                  <input type="text" name="reportfilter"  [(ngModel)]="filterval" [formControl]="reportselect" [matAutocomplete]="report" matInput placeholder="Enter Report To">
+                  <mat-autocomplete (optionSelected)="onChangeFilterVal($event)" #report="matAutocomplete">
+                    <mat-option *ngFor="let option of reportlist | async" [value]="option" >
                       {{option}}
                     </mat-option>
                   </mat-autocomplete>
