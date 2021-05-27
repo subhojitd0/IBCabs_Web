@@ -9,7 +9,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {STEPPER_GLOBAL_OPTIONS} from '@angular/cdk/stepper';
-import { ROUTE_ADD_DDR, ROUTE_VIEW_DDR } from 'src/shared/constants/constant';
+import { ROUTE_ADD_DDR, ROUTE_CHECK_DDR, ROUTE_VIEW_DDR } from 'src/shared/constants/constant';
 import { MessageModalComponent } from './message-modal/message-modal.component';
 import { ConfirmationModalComponent } from './confirmation-modal/confirmation-modal.component';
 import { Observable, Subject } from 'rxjs';
@@ -201,6 +201,13 @@ filter(val, x){
   return val.filter(joke => 
     joke.joke.toLowerCase().includes(x));
 } */
+checkddr(){
+  localStorage.setItem("checkyear", this.year);
+  localStorage.setItem("checkmonth", this.month);
+  localStorage.setItem("checkfilter", this.filterby);
+  localStorage.setItem("checkfilterby", this.filtervalue);
+  this.router.navigateByUrl('/' + ROUTE_CHECK_DDR);
+}
   assignAutoComplete(){
    
     //party

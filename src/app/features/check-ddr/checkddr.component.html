@@ -1,0 +1,69 @@
+        <!-- <div class="center">
+          <p style="cursor: pointer; margin-right: 5px;" (click)="exportAsPDF('printdiv');"><img height="70" src="http://ibcabs.com/bills/new/assets/img/download.png"></p>
+          <p *ngIf="isConfirmVisible" style="cursor: pointer; margin-right: 5px" (click)="save();"><img height="70" src="http://ibcabs.com/bills/new/assets/img/confirm.png"></p>
+        </div> -->
+        <div class="container" id="printdiv" style="max-width: 1500px; min-height: 2000px; max-height: 10000px;">
+          <p id="header">CHECK DDR</p>
+ 
+          <div style="margin-top: 160px;"> 
+              <mat-table [dataSource]="dataSource" matSort>
+
+                <!-- Name Column -->
+                <ng-container matColumnDef="dutydate">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> Date </mat-header-cell>
+                  <mat-cell *matCellDef="let row"> {{row.dutydate}} </mat-cell>
+                </ng-container>
+            
+                <!-- Color Column -->
+                <ng-container matColumnDef="carno">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> Car No. </mat-header-cell>
+                  <mat-cell *matCellDef="let row"> {{row.carnum}} </mat-cell>
+                </ng-container>
+
+                <!-- ID Column -->
+                <ng-container matColumnDef="hour">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> Car Type  </mat-header-cell>
+                  <mat-cell *matCellDef="let row"> {{row.cartype}} </mat-cell>
+                </ng-container>
+            
+                <!-- Name Column -->
+                <ng-container matColumnDef="km">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> Party </mat-header-cell>
+                  <mat-cell *matCellDef="let row"> {{row.party}} </mat-cell>
+                </ng-container>
+            
+                <!-- Color Column -->
+                <ng-container matColumnDef="parking">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> Report To </mat-header-cell>
+                  <mat-cell *matCellDef="let row"> {{row.reporttoname}} </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="tothr">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> Total Hour  </mat-header-cell>
+                  <mat-cell *matCellDef="let row"> {{row.gouttime}}<!--  - {{row.gintime}} --> </mat-cell>
+                </ng-container>
+            
+                <!-- Name Column -->
+                <ng-container matColumnDef="totkm">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> Total KM </mat-header-cell>
+                  <mat-cell *matCellDef="let row"> {{row.goutkm}} KM<!--  - {{row.ginkm}} KM  --> </mat-cell>
+                </ng-container>
+            
+                <!-- Color Column -->
+                <ng-container matColumnDef="totpar">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> Total Parking </mat-header-cell>
+                  <mat-cell *matCellDef="let row"> {{row.parking}} </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="out">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> Outstation Days </mat-header-cell>
+                  <mat-cell *matCellDef="let row"> {{row.outstation}} </mat-cell>
+                </ng-container>
+
+                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: displayedColumns;">
+                </mat-row>
+              </mat-table>
+            </div>
+
+        </div>

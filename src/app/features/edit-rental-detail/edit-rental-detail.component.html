@@ -99,13 +99,14 @@
                   </mat-autocomplete>
                 </mat-form-field>
                 <mat-form-field *ngIf="filterby==='car'">
-                  <input type="text" name="carfilter"  [(ngModel)]="filterval" [formControl]="carselect" [matAutocomplete]="car" matInput placeholder="Enter Car">
+                  <input type="text" name="carfilter"  [(ngModel)]="filtervalue" [formControl]="carselect" [matAutocomplete]="car" matInput placeholder="Enter Car">
                   <mat-autocomplete (optionSelected)="onChangeFilterVal($event)" #car="matAutocomplete">
                     <mat-option *ngFor="let option of carlist | async" [value]="option" >
                       {{option}}
                     </mat-option>
                   </mat-autocomplete>
                 </mat-form-field>
+                <button *ngIf ="filterby && filtervalue" mat-stroked-button (click)="checkddr()">Check DDR</button>
               </mat-card-title>
               <mat-card-subtitle>Add, Update, Delete and View the daily duties Here.</mat-card-subtitle>
             </mat-card-header>

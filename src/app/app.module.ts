@@ -58,6 +58,7 @@ import { UserComponent } from './features/create-user/user.component';
 import { UserRightComponent } from './features/user-rights/user-right.component';
 import { BillUploadComponent } from './features/bills/bill-upload/bill-upload.component';
 import { MatadorComponent } from './features/matador/matador.component';
+import { CheckDdrComponent } from './features/check-ddr/checkddr.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -95,7 +96,8 @@ import { MatadorComponent } from './features/matador/matador.component';
     UserComponent,
     UserRightComponent,
     BillUploadComponent,
-    MatadorComponent
+    MatadorComponent,
+    CheckDdrComponent
   ],
   imports: [
     BrowserModule,
