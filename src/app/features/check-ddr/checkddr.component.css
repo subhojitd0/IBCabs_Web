@@ -154,6 +154,96 @@ hyphens: auto;
     -webkit-hyphens: auto;
     hyphens: auto;
     }
+    .mat-column-km{
+        word-wrap: break-word !important;
+        white-space: unset !important;
+        flex: 0 0 23% !important;
+        width: 8% !important;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        
+        word-break: break-word;
+        
+        -ms-hyphens: auto;
+        -moz-hyphens: auto;
+        -webkit-hyphens: auto;
+        hyphens: auto;
+        }
+        .mat-column-parking{
+        word-wrap: break-word !important;
+        white-space: unset !important;
+        flex: 0 0 10% !important;
+        width: 8% !important;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        
+        word-break: break-word;
+        
+        -ms-hyphens: auto;
+        -moz-hyphens: auto;
+        -webkit-hyphens: auto;
+        hyphens: auto;
+        }
+        .mat-column-totpar{
+            word-wrap: break-word !important;
+            white-space: unset !important;
+            flex: 0 0 6% !important;
+            width: 8% !important;
+            overflow-wrap: break-word;
+            word-wrap: break-word;
+            
+            word-break: break-word;
+            
+            -ms-hyphens: auto;
+            -moz-hyphens: auto;
+            -webkit-hyphens: auto;
+            hyphens: auto;
+            }
+        .mat-column-totkm{
+            word-wrap: break-word !important;
+            white-space: unset !important;
+            flex: 0 0 6% !important;
+            width: 8% !important;
+            overflow-wrap: break-word;
+            word-wrap: break-word;
+            
+            word-break: break-word;
+            
+            -ms-hyphens: auto;
+            -moz-hyphens: auto;
+            -webkit-hyphens: auto;
+            hyphens: auto;
+            }
+            .mat-column-tothr{
+                word-wrap: break-word !important;
+                white-space: unset !important;
+                flex: 0 0 6% !important;
+                width: 8% !important;
+                overflow-wrap: break-word;
+                word-wrap: break-word;
+                
+                word-break: break-word;
+                
+                -ms-hyphens: auto;
+                -moz-hyphens: auto;
+                -webkit-hyphens: auto;
+                hyphens: auto;
+                }
+                .mat-column-out{
+                    word-wrap: break-word !important;
+                    white-space: unset !important;
+                    flex: 0 0 6% !important;
+                    width: 8% !important;
+                    overflow-wrap: break-word;
+                    word-wrap: break-word;
+                    
+                    word-break: break-word;
+                    
+                    -ms-hyphens: auto;
+                    -moz-hyphens: auto;
+                    -webkit-hyphens: auto;
+                    hyphens: auto;
+                    }
 
     .mat-column-carno{
         word-wrap: break-word !important;
@@ -170,6 +260,36 @@ hyphens: auto;
         -webkit-hyphens: auto;
         hyphens: auto;
         }
+        .mat-column-out{
+            word-wrap: break-word !important;
+            white-space: unset !important;
+            flex: 0 0 10% !important;
+            width: 8% !important;
+            overflow-wrap: break-word;
+            word-wrap: break-word;
+            
+            word-break: break-word;
+            
+            -ms-hyphens: auto;
+            -moz-hyphens: auto;
+            -webkit-hyphens: auto;
+            hyphens: auto;
+            }
+        .mat-column-hour{
+            word-wrap: break-word !important;
+            white-space: unset !important;
+            flex: 0 0 9% !important;
+            width: 8% !important;
+            overflow-wrap: break-word;
+            word-wrap: break-word;
+            
+            word-break: break-word;
+            
+            -ms-hyphens: auto;
+            -moz-hyphens: auto;
+            -webkit-hyphens: auto;
+            hyphens: auto;
+            }
 
 #customer-title, #meta{
     font-size: 20px;

@@ -39,25 +39,25 @@
                 </ng-container>
 
                 <ng-container matColumnDef="tothr">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header> Total Hour  </mat-header-cell>
-                  <mat-cell *matCellDef="let row"> {{row.gouttime}}<!--  - {{row.gintime}} --> </mat-cell>
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> Hour  </mat-header-cell>
+                  <mat-cell *matCellDef="let row"> {{row.tothr}}<!--  - {{row.gintime}} --> </mat-cell>
                 </ng-container>
             
                 <!-- Name Column -->
                 <ng-container matColumnDef="totkm">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header> Total KM </mat-header-cell>
-                  <mat-cell *matCellDef="let row"> {{row.goutkm}} KM<!--  - {{row.ginkm}} KM  --> </mat-cell>
+                  <mat-header-cell *matHeaderCellDef mat-sort-header>  KM </mat-header-cell>
+                  <mat-cell *matCellDef="let row"> {{row.totkm}}<!--  - {{row.ginkm}} KM  --> </mat-cell>
                 </ng-container>
             
                 <!-- Color Column -->
                 <ng-container matColumnDef="totpar">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header> Total Parking </mat-header-cell>
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> Parking </mat-header-cell>
                   <mat-cell *matCellDef="let row"> {{row.parking}} </mat-cell>
                 </ng-container>
 
                 <ng-container matColumnDef="out">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header> Outstation Days </mat-header-cell>
-                  <mat-cell *matCellDef="let row"> {{row.outstation}} </mat-cell>
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> Outstation</mat-header-cell>
+                  <mat-cell *matCellDef="let row"> {{row.outs}} </mat-cell>
                 </ng-container>
 
                 <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
