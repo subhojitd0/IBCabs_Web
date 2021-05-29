@@ -66,6 +66,7 @@ export class RelianceMISComponent implements OnInit {
   billdetails: any;
   amountInWord: any;
   roundedgross: any;
+  billparty: any;
   billfrom: any;
   billto: any;
   gstamountinwords: any;
@@ -75,7 +76,7 @@ export class RelianceMISComponent implements OnInit {
   isConfirmVisible: any = true;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  displayedColumns: string[] = ['sl', 'dutydate', 'reportto', 'carno', 'cartype', 'hour', 'km', 'rate', 'amount', 'parking', 'outstation'];
+  displayedColumns: string[] = ['sl', 'dutydate', 'reportto', 'cartype', 'carno', 'stkm', 'enkm', 'km', 'sthr', 'enhr', 'hour', 'exhr', 'parking', 'outstation', 'owner'];
   dataSource: MatTableDataSource<BillDet>;
   constructor(private router: Router,private apiService: ApiService, public dialog: MatDialog, private toastr: ToastrService) {
     
@@ -84,8 +85,10 @@ export class RelianceMISComponent implements OnInit {
     this.billdetails = JSON.parse(localStorage.getItem("billdata"));
     this.billfrom = localStorage.getItem("billfrom");
     this.billto = localStorage.getItem("billto");
+    this.billparty = localStorage.getItem("billparty");
     debugger;
     if(this.billdetails){
+      debugger;
       /* let billTot : BillDet = new BillDet();
       billTot.carno = "Total";
       billTot.sl = "";
@@ -94,18 +97,18 @@ export class RelianceMISComponent implements OnInit {
       billTot.km = this.billdetails.bodytotal[0].km;
       billTot.parking = this.billdetails.bodytotal[0].parking;
       this.billdetails.body.push(billTot); */
-      this.dataSource = new MatTableDataSource(this.billdetails.body);
+      this.dataSource = new MatTableDataSource(this.billdetails);
       //localStorage.setItem("billdata", "");
-      this.totalno = this.billdetails.body.length;
-      this.roundedgross = Math.round(parseFloat(this.billdetails.tail[0].grosstotal.toString().replace(',','')));
+      this.totalno = this.billdetails.length;
+      /* this.roundedgross = Math.round(parseFloat(this.billdetails.tail[0].grosstotal.toString().replace(',','')));
       /* let index = this.billdetails.tail[0].grosstotal.toString().indexOf('.');
       let substringVal = this.billdetails.tail[0].grosstotal;
       if(index > 0)
          substringVal = this.billdetails.tail[0].grosstotal.toString().substr(0, index);
-      substringVal = substringVal.toString().replace(',',''); */
+      substringVal = substringVal.toString().replace(',','');
       let gstRounded = Math.round(parseFloat(this.billdetails.gst[0].total.toString().replace(',','')));
       this.amountInWord = this.apiService.convertAmountToWord(this.roundedgross);
-      this.gstamountinwords = this.apiService.convertAmountToWord(gstRounded);
+      this.gstamountinwords = this.apiService.convertAmountToWord(gstRounded); */
       this.marginTop = (31-this.totalno)*2.5;
       this.fontSize = 20 + this.marginTop * 0.03;
     }

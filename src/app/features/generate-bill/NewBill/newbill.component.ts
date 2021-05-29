@@ -21,7 +21,8 @@ export interface inewbill {
   parkinggst: string,
   format: string,
   reportto: string,
-  subject: string
+  subject: string,
+  mode: string
 }
 
 export class newbill implements inewbill{
@@ -35,6 +36,7 @@ export class newbill implements inewbill{
   format: string;
   reportto: string;
   subject: string;
+  mode: string;
 }
 @Component({
   selector: 'app-newbill',
@@ -132,6 +134,19 @@ export class NewBillComponent implements OnInit {
     }
   }
   partychange(){
+    if(this.billDetails.format == "4")
+    {
+      var json = 
+      {
+        "mode":3,
+        "partyheadcode": this.billDetails.party
+      } 
+      this.apiService.post(ROUTE_VIEW_BILL_RELIANCE_MIS, json).then((res: any)=>{ 
+        this.reportnames = [...new Set(res.map(item => item))];
+        this.reportlist = this.reportselect.valueChanges.pipe(startWith(''),map(value => this._filterReport(value)));
+      });
+    }
+    else {
     var json = 
       {
         "mode":4,
@@ -140,6 +155,7 @@ export class NewBillComponent implements OnInit {
       this.apiService.post(PARTY_HEAD_API, json).then((res: any)=>{ 
         this.billDetails.subject = res.billsubject;
       });
+    }
   }
   generateBill(){
     debugger;
@@ -161,6 +177,7 @@ export class NewBillComponent implements OnInit {
     if(this.billDetails.format == "4"){
       billApi = BILL_RELIANCE_API;
       redirectApi = ROUTE_VIEW_BILL_RELIANCE_MIS;
+      this.billDetails.mode = "0";
     }
     debugger;
     this.toastr.info("Please wait while we are generating your bill",'Information');
