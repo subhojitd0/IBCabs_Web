@@ -52,7 +52,7 @@
                 <ng-container matColumnDef="option">
                     <mat-header-cell *matHeaderCellDef mat-sort-header> Options </mat-header-cell>
                     <mat-cell *matCellDef="let row" [style.color]="row.option">
-                        <span style="margin-left: 10px; margin-right: 10px; cursor: pointer;" class="material-icons" (click)="downloadBill(row.path)">
+                        <span style="margin-left: 10px; margin-right: 10px; cursor: pointer;" class="material-icons" (click)="downloadBill(row)">
                             download
                         </span> |
                         <span *ngIf="billrole === '1' && delete === '1'" style="margin-left: 10px; margin-right: 10px; cursor: pointer;" class="material-icons" (click)="deleteBill(row.billid)">

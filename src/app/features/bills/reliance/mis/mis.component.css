@@ -38,7 +38,7 @@ table {
   }
 
   #header{
-    height: 30px;
+    height: 40px;
     width: 100%;
     margin: 0px;
     background: #222;
@@ -47,7 +47,8 @@ table {
     font: bold 14px Helvetica, Sans-Serif;
     text-decoration: uppercase;
     letter-spacing: 8px;
-    padding: 8px 0px;
+    padding: 13px;
+    font-size: 16px;
   }
   #customer-title {
     font-size: 16px;
@@ -83,10 +84,17 @@ table>tr{
 }
 td, th { border: 1px solid; padding: 5px }
 
-.mat-row:last-child {
+.mat-row:last-child .mat-cell {
+    color: black;
+    border: 1px solid;
+    padding-left: 5px;
+    /* font-weight: bold; */
+    font-size: 21px;
+    justify-content: center;
+  }
+  .mat-row:last-child {
     font-weight: bold; 
   }
-
   .center{
     position: fixed;
     top: 50%;

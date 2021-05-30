@@ -408,10 +408,16 @@ export class RentalDetailComponent implements OnInit {
         this.apiService.post(PARTY_HEAD_API, jsonParty).then((res: any)=>{ 
           ot = res.outstation;
           this.rentalAdd.mode = "2";
-        if(this.rentalAdd.gintime)
-          this.rentalAdd.gintime = this.rentalAdd.gintime.substr(0,5);
-        if(this,this.rentalAdd.gouttime)
-          this.rentalAdd.gouttime = this.rentalAdd.gouttime.substr(0,5);
+          debugger;
+        if(this.rentalAdd.gintime){
+          this.rentalAdd.gintime = this.rentalAdd.gintime.replace(" ","T");
+          this.rentalAdd.gintime = this.rentalAdd.gintime.substr(0,this.rentalAdd.gintime.length - 3);
+        }
+          
+        if(this,this.rentalAdd.gouttime){
+          this.rentalAdd.gouttime = this.rentalAdd.gouttime.replace(" ","T");
+          this.rentalAdd.gouttime = this.rentalAdd.gouttime.substr(0,this.rentalAdd.gouttime.length - 3);
+        }
 
         if(this.rentalAdd.outstation != "NaN")
           this.rentalAdd.outstation = (parseFloat(this.rentalAdd.outstation) / parseFloat(ot.toString())).toString();

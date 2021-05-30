@@ -3,11 +3,11 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import {ApiService} from '../../../shared/services/service';
-import {BILL_API, OWNER_API, PARTY_HEAD_API} from '../../../shared/services/api.url-helper';
+import {BILL_API, BILL_RELIANCE_API, OWNER_API, PARTY_HEAD_API} from '../../../shared/services/api.url-helper';
 import {MatDialog} from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
-import { ROUTE_CAR, ROUTE_OWNER } from 'src/shared/constants/constant';
+import { ROUTE_CAR, ROUTE_OWNER, ROUTE_VIEW_BILL_RELIANCE_MIS } from 'src/shared/constants/constant';
 import { NewBillComponent } from './NewBill/newbill.component';
 import { AdvancedBillComponent } from './AdvancedBill/advancedbill.component';
 import html2canvas from 'html2canvas';
@@ -23,6 +23,10 @@ export interface BillRegister {
   party: string;
   path: string;
   option: string;
+  billtype: string;
+  reportto: string;
+  nightstart: string;
+  nightend: string;
 }
 
 @Component({
@@ -65,19 +69,62 @@ billRegDetails: any[] = [];
     filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
     this.dataSource.filter = filterValue;
   }
-  downloadBill(billPath: any){
-    localStorage.setItem("billmodalbody", billPath);
-    const dialogRef = this.dialog.open(CoalIndiaModalComponent);
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog closed`);
-    });
-    this.router.events.subscribe(() => {
-      dialogRef.close();
+  downloadBill(bill: any){
+    if(bill.billtype === "D0"){
+      this.openBill(bill);
+    }
+    else{
+      localStorage.setItem("billmodalbody", bill.path);
+      const dialogRef = this.dialog.open(CoalIndiaModalComponent);
+  
+      dialogRef.afterClosed().subscribe(result => {
+        console.log(`Dialog closed`);
+      });
+      this.router.events.subscribe(() => {
+        dialogRef.close();
+      });
+    }
+    
+  }
+  openBill(element: any){
+    debugger;
+    let json = {
+      party: element.party,
+      from: element.billfrom,
+      to: element.billto,
+      nightstart: element.nightstart,
+      nightend: element.nightend,
+      format: "4",
+      reportto: element.reportto,
+      mode: "0"
+    }
+    localStorage.setItem("billfrom", element.billfrom);
+    localStorage.setItem("billto", element.billto);
+    localStorage.setItem("billparty", element.party);
+    localStorage.setItem("billreportto", element.reportto);
+    localStorage.setItem("nightstart", element.nightstart);
+    localStorage.setItem("nightend", element.nightend);
+    this.apiService.post(BILL_RELIANCE_API, json).then((res: any)=>{ 
+      debugger;
+      localStorage.setItem("billdata", JSON.stringify(res));
+      this.toastr.success("Your bill was successfully created",'Success');
+      this.router.navigateByUrl('/' + ROUTE_VIEW_BILL_RELIANCE_MIS);
     });
   }
   deleteBill(billid: any){
-    
+    var r = confirm("Are you sure that you want to delete this record ?");
+    if (r == true) {
+      debugger;
+      var json = 
+      {
+        "mode":3,
+        "billid": billid
+      }
+      this.apiService.post(BILL_API, json).then((res: any)=>{ 
+        this.toastr.success("Your data was successfully saved",'Success');
+        location.reload();
+      });
+    }
   }
   openDialog(id: any) {
     const dialogRef = this.dialog.open(NewBillComponent);

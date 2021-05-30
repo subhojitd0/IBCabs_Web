@@ -187,6 +187,9 @@ export class NewBillComponent implements OnInit {
     localStorage.setItem("billsubject", this.billDetails.subject);
     localStorage.setItem("billgst", this.billDetails.gsttype);
     localStorage.setItem("billparking", this.billDetails.parkinggst);
+    localStorage.setItem("billreportto", this.billDetails.reportto);
+    localStorage.setItem("nightstart", this.billDetails.nightstart);
+    localStorage.setItem("nightend", this.billDetails.nightend);
     this.apiService.post(billApi, this.billDetails).then((res: any)=>{ 
       debugger;
       localStorage.setItem("billdata", JSON.stringify(res));

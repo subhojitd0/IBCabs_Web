@@ -284,9 +284,15 @@ checkddr(){
           element.outstation = (parseInt(element.outstation) / parseInt(ot.toString())).toString();
         });
         if(element.gintime)
-          element.gintime = element.gintime.substr(0,5);
+        {
+          element.gintime = element.gintime.replace(" ","T");
+          element.gintime = element.gintime.substr(0,element.gintime.length - 3);
+        }
         if(element.gouttime)
-          element.gouttime = element.gouttime.substr(0,5);
+        {
+          element.gouttime = element.gouttime.replace(" ","T");
+          element.gouttime = element.gouttime.substr(0,element.gouttime.length - 3);
+        }
       
         if(!element.outstation || element.outstation == "NaN")
           element.outstation = "0";
@@ -402,10 +408,14 @@ checkddr(){
         this.editRentalDetails.forEach(element => {
           element.isSelected = false;
         });
-        if(this.editRentalDetails.gintime)
-            this.editRentalDetails.gintime = this.editRentalDetails.gintime.substr(0,5);
-          if(this,this.editRentalDetails.gouttime)
-            this.editRentalDetails.gouttime = this.editRentalDetails.gouttime.substr(0,5);
+        if(this.editRentalDetails.gintime){
+          this.editRentalDetails.gintime = this.editRentalDetails.gintime.replace(" ","T");
+          this.editRentalDetails.gintime = this.editRentalDetails.gintime.substr(0,this.editRentalDetails.gintime.length - 3);
+        }
+        if(this,this.editRentalDetails.gouttime){
+          this.editRentalDetails.gouttime = this.editRentalDetails.gouttime.replace(" ","T");
+          this.editRentalDetails.gouttime = this.editRentalDetails.gouttime.substr(0,this.editRentalDetails.gouttime.length - 3);
+        }
         this.mastereditrentaldetails = res.result;
         this.bulkDataSource = new MatTableDataSource(this.editRentalDetails);
         localStorage.setItem("editrentaldetails", JSON.stringify(res.result));

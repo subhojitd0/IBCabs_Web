@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 import jspdf from 'jspdf';
 import html2canvas from 'html2canvas';
 import { ROUTE_CAR, ROUTE_GENERATE_BILL, ROUTE_OWNER } from 'src/shared/constants/constant';
+import * as moment from 'moment';
 
 export interface iBillDet {
   sl: string;
@@ -46,6 +47,10 @@ export interface iSaveBill {
   billdate: string;
   party: string;
   mode: string;
+  billtype: string;
+  reportto: string;
+  nightstart: string;
+  nightend: string;
 }
 export class SaveBill implements iSaveBill {
   billnumber: string;
@@ -54,6 +59,10 @@ export class SaveBill implements iSaveBill {
   billdate: string;
   party: string;
   mode: string;
+  billtype: string;
+  reportto: string;
+  nightstart: string;
+  nightend: string;
 }
 @Component({
   selector: 'app-mis',
@@ -96,6 +105,9 @@ export class RelianceMISComponent implements OnInit {
       this.billdetails[0].total.forEach((val: any)=>{
         billArray.push(val);
       });
+      billArray.forEach((val: any)=>{
+        val.outstation = val.outstation === "NaN" ? "0": val.outstation;
+      })
       /* billArray.push(this.billdetails[0].record);
       billArray.push(this.billdetails[0].total); */
       /* let billTot : BillDet = new BillDet();
@@ -124,6 +136,8 @@ export class RelianceMISComponent implements OnInit {
     
    }
    save(){
+     this.billno = "MIS";
+     this.billdate = moment().format("YYYY-MM-DD");
      if(!(this.billno && this.billdate)){
       alert("Please enter a proper bill number and bill date to proceed");
      }
@@ -134,7 +148,11 @@ export class RelianceMISComponent implements OnInit {
       billSave.billfrom = localStorage.getItem("billfrom");
       billSave.billto = localStorage.getItem("billto");
       billSave.party = localStorage.getItem("billparty");
+      billSave.billtype = "D0";
+      billSave.reportto = localStorage.getItem("billreportto");
       billSave.mode = "1";
+      billSave.nightstart = localStorage.getItem("nightstart");
+      billSave.nightend = localStorage.getItem("nightend");
       this.apiService.post(BILL_API, billSave).then((res: any)=>{ 
           debugger;
           if(res.status === "success"){
