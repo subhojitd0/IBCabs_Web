@@ -2,7 +2,7 @@
           <p style="cursor: pointer; margin-right: 5px;" (click)="exportAsPDF('printdiv');"><img height="70" src="./../../../../assets/img/download.png"></p>
           <!-- <p *ngIf="isConfirmVisible" style="cursor: pointer; margin-right: 5px" (click)="save();"><img height="70" src="./../../../../assets/img/confirm.png"></p> -->
         </div>
-        <div class="container" id="printdiv" style="max-width: 1500px; min-height: 2000px; max-height: 10000px;">
+        <div class="container" id="printdiv" style="max-width: 1500px; min-height: 1200px; max-height: 10000px;">
           <p id="header">MIS for {{this.billparty}}</p>
           <div id="identity" class="row col-xs-12" >
               <div class="col-xs-1">
@@ -113,6 +113,11 @@
                   <mat-cell *matCellDef="let row"> {{row.endhour.toString().substr(row.endhour.toString().length - 8, 5)}}</mat-cell>
                 </ng-container>
 
+                <!-- ID Column -->
+                <ng-container matColumnDef="night">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> Night  </mat-header-cell>
+                  <mat-cell *matCellDef="let row"> {{row.night}} </mat-cell>
+                </ng-container>
                 <!-- ID Column -->
                 <ng-container matColumnDef="hour">
                   <mat-header-cell *matHeaderCellDef mat-sort-header> Tot Hr.  </mat-header-cell>

@@ -76,7 +76,7 @@ table>tr{
     border: 1px solid;
 }
 .mat-row, .mat-footer-row, .mat-header-row {
-    min-height: 30px;
+    /* min-height: 30px; */
     text-align: center;
     color: black;
     border-bottom-width: 0px !important;
@@ -84,7 +84,7 @@ table>tr{
 td, th { border: 1px solid; padding: 5px }
 
 .mat-row:last-child {
-    /* font-weight: bold; */
+    font-weight: bold; 
   }
 
   .center{
@@ -126,8 +126,8 @@ td, th { border: 1px solid; padding: 5px }
 .mat-column-sl{
 word-wrap: break-word !important;
 white-space: unset !important;
-flex: 0 0 3% !important;
-width: 8% !important;
+/* flex: 0 0 3% !important; */
+width: 2% !important;
 overflow-wrap: break-word;
 word-wrap: break-word;
 
@@ -142,8 +142,8 @@ hyphens: auto;
 .mat-column-dutydate{
     word-wrap: break-word !important;
     white-space: unset !important;
-    flex: 0 0 7% !important;
-    width: 8% !important;
+    /* flex: 0 0 7% !important; */
+    width: 9% !important;
     overflow-wrap: break-word;
     word-wrap: break-word;
     
@@ -157,8 +157,8 @@ hyphens: auto;
     .mat-column-parking{
         word-wrap: break-word !important;
         white-space: unset !important;
-        flex: 0 0 6% !important;
-        width: 8% !important;
+        /* flex: 0 0 5% !important; */
+        width: 6% !important;
         overflow-wrap: break-word;
         word-wrap: break-word;
         
@@ -172,8 +172,8 @@ hyphens: auto;
     .mat-column-reportto{
         word-wrap: break-word !important;
         white-space: unset !important;
-        flex: 0 0 9% !important;
-        width: 8% !important;
+        /* flex: 0 0 10% !important; */
+        width: 10% !important;
         overflow-wrap: break-word;
         word-wrap: break-word;
         
@@ -187,8 +187,8 @@ hyphens: auto;
         .mat-column-hour{
             word-wrap: break-word !important;
             white-space: unset !important;
-            flex: 0 0 5% !important;
-            width: 8% !important;
+            /* flex: 0 0 5% !important; */
+            width: 5% !important;
             overflow-wrap: break-word;
             word-wrap: break-word;
             
@@ -202,8 +202,8 @@ hyphens: auto;
             .mat-column-km{
                 word-wrap: break-word !important;
                 white-space: unset !important;
-                flex: 0 0 5% !important;
-                width: 8% !important;
+                /* flex: 0 0 5% !important; */
+                width: 5% !important;
                 overflow-wrap: break-word;
                 word-wrap: break-word;
                 
@@ -217,7 +217,7 @@ hyphens: auto;
     .mat-column-carno{
         word-wrap: break-word !important;
         white-space: unset !important;
-        flex: 0 0 9% !important;
+        /* flex: 0 0 9% !important; */
         width: 8% !important;
         overflow-wrap: break-word;
         word-wrap: break-word;
@@ -232,7 +232,7 @@ hyphens: auto;
         .mat-column-sthr{
         word-wrap: break-word !important;
         white-space: unset !important;
-        flex: 0 0 6% !important;
+        /* flex: 0 0 6% !important; */
         width: 8% !important;
         overflow-wrap: break-word;
         word-wrap: break-word;
@@ -247,7 +247,7 @@ hyphens: auto;
         .mat-column-stkm{
         word-wrap: break-word !important;
         white-space: unset !important;
-        flex: 0 0 6% !important;
+        /* flex: 0 0 6% !important; */
         width: 8% !important;
         overflow-wrap: break-word;
         word-wrap: break-word;
@@ -262,7 +262,7 @@ hyphens: auto;
         .mat-column-enhr{
         word-wrap: break-word !important;
         white-space: unset !important;
-        flex: 0 0 6% !important;
+        /* flex: 0 0 6% !important; */
         width: 8% !important;
         overflow-wrap: break-word;
         word-wrap: break-word;
@@ -277,8 +277,8 @@ hyphens: auto;
         .mat-column-exhr{
         word-wrap: break-word !important;
         white-space: unset !important;
-        flex: 0 0 5% !important;
-        width: 8% !important;
+        /* flex: 0 0 5% !important; */
+        width: 5% !important;
         overflow-wrap: break-word;
         word-wrap: break-word;
         
@@ -292,8 +292,8 @@ hyphens: auto;
         .mat-column-enkm{
         word-wrap: break-word !important;
         white-space: unset !important;
-        flex: 0 0 5% !important;
-        width: 8% !important;
+        /* flex: 0 0 5% !important; */
+        width: 5% !important;
         overflow-wrap: break-word;
         word-wrap: break-word;
         
@@ -307,7 +307,7 @@ hyphens: auto;
         .mat-column-outstation{
             word-wrap: break-word !important;
             white-space: unset !important;
-            flex: 0 0 7% !important;
+            /* flex: 0 0 7% !important; */
             width: 8% !important;
             overflow-wrap: break-word;
             word-wrap: break-word;
@@ -322,7 +322,7 @@ hyphens: auto;
         .mat-column-cartype{
             word-wrap: break-word !important;
             white-space: unset !important;
-            flex: 0 0 7% !important;
+            /* flex: 0 0 7% !important; */
             width: 8% !important;
             overflow-wrap: break-word;
             word-wrap: break-word;
@@ -337,7 +337,7 @@ hyphens: auto;
             .mat-column-owner{
                 word-wrap: break-word !important;
                 white-space: unset !important;
-                flex: 0 0 14% !important;
+                flex: 0 0 12% !important;
                 width: 8% !important;
                 overflow-wrap: break-word;
                 word-wrap: break-word;

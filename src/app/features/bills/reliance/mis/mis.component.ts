@@ -76,7 +76,7 @@ export class RelianceMISComponent implements OnInit {
   isConfirmVisible: any = true;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  displayedColumns: string[] = ['sl', 'dutydate', 'reportto', 'cartype', 'carno', 'stkm', 'enkm', 'km', 'sthr', 'enhr', 'hour', 'exhr', 'parking', 'outstation', 'owner'];
+  displayedColumns: string[] = ['sl', 'dutydate', 'reportto', 'cartype', 'carno', 'stkm', 'enkm', 'km', 'sthr', 'enhr', 'hour', 'exhr', 'night', 'parking', 'outstation', 'owner'];
   dataSource: MatTableDataSource<BillDet>;
   constructor(private router: Router,private apiService: ApiService, public dialog: MatDialog, private toastr: ToastrService) {
     
@@ -89,6 +89,15 @@ export class RelianceMISComponent implements OnInit {
     debugger;
     if(this.billdetails){
       debugger;
+      let billArray = [];
+      this.billdetails[0].record.forEach((val: any)=>{
+        billArray.push(val);
+      });
+      this.billdetails[0].total.forEach((val: any)=>{
+        billArray.push(val);
+      });
+      /* billArray.push(this.billdetails[0].record);
+      billArray.push(this.billdetails[0].total); */
       /* let billTot : BillDet = new BillDet();
       billTot.carno = "Total";
       billTot.sl = "";
@@ -97,9 +106,9 @@ export class RelianceMISComponent implements OnInit {
       billTot.km = this.billdetails.bodytotal[0].km;
       billTot.parking = this.billdetails.bodytotal[0].parking;
       this.billdetails.body.push(billTot); */
-      this.dataSource = new MatTableDataSource(this.billdetails);
+      this.dataSource = new MatTableDataSource(billArray);
       //localStorage.setItem("billdata", "");
-      this.totalno = this.billdetails.length;
+      this.totalno = billArray.length;
       /* this.roundedgross = Math.round(parseFloat(this.billdetails.tail[0].grosstotal.toString().replace(',','')));
       /* let index = this.billdetails.tail[0].grosstotal.toString().indexOf('.');
       let substringVal = this.billdetails.tail[0].grosstotal;
