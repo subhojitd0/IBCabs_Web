@@ -262,13 +262,13 @@
                 <ng-container matColumnDef="gouttime">
                   <mat-header-cell *matHeaderCellDef mat-sort-header> Out Time </mat-header-cell>
                   <mat-cell *matCellDef="let row"> 
-                    <input type="datetime-local" matInput [(ngModel)]="row.gouttime"/>
+                    <input type="time" matInput [(ngModel)]="row.gouttime"/>
                   </mat-cell>
                 </ng-container>
                 <ng-container matColumnDef="gintime">
                   <mat-header-cell *matHeaderCellDef mat-sort-header> In Time </mat-header-cell>
                   <mat-cell *matCellDef="let row"> 
-                    <input type="datetime-local" matInput [(ngModel)]="row.gintime"/>
+                    <input type="time" matInput [(ngModel)]="row.gintime"/>
                   </mat-cell>
                 </ng-container>
                 <ng-container matColumnDef="parking">
