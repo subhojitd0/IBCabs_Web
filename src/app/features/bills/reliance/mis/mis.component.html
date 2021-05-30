@@ -146,6 +146,11 @@
                   <mat-cell *matCellDef="let row"> {{row.outstation}} </mat-cell>
                 </ng-container>
 
+                <ng-container matColumnDef="night">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> Night </mat-header-cell>
+                  <mat-cell *matCellDef="let row"> {{row.night}}</mat-cell>
+                </ng-container>
+
                 <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
                 <mat-row *matRowDef="let row; columns: displayedColumns;">
                 </mat-row>
