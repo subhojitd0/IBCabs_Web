@@ -178,7 +178,7 @@
 
       <mat-form-field style="width: 40%; margin-right: 40px;">
         <mat-label>Garage Out Time</mat-label>
-        <input matInput [(ngModel)]="rentalAdd.gouttime"  type="time" formControlName="GOUTTIMEControl" required>
+        <input matInput [(ngModel)]="rentalAdd.gouttime"  type="datetime-local" formControlName="GOUTTIMEControl" required>
       </mat-form-field>
       <mat-form-field style="width: 40%; margin-right: 40px;">
         <mat-label>Garage Out KM</mat-label>
@@ -188,7 +188,7 @@
 
       <mat-form-field style="width: 40%; margin-right: 40px;">
         <mat-label>Garage In Time</mat-label>
-        <input matInput [(ngModel)]="rentalAdd.gintime"  type="time" formControlName="GINTIMEControl" required>
+        <input matInput [(ngModel)]="rentalAdd.gintime"  type="datetime-local" formControlName="GINTIMEControl" required>
       </mat-form-field>
       <mat-form-field style="width: 40%; margin-right: 40px;">
         <mat-label>Garage In KM</mat-label>
