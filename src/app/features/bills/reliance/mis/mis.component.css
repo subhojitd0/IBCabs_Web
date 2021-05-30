@@ -47,8 +47,9 @@ table {
     font: bold 14px Helvetica, Sans-Serif;
     text-decoration: uppercase;
     letter-spacing: 8px;
-    padding: 13px;
-    font-size: 16px;
+    padding: 10px;
+    font-size: 20px;
+    margin-bottom: 20px !important;
   }
   #customer-title {
     font-size: 16px;

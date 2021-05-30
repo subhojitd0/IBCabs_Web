@@ -159,7 +159,7 @@ export class RelianceMISComponent implements OnInit {
           this.exportAsPDF("container");
           this.isConfirmVisible = false;
           this.toastr.success("Your bill was successfully created",'Success');
-          
+          this.router.navigateByUrl('/' + ROUTE_GENERATE_BILL);
         }
       });
      }
