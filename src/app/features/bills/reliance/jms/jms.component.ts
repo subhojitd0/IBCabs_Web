@@ -74,6 +74,7 @@ export class RelianceJMSComponent implements OnInit {
   marginTop: any;
   fontSize: any;
   jmsno: any;
+  jmsdate: any;
   isConfirmVisible: any = true;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -129,8 +130,8 @@ export class RelianceJMSComponent implements OnInit {
      
    }
    save(){
-     if(!this.jmsno){
-      alert("Please enter a proper bill number");
+     if(!(this.jmsno && this.jmsdate)){
+      alert("Please enter a proper bill number and bill date");
      }
      else{
       /* let billSave : SaveBill = new SaveBill();

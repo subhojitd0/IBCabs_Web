@@ -5,7 +5,12 @@
         <div class="container" id="printdiv" style="max-width: 1400px; min-height: 2000px; max-height: 10000px;">
           <p id="header" style="width: 160%">JMS FOR KOL-DZIRE DEC 20</p>
           <mat-form-field>
+            <p> JMS Bill No.</p>
             <input type="text" matInput name="name" [(ngModel)]="jmsno">
+          </mat-form-field>
+          <mat-form-field>
+            <p> JMS Bill Date</p>
+            <input type="date" matInput name="date" [(ngModel)]="jmsdate">
           </mat-form-field>
           <button  mat-stroked-button style="margin-left: 10px" (click)="export()"> Export To Excel</button>
             <br/><br/>
