@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 import jspdf from 'jspdf';
 import html2canvas from 'html2canvas';
 import { ROUTE_CAR, ROUTE_GENERATE_BILL, ROUTE_OWNER } from 'src/shared/constants/constant';
-
+import * as XLSX from 'xlsx';
 export interface iBillDet {
   sl: string;
   dutydate: string;
@@ -61,6 +61,7 @@ export class SaveBill implements iSaveBill {
   styleUrls: ['./jms.component.css']
 })
 export class RelianceJMSComponent implements OnInit {
+  @ViewChild('table') table: ElementRef;
   billno: any;
   billdate: any;
   billdetails: any;
@@ -86,6 +87,11 @@ export class RelianceJMSComponent implements OnInit {
     this.billto = localStorage.getItem("billto");
     debugger;
     if(this.billdetails){
+      let i=0;
+      this.billdetails[0].body.forEach(element => {
+        element.slno = i + 1;
+        i = i + 1;
+      });
       /* let billTot : BillDet = new BillDet();
       billTot.carno = "Total";
       billTot.sl = "";
@@ -94,7 +100,7 @@ export class RelianceJMSComponent implements OnInit {
       billTot.km = this.billdetails.bodytotal[0].km;
       billTot.parking = this.billdetails.bodytotal[0].parking;
       this.billdetails.body.push(billTot); */
-      this.dataSource = new MatTableDataSource(this.billdetails.body);
+      //this.dataSource = new MatTableDataSource(this.billdetails.body);
       //localStorage.setItem("billdata", "");
       /* this.totalno = this.billdetails.body.length;
       this.roundedgross = Math.round(parseFloat(this.billdetails.tail[0].grosstotal.toString().replace(',','')));
@@ -110,6 +116,16 @@ export class RelianceJMSComponent implements OnInit {
       this.fontSize = 20 + this.marginTop * 0.03; */
     }
     
+   }
+   export()
+   {
+     const ws: XLSX.WorkSheet=XLSX.utils.table_to_sheet(this.table.nativeElement);
+     const wb: XLSX.WorkBook = XLSX.utils.book_new();
+     XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+     
+     
+     XLSX.writeFile(wb, 'SheetJS.xlsx');
+     
    }
    save(){
      if(!(this.billno && this.billdate)){
