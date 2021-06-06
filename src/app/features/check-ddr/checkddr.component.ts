@@ -94,8 +94,10 @@ export class CheckDdrComponent implements OnInit {
         let date1 =  moment.tz(element.gintime, "HH:mm:ss").local();
         let date2 =  moment.tz(element.gouttime, "HH:mm:ss").local();
         var x = moment.duration(date1.diff(date2)).asHours();
-        element.tothr = moment.duration(moment(element.gintime, "HH:mm:ss").diff(moment(element.gouttime, "HH:mm:ss"))).asMinutes() / 60;
-        element.totkm  = parseInt(parseInt(element.ginkm) === NaN ? 0 : element.ginkm) - parseInt(parseInt(element.goutkm) === NaN ? 0 : element.goutkm);
+        /* element.tothr = moment.duration(moment(element.gintime, "HH:mm:ss").diff(moment(element.gouttime, "HH:mm:ss"))).asMinutes() / 60;
+        element.totkm  = parseInt(parseInt(element.ginkm) === NaN ? 0 : element.ginkm) - parseInt(parseInt(element.goutkm) === NaN ? 0 : element.goutkm); */
+        element.tothr = element.hourdiff;
+        element.totkm  = element.kmdiff;
         element.outs = isNaN(parseInt(element.outstation)) ? 0 : parseInt(element.outstation);
       });
       this.dataSource = new MatTableDataSource(res.result);
