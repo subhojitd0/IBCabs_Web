@@ -4,7 +4,7 @@
         </div>
         <div class="container" id="printdiv" style="max-width: 1400px; min-height: 2000px; max-height: 10000px;">
           <p id="header">JMS FOR KOL-DZIRE DEC 20</p>
-
+          <button  mat-stroked-button style="margin-left: 10px" (click)="exporter.exportTable('xlsx', {fileName:'JMS', sheet: 'JMS Data'})"> Export To Excel</button>
             <br/><br/>
           <table style="width: 50%;">
             <tr>
@@ -78,109 +78,109 @@
             </tr>
           </table>
           <div > 
-              <mat-table [dataSource]="dataSource" matSort>
+              <mat-table matTableExporter #exporter="matTableExporter" [dataSource]="dataSource" matSort>
 
                 <!-- ID Column -->
                 <ng-container matColumnDef="sl">
                   <mat-header-cell *matHeaderCellDef mat-sort-header> Sl. No  </mat-header-cell>
-                  <mat-cell *matCellDef="let row"> {{row.sl}} </mat-cell>
+                  <mat-cell *matCellDef="let row"> <!-- {{row.sl}} --> </mat-cell>
                 </ng-container>
             
                 <!-- Name Column -->
                 <ng-container matColumnDef="city">
                   <mat-header-cell *matHeaderCellDef mat-sort-header> City </mat-header-cell>
-                  <mat-cell *matCellDef="let row"> {{row.dutydate}} </mat-cell>
+                  <mat-cell *matCellDef="let row"> Kolkata </mat-cell>
                 </ng-container>
 
                 <ng-container matColumnDef="username">
                   <mat-header-cell *matHeaderCellDef mat-sort-header> User Name </mat-header-cell>
-                  <mat-cell *matCellDef="let row"> {{row.reportto}} </mat-cell>
+                  <mat-cell *matCellDef="let row"> {{row.user}} </mat-cell>
                 </ng-container>
             
                 <!-- Color Column -->
                 <ng-container matColumnDef="carno">
                   <mat-header-cell *matHeaderCellDef mat-sort-header> Vehicle No. </mat-header-cell>
-                  <mat-cell *matCellDef="let row"> {{row.carno}} </mat-cell>
+                  <mat-cell *matCellDef="let row"> {{row.car}} </mat-cell>
                 </ng-container>
 
                 <ng-container matColumnDef="sitetype">
                   <mat-header-cell *matHeaderCellDef mat-sort-header> Site Type ( Office / JC / DC / Warehouse ) </mat-header-cell>
-                  <mat-cell *matCellDef="let row"> {{row.cartype}} </mat-cell>
+                  <mat-cell *matCellDef="let row"> Office </mat-cell>
                 </ng-container>
 
                 <!-- ID Column -->
                 <ng-container matColumnDef="costcentre">
                   <mat-header-cell *matHeaderCellDef mat-sort-header> BE / BU / Cost Centre  </mat-header-cell>
-                  <mat-cell *matCellDef="let row"> {{row.hour}} </mat-cell>
+                  <mat-cell *matCellDef="let row"> 11101277 </mat-cell>
                 </ng-container>
             
                 <!-- Name Column -->
                 <ng-container matColumnDef="realestate">
                   <mat-header-cell *matHeaderCellDef mat-sort-header> Real Estate Key </mat-header-cell>
-                  <mat-cell *matCellDef="let row"> {{row.km}} </mat-cell>
+                  <mat-cell *matCellDef="let row"> RO 6011/11101277/11300000 </mat-cell>
                 </ng-container>
 
                 <ng-container matColumnDef="pkgqty">
                   <mat-header-cell *matHeaderCellDef mat-sort-header> Total Qty </mat-header-cell>
-                  <mat-cell *matCellDef="let row"> {{row.rate}} </mat-cell>
+                  <mat-cell *matCellDef="let row"> {{row.packagequantity}} </mat-cell>
                 </ng-container>
 
                 <ng-container matColumnDef="pkgamount">
                   <mat-header-cell *matHeaderCellDef mat-sort-header> Amount </mat-header-cell>
-                  <mat-cell *matCellDef="let row"> {{row.amount}} </mat-cell>
+                  <mat-cell *matCellDef="let row"> {{row.packageamount}} </mat-cell>
                 </ng-container>
             
                 <!-- Color Column -->
                 <ng-container matColumnDef="kmqty">
                   <mat-header-cell *matHeaderCellDef mat-sort-header> Total Qty </mat-header-cell>
-                  <mat-cell *matCellDef="let row"> {{row.parking}} </mat-cell>
+                  <mat-cell *matCellDef="let row"> {{row.extrakmquantity}} </mat-cell>
                 </ng-container>
 
                 <ng-container matColumnDef="kmamount">
                   <mat-header-cell *matHeaderCellDef mat-sort-header> Amount </mat-header-cell>
-                  <mat-cell *matCellDef="let row"> {{row.outstation}} </mat-cell>
+                  <mat-cell *matCellDef="let row"> {{row.extrakmamount}} </mat-cell>
                 </ng-container>
 
                 <!-- Name Column -->
                 <ng-container matColumnDef="hrqty">
                   <mat-header-cell *matHeaderCellDef mat-sort-header> Total Qty </mat-header-cell>
-                  <mat-cell *matCellDef="let row"> {{row.km}} </mat-cell>
+                  <mat-cell *matCellDef="let row"> {{row.extrahrquantity}} </mat-cell>
                 </ng-container>
 
                 <ng-container matColumnDef="hramount">
                   <mat-header-cell *matHeaderCellDef mat-sort-header> Amount </mat-header-cell>
-                  <mat-cell *matCellDef="let row"> {{row.rate}} </mat-cell>
+                  <mat-cell *matCellDef="let row"> {{row.extrahramount}} </mat-cell>
                 </ng-container>
 
                 <ng-container matColumnDef="nightqty">
                   <mat-header-cell *matHeaderCellDef mat-sort-header> Total Qty </mat-header-cell>
-                  <mat-cell *matCellDef="let row"> {{row.amount}} </mat-cell>
+                  <mat-cell *matCellDef="let row"> {{row.nightquantity}} </mat-cell>
                 </ng-container>
 
                 <ng-container matColumnDef="nightamount">
                   <mat-header-cell *matHeaderCellDef mat-sort-header> Amount </mat-header-cell>
-                  <mat-cell *matCellDef="let row"> {{row.amount}} </mat-cell>
+                  <mat-cell *matCellDef="let row"> {{row.nightamount}} </mat-cell>
                 </ng-container>
             
                 <!-- Color Column -->
                 <ng-container matColumnDef="outstationqty">
                   <mat-header-cell *matHeaderCellDef mat-sort-header> Total Qty </mat-header-cell>
-                  <mat-cell *matCellDef="let row"> {{row.parking}} </mat-cell>
+                  <mat-cell *matCellDef="let row"> {{row.outstationquantity}} </mat-cell>
                 </ng-container>
 
                 <ng-container matColumnDef="outstationamount">
                   <mat-header-cell *matHeaderCellDef mat-sort-header> Amount </mat-header-cell>
-                  <mat-cell *matCellDef="let row"> {{row.parking}} </mat-cell>
+                  <mat-cell *matCellDef="let row"> {{row.outstationamount}} </mat-cell>
                 </ng-container>
 
                 <ng-container matColumnDef="parkingqty">
                   <mat-header-cell *matHeaderCellDef mat-sort-header> Total Qty </mat-header-cell>
-                  <mat-cell *matCellDef="let row"> {{row.outstation}} </mat-cell>
+                  <mat-cell *matCellDef="let row"> {{row.parkingquantity}} </mat-cell>
                 </ng-container>
 
                 <ng-container matColumnDef="parkingamount">
                   <mat-header-cell *matHeaderCellDef mat-sort-header> Amount </mat-header-cell>
-                  <mat-cell *matCellDef="let row"> {{row.outstation}} </mat-cell>
+                  <mat-cell *matCellDef="let row"> {{row.parkingamount}} </mat-cell>
                 </ng-container>
 
                 <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

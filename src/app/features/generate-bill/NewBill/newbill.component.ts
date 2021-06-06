@@ -179,6 +179,11 @@ export class NewBillComponent implements OnInit {
       redirectApi = ROUTE_VIEW_BILL_RELIANCE_MIS;
       this.billDetails.mode = "0";
     }
+    if(this.billDetails.format == "5"){
+      billApi = BILL_RELIANCE_API;
+      redirectApi = ROUTE_VIEW_BILL_RELIANCE_JMS;
+      this.billDetails.mode = "1";
+    }
     debugger;
     this.toastr.info("Please wait while we are generating your bill",'Information');
     localStorage.setItem("billfrom", this.billDetails.from);
