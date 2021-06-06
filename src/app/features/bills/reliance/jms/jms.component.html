@@ -4,7 +4,7 @@
         </div>
         <div class="container" id="printdiv" style="max-width: 1400px; min-height: 2000px; max-height: 10000px;">
           <p id="header">JMS FOR KOL-DZIRE DEC 20</p>
-          <button  mat-stroked-button style="margin-left: 10px" (click)="exporter.exportTable('xlsx', {fileName:'JMS', sheet: 'JMS Data'})"> Export To Excel</button>
+          <button  mat-stroked-button style="margin-left: 10px" (click)="export()"> Export To Excel</button>
             <br/><br/>
           <table style="width: 160%;" #table>
             <tr>

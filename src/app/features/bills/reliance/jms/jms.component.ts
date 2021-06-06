@@ -121,10 +121,10 @@ export class RelianceJMSComponent implements OnInit {
    {
      const ws: XLSX.WorkSheet=XLSX.utils.table_to_sheet(this.table.nativeElement);
      const wb: XLSX.WorkBook = XLSX.utils.book_new();
-     XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+     XLSX.utils.book_append_sheet(wb, ws, 'JMSData');
      
      
-     XLSX.writeFile(wb, 'SheetJS.xlsx');
+     XLSX.writeFile(wb, 'JMS.xlsx');
      
    }
    save(){
