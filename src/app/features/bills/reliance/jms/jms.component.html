@@ -1,9 +1,12 @@
         <div class="center">
-          <p style="cursor: pointer; margin-right: 5px;" (click)="exportAsPDF('printdiv');"><img height="70" src="./../../../../assets/img/download.png"></p>
+          <!-- <p style="cursor: pointer; margin-right: 5px;" (click)="exportAsPDF('printdiv');"><img height="70" src="./../../../../assets/img/download.png"></p> -->
           <p *ngIf="isConfirmVisible" style="cursor: pointer; margin-right: 5px" (click)="save();"><img height="70" src="./../../../../assets/img/confirm.png"></p>
         </div>
         <div class="container" id="printdiv" style="max-width: 1400px; min-height: 2000px; max-height: 10000px;">
-          <p id="header">JMS FOR KOL-DZIRE DEC 20</p>
+          <p id="header" style="width: 160%">JMS FOR KOL-DZIRE DEC 20</p>
+          <mat-form-field>
+            <input type="text" matInput name="name" [(ngModel)]="jmsno">
+          </mat-form-field>
           <button  mat-stroked-button style="margin-left: 10px" (click)="export()"> Export To Excel</button>
             <br/><br/>
           <table style="width: 160%;" #table>
@@ -138,7 +141,7 @@
               <td></td>
               <td>Period</td>
               <td></td>
-              <td>1st Dec '20 to 31st Dec '20</td>
+              <td>{{this.billfrom}} to {{this.billto}}</td>
               <td></td>
               <td></td>
               <td></td>

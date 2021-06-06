@@ -73,6 +73,7 @@ export class RelianceJMSComponent implements OnInit {
   totalno: any;
   marginTop: any;
   fontSize: any;
+  jmsno: any;
   isConfirmVisible: any = true;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -128,11 +129,11 @@ export class RelianceJMSComponent implements OnInit {
      
    }
    save(){
-     if(!(this.billno && this.billdate)){
-      alert("Please enter a proper bill number and bill date to proceed");
+     if(!this.jmsno){
+      alert("Please enter a proper bill number");
      }
      else{
-      let billSave : SaveBill = new SaveBill();
+      /* let billSave : SaveBill = new SaveBill();
       billSave.billdate = this.billdate;
       billSave.billnumber = this.billno;
       billSave.billfrom = localStorage.getItem("billfrom");
@@ -147,7 +148,7 @@ export class RelianceJMSComponent implements OnInit {
           this.toastr.success("Your bill was successfully created",'Success');
           
         }
-      });
+      }); */
      }
    }
    exportAsPDF(div_id)
