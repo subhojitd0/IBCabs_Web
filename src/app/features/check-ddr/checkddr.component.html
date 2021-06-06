@@ -5,8 +5,9 @@
         <div class="container" id="printdiv" style="max-width: 1500px; min-height: 2000px; max-height: 10000px;">
           <p id="header">CHECK DDR</p>
  
+          <button  mat-stroked-button style="margin-left: 10px" (click)="exporter.exportTable('xlsx', {fileName:'DDR_CHECk', sheet: 'DDR List'})"> Export To Excel</button>
           <div style="margin-top: 160px;"> 
-              <mat-table [dataSource]="dataSource" matSort>
+              <mat-table matTableExporter #exporter="matTableExporter" [dataSource]="dataSource" matSort>
 
                 <!-- Name Column -->
                 <ng-container matColumnDef="dutydate">
@@ -64,6 +65,7 @@
                 <mat-row *matRowDef="let row; columns: displayedColumns;">
                 </mat-row>
               </mat-table>
+              
             </div>
 
         </div>

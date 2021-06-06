@@ -75,7 +75,7 @@ export class RelianceJMSComponent implements OnInit {
   isConfirmVisible: any = true;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  displayedColumns: string[] = ['sl', 'city', 'username', 'carno', 'sitetype', 'costcentre', 'realestate', 'pkgqty', 'pkgamount', 'kmqty', 'kmamount', 'hrqty', 'hramount', 'night', 'outstation', 'parking'];
+  displayedColumns: string[] = ['sl', 'city', 'username', 'carno', 'sitetype', 'costcentre', 'realestate', 'pkgqty', 'pkgamount', 'kmqty', 'kmamount', 'hrqty', 'hramount', 'nightqty', 'nightamount', 'outstationqty', 'outstationamount', 'parkingqty', 'parkingamount'];
   dataSource: MatTableDataSource<BillDet>;
   constructor(private router: Router,private apiService: ApiService, public dialog: MatDialog, private toastr: ToastrService) {
     

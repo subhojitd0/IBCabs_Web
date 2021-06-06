@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -11,6 +11,7 @@ import jspdf from 'jspdf';
 import html2canvas from 'html2canvas';
 import { ROUTE_CAR, ROUTE_GENERATE_BILL, ROUTE_OWNER } from 'src/shared/constants/constant';
 import * as moment from 'moment';
+import * as XLSX from 'xlsx';
 
 export interface iBillDet {
   sl: string;
@@ -51,6 +52,11 @@ export interface iSaveBill {
   reportto: string;
   nightstart: string;
   nightend: string;
+  totalhr: string;
+  totalkm: string;
+  night: string;
+  parking: string;
+  outstation: string;
 }
 export class SaveBill implements iSaveBill {
   billnumber: string;
@@ -63,6 +69,11 @@ export class SaveBill implements iSaveBill {
   reportto: string;
   nightstart: string;
   nightend: string;
+  totalhr: string;
+  totalkm: string;
+  night: string;
+  parking: string;
+  outstation: string;
 }
 @Component({
   selector: 'app-mis',
@@ -70,6 +81,7 @@ export class SaveBill implements iSaveBill {
   styleUrls: ['./mis.component.css']
 })
 export class RelianceMISComponent implements OnInit {
+  /* @ViewChild('table') table: ElementRef; */
   billno: any;
   billdate: any;
   billdetails: any;
@@ -135,6 +147,16 @@ export class RelianceMISComponent implements OnInit {
     }
     
    }
+/*    save()
+{
+  const ws: XLSX.WorkSheet=XLSX.utils.table_to_sheet(this.table.nativeElement);
+  const wb: XLSX.WorkBook = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+  
+  
+  XLSX.writeFile(wb, 'SheetJS.xlsx');
+  
+} */
    save(){
      this.billno = "MIS";
      this.billdate = moment().format("YYYY-MM-DD");
@@ -153,6 +175,12 @@ export class RelianceMISComponent implements OnInit {
       billSave.mode = "1";
       billSave.nightstart = localStorage.getItem("nightstart");
       billSave.nightend = localStorage.getItem("nightend");
+      billSave.totalhr = this.billdetails[0].total[0].hour;
+      billSave.totalkm = this.billdetails[0].total[0].km;
+      billSave.night = this.billdetails[0].total[0].night;
+      billSave.outstation = this.billdetails[0].total[0].outstation;
+      billSave.parking = this.billdetails[0].total[0].parking;
+      debugger;
       this.apiService.post(BILL_API, billSave).then((res: any)=>{ 
           debugger;
           if(res.status === "success"){
@@ -162,7 +190,7 @@ export class RelianceMISComponent implements OnInit {
           this.router.navigateByUrl('/' + ROUTE_GENERATE_BILL);
         }
       });
-     }
+     } 
    }
    exportAsPDF(div_id)
   {

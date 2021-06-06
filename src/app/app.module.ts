@@ -59,6 +59,7 @@ import { UserRightComponent } from './features/user-rights/user-right.component'
 import { BillUploadComponent } from './features/bills/bill-upload/bill-upload.component';
 import { MatadorComponent } from './features/matador/matador.component';
 import { CheckDdrComponent } from './features/check-ddr/checkddr.component';
+import { MatTableExporterModule } from 'mat-table-exporter';
 @NgModule({
   declarations: [
     AppComponent,
@@ -123,6 +124,7 @@ import { CheckDdrComponent } from './features/check-ddr/checkddr.component';
     MatSelectModule,
     MatAutocompleteModule,
     MatStepperModule,
+    MatTableExporterModule,
     ToastrModule.forRoot() 
   ],
   providers: [MatDialog],
