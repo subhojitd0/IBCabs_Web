@@ -127,6 +127,7 @@ export class RelianceJMSComponent implements OnInit {
      
      
      XLSX.writeFile(wb, 'JMS.xlsx');
+     this.toastr.success("Excel generation successful");
      
    }
    save(){
