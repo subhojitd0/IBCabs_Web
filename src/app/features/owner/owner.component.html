@@ -36,10 +36,10 @@
                     <mat-header-cell *matHeaderCellDef mat-sort-header> Options </mat-header-cell>
                     <mat-cell *matCellDef="let row" [style.color]="row.option">
                         <span *ngIf="ownerrole === '1' && row.isApproved === '1'" style="margin-left: 10px; margin-right: 10px; cursor: pointer;" class="material-icons" (click)="openCar(row.ownercode)">
-                            commute
+                            commute |
                         </span>
                         <span *ngIf="ownerrole === '1' && ( row.isApproved === '1' ||  ( row.isApproved === '0' && approve === '1' ) )" style="margin-left: 10px; margin-right: 10px; cursor: pointer;" class="material-icons" (click)="openDialog(row.ownercode)">
-                          | &nbsp;   edit
+                           &nbsp;   edit
                         </span>
                         <span *ngIf="ownerrole === '1' && ( row.isApproved === '1' ||  ( row.isApproved === '0' && approve === '1' ) ) && delete === '1'" style="margin-left: 10px; margin-right: 10px; cursor: pointer;" class="material-icons" (click)="deleteOwner(row.ownercode)">
                           | &nbsp; delete
