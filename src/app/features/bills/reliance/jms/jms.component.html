@@ -157,36 +157,36 @@
             <tr>
               <td></td>
               <td></td>
-              <td colspan="3">Service Category Description ------------------------></td>
+              <td  style="text-align: center" colspan="3">Service Category Description ------------------------></td>
               <td></td>
               <td></td>
-              <td colspan="12">COMPSCT SEDAN - INDIGO OR EQUIVALENT</td>
+              <td  style="text-align: center" colspan="12">COMPSCT SEDAN - INDIGO OR EQUIVALENT</td>
             </tr>
             <tr>
               <td></td>
               <td></td>
-              <td colspan="3">Service Category Description ------------------------></td>
+              <td  style="text-align: center" colspan="3">Service Category Description ------------------------></td>
               <td></td>
               <td></td>
-              <td colspan="2">CHRG MONTHLY FIX VEHICLE - {{billdetails[0].head[0].monthlyhour}}H - 30D - {{billdetails[0].head[0].monthlykm}}KM </td>
-              <td colspan="2">CHRG MONTHLY FIX VEHICLE - EXTRA KMS</td>
-              <td colspan="2">CHRG MONTHLY FIX VEHICLE - EXTRA HRS</td>
-              <td colspan="2">NIGHT HALT CHARGES</td>
-              <td colspan="2">OUTSTATION CHARGES</td>
-              <td colspan="2">TOLL PARKING CHARGES ON ACTUAL BASIS</td>
+              <td  style="text-align: center" colspan="2">CHRG MONTHLY FIX VEHICLE - {{billdetails[0].head[0].monthlyhour}}H - 30D - {{billdetails[0].head[0].monthlykm}}KM </td>
+              <td  style="text-align: center" colspan="2">CHRG MONTHLY FIX VEHICLE - EXTRA KMS</td>
+              <td  style="text-align: center" colspan="2">CHRG MONTHLY FIX VEHICLE - EXTRA HRS</td>
+              <td  style="text-align: center" colspan="2">NIGHT HALT CHARGES</td>
+              <td  style="text-align: center" colspan="2">OUTSTATION CHARGES</td>
+              <td  style="text-align: center" colspan="2">TOLL PARKING CHARGES ON ACTUAL BASIS</td>
             </tr>
             <tr>
               <td></td>
               <td></td>
-              <td colspan="3">Rate ------------------------></td>
+              <td  style="text-align: center" colspan="3">Rate ------------------------></td>
               <td></td>
               <td></td>
-              <td colspan="2">{{billdetails[0].head[0].monthlypackage}}</td>
-              <td colspan="2">{{billdetails[0].head[0].extrakmrate}}</td>
-              <td colspan="2">{{billdetails[0].head[0].extrahourrate}}</td>
-              <td colspan="2">{{billdetails[0].head[0].nightrate}}</td>
-              <td colspan="2">{{billdetails[0].head[0].outstationrate}}</td>
-              <td colspan="2">TOLL PARKING CHARGES ON ACTUAL BASIS</td>
+              <td  style="text-align: center" colspan="2">{{billdetails[0].head[0].monthlypackage}}</td>
+              <td  style="text-align: center" colspan="2">{{billdetails[0].head[0].extrakmrate}}</td>
+              <td  style="text-align: center" colspan="2">{{billdetails[0].head[0].extrahourrate}}</td>
+              <td  style="text-align: center" colspan="2">{{billdetails[0].head[0].nightrate}}</td>
+              <td  style="text-align: center" colspan="2">{{billdetails[0].head[0].outstationrate}}</td>
+              <td  style="text-align: center" colspan="2"></td>
             </tr>
             <tr>
               <td>Sl No.</td>
@@ -230,10 +230,10 @@
               <td>{{row.parkingquantity}}</td>
               <td>{{row.parkingamount}}</td>
             </tr>
-            <tr *ngFor="let row of billdetails[0].body">
+            <tr style="font-weight: bold">
               <td></td>
               <td></td>
-              <td colspan="3">Sub Total</td>
+              <td style="text-align: center" colspan="3">Sub Total</td>
               <td></td>
               <td></td>
               <td>{{billdetails[0].tail[0].totalquantity}}</td>
@@ -249,13 +249,13 @@
               <td>{{billdetails[0].tail[0].totalparking}}</td>
               <td>{{billdetails[0].tail[0].totalparkingamount}}</td>
             </tr>
-            <tr>
+            <tr  style="font-weight: bold; font-size: 17px">
               <td></td>
               <td></td>
-              <td colspan="3">Total Amount Of Services</td>
+              <td  style="text-align: center" colspan="3">Total Amount Of Services</td>
               <td></td>
               <td></td>
-              <td colspan="12">{{billdetails[0].total}}</td>
+              <td  style="text-align: center" colspan="12">{{billdetails[0].total}}</td>
             </tr>
           </table>
             <!-- <div [ngStyle]="{'margin-top.px':marginTop}" id="customer" style="display: block;" class="row">
@@ -264,7 +264,7 @@
               <table>
                 <tbody>
                   <tr>
-                    <th class="meta-head" colspan="2" style="text-align: center !important;"><b>GST CALCULATION</b></th>
+                    <th class="meta-head"  style="text-align: center" colspan="2" style="text-align: center !important;"><b>GST CALCULATION</b></th>
                   </tr>
                   <tr>
                       <td class="meta-head" style="text-align: right !important;">Taxable Amount : Rs.</td>
@@ -294,7 +294,7 @@
               <table>
                 <tbody>
                   <tr>
-                    <td colspan="3" style="text-align: center !important;"><b> GST Amount in words: <br/>{{gstamountinwords}} </b></td>
+                    <td  style="text-align: center" colspan="3" style="text-align: center !important;"><b> GST Amount in words: <br/>{{gstamountinwords}} </b></td>
                   </tr>
                 </tbody>
               </table> 
@@ -302,13 +302,13 @@
               <table>
                 <tbody>
                   <tr>
-                    <td colspan="3" style="text-align: center !important;">PAN:AHOPB6443K</td>
+                    <td  style="text-align: center" colspan="3" style="text-align: center !important;">PAN:AHOPB6443K</td>
                   </tr>
                   <tr>
-                    <td colspan="3" style="text-align: center !important;">GSTIN:19AHOPB6443K1ZZ</td>
+                    <td  style="text-align: center" colspan="3" style="text-align: center !important;">GSTIN:19AHOPB6443K1ZZ</td>
                   </tr>
                   <tr>
-                    <td colspan="3" style="text-align: center !important;">SAC Code:996601</td>
+                    <td  style="text-align: center" colspan="3" style="text-align: center !important;">SAC Code:996601</td>
                   </tr>
                 </tbody>
                 <br/>
