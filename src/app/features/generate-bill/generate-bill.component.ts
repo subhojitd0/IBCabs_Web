@@ -123,6 +123,8 @@ billRegDetails: any[] = [];
       format: "5",
       mode: "1"
     }
+    localStorage.setItem("billnumber", element.billnumber);
+    localStorage.setItem("billdate", element.billdate);
     localStorage.setItem("billfrom", element.billfrom);
     localStorage.setItem("billto", element.billto);
     localStorage.setItem("billparty", element.party);

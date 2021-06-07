@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 import jspdf from 'jspdf';
 import html2canvas from 'html2canvas';
 import { ROUTE_CAR, ROUTE_GENERATE_BILL, ROUTE_OWNER } from 'src/shared/constants/constant';
-
+import * as XLSX from 'xlsx';
 export interface iBillDet {
   sl: string;
   dutydate: string;
@@ -73,6 +73,8 @@ export class SaveBill implements iSaveBill {
   styleUrls: ['./coalindia.component.css']
 })
 export class CoalIndiaComponent implements OnInit {
+  
+  @ViewChild('table') table: ElementRef;
   billno: any;
   element: HTMLElement;
   billdate: any;
@@ -123,6 +125,17 @@ export class CoalIndiaComponent implements OnInit {
       this.fontSize = 20 + this.marginTop * 0.03;
     }
     
+   }
+   export()
+   {
+     const ws: XLSX.WorkSheet=XLSX.utils.table_to_sheet(this.table.nativeElement);
+     const wb: XLSX.WorkBook = XLSX.utils.book_new();
+     XLSX.utils.book_append_sheet(wb, ws, 'CoalIndiaData');
+     
+     
+     XLSX.writeFile(wb, 'CoalIndia.xlsx');
+     this.toastr.success("Excel generation successful");
+     
    }
    async save(){
      if(!(this.billno && this.billdate)){

@@ -1,6 +1,6 @@
         <div class="center">
-          <p style="cursor: pointer; margin-right: 5px;" (click)="exportAsPDF('printdiv');"><img height="70" src="./../../../../assets/img/download.png"></p>
-          <p *ngIf="isConfirmVisible" style="cursor: pointer; margin-right: 5px" (click)="save();"><img height="70" src="./../../../../assets/img/confirm.png"></p>
+          <p style="cursor: pointer; margin-right: 5px;" (click)="exportAsPDF('printdiv');"><img height="70" src="http://ibcabs.com/bills/new/assets/img/download.png"></p>
+          <p *ngIf="isConfirmVisible" style="cursor: pointer; margin-right: 5px" (click)="save();"><img height="70" src="http://ibcabs.com/bills/new/assets/img/confirm.png"></p>
         </div>
         <div class="container" id="printdiv" style="max-width: 1400px; min-height: 2000px; max-height: 10000px;">
           <p id="header">TAX INVOICE</p>
@@ -63,78 +63,36 @@
             </mat-card-header>
           </mat-card> -->
           <div style="margin-top: 170px;"> 
-              <mat-table [dataSource]="dataSource" matSort>
-
-                <!-- ID Column -->
-                <ng-container matColumnDef="sl">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header> Sl. No  </mat-header-cell>
-                  <mat-cell *matCellDef="let row"> {{row.sl}} </mat-cell>
-                </ng-container>
-
-                <ng-container matColumnDef="slipno">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header> Slip No  </mat-header-cell>
-                  <mat-cell *matCellDef="let row"> {{row.slipno}} </mat-cell>
-                </ng-container>
-            
-                <!-- Name Column -->
-                <ng-container matColumnDef="dutydate">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header> Duty Date </mat-header-cell>
-                  <mat-cell *matCellDef="let row"> {{row.dutydate}} </mat-cell>
-                </ng-container>
-
-                <ng-container matColumnDef="reportto">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header> Used Under </mat-header-cell>
-                  <mat-cell *matCellDef="let row"> {{row.reportto}} </mat-cell>
-                </ng-container>
-            
-                <!-- Color Column -->
-                <ng-container matColumnDef="carno">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header> Car No. </mat-header-cell>
-                  <mat-cell *matCellDef="let row"> {{row.carno}} </mat-cell>
-                </ng-container>
-
-                <ng-container matColumnDef="cartype">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header> Car Type </mat-header-cell>
-                  <mat-cell *matCellDef="let row"> {{row.cartype}} </mat-cell>
-                </ng-container>
-
-                <!-- ID Column -->
-                <ng-container matColumnDef="hour">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header> Hours  </mat-header-cell>
-                  <mat-cell *matCellDef="let row"> {{row.hour}} </mat-cell>
-                </ng-container>
-            
-                <!-- Name Column -->
-                <ng-container matColumnDef="km">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header> KMs </mat-header-cell>
-                  <mat-cell *matCellDef="let row"> {{row.km}} </mat-cell>
-                </ng-container>
-
-                <ng-container matColumnDef="rate">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header> Rate </mat-header-cell>
-                  <mat-cell *matCellDef="let row"> {{row.rate}} </mat-cell>
-                </ng-container>
-
-                <ng-container matColumnDef="amount">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header> Amount </mat-header-cell>
-                  <mat-cell *matCellDef="let row"> {{row.amount}} </mat-cell>
-                </ng-container>
-            
-                <!-- Color Column -->
-                <ng-container matColumnDef="parking">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header> Parking </mat-header-cell>
-                  <mat-cell *matCellDef="let row"> {{row.parking}} </mat-cell>
-                </ng-container>
-
-                <ng-container matColumnDef="outstation">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header> Outstation </mat-header-cell>
-                  <mat-cell *matCellDef="let row"> {{row.outstation}} </mat-cell>
-                </ng-container>
-
-                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-                <mat-row *matRowDef="let row; columns: displayedColumns;">
-                </mat-row>
-              </mat-table>
+            <table #table>
+              <tr>
+                <th>Sl No.</th>
+                <th>Slip No.</th>
+                <th>Duty Date</th>
+                <th>Used Under</th>
+                <th>Car No.</th>
+                <th>Car Type</th>
+                <th>Hours</th>
+                <th>KMs</th>
+                <th>Rate</th>
+                <th>Amount</th>
+                <th>Parking</th>
+                <th>Outstation</th>
+              </tr>
+              <tr *ngFor="let row of billdetails.body">
+                <td>{{row.sl}}</td>
+                <td>{{row.slipno}}</td>
+                <td>{{row.dutydate}}</td>
+                <td>{{row.reportto}}</td>
+                <td>{{row.carno}}</td>
+                <td>{{row.cartype}}</td>
+                <td>{{row.hour}}</td>
+                <td>{{row.km}}</td>
+                <td>{{row.rate}}</td>
+                <td>{{row.amount}}</td>
+                <td>{{row.parking}}</td>
+                <td>{{row.outstation}}</td>
+              </tr>
+            </table>
             </div>
 
             <div [ngStyle]="{'margin-top.px':marginTop}" id="customer" style="display: block;" class="row">

@@ -92,6 +92,16 @@ export class RelianceJMSComponent implements OnInit {
     
    }
    ngOnInit(){
+    let jmsdate = localStorage.getItem("billdate");
+    let jmsno = localStorage.getItem("billnumber");
+    if(jmsdate){
+      this.isConfirmVisible = false;
+      this.jmsdate = jmsdate;
+    }
+    if(jmsno){
+      this.isConfirmVisible = false;
+      this.jmsno = jmsno;
+    }
     this.billdetails = JSON.parse(localStorage.getItem("billdata"));
     this.billfrom = localStorage.getItem("billfrom");
     this.billto = localStorage.getItem("billto");
