@@ -84,6 +84,8 @@ export class RelianceJMSComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
   displayedColumns: string[] = ['sl', 'city', 'username', 'carno', 'sitetype', 'costcentre', 'realestate', 'pkgqty', 'pkgamount', 'kmqty', 'kmamount', 'hrqty', 'hramount', 'nightqty', 'nightamount', 'outstationqty', 'outstationamount', 'parkingqty', 'parkingamount'];
   dataSource: MatTableDataSource<BillDet>;
+  month: number;
+  year: number;
   constructor(private router: Router,private apiService: ApiService, public dialog: MatDialog, private toastr: ToastrService) {
     
    }
@@ -92,6 +94,9 @@ export class RelianceJMSComponent implements OnInit {
     this.billfrom = localStorage.getItem("billfrom");
     this.billto = localStorage.getItem("billto");
     debugger;
+    let newDate = new Date(this.billfrom);
+    this.month = newDate.getMonth();
+    this.year = newDate.getFullYear();
     if(this.billdetails){
       let i=0;
       this.billdetails[0].body.forEach(element => {

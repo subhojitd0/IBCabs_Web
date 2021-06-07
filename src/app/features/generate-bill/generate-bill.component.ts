@@ -132,6 +132,7 @@ billRegDetails: any[] = [];
   openDialog(id: any) {
     const dialogRef = this.dialog.open(NewBillComponent);
 
+    
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog closed`);
     });
