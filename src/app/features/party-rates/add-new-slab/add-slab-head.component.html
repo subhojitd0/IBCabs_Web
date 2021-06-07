@@ -15,14 +15,8 @@
                         <mat-form-field appearance="fill" class="full">
                             <mat-label>Choose Car type</mat-label>
                             <mat-select [(value)]="slabdetails.car">
-                              <mat-option value="ertiga">
-                                ERTIGA
-                              </mat-option>
-                              <mat-option value="sumo">
-                                SUMO
-                              </mat-option>
-                              <mat-option value="dzire">
-                                DZIRE
+                              <mat-option *ngFor="let row of cartypes" [(value)]="row.car">
+                                {{row.car}}
                               </mat-option>
                             </mat-select>
                           </mat-form-field>

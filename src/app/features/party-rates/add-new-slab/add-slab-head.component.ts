@@ -61,16 +61,18 @@ export class SlabDetails implements ISlabDetails {
 export class AddSlabComponent implements OnInit {
   partyheadid : any;
   slabdetails: SlabDetails;
+  cartypes: any;
   constructor(private router: Router, private apiService: ApiService, private toastr: ToastrService) {
     let partyheadname = localStorage.getItem('selectedpartyheadname'); 
     let partycode = localStorage.getItem('selectedpartyheadid');
+    this.cartypes = JSON.parse(localStorage.getItem('allcartypes'));
     this.slabdetails = new SlabDetails();
     this.slabdetails.headname = partyheadname;
     this.slabdetails.partyheadcode = partycode;
    }
    ngOnInit() : void {
-    
-   }
+    this.cartypes = JSON.parse(localStorage.getItem('allcartypes'));
+     }
   savepartyrate(){
     debugger;
     this.slabdetails.mode = 1;
