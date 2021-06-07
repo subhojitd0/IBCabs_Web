@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -11,6 +11,7 @@ import jspdf from 'jspdf';
 import html2canvas from 'html2canvas';
 import { ROUTE_CAR, ROUTE_GENERATE_BILL, ROUTE_OWNER } from 'src/shared/constants/constant';
 import * as moment from 'moment-timezone';
+import * as XLSX from 'xlsx';
 //const moment = require('moment-timezone');
 export interface iBillDet {
   sl: string;
@@ -52,6 +53,7 @@ export class SaveBill implements iSaveBill {
   styleUrls: ['./checkddr.component.css']
 })
 export class CheckDdrComponent implements OnInit {
+  @ViewChild('table') table: ElementRef;
   billno: any;
   billdate: any;
   billdetails: any;
@@ -103,6 +105,16 @@ export class CheckDdrComponent implements OnInit {
       this.dataSource = new MatTableDataSource(res.result);
     });
     
+   }
+
+   export(){
+    const ws: XLSX.WorkSheet=XLSX.utils.table_to_sheet(this.table.nativeElement);
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'CHECK_DDR');
+    
+    
+    XLSX.writeFile(wb, 'CheckDDR.xlsx');
+    this.toastr.success("Excel generation successful");
    }
 /*    save(){
      if(!(this.billno && this.billdate)){

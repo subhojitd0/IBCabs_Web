@@ -46,6 +46,8 @@ export interface iSaveBill {
   billdate: string;
   party: string;
   mode: string;
+  billtype: string;
+  amount: string;
 }
 export class SaveBill implements iSaveBill {
   billnumber: string;
@@ -54,6 +56,8 @@ export class SaveBill implements iSaveBill {
   billdate: string;
   party: string;
   mode: string;
+  billtype: string;
+  amount: string;
 }
 @Component({
   selector: 'app-jms',
@@ -135,13 +139,15 @@ export class RelianceJMSComponent implements OnInit {
       alert("Please enter a proper bill number and bill date");
      }
      else{
-      /* let billSave : SaveBill = new SaveBill();
+      let billSave : SaveBill = new SaveBill();
       billSave.billdate = this.billdate;
       billSave.billnumber = this.billno;
       billSave.billfrom = localStorage.getItem("billfrom");
       billSave.billto = localStorage.getItem("billto");
       billSave.party = localStorage.getItem("billparty");
+      billSave.billtype = "D1";
       billSave.mode = "1";
+      billSave.amount = this.billdetails[0].total;
       this.apiService.post(BILL_API, billSave).then((res: any)=>{ 
           debugger;
           if(res.status === "success"){
@@ -150,7 +156,7 @@ export class RelianceJMSComponent implements OnInit {
           this.toastr.success("Your bill was successfully created",'Success');
           
         }
-      }); */
+      });
      }
    }
    exportAsPDF(div_id)
