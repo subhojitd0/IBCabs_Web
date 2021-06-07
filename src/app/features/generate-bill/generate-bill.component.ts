@@ -7,7 +7,7 @@ import {BILL_API, BILL_RELIANCE_API, OWNER_API, PARTY_HEAD_API} from '../../../s
 import {MatDialog} from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
-import { ROUTE_CAR, ROUTE_OWNER, ROUTE_VIEW_BILL_RELIANCE_MIS } from 'src/shared/constants/constant';
+import { ROUTE_CAR, ROUTE_OWNER, ROUTE_VIEW_BILL_RELIANCE_JMS, ROUTE_VIEW_BILL_RELIANCE_MIS } from 'src/shared/constants/constant';
 import { NewBillComponent } from './NewBill/newbill.component';
 import { AdvancedBillComponent } from './AdvancedBill/advancedbill.component';
 import html2canvas from 'html2canvas';
@@ -73,6 +73,9 @@ billRegDetails: any[] = [];
     if(bill.billtype === "D0"){
       this.openBill(bill);
     }
+    else if(bill.billtype === "D1"){
+      this.openJMSBill(bill);
+    }
     else{
       localStorage.setItem("billmodalbody", bill.path);
       const dialogRef = this.dialog.open(CoalIndiaModalComponent);
@@ -86,17 +89,17 @@ billRegDetails: any[] = [];
     }
     
   }
+  openJMSBill(element: any){
+
+  }
   openBill(element: any){
     debugger;
     let json = {
       party: element.party,
       from: element.billfrom,
       to: element.billto,
-      nightstart: element.nightstart,
-      nightend: element.nightend,
-      format: "4",
-      reportto: element.reportto,
-      mode: "0"
+      format: "5",
+      mode: "1"
     }
     localStorage.setItem("billfrom", element.billfrom);
     localStorage.setItem("billto", element.billto);
@@ -108,7 +111,7 @@ billRegDetails: any[] = [];
       debugger;
       localStorage.setItem("billdata", JSON.stringify(res));
       this.toastr.success("Your bill was successfully created",'Success');
-      this.router.navigateByUrl('/' + ROUTE_VIEW_BILL_RELIANCE_MIS);
+      this.router.navigateByUrl('/' + ROUTE_VIEW_BILL_RELIANCE_JMS);
     });
   }
   deleteBill(billid: any){

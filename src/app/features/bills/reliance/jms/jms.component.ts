@@ -140,8 +140,8 @@ export class RelianceJMSComponent implements OnInit {
      }
      else{
       let billSave : SaveBill = new SaveBill();
-      billSave.billdate = this.billdate;
-      billSave.billnumber = this.billno;
+      billSave.billdate = this.jmsdate;
+      billSave.billnumber = this.jmsno;
       billSave.billfrom = localStorage.getItem("billfrom");
       billSave.billto = localStorage.getItem("billto");
       billSave.party = localStorage.getItem("billparty");
@@ -154,7 +154,7 @@ export class RelianceJMSComponent implements OnInit {
           this.exportAsPDF("container");
           this.isConfirmVisible = false;
           this.toastr.success("Your bill was successfully created",'Success');
-          
+          this.router.navigateByUrl('/' + ROUTE_GENERATE_BILL);
         }
       });
      }
