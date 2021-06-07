@@ -3,7 +3,7 @@
           <p *ngIf="isConfirmVisible" style="cursor: pointer; margin-right: 5px" (click)="save();"><img height="70" src="http://ibcabs.com/bills/new/assets/img/confirm.png"></p>
         </div>
         <div class="container" id="printdiv" style="max-width: 1400px; min-height: 1200px; max-height: 10000px;">
-          <p id="header" style="width: 160%">JMS FOR KOL-DZIRE {{month}} {{year}}</p>
+          <p id="header" style="width: 160%">JMS FOR {{billparty}} {{month}} {{year}}</p>
           <button  mat-stroked-button style="margin-left: 10px" (click)="export()"> Export To Excel</button> <br/> <br/>
           <mat-form-field>
             <p> JMS Bill No.</p>
@@ -42,7 +42,7 @@
               <td></td>
               <td>ARC No.</td>
               <td></td>
-              <td>550003195</td>
+              <td>550022786</td>
               <td></td>
               <td></td>
               <td></td>
@@ -63,7 +63,7 @@
               <td></td>
               <td>Work Order No. / Frame Order No.</td>
               <td></td>
-              <td>540023633</td>
+              <td>540030799</td>
               <td></td>
               <td></td>
               <td></td>
@@ -84,7 +84,7 @@
               <td></td>
               <td>Vendor Code</td>
               <td></td>
-              <td>3195576</td>
+              <td>3198576</td>
               <td></td>
               <td></td>
               <td></td>
@@ -148,7 +148,7 @@
               <td  style="text-align: center" colspan="3">Service Category Description ------------------------></td>
               <td></td>
               <td></td>
-              <td  style="text-align: center" colspan="12">COMPSCT SEDAN - INDIGO OR EQUIVALENT</td>
+              <td  style="text-align: center" colspan="12">{{cardesc}}</td>
             </tr>
             <tr>
               <td></td>

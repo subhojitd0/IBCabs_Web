@@ -89,10 +89,32 @@ billRegDetails: any[] = [];
     }
     
   }
-  openJMSBill(element: any){
-
-  }
   openBill(element: any){
+    debugger;
+    let json = {
+      party: element.party,
+      from: element.billfrom,
+      to: element.billto,
+      nightstart: element.nightstart,
+      nightend: element.nightend,
+      format: "4",
+      reportto: element.reportto,
+      mode: "0"
+    }
+    localStorage.setItem("billfrom", element.billfrom);
+    localStorage.setItem("billto", element.billto);
+    localStorage.setItem("billparty", element.party);
+    localStorage.setItem("billreportto", element.reportto);
+    localStorage.setItem("nightstart", element.nightstart);
+    localStorage.setItem("nightend", element.nightend);
+    this.apiService.post(BILL_RELIANCE_API, json).then((res: any)=>{ 
+      debugger;
+      localStorage.setItem("billdata", JSON.stringify(res));
+      this.toastr.success("Your bill was successfully created",'Success');
+      this.router.navigateByUrl('/' + ROUTE_VIEW_BILL_RELIANCE_MIS);
+    });
+  }
+  openJMSBill(element: any){
     debugger;
     let json = {
       party: element.party,

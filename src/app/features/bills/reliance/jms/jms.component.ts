@@ -84,8 +84,10 @@ export class RelianceJMSComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
   displayedColumns: string[] = ['sl', 'city', 'username', 'carno', 'sitetype', 'costcentre', 'realestate', 'pkgqty', 'pkgamount', 'kmqty', 'kmamount', 'hrqty', 'hramount', 'nightqty', 'nightamount', 'outstationqty', 'outstationamount', 'parkingqty', 'parkingamount'];
   dataSource: MatTableDataSource<BillDet>;
-  month: number;
+  month: string;
   year: number;
+  billparty: string;
+  cardesc: string;
   constructor(private router: Router,private apiService: ApiService, public dialog: MatDialog, private toastr: ToastrService) {
     
    }
@@ -93,9 +95,20 @@ export class RelianceJMSComponent implements OnInit {
     this.billdetails = JSON.parse(localStorage.getItem("billdata"));
     this.billfrom = localStorage.getItem("billfrom");
     this.billto = localStorage.getItem("billto");
+    this.billparty = localStorage.getItem("billparty");
     debugger;
     let newDate = new Date(this.billfrom);
-    this.month = newDate.getMonth();
+    this.month = newDate.toLocaleString('default', { month: 'long' });
+    
+    if(this.billparty.includes("DZIRE")){
+      this.cardesc = "COMPSCT SEDAN - INDIGO OR EQUIVALENT";
+    }
+    else if(this.billparty.includes("SUV")){
+      this.cardesc = "SUV - XYLO OR EQUIVALENT";
+    }
+    else{
+      this.cardesc = "PREMIUM SUV - INNOVA OR EQUIVALENT";
+    }
     this.year = newDate.getFullYear();
     if(this.billdetails){
       let i=0;
