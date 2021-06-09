@@ -302,7 +302,7 @@ checkddr(){
           element.nightcharge = "0";
       });
       
-
+      this.editRentalDetails = this.mastereditrentaldetails;
       this.bulkDataSource = new MatTableDataSource(this.mastereditrentaldetails);
       localStorage.setItem("editrentaldetails", JSON.stringify(res.result));
       this.loading = false;
