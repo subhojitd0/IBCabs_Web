@@ -34,9 +34,9 @@ export class ConfirmationModalComponent implements OnInit {
    approve(){
     var json = 
     {
-      "mode":"6",
+      "mode":"7",
       "dutyid": this.selectedid,
-      "status": "1"
+      "status": "3"
     };
     this.toastr.info("Please wait while we approve the duty",'Information');
     this.apiService.post(RENTAL_DETAIL_API_OFFICE, json).then((res: any)=>{ 
