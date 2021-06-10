@@ -502,12 +502,14 @@ checkddr(){
     }
   }
   approve(id){
-    localStorage.setItem('selectedrentalid', id );
-    const dialogRefConf = this.dialog.open(ConfirmationModalComponent);
+    /* localStorage.setItem('selectedrentalid', id ); */
+    /* const dialogRefConf = this.dialog.open(ConfirmationModalComponent);
 
     dialogRefConf.afterClosed().subscribe(result => {
       console.log(`Dialog closed`);
-    });
+    }); */
+    localStorage.setItem('selectedduty', id);
+    this.router.navigateByUrl('/' + ROUTE_ADD_DDR);
   }
   edit(id: any) {
     localStorage.setItem('selectedduty', id);
