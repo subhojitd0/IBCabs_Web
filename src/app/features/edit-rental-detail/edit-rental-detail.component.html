@@ -166,7 +166,7 @@
                           <span *ngIf="ddrrole === '1'"  style="margin-left: 10px; margin-right: 10px; cursor: pointer;" class="material-icons" (click)="sendMessage(row.dutyid)">
                               message
                           </span> |
-                          <span *ngIf="ddrrole === '1' && delete === '1'"  style="margin-left: 10px; margin-right: 10px; cursor: pointer;" class="material-icons" (click)="deleteduty(row.dutyid)">
+                          <span *ngIf="ddrrole === '1' && row.status !== '3'"  style="margin-left: 10px; margin-right: 10px; cursor: pointer;" class="material-icons" (click)="deleteduty(row.dutyid)">
                               delete
                           </span>    
                       </mat-cell>
