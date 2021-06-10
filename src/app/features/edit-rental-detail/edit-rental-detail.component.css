@@ -75,9 +75,9 @@ table {
   font-weight: 500;
 }
 .green-icon{
-  background: green;
+  background: #b2f3b2;
   padding: 5px 10px 5px 10px;
-  border: 1px solid green;
+  border: 1px solid #b2f3b2;
   border-radius: 10px;
   font-weight: 500;
 }
