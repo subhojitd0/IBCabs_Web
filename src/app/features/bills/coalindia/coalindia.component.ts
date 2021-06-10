@@ -56,6 +56,7 @@ export interface iSaveBill {
   totalkm: any;
   outstation: any;
   amount: any;
+  reportto: any;
 }
 export class SaveBill implements iSaveBill {
   billnumber: string;
@@ -74,6 +75,7 @@ export class SaveBill implements iSaveBill {
   totalkm: any;
   outstation: any;
   amount: any;
+  reportto: any;
 }
 @Component({
   selector: 'app-coalindia',
@@ -163,6 +165,7 @@ export class CoalIndiaComponent implements OnInit {
       billSave.amount = this.roundedgross;
       billSave.totalhr = "0";
       billSave.totalkm = "0";
+      billSave.reportto = this.billdetails.head[0].reportto;
       billSave.outstation = this.billdetails.tail[0].outstation.toString();
       billSave.mode = "1";
       this.downloadPFDServer("printdiv", billSave);
