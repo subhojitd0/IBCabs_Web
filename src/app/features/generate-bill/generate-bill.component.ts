@@ -113,6 +113,8 @@ billRegDetails: any[] = [];
     localStorage.setItem("billparking", element.parkinggst);
     localStorage.setItem("nightstart", element.nightstart);
     localStorage.setItem("nightend", element.nightend);
+    localStorage.setItem("billnumber", element.billnumber);
+    localStorage.setItem("billdate", element.billdate);
     this.apiService.post(BILL_ONCALL_COAL_INDIA_API, json).then((res: any)=>{ 
       debugger;
       localStorage.setItem("billdata", JSON.stringify(res));

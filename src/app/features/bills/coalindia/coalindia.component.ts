@@ -106,6 +106,16 @@ export class CoalIndiaComponent implements OnInit {
     
    }
    ngOnInit(){
+    let billdate = localStorage.getItem("billdate");
+    let billno = localStorage.getItem("billnumber");
+    if(billdate){
+      this.isConfirmVisible = false;
+      this.billdate = billdate;
+    }
+    if(billno){
+      this.isConfirmVisible = false;
+      this.billno = billno;
+    }
     this.billdetails = JSON.parse(localStorage.getItem("billdata"));
     this.billfrom = localStorage.getItem("billfrom");
     this.billto = localStorage.getItem("billto");
