@@ -122,8 +122,13 @@ export class PartyComponent implements OnInit {
         "partyheadcode": id
       }
       this.apiService.post(PARTY_HEAD_API, json).then((res: any)=>{ 
+        if(res.status === "Deleted"){
         this.toastr.success("Your data was successfully deleted",'Success');
         location.reload();
+        }
+        else{
+          this.toastr.error(res.status);
+        }
       });
     }
   }
