@@ -104,24 +104,24 @@
                     <th class="meta-head" colspan="2" style="text-align: center !important;"><b>GST CALCULATION</b></th>
                   </tr>
                   <tr>
-                      <td class="meta-head" style="text-align: right !important;">Taxable Amount : Rs.</td>
-                      <td class="meta-content">{{billdetails.gst[0].taxableamount}}</td>
+                      <td class="meta-head" style="text-align: left !important;">Taxable Amount : Rs.</td>
+                      <td class="meta-content" style="text-align: left !important;">{{billdetails.gst[0].taxableamount}}</td>
                   </tr>
                   <tr>
-                      <td class="meta-head" style="text-align: right !important;">CGST @2.5% : Rs.</td>
-                      <td class="meta-content">{{billdetails.gst[0].cgst}}</td>
+                      <td class="meta-head" style="text-align: left !important;">CGST @2.5% : Rs.</td>
+                      <td class="meta-content" style="text-align: left !important;">{{billdetails.gst[0].cgst}}</td>
                   </tr>
                   <tr>
-                      <td class="meta-head" style="text-align: right !important;">SGST @2.5% : Rs.</td>
-                      <td class="meta-content">{{billdetails.gst[0].sgst}}</td>
+                      <td class="meta-head" style="text-align: left !important;">SGST @2.5% : Rs.</td>
+                      <td class="meta-content" style="text-align: left !important;">{{billdetails.gst[0].sgst}}</td>
                   </tr>
                   <tr>
-                      <td class="meta-head" style="text-align: right !important;">IGST @0% : Rs.</td>
-                      <td class="meta-content">{{billdetails.gst[0].igst}}</td>
+                      <td class="meta-head" style="text-align: left !important;">IGST @0% : Rs.</td>
+                      <td class="meta-content" style="text-align: left !important;">{{billdetails.gst[0].igst}}</td>
                   </tr>
                   <tr>
-                      <td class="meta-head" style="text-align: right !important;">Total GST Amount : Rs.</td>
-                      <td class="meta-content">{{billdetails.gst[0].total}}</td>
+                      <td class="meta-head" style="text-align: left !important;">Total GST Amount : Rs.</td>
+                      <td class="meta-content" style="text-align: left !important;">{{billdetails.gst[0].total}}</td>
                   </tr>
                 </tbody>
               </table> 
@@ -149,9 +149,11 @@
                   </tr>
                 </tbody>
                 <br/>
-                <span style="font-weight: normal;text-align: left;">GST WIll BE PAID BY SERVICE RECIPIENT UNDER R.C.M VIDE NOTIFICATION NO : 22/2019<br/>ITC HAS NOT BEEN AVAILED</span> <br/><br/>
-                <span>Enclose. : {{totalno}} no. of original duty slips</span>
+                
               </table>
+
+              <span style="font-weight: normal;text-align: left !important;">GST WIll BE PAID BY SERVICE RECIPIENT UNDER R.C.M VIDE NOTIFICATION NO : 22/2019<br/>ITC HAS NOT BEEN AVAILED</span> <br/><br/>
+                <span>Enclose. : {{totalno}} no. of original duty slips</span>
 
               <br>
                           
@@ -164,32 +166,32 @@
                     <tr>
                         <td></td>
                         <td class="meta-head" style="text-align: right !important;">Subtotal: Rs.</td>
-                        <td class="meta-content">{{billdetails.tail[0].subtotal}}</td>
+                        <td class="meta-content" style="text-align: left !important;">{{billdetails.tail[0].subtotal}}</td>
                     </tr>
                     <tr>
                         <td></td>
                         <td class="meta-head" style="text-align: right !important;">Total Parking: Rs.</td>
-                        <td class="meta-content">{{billdetails.tail[0].parking}}</td>
+                        <td class="meta-content" style="text-align: left !important;">{{billdetails.tail[0].parking}}</td>
                     </tr>
                     <tr>
                         <td style="text-align:left !important">Outstation charge for: {{billdetails.tail[0].outstationdays}} days &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;  @ Rs. {{billdetails.tail[0].outstationrate}}</td>
                         <td class="meta-head" style="text-align: right !important;">Outstation Amount: Rs.</td>
-                        <td class="meta-content">{{billdetails.tail[0].outstation}}</td>
+                        <td class="meta-content" style="text-align: left !important;">{{billdetails.tail[0].outstation}}</td>
                     </tr>
                     <tr>
                         <td></td>
                         <td class="meta-head" style="text-align: right !important;">Gross Amount: Rs.</td>
-                        <td class="meta-content">{{billdetails.tail[0].grosstotal}}</td>
+                        <td class="meta-content" style="text-align: left !important;">{{billdetails.tail[0].grosstotal}}</td>
                     </tr>
                     <tr>
                       <td></td>
                       <td class="meta-head" style="text-align: right !important;"><b>Rounded Gross Amount: Rs.</b></td>
-                      <td class="meta-content">{{roundedgross}}.00</td>
+                      <td class="meta-content" style="text-align: left !important;">{{roundedgross}}.00</td>
                     </tr>
                   </tbody>
                 </table>
-                <p style="margin-top: 50px;font-weight: bold; font-size: 20px;">Amount in words: <br/>{{amountInWord}}</p>
-                <p style="float: right;margin-top: 200px;font-weight: bold; font-size: 15px;">For IB Cabs</p>
+                <p style="float: right;margin-top: 50px;font-weight: bold; font-size: 20px;">Amount in words: <br/>{{amountInWord}}</p>
+               <br> <p style="float: right;margin-top: 200px;margin-left:300px;font-weight: bold; font-size: 15px;">For IB Cabs</p>
             </div>
               </div>
 
