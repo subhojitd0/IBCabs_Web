@@ -143,6 +143,8 @@ export class CoalIndiaComponent implements OnInit {
       this.gstamountinwords = this.apiService.convertAmountToWord(gstRounded);
       this.marginTop = (31-this.totalno)*2.5;
       this.fontSize = 20 + this.marginTop * 0.03;
+      localStorage.removeItem("billnumber");
+      localStorage.removeItem("billdate");
     }
     
    }
