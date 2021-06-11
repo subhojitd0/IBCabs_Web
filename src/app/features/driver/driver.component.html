@@ -7,7 +7,8 @@
             <mat-card-subtitle>Add, Update, Delete and View the drivers Here.</mat-card-subtitle>
           </mat-card-header>
         </mat-card>
-            <button mat-stroked-button (click)="openDialog(0)">Create New Driver</button>
+            <button style="margin-right: 20px" mat-stroked-button (click)="openDialog(0)">Create New Driver</button>
+            <button mat-stroked-button (click)="openOTDialog(0)">Driver OT</button>
 
             <mat-form-field class="mid">
                 <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search Driver">

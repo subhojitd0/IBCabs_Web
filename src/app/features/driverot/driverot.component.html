@@ -1,0 +1,38 @@
+        <!-- <div class="center">
+          <p style="cursor: pointer; margin-right: 5px;" (click)="exportAsPDF('printdiv');"><img height="70" src="http://ibcabs.com/bills/new/assets/img/download.png"></p>
+          <p *ngIf="isConfirmVisible" style="cursor: pointer; margin-right: 5px" (click)="save();"><img height="70" src="http://ibcabs.com/bills/new/assets/img/confirm.png"></p>
+        </div> -->
+        <div class="container" id="printdiv" style="max-width: 1500px; min-height: 2000px; max-height: 10000px;">
+          <p id="header">DRIVER OT for {{driver}}</p>
+ 
+          <button  mat-stroked-button style="margin-left: 10px" (click)="export()"> Export To Excel</button>
+          <div style="margin-top: 60px;">
+            
+            <table #table>
+              <tr>
+                <th>Sl No.</th>
+                <th>Duty Date</th>
+                <th>Car No.</th>
+                <th>Party</th>
+                <th>Garage Out</th>
+                <th>Garage In</th>
+                <th>Total Hour</th>
+                <th>Parking</th>
+                <th>Over Time</th>
+              </tr>
+              <tr *ngFor="let row of dataset">
+                <td>{{row.slno}}</td>
+                <td>{{row.dutydate}}</td>
+                <td>{{row.carnum}}</td>
+                <td>{{row.party}}</td>
+                <td>{{row.gout}}</td>
+                <td>{{row.gin}}</td>
+                <td>{{row.totalhr}}</td>
+                <td>{{row.parking}}</td>
+                <td>{{row.ot}}</td>
+              </tr>
+            </table>
+              
+            </div>
+
+        </div>

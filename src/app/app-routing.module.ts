@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ROUTE_ADD_DDR, ROUTE_ADD_DDR_WALKIN, ROUTE_BASIC, ROUTE_CAR, ROUTE_CHECK_DDR, ROUTE_DASHBOARD, ROUTE_DRIVER, ROUTE_GENERATE_BILL, ROUTE_MATADOR, ROUTE_NEW_USER, ROUTE_OWNER, ROUTE_PARTY, ROUTE_RATE, ROUTE_REPORTO, ROUTE_USER_RIGHTS, ROUTE_VIEW_BILL_CNN, ROUTE_VIEW_BILL_CNN_CONTRACT, ROUTE_VIEW_BILL_COAL_INDIA, ROUTE_VIEW_BILL_ONCALL_EXTRA, ROUTE_VIEW_BILL_RELIANCE_JMS, ROUTE_VIEW_BILL_RELIANCE_MIS, ROUTE_VIEW_BILL_RELIANCE_SUMMARY, ROUTE_VIEW_DDR } from 'src/shared/constants/constant';
+import { ROUTE_ADD_DDR, ROUTE_ADD_DDR_WALKIN, ROUTE_BASIC, ROUTE_CAR, ROUTE_CHECK_DDR, ROUTE_DASHBOARD, ROUTE_DRIVER, ROUTE_DRIVER_OT, ROUTE_GENERATE_BILL, ROUTE_MATADOR, ROUTE_NEW_USER, ROUTE_OWNER, ROUTE_PARTY, ROUTE_RATE, ROUTE_REPORTO, ROUTE_USER_RIGHTS, ROUTE_VIEW_BILL_CNN, ROUTE_VIEW_BILL_CNN_CONTRACT, ROUTE_VIEW_BILL_COAL_INDIA, ROUTE_VIEW_BILL_ONCALL_EXTRA, ROUTE_VIEW_BILL_RELIANCE_JMS, ROUTE_VIEW_BILL_RELIANCE_MIS, ROUTE_VIEW_BILL_RELIANCE_SUMMARY, ROUTE_VIEW_DDR } from 'src/shared/constants/constant';
 import { CoalIndiaComponent } from './features/bills/coalindia/coalindia.component';
 import { MonthlyBillAComponent } from './features/bills/monthly-bill-a/monthly-a.component';
 import { MonthlyContractAComponent } from './features/bills/mothly-contract-a/monthly-contract-a.component';
@@ -13,6 +13,7 @@ import { CheckDdrComponent } from './features/check-ddr/checkddr.component';
 import { UserComponent } from './features/create-user/user.component';
 import { DashboardComponent } from './features/dashboard/dashboard.component';
 import { DriverComponent } from './features/driver/driver.component';
+import { DriverOTComponent } from './features/driverot/driverot.component';
 import { EditRentalDetailComponent } from './features/edit-rental-detail/edit-rental-detail.component';
 import { GenarateBillComponent } from './features/generate-bill/generate-bill.component';
 import { LoginComponent } from './features/login/login.component';
@@ -117,6 +118,10 @@ const routes: Routes = [
   {
     path: ROUTE_CHECK_DDR,
     component:CheckDdrComponent
+  },
+  {
+    path: ROUTE_DRIVER_OT,
+    component:DriverOTComponent
   }
   
 ];

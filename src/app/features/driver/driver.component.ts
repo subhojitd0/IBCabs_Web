@@ -9,6 +9,7 @@ import { AddDriverComponent } from './add-driver/add-driver.component';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { ROUTE_DASHBOARD } from 'src/shared/constants/constant';
+import { GenerateOTComponent } from './generateot/generateot.component';
 
 export interface Driver {
   drivercode: string;
@@ -59,6 +60,16 @@ export class DriverComponent implements OnInit {
     filterValue = filterValue.trim(); // Remove whitespace
     filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
     this.dataSource.filter = filterValue;
+  }
+  openOTDialog(id: any) {
+    const dialogRef = this.dialog.open(GenerateOTComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog closed`);
+    });
+    this.router.events.subscribe(() => {
+      dialogRef.close();
+    });
   }
   openDialog(id: any) {
     localStorage.setItem('selecteddriverid', id);

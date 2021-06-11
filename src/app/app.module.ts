@@ -60,6 +60,8 @@ import { BillUploadComponent } from './features/bills/bill-upload/bill-upload.co
 import { MatadorComponent } from './features/matador/matador.component';
 import { CheckDdrComponent } from './features/check-ddr/checkddr.component';
 import { MatTableExporterModule } from 'mat-table-exporter';
+import { DriverOTComponent } from './features/driverot/driverot.component';
+import { GenerateOTComponent } from './features/driver/generateot/generateot.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -98,7 +100,9 @@ import { MatTableExporterModule } from 'mat-table-exporter';
     UserRightComponent,
     BillUploadComponent,
     MatadorComponent,
-    CheckDdrComponent
+    CheckDdrComponent,
+    DriverOTComponent,
+    GenerateOTComponent
   ],
   imports: [
     BrowserModule,

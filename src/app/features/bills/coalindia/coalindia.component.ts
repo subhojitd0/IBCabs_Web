@@ -215,7 +215,7 @@ export class CoalIndiaComponent implements OnInit {
         doc.addImage(canvas, 'PNG', positionx, positiony, imgWidth, imgHeight);
         heightLeft -= pageHeight;
       }
-      doc.save('file.pdf');
+      //doc.save('file.pdf');
       this.element = document.getElementById('printdiv') as HTMLElement;
       var htmlD = this.element.innerHTML;
       (async () => {
