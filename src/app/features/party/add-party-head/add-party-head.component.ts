@@ -86,6 +86,7 @@ export class AddPartyHeadComponent implements OnInit {
   partyheaddetails: partyhead;
   masterlist: any[] = [];
   allparties: any;
+  partyedit: any;
   allreportto: any;
   constructor(private router: Router, private apiService: ApiService, private toastr: ToastrService) {
     this.partyheaddetails = new partyhead();
@@ -115,6 +116,7 @@ export class AddPartyHeadComponent implements OnInit {
           this.partyheaddetails.starttime = this.partyheaddetails.starttime.substr(0,5);
           this.partyheaddetails.endtime = this.partyheaddetails.endtime.substr(0,5);
           this.partyheaddetails.partyheadid = this.partyheadid;
+          this.partyedit = true;
           if(this.partyheaddetails.ratetype == 0){
             this.isPack = true;
             this.isSlab = false;
