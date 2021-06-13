@@ -17,12 +17,14 @@
               <input matInput [(ngModel)]="reportto.contact" name="repcontact" placeholder="Add Report To Contact">
             </mat-form-field>
             <button style="margin: 30px;" class="col-xs-2" mat-stroked-button (click)="addReportto()">Add Report To</button>
+            <mat-form-field class="col-xs-2 " style="padding-top:20px;margin-left:100px">
+              <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search Report To">
+            </mat-form-field>
+
           </div>
             
 
-            <mat-form-field class="mid">
-                <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search Report To">
-              </mat-form-field>
+           
               <mat-table [dataSource]="dataSource" matSort>
 
                 <!-- ID Column -->

@@ -9,10 +9,10 @@
         </mat-card>
             <button *ngIf="billrole === '1'" mat-stroked-button (click)="openDialog(0)">Create New Bill</button>
             <button *ngIf="billrole === '1'" style="margin-left: 10px;" mat-stroked-button (click)="openAdvancedDialog(0)">Create Advanced Bill</button>
-            <mat-form-field class="mid">
+            <mat-form-field class="mid" style="margin-left: 25%;">
                 <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search Bill">
               </mat-form-field>
-              <mat-table [dataSource]="dataSource" matSort>
+              <mat-table [dataSource]="dataSource" matSort style="margin-left:-10%;width:130%;">
 
                 <!-- ID Column -->
                 <ng-container matColumnDef="billid">

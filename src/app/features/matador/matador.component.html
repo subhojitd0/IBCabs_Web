@@ -47,8 +47,9 @@
                       </mat-select>
                     </mat-form-field>
               </div> -->
+              <button mat-stroked-button (click)="addUser()" class="col-sm-2" style="margin-top:-20px;" >Create New Rate</button>
           </div>
-          <button mat-stroked-button (click)="addUser()" >Create New Rate</button>
+          
           <br/>
           <mat-table [dataSource]="dataSource" matSort>
 
