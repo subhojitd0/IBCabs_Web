@@ -58,7 +58,7 @@
                     2022
                   </option>
                 </select>
-                Filter By :
+                &nbsp; &nbsp; &nbsp;Filter By :
                 <select (change)="onChangeFilter($event.target.value)" [value]="filterby">
                   <option value="party">
                     Party
@@ -73,7 +73,7 @@
                     Report To
                   </option>
                 </select>
-                Value :
+                &nbsp; &nbsp; &nbsp;Value :
                 <mat-form-field *ngIf="filterby==='party'">
                   <input name="partyfilter" type="text" [(ngModel)]="filterval" [formControl]="partyselect" [matAutocomplete]="party" matInput placeholder="Enter Party">
                   <mat-autocomplete (optionSelected)="onChangeFilterVal($event)" #party="matAutocomplete">
@@ -106,7 +106,7 @@
                     </mat-option>
                   </mat-autocomplete>
                 </mat-form-field>
-                <button *ngIf ="filterby && filtervalue" mat-stroked-button (click)="checkddr()">Check DDR</button>
+                <button style="margin-left: 40px;" *ngIf ="filterby && filtervalue" mat-stroked-button (click)="checkddr()">Check DDR</button>
               </mat-card-title>
               <mat-card-subtitle>Add, Update, Delete and View the daily duties Here.</mat-card-subtitle>
             </mat-card-header>
@@ -115,8 +115,8 @@
               <button  mat-stroked-button style="margin-left: 10px" (click)="showbulkedit()" *ngIf="!isBulkEdit">Do Bulk Edit</button>
               <button  mat-stroked-button style="margin-left: 10px" (click)="showsingleedit()" *ngIf="isBulkEdit">Do Single Edit</button>
               <button  mat-stroked-button style="margin-left: 10px" (click)="savebulkedit()" *ngIf="isBulkEdit">Save Bulk Edit</button>
-              <mat-form-field class="mid">
-                  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search Duty">
+              <mat-form-field class="mid" *ngIf="!isBulkEdit">
+                  <input matInput (keyup)="applyFilter($event.target.value)"  placeholder="Search Duty">
                 </mat-form-field> <br/> <br/>
                 <span (click)="selectall()" [ngClass]="selecteditem == 'ALL' ? 'tab-css-selected' : 'tab-css'"> All Duties </span> 
                 <span (click)="selectstage1()" [ngClass]="selecteditem == 'STAGE-1' ? 'tab-css-selected' : 'tab-css'"> Duties Assigned </span> 
@@ -262,13 +262,13 @@
                 <ng-container matColumnDef="gouttime">
                   <mat-header-cell *matHeaderCellDef mat-sort-header> Out Time </mat-header-cell>
                   <mat-cell *matCellDef="let row"> 
-                    <input type="datetime-local" matInput [(ngModel)]="row.gouttime"/>
+                    <input type="datetime-local" matInput [(ngModel)]="row.gouttime" style="width:85%;"/>
                   </mat-cell>
                 </ng-container>
                 <ng-container matColumnDef="gintime">
                   <mat-header-cell *matHeaderCellDef mat-sort-header> In Time </mat-header-cell>
                   <mat-cell *matCellDef="let row"> 
-                    <input type="datetime-local" matInput [(ngModel)]="row.gintime"/>
+                    <input type="datetime-local" matInput [(ngModel)]="row.gintime" style="width:85%;"/>
                   </mat-cell>
                 </ng-container>
                 <ng-container matColumnDef="parking">

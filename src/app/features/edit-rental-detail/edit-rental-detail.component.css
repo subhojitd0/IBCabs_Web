@@ -324,3 +324,20 @@ table {
   font-size: 15px;
   font-weight: bold;
 }
+
+.mat-row:hover {
+  background-color: rgb(218, 218, 218);
+}
+
+.mat-option.mat-active {
+  background: rgb(100, 156, 230) !important;
+}
+
+.mat-option:hover{
+  background: rgb(100, 156, 230) !important;
+}
+
+.mat-row::selection{
+  background-color: rgb(218, 218, 218);
+}
+

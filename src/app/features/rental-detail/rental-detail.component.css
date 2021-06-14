@@ -60,3 +60,11 @@ table {
     background: white;
     color: #3f51b5;
   }
+
+  .mat-option.mat-active {
+    background: rgb(100, 156, 230) !important;
+  }
+  
+  .mat-option:hover{
+    background: rgb(100, 156, 230) !important;
+  }
