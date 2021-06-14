@@ -108,11 +108,11 @@ export class RelinceSummaryComponent implements OnInit {
     if(this.billdetails){
       debugger;
       this.jmssuv = this.billdetails.billrow.filter(x=>x.party.toString().includes("SUV"))[0].jmsno;
-      this.jmsdzire = this.billdetails.billrow.filter(x=>x.party.toString().includes("SUV"))[0].jmsno;
-      this.jmsinnova= this.billdetails.billrow.filter(x=>x.party.toString().includes("SUV"))[0].jmsno;
-      this.amountdzire= this.billdetails.billrow.filter(x=>x.party.toString().includes("SUV"))[0].jmsno;
-      this.amountsuv= this.billdetails.billrow.filter(x=>x.party.toString().includes("SUV"))[0].jmsno;
-      this.amountinnova= this.billdetails.billrow.filter(x=>x.party.toString().includes("SUV"))[0].jmsno;
+      this.jmsdzire = this.billdetails.billrow.filter(x=>x.party.toString().includes("DZIRE"))[0].jmsno;
+      this.jmsinnova= this.billdetails.billrow.filter(x=>x.party.toString().includes("INNOVA"))[0].jmsno;
+      this.amountdzire= this.billdetails.billrow.filter(x=>x.party.toString().includes("DZIRE"))[0].amount;
+      this.amountsuv= this.billdetails.billrow.filter(x=>x.party.toString().includes("SUV"))[0].amount;
+      this.amountinnova= this.billdetails.billrow.filter(x=>x.party.toString().includes("INNOVA"))[0].amount;
       this.taxable= "";
       this.cgst= this.billdetails.cgst;
       this.sgst= this.billdetails.sgst;

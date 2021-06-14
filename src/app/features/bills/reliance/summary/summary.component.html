@@ -37,7 +37,7 @@
                 </td>
                 <td colspan="3">
                   <p>
-                    <b>Regd. OFfice:</b><br/>
+                    <b>Regd. OfYfice:</b><br/>
                     195/2 Park Street,<br/>
                     Kolkata - 700017<br/>
                     Cell No. +91 9830800776<br/>
@@ -86,7 +86,7 @@
                 </td>
                 <td colspan="2">
                   Ref. Work Order No.: <b>540023633</b><br/>
-                  Dated - <input type="date" [(ngModel)]="workorderdate"/><br/>
+                  Dated - <b>09.09.2020</b><br/>
                   Service Desc: Vehicle Hiring Services<br/>
                   Buyer GSTIN: <b>19AAJCR6636B1Z9</b><br/>
                   STATE: West Bengal<br/>
@@ -117,14 +117,14 @@
               <tr>
                 <td>2</td>
                 <td>Monthly & On Call Car Hiring Services for <b>SUV-XYLO <br/>OR EQUIVALENT</b> ( Period from {{fromdate}} to {{todate}} ) As per JMS Sheet ID: <b>{{jmssuv}}</b></td>
-                <td rowspan="3"></td>
+                
                 <td></td>
                 <td>{{amountsuv}}</td>
               </tr>
               <tr>
                 <td>3</td>
                 <td>Monthly & On Call Car Hiring Services for <b>PREMIUM <br/> SUV-INNOVA OR EQUIVALENT</b> ( Period from {{fromdate}} to {{todate}} ) As per JMS Sheet ID: <b>{{jmsinnova}}</b></td>
-                <td rowspan="3"></td>
+                
                 <td></td>
                 <td>{{amountinnova}}</td>
               </tr>
@@ -132,7 +132,7 @@
                 <td colspan="4">GST to be paid by recipient under reverse charge</td>
                 <td>TAXABLE VALUE</td>
                 <td></td>
-                <td>{{taxable}}</td>
+                <td>{{roundedamount}}.00</td>
               </tr>
               <tr>
                 <td colspan="3">CGST @ 2.5%</td>
@@ -166,7 +166,7 @@
                 <td colspan="4"></td>
                 <td>TOTAL AMOUNT</td>
                 <td></td>
-                <td>{{roundedamount}}</td>
+                <td>{{roundedamount}}.00</td>
               </tr>
               <tr>
                 <td colspan="7">{{totalmountinwords}}</td>
