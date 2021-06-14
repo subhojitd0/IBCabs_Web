@@ -14,220 +14,170 @@
                         Mobile: 9830800776, Tel: (033) 2424 6551, (033) 4007 8545<br>
                         Email: indranilb@ibcabs.com, admin@ibcabs.com. Visit us at: www.ibcabs.com<br></p>
               </div>
-              <div class="col-xs-3 gst">
-                  
-              </div>
-            
-            
-            </div>
-            <div id="customer" [ngStyle]="{'margin-top.px':marginTop, 'margin-bottom.px': marginTop}" class="row" [style.display]="'block'">
-              <div id="customer-title" class="col-xs-4" style="margin-right: 0px; max-width: 500px">
-                  To<br>
-                        <b>{{billdetails.head[0].billto}}</b><br/><br/>
-                        {{billdetails.head[0].billaddress}}<br/><br/>
-                  GST :<span style="margin-right: 10px;">{{billdetails.head[0].gst}}</span><span>PAN: {{billdetails.head[0].pan}}</span><br/><br/>
-                  <span>Subject:   {{billdetails.head[0].subject}}</span>
-              </div>
-              <!-- <div class="col-xs-4" style="width: 20%;">
-
-              </div> -->
-              <div  class="col-xs-4" style="float: right;">
-                <table id="meta">
-                  <tbody>
-                    <tr>
-                      <td class="meta-head"><b>Bill No.</b></td>
-                      <td><input style="border:none" matInput type="text" [(ngModel)]="billno" required></td>
-                    </tr>
-                    <tr>
-                        <td class="meta-head"><b>Bill Date</b></td>
-                        <td><input style="border:none" matInput type="text" [(ngModel)]="billdate" required></td>
-                    </tr>
-    
-                    <tr>
-                        <td class="meta-head"><b>Billing Period</b></td>
-                        <td>From: {{billfrom}}  To: {{billto}}</td>
-                    </tr>
-  
-                  </tbody>
-                </table>
-              </div>
             
             </div>
             <br/><br/>
-          <!-- <mat-card>
-            <mat-card-header>
-              <div mat-card-avatar class="avatar-image-partyhead"></div>
-              <mat-card-title>Bill Register</mat-card-title>
-              <mat-card-subtitle>View, Delete and View the Bills Here.</mat-card-subtitle>
-            </mat-card-header>
-          </mat-card> -->
-          <div style="margin-top: 130px;"> 
-              <mat-table [dataSource]="dataSource" matSort>
-
-                <!-- ID Column -->
-                <ng-container matColumnDef="sl">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header> Sl. No  </mat-header-cell>
-                  <mat-cell *matCellDef="let row"> {{row.sl}} </mat-cell>
-                </ng-container>
-            
-                <!-- Name Column -->
-                <ng-container matColumnDef="dutydate">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header> Duty Date </mat-header-cell>
-                  <mat-cell *matCellDef="let row"> {{row.dutydate}} </mat-cell>
-                </ng-container>
-
-                <ng-container matColumnDef="reportto">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header> Used Under </mat-header-cell>
-                  <mat-cell *matCellDef="let row"> {{row.reportto}} </mat-cell>
-                </ng-container>
-            
-                <!-- Color Column -->
-                <ng-container matColumnDef="carno">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header> Car No. </mat-header-cell>
-                  <mat-cell *matCellDef="let row"> {{row.carno}} </mat-cell>
-                </ng-container>
-
-                <ng-container matColumnDef="cartype">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header> Car Type </mat-header-cell>
-                  <mat-cell *matCellDef="let row"> {{row.cartype}} </mat-cell>
-                </ng-container>
-
-                <!-- ID Column -->
-                <ng-container matColumnDef="hour">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header> Hours  </mat-header-cell>
-                  <mat-cell *matCellDef="let row"> {{row.hour}} </mat-cell>
-                </ng-container>
-            
-                <!-- Name Column -->
-                <ng-container matColumnDef="km">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header> KMs </mat-header-cell>
-                  <mat-cell *matCellDef="let row"> {{row.km}} </mat-cell>
-                </ng-container>
-
-                <ng-container matColumnDef="rate">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header> Rate </mat-header-cell>
-                  <mat-cell *matCellDef="let row"> {{row.rate}} </mat-cell>
-                </ng-container>
-
-                <ng-container matColumnDef="amount">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header> Amount </mat-header-cell>
-                  <mat-cell *matCellDef="let row"> {{row.amount}} </mat-cell>
-                </ng-container>
-            
-                <!-- Color Column -->
-                <ng-container matColumnDef="parking">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header> Parking </mat-header-cell>
-                  <mat-cell *matCellDef="let row"> {{row.parking}} </mat-cell>
-                </ng-container>
-
-                <ng-container matColumnDef="outstation">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header> Outstation </mat-header-cell>
-                  <mat-cell *matCellDef="let row"> {{row.outstation}} </mat-cell>
-                </ng-container>
-
-                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-                <mat-row *matRowDef="let row; columns: displayedColumns;">
-                </mat-row>
-              </mat-table>
+          <div class="tax-invoice">
+            <div class="header-invoice">
+              <b><u>TAX INVOICE</u></b>
             </div>
+            <table>
+              <tr>
+                <td colspan="7"></td>
+              </tr>
+              <tr>
+                <td>
 
-            <div [ngStyle]="{'margin-top.px':marginTop}" id="customer" style="display: block;" class="row">
-              <br><br>
-            <div id="customer-title" class="col-xs-3" style="max-width: 300px;">
-              <table>
-                <tbody>
-                  <tr>
-                    <th class="meta-head" colspan="2" style="text-align: center !important;"><b>GST CALCULATION</b></th>
-                  </tr>
-                  <tr>
-                      <td class="meta-head" style="text-align: right !important;">Taxable Amount : Rs.</td>
-                      <td class="meta-content">{{billdetails.gst[0].taxableamount}}</td>
-                  </tr>
-                  <tr>
-                      <td class="meta-head" style="text-align: right !important;">CGST @2.5% : Rs.</td>
-                      <td class="meta-content">{{billdetails.gst[0].cgst}}</td>
-                  </tr>
-                  <tr>
-                      <td class="meta-head" style="text-align: right !important;">SGST @2.5% : Rs.</td>
-                      <td class="meta-content">{{billdetails.gst[0].sgst}}</td>
-                  </tr>
-                  <tr>
-                      <td class="meta-head" style="text-align: right !important;">IGST @0% : Rs.</td>
-                      <td class="meta-content">{{billdetails.gst[0].igst}}</td>
-                  </tr>
-                  <tr>
-                      <td class="meta-head" style="text-align: right !important;">Total GST Amount : Rs.</td>
-                      <td class="meta-content">{{billdetails.gst[0].total}}</td>
-                  </tr>
-                </tbody>
-              </table> 
-              <br>
-              <br>
+                </td>
+                <td>
+                  <p>
+                    Vendor Name: M/s IB CABS<br/>
+                    Contact Person - Mr Shambhu Pal<br/>
+                    Vendor Code: 3195876<br/>
+                  </p>
+                </td>
+                <td colspan="3">
+                  <p>
+                    <b>Regd. OFfice:</b><br/>
+                    195/2 Park Street,<br/>
+                    Kolkata - 700017<br/>
+                    Cell No. +91 9830800776<br/>
+                    E-Mail: admin@ibcabs.com<br/>
+                    <b>
+                      CIN: <br/>
+                      STATE: West Bengal<br/>
+                      STATE CODE: 19<br/>
+                      INCOME TAX PAN NO. AHOPB6443K<br/>
+                      GST Reg No: 19AHOPB6443K1ZZ
+                    </b>
+                  </p>
+                </td>
+                <td colspan="2">
+                  <p>
+                    <b>
+                      Invoice No: &nbsp;&nbsp;&nbsp; <input type="text" [(ngModel)]="billno"/><br/>
+                      Invoice No: &nbsp;&nbsp;&nbsp; <input type="date" [(ngModel)]="billdate"/><br/>
+                      <br/>
+                      <br/>
+                      <br/>
+                      <br/>
+                      Car Hiring Services<br/>
+                      ( Period from {{fromdate}} to {{todate}} )
+                    </b>
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="7"></td>
+              </tr>
+              <tr>
+                <td>
                   
-              <table>
-                <tbody>
-                  <tr>
-                    <td colspan="3" style="text-align: center !important;"><b> GST Amount in words: <br/>{{gstamountinwords}} </b></td>
-                  </tr>
-                </tbody>
-              </table> 
-              <br/><br/> 
-              <table>
-                <tbody>
-                  <tr>
-                    <td colspan="3" style="text-align: center !important;">PAN:AHOPB6443K</td>
-                  </tr>
-                  <tr>
-                    <td colspan="3" style="text-align: center !important;">GSTIN:19AHOPB6443K1ZZ</td>
-                  </tr>
-                  <tr>
-                    <td colspan="3" style="text-align: center !important;">SAC Code:996601</td>
-                  </tr>
-                </tbody>
-                <br/>
-                <span style="font-weight: bold">GST WIll BE PAID BY SERVICE RECIPIENT UNDER R.C.M VIDE NOTIFICATION NO : 22/2019<br/>ITC HAS NOT BEEN AVAILED</span> <br/><br/>
-                <span>Enclose. : {{totalno}} no. of original duty slips</span>
-              </table>
-
-              <br>
-                          
-                   
-            </div>
-
-            <div class="col-xs-6" style="float: right;">
-              <table id="meta">
-                  <tbody>
-                    <tr>
-                        <td></td>
-                        <td class="meta-head" style="text-align: right !important;">Subtotal: Rs.</td>
-                        <td class="meta-content">{{billdetails.tail[0].subtotal}}</td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td class="meta-head" style="text-align: right !important;">Total Parking: Rs.</td>
-                        <td class="meta-content">{{billdetails.tail[0].parking}}</td>
-                    </tr>
-                    <tr>
-                        <td style="text-align:left !important">Outstation charge for: {{billdetails.tail[0].outstationdays}} days &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;  @ Rs. {{billdetails.tail[0].outstationrate}}</td>
-                        <td class="meta-head" style="text-align: right !important;">Outstation Amount: Rs.</td>
-                        <td class="meta-content">{{billdetails.tail[0].outstation}}</td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td class="meta-head" style="text-align: right !important;">Gross Amount: Rs.</td>
-                        <td class="meta-content">{{billdetails.tail[0].grosstotal}}</td>
-                    </tr>
-                    <tr>
-                      <td></td>
-                      <td class="meta-head" style="text-align: right !important;"><b>Rounded Gross Amount: Rs.</b></td>
-                      <td class="meta-content">{{roundedgross}}.00</td>
-                    </tr>
-                  </tbody>
-                </table>
-                <p style="margin-top: 50px;font-weight: bold; font-size: 20px;">Amount in words: <br/>{{amountInWord}}</p>
-                <p style="float: right;margin-top: 300px;font-weight: bold; font-size: 15px;">For IB Cabs</p>
-            </div>
-              </div>
+                </td>
+                <td colspan="2">
+                  <b>
+                  To<br/>
+                  M/s. RELIANCE PROJECTS & PROPERTY MANAGEMENT<br/>
+                  SERVICES LIMITED.<br/>
+                  </b>
+                  17th and 18th Floor, Tower II, Godrej Waterside. Plot no. 5,<br/>
+                  Block DP, Sector- V, Dist North 24 Parganas,, P.S Electronics<br/>
+                  Complex, Salt Lake City, KOLKATA, Kolkata, West Bengal<br/>
+                  700091<br/>
+                </td>
+                <td colspan="2">
+                  Ref. Work Order No.: <b>540023633</b><br/>
+                  Dated - <input type="date" [(ngModel)]="workorderdate"/><br/>
+                  Service Desc: Vehicle Hiring Services<br/>
+                  Buyer GSTIN: <b>19AAJCR6636B1Z9</b><br/>
+                  STATE: West Bengal<br/>
+                  State Code: 19<br/>
+                  INCOME TX PAN NO: <b>AAJCR6636B</b><br/>
+                </td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>S.No.</td>
+                <td>DESCRIPTION</td>
+                <td>SAC CODE No. / CATEGORY</td>
+                <td>PLACE FO SUPPLY OF SERVICE</td>
+                <td>PLCE OF BUSINESS OF SUPPLIER</td>
+                <td></td>
+                <td>Amount( Rs. )</td>
+              </tr>
+              <tr>
+                <td>1</td>
+                <td>Monthly & On Call Car Hiring Services for <b>COMPACT - <br/> SEDAN-INDIGO OR EQUIVALENT</b> ( Period from {{fromdate}} to {{todate}} ) As per JMS Sheet ID: <b>{{jmsdzire}}</b></td>
+                <td rowspan="3"></td>
+                <td rowspan="3">Kolkata</td>
+                <td rowspan="3">Kolkata</td>
+                <td></td>
+                <td>{{amountdzire}}</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>Monthly & On Call Car Hiring Services for <b>SUV-XYLO <br/>OR EQUIVALENT</b> ( Period from {{fromdate}} to {{todate}} ) As per JMS Sheet ID: <b>{{jmssuv}}</b></td>
+                <td rowspan="3"></td>
+                <td rowspan="3">Kolkata</td>
+                <td rowspan="3">Kolkata</td>
+                <td></td>
+                <td>{{amountsuv}}</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>Monthly & On Call Car Hiring Services for <b>PREMIUM <br/> SUV-INNOVA OR EQUIVALENT</b> ( Period from {{fromdate}} to {{todate}} ) As per JMS Sheet ID: <b>{{jmsinnova}}</b></td>
+                <td rowspan="3"></td>
+                <td rowspan="3">Kolkata</td>
+                <td rowspan="3">Kolkata</td>
+                <td></td>
+                <td>{{amountinnova}}</td>
+              </tr>
+              <tr>
+                <td colspan="4">GST to be paid by recipient under reverse charge</td>
+                <td>TAXABLE VALUE</td>
+                <td></td>
+                <td>{{taxable}}</td>
+              </tr>
+              <tr>
+                <td colspan="3">CGST @ 2.5%</td>
+                <td>{{cgst}}</td>
+                <td></td>
+                <td></td>
+                <td>-</td>
+              </tr>
+              <tr>
+                <td colspan="3">SGST @ 2.5%</td>
+                <td>{{sgst}}</td>
+                <td></td>
+                <td></td>
+                <td>-</td>
+              </tr>
+              <tr>
+                <td colspan="2">Total GST Amount</td>
+                <td>Total</td>
+                <td>{{totalgst}}</td>
+                <td></td>
+                <td></td>
+                <td>-</td>
+              </tr>
+              <tr>
+                <td colspan="4">{{gstinwords}}</td>
+                <td></td>
+                <td></td>
+                <td>-</td>
+              </tr>
+              <tr>
+                <td colspan="4"></td>
+                <td>TOTAL AMOUNT</td>
+                <td></td>
+                <td>{{totalamount}}</td>
+              </tr>
+              <tr>
+                <td colspan="7">{{totalmountinwords}}</td>
+              </tr>
+            </table>
+          </div>
 
             
         </div>

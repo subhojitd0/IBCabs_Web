@@ -67,6 +67,20 @@ export class RelinceSummaryComponent implements OnInit {
   amountInWord: any;
   roundedgross: any;
   billfrom: any;
+  jmssuv: any;
+  jmsdzire: any;
+  workorderdate: any;
+  jmsinnova: any;
+  amountdzire: any;
+  amountsuv: any;
+  amountinnova: any;
+  taxable: any;
+  cgst: any;
+  sgst: any;
+  totalgst: any;
+  gstinwords: any;
+  totalamount: any;
+  totalmountinwords: any;
   billto: any;
   gstamountinwords: any;
   totalno: any;
@@ -86,6 +100,8 @@ export class RelinceSummaryComponent implements OnInit {
     this.billto = localStorage.getItem("billto");
     debugger;
     if(this.billdetails){
+      debugger;
+
       /* let billTot : BillDet = new BillDet();
       billTot.carno = "Total";
       billTot.sl = "";
@@ -93,7 +109,7 @@ export class RelinceSummaryComponent implements OnInit {
       billTot.hour = this.billdetails.bodytotal[0].hour;
       billTot.km = this.billdetails.bodytotal[0].km;
       billTot.parking = this.billdetails.bodytotal[0].parking;
-      this.billdetails.body.push(billTot); */
+      this.billdetails.body.push(billTot); 
       this.dataSource = new MatTableDataSource(this.billdetails.body);
       //localStorage.setItem("billdata", "");
       this.totalno = this.billdetails.body.length;
@@ -102,12 +118,12 @@ export class RelinceSummaryComponent implements OnInit {
       let substringVal = this.billdetails.tail[0].grosstotal;
       if(index > 0)
          substringVal = this.billdetails.tail[0].grosstotal.toString().substr(0, index);
-      substringVal = substringVal.toString().replace(',',''); */
+      substringVal = substringVal.toString().replace(',',''); 
       let gstRounded = Math.round(parseFloat(this.billdetails.gst[0].total.toString().replace(',','')));
       this.amountInWord = this.apiService.convertAmountToWord(this.roundedgross);
       this.gstamountinwords = this.apiService.convertAmountToWord(gstRounded);
       this.marginTop = (31-this.totalno)*2.5;
-      this.fontSize = 20 + this.marginTop * 0.03;
+      this.fontSize = 20 + this.marginTop * 0.03;*/
     }
     
    }
