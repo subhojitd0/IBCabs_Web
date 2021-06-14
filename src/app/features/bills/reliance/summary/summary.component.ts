@@ -61,6 +61,8 @@ export class SaveBill implements iSaveBill {
   styleUrls: ['./summary.component.css']
 })
 export class RelinceSummaryComponent implements OnInit {
+  fromdate: any;
+  todate: any;
   billno: any;
   billdate: any;
   billdetails: any;
@@ -99,8 +101,8 @@ export class RelinceSummaryComponent implements OnInit {
    }
    ngOnInit(){
     this.billdetails = JSON.parse(localStorage.getItem("billdata"));
-    this.billfrom = localStorage.getItem("billfrom");
-    this.billto = localStorage.getItem("billto");
+    this.fromdate = localStorage.getItem("billfrom");
+    this.todate = localStorage.getItem("billto");
     debugger;
     if(this.billdetails){
       debugger;
