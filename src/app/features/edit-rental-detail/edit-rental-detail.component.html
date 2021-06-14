@@ -319,7 +319,10 @@
                   </ng-container> -->
             
                 <mat-header-row *matHeaderRowDef="bulkdisplayedColumns"></mat-header-row>
-                <mat-row *matRowDef="let row; columns: bulkdisplayedColumns;">
+                <mat-row *matRowDef="let row; columns: bulkdisplayedColumns;" 
+                [ngClass]="{'highlight' : row.isSelected}"
+                (click)="rowselect(row)"
+                >
                 </mat-row>
               </mat-table>
               <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" *ngIf="isBulkEdit"></mat-paginator>

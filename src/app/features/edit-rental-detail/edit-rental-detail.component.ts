@@ -511,6 +511,14 @@ checkddr(){
     localStorage.setItem('selectedduty', id);
     this.router.navigateByUrl('/' + ROUTE_ADD_DDR);
   }
+  rowselect(row)
+  {
+    if(row.isSelected)
+      row.isSelected=false;
+    else
+      row.isSelected=true;
+  }
+
   edit(id: any) {
     localStorage.setItem('selectedduty', id);
     this.router.navigateByUrl('/' + ROUTE_ADD_DDR);

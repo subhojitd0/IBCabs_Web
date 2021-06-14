@@ -341,3 +341,7 @@ table {
   background-color: rgb(218, 218, 218);
 }
 
+.highlight{
+  background: rgb(194, 226, 182) !important;
+}
+
