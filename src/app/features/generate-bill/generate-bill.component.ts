@@ -7,7 +7,7 @@ import {BILL_API, BILL_ONCALL_COAL_INDIA_API, BILL_RELIANCE_API, OWNER_API, PART
 import {MatDialog} from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
-import { ROUTE_CAR, ROUTE_OWNER, ROUTE_VIEW_BILL_COAL_INDIA, ROUTE_VIEW_BILL_RELIANCE_JMS, ROUTE_VIEW_BILL_RELIANCE_MIS } from 'src/shared/constants/constant';
+import { ROUTE_CAR, ROUTE_OWNER, ROUTE_VIEW_BILL_COAL_INDIA, ROUTE_VIEW_BILL_RELIANCE_JMS, ROUTE_VIEW_BILL_RELIANCE_MIS, ROUTE_VIEW_BILL_RELIANCE_SUMMARY } from 'src/shared/constants/constant';
 import { NewBillComponent } from './NewBill/newbill.component';
 import { AdvancedBillComponent } from './AdvancedBill/advancedbill.component';
 import html2canvas from 'html2canvas';
@@ -78,6 +78,9 @@ billRegDetails: any[] = [];
     else if(bill.billtype === "D1"){
       this.openJMSBill(bill);
     }
+    else if(bill.billtype === "D2"){
+      this.openRelSummaryBill(bill);
+    }
     else if(bill.billtype === "C"){
       this.openCoalBill(bill);
     }
@@ -93,6 +96,25 @@ billRegDetails: any[] = [];
       });
     }
     
+  }
+  openRelSummaryBill(element: any){
+    debugger;
+    let json = {
+      from: element.billfrom,
+      to: element.billto,
+      format: "6",
+      mode: "2"
+    }
+    localStorage.setItem("billnumber", element.billnumber);
+    localStorage.setItem("billdate", element.billdate);
+    localStorage.setItem("billfrom", element.billfrom);
+    localStorage.setItem("billto", element.billto);
+    this.apiService.post(BILL_RELIANCE_API, json).then((res: any)=>{ 
+      debugger;
+      localStorage.setItem("billdata", JSON.stringify(res));
+      this.toastr.success("Your bill was successfully created",'Success');
+      this.router.navigateByUrl('/' + ROUTE_VIEW_BILL_RELIANCE_SUMMARY);
+    });
   }
   openCoalBill(element: any){
     debugger;

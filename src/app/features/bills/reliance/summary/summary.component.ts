@@ -46,6 +46,8 @@ export interface iSaveBill {
   billdate: string;
   party: string;
   mode: string;
+  billtype: any;
+  amount: any;
 }
 export class SaveBill implements iSaveBill {
   billnumber: string;
@@ -54,6 +56,8 @@ export class SaveBill implements iSaveBill {
   billdate: string;
   party: string;
   mode: string;
+  billtype: any;
+  amount: any;
 }
 @Component({
   selector: 'app-summary',
@@ -101,6 +105,16 @@ export class RelinceSummaryComponent implements OnInit {
     
    }
    ngOnInit(){
+    let billdate = localStorage.getItem("billdate");
+    let billno = localStorage.getItem("billnumber");
+    if(billdate){
+      this.isConfirmVisible = false;
+      this.billdate = billdate;
+    }
+    if(billno){
+      this.isConfirmVisible = false;
+      this.billno = billno;
+    }
     this.billdetails = JSON.parse(localStorage.getItem("billdata"));
     this.fromdate = localStorage.getItem("billfrom");
     this.todate = localStorage.getItem("billto");
@@ -157,15 +171,17 @@ export class RelinceSummaryComponent implements OnInit {
       billSave.billnumber = this.billno;
       billSave.billfrom = localStorage.getItem("billfrom");
       billSave.billto = localStorage.getItem("billto");
-      billSave.party = localStorage.getItem("billparty");
+      billSave.party = "JIO BILL";
+      billSave.billtype = "D2";
       billSave.mode = "1";
+      billSave.amount = this.billdetails.billtotal;
       this.apiService.post(BILL_API, billSave).then((res: any)=>{ 
           debugger;
           if(res.status === "success"){
-          this.exportAsPDF("container");
+          //this.exportAsPDF("container");
           this.isConfirmVisible = false;
           this.toastr.success("Your bill was successfully created",'Success');
-          
+          this.router.navigateByUrl('/' + ROUTE_GENERATE_BILL);
         }
       });
      }
