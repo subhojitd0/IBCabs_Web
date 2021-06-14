@@ -88,8 +88,6 @@ export class RelinceSummaryComponent implements OnInit {
   totalno: any;
   marginTop: any;
   fontSize: any;
-  fromdate: any;
-  todate: any;
 
   isConfirmVisible: any = true;
   @ViewChild(MatPaginator) paginator: MatPaginator;
