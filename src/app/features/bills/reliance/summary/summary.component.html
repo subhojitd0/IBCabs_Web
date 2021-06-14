@@ -3,7 +3,6 @@
           <p *ngIf="isConfirmVisible" style="cursor: pointer; margin-right: 5px" (click)="save();"><img height="70" src="./../../../../assets/img/confirm.png"></p>
         </div>
         <div class="container" id="printdiv" style="max-width: 1400px; min-height: 2000px; max-height: 10000px;">
-          <p id="header">TAX INVOICE</p>
           <div id="identity" class="row col-xs-12" >
               <div class="col-xs-1">
                 <img src="http://ibcabs.com/bills/new/assets/img/ib.jpg" style="height:90px;width:90px;margin-top:-8px;">
@@ -18,10 +17,10 @@
             </div>
             <br/><br/>
           <div class="tax-invoice">
-            <div class="header-invoice">
-              <b><u>TAX INVOICE</u></b>
-            </div>
             <table>
+              <tr>
+                <td colspan="7"><b><u>TAX INVOICE</u></b></td>
+              </tr>
               <tr>
                 <td colspan="7"></td>
               </tr>
@@ -56,7 +55,7 @@
                   <p>
                     <b>
                       Invoice No: &nbsp;&nbsp;&nbsp; <input type="text" [(ngModel)]="billno"/><br/>
-                      Invoice No: &nbsp;&nbsp;&nbsp; <input type="date" [(ngModel)]="billdate"/><br/>
+                      Date: &nbsp;&nbsp;&nbsp; <input type="date" [(ngModel)]="billdate"/><br/>
                       <br/>
                       <br/>
                       <br/>
@@ -119,8 +118,6 @@
                 <td>2</td>
                 <td>Monthly & On Call Car Hiring Services for <b>SUV-XYLO <br/>OR EQUIVALENT</b> ( Period from {{fromdate}} to {{todate}} ) As per JMS Sheet ID: <b>{{jmssuv}}</b></td>
                 <td rowspan="3"></td>
-                <td rowspan="3">Kolkata</td>
-                <td rowspan="3">Kolkata</td>
                 <td></td>
                 <td>{{amountsuv}}</td>
               </tr>
@@ -128,8 +125,6 @@
                 <td>3</td>
                 <td>Monthly & On Call Car Hiring Services for <b>PREMIUM <br/> SUV-INNOVA OR EQUIVALENT</b> ( Period from {{fromdate}} to {{todate}} ) As per JMS Sheet ID: <b>{{jmsinnova}}</b></td>
                 <td rowspan="3"></td>
-                <td rowspan="3">Kolkata</td>
-                <td rowspan="3">Kolkata</td>
                 <td></td>
                 <td>{{amountinnova}}</td>
               </tr>
@@ -156,7 +151,7 @@
               <tr>
                 <td colspan="2">Total GST Amount</td>
                 <td>Total</td>
-                <td>{{totalgst}}</td>
+                <td>{{roundedtax}}</td>
                 <td></td>
                 <td></td>
                 <td>-</td>
@@ -171,7 +166,7 @@
                 <td colspan="4"></td>
                 <td>TOTAL AMOUNT</td>
                 <td></td>
-                <td>{{totalamount}}</td>
+                <td>{{roundedamount}}</td>
               </tr>
               <tr>
                 <td colspan="7">{{totalmountinwords}}</td>

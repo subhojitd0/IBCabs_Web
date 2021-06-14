@@ -91,6 +91,9 @@ export class RelinceSummaryComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
   displayedColumns: string[] = ['sl', 'dutydate', 'reportto', 'carno', 'cartype', 'hour', 'km', 'rate', 'amount', 'parking', 'outstation'];
   dataSource: MatTableDataSource<BillDet>;
+  roundedtotal: number;
+  roundedamount: number;
+  roundedtax: number;
   constructor(private router: Router,private apiService: ApiService, public dialog: MatDialog, private toastr: ToastrService) {
     
    }
@@ -101,7 +104,21 @@ export class RelinceSummaryComponent implements OnInit {
     debugger;
     if(this.billdetails){
       debugger;
-
+      this.jmssuv = this.billdetails.billrow.filter(x=>x.party.toString().includes("SUV"))[0].jmsno;
+      this.jmsdzire = this.billdetails.billrow.filter(x=>x.party.toString().includes("SUV"))[0].jmsno;
+      this.jmsinnova= this.billdetails.billrow.filter(x=>x.party.toString().includes("SUV"))[0].jmsno;
+      this.amountdzire= this.billdetails.billrow.filter(x=>x.party.toString().includes("SUV"))[0].jmsno;
+      this.amountsuv= this.billdetails.billrow.filter(x=>x.party.toString().includes("SUV"))[0].jmsno;
+      this.amountinnova= this.billdetails.billrow.filter(x=>x.party.toString().includes("SUV"))[0].jmsno;
+      this.taxable= "";
+      this.cgst= this.billdetails.cgst;
+      this.sgst= this.billdetails.sgst;
+      this.totalgst= this.billdetails.gst;
+      this.totalamount= this.billdetails.billtotal;
+      this.roundedamount = Math.round(parseFloat(this.billdetails.billtotal.toString().replace(',','')));
+      this.roundedtax = Math.round(parseFloat(this.billdetails.gst.toString().replace(',','')));
+      this.gstinwords= this.apiService.convertAmountToWord(this.roundedtax);
+      this.totalmountinwords= this.apiService.convertAmountToWord(this.roundedamount);
       /* let billTot : BillDet = new BillDet();
       billTot.carno = "Total";
       billTot.sl = "";
