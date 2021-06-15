@@ -101,6 +101,7 @@ export class RelinceSummaryComponent implements OnInit {
   roundedtotal: number;
   roundedamount: number;
   roundedtax: number;
+  party: string;
   constructor(private router: Router,private apiService: ApiService, public dialog: MatDialog, private toastr: ToastrService) {
     
    }
@@ -115,18 +116,25 @@ export class RelinceSummaryComponent implements OnInit {
       this.isConfirmVisible = false;
       this.billno = billno;
     }
+    this.party = localStorage.getItem("billparty");
     this.billdetails = JSON.parse(localStorage.getItem("billdata"));
     this.fromdate = localStorage.getItem("billfrom");
     this.todate = localStorage.getItem("billto");
     debugger;
     if(this.billdetails){
       debugger;
-      this.jmssuv = this.billdetails.billrow.filter(x=>x.party.toString().includes("SUV"))[0].jmsno;
-      this.jmsdzire = this.billdetails.billrow.filter(x=>x.party.toString().includes("DZIRE"))[0].jmsno;
-      this.jmsinnova= this.billdetails.billrow.filter(x=>x.party.toString().includes("INNOVA"))[0].jmsno;
-      this.amountdzire= this.billdetails.billrow.filter(x=>x.party.toString().includes("DZIRE"))[0].amount;
-      this.amountsuv= this.billdetails.billrow.filter(x=>x.party.toString().includes("SUV"))[0].amount;
-      this.amountinnova= this.billdetails.billrow.filter(x=>x.party.toString().includes("INNOVA"))[0].amount;
+      if(this.party.toString().includes("SUV")){
+        this.jmssuv = this.billdetails.jmsno;
+        this.amountsuv= this.billdetails.amount;
+      }
+      else if(this.party.toString().includes("INNOVA")){
+        this.jmsinnova= this.billdetails.jmsno;
+        this.amountinnova= this.billdetails.amount;
+      }
+      else{
+        this.jmsdzire = this.billdetails.jmsno;
+        this.amountdzire= this.billdetails.amount;
+      }
       this.taxable= "";
       this.cgst= this.billdetails.cgst;
       this.sgst= this.billdetails.sgst;
@@ -173,7 +181,7 @@ export class RelinceSummaryComponent implements OnInit {
       billSave.billnumber = this.billno;
       billSave.billfrom = localStorage.getItem("billfrom");
       billSave.billto = localStorage.getItem("billto");
-      billSave.party = "JIO BILL";
+      billSave.party = "JIO BILL - " + this.party;
       billSave.billtype = "D2";
       billSave.mode = "1";
       billSave.amount = this.billdetails.billtotal;
