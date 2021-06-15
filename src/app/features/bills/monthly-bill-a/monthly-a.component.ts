@@ -61,12 +61,22 @@ export class MonthlyBillAComponent implements OnInit {
   isConfirmVisible: any = true;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  displayedColumns: string[] = ['sl', 'dutydate', 'carno', 'hour', 'km', 'parking'];
+  displayedColumns: string[] = ['sl', 'dutydate', 'carno', 'hour', 'km', 'parking', 'out'];
   dataSource: MatTableDataSource<BillDet>;
   constructor(private router: Router,private apiService: ApiService, public dialog: MatDialog, private toastr: ToastrService) {
     
    }
    ngOnInit(){
+    let billdate = localStorage.getItem("billdate");
+    let billno = localStorage.getItem("billnumber");
+    if(billdate){
+      this.isConfirmVisible = false;
+      this.billdate = billdate;
+    }
+    if(billno){
+      this.isConfirmVisible = false;
+      this.billno = billno;
+    }
     this.billdetails = JSON.parse(localStorage.getItem("billdata"));
     this.billfrom = localStorage.getItem("billfrom");
     this.billto = localStorage.getItem("billto");
@@ -89,7 +99,8 @@ export class MonthlyBillAComponent implements OnInit {
          substringVal = this.billdetails.tail[0].grosstotal.toString().substr(0, index);
       substringVal = substringVal.toString().replace(',',''); */
       this.amountInWord = this.apiService.convertAmountToWord(this.roundedgross);
-      
+      localStorage.removeItem("billnumber");
+      localStorage.removeItem("billdate");
     }
     
    }
@@ -108,10 +119,10 @@ export class MonthlyBillAComponent implements OnInit {
       this.apiService.post(BILL_API, billSave).then((res: any)=>{ 
           debugger;
           if(res.status === "success"){
-          this.exportAsPDF("container");
+          //this.exportAsPDF("container");
           this.isConfirmVisible = false;
           this.toastr.success("Your bill was successfully created",'Success');
-          
+          this.router.navigateByUrl('/' + ROUTE_GENERATE_BILL);
         }
       });
      }

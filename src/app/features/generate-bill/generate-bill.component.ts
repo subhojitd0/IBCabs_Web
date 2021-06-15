@@ -3,11 +3,11 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import {ApiService} from '../../../shared/services/service';
-import {BILL_API, BILL_ONCALL_COAL_INDIA_API, BILL_RELIANCE_API, OWNER_API, PARTY_HEAD_API} from '../../../shared/services/api.url-helper';
+import {BILL_API, BILL_CNN_API, BILL_ONCALL_COAL_INDIA_API, BILL_RELIANCE_API, OWNER_API, PARTY_HEAD_API} from '../../../shared/services/api.url-helper';
 import {MatDialog} from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
-import { ROUTE_CAR, ROUTE_OWNER, ROUTE_VIEW_BILL_COAL_INDIA, ROUTE_VIEW_BILL_RELIANCE_JMS, ROUTE_VIEW_BILL_RELIANCE_MIS, ROUTE_VIEW_BILL_RELIANCE_SUMMARY } from 'src/shared/constants/constant';
+import { ROUTE_CAR, ROUTE_OWNER, ROUTE_VIEW_BILL_CNN, ROUTE_VIEW_BILL_COAL_INDIA, ROUTE_VIEW_BILL_RELIANCE_JMS, ROUTE_VIEW_BILL_RELIANCE_MIS, ROUTE_VIEW_BILL_RELIANCE_SUMMARY } from 'src/shared/constants/constant';
 import { NewBillComponent } from './NewBill/newbill.component';
 import { AdvancedBillComponent } from './AdvancedBill/advancedbill.component';
 import html2canvas from 'html2canvas';
@@ -84,6 +84,9 @@ billRegDetails: any[] = [];
     else if(bill.billtype === "C"){
       this.openCoalBill(bill);
     }
+    else if(bill.billtype === "A"){
+      this.openIBNBill(bill);
+    }
     else{
       localStorage.setItem("billmodalbody", bill.path);
       const dialogRef = this.dialog.open(CoalIndiaModalComponent);
@@ -96,6 +99,35 @@ billRegDetails: any[] = [];
       });
     }
     
+  }
+  openIBNBill(element: any){
+    debugger;
+    let json = {
+      party: element.party,
+      from: element.billfrom,
+      to: element.billto,
+      format: "1",
+      nightstart: element.nightstart,
+      nightend: element.nightend,
+      gsttype: element.gsttype,
+      parkinggst: element.parkinggst,
+    }
+    localStorage.setItem("billfrom", element.billfrom);
+    localStorage.setItem("billto", element.billto);
+    localStorage.setItem("billparty", element.party);
+    localStorage.setItem("billreportto", element.reportto);
+    localStorage.setItem("billgst", element.gsttype);
+    localStorage.setItem("billparking", element.parkinggst);
+    localStorage.setItem("nightstart", element.nightstart);
+    localStorage.setItem("nightend", element.nightend);
+    localStorage.setItem("billnumber", element.billnumber);
+    localStorage.setItem("billdate", element.billdate);
+    this.apiService.post(BILL_CNN_API, json).then((res: any)=>{ 
+      debugger;
+      localStorage.setItem("billdata", JSON.stringify(res));
+      this.toastr.success("Your bill was successfully created",'Success');
+      this.router.navigateByUrl('/' + ROUTE_VIEW_BILL_CNN);
+    });
   }
   openRelSummaryBill(element: any){
     debugger;
