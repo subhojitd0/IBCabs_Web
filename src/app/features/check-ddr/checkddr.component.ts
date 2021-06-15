@@ -91,6 +91,7 @@ export class CheckDdrComponent implements OnInit {
     this.apiService.post(RENTAL_DETAIL_API_OFFICE, json).then((res: any)=>{ 
       debugger;
       this.dataset = res.result;
+      let count=0;
       this.dataset.forEach(element => {
         debugger;
         let date1 =  moment.tz(element.gintime, "HH:mm:ss").local();
@@ -101,9 +102,10 @@ export class CheckDdrComponent implements OnInit {
         element.tothr = element.hourdiff;
         element.totkm  = element.kmdiff;
         element.outs = isNaN(parseInt(element.outstation)) ? 0 : parseInt(element.outstation);
+        count=count+1;
       });
       this.dataset.push({
-        dutydate: "Total",
+        dutydate: "Total - "+count,
         carnum: "",
         cartype: "",
         party: "",

@@ -114,6 +114,7 @@ export class EditRentalDetailComponent implements OnInit {
   delete: string;
   allreportto: any;
   allreport: any;
+  tkm: number;
   constructor(private cdRef:ChangeDetectorRef, private router: Router,private apiService: ApiService, public dialog: MatDialog, private toastr: ToastrService) {
     
    }
@@ -511,12 +512,10 @@ checkddr(){
     localStorage.setItem('selectedduty', id);
     this.router.navigateByUrl('/' + ROUTE_ADD_DDR);
   }
-  rowselect(row)
+
+  caltotal(row)
   {
-    if(row.isSelected)
-      row.isSelected=false;
-    else
-      row.isSelected=true;
+    this.tkm=parseFloat(row.ginkm)-parseFloat(row.goutkm);
   }
 
   edit(id: any) {

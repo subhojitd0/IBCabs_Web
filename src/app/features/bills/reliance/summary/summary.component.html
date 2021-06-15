@@ -19,7 +19,7 @@
           <div class="tax-invoice">
             <table>
               <tr>
-                <td colspan="7"><b><u>TAX INVOICE</u></b></td>
+                <td colspan="7" style="text-align: center;"><b><u>TAX INVOICE</u></b></td>
               </tr>
               <tr>
                 <td colspan="7"></td>
@@ -37,7 +37,7 @@
                 </td>
                 <td colspan="3">
                   <p>
-                    <b>Regd. OfYfice:</b><br/>
+                    <b>Regd. Office:</b><br/>
                     195/2 Park Street,<br/>
                     Kolkata - 700017<br/>
                     Cell No. +91 9830800776<br/>
@@ -54,8 +54,8 @@
                 <td colspan="2">
                   <p>
                     <b>
-                      Invoice No: &nbsp;&nbsp;&nbsp; <input type="text" [(ngModel)]="billno"/><br/>
-                      Date: &nbsp;&nbsp;&nbsp; <input type="date" [(ngModel)]="billdate"/><br/>
+                      Invoice No: &nbsp;&nbsp;&nbsp; <input type="text" [(ngModel)]="billno" style="width:50%;border:none;"/><br/>
+                      Date: &nbsp;&nbsp;&nbsp; <input type="date" [(ngModel)]="billdate" style="border:none;"/><br/>
                       <br/>
                       <br/>
                       <br/>
@@ -101,57 +101,57 @@
                 <td>DESCRIPTION</td>
                 <td>SAC CODE No. / CATEGORY</td>
                 <td>PLACE FO SUPPLY OF SERVICE</td>
-                <td>PLCE OF BUSINESS OF SUPPLIER</td>
+                <td>PLACE OF BUSINESS OF SUPPLIER</td>
                 <td></td>
-                <td>Amount( Rs. )</td>
+                <td style="text-align: center;">Amount( Rs. )</td>
               </tr>
               <tr>
                 <td>1</td>
                 <td>Monthly & On Call Car Hiring Services for <b>COMPACT - <br/> SEDAN-INDIGO OR EQUIVALENT</b> ( Period from {{fromdate}} to {{todate}} ) As per JMS Sheet ID: <b>{{jmsdzire}}</b></td>
                 <td rowspan="3"></td>
-                <td rowspan="3">Kolkata</td>
-                <td rowspan="3">Kolkata</td>
+                <td rowspan="3" style="text-align: center;">Kolkata</td>
+                <td rowspan="3" style="text-align: center;">Kolkata</td>
                 <td></td>
-                <td>{{amountdzire}}</td>
+                <td style="text-align: center;">{{amountdzire}}</td>
               </tr>
               <tr>
                 <td>2</td>
                 <td>Monthly & On Call Car Hiring Services for <b>SUV-XYLO <br/>OR EQUIVALENT</b> ( Period from {{fromdate}} to {{todate}} ) As per JMS Sheet ID: <b>{{jmssuv}}</b></td>
                 
                 <td></td>
-                <td>{{amountsuv}}</td>
+                <td style="text-align: center;">{{amountsuv}}</td>
               </tr>
               <tr>
                 <td>3</td>
                 <td>Monthly & On Call Car Hiring Services for <b>PREMIUM <br/> SUV-INNOVA OR EQUIVALENT</b> ( Period from {{fromdate}} to {{todate}} ) As per JMS Sheet ID: <b>{{jmsinnova}}</b></td>
                 
                 <td></td>
-                <td>{{amountinnova}}</td>
+                <td style="text-align: center;">{{amountinnova}}</td>
               </tr>
               <tr>
                 <td colspan="4">GST to be paid by recipient under reverse charge</td>
-                <td>TAXABLE VALUE</td>
+                <td style="text-align: center;">TAXABLE VALUE</td>
                 <td></td>
-                <td>{{roundedamount}}.00</td>
+                <td style="text-align: center;">{{roundedamount}}.00</td>
               </tr>
               <tr>
                 <td colspan="3">CGST @ 2.5%</td>
-                <td>{{cgst}}</td>
+                <td style="text-align: center;">{{cgst}}</td>
                 <td></td>
                 <td></td>
                 <td>-</td>
               </tr>
               <tr>
                 <td colspan="3">SGST @ 2.5%</td>
-                <td>{{sgst}}</td>
+                <td style="text-align: center;">{{sgst}}</td>
                 <td></td>
                 <td></td>
                 <td>-</td>
               </tr>
               <tr>
                 <td colspan="2">Total GST Amount</td>
-                <td>Total</td>
-                <td>{{roundedtax}}</td>
+                <td style="text-align: center;">Total</td>
+                <td style="text-align: center;">{{roundedtax}}</td>
                 <td></td>
                 <td></td>
                 <td>-</td>
@@ -164,9 +164,9 @@
               </tr>
               <tr>
                 <td colspan="4"></td>
-                <td>TOTAL AMOUNT</td>
+                <td style="text-align: center;">TOTAL AMOUNT</td>
                 <td></td>
-                <td>{{roundedamount}}.00</td>
+                <td style="text-align: center;">{{roundedamount}}.00</td>
               </tr>
               <tr>
                 <td colspan="7">{{totalmountinwords}}</td>

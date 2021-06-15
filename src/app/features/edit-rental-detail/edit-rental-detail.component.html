@@ -123,6 +123,10 @@
                 <span (click)="selectstage2()" [ngClass]="selecteditem == 'STAGE-2' ? 'tab-css-selected' : 'tab-css'"> Car Assigned Duties </span>
                 <span (click)="selectstage3()" [ngClass]="selecteditem == 'STAGE-3' ? 'tab-css-selected' : 'tab-css'"> Completed Duties </span>
                 <span (click)="selectstage4()" [ngClass]="selecteditem == 'STAGE-4' ? 'tab-css-selected' : 'tab-css'"> Approved Duties </span>
+                <span style="margin-left:20px; font-weight: 400; font-size: 17px; color:red;" *ngIf="isBulkEdit"> KM Diff - {{tkm}}</span>
+                
+               
+
                 <br/><br/>
                 <mat-table [dataSource]="dataSource" matSort *ngIf="!isBulkEdit">
                   <!-- ID Column -->
@@ -250,13 +254,13 @@
                 <ng-container matColumnDef="goutkm">
                   <mat-header-cell *matHeaderCellDef mat-sort-header> Out KM </mat-header-cell>
                   <mat-cell *matCellDef="let row"> 
-                    <input type="number" matInput [(ngModel)]="row.goutkm"/>
+                    <input type="number" matInput [(ngModel)]="row.goutkm" (blur)="caltotal(row)"/>
                   </mat-cell>
                 </ng-container>
                 <ng-container matColumnDef="ginkm">
                   <mat-header-cell *matHeaderCellDef mat-sort-header> In KM </mat-header-cell>
                   <mat-cell *matCellDef="let row"> 
-                    <input type="number" matInput [(ngModel)]="row.ginkm"/>
+                    <input type="number" matInput [(ngModel)]="row.ginkm" (blur)="caltotal(row)"/>
                   </mat-cell>
                 </ng-container>
                 <ng-container matColumnDef="gouttime">
@@ -321,7 +325,6 @@
                 <mat-header-row *matHeaderRowDef="bulkdisplayedColumns"></mat-header-row>
                 <mat-row *matRowDef="let row; columns: bulkdisplayedColumns;" 
                 [ngClass]="{'highlight' : row.isSelected}"
-                (click)="rowselect(row)"
                 >
                 </mat-row>
               </mat-table>

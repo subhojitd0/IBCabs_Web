@@ -133,7 +133,7 @@ export class RelinceSummaryComponent implements OnInit {
       this.totalgst= this.billdetails.gst;
       this.totalamount= this.billdetails.billtotal;
       this.roundedamount = Math.round(parseFloat(this.billdetails.billtotal.toString().replace(',','')));
-      this.roundedtax = Math.round(parseFloat(this.billdetails.gst.toString().replace(',','')));
+      this.roundedtax = this.totalgst;
       this.gstinwords= this.apiService.convertAmountToWord(this.roundedtax);
       this.totalmountinwords= this.apiService.convertAmountToWord(this.roundedamount);
       /* let billTot : BillDet = new BillDet();
@@ -158,6 +158,8 @@ export class RelinceSummaryComponent implements OnInit {
       this.gstamountinwords = this.apiService.convertAmountToWord(gstRounded);
       this.marginTop = (31-this.totalno)*2.5;
       this.fontSize = 20 + this.marginTop * 0.03;*/
+       localStorage.setItem("billdate","");
+       localStorage.setItem("billnumber","");
     }
     
    }
