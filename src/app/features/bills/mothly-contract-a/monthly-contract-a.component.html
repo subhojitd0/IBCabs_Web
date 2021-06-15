@@ -1,6 +1,6 @@
         <div class="center">
-          <p style="cursor: pointer; margin-right: 5px;" (click)="exportAsPDF('printdiv');"><img height="70" src="./../../../../assets/img/download.png"></p>
-          <p *ngIf="isConfirmVisible" style="cursor: pointer; margin-right: 5px" (click)="save();"><img height="70" src="./../../../../assets/img/confirm.png"></p>
+          <p style="cursor: pointer; margin-right: 5px;" (click)="exportAsPDF('printdiv');"><img height="70" src="http://ibcabs.com/bills/new/assets/img/download.png"></p>
+          <!-- <p *ngIf="isConfirmVisible" style="cursor: pointer; margin-right: 5px" (click)="save();"><img height="70" src="http://ibcabs.com/bills/new/assets/img/confirm.png"></p> -->
         </div>
         <div class="container" id="printdiv" style="min-height: 2000px; max-height: 10000px;">
           <p id="header">TAX INVOICE</p>
@@ -61,7 +61,7 @@
               <mat-card-subtitle>View, Delete and View the Bills Here.</mat-card-subtitle>
             </mat-card-header>
           </mat-card> -->
-            <div style="text-align: center; margin-top: 130px;"> 
+            <div style="text-align: center; margin-top: 130px; font-size: 18px;"> 
               <div style="font-weight: bold;">Subject: {{partydetails.billsubject}}</div>
               <br/>
               <div>Monthly rate as per contract Rs. {{contractAmount}}</div>

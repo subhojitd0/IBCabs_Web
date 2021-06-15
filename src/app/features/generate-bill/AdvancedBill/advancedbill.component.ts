@@ -7,6 +7,9 @@ import {BILL_CNN_API, OWNER_API, PARTY_HEAD_API} from '../../../../shared/servic
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { ROUTE_OWNER, ROUTE_VIEW_BILL_CNN, ROUTE_VIEW_BILL_CNN_CONTRACT } from 'src/shared/constants/constant';
+import { FormControl } from '@angular/forms';
+import { map, startWith } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 export interface inewbill {
   party: string,
@@ -36,6 +39,9 @@ export class AdvancedBillComponent implements OnInit {
   newbillDet : any;
   allparties: any;
   billDetails: newbill;
+  partyselect: FormControl;
+  partylist: Observable<string[]>;
+  partynames: any;
   constructor(private router: Router, private apiService: ApiService, private toastr: ToastrService) {
     this.billDetails = new newbill();
     debugger;
@@ -64,7 +70,14 @@ export class AdvancedBillComponent implements OnInit {
    ngOnInit() : void {
     this.billDetails.gsttype = "0";
     this.allparties = JSON.parse(localStorage.getItem('allparties'));
+    this.partynames = this.allparties.map(x=>x.name);
+    this.partyselect = new FormControl();
+    this.partylist = this.partyselect.valueChanges.pipe(startWith(''),map(value => this._filterParty(value)));
    }
+   public _filterParty(value: string): string[] {
+    const filterValue = value.toLowerCase();
+    return this.partynames.filter(client => client.toLowerCase().includes(filterValue));
+  }
   generateBill(){
     debugger;
     let redirectApi = "";
