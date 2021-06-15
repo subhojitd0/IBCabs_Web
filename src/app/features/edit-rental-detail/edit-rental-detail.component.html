@@ -123,7 +123,7 @@
                 <span (click)="selectstage2()" [ngClass]="selecteditem == 'STAGE-2' ? 'tab-css-selected' : 'tab-css'"> Car Assigned Duties </span>
                 <span (click)="selectstage3()" [ngClass]="selecteditem == 'STAGE-3' ? 'tab-css-selected' : 'tab-css'"> Completed Duties </span>
                 <span (click)="selectstage4()" [ngClass]="selecteditem == 'STAGE-4' ? 'tab-css-selected' : 'tab-css'"> Approved Duties </span>
-                <span style="margin-left:20px; font-weight: 400; font-size: 17px; color:red;" *ngIf="isBulkEdit"> KM Diff - {{tkm}}</span>
+                <span style="margin-left:20px; font-weight: 400; font-size: 17px; color:red;" *ngIf="isBulkEdit"> KM Diff - {{tkm}}    ||    HR Diff - {{thr}} </span>
                 
                
 
@@ -266,13 +266,13 @@
                 <ng-container matColumnDef="gouttime">
                   <mat-header-cell *matHeaderCellDef mat-sort-header> Out Time </mat-header-cell>
                   <mat-cell *matCellDef="let row"> 
-                    <input type="datetime-local" matInput [(ngModel)]="row.gouttime" style="width:85%;"/>
+                    <input type="datetime-local" matInput [(ngModel)]="row.gouttime" (blur)="caltotal(row)" style="width:85%;"/>
                   </mat-cell>
                 </ng-container>
                 <ng-container matColumnDef="gintime">
                   <mat-header-cell *matHeaderCellDef mat-sort-header> In Time </mat-header-cell>
                   <mat-cell *matCellDef="let row"> 
-                    <input type="datetime-local" matInput [(ngModel)]="row.gintime" style="width:85%;"/>
+                    <input type="datetime-local" matInput [(ngModel)]="row.gintime" (blur)="caltotal(row)" style="width:85%;"/>
                   </mat-cell>
                 </ng-container>
                 <ng-container matColumnDef="parking">

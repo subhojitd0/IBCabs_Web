@@ -14,6 +14,7 @@ import { MessageModalComponent } from './message-modal/message-modal.component';
 import { ConfirmationModalComponent } from './confirmation-modal/confirmation-modal.component';
 import { Observable, Subject } from 'rxjs';
 import {startWith, map} from 'rxjs/operators';
+import * as moment from 'moment-timezone';
 
 export interface EditRentalDetail {
   isSelected: boolean;
@@ -115,6 +116,7 @@ export class EditRentalDetailComponent implements OnInit {
   allreportto: any;
   allreport: any;
   tkm: number;
+  thr: number;
   constructor(private cdRef:ChangeDetectorRef, private router: Router,private apiService: ApiService, public dialog: MatDialog, private toastr: ToastrService) {
     
    }
@@ -516,6 +518,7 @@ checkddr(){
   caltotal(row)
   {
     this.tkm=parseFloat(row.ginkm)-parseFloat(row.goutkm);
+    this.thr = moment.duration(moment(row.gintime, "HH:mm:ss").diff(moment(row.gouttime, "HH:mm:ss"))).asMinutes() / 60;
   }
 
   edit(id: any) {
