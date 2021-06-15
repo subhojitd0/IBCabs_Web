@@ -70,6 +70,8 @@ export class MonthlyContractAComponent implements OnInit {
   cgstpercentage: any;
   sgstpercentage: any;
   partydetails: any;
+  billt: Date;
+  billf: Date;
   constructor(private router: Router,private apiService: ApiService, public dialog: MatDialog, private toastr: ToastrService) {
     
    }
@@ -81,6 +83,10 @@ export class MonthlyContractAComponent implements OnInit {
     this.billto = localStorage.getItem("billto");
     this.gsttype = localStorage.getItem("billgst");
     debugger;
+    this.billf=new Date(this.billfrom);
+    this.billt=new Date(this.billto);
+
+
     let det = this.allParties.filter(x=>x.name === this.party)[0];
     if(det){
       var json =

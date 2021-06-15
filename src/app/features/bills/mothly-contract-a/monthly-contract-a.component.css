@@ -35,6 +35,11 @@
 
 table {
     width: 100%;
+    padding-top:15px;
+    padding-bottom:15px;
+    padding-left:100px;
+    padding-right:100px;
+
   }
 
   #header{
@@ -66,13 +71,14 @@ table {
 
 table>tr{
     border: 1px solid;
+    
 }
 .mat-row, .mat-footer-row, .mat-header-row {
     min-height: 30px;
     text-align: center;
     color: black;
 }
-td, th { border: 1px solid; padding: 5px }
+td, th { border: 1px solid; padding: 5px; }
 
 .mat-row:last-child {
     font-weight: bold;

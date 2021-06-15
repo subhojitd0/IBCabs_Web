@@ -139,8 +139,8 @@ export class RelinceSummaryComponent implements OnInit {
       this.cgst= this.billdetails.cgst;
       this.sgst= this.billdetails.sgst;
       this.totalgst= this.billdetails.gst;
-      this.totalamount= this.billdetails.billtotal;
-      this.roundedamount = Math.round(parseFloat(this.billdetails.billtotal.toString().replace(',','')));
+      this.totalamount= this.billdetails.amount;
+      this.roundedamount = Math.round(parseFloat(this.billdetails.amount.toString().replace(',','')));
       this.roundedtax = Math.round(parseFloat(this.totalgst.toString().replace(',','')));
       this.gstinwords= this.apiService.convertAmountToWord(this.roundedtax);
       this.totalmountinwords= this.apiService.convertAmountToWord(this.roundedamount);
@@ -181,7 +181,7 @@ export class RelinceSummaryComponent implements OnInit {
       billSave.billnumber = this.billno;
       billSave.billfrom = localStorage.getItem("billfrom");
       billSave.billto = localStorage.getItem("billto");
-      billSave.party = "JIO BILL - " + this.party;
+      billSave.party = this.party;
       billSave.billtype = "D2";
       billSave.mode = "1";
       billSave.amount = this.billdetails.billtotal;

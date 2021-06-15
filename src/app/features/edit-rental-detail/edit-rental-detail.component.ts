@@ -117,7 +117,7 @@ export class EditRentalDetailComponent implements OnInit {
   allreportto: any;
   allreport: any;
   tkm: number;
-  thr: number;
+  thr: any;
   ownerselect: FormControl;
   allowners: any;
   allownername: any;
@@ -533,7 +533,10 @@ checkddr(){
   caltotal(row)
   {
     this.tkm=parseFloat(row.ginkm)-parseFloat(row.goutkm);
-    this.thr = moment.duration(moment(row.gintime, "HH:mm:ss").diff(moment(row.gouttime, "HH:mm:ss"))).asMinutes() / 60;
+    this.thr = moment.duration(moment(row.gintime).diff(moment(row.gouttime))).asMinutes()/60 ;
+
+    //var time = new Date().getTime() - new Date("2013-02-20T12:01:04.753Z").getTime();
+    //moment.duration(moment(row.gintime, "HH:mm:ss").diff(moment(row.gouttime, "HH:mm:ss"))).asMinutes() / 60
   }
 
   edit(id: any) {

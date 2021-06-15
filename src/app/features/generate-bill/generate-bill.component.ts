@@ -135,12 +135,14 @@ billRegDetails: any[] = [];
       from: element.billfrom,
       to: element.billto,
       format: "6",
-      mode: "2"
+      mode: "2",
+      party:element.party
     }
     localStorage.setItem("billnumber", element.billnumber);
     localStorage.setItem("billdate", element.billdate);
     localStorage.setItem("billfrom", element.billfrom);
     localStorage.setItem("billto", element.billto);
+    localStorage.setItem("billparty", element.party);
     this.apiService.post(BILL_RELIANCE_API, json).then((res: any)=>{ 
       debugger;
       localStorage.setItem("billdata", JSON.stringify(res));

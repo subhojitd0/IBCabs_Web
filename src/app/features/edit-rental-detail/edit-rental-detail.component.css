@@ -91,7 +91,8 @@ table {
 mat-header-row {
   position: sticky;
     top: 5px;
-    background: rgba(174, 180, 213, 1);
+    background: rgb(218, 218, 218);
+    z-index:999;
 }
 .loading-screen-wrapper {
   z-index: 100000;

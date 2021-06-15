@@ -20,19 +20,20 @@
             
             
             </div>
-            <div id="customer" class="row" style="display:block">
-              <div id="customer-title" class="col-xs-4" style="margin-right: 0px; max-width: 500px">
+            
+            <div id="customer" class="row" style="display:block; margin-top: 80px;">
+              <div id="customer-title" class="col-xs-4" style="margin-right: 0px; max-width: 500px; font-size:18px !important;">
                   To<br>
-                        <b>{{partydetails.billto}}</b><br/>
-                        {{partydetails.billaddress}}<br/>
-                  GST :<span style="font-size:14px; margin-right: 10px;">{{partydetails.gst}}</span><span>PAN: {{partydetails.pan}}</span><br/><br/>
+                        <b>{{partydetails.billto}}</b><br/><br/>
+                        {{partydetails.billaddress}}<br/><br/>
+                  GST :<span style="font-size:17px; margin-right: 10px;">{{partydetails.gst}}</span><span>PAN: {{partydetails.pan}}</span><br/><br/>
                   <span style="font-size:16px"></span>
               </div>
               <!-- <div class="col-xs-4" style="width: 20%;">
 
               </div> -->
               <div  class="col-xs-4" style="float: right;">
-                <table id="meta">
+                <table id="meta" style="font-size:18px !important;">
                   <tbody>
                     <tr>
                       <td class="meta-head"><b>Bill No.</b></td>
@@ -61,19 +62,19 @@
               <mat-card-subtitle>View, Delete and View the Bills Here.</mat-card-subtitle>
             </mat-card-header>
           </mat-card> -->
-            <div style="text-align: center; margin-top: 130px; font-size: 18px;"> 
+            <div style="text-align: center; margin-top: 180px; font-size: 18px;"> 
               <div style="font-weight: bold;">Subject: {{partydetails.billsubject}}</div>
               <br/>
               <div>Monthly rate as per contract Rs. {{contractAmount}}</div>
               <br/>
-              <div>( DUTY PERIOD FROM {{billfrom}} TO {{billto}} )</div>
+              <div>( DUTY PERIOD FROM {{billf|date:'dd/MM/yyyy'}} TO {{billt|date:'dd/MM/yyyy'}} )</div>
             </div>
 
-            <div id="customer" style="display: block;" class="row">
+            <div id="customer" style="display: block;margin-top: 60px;" class="row">
               <br><br>
-            <div id="customer-title" class="col-xs-3" style="max-width: 300px;">
+            <div id="customer-title" class="col-xs-4" style="max-width: 400px;width:100%">
                 
-              <table>
+              <table style="font-size: 18px;">
                 <tbody>
                   <tr>
                     <td colspan="3" style="text-align: center !important;">PAN:AHOPB6443K</td>
@@ -119,7 +120,7 @@
               <br>
               <br>
                   
-              <table>
+              <table style="font-size: 18px;">
                 <tbody>
                   <tr>
                     <td colspan="3" style="text-align: center !important;"><b> ***GST In Reverse Charg : YES. </b></td>
@@ -128,12 +129,12 @@
               </table>      
             </div>
 
-            <div class="col-xs-6" style="float: right;">
+            <div class="col-xs-6" style="float: right;max-width: 600px;width:100%; font-size:18px !important;">
               <table id="meta">
                   <tbody>
                     <tr>
-                      <td class="meta-head" style="text-align: right !important;">Total Amount: Rs.</td>
-                      <td class="meta-content">{{contractAmount}}</td>
+                      <td class="meta-head" style="text-align: right !important;"><b>Total Amount: Rs.</b></td>
+                      <td class="meta-content"><b>{{contractAmount}}</b></td>
                     </tr>
                   </tbody>
                 </table>

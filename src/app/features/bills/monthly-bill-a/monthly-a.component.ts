@@ -49,6 +49,8 @@ export interface iSaveBill {
   outstation: any;
   amount: any;
   reportto: any;
+  nightstart:any;
+  nightend:any;
 }
 export class SaveBill implements iSaveBill {
   billnumber: string;
@@ -68,6 +70,8 @@ export class SaveBill implements iSaveBill {
   outstation: any;
   amount: any;
   reportto: any;
+  nightstart:any;
+  nightend:any;
 }
 @Component({
   selector: 'app-monthly-a',
@@ -107,13 +111,13 @@ export class MonthlyBillAComponent implements OnInit {
     debugger;
     if(this.billdetails){
       let billTot : BillDet = new BillDet();
-      billTot.carno = "Total";
-      billTot.sl = "";
-      billTot.dutydate = "";
+      billTot.carno = "-";
+      billTot.sl = "Total";
+      billTot.dutydate = "-";
       billTot.hour = this.billdetails.bodytotal[0].hour;
       billTot.km = this.billdetails.bodytotal[0].km;
       billTot.parking = this.billdetails.bodytotal[0].parking;
-      billTot.outstation = this.billdetails.bodytotal[0].outstation;
+      billTot.outstation = this.billdetails.tail[0].outstationdays;
       this.billdetails.body.push(billTot);
       this.dataSource = new MatTableDataSource(this.billdetails.body);
       //localStorage.setItem("billdata", "");
@@ -148,6 +152,8 @@ export class MonthlyBillAComponent implements OnInit {
       billSave.totalhr = this.billdetails.bodytotal[0].hour;
       billSave.totalkm = this.billdetails.bodytotal[0].km;
       billSave.outstation = this.billdetails.bodytotal[0].outstation;
+      billSave.nightstart = localStorage.getItem("nightstart");
+      billSave.nightend = localStorage.getItem("nightend");
       billSave.mode = "1";
 
       this.apiService.post(BILL_API, billSave).then((res: any)=>{ 
