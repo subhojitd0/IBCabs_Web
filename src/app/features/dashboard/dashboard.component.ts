@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ROUTE_DASHBOARD } from 'src/shared/constants/constant';
-import { CAR_API, DRIVER_API, EXTRA_API, PARTY_HEAD_API, REPORT_TO_API } from 'src/shared/services/api.url-helper';
+import { CAR_API, DRIVER_API, EXTRA_API, OWNER_API, PARTY_HEAD_API, REPORT_TO_API } from 'src/shared/services/api.url-helper';
 import { ApiService } from 'src/shared/services/service';
 
 @Component({
@@ -38,6 +38,9 @@ export class DashboardComponent implements OnInit {
     });
     this.apiService.post(DRIVER_API, json).then((res: any)=>{ 
       localStorage.setItem("alldrivers", JSON.stringify(res.result));
+    });
+    this.apiService.post(OWNER_API, json).then((res: any)=>{ 
+      localStorage.setItem("allowners", JSON.stringify(res.result));
     });
     if(this.pagerefrsh == "0"){
       localStorage.setItem('pagerefresh', "1");

@@ -108,6 +108,7 @@ export class EditRentalDetailComponent implements OnInit {
   partynames: any;
   carlist: Observable<string[]>;
   driverlist: Observable<string[]>;
+  ownerlist: Observable<string[]>;
   reportlist: Observable<string[]>;
   allcartypefilter: any;
   ddrrole: string;
@@ -117,6 +118,9 @@ export class EditRentalDetailComponent implements OnInit {
   allreport: any;
   tkm: number;
   thr: number;
+  ownerselect: FormControl;
+  allowners: any;
+  allownername: any;
   constructor(private cdRef:ChangeDetectorRef, private router: Router,private apiService: ApiService, public dialog: MatDialog, private toastr: ToastrService) {
     
    }
@@ -128,6 +132,7 @@ export class EditRentalDetailComponent implements OnInit {
     this.driverselect = new FormControl();
     this.carselect = new FormControl();
     this.reportselect = new FormControl();
+    this.ownerselect = new FormControl();
     this.carFormControl = new FormControl();
     this.carTypeFormControl = new FormControl();
     this.driverFormControl = new FormControl();
@@ -139,10 +144,12 @@ export class EditRentalDetailComponent implements OnInit {
      var filterval = localStorage.getItem('rentalfilterval');
      this.allparties = JSON.parse(localStorage.getItem('allparties'));
      this.alldrivers = JSON.parse(localStorage.getItem('alldrivers'));
+     this.allowners = JSON.parse(localStorage.getItem('allowners'));
      this.allcars = JSON.parse(localStorage.getItem('allcars'));
      this.alldrivernames = this.alldrivers.map(x=>x.drivername);
      this.allcarno = this.allcars.map(x=>x.carno);
      this.allcartype = this.cartypes.map(x=>x.car);
+     this.allownername = this.allowners.map(x=>x.ownername);
      this.allreportto = JSON.parse(localStorage.getItem('allreportto'));
      this.allreport = this.allreportto.map(x=>x.report);
      this.partynames = this.allparties.map(x=>x.name);
@@ -224,7 +231,12 @@ checkddr(){
     //driver
     //this.filteredOptionsDriver = this.driverFormControl.valueChanges.pipe(startWith(''),map(value => this._filterDriver(value)));
     this.driverlist = this.driverselect.valueChanges.pipe(startWith(''),map(value => this._filterDriver(value)));
+    this.ownerlist = this.ownerselect.valueChanges.pipe(startWith(''),map(value => this._filterOwner(value)));
    }
+   public _filterOwner(value: string): string[] {
+    const filterValue = value.toLowerCase();
+    return this.allownername.filter(client => client.toLowerCase().includes(filterValue));
+  }
    public _filterParty(value: string): string[] {
     const filterValue = value.toLowerCase();
     return this.partynames.filter(client => client.toLowerCase().includes(filterValue));
@@ -284,7 +296,7 @@ checkddr(){
         this.apiService.post(PARTY_HEAD_API, jsonParty).then((res: any)=>{ 
           ot = res.outstation;
           element.outstationtype = ot;
-          element.outstation = (parseInt(element.outstation) / parseInt(ot.toString())).toString();
+          //element.outstation = (parseInt(element.outstation) / parseInt(ot.toString())).toString();
         });
         if(element.gintime)
         {
@@ -331,8 +343,8 @@ checkddr(){
      var allparties = JSON.parse(localStorage.getItem('allparties'));
      var data = (this as any).mastereditrentaldetails.filter(x=>x.isSelected);
      data.forEach(async element => {
-        element.outstation = (parseInt(element.outstation) * parseInt(element.outstationtype.toString())).toString();
-        element.outstationtype = 1;
+        //element.outstation = (parseInt(element.outstation) * parseInt(element.outstationtype.toString())).toString();
+        element.outstationtype = 0;
       });
      this.apiService.post(RENTAL_DETAIL_API_OFFICE_BULKEDIT, data).then((res: any)=>{ 
        debugger;
@@ -361,6 +373,9 @@ checkddr(){
     }
     else if(val === "report"){
       this.filtervalue = this.allreportto[0].drivercode;
+    }
+    else if(val === "owner"){
+      this.filtervalue = this.allownername[0].ownercode;
     }
     else{
       this.filtervalue = this.allcars[0].carcode;

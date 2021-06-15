@@ -72,6 +72,9 @@
                   <option value="report">
                     Report To
                   </option>
+                  <option value="owner">
+                    Vendor
+                  </option>
                 </select>
                 &nbsp; &nbsp; &nbsp;Value :
                 <mat-form-field *ngIf="filterby==='party'">
@@ -102,6 +105,14 @@
                   <input type="text" name="carfilter"  [(ngModel)]="filtervalue" [formControl]="carselect" [matAutocomplete]="car" matInput placeholder="Enter Car">
                   <mat-autocomplete (optionSelected)="onChangeFilterVal($event)" #car="matAutocomplete">
                     <mat-option *ngFor="let option of carlist | async" [value]="option" >
+                      {{option}}
+                    </mat-option>
+                  </mat-autocomplete>
+                </mat-form-field>
+                <mat-form-field *ngIf="filterby==='owner'">
+                  <input type="text" name="ownerfilter"  [(ngModel)]="filtervalue" [formControl]="ownerselect" [matAutocomplete]="owner" matInput placeholder="Enter Owner">
+                  <mat-autocomplete (optionSelected)="onChangeFilterVal($event)" #owner="matAutocomplete">
+                    <mat-option *ngFor="let option of ownerlist | async" [value]="option" >
                       {{option}}
                     </mat-option>
                   </mat-autocomplete>

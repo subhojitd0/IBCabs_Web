@@ -88,6 +88,11 @@ table {
   border-radius: 10px;
   font-weight: 500;
 }
+mat-header-row {
+  position: sticky;
+    top: 5px;
+    background: rgba(174, 180, 213, 1);
+}
 .loading-screen-wrapper {
   z-index: 100000;
   position: absolute;

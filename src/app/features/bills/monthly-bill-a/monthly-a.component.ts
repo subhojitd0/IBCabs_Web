@@ -18,6 +18,7 @@ export interface iBillDet {
   hour: string;
   km: number;
   parking: string;
+  outstation: string;
 }
 
 export class BillDet implements iBillDet {
@@ -27,6 +28,7 @@ export class BillDet implements iBillDet {
   hour: string;
   km: number;
   parking: string;
+  outstation: string;
 }
 
 export interface iSaveBill {
@@ -35,7 +37,18 @@ export interface iSaveBill {
   billto: string;
   billdate: string;
   party: string;
+  subject: string;
+  gsttype: string;
+  parkingtype: string;
+  billtype: string;
+  total: string;
   mode: string;
+  formData: any;
+  totalhr: any;
+  totalkm: any;
+  outstation: any;
+  amount: any;
+  reportto: any;
 }
 export class SaveBill implements iSaveBill {
   billnumber: string;
@@ -43,7 +56,18 @@ export class SaveBill implements iSaveBill {
   billto: string;
   billdate: string;
   party: string;
+  subject: string;
+  gsttype: string;
+  parkingtype: string;
+  billtype: string;
+  total: string;
   mode: string;
+  formData: any;
+  totalhr: any;
+  totalkm: any;
+  outstation: any;
+  amount: any;
+  reportto: any;
 }
 @Component({
   selector: 'app-monthly-a',
@@ -89,6 +113,7 @@ export class MonthlyBillAComponent implements OnInit {
       billTot.hour = this.billdetails.bodytotal[0].hour;
       billTot.km = this.billdetails.bodytotal[0].km;
       billTot.parking = this.billdetails.bodytotal[0].parking;
+      billTot.outstation = this.billdetails.bodytotal[0].outstation;
       this.billdetails.body.push(billTot);
       this.dataSource = new MatTableDataSource(this.billdetails.body);
       //localStorage.setItem("billdata", "");
@@ -116,6 +141,15 @@ export class MonthlyBillAComponent implements OnInit {
       billSave.billto = localStorage.getItem("billto");
       billSave.party = localStorage.getItem("billparty");
       billSave.mode = "1";
+      billSave.gsttype = localStorage.getItem("billgst");
+      billSave.parkingtype = localStorage.getItem("billparking");
+      billSave.billtype = "A";
+      billSave.amount = this.roundedgross;
+      billSave.totalhr = this.billdetails.bodytotal[0].hour;
+      billSave.totalkm = this.billdetails.bodytotal[0].km;
+      billSave.outstation = this.billdetails.bodytotal[0].outstation;
+      billSave.mode = "1";
+
       this.apiService.post(BILL_API, billSave).then((res: any)=>{ 
           debugger;
           if(res.status === "success"){
@@ -151,9 +185,9 @@ export class MonthlyBillAComponent implements OnInit {
         heightLeft -= pageHeight;
       }
       doc.save( 'file.pdf');
-      if(this.billno){
+      /* if(this.billno){
         this.router.navigateByUrl('/' + ROUTE_GENERATE_BILL);
-      }
+      } */
     }); 
   }
 }

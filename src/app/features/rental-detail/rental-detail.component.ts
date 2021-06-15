@@ -154,7 +154,7 @@ export class RentalDetailComponent implements OnInit {
       debugger;
       this.apiService.post(PARTY_HEAD_API, json).then((res: any)=>{ 
         ot = res.outstation;
-        this.rentalAdd.outstation = (parseInt(this.rentalAdd.outstation) * parseInt(ot)).toString();
+        //this.rentalAdd.outstation = (parseInt(this.rentalAdd.outstation) * parseInt(ot)).toString();
         debugger;
         if(isNaN(parseInt(id))|| parseInt(id) === 0){
           this.rentalAdd.mode = "1";
@@ -196,10 +196,10 @@ export class RentalDetailComponent implements OnInit {
       debugger;
       this.apiService.post(PARTY_HEAD_API, json).then((res: any)=>{ 
         ot = res.outstation;
-        if(ot)
+        /* if(ot)
           this.rentalAdd.outstation = (parseInt(this.rentalAdd.outstation) * parseInt(ot)).toString();
         else
-        this.rentalAdd.outstation = "0";
+        this.rentalAdd.outstation = "0"; */
         debugger;
         if(isNaN(parseInt(id))|| parseInt(id) === 0){
           this.rentalAdd.mode = "1";
@@ -419,10 +419,10 @@ export class RentalDetailComponent implements OnInit {
           this.rentalAdd.gouttime = this.rentalAdd.gouttime.substr(0,this.rentalAdd.gouttime.length - 3);
         }
 
-        if(this.rentalAdd.outstation != "NaN")
+        /* if(this.rentalAdd.outstation != "NaN")
           this.rentalAdd.outstation = (parseFloat(this.rentalAdd.outstation) / parseFloat(ot.toString())).toString();
         else
-          this.rentalAdd.outstation = "0";
+          this.rentalAdd.outstation = "0"; */
         
         if(!this.rentalAdd.parking)
           this.rentalAdd.parking = "0";
