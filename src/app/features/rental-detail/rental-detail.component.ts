@@ -44,7 +44,9 @@ export interface NewRental {
   outstationtype:string,
   outstation:string,
   nightcharge:string,
-  dutyid: string
+  dutyid: string,
+  subcarnum: string,
+  isSubDuty: string
 }
 export class RentalAdd implements NewRental {
   mode: string;
@@ -77,6 +79,8 @@ export class RentalAdd implements NewRental {
   nightcharge:string;
   dutystatus: string;
   dutyid: string;
+  subcarnum: string;
+  isSubDuty: string;
 }
 
 @Component({
@@ -367,7 +371,8 @@ export class RentalDetailComponent implements OnInit {
       DriverControl: ['', Validators.required],
       DriverContactControl: ['', Validators.required],
       CarTypeControl: ['', Validators.required],
-      CarNumberControl: ['', Validators.required]
+      CarNumberControl: ['', Validators.required],
+      SubCarNumberControl: []
     });
     this.thirdFormGroup = this._formBuilder.group({
       GINTIMEControl: ['', Validators.required],
@@ -447,6 +452,7 @@ export class RentalDetailComponent implements OnInit {
       });
     }
     else{
+      this.rentalAdd.isSubDuty = "0";
       //this.rentalAdd.dutydate = 
       localStorage.setItem('selectedduty', "0");
     }

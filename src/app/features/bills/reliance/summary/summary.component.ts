@@ -140,8 +140,10 @@ export class RelinceSummaryComponent implements OnInit {
       this.sgst= this.billdetails.sgst;
       this.totalgst= this.billdetails.gst;
       this.totalamount= this.billdetails.amount;
-      this.roundedamount = Math.round(parseFloat(this.billdetails.amount.toString().replace(',','')));
-      this.roundedtax = Math.round(parseFloat(this.totalgst.toString().replace(',','')));
+      this.roundedamount = this.billdetails.amount.toString().replace(',','');
+      //this.roundedamount = Math.round(parseFloat(this.billdetails.amount.toString().replace(',','')));
+      //this.roundedtax = Math.round(parseFloat(this.totalgst.toString().replace(',','')));
+      this.roundedtax = this.totalgst.toString().replace(',','');
       this.gstinwords= this.apiService.convertAmountToWord(this.roundedtax);
       this.totalmountinwords= this.apiService.convertAmountToWord(this.roundedamount);
       /* let billTot : BillDet = new BillDet();
