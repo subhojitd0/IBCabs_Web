@@ -88,7 +88,7 @@ export class EditRentalDetailComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   displayedColumns: string[] = ['dutydt', 'party', 'carno', 'statusval', 'options'];
-  bulkdisplayedColumns: string[] = ['isselected','dutydate', 'partyname', 'reportto', 'driver', 'carnumber', 'cartype', 'slip', 'gouttime', 'goutkm', 'gintime', 'ginkm', 'parking', 'outstation', 'night'];
+  bulkdisplayedColumns: string[] = ['isselected','dutydate', 'partyname', 'reportto', 'driver', 'carnumber', 'cartype', 'slip', 'gouttime', 'goutkm', 'gintime', 'ginkm', 'parking', 'outstation'];
   dataSource: MatTableDataSource<RentalDetail>;
   bulkDataSource: MatTableDataSource<EditRentalDetail>;
   filteredOptionsCar: Observable<any[]>;

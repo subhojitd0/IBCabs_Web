@@ -264,10 +264,10 @@ export class RentalDetailComponent implements OnInit {
       return (this.rentalAdd.party && this.rentalAdd.dutydate && this.rentalAdd.dutytime && this.rentalAdd.centerName && this.rentalAdd.reporttoname);
     }
     if(step === "2"){
-      return (this.rentalAdd.driver && this.rentalAdd.drivernum && this.rentalAdd.carnum && this.rentalAdd.cartype);
+      return (this.rentalAdd.driver && this.rentalAdd.drivernum && this.rentalAdd.carnum && this.rentalAdd.cartype && this.rentalAdd.replace);
     }
     if(step === "3"){
-      return (this.rentalAdd.ginkm && this.rentalAdd.goutkm && this.rentalAdd.gintime && this.rentalAdd.gouttime && this.rentalAdd.outstation && this.rentalAdd.parking && this.rentalAdd.nightcharge);
+      return (this.rentalAdd.ginkm && this.rentalAdd.goutkm && this.rentalAdd.gintime && this.rentalAdd.gouttime && this.rentalAdd.outstation && this.rentalAdd.parking );
     }
   }
   changeparty(){
@@ -384,7 +384,7 @@ export class RentalDetailComponent implements OnInit {
       DriverContactControl: ['', Validators.required],
       CarTypeControl: ['', Validators.required],
       CarNumberControl: ['', Validators.required],
-      SubCarNumberControl: []
+      SubCarNumberControl: ['', Validators.required]
     });
     this.thirdFormGroup = this._formBuilder.group({
       GINTIMEControl: ['', Validators.required],
@@ -392,8 +392,7 @@ export class RentalDetailComponent implements OnInit {
       GOUTTIMEControl: ['', Validators.required],
       GOUTKMControl: ['', Validators.required],
       ParkingControl: ['', Validators.required],
-      OutstationControl: ['', Validators.required],
-      NightControl: ['', Validators.required]
+      OutstationControl: ['', Validators.required]
     });
     this.setAutoComplete();
     var dutyid = JSON.parse(localStorage.getItem('selectedduty'));

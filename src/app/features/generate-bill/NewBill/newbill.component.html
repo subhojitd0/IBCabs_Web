@@ -68,8 +68,8 @@
                     <input name="billto" (blur)="somethingChanged()" type="date" class="form-control"[(ngModel)]="billDetails.to">
                 </div>
             </div>
-            <div class="row" *ngIf="(billDetails.format === '3' || billDetails.format === '4') && billDetails.format !== '7' ">
-              <div class="col-sm-12">
+            <div class="row" *ngIf="billDetails.format !== '7' ">
+              <div class="col-sm-12" *ngIf="billDetails.format === '3' || billDetails.format === '4'">
                 <mat-form-field style="width: 80%; margin-right: 20px;">
                   <mat-label>Report To</mat-label>
                   <input name="report" [formControl]="reportselect" [matAutocomplete]="autoreport" matInput placeholder="Enter the report to name here" [(ngModel)]="billDetails.reportto">

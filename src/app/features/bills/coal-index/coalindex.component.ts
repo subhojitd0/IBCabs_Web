@@ -60,9 +60,9 @@ export class SaveBill implements iSaveBill {
   amount: any;
 }
 @Component({
-  selector: 'app-summary',
-  templateUrl: './summary.component.html',
-  styleUrls: ['./summary.component.css']
+  selector: 'app-coalindex',
+  templateUrl: './coalindex.component.html',
+  styleUrls: ['./coalindex.component.css']
 })
 export class CoalIndexComponent implements OnInit {
   fromdate: any;

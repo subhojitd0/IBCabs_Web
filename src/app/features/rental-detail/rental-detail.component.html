@@ -149,7 +149,7 @@
       </mat-form-field> 
       <mat-form-field style="width: 20%; margin-right: 40px;">
         <mat-label>Select Substitute Car</mat-label>
-        <input [(ngModel)]="rentalAdd.replace" [matAutocomplete]="autocarsub" matInput placeholder="Enter Substitute Car Number" formControlName="SubCarNumberControl">
+        <input [(ngModel)]="rentalAdd.replace" [matAutocomplete]="autocarsub" matInput placeholder="Enter Substitute Car Number" formControlName="SubCarNumberControl" required>
         <mat-autocomplete #autocarsub="matAutocomplete" (optionSelected)="changecar()">
           <mat-option *ngFor="let option of filteredOptionsCarSub | async" [value]="option" >
             {{option}}
@@ -212,10 +212,7 @@
         <mat-label>Outstation Days</mat-label>
         <input matInput [(ngModel)]="rentalAdd.outstation" placeholder="Enter Report To Contact Number" formControlName="OutstationControl" required>
       </mat-form-field>
-      <mat-form-field style="width: 30%; margin-right: 40px;">
-        <mat-label>Night</mat-label>
-        <input matInput [(ngModel)]="rentalAdd.nightcharge" placeholder="Enter Report To Contact Number" formControlName="NightControl" required>
-      </mat-form-field>
+     
       <br/>
     </form>
 
