@@ -6,7 +6,7 @@ import {ApiService} from '../../../../shared/services/service';
 import {BILL_CNN_API, BILL_ONCALL_COAL_INDIA_API, BILL_ONCALL_EXTRA_API, BILL_RELIANCE_API, EXTRA_API, OWNER_API, PARTY_HEAD_API} from '../../../../shared/services/api.url-helper';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
-import { ROUTE_OWNER, ROUTE_VIEW_BILL_CNN, ROUTE_VIEW_BILL_COAL_INDIA, ROUTE_VIEW_BILL_ONCALL_EXTRA, ROUTE_VIEW_BILL_RELIANCE_JMS, ROUTE_VIEW_BILL_RELIANCE_MIS, ROUTE_VIEW_BILL_RELIANCE_SUMMARY } from 'src/shared/constants/constant';
+import { ROUTE_COAL_INDEX, ROUTE_OWNER, ROUTE_VIEW_BILL_CNN, ROUTE_VIEW_BILL_COAL_INDIA, ROUTE_VIEW_BILL_ONCALL_EXTRA, ROUTE_VIEW_BILL_RELIANCE_JMS, ROUTE_VIEW_BILL_RELIANCE_MIS, ROUTE_VIEW_BILL_RELIANCE_SUMMARY } from 'src/shared/constants/constant';
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
@@ -22,7 +22,8 @@ export interface inewbill {
   format: string,
   reportto: string,
   subject: string,
-  mode: string
+  mode: string,
+  month: string
 }
 
 export class newbill implements inewbill{
@@ -37,6 +38,7 @@ export class newbill implements inewbill{
   reportto: string;
   subject: string;
   mode: string;
+  month: string;
 }
 @Component({
   selector: 'app-newbill',
@@ -188,6 +190,12 @@ export class NewBillComponent implements OnInit {
       billApi = BILL_RELIANCE_API;
       redirectApi = ROUTE_VIEW_BILL_RELIANCE_SUMMARY;
       this.billDetails.mode = "2";
+    }
+    if(this.billDetails.format == "7"){
+      billApi = EXTRA_API;
+      redirectApi = ROUTE_COAL_INDEX;
+      this.billDetails.mode = "2";
+      this.billDetails.party = "Coal India";
     }
     debugger;
     this.toastr.info("Please wait while we are generating your bill",'Information');
