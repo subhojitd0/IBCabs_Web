@@ -26,6 +26,7 @@ export const ROUTE_USER_RIGHTS = "bills/new/user-rights";
 export const ROUTE_MATADOR = "bills/new/matador"; 
 export const ROUTE_CHECK_DDR = "bills/new/check-ddr";
 export const ROUTE_DRIVER_OT = "bills/new/driverot";
+export const ROUTE_COAL_INDEX = "bills/new/coal-index";
 
 //Production New
 /* export const ROUTE_BASIC = "newbill";
@@ -52,6 +53,7 @@ export const ROUTE_USER_RIGHTS = "newbill/user-rights";
 export const ROUTE_MATADOR = "newbill/matador"
 export const ROUTE_CHECK_DDR = "newbill/check-ddr";
 export const ROUTE_DRIVER_OT = "newbill/driverot";
+export const ROUTE_COAL_INDEX = "newbill/coal-index";
  */
 
 //Local
@@ -78,7 +80,8 @@ export const ROUTE_NEW_USER = "create-user";
 export const ROUTE_USER_RIGHTS = "user-rights";
 export const ROUTE_MATADOR = "matador";
 export const ROUTE_CHECK_DDR = "check-ddr";
-export const ROUTE_DRIVER_OT = "driverot";*/
+export const ROUTE_DRIVER_OT = "driverot";
+export const ROUTE_COAL_INDEX = "coal-index";*/
 
 export const BOOKING_ID_CONFIRM_MESSAGE_TEMPLATE = "Booking%20ID%20{0}%20Confirmed%20for%0APassenger%20{1}%0Afor%20Date%20{2}%20at%20{3}%0AVehicle%20{4}%0AVehicle%20and%20driver%20details%20will%20be%20send%20to%20you%20before%20the%20pickup%20time.%0ARegards%20IB%20CABS%0ATEL%3A%20033%2024246551%2C%20Mob%3A%209830800776";
 export const CAR_ASSIGNED_MESSAGE_TEMPLATE = "Dear%20Customer%0AThanks%20for%20choosing%20IB%20CABS%0AYour%20booking%20Details%20are%20%3A%0ABooking%20ID%20{0}%0AVehicle%20{1}%20{2}%0ADriver%20Name%20{3}%0ADriver%20Contact%20Number%20{4}%0Awill%20report%20at%20Date%20{5}%20at%20{6}%0AReporting%20Address%20{7}%0ARegards%20IB%20CABS%0ATEL%3A%20033%2024246551%2C%20Mob%3A%209830800776";

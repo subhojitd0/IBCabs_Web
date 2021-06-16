@@ -56,18 +56,6 @@
         <mat-label>Report Contact</mat-label>
         <input matInput type="number" placeholder="Enter the report to contact no. here" [(ngModel)]="rentalAdd.reporttonum" formControlName="ReportContactControl">
       </mat-form-field>
-      <mat-form-field style="width: 10%; margin-right: 10px;">
-        <mat-label>Duty Type</mat-label>
-        <mat-select [(ngModel)]="rentalAdd.isSubDuty">
-          <mat-option value="0">
-            Original
-          </mat-option>
-          <mat-option value="1">
-            Substitute
-          </mat-option>
-        </mat-select>
-      </mat-form-field>  
-      
       <button *ngIf="ddrrole === '1'"   class="btn-first"  mat-button (click)="savedata(stepper, '1')">Save Duty & Continue</button>
       <!-- <button *ngIf="ddrrole === '1'"   class="btn-second" mat-button (click)="savedatacreate(stepper, '1')">Save & Create New</button> -->
       <br/> 
@@ -160,10 +148,10 @@
         </mat-autocomplete>
       </mat-form-field> 
       <mat-form-field style="width: 20%; margin-right: 40px;">
-        <mat-label>Select Substitute Car Number</mat-label>
-        <input [(ngModel)]="rentalAdd.subcarnum" [matAutocomplete]="autocarsub" matInput placeholder="Enter Substitute vCar Number" formControlName="SubCarNumberControl">
+        <mat-label>Select Substitute Car</mat-label>
+        <input [(ngModel)]="rentalAdd.replace" [matAutocomplete]="autocarsub" matInput placeholder="Enter Substitute Car Number" formControlName="SubCarNumberControl">
         <mat-autocomplete #autocarsub="matAutocomplete" (optionSelected)="changecar()">
-          <mat-option *ngFor="let option of filteredOptionsCar | async" [value]="option" >
+          <mat-option *ngFor="let option of filteredOptionsCarSub | async" [value]="option" >
             {{option}}
           </mat-option>
         </mat-autocomplete>

@@ -45,8 +45,7 @@ export interface NewRental {
   outstation:string,
   nightcharge:string,
   dutyid: string,
-  subcarnum: string,
-  isSubDuty: string
+  replace: string,
 }
 export class RentalAdd implements NewRental {
   mode: string;
@@ -79,8 +78,7 @@ export class RentalAdd implements NewRental {
   nightcharge:string;
   dutystatus: string;
   dutyid: string;
-  subcarnum: string;
-  isSubDuty: string;
+  replace: string;
 }
 
 @Component({
@@ -93,11 +91,13 @@ export class RentalAdd implements NewRental {
 })
 export class RentalDetailComponent implements OnInit {
   filteredOptionsCar: Observable<any[]>;
+  filteredOptionsCarSub: Observable<any[]>;
   filteredOptionsCarType: Observable<any[]>;
   filteredOptionsDriver: Observable<any[]>;
   partylist: Observable<string[]>;
   alldrivernames: any;
   allcarno: any;
+  allcarnosub: any[] =[];
   allcartype: any;
   partynames: any;
   rentalAdd: RentalAdd;
@@ -307,6 +307,8 @@ export class RentalDetailComponent implements OnInit {
     this.partylist = this.firstFormGroup.get('PartyControl').valueChanges.pipe(startWith(''),map(value => this._filterParty(value)));
     //carno
     this.filteredOptionsCar = this.secondFormGroup.get('CarNumberControl').valueChanges.pipe(startWith(''),map(value => this._filterCar(value)));
+    //carno
+    this.filteredOptionsCarSub = this.secondFormGroup.get('SubCarNumberControl').valueChanges.pipe(startWith(''),map(value => this._filterCarSub(value)));
     //cartype
     this.filteredOptionsCarType = this.secondFormGroup.get('CarTypeControl').valueChanges.pipe(startWith(''),map(value => this._filterCarType(value)));
     //driver
@@ -325,6 +327,10 @@ export class RentalDetailComponent implements OnInit {
   public _filterCar(value: string): string[] {
     const filterValue = value.toLowerCase();
     return this.allcarno.filter(client => client.toLowerCase().includes(filterValue));
+  }
+  public _filterCarSub(value: string): string[] {
+    const filterValue = value.toLowerCase();
+    return this.allcarnosub.filter(client => client.toLowerCase().includes(filterValue));
   }
   public _filterCarType(value: string): string[] {
     const filterValue = value.toLowerCase();
@@ -347,6 +353,12 @@ export class RentalDetailComponent implements OnInit {
     this.allreportto = JSON.parse(localStorage.getItem('allreportto'));
     this.alldrivernames = this.alldrivers.map(x=>x.drivername);
      this.allcarno = this.allcars.map(x=>x.carno);
+    this.allcarnosub.push("NO SUBSTITUTE");
+    this.allcarnosub.push("SUBSTITUTE CAR");
+    this.allcars.map(x=>x.carno).filter((element: any)=>{
+      this.allcarnosub.push(element);
+    });
+     //this.allcarnosub = this.allcars.map(x=>x.carno);
      this.allcartype = this.cartypes.map(x=>x.car);
      this.partynames = this.allparties.map(x=>x.name);
      this.reporttos = this.allreportto.map(x=>x.report);
@@ -452,7 +464,7 @@ export class RentalDetailComponent implements OnInit {
       });
     }
     else{
-      this.rentalAdd.isSubDuty = "0";
+      this.rentalAdd.replace = "NO SUBSTITUTE";
       //this.rentalAdd.dutydate = 
       localStorage.setItem('selectedduty', "0");
     }

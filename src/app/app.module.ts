@@ -62,6 +62,7 @@ import { CheckDdrComponent } from './features/check-ddr/checkddr.component';
 import { MatTableExporterModule } from 'mat-table-exporter';
 import { DriverOTComponent } from './features/driverot/driverot.component';
 import { GenerateOTComponent } from './features/driver/generateot/generateot.component';
+import { CoalIndexComponent } from './features/bills/coal-index/coalindex.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -102,7 +103,8 @@ import { GenerateOTComponent } from './features/driver/generateot/generateot.com
     MatadorComponent,
     CheckDdrComponent,
     DriverOTComponent,
-    GenerateOTComponent
+    GenerateOTComponent,
+    CoalIndexComponent
   ],
   imports: [
     BrowserModule,
