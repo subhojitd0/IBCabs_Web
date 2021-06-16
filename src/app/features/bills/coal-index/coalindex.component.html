@@ -1,0 +1,76 @@
+<div class="center">
+    <p style="cursor: pointer; margin-right: 5px;" (click)="exportAsPDF('printdiv');"><img height="70" src="http://ibcabs.com/bills/new/assets/img/download.png"></p>
+    <p *ngIf="isConfirmVisible" style="cursor: pointer; margin-right: 5px" (click)="save();"><img height="70" src="http://ibcabs.com/bills/new/assets/img/confirm.png"></p>
+  </div>
+  <div class="container" id="printdiv" style="max-width: 1400px; min-height: 2000px; max-height: 10000px;">
+    <div id="identity" class="row col-xs-12" >
+        <div class="col-xs-1">
+          <img src="http://ibcabs.com/bills/new/assets/img/ib.jpg" style="height:90px;width:90px;margin-top:-8px;">
+        </div>
+        <div class="col-xs-8">
+              <p id="address">Registered Office : 195/2,Park Street, Kolkata - 700017.<br>
+                  Zonal Office: 86A, Tollygunge Road, Kolkata-700033.<br>
+                  Mobile: 9830800776, Tel: (033) 2424 6551, (033) 4007 8545<br>
+                  Email: indranilb@ibcabs.com, admin@ibcabs.com. Visit us at: www.ibcabs.com<br></p>
+        </div>
+
+      </div>
+      <br/><br/>
+    <div class="tax-invoice">
+      <table>
+        <tr>
+          <td colspan="5" style="text-align: center;"><b><u>INDEX</u></b></td>
+        </tr>
+        <tr>
+          <td colspan="5" style="text-align: center;"><b><u>Bill for {{month}}-{{year}}</u></b></td>
+        </tr>
+        <tr>
+          <td colspan="5">
+            <p>
+              To<br/>
+              {{billdetails.head[0].party}}<br/>
+              {{billdetails.head[0].address}}<br/>
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <th>Sl. No</th>
+          <th>Bill No.</th>
+          <th>Bill Date</th>
+          <th>Name Of Guest</th>
+          <th>Bill Amount</th>
+        </tr>
+        <tr *ngFor="let row of data">
+          <td>{{row.slno}}</td>
+          <td>{{row.billnum}}</td>
+          <td>{{row.billdate}}</td>
+          <td>{{row.reportto}}</td>
+          <td>{{row.amount}}</td>
+        </tr>
+        <tr>
+          <td colspan="7">
+            <p style="margin-top: 20px; float: right;">Thank You</p>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <p><span style="float: left;">________________________</span><span style="float: right;">____________________________</span></p>
+            <br/>
+            <br/>
+            <p><span style="float: left;">Receiver Sign & Seal</span><span style="float: right;">Authorised Signatory</span></p>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+
+  </div>

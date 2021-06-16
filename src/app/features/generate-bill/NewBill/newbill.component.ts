@@ -23,7 +23,8 @@ export interface inewbill {
   reportto: string,
   subject: string,
   mode: string,
-  month: string
+  month: string,
+  year: string
 }
 
 export class newbill implements inewbill{
@@ -39,6 +40,7 @@ export class newbill implements inewbill{
   subject: string;
   mode: string;
   month: string;
+  year: string;
 }
 @Component({
   selector: 'app-newbill',
@@ -208,6 +210,8 @@ export class NewBillComponent implements OnInit {
     localStorage.setItem("billreportto", this.billDetails.reportto);
     localStorage.setItem("nightstart", this.billDetails.nightstart);
     localStorage.setItem("nightend", this.billDetails.nightend);
+    localStorage.setItem("billmonth", this.billDetails.month);
+    localStorage.setItem("billyear", this.billDetails.year);
     this.apiService.post(billApi, this.billDetails).then((res: any)=>{ 
       debugger;
       localStorage.setItem("billdata", JSON.stringify(res));

@@ -92,7 +92,9 @@ export class CoalIndexComponent implements OnInit {
   totalno: any;
   marginTop: any;
   fontSize: any;
-
+  monthNames = ["January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December"
+];
   isConfirmVisible: any = true;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -102,74 +104,31 @@ export class CoalIndexComponent implements OnInit {
   roundedamount: number;
   roundedtax: number;
   party: string;
+  data: any;
+  year: string;
+  month: string;
   constructor(private router: Router,private apiService: ApiService, public dialog: MatDialog, private toastr: ToastrService) {
     
    }
    ngOnInit(){
-    let billdate = localStorage.getItem("billdate");
-    let billno = localStorage.getItem("billnumber");
-    if(billdate){
-      this.isConfirmVisible = false;
-      this.billdate = billdate;
-    }
-    if(billno){
-      this.isConfirmVisible = false;
-      this.billno = billno;
-    }
     this.party = localStorage.getItem("billparty");
     this.billdetails = JSON.parse(localStorage.getItem("billdata"));
-    this.fromdate = localStorage.getItem("billfrom");
-    this.todate = localStorage.getItem("billto");
+    this.month = this.monthNames[localStorage.getItem("billmonth")];
+    this.year = localStorage.getItem("billyear");
     debugger;
     if(this.billdetails){
-      debugger;
-      if(this.party.toString().includes("SUV")){
-        this.jmssuv = this.billdetails.jmsno;
-        this.amountsuv= this.billdetails.amount;
-      }
-      else if(this.party.toString().includes("INNOVA")){
-        this.jmsinnova= this.billdetails.jmsno;
-        this.amountinnova= this.billdetails.amount;
-      }
-      else{
-        this.jmsdzire = this.billdetails.jmsno;
-        this.amountdzire= this.billdetails.amount;
-      }
-      this.taxable= "";
-      this.cgst= this.billdetails.cgst;
-      this.sgst= this.billdetails.sgst;
-      this.totalgst= this.billdetails.gst;
-      this.totalamount= this.billdetails.amount;
-      this.roundedamount = this.billdetails.amount.toString().replace(',','');
-      //this.roundedamount = Math.round(parseFloat(this.billdetails.amount.toString().replace(',','')));
-      //this.roundedtax = Math.round(parseFloat(this.totalgst.toString().replace(',','')));
-      this.roundedtax = this.totalgst.toString().replace(',','');
-      this.gstinwords= this.apiService.convertAmountToWord(this.roundedtax);
-      this.totalmountinwords= this.apiService.convertAmountToWord(this.roundedamount);
-      /* let billTot : BillDet = new BillDet();
-      billTot.carno = "Total";
-      billTot.sl = "";
-      billTot.dutydate = "";
-      billTot.hour = this.billdetails.bodytotal[0].hour;
-      billTot.km = this.billdetails.bodytotal[0].km;
-      billTot.parking = this.billdetails.bodytotal[0].parking;
-      this.billdetails.body.push(billTot); 
-      this.dataSource = new MatTableDataSource(this.billdetails.body);
-      //localStorage.setItem("billdata", "");
-      this.totalno = this.billdetails.body.length;
-      this.roundedgross = Math.round(parseFloat(this.billdetails.tail[0].grosstotal.toString().replace(',','')));
-      /* let index = this.billdetails.tail[0].grosstotal.toString().indexOf('.');
-      let substringVal = this.billdetails.tail[0].grosstotal;
-      if(index > 0)
-         substringVal = this.billdetails.tail[0].grosstotal.toString().substr(0, index);
-      substringVal = substringVal.toString().replace(',',''); 
-      let gstRounded = Math.round(parseFloat(this.billdetails.gst[0].total.toString().replace(',','')));
-      this.amountInWord = this.apiService.convertAmountToWord(this.roundedgross);
-      this.gstamountinwords = this.apiService.convertAmountToWord(gstRounded);
-      this.marginTop = (31-this.totalno)*2.5;
-      this.fontSize = 20 + this.marginTop * 0.03;*/
-       localStorage.setItem("billdate","");
-       localStorage.setItem("billnumber","");
+      let slno = 0;
+      this.data = this.billdetails.body;
+      this.data.forEach(element => {
+        element.slno = slno + 1;
+        slno = slno + 1;
+      });
+      this.data.push({
+        slno: "Total",
+        billnum: "",
+        reportto: "",
+        amount: this.billdetails.tail
+      })
     }
     
    }
