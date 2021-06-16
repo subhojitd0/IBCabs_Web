@@ -1,6 +1,6 @@
 <div class="center">
     <p style="cursor: pointer; margin-right: 5px;" (click)="exportAsPDF('printdiv');"><img height="70" src="http://ibcabs.com/bills/new/assets/img/download.png"></p>
-    <p *ngIf="isConfirmVisible" style="cursor: pointer; margin-right: 5px" (click)="save();"><img height="70" src="http://ibcabs.com/bills/new/assets/img/confirm.png"></p>
+    <!-- <p *ngIf="isConfirmVisible" style="cursor: pointer; margin-right: 5px" (click)="save();"><img height="70" src="http://ibcabs.com/bills/new/assets/img/confirm.png"></p> -->
   </div>
   <div class="container" id="printdiv" style="max-width: 1400px; min-height: 2000px; max-height: 10000px;">
     <div id="identity" class="row col-xs-12" >
@@ -28,28 +28,36 @@
           <td colspan="5">
             <p>
               To<br/>
-              {{billdetails.head[0].party}}<br/>
-              {{billdetails.head[0].address}}<br/>
+              {{billdetails.result.head[0].party}}<br/>
+              {{billdetails.result.head[0].address}}<br/>
             </p>
           </td>
         </tr>
         <tr>
-          <th>Sl. No</th>
-          <th>Bill No.</th>
-          <th>Bill Date</th>
-          <th>Name Of Guest</th>
-          <th>Bill Amount</th>
+          <th style="text-align: center;">Sl. No</th>
+          <th style="text-align: center;">Bill No.</th>
+          <th style="text-align: center;">Bill Date</th>
+          <th style="text-align: center;">Name Of Guest</th>
+          <th style="text-align: center;">Bill Amount</th>
         </tr>
         <tr *ngFor="let row of data">
-          <td>{{row.slno}}</td>
-          <td>{{row.billnum}}</td>
-          <td>{{row.billdate}}</td>
-          <td>{{row.reportto}}</td>
-          <td>{{row.amount}}</td>
+          <td style="text-align: center;">{{row.slno}}</td>
+          <td style="text-align: center;">{{row.billnum}}</td>
+          <td style="text-align: center;">{{row.billdate}}</td>
+          <td style="text-align: center;">{{row.reportto}}</td>
+          <td style="text-align: center;">{{row.amount}}</td>
+        </tr>
+
+        <tr>
+          <th style="text-align: center;">TOTAL</th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th style="text-align: center;">{{billdetails.result.tail}}</th>
         </tr>
         <tr>
           <td colspan="7">
-            <p style="margin-top: 20px; float: right;">Thank You</p>
+            <p style="margin-top: 30px; float: right; margin-right:30px;">Thank You</p>
             <br/>
             <br/>
             <br/>
@@ -63,10 +71,10 @@
             <br/>
             <br/>
             <br/>
-            <p><span style="float: left;">________________________</span><span style="float: right;">____________________________</span></p>
+            <p><span style="float: left; margin-left:30px;">________________________</span><span style="float: right; margin-right:30px;">____________________________</span></p>
             <br/>
             <br/>
-            <p><span style="float: left;">Receiver Sign & Seal</span><span style="float: right;">Authorised Signatory</span></p>
+            <p><span style="float: left; margin-left:30px;">Receiver Sign & Seal</span><span style="float: right; margin-right:30px;">Authorised Signatory</span></p>
           </td>
         </tr>
       </table>
