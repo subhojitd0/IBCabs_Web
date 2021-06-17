@@ -121,6 +121,7 @@ export class EditRentalDetailComponent implements OnInit {
   ownerselect: FormControl;
   allowners: any;
   allownername: any;
+  selectallval: boolean = false;
   constructor(private cdRef:ChangeDetectorRef, private router: Router,private apiService: ApiService, public dialog: MatDialog, private toastr: ToastrService) {
     
    }
@@ -387,6 +388,12 @@ checkddr(){
     this.loading = true;
     this.filtervalue = val.option.value;
     this.setJson();
+   }
+   selectallduty(){
+     this.selectallval = !this.selectallval;
+     this.editRentalDetails.forEach(element => {
+       element.isSelected = this.selectallval;
+     });
    }
    setJson(){
     localStorage.setItem("rentalmonth", this.month);
