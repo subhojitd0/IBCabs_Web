@@ -206,7 +206,7 @@
               <mat-table class="bulktable" [dataSource]="bulkDataSource" matSort *ngIf="isBulkEdit" style="width:140%;">
 
                 <ng-container matColumnDef="isselected">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header> </mat-header-cell>
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> <input type="checkbox" (change)="selectallduty()">  </mat-header-cell>
                   <mat-cell *matCellDef="let row"> <input type="checkbox" [(ngModel)]="row.isSelected"> </mat-cell>
                 </ng-container>
                 <!-- ID Column -->
