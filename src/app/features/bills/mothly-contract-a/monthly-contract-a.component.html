@@ -37,16 +37,16 @@
                   <tbody>
                     <tr>
                       <td class="meta-head"><b>Bill No.</b></td>
-                      <td><input style="border:none" matInput type="text" [(ngModel)]="billno" required></td>
+                      <td><input style="border:none; margin-left:28%;width:70%;" matInput type="text" [(ngModel)]="billno" required></td>
                     </tr>
                     <tr>
                         <td class="meta-head"><b>Bill Date</b></td>
-                        <td><input style="border:none" matInput type="text" [(ngModel)]="billdate" required></td>
+                        <td><input style="border:none; margin-left:28%;width:70%;" matInput type="text" [(ngModel)]="billdate" required></td>
                     </tr>
     
                     <tr>
                         <td class="meta-head"><b>Billing Period</b></td>
-                        <td>From: {{billfrom}}   To: {{billto}}</td>
+                        <td>From: {{billf | date:'dd/MM/yyyy'}}   To: {{billt | date:'dd/MM/yyyy'}}</td>
                     </tr>
   
                   </tbody>

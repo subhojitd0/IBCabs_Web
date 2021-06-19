@@ -2,14 +2,14 @@
           <p style="cursor: pointer; margin-right: 5px;" (click)="exportAsPDF('printdiv');"><img height="70" src="http://ibcabs.com/bills/new/assets/img/download.png"></p>
           <p *ngIf="isConfirmVisible" style="cursor: pointer; margin-right: 5px" (click)="save();"><img height="70" src="http://ibcabs.com/bills/new/assets/img/confirm.png"></p>
         </div>
-        <div class="container" id="printdiv" style="max-width: 1500px; min-height: 2000px; max-height: 10000px;">
+        <div class="container" id="printdiv" style="max-width: 1500px; min-height: 2500px; max-height: 10000px;">
           <p id="header">TAX INVOICE</p>
           <div id="identity" class="row col-xs-12">
               <div class="col-xs-1">
                 <img src="http://ibcabs.com/bills/new/assets/img/ib.jpg" style="height:90px;width:90px;margin-top:-8px;">
               </div>
               <div class="col-xs-8">
-                    <p id="address">Registered Office : 195/2,Park Street, Kolkata - 700017.<br>
+                    <p id="address" style="font-size:20px;">Registered Office : 195/2,Park Street, Kolkata - 700017.<br>
                         Zonal Office: 86A, Tollygunge Road, Kolkata-700033.<br>
                         Mobile: 9830800776, Tel: (033) 2424 6551, (033) 4007 8545<br>
                         Email: indranilb@ibcabs.com, admin@ibcabs.com. Visit us at: www.ibcabs.com<br></p>
@@ -37,16 +37,16 @@
                   <tbody>
                     <tr>
                       <td class="meta-head"><b>Bill No.</b></td>
-                      <td><input style="border:none" matInput type="text" [(ngModel)]="billno" required></td>
+                      <td><input style="border:none;margin-left:28%;width:70%;" matInput type="text" [(ngModel)]="billno" required></td>
                     </tr>
                     <tr>
                         <td class="meta-head"><b>Bill Date</b></td>
-                        <td><input style="border:none" matInput type="text" [(ngModel)]="billdate" required></td>
+                        <td><input style="border:none;margin-left:28%;width:70%;" matInput type="text" [(ngModel)]="billdate" required></td>
                     </tr>
     
                     <tr>
                         <td class="meta-head"><b>Billing Period</b></td>
-                        <td>From: {{billfrom}}   To: {{billto}}</td>
+                        <td>From: {{billf | date:'dd/MM/yyyy'}}   To: {{billt | date:'dd/MM/yyyy'}}</td>
                     </tr>
   
                   </tbody>

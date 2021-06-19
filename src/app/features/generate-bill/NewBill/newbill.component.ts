@@ -197,7 +197,7 @@ export class NewBillComponent implements OnInit {
       billApi = EXTRA_API;
       redirectApi = ROUTE_COAL_INDEX;
       this.billDetails.mode = "2";
-      this.billDetails.party = "Coal India";
+      //this.billDetails.party = "Coal India";
     }
     debugger;
     this.toastr.info("Please wait while we are generating your bill",'Information');
