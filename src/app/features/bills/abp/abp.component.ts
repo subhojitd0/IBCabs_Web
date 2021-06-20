@@ -105,11 +105,11 @@ export class AbpComponent implements OnInit {
    }
    ngOnInit(){
     this.billdetails = JSON.parse(localStorage.getItem("billdata"));
-    /* this.billfrom = localStorage.getItem("billfrom");
+    this.billfrom = localStorage.getItem("billfrom");
     this.billto = localStorage.getItem("billto");
     this.month = localStorage.getItem("billmonth");
     this.billfrom = new Date(new Date().getFullYear(), parseInt(this.month), 1);
-    this.billto = new Date(new Date().getFullYear(), parseInt(this.month) + 1, 0); */
+    this.billto = new Date(new Date().getFullYear(), parseInt(this.month) + 1, 0); 
     debugger;
     if(this.billdetails){
       this.count=0;
