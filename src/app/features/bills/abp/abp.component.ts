@@ -52,6 +52,11 @@ export interface iSaveBill {
   billtype: string;
   total: string;
   mode: string;
+  totalhr: string;
+  totalkm: string;
+  amount: string;
+  fa: string;
+  favalue: string;
 }
 export class SaveBill implements iSaveBill {
   billnumber: string;
@@ -65,6 +70,11 @@ export class SaveBill implements iSaveBill {
   billtype: string;
   total: string;
   mode: string;
+  totalhr: string;
+  totalkm: string;
+  amount: string;
+  fa: string;
+  favalue: string;
 }
 @Component({
   selector: 'app-abp',
@@ -103,9 +113,9 @@ export class AbpComponent implements OnInit {
     debugger;
     if(this.billdetails){
       this.count=0;
-      this.billdetails.body.foreach(element =>{
+      this.billdetails.body.forEach(element =>{
         this.count = this.count + 1;
-      })
+      });
       /* let billTot : BillDet = new BillDet();
       billTot.carno = "Total";
       billTot.sl = "";
@@ -128,6 +138,8 @@ export class AbpComponent implements OnInit {
       //this.gstamountinwords = this.apiService.convertAmountToWord(gstRounded);
       this.marginTop = (31-this.totalno)*2.5;
       this.fontSize = 20 + this.marginTop * 0.03;
+      localStorage.removeItem("billnumber");
+      localStorage.removeItem("billdate");
     }
     
    }
@@ -139,22 +151,27 @@ export class AbpComponent implements OnInit {
       let billSave : SaveBill = new SaveBill();
       billSave.billdate = this.billdate;
       billSave.billnumber = this.billno;
-      billSave.billfrom = localStorage.getItem("billfrom");
-      billSave.billto = localStorage.getItem("billto");
-      billSave.party = localStorage.getItem("billparty");
-      billSave.subject =  localStorage.getItem("billsubject");
+      billSave.billfrom = this.billfrom;
+      billSave.billto = this.billto;
+      billSave.party = localStorage.getItem("billpartymaster");
+      //billSave.subject =  localStorage.getItem("billsubject");
       billSave.gsttype = localStorage.getItem("billgst");
       billSave.parkingtype = localStorage.getItem("billparking");
-      billSave.billtype = "e";
-      billSave.total = this.billdetails.tail.grosstotal;
+      billSave.billtype = "E";
+      billSave.totalhr = this.billdetails.bodytotal.actualhour;
+      billSave.totalkm = this.billdetails.bodytotal.actualkm;
+      billSave.fa= this.billdetails.tail.customfa;
+      billSave.favalue=this.billdetails.tail.customfavalue;
+      billSave.amount = this.billdetails.tail.grosstotal;
       billSave.mode = "1";
       this.apiService.post(BILL_API, billSave).then((res: any)=>{ 
           debugger;
           if(res.status === "success"){
             localStorage.setItem('selectedbillregid', res.id);
-            this.exportAsPDF("printdiv");
+            //this.exportAsPDF("printdiv");
             this.isConfirmVisible = false;
             this.toastr.success("Your bill was successfully created",'Success');
+            this.router.navigateByUrl('/' + ROUTE_GENERATE_BILL);
         }
       });
      }

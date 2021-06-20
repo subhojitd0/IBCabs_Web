@@ -87,6 +87,9 @@ billRegDetails: any[] = [];
     else if(bill.billtype === "A"){
       this.openIBNBill(bill);
     }
+    else if(bill.billtype === "E"){
+      this.openCumulativeBill(bill);
+    }
     else{
       localStorage.setItem("billmodalbody", bill.path);
       const dialogRef = this.dialog.open(CoalIndiaModalComponent);
@@ -99,6 +102,40 @@ billRegDetails: any[] = [];
       });
     }
     
+  }
+  openCumulativeBill(element: any){
+    let month = element.billto.substr(3,2);
+    if(month.startWith("0")){
+      month = month.replace("0","");
+    }
+    let json = {
+      partymaster: element.party,
+      month: month,
+      format: "1",
+      gsttype: element.gsttype,
+      parkinggst: element.parkinggst,
+      customfa: element.fa,
+      customfavalue: element.favalue
+    }
+    localStorage.setItem("billfa", element.fa);
+    localStorage.setItem("billfaval", element.favalue);
+    localStorage.setItem("billpartymaster", element.party);
+    localStorage.setItem("billfrom", element.billfrom);
+    localStorage.setItem("billto", element.billto);
+    localStorage.setItem("billparty", element.party);
+    localStorage.setItem("billreportto", element.reportto);
+    localStorage.setItem("billgst", element.gsttype);
+    localStorage.setItem("billparking", element.parkinggst);
+    localStorage.setItem("nightstart", element.nightstart);
+    localStorage.setItem("nightend", element.nightend);
+    localStorage.setItem("billnumber", element.billnumber);
+    localStorage.setItem("billdate", element.billdate);
+    this.apiService.post(BILL_CNN_API, json).then((res: any)=>{ 
+      debugger;
+      localStorage.setItem("billdata", JSON.stringify(res));
+      this.toastr.success("Your bill was successfully created",'Success');
+      this.router.navigateByUrl('/' + ROUTE_VIEW_BILL_CNN);
+    });
   }
   openIBNBill(element: any){
     debugger;
