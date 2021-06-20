@@ -68,6 +68,7 @@ export class NewBillComponent implements OnInit {
   loading: boolean;
   partymasterselect: FormControl;
   partymasternames: any;
+  partymasternamestemp: any;
   constructor(private router: Router, private apiService: ApiService, private toastr: ToastrService) {
     this.billDetails = new newbill();
    }
@@ -76,7 +77,8 @@ export class NewBillComponent implements OnInit {
     this.allreports = JSON.parse(localStorage.getItem('allreportto'));
     this.partynames = this.allparties.map(x=>x.name);
     this.reportnames = this.allreports.map(x=>x.report);
-    this.partymasternames = this.allparties.map(x=>x.master);
+    this.partymasternamestemp = this.allparties.map(x=>x.master);
+    this.partymasternames = [...new Set(this.partymasternamestemp)];
     this.partyselect = new FormControl();
     this.partymasterselect = new FormControl();
     this.reportselect = new FormControl();
@@ -191,12 +193,10 @@ export class NewBillComponent implements OnInit {
       billApi = EXTRA_API;
       redirectApi = ROUTE_COAL_INDEX;
       this.billDetails.mode = "2";
-      //this.billDetails.party = "Coal India";
     }
     if(this.billDetails.format == "8"){
       billApi = ABP_API;
       redirectApi = ROUTE_ABP;
-      this.billDetails.partymaster = "ABP Monthly";
     }
     debugger;
     this.toastr.info("Please wait while we are generating your bill",'Information');

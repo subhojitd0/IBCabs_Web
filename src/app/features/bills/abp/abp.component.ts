@@ -89,15 +89,19 @@ export class AbpComponent implements OnInit {
   displayedColumns: string[] = ['sl', 'dutydate', 'reportto', 'carno', 'cartype', 'hour', 'km', 'rate', 'amount', 'parking', 'outstation'];
   dataSource: MatTableDataSource<BillDet>;
   count: number;
+  month: string;
   constructor(private router: Router,private apiService: ApiService, public dialog: MatDialog, private toastr: ToastrService) {
     
    }
    ngOnInit(){
     this.billdetails = JSON.parse(localStorage.getItem("billdata"));
-    this.billfrom = localStorage.getItem("billfrom");
+    /* this.billfrom = localStorage.getItem("billfrom");
     this.billto = localStorage.getItem("billto");
+    this.month = localStorage.getItem("billmonth");
+    this.billfrom = new Date(new Date().getFullYear(), parseInt(this.month), 1);
+    this.billto = new Date(new Date().getFullYear(), parseInt(this.month) + 1, 0); */
     debugger;
-    if(!this.billdetails){
+    if(this.billdetails){
       this.count=0;
       this.billdetails.body.foreach(element =>{
         this.count = this.count + 1;

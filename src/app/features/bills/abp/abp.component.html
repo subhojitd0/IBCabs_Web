@@ -101,17 +101,17 @@
                   <td>{{row.rowtotal}}</td>
                 </tr>
                 <tr>
-                  <td>Sub Total: Rs.</td>
-                  <td></td>
-                  <td></td>
-                  <td>{{billdetails.bodytotal.package}}</td>
-                  <td>{{billdetails.bodytotal.actualhour}}</td>
-                  <td>{{billdetails.bodytotal.actualkm}}</td>
-                  <td></td>
-                  <td>{{billdetails.bodytotal.extramoney}}</td>
-                  <td>{{billdetails.bodytotal.subtotal}}</td>
-                  <td>{{billdetails.bodytotal.parking}}</td>
-                  <td></td>
+                  <th>Sub Total: Rs.</th>
+                  <th></th>
+                  <th></th>
+                  <th>{{billdetails.bodytotal.package}}</th>
+                  <th>{{billdetails.bodytotal.actualhour}}</th>
+                  <th>{{billdetails.bodytotal.actualkm}}</th>
+                  <th></th>
+                  <th>{{billdetails.bodytotal.extramoney}}</th>
+                  <th>{{billdetails.bodytotal.subtotal}}</th>
+                  <th>{{billdetails.bodytotal.parking}}</th>
+                  <th></th>
                 </tr>
               </table>
             </div>
@@ -154,7 +154,7 @@
                         <td class="meta-head" style="text-align: right !important;">Over Time During Month Rs.</td>
                         <td class="meta-content">{{billdetails.tail.overtime}}</td>
                     </tr>
-                    <tr>
+                    <tr *ngIf="billdetails.tail.customfa">
                         <td class="meta-head" style="text-align: right !important;">{{billdetails.tail.customfa}}</td>
                         <td class="meta-content">{{billdetails.tail.customfavalue}}</td>
                     </tr>
