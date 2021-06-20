@@ -198,7 +198,7 @@ export class AbpComponent implements OnInit {
 
       var doc = new jspdf('p', 'mm');
       var positiony = 10;
-      var positionx = 10;
+      var positionx = 15;
 
       doc.addImage(canvas, 'PNG', positionx, positiony, imgWidth, imgHeight);
       heightLeft -= pageHeight;
@@ -210,14 +210,8 @@ export class AbpComponent implements OnInit {
         heightLeft -= pageHeight;
       }
       doc.save( 'file.pdf');
-      const dialogRef = this.dialog.open(BillUploadComponent);
-
-      dialogRef.afterClosed().subscribe(result => {
-        console.log(`Dialog closed`);
-      });
-      this.router.events.subscribe(() => {
-        dialogRef.close();
-      });
+     
+      
       /* if(this.billno){
         
       } */

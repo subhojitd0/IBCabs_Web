@@ -93,9 +93,9 @@ export class DDRExportComponent implements OnInit {
       this.dataset.forEach(element => {
         debugger;
         let splitimein = element.gintime.split(" ");
-        element.gintime = splitimein[0] + " ( " + splitimein[1] + " ) ";
+        element.gintime = "date: " + splitimein[0] + " ( " + splitimein[1] + " ) ";
         let splitimeout = element.gouttime.split(" ");
-        element.gouttime = splitimeout[0] + " ( " + splitimeout[1] + " ) ";
+        element.gouttime = "date: " + splitimeout[0] + " ( " + splitimeout[1] + " ) ";
         count=count+1;
       });
       /* this.dataset.push({

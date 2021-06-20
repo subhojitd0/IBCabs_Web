@@ -169,7 +169,7 @@ export class CoalIndexComponent implements OnInit {
 
       var doc = new jspdf('p', 'mm');
       var positiony = 10;
-      var positionx = 10;
+      var positionx = 15;
 
       doc.addImage(canvas, 'PNG', positionx, positiony, imgWidth, imgHeight);
       heightLeft -= pageHeight;
