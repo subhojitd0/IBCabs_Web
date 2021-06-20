@@ -92,12 +92,10 @@ export class DDRExportComponent implements OnInit {
       let count=0;
       this.dataset.forEach(element => {
         debugger;
-        /* let date1 =  moment.tz(element.gintime, "HH:mm:ss").local();
-        let date2 =  moment.tz(element.gouttime, "HH:mm:ss").local();
-        var x = moment.duration(date1.diff(date2)).asHours();
-        element.tothr = element.hourdiff;
-        element.totkm  = element.kmdiff;
-        element.outs = isNaN(parseInt(element.outstation)) ? 0 : parseInt(element.outstation); */
+        let splitimein = element.gintime.split(" ");
+        element.gintime = splitimein[0] + " ( " + splitimein[1] + " ) ";
+        let splitimeout = element.gouttime.split(" ");
+        element.gouttime = splitimeout[0] + " ( " + splitimeout[1] + " ) ";
         count=count+1;
       });
       /* this.dataset.push({
