@@ -91,6 +91,8 @@ export class MonthlyBillAComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
   displayedColumns: string[] = ['sl', 'dutydate', 'carno', 'hour', 'km', 'parking', 'out'];
   dataSource: MatTableDataSource<BillDet>;
+  billt: Date;
+  billf: Date;
   constructor(private router: Router,private apiService: ApiService, public dialog: MatDialog, private toastr: ToastrService) {
     
    }
@@ -128,6 +130,9 @@ export class MonthlyBillAComponent implements OnInit {
          substringVal = this.billdetails.tail[0].grosstotal.toString().substr(0, index);
       substringVal = substringVal.toString().replace(',',''); */
       this.amountInWord = this.apiService.convertAmountToWord(this.roundedgross);
+      
+      this.billf=new Date(this.billfrom);
+      this.billt=new Date(this.billto);
       localStorage.removeItem("billnumber");
       localStorage.removeItem("billdate");
     }
@@ -172,8 +177,8 @@ export class MonthlyBillAComponent implements OnInit {
     let data = document.getElementById(div_id);  
     html2canvas(data).then(canvas => {
       var margin = 0;
-      var imgWidth = 180 - 2*margin; 
-      var pageHeight = 300 + 2*margin;  
+      var imgWidth = 190 - 2*margin; 
+      var pageHeight = 400 + 2*margin;  
       var imgHeight = canvas.height * imgWidth / canvas.width;
       var heightLeft = imgHeight;
 

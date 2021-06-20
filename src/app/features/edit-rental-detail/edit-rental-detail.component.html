@@ -286,15 +286,13 @@
                 <ng-container matColumnDef="gouttime">
                   <mat-header-cell *matHeaderCellDef mat-sort-header> Out Time </mat-header-cell>
                   <mat-cell *matCellDef="let row"> 
-                    <input type="datetime-local" matInput [(ngModel)]="row.gouttime" (blur)="caltotal(row)" 
-                    min="2018-06-07T00:00" max="2018-06-14T00:00"/>
+                    <input type="datetime-local" matInput [(ngModel)]="row.gouttime" (blur)="caltotal(row)"/>
                   </mat-cell>
                 </ng-container>
                 <ng-container matColumnDef="gintime">
                   <mat-header-cell *matHeaderCellDef mat-sort-header> In Time </mat-header-cell>
                   <mat-cell *matCellDef="let row"> 
-                    <input type="datetime-local" matInput [(ngModel)]="row.gintime" (blur)="caltotal(row)" 
-                    min="2018-06-07T00:00" max="2028-06-14T00:00"/>
+                    <input type="datetime-local" matInput [(ngModel)]="row.gintime" (blur)="caltotal(row)" />
                   </mat-cell>
                 </ng-container>
                 <ng-container matColumnDef="parking">

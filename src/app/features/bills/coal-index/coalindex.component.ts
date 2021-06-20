@@ -92,7 +92,7 @@ export class CoalIndexComponent implements OnInit {
   totalno: any;
   marginTop: any;
   fontSize: any;
-  monthNames = ["January", "February", "March", "April", "May", "June",
+  monthNames = ["","January", "February", "March", "April", "May", "June",
   "July", "August", "September", "October", "November", "December"
 ];
   isConfirmVisible: any = true;
@@ -118,17 +118,17 @@ export class CoalIndexComponent implements OnInit {
     debugger;
     if(this.billdetails){
       let slno = 0;
-      this.data = this.billdetails.body;
+      this.data = this.billdetails.result.body;
       this.data.forEach(element => {
         element.slno = slno + 1;
         slno = slno + 1;
       });
-      this.data.push({
-        slno: "Total",
-        billnum: "",
-        reportto: "",
-        amount: this.billdetails.tail
-      })
+      // this.data.push({
+      //   slno: "Total",
+      //   billnum: "",
+      //   reportto: "",
+      //   amount: this.billdetails.result.tail
+      // })
     }
     
    }

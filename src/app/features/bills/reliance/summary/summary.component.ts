@@ -203,14 +203,14 @@ export class RelinceSummaryComponent implements OnInit {
     let data = document.getElementById(div_id);  
     html2canvas(data).then(canvas => {
       var margin = 0;
-      var imgWidth = 180 - 2*margin; 
+      var imgWidth = 185 - 2*margin; 
       var pageHeight = 300 + 2*margin;  
       var imgHeight = canvas.height * imgWidth / canvas.width;
       var heightLeft = imgHeight;
 
       var doc = new jspdf('p', 'mm');
       var positiony = 10;
-      var positionx = 10;
+      var positionx = 8;
 
       doc.addImage(canvas, 'PNG', positionx, positiony, imgWidth, imgHeight);
       heightLeft -= pageHeight;

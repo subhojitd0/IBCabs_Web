@@ -191,7 +191,7 @@ export class NewBillComponent implements OnInit {
       billApi = EXTRA_API;
       redirectApi = ROUTE_COAL_INDEX;
       this.billDetails.mode = "2";
-      this.billDetails.party = "Coal India";
+      //this.billDetails.party = "Coal India";
     }
     if(this.billDetails.format == "8"){
       billApi = ABP_API;
