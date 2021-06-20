@@ -3,11 +3,11 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import {ApiService} from '../../../shared/services/service';
-import {BILL_API, BILL_CNN_API, BILL_ONCALL_COAL_INDIA_API, BILL_RELIANCE_API, OWNER_API, PARTY_HEAD_API} from '../../../shared/services/api.url-helper';
+import {ABP_API, BILL_API, BILL_CNN_API, BILL_ONCALL_COAL_INDIA_API, BILL_RELIANCE_API, OWNER_API, PARTY_HEAD_API} from '../../../shared/services/api.url-helper';
 import {MatDialog} from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
-import { ROUTE_CAR, ROUTE_OWNER, ROUTE_VIEW_BILL_CNN, ROUTE_VIEW_BILL_COAL_INDIA, ROUTE_VIEW_BILL_RELIANCE_JMS, ROUTE_VIEW_BILL_RELIANCE_MIS, ROUTE_VIEW_BILL_RELIANCE_SUMMARY } from 'src/shared/constants/constant';
+import { ROUTE_ABP, ROUTE_CAR, ROUTE_OWNER, ROUTE_VIEW_BILL_CNN, ROUTE_VIEW_BILL_COAL_INDIA, ROUTE_VIEW_BILL_RELIANCE_JMS, ROUTE_VIEW_BILL_RELIANCE_MIS, ROUTE_VIEW_BILL_RELIANCE_SUMMARY } from 'src/shared/constants/constant';
 import { NewBillComponent } from './NewBill/newbill.component';
 import { AdvancedBillComponent } from './AdvancedBill/advancedbill.component';
 import html2canvas from 'html2canvas';
@@ -104,8 +104,8 @@ billRegDetails: any[] = [];
     
   }
   openCumulativeBill(element: any){
-    let month = element.billto.substr(3,2);
-    if(month.startWith("0")){
+    let month = element.billto.substr(5,2);
+    if(month.startsWith("0")){
       month = month.replace("0","");
     }
     let json = {
@@ -130,11 +130,11 @@ billRegDetails: any[] = [];
     localStorage.setItem("nightend", element.nightend);
     localStorage.setItem("billnumber", element.billnumber);
     localStorage.setItem("billdate", element.billdate);
-    this.apiService.post(BILL_CNN_API, json).then((res: any)=>{ 
+    this.apiService.post(ABP_API, json).then((res: any)=>{ 
       debugger;
       localStorage.setItem("billdata", JSON.stringify(res));
       this.toastr.success("Your bill was successfully created",'Success');
-      this.router.navigateByUrl('/' + ROUTE_VIEW_BILL_CNN);
+      this.router.navigateByUrl('/' + ROUTE_ABP);
     });
   }
   openIBNBill(element: any){
