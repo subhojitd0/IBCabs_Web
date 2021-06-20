@@ -1,0 +1,66 @@
+        <!-- <div class="center">
+          <p style="cursor: pointer; margin-right: 5px;" (click)="exportAsPDF('printdiv');"><img height="70" src="http://ibcabs.com/bills/new/assets/img/download.png"></p>
+          <p *ngIf="isConfirmVisible" style="cursor: pointer; margin-right: 5px" (click)="save();"><img height="70" src="http://ibcabs.com/bills/new/assets/img/confirm.png"></p>
+        </div> -->
+        <div class="container" id="printdiv" style="max-width: 1500px; min-height: 2000px; max-height: 10000px;">
+          <p id="header">EXPORT DDR</p>
+ 
+          <button  mat-stroked-button style="margin-left: 10px" (click)="export()"> Export To Excel</button>
+          <div style="margin-top: 160px;">
+            
+            <table #table>
+              <tr>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Party</th>
+                <th>Booked By</th>
+                <th>Booked By Contact</th>
+                <th>Transport Info</th>
+                <th>Note</th>
+                <th>Driver</th>
+                <th>Driver Number</th>
+                <th>Car Type</th>
+                <th>Car Number</th>
+                <th>Garage In Time</th>
+                <th>Garage Out Time</th>
+                <th>Garage In KM</th>
+                <th>Garage Out KM</th>
+                <th>Parking</th>
+                <th>Outstation</th>
+                <th>Replacement</th>
+                <th>Slip No.</th>
+                <th>Report To</th>
+                <th>Report To Number</th>
+                <th>Total Hours</th>
+                <th>Total KM</th>
+              </tr>
+              <tr *ngFor="let row of dataset">
+                <td>{{row.dutydate}}</td>
+                <td>{{row.dutytime}}</td>
+                <td>{{row.party}}</td>
+                <td>{{row.bookedby}}</td>
+                <td>{{row.bookedbycontact}}</td>
+                <td>{{row.transportinfo}}</td>
+                <td>{{row.note}}</td>
+                <td>{{row.driver}}</td>
+                <td>{{row.drivernum}}</td>
+                <td>{{row.cartype}}</td>
+                <td>{{row.carnum}}</td>
+                <td>{{row.gintime}}</td>
+                <td>{{row.gouttime}}</td>
+                <td>{{row.ginkm}}</td>
+                <td>{{row.goutkm}}</td>
+                <td>{{row.parking}}</td>
+                <td>{{row.outstation}}</td>
+                <td>{{row.replace}}</td>
+                <td>{{row.slipno}}</td>
+                <td>{{row.reporttoname}}</td>
+                <td>{{row.reporttonum}}</td>
+                <td>{{row.hourdiff}}</td>
+                <td>{{row.kmdiff}}</td>
+              </tr>
+            </table>
+              
+            </div>
+
+        </div>

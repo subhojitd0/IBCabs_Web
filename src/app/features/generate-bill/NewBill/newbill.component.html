@@ -30,11 +30,14 @@
                     <mat-option value="6">
                       Bill D - Reliance - Summary
                     </mat-option>
+                    <mat-option value="8">
+                      Bill E - ABP Monthly
+                    </mat-option>
                 </mat-select>
               </div>
             </div>
             
-            <div class="row">
+            <div class="row" *ngIf="billDetails.format !== '8'">
                 <div class="col-sm-12">
                     <mat-form-field style="width: 80%; margin-right: 20px;">
                         <mat-label>Party Name</mat-label>
@@ -47,7 +50,20 @@
                       </mat-form-field>
                 </div>
             </div>
-            <div class="row" *ngIf="billDetails.format !== '7'">
+            <div class="row" *ngIf="billDetails.format === '8'">
+              <div class="col-sm-12">
+                  <mat-form-field style="width: 80%; margin-right: 20px;">
+                      <mat-label>Party Master</mat-label>
+                      <input name="partymaster" [formControl]="partymasterselect" [matAutocomplete]="automaster" matInput placeholder="Enter the party master name here" [(ngModel)]="billDetails.partymaster">
+                      <mat-autocomplete #automaster="matAutocomplete">
+                        <mat-option *ngFor="let option of partymasterlist | async" [value]="option" >
+                          {{option}}
+                        </mat-option>
+                      </mat-autocomplete>
+                    </mat-form-field>
+              </div>
+          </div>
+            <div class="row" *ngIf="billDetails.format !== '7' && billDetails.format !== '8'">
               <div class="col-sm-12">
                   <mat-form-field style="width: 80%; margin-right: 20px;">
                       <mat-label>Bill Subject</mat-label>
@@ -57,7 +73,7 @@
           </div>
 
 
-            <div class="row" *ngIf="billDetails.format !== '7'">
+            <div class="row" *ngIf="billDetails.format !== '7' && billDetails.format !== '8'">
                 <div class="col-sm-6">
                     <label>Bill Date From</label>
                     <input name="billfrom" (blur)="somethingChanged()" type="date" class="form-control" placeholder="Enter Contact Number" [(ngModel)]="billDetails.from">
@@ -68,7 +84,7 @@
                     <input name="billto" (blur)="somethingChanged()" type="date" class="form-control"[(ngModel)]="billDetails.to">
                 </div>
             </div>
-            <div class="row" *ngIf="billDetails.format !== '7' ">
+            <div class="row" *ngIf="billDetails.format !== '7' && billDetails.format !== '8' ">
               <div class="col-sm-12" *ngIf="billDetails.format === '3' || billDetails.format === '4'">
                 <mat-form-field style="width: 80%; margin-right: 20px;">
                   <mat-label>Report To</mat-label>
@@ -81,7 +97,7 @@
                 </mat-form-field>
               </div>
             </div>
-            <div class="row" *ngIf="billDetails.format !== '2' && billDetails.format !== '7'">
+            <div class="row" *ngIf="billDetails.format !== '2' && billDetails.format !== '7' && billDetails.format !== '8'">
                 <div class="col-sm-6">
                     <label>Night Start Time</label>
                     <input name="nightstart" type="time" class="form-control" placeholder="Enter GST number" [(ngModel)]="billDetails.nightstart">
@@ -117,7 +133,7 @@
                 </div>
             </div>
 
-            <div class="row" *ngIf="billDetails.format === '7'">
+            <div class="row" *ngIf="billDetails.format === '8'">
               <div class="col-sm-6">
                   <label>Month</label>
                   <mat-select name="month" [(value)]="billDetails.month">
@@ -159,7 +175,7 @@
                       </mat-option>
                     </mat-select>
               </div>
-              <div class="col-sm-6">
+              <div class="col-sm-6" *ngIf="billDetails.format === '7'">
                 <label>Year</label>
                 <mat-select name="month" [(value)]="billDetails.year">
                     <mat-option value="2020">
@@ -177,6 +193,17 @@
                   </mat-select>
             </div>
           </div>
+          <div class="row">
+            <div class="col-sm-6">
+                <label>Custom Fuel Charge Label</label>
+                <input name="customfa" type="text" class="form-control" placeholder="Enter Custom Fuel Charge Text" [(ngModel)]="billDetails.customfa">
+            </div>
+            <div class="col-sm-6">
+              <label>Custom Fuel Charge Value</label>
+                <input name="customfaval" type="text" class="form-control" placeholder="Enter Custom Fuel Charge Value" [(ngModel)]="billDetails.customfavalue">
+              
+          </div>
+        </div>
 
             <div class="row">
                 

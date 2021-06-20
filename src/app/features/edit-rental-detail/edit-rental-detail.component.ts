@@ -9,7 +9,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {STEPPER_GLOBAL_OPTIONS} from '@angular/cdk/stepper';
-import { ROUTE_ADD_DDR, ROUTE_CHECK_DDR, ROUTE_VIEW_DDR } from 'src/shared/constants/constant';
+import { ROUTE_ADD_DDR, ROUTE_CHECK_DDR, ROUTE_EXPORT_DDR, ROUTE_VIEW_DDR } from 'src/shared/constants/constant';
 import { MessageModalComponent } from './message-modal/message-modal.component';
 import { ConfirmationModalComponent } from './confirmation-modal/confirmation-modal.component';
 import { Observable, Subject } from 'rxjs';
@@ -218,6 +218,11 @@ checkddr(){
   localStorage.setItem("checkfilter", this.filterby);
   localStorage.setItem("checkfilterby", this.filtervalue);
   this.router.navigateByUrl('/' + ROUTE_CHECK_DDR);
+}
+exportddr(){
+  localStorage.setItem("exportyear", this.year);
+  localStorage.setItem("exportmonth", this.month);
+  this.router.navigateByUrl('/' + ROUTE_EXPORT_DDR);
 }
   assignAutoComplete(){
    

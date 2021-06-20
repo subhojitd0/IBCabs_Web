@@ -3,10 +3,10 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import {ApiService} from '../../../../shared/services/service';
-import {BILL_CNN_API, BILL_ONCALL_COAL_INDIA_API, BILL_ONCALL_EXTRA_API, BILL_RELIANCE_API, EXTRA_API, OWNER_API, PARTY_HEAD_API} from '../../../../shared/services/api.url-helper';
+import {ABP_API, BILL_CNN_API, BILL_ONCALL_COAL_INDIA_API, BILL_ONCALL_EXTRA_API, BILL_RELIANCE_API, EXTRA_API, OWNER_API, PARTY_HEAD_API} from '../../../../shared/services/api.url-helper';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
-import { ROUTE_COAL_INDEX, ROUTE_OWNER, ROUTE_VIEW_BILL_CNN, ROUTE_VIEW_BILL_COAL_INDIA, ROUTE_VIEW_BILL_ONCALL_EXTRA, ROUTE_VIEW_BILL_RELIANCE_JMS, ROUTE_VIEW_BILL_RELIANCE_MIS, ROUTE_VIEW_BILL_RELIANCE_SUMMARY } from 'src/shared/constants/constant';
+import { ROUTE_ABP, ROUTE_COAL_INDEX, ROUTE_OWNER, ROUTE_VIEW_BILL_CNN, ROUTE_VIEW_BILL_COAL_INDIA, ROUTE_VIEW_BILL_ONCALL_EXTRA, ROUTE_VIEW_BILL_RELIANCE_JMS, ROUTE_VIEW_BILL_RELIANCE_MIS, ROUTE_VIEW_BILL_RELIANCE_SUMMARY } from 'src/shared/constants/constant';
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
@@ -24,7 +24,10 @@ export interface inewbill {
   subject: string,
   mode: string,
   month: string,
-  year: string
+  year: string,
+  partymaster: string,
+  customfa: string,
+  customfavalue: string,
 }
 
 export class newbill implements inewbill{
@@ -41,6 +44,9 @@ export class newbill implements inewbill{
   mode: string;
   month: string;
   year: string;
+  partymaster: string;
+  customfa: string;
+  customfavalue: string;
 }
 @Component({
   selector: 'app-newbill',
@@ -55,43 +61,27 @@ export class NewBillComponent implements OnInit {
   reportselect: FormControl;
   partylist: Observable<string[]>;
   reportlist: Observable<string[]>;
+  partymasterlist: Observable<string[]>;
   partynames: any;
   reportnames: any;
   allreports: any;
   loading: boolean;
+  partymasterselect: FormControl;
+  partymasternames: any;
   constructor(private router: Router, private apiService: ApiService, private toastr: ToastrService) {
     this.billDetails = new newbill();
-    debugger;
-    //this.ownerid = JSON.parse(localStorage.getItem('selectedownerid'));
-    /* if(this.ownerid.toString() != "0"){
-      var json = 
-      {
-        "mode":4,
-        "ownercode": this.ownerid
-      } 
-      this.apiService.post(OWNER_API, json).then((res: any)=>{ 
-        if(res.hasOwnProperty('error')){
-          this.toastr.error("You cannot edit the selected owner", "Error");
-          location.reload();
-        }
-        else{
-          this.ownerDetails = res;
-          this.ownerDetails.mode = 2;
-        }
-      });
-    }
-    else{
-      localStorage.setItem('selectedownerid', "0");
-    } */
    }
    ngOnInit() : void {
     this.allparties = JSON.parse(localStorage.getItem('allparties'));
     this.allreports = JSON.parse(localStorage.getItem('allreportto'));
     this.partynames = this.allparties.map(x=>x.name);
     this.reportnames = this.allreports.map(x=>x.report);
+    this.partymasternames = this.allparties.map(x=>x.master);
     this.partyselect = new FormControl();
+    this.partymasterselect = new FormControl();
     this.reportselect = new FormControl();
     this.partylist = this.partyselect.valueChanges.pipe(startWith(''),map(value => this._filterParty(value)));
+    this.partymasterlist = this.partymasterselect.valueChanges.pipe(startWith(''),map(value => this._filterPartyMaster(value)));
     this.reportlist = this.reportselect.valueChanges.pipe(startWith(''),map(value => this._filterReport(value)));
     
     this.billDetails.gsttype = "0";
@@ -101,6 +91,10 @@ export class NewBillComponent implements OnInit {
    public _filterParty(value: string): string[] {
     const filterValue = value.toLowerCase();
     return this.partynames.filter(client => client.toLowerCase().includes(filterValue));
+  }
+  public _filterPartyMaster(value: string): string[] {
+    const filterValue = value.toLowerCase();
+    return this.partymasternames.filter(client => client.toLowerCase().includes(filterValue));
   }
   public _filterReport(value: string): string[] {
     const filterValue = value.toLowerCase();
@@ -199,6 +193,11 @@ export class NewBillComponent implements OnInit {
       this.billDetails.mode = "2";
       this.billDetails.party = "Coal India";
     }
+    if(this.billDetails.format == "8"){
+      billApi = ABP_API;
+      redirectApi = ROUTE_ABP;
+      this.billDetails.partymaster = "ABP Monthly";
+    }
     debugger;
     this.toastr.info("Please wait while we are generating your bill",'Information');
     localStorage.setItem("billfrom", this.billDetails.from);
@@ -212,6 +211,9 @@ export class NewBillComponent implements OnInit {
     localStorage.setItem("nightend", this.billDetails.nightend);
     localStorage.setItem("billmonth", this.billDetails.month);
     localStorage.setItem("billyear", this.billDetails.year);
+    localStorage.setItem("billfa", this.billDetails.customfa);
+    localStorage.setItem("billfaval", this.billDetails.customfavalue);
+    localStorage.setItem("billpartymaster", this.billDetails.partymaster);
     this.apiService.post(billApi, this.billDetails).then((res: any)=>{ 
       debugger;
       localStorage.setItem("billdata", JSON.stringify(res));

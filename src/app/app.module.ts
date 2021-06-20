@@ -63,6 +63,8 @@ import { MatTableExporterModule } from 'mat-table-exporter';
 import { DriverOTComponent } from './features/driverot/driverot.component';
 import { GenerateOTComponent } from './features/driver/generateot/generateot.component';
 import { CoalIndexComponent } from './features/bills/coal-index/coalindex.component';
+import { AbpComponent } from './features/bills/abp/abp.component';
+import { DDRExportComponent } from './features/ddr-export/ddrexport.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -104,7 +106,9 @@ import { CoalIndexComponent } from './features/bills/coal-index/coalindex.compon
     CheckDdrComponent,
     DriverOTComponent,
     GenerateOTComponent,
-    CoalIndexComponent
+    CoalIndexComponent,
+    AbpComponent,
+    DDRExportComponent
   ],
   imports: [
     BrowserModule,
