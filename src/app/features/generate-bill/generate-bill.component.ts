@@ -54,8 +54,18 @@ billRegDetails: any[] = [];
     
    }
    ngOnInit() : void {
-     this.month = "all";
-     this.year = "all";
+    var yr = localStorage.getItem('billregyear');
+    var month = localStorage.getItem('billregmonth');
+    if(yr && month){
+      this.month = month;
+      this.year = yr;
+     }
+     else{
+      this.month = "0" + (new Date().getMonth() + 1);
+      this.year = new Date().getFullYear();
+      localStorage.setItem("billregmonth", this.month);
+      localStorage.setItem("billregyear", this.year);
+     }
     this.billrole = localStorage.getItem("createbill");
     this.approve = localStorage.getItem("approve");
     this.delete = localStorage.getItem("delete");
@@ -87,37 +97,16 @@ billRegDetails: any[] = [];
     this.setData();
    }
    setData(){
+    localStorage.setItem("billregmonth", this.month);
+    localStorage.setItem("billregyear", this.year);
     const billReg: BillRegister[] = [];
-    if(this.month === "all" && this.year === "all"){
-      this.dataSource = new MatTableDataSource(this.billRegDetails);
-    }
-    else{
-      if(this.month === "all"){
-        this.billRegDetails.forEach(element =>{
-          let year = element.billto.substr(0,4);
-          if(this.year === year)
-            billReg.push(element);
-        });
-        this.dataSource = new MatTableDataSource(billReg);
-      }
-      else if(this.year === "all"){
-        this.billRegDetails.forEach(element =>{
-          let month = element.billto.substr(5,2);
-          if(this.month === month)
-            billReg.push(element);
-        });
-        this.dataSource = new MatTableDataSource(billReg);
-      }
-      else{
-        this.billRegDetails.forEach(element =>{
-          let year = element.billto.substr(0,4);
-          let month = element.billto.substr(5,2);
-          if(this.month === month && this.year === year)
-            billReg.push(element);
-        });
-        this.dataSource = new MatTableDataSource(billReg);
-      }
-    }
+    this.billRegDetails.forEach(element =>{
+      let year = element.billto.substr(0,4);
+      let month = element.billto.substr(5,2);
+      if(this.month === month && this.year === year)
+        billReg.push(element);
+    });
+    this.dataSource = new MatTableDataSource(billReg);
     this.loading = false;
    }
   downloadBill(bill: any){

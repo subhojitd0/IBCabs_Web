@@ -69,6 +69,23 @@ export class NewBillComponent implements OnInit {
   partymasterselect: FormControl;
   partymasternames: any;
   partymasternamestemp: any;
+
+  //showButtons
+
+  showParty: boolean = false;
+  showPartyMaster: boolean = false;
+  showBillSubject: boolean = false;
+  showBillFrom: boolean = false;
+  showBillTo: boolean = false;
+  showReportTo: boolean = false;
+  showNightStart: boolean = false;
+  showNightEnd: boolean = false;
+  showGstType: boolean = false;
+  showParkingGST: boolean = false;
+  showMonth: boolean = false;
+  showYear: boolean = false;
+  showCustomFA: boolean = false;
+  showCustomFAVal: boolean = false;
   constructor(private router: Router, private apiService: ApiService, private toastr: ToastrService) {
     this.billDetails = new newbill();
    }
@@ -101,6 +118,136 @@ export class NewBillComponent implements OnInit {
   public _filterReport(value: string): string[] {
     const filterValue = value.toLowerCase();
     return this.reportnames.filter(client => client.toLowerCase().includes(filterValue));
+  }
+  showFields(){
+    if(this.billDetails.format === "1"){ //A
+      this.showParty = true;
+      this.showPartyMaster = false;
+      this.showBillSubject = true;
+      this.showBillFrom = true;
+      this.showBillTo = true;
+      this.showReportTo = false;
+      this.showNightStart = true;
+      this.showNightEnd = true;
+      this.showGstType = true;
+      this.showParkingGST = true;
+      this.showMonth = false;
+      this.showYear = false;
+      this.showCustomFA = true;
+      this.showCustomFAVal = true;
+    }
+    else if(this.billDetails.format === "2"){ //B
+      this.showParty = true;
+      this.showPartyMaster = false;
+      this.showBillSubject = true;
+      this.showBillFrom = true;
+      this.showBillTo = true;
+      this.showReportTo = false;
+      this.showNightStart = false;
+      this.showNightEnd = false;
+      this.showGstType = true;
+      this.showParkingGST = true;
+      this.showMonth = false;
+      this.showYear = false;
+      this.showCustomFA = true;
+      this.showCustomFAVal = true;
+    }
+    else if(this.billDetails.format === "3"){ //C
+      this.showParty = true;
+      this.showPartyMaster = false;
+      this.showBillSubject = true;
+      this.showBillFrom = true;
+      this.showBillTo = true;
+      this.showReportTo = true;
+      this.showNightStart = true;
+      this.showNightEnd = true;
+      this.showGstType = true;
+      this.showParkingGST = true;
+      this.showMonth = false;
+      this.showYear = false;
+      this.showCustomFA = true;
+      this.showCustomFAVal = true;
+    }
+    else if(this.billDetails.format === "4"){ //D0
+      this.showParty = true;
+      this.showPartyMaster = false;
+      this.showBillSubject = true;
+      this.showBillFrom = true;
+      this.showBillTo = true;
+      this.showReportTo = false;
+      this.showNightStart = true;
+      this.showNightEnd = true;
+      this.showGstType = false;
+      this.showParkingGST = false;
+      this.showMonth = false;
+      this.showYear = false;
+      this.showCustomFA = false;
+      this.showCustomFAVal = false;
+    }
+    else if(this.billDetails.format === "5"){ //D1
+      this.showParty = true;
+      this.showPartyMaster = false;
+      this.showBillSubject = false;
+      this.showBillFrom = true;
+      this.showBillTo = true;
+      this.showReportTo = false;
+      this.showNightStart = false;
+      this.showNightEnd = false;
+      this.showGstType = false;
+      this.showParkingGST = false;
+      this.showMonth = false;
+      this.showYear = false;
+      this.showCustomFA = false;
+      this.showCustomFAVal = false;
+    }
+    else if(this.billDetails.format === "6"){ //D2
+      this.showParty = true;
+      this.showPartyMaster = false;
+      this.showBillSubject = false;
+      this.showBillFrom = true;
+      this.showBillTo = true;
+      this.showReportTo = false;
+      this.showNightStart = false;
+      this.showNightEnd = false;
+      this.showGstType = false;
+      this.showParkingGST = false;
+      this.showMonth = false;
+      this.showYear = false;
+      this.showCustomFA = false;
+      this.showCustomFAVal = false;
+    }
+    else if(this.billDetails.format === "7"){ //C9 - NOT SAVED
+      this.showParty = true;
+      this.showPartyMaster = false;
+      this.showBillSubject = false;
+      this.showBillFrom = false;
+      this.showBillTo = false;
+      this.showReportTo = false;
+      this.showNightStart = false;
+      this.showNightEnd = false;
+      this.showGstType = false;
+      this.showParkingGST = false;
+      this.showMonth = true;
+      this.showYear = true;
+      this.showCustomFA = false;
+      this.showCustomFAVal = false;
+    }
+    else if(this.billDetails.format === "8"){ //E
+      this.showParty = false;
+      this.showPartyMaster = true;
+      this.showBillSubject = true;
+      this.showBillFrom = false;
+      this.showBillTo = false;
+      this.showReportTo = false;
+      this.showNightStart = false;
+      this.showNightEnd = false;
+      this.showGstType = true;
+      this.showParkingGST = true;
+      this.showMonth = true;
+      this.showYear = true;
+      this.showCustomFA = true;
+      this.showCustomFAVal = true;
+    }
   }
   somethingChanged(){
     if(this.billDetails.format === '3')

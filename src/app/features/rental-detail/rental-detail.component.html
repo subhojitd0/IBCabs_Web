@@ -120,7 +120,7 @@
   <mat-step [stepControl]="secondFormGroup" label="Assign Car & Driver">
     <form [formGroup]="secondFormGroup">
       <ng-template matStepLabel>Fill out the driver details</ng-template>
-      <mat-form-field style="width: 20%; margin-right: 20px;">
+      <mat-form-field style="width: 15%; margin-right: 20px;">
         <mat-label>Select Driver</mat-label>
         <input [(ngModel)]="rentalAdd.driver" [matAutocomplete]="autodriver" matInput placeholder="Select Driver" formControlName="DriverControl" required>
         <mat-autocomplete #autodriver="matAutocomplete" (optionSelected)="changedriver()">
@@ -129,7 +129,7 @@
           </mat-option>
         </mat-autocomplete>
       </mat-form-field>
-      <mat-form-field style="width: 20%; margin-right: 40px;">
+      <mat-form-field style="width: 15%; margin-right: 40px;">
         <mat-label>Select Car Type</mat-label>
         <input [(ngModel)]="rentalAdd.cartype" [matAutocomplete]="autocartypesingle" matInput placeholder="Enter Car Type" formControlName="CarTypeControl" required>
         <mat-autocomplete #autocartypesingle="matAutocomplete">
@@ -138,7 +138,7 @@
           </mat-option>
         </mat-autocomplete>
       </mat-form-field>
-      <mat-form-field style="width: 20%; margin-right: 40px;">
+      <mat-form-field style="width:15%; margin-right: 40px;">
         <mat-label>Select Car Number</mat-label>
         <input [(ngModel)]="rentalAdd.carnum" [matAutocomplete]="autocar" matInput placeholder="Enter Car Number" formControlName="CarNumberControl" required>
         <mat-autocomplete #autocar="matAutocomplete" (optionSelected)="changecar()">
@@ -147,7 +147,7 @@
           </mat-option>
         </mat-autocomplete>
       </mat-form-field> 
-      <mat-form-field style="width: 20%; margin-right: 40px;">
+      <mat-form-field style="width: 15%; margin-right: 40px;">
         <mat-label>Select Substitute Car</mat-label>
         <input [(ngModel)]="rentalAdd.replace" [matAutocomplete]="autocarsub" matInput placeholder="Enter Substitute Car Number" formControlName="SubCarNumberControl" required>
         <mat-autocomplete #autocarsub="matAutocomplete" (optionSelected)="changecar()">
@@ -157,14 +157,13 @@
         </mat-autocomplete>
       </mat-form-field> 
       <button *ngIf="ddrrole === '1'"   class="btn-second" style="margin-right: 20px;" mat-button (click)="savedatacreate(stepper, '2')">Save Duty & Create New</button>
+      <p *ngIf="rentalAdd.carnum">Owner of the Car : {{ownername}}</p>
       <br/>
       <mat-form-field style="width: 40%; margin-right: 40px;">
         <mat-label>Driver Contact</mat-label>
         <input [(ngModel)]="rentalAdd.drivernum" matInput placeholder="Enter Driver Contact Number" formControlName="DriverContactControl" required>
       </mat-form-field>
       <br/>
-      <p *ngIf="rentalAdd.carnum">Owner of the Car : {{ownername}}</p>
-      
       <br/> <br/>
 
 
