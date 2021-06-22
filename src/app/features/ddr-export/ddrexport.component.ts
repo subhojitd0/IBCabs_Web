@@ -71,6 +71,7 @@ export class DDRExportComponent implements OnInit {
   filterby: string;
   filtervalue: string;
   dataset: any;
+  loading: boolean;
   constructor(private router: Router,private apiService: ApiService, public dialog: MatDialog, private toastr: ToastrService) {
     
    }
@@ -86,12 +87,14 @@ export class DDRExportComponent implements OnInit {
       "filterby": "all",
       "property": "all"
     };
+    this.loading = true;
     this.apiService.post(RENTAL_DETAIL_API_OFFICE, json).then((res: any)=>{ 
       debugger;
       this.dataset = res.result;
       let count=0;
       this.dataset.forEach(element => {
         debugger;
+        this.loading = false;
         let splitimein = element.gintime.split(" ");
         element.gintime = splitimein[0] + " ( " + splitimein[1] + " ) ";
         let splitimeout = element.gouttime.split(" ");

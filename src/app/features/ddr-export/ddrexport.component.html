@@ -1,4 +1,9 @@
-        <!-- <div class="center">
+<div class="loading-screen-wrapper" *ngIf="loading">
+  <div class="loading-screen-icon">
+    Loading...
+  </div>
+</div>
+ <!-- <div class="center">
           <p style="cursor: pointer; margin-right: 5px;" (click)="exportAsPDF('printdiv');"><img height="70" src="http://ibcabs.com/bills/new/assets/img/download.png"></p>
           <p *ngIf="isConfirmVisible" style="cursor: pointer; margin-right: 5px" (click)="save();"><img height="70" src="http://ibcabs.com/bills/new/assets/img/confirm.png"></p>
         </div> -->

@@ -47,10 +47,15 @@ billRegDetails: any[] = [];
   billrole: string;
   approve: string;
   delete: string;
+  loading: boolean;
+  month: any;
+  year: any;
   constructor(private router: Router,private apiService: ApiService, public dialog: MatDialog, private toastr: ToastrService) {
     
    }
    ngOnInit() : void {
+     this.month = "all";
+     this.year = "all";
     this.billrole = localStorage.getItem("createbill");
     this.approve = localStorage.getItem("approve");
     this.delete = localStorage.getItem("delete");
@@ -71,6 +76,50 @@ billRegDetails: any[] = [];
     filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
     this.dataSource.filter = filterValue;
   }
+  onChangeMonth(val){
+    this.loading = true;
+    this.month = val;
+    this.setData();
+   }
+   onChangeYear(val){
+    this.loading = true;
+    this.year = val;
+    this.setData();
+   }
+   setData(){
+    const billReg: BillRegister[] = [];
+    if(this.month === "all" && this.year === "all"){
+      this.dataSource = new MatTableDataSource(this.billRegDetails);
+    }
+    else{
+      if(this.month === "all"){
+        this.billRegDetails.forEach(element =>{
+          let year = element.billto.substr(0,4);
+          if(this.year === year)
+            billReg.push(element);
+        });
+        this.dataSource = new MatTableDataSource(billReg);
+      }
+      else if(this.year === "all"){
+        this.billRegDetails.forEach(element =>{
+          let month = element.billto.substr(5,2);
+          if(this.month === month)
+            billReg.push(element);
+        });
+        this.dataSource = new MatTableDataSource(billReg);
+      }
+      else{
+        this.billRegDetails.forEach(element =>{
+          let year = element.billto.substr(0,4);
+          let month = element.billto.substr(5,2);
+          if(this.month === month && this.year === year)
+            billReg.push(element);
+        });
+        this.dataSource = new MatTableDataSource(billReg);
+      }
+    }
+    this.loading = false;
+   }
   downloadBill(bill: any){
     if(bill.billtype === "D0"){
       this.openBill(bill);

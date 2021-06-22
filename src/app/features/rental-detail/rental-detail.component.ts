@@ -286,7 +286,7 @@ export class RentalDetailComponent implements OnInit {
       });
   }
   changecar(){
-
+    
   }
   changedriver(){
     var drivercode = this.alldrivers.filter(x=>x.drivername == this.rentalAdd.driver)[0].drivercode;
