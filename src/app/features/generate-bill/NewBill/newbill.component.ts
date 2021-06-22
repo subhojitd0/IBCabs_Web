@@ -106,6 +106,7 @@ export class NewBillComponent implements OnInit {
     this.billDetails.gsttype = "0";
     this.billDetails.parkinggst = "1";
     this.billDetails.format = "1";
+    this.showFields();
    }
    public _filterParty(value: string): string[] {
     const filterValue = value.toLowerCase();

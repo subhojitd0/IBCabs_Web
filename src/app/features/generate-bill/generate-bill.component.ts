@@ -79,6 +79,7 @@ billRegDetails: any[] = [];
       const billReg: BillRegister[] = res.result;
       this.billRegDetails = res.result;
       this.dataSource = new MatTableDataSource(billReg);
+      this.setData();
     });
    }
   applyFilter(filterValue: string) {
