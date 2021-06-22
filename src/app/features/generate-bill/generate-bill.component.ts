@@ -104,7 +104,7 @@ billRegDetails: any[] = [];
     this.billRegDetails.forEach(element =>{
       let year = element.billto.substr(0,4);
       let month = element.billto.substr(5,2);
-      if(this.month === month && this.year === year)
+      if(this.month === month && this.year.toString() === year)
         billReg.push(element);
     });
     this.dataSource = new MatTableDataSource(billReg);
