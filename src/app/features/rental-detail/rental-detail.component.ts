@@ -116,6 +116,7 @@ export class RentalDetailComponent implements OnInit {
   ddrrole: string;
   approve: string;
   delete: string;
+  ownername: any;
 
   constructor(public dialog: MatDialog, private _formBuilder: FormBuilder, private router: Router, private apiService: ApiService, private toastr: ToastrService) {}
   ngAfterViewInit() {
@@ -286,7 +287,11 @@ export class RentalDetailComponent implements OnInit {
       });
   }
   changecar(){
-    
+    var ownerid = this.allcars.filter(x=>x.carno === this.rentalAdd.carnum)[0].ownercode;
+    if(ownerid){
+      let owners = JSON.parse(localStorage.getItem('allowners'));
+      this.ownername = owners.filter(x=>x.ownercode === ownerid)[0].ownername;
+    }
   }
   changedriver(){
     var drivercode = this.alldrivers.filter(x=>x.drivername == this.rentalAdd.driver)[0].drivercode;

@@ -133,7 +133,7 @@
                 </div>
             </div>
 
-            <div class="row" *ngIf="billDetails.format === '8'">
+            <div class="row" *ngIf="billDetails.format === '8' || billDetails.format === '7'">
               <div class="col-sm-6">
                   <label>Month</label>
                   <mat-select name="month" [(value)]="billDetails.month">
