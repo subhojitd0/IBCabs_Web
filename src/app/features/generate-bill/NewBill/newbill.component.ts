@@ -175,7 +175,7 @@ export class NewBillComponent implements OnInit {
       this.showBillSubject = true;
       this.showBillFrom = true;
       this.showBillTo = true;
-      this.showReportTo = false;
+      this.showReportTo = true;
       this.showNightStart = true;
       this.showNightEnd = true;
       this.showGstType = false;
