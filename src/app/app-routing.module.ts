@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ROUTE_ABP, ROUTE_ADD_DDR, ROUTE_ADD_DDR_WALKIN, ROUTE_BASIC, ROUTE_CAR, ROUTE_CHECK_DDR, ROUTE_COAL_INDEX, ROUTE_DASHBOARD, ROUTE_DRIVER, ROUTE_DRIVER_OT, ROUTE_EXPORT_DDR, ROUTE_GENERATE_BILL, ROUTE_MATADOR, ROUTE_NEW_USER, ROUTE_OWNER, ROUTE_PARTY, ROUTE_RATE, ROUTE_REPORTO, ROUTE_USER_RIGHTS, ROUTE_VIEW_BILL_CNN, ROUTE_VIEW_BILL_CNN_CONTRACT, ROUTE_VIEW_BILL_COAL_INDIA, ROUTE_VIEW_BILL_ONCALL_EXTRA, ROUTE_VIEW_BILL_RELIANCE_JMS, ROUTE_VIEW_BILL_RELIANCE_MIS, ROUTE_VIEW_BILL_RELIANCE_SUMMARY, ROUTE_VIEW_DDR } from 'src/shared/constants/constant';
+import { ROUTE_ABP, ROUTE_ADD_DDR, ROUTE_ADD_DDR_WALKIN, ROUTE_BASIC, ROUTE_CAR, ROUTE_CHECK_DDR, ROUTE_COAL_INDEX, ROUTE_DAILY_OT, ROUTE_DASHBOARD, ROUTE_DRIVER, ROUTE_DRIVER_OT, ROUTE_EXPORT_DDR, ROUTE_GENERATE_BILL, ROUTE_MATADOR, ROUTE_NEW_USER, ROUTE_OWNER, ROUTE_PARTY, ROUTE_RATE, ROUTE_REPORTO, ROUTE_USER_RIGHTS, ROUTE_VIEW_BILL_CNN, ROUTE_VIEW_BILL_CNN_CONTRACT, ROUTE_VIEW_BILL_COAL_INDIA, ROUTE_VIEW_BILL_ONCALL_EXTRA, ROUTE_VIEW_BILL_RELIANCE_JMS, ROUTE_VIEW_BILL_RELIANCE_MIS, ROUTE_VIEW_BILL_RELIANCE_SUMMARY, ROUTE_VIEW_DDR } from 'src/shared/constants/constant';
 import { AbpComponent } from './features/bills/abp/abp.component';
 import { CoalIndexComponent } from './features/bills/coal-index/coalindex.component';
 import { CoalIndiaComponent } from './features/bills/coalindia/coalindia.component';
+import { DailyOTComponent } from './features/bills/daily-ot/dailyot.component';
 import { MonthlyBillAComponent } from './features/bills/monthly-bill-a/monthly-a.component';
 import { MonthlyContractAComponent } from './features/bills/mothly-contract-a/monthly-contract-a.component';
 import { OnCallBillAComponent } from './features/bills/oncall-bill-a/oncall-a.component';
@@ -137,6 +138,10 @@ const routes: Routes = [
   {
     path: ROUTE_EXPORT_DDR,
     component:DDRExportComponent
+  },
+  {
+    path: ROUTE_DAILY_OT,
+    component:DailyOTComponent
   }
   
 ];

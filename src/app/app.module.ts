@@ -65,6 +65,7 @@ import { GenerateOTComponent } from './features/driver/generateot/generateot.com
 import { CoalIndexComponent } from './features/bills/coal-index/coalindex.component';
 import { AbpComponent } from './features/bills/abp/abp.component';
 import { DDRExportComponent } from './features/ddr-export/ddrexport.component';
+import { DailyOTComponent } from './features/bills/daily-ot/dailyot.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -108,7 +109,8 @@ import { DDRExportComponent } from './features/ddr-export/ddrexport.component';
     GenerateOTComponent,
     CoalIndexComponent,
     AbpComponent,
-    DDRExportComponent
+    DDRExportComponent,
+    DailyOTComponent
   ],
   imports: [
     BrowserModule,

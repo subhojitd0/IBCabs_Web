@@ -29,6 +29,7 @@ export const ROUTE_DRIVER_OT = "bills/new/driverot";
 export const ROUTE_COAL_INDEX = "bills/new/coal-index";
 export const ROUTE_ABP ="bills/new/abp";
 export const ROUTE_EXPORT_DDR = "bills/new/export";
+export const ROUTE_DAILY_OT = "bills/new/daily-ot";
 
 //Production New
 /* export const ROUTE_BASIC = "newbill";

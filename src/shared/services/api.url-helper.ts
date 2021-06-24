@@ -20,3 +20,4 @@ export const UPDATE_USER_API = "updateUser.php";
 export const FILEUPLOAD_API = "fileload.php";
 export const MATADOR_API = "packagerate.php";
 export const ABP_API ="partybille.php";
+export const DAILY_OT_API ="partybillf.php";

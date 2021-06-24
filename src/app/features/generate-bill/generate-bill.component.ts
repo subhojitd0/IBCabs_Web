@@ -3,11 +3,11 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import {ApiService} from '../../../shared/services/service';
-import {ABP_API, BILL_API, BILL_CNN_API, BILL_ONCALL_COAL_INDIA_API, BILL_RELIANCE_API, OWNER_API, PARTY_HEAD_API} from '../../../shared/services/api.url-helper';
+import {ABP_API, BILL_API, BILL_CNN_API, BILL_ONCALL_COAL_INDIA_API, BILL_RELIANCE_API, DAILY_OT_API, OWNER_API, PARTY_HEAD_API} from '../../../shared/services/api.url-helper';
 import {MatDialog} from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
-import { ROUTE_ABP, ROUTE_CAR, ROUTE_OWNER, ROUTE_VIEW_BILL_CNN, ROUTE_VIEW_BILL_COAL_INDIA, ROUTE_VIEW_BILL_RELIANCE_JMS, ROUTE_VIEW_BILL_RELIANCE_MIS, ROUTE_VIEW_BILL_RELIANCE_SUMMARY } from 'src/shared/constants/constant';
+import { ROUTE_ABP, ROUTE_CAR, ROUTE_DAILY_OT, ROUTE_OWNER, ROUTE_VIEW_BILL_CNN, ROUTE_VIEW_BILL_COAL_INDIA, ROUTE_VIEW_BILL_RELIANCE_JMS, ROUTE_VIEW_BILL_RELIANCE_MIS, ROUTE_VIEW_BILL_RELIANCE_SUMMARY } from 'src/shared/constants/constant';
 import { NewBillComponent } from './NewBill/newbill.component';
 import { AdvancedBillComponent } from './AdvancedBill/advancedbill.component';
 import html2canvas from 'html2canvas';
@@ -126,6 +126,9 @@ billRegDetails: any[] = [];
     else if(bill.billtype === "A"){
       this.openIBNBill(bill);
     }
+    else if(bill.billtype === "F"){
+      this.openDailyOTBill(bill);
+    }
     else if(bill.billtype === "E"){
       this.openCumulativeBill(bill);
     }
@@ -141,6 +144,35 @@ billRegDetails: any[] = [];
       });
     }
     
+  }
+  openDailyOTBill(element: any){
+    debugger;
+    let json = {
+      party: element.party,
+      from: element.billfrom,
+      to: element.billto,
+      format: "9",
+      nightstart: element.nightstart,
+      nightend: element.nightend,
+      gsttype: element.gsttype,
+      parkinggst: element.parkinggst,
+    }
+    localStorage.setItem("billfrom", element.billfrom);
+    localStorage.setItem("billto", element.billto);
+    localStorage.setItem("billparty", element.party);
+    localStorage.setItem("billreportto", element.reportto);
+    localStorage.setItem("billgst", element.gsttype);
+    localStorage.setItem("billparking", element.parkinggst);
+    localStorage.setItem("nightstart", element.nightstart);
+    localStorage.setItem("nightend", element.nightend);
+    localStorage.setItem("billnumber", element.billnumber);
+    localStorage.setItem("billdate", element.billdate);
+    this.apiService.post(DAILY_OT_API, json).then((res: any)=>{ 
+      debugger;
+      localStorage.setItem("billdata", JSON.stringify(res));
+      this.toastr.success("Your bill was successfully created",'Success');
+      this.router.navigateByUrl('/' + ROUTE_DAILY_OT);
+    });
   }
   openCumulativeBill(element: any){
     let month = element.billto.substr(5,2);
