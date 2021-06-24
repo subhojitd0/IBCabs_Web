@@ -18,7 +18,7 @@ export interface iBillDet {
   hour: string;
   km: number;
   parking: string;
-  outstation: string;
+  extrahour: string;
 }
 
 export class BillDet implements iBillDet {
@@ -28,7 +28,7 @@ export class BillDet implements iBillDet {
   hour: string;
   km: number;
   parking: string;
-  outstation: string;
+  extrahour: string;
 }
 
 export interface iSaveBill {
@@ -119,7 +119,7 @@ export class DailyOTComponent implements OnInit {
       billTot.hour = this.billdetails.bodytotal[0].hour;
       billTot.km = this.billdetails.bodytotal[0].km;
       billTot.parking = this.billdetails.bodytotal[0].parking;
-      billTot.outstation = this.billdetails.tail[0].outstationdays;
+      billTot.extrahour = this.billdetails.tail[0].extrahour;
       this.billdetails.body.push(billTot);
       this.dataSource = new MatTableDataSource(this.billdetails.body);
       //localStorage.setItem("billdata", "");
