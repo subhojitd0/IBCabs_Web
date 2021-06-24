@@ -102,10 +102,12 @@ export class CoalIndiaComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
   displayedColumns: string[] = ['sl', 'slipno', 'dutydate', 'reportto', 'carno', 'cartype', 'hour', 'km', 'rate', 'amount', 'parking', 'outstation'];
   dataSource: MatTableDataSource<BillDet>;
+  billgst: string;
   constructor(private router: Router,private apiService: ApiService, public dialog: MatDialog, private toastr: ToastrService) {
     
    }
    ngOnInit(){
+    this.billgst = localStorage.getItem("billgst");
     let billdate = localStorage.getItem("billdate");
     let billno = localStorage.getItem("billnumber");
     if(billdate){
