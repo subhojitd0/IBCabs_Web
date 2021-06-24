@@ -98,7 +98,7 @@
             <div [ngStyle]="{'margin-top.px':marginTop}" id="customer" style="display: block;" class="row">
               <br><br>
             <div id="customer-title" class="col-xs-3" style="max-width: 500px;">
-              <table>
+              <table *ngIf="billgst !== '2'">
                 <tbody>
                   <tr>
                     <th class="meta-head" colspan="2" style="text-align: center !important;"><b>GST CALCULATION</b></th>
@@ -128,7 +128,7 @@
               <br>
               
                   
-              <table>
+              <table *ngIf="billgst !== '2'">
                 <tbody>
                   <tr>
                     <td colspan="3" style="text-align: center !important;"><b> GST Amount in words: </b><br/>{{gstamountinwords}}</td>
@@ -136,7 +136,7 @@
                 </tbody>
               </table> 
               <br/>
-              <table>
+              <table *ngIf="billgst !== '2'">
                 <tbody>
                   <tr>
                     <td colspan="3" style="text-align: center !important;">PAN:AHOPB6443K</td>
@@ -152,7 +152,7 @@
                 
               </table>
 
-              <span style="font-weight: normal;text-align: left !important;">GST WIll BE PAID BY SERVICE RECIPIENT UNDER R.C.M VIDE NOTIFICATION NO : 22/2019<br/>ITC HAS NOT BEEN AVAILED</span> <br/><br/>
+              <span *ngIf="billgst !== '2'" style="font-weight: normal;text-align: left !important;">GST WIll BE PAID BY SERVICE RECIPIENT UNDER R.C.M VIDE NOTIFICATION NO : 22/2019<br/>ITC HAS NOT BEEN AVAILED</span> <br/><br/>
                 <span>Enclose. : {{totalno}} no. of original duty slips</span>
 
               <br>

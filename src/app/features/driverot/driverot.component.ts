@@ -64,7 +64,7 @@ export class DriverOTComponent implements OnInit {
   isConfirmVisible: any = true;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  displayedColumns: string[] = [ 'slno', 'dutydate', 'carno', 'party', 'gout', 'gin', 'hour', 'parking', 'ot'];
+  displayedColumns: string[] = [ 'slno', 'dutydate', 'carno', 'party', 'gout', 'gin', 'hour', 'parking', 'ot', 'km', 'out'];
   dataSource: MatTableDataSource<BillDet>;
   year: any;
   month: string;
@@ -106,7 +106,9 @@ export class DriverOTComponent implements OnInit {
         gin: "",
         totalhr: res.total.totalhour,
         parking: res.total.totalparking,
-        ot: res.total.totalot
+        ot: res.total.totalot,
+        km: res.total.totalkm,
+        out: res.total.totalout
       }) 
       this.dataSource = new MatTableDataSource(this.dataset);
     });
