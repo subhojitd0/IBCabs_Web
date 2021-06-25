@@ -2,12 +2,13 @@
           <p style="cursor: pointer; margin-right: 5px;" (click)="exportAsPDF('printdiv');"><img height="70" src="http://ibcabs.com/bills/new/assets/img/download.png"></p>
           <p *ngIf="isConfirmVisible" style="cursor: pointer; margin-right: 5px" (click)="save();"><img height="70" src="http://ibcabs.com/bills/new/assets/img/confirm.png"></p>
         </div> -->
-        <div class="container" id="printdiv" style="max-width: 1500px; min-height: 2000px; max-height: 10000px;">
-          <p id="header">DRIVER OT for {{driver}}</p>
- 
+        <div class="container"  style="max-width: 1500px; min-height: 2000px; max-height: 10000px;">
           <button  mat-stroked-button style="margin-left: 10px" (click)="export()"> Export To Excel</button>
-          <div style="margin-top: 60px;">
-            
+          <button  mat-stroked-button style="margin-left: 10px" (click)="exportAsPDF('printdiv')"> Export To PDF</button>
+
+          
+          <div style="margin-top: 60px;" id="printdiv">
+            <p id="header">DRIVER OT for {{driver}}</p>
             <table #table>
               <tr>
                 <th>Sl No.</th>

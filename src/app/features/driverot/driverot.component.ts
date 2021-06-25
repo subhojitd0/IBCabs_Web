@@ -115,6 +115,35 @@ export class DriverOTComponent implements OnInit {
     
    }
 
+   exportAsPDF(div_id)
+  {
+    let data = document.getElementById(div_id);  
+    html2canvas(data).then(canvas => {
+      var margin = 0;
+      var imgWidth = 190 - 2*margin; 
+      var pageHeight = 400 + 2*margin;  
+      var imgHeight = canvas.height * imgWidth / canvas.width;
+      var heightLeft = imgHeight;
+
+      var doc = new jspdf('p', 'mm');
+      var positiony = 10;
+      var positionx = 15;
+
+      doc.addImage(canvas, 'PNG', positionx, positiony, imgWidth, imgHeight);
+      heightLeft -= pageHeight;
+
+      while (heightLeft >= 0) {
+        positiony = heightLeft - imgHeight;
+        doc.addPage();
+        doc.addImage(canvas, 'PNG', positionx, positiony, imgWidth, imgHeight);
+        heightLeft -= pageHeight;
+      }
+      doc.save( 'file.pdf');
+      /* if(this.billno){
+        this.router.navigateByUrl('/' + ROUTE_GENERATE_BILL);
+      } */
+    }); 
+  }
    export(){
     const ws: XLSX.WorkSheet=XLSX.utils.table_to_sheet(this.table.nativeElement);
     const wb: XLSX.WorkBook = XLSX.utils.book_new();
