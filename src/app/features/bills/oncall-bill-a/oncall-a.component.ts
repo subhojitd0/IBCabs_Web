@@ -96,7 +96,7 @@ export class OnCallBillAComponent implements OnInit {
     this.billfrom = localStorage.getItem("billfrom");
     this.billto = localStorage.getItem("billto");
     debugger;
-    if(!this.billdetails){
+    if(this.billdetails){
       /* let billTot : BillDet = new BillDet();
       billTot.carno = "Total";
       billTot.sl = "";
