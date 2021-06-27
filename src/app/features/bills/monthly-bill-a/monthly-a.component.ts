@@ -86,6 +86,7 @@ export class MonthlyBillAComponent implements OnInit {
   billto: any;
   amountInWord: any;
   roundedgross: any;
+  billgst: any;
   isConfirmVisible: any = true;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -97,6 +98,7 @@ export class MonthlyBillAComponent implements OnInit {
     
    }
    ngOnInit(){
+    this.billgst = localStorage.getItem("billgst");
     let billdate = localStorage.getItem("billdate");
     let billno = localStorage.getItem("billnumber");
     if(billdate){
@@ -166,7 +168,7 @@ export class MonthlyBillAComponent implements OnInit {
           if(res.status === "success"){
           //this.exportAsPDF("container");
           this.isConfirmVisible = false;
-          this.toastr.success("Your bill was successfully created",'Success');
+          this.toastr.success("Your bill was successfully created. Total " + res.count + " duty slips were updated" ,'Success');
           this.router.navigateByUrl('/' + ROUTE_GENERATE_BILL);
         }
       });

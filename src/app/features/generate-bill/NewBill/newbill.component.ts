@@ -104,7 +104,7 @@ export class NewBillComponent implements OnInit {
     this.reportlist = this.reportselect.valueChanges.pipe(startWith(''),map(value => this._filterReport(value)));
     
     this.billDetails.gsttype = "0";
-    this.billDetails.parkinggst = "1";
+    this.billDetails.parkinggst = "0";
     this.billDetails.format = "1";
     this.showFields();
    }

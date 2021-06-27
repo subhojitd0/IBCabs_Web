@@ -166,7 +166,7 @@ export class DailyOTComponent implements OnInit {
           if(res.status === "success"){
           //this.exportAsPDF("container");
           this.isConfirmVisible = false;
-          this.toastr.success("Your bill was successfully created",'Success');
+          this.toastr.success("Your bill was successfully created. Total " + res.count + " duty slips were updated" ,'Success');
           this.router.navigateByUrl('/' + ROUTE_GENERATE_BILL);
         }
       });

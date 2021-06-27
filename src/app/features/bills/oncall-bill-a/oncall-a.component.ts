@@ -83,6 +83,7 @@ export class OnCallBillAComponent implements OnInit {
   totalno: any;
   marginTop: any;
   fontSize: any;
+  billgst: any;
   isConfirmVisible: any = true;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -92,6 +93,7 @@ export class OnCallBillAComponent implements OnInit {
     
    }
    ngOnInit(){
+    this.billgst = localStorage.getItem("billgst");
     this.billdetails = JSON.parse(localStorage.getItem("billdata"));
     this.billfrom = localStorage.getItem("billfrom");
     this.billto = localStorage.getItem("billto");
@@ -145,7 +147,7 @@ export class OnCallBillAComponent implements OnInit {
             localStorage.setItem('selectedbillregid', res.id);
             this.exportAsPDF("printdiv");
             this.isConfirmVisible = false;
-            this.toastr.success("Your bill was successfully created",'Success');
+            this.toastr.success("Your bill was successfully created. Total " + res.count + " duty slips were updated" ,'Success');
         }
       });
      }

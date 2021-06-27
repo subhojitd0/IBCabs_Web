@@ -93,6 +93,7 @@ export class AbpComponent implements OnInit {
   totalno: any;
   marginTop: any;
   fontSize: any;
+  billgst: any;
   isConfirmVisible: any = true;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -104,6 +105,7 @@ export class AbpComponent implements OnInit {
     
    }
    ngOnInit(){
+    this.billgst = localStorage.getItem("billgst");
     let billdate = localStorage.getItem("billdate");
     let billno = localStorage.getItem("billnumber");
     if(billdate){
@@ -143,9 +145,9 @@ export class AbpComponent implements OnInit {
       if(index > 0)
          substringVal = this.billdetails.tail[0].grosstotal.toString().substr(0, index);
       substringVal = substringVal.toString().replace(',',''); */
-      //let gstRounded = Math.round(parseFloat(this.billdetails.gst[0].total.toString().replace(',','')));
+      let gstRounded = Math.round(parseFloat(this.billdetails.gst.total.toString().replace(',','')));
       this.amountInWord = this.apiService.convertAmountToWord(this.billdetails.tail.grosstotal);
-      //this.gstamountinwords = this.apiService.convertAmountToWord(gstRounded);
+      this.gstamountinwords = this.apiService.convertAmountToWord(gstRounded);
       this.marginTop = (31-this.totalno)*2.5;
       this.fontSize = 20 + this.marginTop * 0.03;
       localStorage.removeItem("billnumber");
@@ -180,7 +182,7 @@ export class AbpComponent implements OnInit {
             localStorage.setItem('selectedbillregid', res.id);
             //this.exportAsPDF("printdiv");
             this.isConfirmVisible = false;
-            this.toastr.success("Your bill was successfully created",'Success');
+            this.toastr.success("Your bill was successfully created. Total " + res.count + " duty slips were updated" ,'Success');
             this.router.navigateByUrl('/' + ROUTE_GENERATE_BILL);
         }
       });

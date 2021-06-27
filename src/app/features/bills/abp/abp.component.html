@@ -120,7 +120,45 @@
             <div [ngStyle]="{'margin-top.px':marginTop}" id="customer" style="display: block;" class="row">
               <br><br>
             <div id="customer-title" class="col-xs-3" >
-              <table>
+              <table *ngIf="billgst !== '2'">
+                <tbody>
+                  <tr>
+                    <th class="meta-head" colspan="2" style="text-align: center !important;"><b>GST CALCULATION</b></th>
+                  </tr>
+                  <tr>
+                      <td class="meta-head" style="text-align: left !important;">Taxable Amount : Rs.</td>
+                      <td class="meta-content" style="text-align: left !important;">{{billdetails.gst.taxableamount}}</td>
+                  </tr>
+                  <tr>
+                      <td class="meta-head" style="text-align: left !important;">CGST @2.5% : Rs.</td>
+                      <td class="meta-content" style="text-align: left !important;">{{billdetails.gst.cgst}}</td>
+                  </tr>
+                  <tr>
+                      <td class="meta-head" style="text-align: left !important;">SGST @2.5% : Rs.</td>
+                      <td class="meta-content" style="text-align: left !important;">{{billdetails.gst.sgst}}</td>
+                  </tr>
+                  <tr>
+                      <td class="meta-head" style="text-align: left !important;">IGST @0% : Rs.</td>
+                      <td class="meta-content" style="text-align: left !important;">{{billdetails.gst.igst}}</td>
+                  </tr>
+                  <tr>
+                      <td class="meta-head" style="text-align: left !important;">Total GST Amount : Rs.</td>
+                      <td class="meta-content" style="text-align: left !important;">{{billdetails.gst.total}}</td>
+                  </tr>
+                </tbody>
+              </table> 
+              <br>
+              
+                  
+              <table *ngIf="billgst !== '2'">
+                <tbody>
+                  <tr>
+                    <td colspan="3" style="text-align: center !important;"><b> GST Amount in words: </b><br/>{{gstamountinwords}}</td>
+                  </tr>
+                </tbody>
+              </table> 
+              <br/>
+              <table *ngIf="billgst !== '2'">
                 <tbody>
                   <tr>
                     <td colspan="3" style="text-align: center !important;">PAN:AHOPB6443K</td>

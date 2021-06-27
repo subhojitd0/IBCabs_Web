@@ -116,7 +116,7 @@
             <div id="customer" style="display: block;" class="row">
              <br><br/>
             <div id="customer-title" class="col-xs-3" style="max-width: 300px;">
-              <table>
+              <table *ngIf="billgst !== '2'">
                 <tbody>
                   <tr>
                     <td colspan="3" style="text-align: center !important;">PAN:AHOPB6443K</td>
@@ -132,7 +132,7 @@
 
               <br>
                           
-              <table>
+              <table *ngIf="billgst !== '2'">
                 <tbody>
                   <tr>
                     <th class="meta-head" colspan="2" style="text-align: center !important;"><b>GST CALCULATION</b></th>
@@ -162,7 +162,7 @@
               <br>
               <br>
                   
-              <table>
+              <table *ngIf="billgst !== '2'">
                 <tbody>
                   <tr>
                     <td colspan="3" style="text-align: center !important;"><b> ***GST In Reverse Charg : YES. </b></td>
