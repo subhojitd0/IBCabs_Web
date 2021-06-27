@@ -116,9 +116,9 @@
                 </tr>
               </table>
             </div>
-            <p style="margin-top: 50px;font-weight: bold; font-size: 20px;">Amount in words: <br/>{{amountInWord}}</p>
-            <div [ngStyle]="{'margin-top.px':marginTop}" id="customer" style="display: block;" class="row">
-              <br><br>
+            <p style="margin-top: 30px;font-weight: bold; font-size: 20px;">Amount in words: <br/>{{amountInWord}}</p>
+            <div id="customer" style="display: block; margin-top: 15px;;" class="row">
+              <br>
             <div id="customer-title" class="col-xs-3" >
               <table *ngIf="billgst !== '2'">
                 <tbody>
@@ -130,15 +130,15 @@
                       <td class="meta-content" style="text-align: left !important;">{{billdetails.gst.taxableamount}}</td>
                   </tr>
                   <tr>
-                      <td class="meta-head" style="text-align: left !important;">CGST @2.5% : Rs.</td>
+                      <td class="meta-head" style="text-align: left !important;">CGST @ 2.5% : Rs.</td>
                       <td class="meta-content" style="text-align: left !important;">{{billdetails.gst.cgst}}</td>
                   </tr>
                   <tr>
-                      <td class="meta-head" style="text-align: left !important;">SGST @2.5% : Rs.</td>
+                      <td class="meta-head" style="text-align: left !important;">SGST @ 2.5% : Rs.</td>
                       <td class="meta-content" style="text-align: left !important;">{{billdetails.gst.sgst}}</td>
                   </tr>
                   <tr>
-                      <td class="meta-head" style="text-align: left !important;">IGST @0% : Rs.</td>
+                      <td class="meta-head" style="text-align: left !important;">IGST @ 5% : Rs.</td>
                       <td class="meta-content" style="text-align: left !important;">{{billdetails.gst.igst}}</td>
                   </tr>
                   <tr>
