@@ -130,6 +130,8 @@ export class OnCallBillAComponent implements OnInit {
       this.gstamountinwords = this.apiService.convertAmountToWord(gstRounded);
       this.marginTop = 30;
       this.fontSize = 20 + this.marginTop * 0.03;
+      localStorage.removeItem("billnumber");
+      localStorage.removeItem("billdate");
     }
     
    }
