@@ -28,6 +28,7 @@ export interface inewbill {
   partymaster: string,
   customfa: string,
   customfavalue: string,
+  billCalType: string
 }
 
 export class newbill implements inewbill{
@@ -47,6 +48,7 @@ export class newbill implements inewbill{
   partymaster: string;
   customfa: string;
   customfavalue: string;
+  billCalType: string;
 }
 @Component({
   selector: 'app-newbill',
@@ -86,6 +88,7 @@ export class NewBillComponent implements OnInit {
   showYear: boolean = false;
   showCustomFA: boolean = false;
   showCustomFAVal: boolean = false;
+  showTotalCal: boolean = false;
   constructor(private router: Router, private apiService: ApiService, private toastr: ToastrService) {
     this.billDetails = new newbill();
    }
@@ -136,6 +139,7 @@ export class NewBillComponent implements OnInit {
       this.showYear = false;
       this.showCustomFA = true;
       this.showCustomFAVal = true;
+      this.showTotalCal = true;
     }
     else if(this.billDetails.format === "2"){ //B
       this.showParty = true;
@@ -382,6 +386,7 @@ export class NewBillComponent implements OnInit {
     localStorage.setItem("billfa", this.billDetails.customfa);
     localStorage.setItem("billfaval", this.billDetails.customfavalue);
     localStorage.setItem("billpartymaster", this.billDetails.partymaster);
+    localStorage.setItem("billcaltype", this.billDetails.billCalType);
     this.apiService.post(billApi, this.billDetails).then((res: any)=>{ 
       debugger;
       localStorage.setItem("billdata", JSON.stringify(res));

@@ -1,221 +1,234 @@
 <div class="loading-screen-wrapper" *ngIf="loading">
-  <div class="loading-screen-icon">
-    Loading...
-  </div>
+    <div class="loading-screen-icon">
+        Loading...
+    </div>
 </div>
-   <div class="container">
-        <form ngNativeValidate (submit)="generateBill()">
-            <div class="row">
-              <div class="col-sm-12">
+<div class="container">
+    <form ngNativeValidate (submit)="generateBill()">
+        <div class="row">
+            <div class="col-sm-12">
                 <label>Bill Format</label>
                 <mat-select name="format" (selectionChange)="showFields()" [(value)]="billDetails.format">
                     <mat-option value="1">
-                      Bill A - CNN/IBN
+                        Bill A - CNN/IBN
                     </mat-option>
                     <mat-option value="2">
-                      Bill B - ON CALL EXTRA 
+                        Bill B - ON CALL EXTRA
                     </mat-option>
                     <mat-option value="3">
-                      Bill C - Coal India 
+                        Bill C - Coal India
                     </mat-option>
                     <mat-option value="7">
-                      Bill C - Coal India Index
+                        Bill C - Coal India Index
                     </mat-option>
                     <mat-option value="4">
-                      Bill D - Reliance - MIS
+                        Bill D - Reliance - MIS
                     </mat-option>
                     <mat-option value="5">
-                      Bill D - Reliance - JMS
+                        Bill D - Reliance - JMS
                     </mat-option>
                     <mat-option value="6">
-                      Bill D - Reliance - Summary
+                        Bill D - Reliance - Summary
                     </mat-option>
                     <mat-option value="8">
-                      Bill E - ABP Monthly
+                        Bill E - ABP Monthly
                     </mat-option>
                     <mat-option value="9">
-                      Bill F - Daily OT Format
+                        Bill F - Daily OT Format
                     </mat-option>
                 </mat-select>
-              </div>
             </div>
-            
-            <div class="row" *ngIf="showParty">
-                <div class="col-sm-12">
-                    <mat-form-field style="width: 80%; margin-right: 20px;">
-                        <mat-label>Party Name</mat-label>
-                        <input (change)="partychange()" name="party" (blur)="somethingChanged()" [formControl]="partyselect" [matAutocomplete]="auto" matInput placeholder="Enter the party name here" [(ngModel)]="billDetails.party">
-                        <mat-autocomplete #auto="matAutocomplete">
-                          <mat-option *ngFor="let option of partylist | async" [value]="option" >
-                            {{option}}
-                          </mat-option>
-                        </mat-autocomplete>
-                      </mat-form-field>
-                </div>
-            </div>
-            <div class="row" *ngIf="showPartyMaster">
-              <div class="col-sm-12">
-                  <mat-form-field style="width: 80%; margin-right: 20px;">
-                      <mat-label>Party Master</mat-label>
-                      <input name="partymaster" [formControl]="partymasterselect" [matAutocomplete]="automaster" matInput placeholder="Enter the party master name here" [(ngModel)]="billDetails.partymaster">
-                      <mat-autocomplete #automaster="matAutocomplete">
-                        <mat-option *ngFor="let option of partymasterlist | async" [value]="option" >
-                          {{option}}
-                        </mat-option>
-                      </mat-autocomplete>
-                    </mat-form-field>
-              </div>
-          </div>
-            <div class="row" *ngIf="showBillSubject">
-              <div class="col-sm-12">
-                  <mat-form-field style="width: 80%; margin-right: 20px;">
-                      <mat-label>Bill Subject</mat-label>
-                      <input name="subject" matInput placeholder="Enter the bill subject here" [(ngModel)]="billDetails.subject">
-                    </mat-form-field>
-              </div>
-          </div>
+        </div>
 
-
-            <div class="row" *ngIf="billDetails.format !== '7' && billDetails.format !== '8'">
-                <div class="col-sm-6" *ngIf="showBillFrom">
-                    <label>Bill Date From</label>
-                    <input name="billfrom" (blur)="somethingChanged()" type="date" class="form-control" placeholder="Enter Contact Number" [(ngModel)]="billDetails.from">
-                </div>
-
-                <div class="col-sm-6"  *ngIf="showBillTo">
-                    <label>Bill Date To</label>
-                    <input name="billto" (blur)="somethingChanged()" type="date" class="form-control"[(ngModel)]="billDetails.to">
-                </div>
-            </div>
-            <div class="row" *ngIf="showReportTo">
-              <div class="col-sm-12" *ngIf="billDetails.format === '3' || billDetails.format === '4'">
+        <div class="row" *ngIf="showParty">
+            <div class="col-sm-12">
                 <mat-form-field style="width: 80%; margin-right: 20px;">
-                  <mat-label>Report To</mat-label>
-                  <input name="report" [formControl]="reportselect" [matAutocomplete]="autoreport" matInput placeholder="Enter the report to name here" [(ngModel)]="billDetails.reportto">
-                  <mat-autocomplete #autoreport="matAutocomplete">
-                    <mat-option *ngFor="let option of reportlist | async" [value]="option" >
-                      {{option}}
-                    </mat-option>
-                  </mat-autocomplete>
+                    <mat-label>Party Name</mat-label>
+                    <input (change)="partychange()" name="party" (blur)="somethingChanged()" [formControl]="partyselect" [matAutocomplete]="auto" matInput placeholder="Enter the party name here" [(ngModel)]="billDetails.party">
+                    <mat-autocomplete #auto="matAutocomplete">
+                        <mat-option *ngFor="let option of partylist | async" [value]="option">
+                            {{option}}
+                        </mat-option>
+                    </mat-autocomplete>
                 </mat-form-field>
-              </div>
             </div>
-            <div class="row">
-                <div class="col-sm-6" *ngIf="showNightStart">
-                    <label>Night Start Time</label>
-                    <input name="nightstart" type="time" class="form-control" placeholder="Enter GST number" [(ngModel)]="billDetails.nightstart">
-                </div>
-                <div class="col-sm-6" *ngIf="showNightEnd">
-                    <label>Night End Time</label>
-                    <input name="nightto" type="time" class="form-control" placeholder="Enter PAN Number" [(ngModel)]="billDetails.nightend">
-                </div>
+        </div>
+        <div class="row" *ngIf="showPartyMaster">
+            <div class="col-sm-12">
+                <mat-form-field style="width: 80%; margin-right: 20px;">
+                    <mat-label>Party Master</mat-label>
+                    <input name="partymaster" [formControl]="partymasterselect" [matAutocomplete]="automaster" matInput placeholder="Enter the party master name here" [(ngModel)]="billDetails.partymaster">
+                    <mat-autocomplete #automaster="matAutocomplete">
+                        <mat-option *ngFor="let option of partymasterlist | async" [value]="option">
+                            {{option}}
+                        </mat-option>
+                    </mat-autocomplete>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="row" *ngIf="showBillSubject">
+            <div class="col-sm-12">
+                <mat-form-field style="width: 80%; margin-right: 20px;">
+                    <mat-label>Bill Subject</mat-label>
+                    <input name="subject" matInput placeholder="Enter the bill subject here" [(ngModel)]="billDetails.subject">
+                </mat-form-field>
+            </div>
+        </div>
+
+
+        <div class="row" *ngIf="billDetails.format !== '7' && billDetails.format !== '8'">
+            <div class="col-sm-6" *ngIf="showBillFrom">
+                <label>Bill Date From</label>
+                <input name="billfrom" (blur)="somethingChanged()" type="date" class="form-control" placeholder="Enter Contact Number" [(ngModel)]="billDetails.from">
             </div>
 
-            <div class="row">
-                <div class="col-sm-6" *ngIf="showGstType">
-                    <label>GST Type</label>
-                    <mat-select name="gst" [(value)]="billDetails.gsttype">
-                        <mat-option value="0">
-                          CGST / SGST
-                        </mat-option>
-                        <mat-option value="1">
-                            IGST
-                          </mat-option>
-                          <mat-option value="2">
-                            NO GST
-                          </mat-option>
-                    </mat-select>
-                </div>
-                <div class="col-sm-6" *ngIf="showParkingGST">
-                    <label>Parking included in GST ?</label>
-                    <mat-select name="parkinggst" [(value)]="billDetails.parkinggst">
-                        <mat-option value="0">
-                          No
-                        </mat-option>
-                        <mat-option value="1">
-                          Yes
-                        </mat-option>
-                      </mat-select>
-                </div>
+            <div class="col-sm-6" *ngIf="showBillTo">
+                <label>Bill Date To</label>
+                <input name="billto" (blur)="somethingChanged()" type="date" class="form-control" [(ngModel)]="billDetails.to">
             </div>
+        </div>
+        <div class="row" *ngIf="showReportTo">
+            <div class="col-sm-12" *ngIf="billDetails.format === '3' || billDetails.format === '4'">
+                <mat-form-field style="width: 80%; margin-right: 20px;">
+                    <mat-label>Report To</mat-label>
+                    <input name="report" [formControl]="reportselect" [matAutocomplete]="autoreport" matInput placeholder="Enter the report to name here" [(ngModel)]="billDetails.reportto">
+                    <mat-autocomplete #autoreport="matAutocomplete">
+                        <mat-option *ngFor="let option of reportlist | async" [value]="option">
+                            {{option}}
+                        </mat-option>
+                    </mat-autocomplete>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6" *ngIf="showNightStart">
+                <label>Night Start Time</label>
+                <input name="nightstart" type="time" class="form-control" placeholder="Enter GST number" [(ngModel)]="billDetails.nightstart">
+            </div>
+            <div class="col-sm-6" *ngIf="showNightEnd">
+                <label>Night End Time</label>
+                <input name="nightto" type="time" class="form-control" placeholder="Enter PAN Number" [(ngModel)]="billDetails.nightend">
+            </div>
+        </div>
 
-            <div class="row">
-              <div class="col-sm-6" *ngIf="showMonth">
-                  <label>Month</label>
-                  <mat-select name="month" [(value)]="billDetails.month">
-                      <mat-option value="1">
+        <div class="row">
+            <div class="col-sm-6" *ngIf="showGstType">
+                <label>GST Type</label>
+                <mat-select name="gst" [(value)]="billDetails.gsttype">
+                    <mat-option value="0">
+                        CGST / SGST
+                    </mat-option>
+                    <mat-option value="1">
+                        IGST
+                    </mat-option>
+                    <mat-option value="2">
+                        NO GST
+                    </mat-option>
+                </mat-select>
+            </div>
+            <div class="col-sm-6" *ngIf="showParkingGST">
+                <label>Parking included in GST ?</label>
+                <mat-select name="parkinggst" [(value)]="billDetails.parkinggst">
+                    <mat-option value="0">
+                        No
+                    </mat-option>
+                    <mat-option value="1">
+                        Yes
+                    </mat-option>
+                </mat-select>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-6" *ngIf="showMonth">
+                <label>Month</label>
+                <mat-select name="month" [(value)]="billDetails.month">
+                    <mat-option value="1">
                         January
-                      </mat-option>
-                      <mat-option value="2">
+                    </mat-option>
+                    <mat-option value="2">
                         February
-                      </mat-option>
-                      <mat-option value="3">
+                    </mat-option>
+                    <mat-option value="3">
                         March
-                      </mat-option>
-                      <mat-option value="4">
+                    </mat-option>
+                    <mat-option value="4">
                         April
-                      </mat-option>
-                      <mat-option value="5">
+                    </mat-option>
+                    <mat-option value="5">
                         May
-                      </mat-option>
-                      <mat-option value="6">
+                    </mat-option>
+                    <mat-option value="6">
                         June
-                      </mat-option>
-                      <mat-option value="7">
+                    </mat-option>
+                    <mat-option value="7">
                         July
-                      </mat-option>
-                      <mat-option value="8">
+                    </mat-option>
+                    <mat-option value="8">
                         August
-                      </mat-option>
-                      <mat-option value="9">
+                    </mat-option>
+                    <mat-option value="9">
                         September
-                      </mat-option>
-                      <mat-option value="10">
+                    </mat-option>
+                    <mat-option value="10">
                         October
-                      </mat-option>
-                      <mat-option value="11">
+                    </mat-option>
+                    <mat-option value="11">
                         November
-                      </mat-option>
-                      <mat-option value="12">
+                    </mat-option>
+                    <mat-option value="12">
                         December
-                      </mat-option>
-                    </mat-select>
-              </div>
-              <div class="col-sm-6" *ngIf="showYear">
+                    </mat-option>
+                </mat-select>
+            </div>
+            <div class="col-sm-6" *ngIf="showYear">
                 <label>Year</label>
                 <mat-select name="month" [(value)]="billDetails.year">
                     <mat-option value="2020">
-                      2020
+                        2020
                     </mat-option>
                     <mat-option value="2021">
-                      2021
+                        2021
                     </mat-option>
                     <mat-option value="2022">
-                      2022
+                        2022
                     </mat-option>
                     <mat-option value="2023">
-                      2023
+                        2023
                     </mat-option>
-                  </mat-select>
+                </mat-select>
             </div>
-          </div>
-          <div class="row" >
+        </div>
+        <div class="row">
             <div class="col-sm-6" *ngIf="showCustomFA">
                 <label>Custom Label</label>
                 <input name="customfa" type="text" class="form-control" placeholder="Enter Custom Text" [(ngModel)]="billDetails.customfa">
             </div>
             <div class="col-sm-6" *ngIf="showCustomFAVal">
-              <label>Custom Value</label>
+                <label>Custom Value</label>
                 <input name="customfaval" type="text" class="form-control" placeholder="Enter Custom Value" [(ngModel)]="billDetails.customfavalue">
-              
-          </div>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6" *ngIf="showTotalCal">
+                <label>Calculate Bill on</label>
+                <mat-select name="month" [(value)]="billDetails.billCalType">
+                    <mat-option value="0">
+                        With Advanced Bill
+                    </mat-option>
+                    <mat-option value="1">
+                        With Package Bill
+                    </mat-option>
+                </mat-select>
+            </div>
         </div>
 
-            <div class="row">
-                
-                <div class="col-sm-6">
-                    <button type="submit" class="btn btn-primary btn-lg">Generate</button>
-                </div>
+        <div class="row">
+
+            <div class="col-sm-6">
+                <button type="submit" class="btn btn-primary btn-lg">Generate</button>
             </div>
-        </form>
-    </div>
+        </div>
+    </form>
+</div>

@@ -51,6 +51,7 @@ export interface iSaveBill {
   reportto: any;
   nightstart:any;
   nightend:any;
+  billCalType: any;
 }
 export class SaveBill implements iSaveBill {
   billnumber: string;
@@ -72,6 +73,7 @@ export class SaveBill implements iSaveBill {
   reportto: any;
   nightstart:any;
   nightend:any;
+  billCalType: any;
 }
 @Component({
   selector: 'app-monthly-a',
@@ -101,6 +103,7 @@ export class MonthlyBillAComponent implements OnInit {
     this.billgst = localStorage.getItem("billgst");
     let billdate = localStorage.getItem("billdate");
     let billno = localStorage.getItem("billnumber");
+    let billcalltype = localStorage.getItem("billcaltype");
     if(billdate){
       this.isConfirmVisible = false;
       this.billdate = billdate;
@@ -122,6 +125,7 @@ export class MonthlyBillAComponent implements OnInit {
       billTot.km = this.billdetails.bodytotal[0].km;
       billTot.parking = this.billdetails.bodytotal[0].parking;
       billTot.outstation = this.billdetails.tail[0].outstationdays;
+      
       this.billdetails.body.push(billTot);
       this.dataSource = new MatTableDataSource(this.billdetails.body);
       //localStorage.setItem("billdata", "");
@@ -132,7 +136,9 @@ export class MonthlyBillAComponent implements OnInit {
          substringVal = this.billdetails.tail[0].grosstotal.toString().substr(0, index);
       substringVal = substringVal.toString().replace(',',''); */
       this.amountInWord = this.apiService.convertAmountToWord(this.roundedgross);
-      
+      if(billcalltype === '0'){
+        this.billdetails.tail[0].monthlycontract = "0.00";
+      }
       this.billf=new Date(this.billfrom);
       this.billt=new Date(this.billto);
       localStorage.removeItem("billnumber");
@@ -141,6 +147,7 @@ export class MonthlyBillAComponent implements OnInit {
     
    }
    save(){
+    let billcalltype = localStorage.getItem("billcaltype");
      if(!(this.billno && this.billdate)){
       alert("Please enter a proper bill number and bill date to proceed");
      }
@@ -161,6 +168,7 @@ export class MonthlyBillAComponent implements OnInit {
       billSave.outstation = this.billdetails.bodytotal[0].outstation;
       billSave.nightstart = localStorage.getItem("nightstart");
       billSave.nightend = localStorage.getItem("nightend");
+      billSave.billCalType = billcalltype;
       billSave.mode = "1";
 
       this.apiService.post(BILL_API, billSave).then((res: any)=>{ 

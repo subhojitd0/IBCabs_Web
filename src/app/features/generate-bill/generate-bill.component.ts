@@ -218,8 +218,7 @@ billRegDetails: any[] = [];
       gsttype: element.gsttype,
       parkinggst: element.parkinggst,
       customfa: element.fa,
-      customfavalue: element.favalue,
-      year: element.year
+      customfavalue: element.favalue
     }
     localStorage.setItem("billmonth", month);
     localStorage.setItem("billfa", element.fa);
@@ -253,6 +252,7 @@ billRegDetails: any[] = [];
       nightend: element.nightend,
       gsttype: element.gsttype,
       parkinggst: element.parkinggst,
+      billCalType: element.billCalType
     }
     localStorage.setItem("billfrom", element.billfrom);
     localStorage.setItem("billto", element.billto);
@@ -264,6 +264,7 @@ billRegDetails: any[] = [];
     localStorage.setItem("nightend", element.nightend);
     localStorage.setItem("billnumber", element.billnumber);
     localStorage.setItem("billdate", element.billdate);
+    localStorage.setItem("billcaltype", element.billCalType);
     this.apiService.post(BILL_CNN_API, json).then((res: any)=>{ 
       debugger;
       localStorage.setItem("billdata", JSON.stringify(res));

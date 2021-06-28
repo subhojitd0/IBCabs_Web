@@ -7,11 +7,10 @@ import {BILL_API, OWNER_API, PARTY_HEAD_API} from '../../../../shared/services/a
 import {MatDialog} from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
-import jspdf from 'jspdf';
+import jspdf, { jsPDF } from 'jspdf';
 import html2canvas from 'html2canvas';
 import { ROUTE_CAR, ROUTE_GENERATE_BILL, ROUTE_OWNER } from 'src/shared/constants/constant';
 import { BillUploadComponent } from '../bill-upload/bill-upload.component';
-
 export interface iBillDet {
   sl: string;
   dutydate: string;
@@ -129,7 +128,7 @@ export class OnCallBillAComponent implements OnInit {
       let gstRounded = Math.round(parseFloat(this.billdetails.gst[0].total.toString().replace(',','')));
       this.amountInWord = this.apiService.convertAmountToWord(this.roundedgross);
       this.gstamountinwords = this.apiService.convertAmountToWord(gstRounded);
-      this.marginTop = (31-this.totalno)*2.5;
+      this.marginTop = 30;
       this.fontSize = 20 + this.marginTop * 0.03;
     }
     
@@ -186,14 +185,6 @@ export class OnCallBillAComponent implements OnInit {
         heightLeft -= pageHeight;
       }
       doc.save( 'file.pdf');
-      const dialogRef = this.dialog.open(BillUploadComponent);
-
-      dialogRef.afterClosed().subscribe(result => {
-        console.log(`Dialog closed`);
-      });
-      this.router.events.subscribe(() => {
-        dialogRef.close();
-      });
       /* if(this.billno){
         
       } */
