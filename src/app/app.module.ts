@@ -66,6 +66,7 @@ import { CoalIndexComponent } from './features/bills/coal-index/coalindex.compon
 import { AbpComponent } from './features/bills/abp/abp.component';
 import { DDRExportComponent } from './features/ddr-export/ddrexport.component';
 import { DailyOTComponent } from './features/bills/daily-ot/dailyot.component';
+import { TimesBillComponent } from './features/bills/times/times.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -110,7 +111,8 @@ import { DailyOTComponent } from './features/bills/daily-ot/dailyot.component';
     CoalIndexComponent,
     AbpComponent,
     DDRExportComponent,
-    DailyOTComponent
+    DailyOTComponent,
+    TimesBillComponent
   ],
   imports: [
     BrowserModule,

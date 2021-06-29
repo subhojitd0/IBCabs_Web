@@ -3,10 +3,10 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import {ApiService} from '../../../../shared/services/service';
-import {ABP_API, BILL_CNN_API, BILL_ONCALL_COAL_INDIA_API, BILL_ONCALL_EXTRA_API, BILL_RELIANCE_API, DAILY_OT_API, EXTRA_API, OWNER_API, PARTY_HEAD_API} from '../../../../shared/services/api.url-helper';
+import {ABP_API, BILL_CNN_API, BILL_ONCALL_COAL_INDIA_API, BILL_ONCALL_EXTRA_API, BILL_RELIANCE_API, BILL_TIMES_API, DAILY_OT_API, EXTRA_API, OWNER_API, PARTY_HEAD_API} from '../../../../shared/services/api.url-helper';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
-import { ROUTE_ABP, ROUTE_COAL_INDEX, ROUTE_DAILY_OT, ROUTE_OWNER, ROUTE_VIEW_BILL_CNN, ROUTE_VIEW_BILL_COAL_INDIA, ROUTE_VIEW_BILL_ONCALL_EXTRA, ROUTE_VIEW_BILL_RELIANCE_JMS, ROUTE_VIEW_BILL_RELIANCE_MIS, ROUTE_VIEW_BILL_RELIANCE_SUMMARY } from 'src/shared/constants/constant';
+import { ROUTE_ABP, ROUTE_COAL_INDEX, ROUTE_DAILY_OT, ROUTE_OWNER, ROUTE_TIMES_BILL, ROUTE_VIEW_BILL_CNN, ROUTE_VIEW_BILL_COAL_INDIA, ROUTE_VIEW_BILL_ONCALL_EXTRA, ROUTE_VIEW_BILL_RELIANCE_JMS, ROUTE_VIEW_BILL_RELIANCE_MIS, ROUTE_VIEW_BILL_RELIANCE_SUMMARY } from 'src/shared/constants/constant';
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
@@ -269,6 +269,23 @@ export class NewBillComponent implements OnInit {
       this.showCustomFA = true;
       this.showCustomFAVal = true;
     }
+    else if(this.billDetails.format === "10"){ //G
+      this.showParty = true;
+      this.showPartyMaster = false;
+      this.showBillSubject = true;
+      this.showBillFrom = true;
+      this.showBillTo = true;
+      this.showReportTo = false;
+      this.showNightStart = true;
+      this.showNightEnd = true;
+      this.showGstType = true;
+      this.showParkingGST = true;
+      this.showMonth = false;
+      this.showYear = false;
+      this.showCustomFA = true;
+      this.showCustomFAVal = true;
+      this.showTotalCal = true;
+    }
   }
   somethingChanged(){
     if(this.billDetails.format === '3')
@@ -369,6 +386,10 @@ export class NewBillComponent implements OnInit {
     if(this.billDetails.format == "9"){
       billApi = DAILY_OT_API;
       redirectApi = ROUTE_DAILY_OT;
+    }
+    if(this.billDetails.format == "10"){
+      billApi = BILL_TIMES_API;
+      redirectApi = ROUTE_TIMES_BILL;
     }
     debugger;
     this.toastr.info("Please wait while we are generating your bill",'Information');
