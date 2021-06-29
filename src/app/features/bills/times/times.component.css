@@ -94,6 +94,7 @@ td {
     padding-top: 8px;
     padding-bottom: 8px;
     font-weight: 500;
+   
 }
 
 th {
@@ -102,6 +103,7 @@ th {
     font-size: 20px;
     padding-top: 8px;
     padding-bottom: 8px;
+    
 }
 
 .mat-row:last-child {
