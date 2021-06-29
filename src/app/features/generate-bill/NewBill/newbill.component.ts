@@ -89,6 +89,7 @@ export class NewBillComponent implements OnInit {
   showCustomFA: boolean = false;
   showCustomFAVal: boolean = false;
   showTotalCal: boolean = false;
+  showDayRate: boolean = false;
   constructor(private router: Router, private apiService: ApiService, private toastr: ToastrService) {
     this.billDetails = new newbill();
    }
@@ -284,7 +285,8 @@ export class NewBillComponent implements OnInit {
       this.showYear = false;
       this.showCustomFA = true;
       this.showCustomFAVal = true;
-      this.showTotalCal = true;
+      this.showTotalCal = false;
+      this.showDayRate = true;
     }
   }
   somethingChanged(){

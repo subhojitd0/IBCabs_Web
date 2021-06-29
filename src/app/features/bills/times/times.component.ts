@@ -50,6 +50,9 @@ export interface iSaveBill {
   billtype: string;
   total: string;
   mode: string;
+  billCalType: any;
+  nightstart: any;
+  nightend: any;
 }
 export class SaveBill implements iSaveBill {
   billnumber: string;
@@ -63,6 +66,9 @@ export class SaveBill implements iSaveBill {
   billtype: string;
   total: string;
   mode: string;
+  billCalType: any;
+  nightstart: any;
+  nightend: any;
 }
 @Component({
   selector: 'app-times',
@@ -135,6 +141,7 @@ export class TimesBillComponent implements OnInit {
     
    }
    save(){
+    let billcalltype = localStorage.getItem("billcaltype");
      if(!(this.billno && this.billdate)){
       alert("Please enter a proper bill number and bill date to proceed");
      }
@@ -148,8 +155,11 @@ export class TimesBillComponent implements OnInit {
       billSave.subject =  localStorage.getItem("billsubject");
       billSave.gsttype = localStorage.getItem("billgst");
       billSave.parkingtype = localStorage.getItem("billparking");
+      billSave.nightstart = localStorage.getItem("nightstart");
+      billSave.nightend = localStorage.getItem("nightend");
       billSave.billtype = "G";
       billSave.total = this.roundedgross;
+      billSave.billCalType = billcalltype;
       billSave.mode = "1";
       this.apiService.post(BILL_API, billSave).then((res: any)=>{ 
           debugger;

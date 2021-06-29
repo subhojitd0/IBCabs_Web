@@ -63,30 +63,29 @@
         <table>
             <tr>
                 <th>Sl. No</th>
-                <th>Date</th>
+                <th>Duty Date</th>
+                <th>Report To</th>
                 <th>Car No. </th>
-                <th>Duty Hour</th>
-                <th>Extra Hour</th>
-                <th>Total KM</th>
+                <th>Car Type</th>
+                <th>Hours</th>
+                <th>KMs</th>
+                <th>Rate</th>
+                <th>Amount</th>
                 <th>Parking</th>
+                <th>Outstation</th>
             </tr>
             <tr *ngFor="let row of billdetails.body">
                 <td>{{row.sl}}</td>
                 <td>{{row.dutydate}}</td>
+                <td>{{row.reportto}}</td>
                 <td>{{row.carno}}</td>
-                <td>{{row.timerange}}</td>
+                <td>{{row.cartype}}</td>
                 <td>{{row.hour}}</td>
                 <td>{{row.km}}</td>
+                <td>{{row.rate}}</td>
+                <td>{{row.amount}}</td>
                 <td>{{row.parking}}</td>
-            </tr>
-            <tr>
-                <th>Total</th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th>{{billdetails.bodytotal.hour}}</th>
-                <th>{{billdetails.bodytotal.km}}</th>
-                <th>{{billdetails.bodytotal.parking}}</th>
+                <td>{{row.outstation}}</td>
             </tr>
         </table>
     </div>
@@ -101,23 +100,23 @@
                     </tr>
                     <tr>
                         <td class="meta-head" style="text-align: right !important;">Taxable Amount : Rs.</td>
-                        <td class="meta-content">{{billdetails.gst.taxableamount}}</td>
+                        <td class="meta-content">{{billdetails.gst[0].taxableamount}}</td>
                     </tr>
                     <tr>
                         <td class="meta-head" style="text-align: right !important;">CGST @2.5% : Rs.</td>
-                        <td class="meta-content">{{billdetails.gst.cgst}}</td>
+                        <td class="meta-content">{{billdetails.gst[0].cgst}}</td>
                     </tr>
                     <tr>
                         <td class="meta-head" style="text-align: right !important;">SGST @2.5% : Rs.</td>
-                        <td class="meta-content">{{billdetails.gst.sgst}}</td>
+                        <td class="meta-content">{{billdetails.gst[0].sgst}}</td>
                     </tr>
                     <tr>
-                        <td class="meta-head" style="text-align: right !important;">IGST @5% : Rs.</td>
-                        <td class="meta-content">{{billdetails.gst.igst}}</td>
+                        <td class="meta-head" style="text-align: right !important;">IGST @0% : Rs.</td>
+                        <td class="meta-content">{{billdetails.gst[0].igst}}</td>
                     </tr>
                     <tr>
                         <td class="meta-head" style="text-align: right !important;">Total GST Amount : Rs.</td>
-                        <td class="meta-content">{{billdetails.gst.total}}</td>
+                        <td class="meta-content">{{billdetails.gst[0].total}}</td>
                     </tr>
                 </tbody>
             </table>
@@ -159,38 +158,23 @@
                 <tbody>
                     <tr>
                         <td></td>
-                        <td class="meta-head" style="text-align: right !important;">Monthly Contract: Rs.</td>
-                        <td class="meta-content">{{billdetails.tail.monthlycontract}}</td>
-                    </tr>
-                    <tr>
-                        <td>Contract Days: {{billdetails.tail.contractdays}} days, Extra Days: {{billdetails.tail.extraday}} @ Rs. {{billdetails.tail.exdayrate}}</td>
-                        <td class="meta-head" style="text-align: right !important;">Amount: Rs.</td>
-                        <td class="meta-content">{{billdetails.tail.extradaytotal}}</td>
-                    </tr>
-                    <tr>
-                        <td>KM Limit: {{billdetails.tail.kmlimit}} KM, Extra KM: {{billdetails.tail.extrakm}} @ Rs.{{billdetails.tail.extrakmrate}}</td>
-                        <td class="meta-head" style="text-align: right !important;">Amount: Rs.</td>
-                        <td class="meta-content">{{billdetails.tail.kmextratotal}}</td>
-                    </tr>
-                    <tr>
-                        <td>HR Limit: {{billdetails.tail.hrlimit}} Hr./Day, Extra HR: {{billdetails.tail.extrahr}} @ Rs.{{billdetails.tail.extrahrrate}}</td>
-                        <td class="meta-head" style="text-align: right !important;">Amount: Rs.</td>
-                        <td class="meta-content">{{billdetails.tail.hrextratotal}}</td>
-                    </tr>
-                    <tr>
-                        <td></td>
                         <td class="meta-head" style="text-align: right !important;">Subtotal: Rs.</td>
-                        <td class="meta-content">{{billdetails.tail.subtotal}}</td>
+                        <td class="meta-content">{{billdetails.tail[0].subtotal}}</td>
                     </tr>
                     <tr>
                         <td></td>
                         <td class="meta-head" style="text-align: right !important;">Total Parking: Rs.</td>
-                        <td class="meta-content">{{billdetails.tail.parking}}</td>
+                        <td class="meta-content">{{billdetails.tail[0].parking}}</td>
                     </tr>
                     <tr>
-                        <td style="text-align:left !important">Outstation charge for: {{billdetails.tail.outstationdays}} days &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; @ Rs. {{billdetails.tail.outstationrate}}</td>
+                        <td style="text-align:left !important">Outstation charge for: {{billdetails.tail[0].outstationdays}} days &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; @ Rs. {{billdetails.tail[0].outstationrate}}</td>
                         <td class="meta-head" style="text-align: right !important;">Outstation Amount: Rs.</td>
-                        <td class="meta-content">{{billdetails.tail.outstation}}</td>
+                        <td class="meta-content">{{billdetails.tail[0].outstation}}</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td class="meta-head" style="text-align: right !important;">Gross Amount: Rs.</td>
+                        <td class="meta-content">{{billdetails.tail[0].grosstotal}}</td>
                     </tr>
                     <tr>
                         <td></td>

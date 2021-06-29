@@ -163,7 +163,10 @@ billRegDetails: any[] = [];
       format: "10",
       mode: "1",
       gsttype: element.gsttype,
-      parkinggst: element.parkinggst
+      parkinggst: element.parkinggst,
+      nightstart: element.nightstart,
+      nightend: element.nightend,
+      billCalType: element.billCalType
     }
     localStorage.setItem("billfrom", element.billfrom);
     localStorage.setItem("billto", element.billto);
@@ -173,6 +176,9 @@ billRegDetails: any[] = [];
     localStorage.setItem("billsubject", element.subject);
     localStorage.setItem("billnumber", element.billnumber);
     localStorage.setItem("billdate", element.billdate);
+    localStorage.setItem("nightstart", element.nightstart);
+    localStorage.setItem("nightend", element.nightend);
+    localStorage.setItem("billcaltype", element.billCalType);
     this.apiService.post(BILL_TIMES_API, json).then((res: any)=>{ 
       debugger;
       localStorage.setItem("billdata", JSON.stringify(res));
