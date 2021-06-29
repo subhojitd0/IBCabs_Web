@@ -184,7 +184,7 @@ billRegDetails: any[] = [];
       debugger;
       localStorage.setItem("billdata", JSON.stringify(res));
       this.toastr.success("Your bill was successfully created",'Success');
-      this.router.navigateByUrl('/' + ROUTE_TIMES_BILL);
+      this.router.navigate([]).then(result => {  window.open('/' + ROUTE_TIMES_BILL, '_blank'); });
     });
   }
   openOnCallBill(element: any){
@@ -214,7 +214,7 @@ billRegDetails: any[] = [];
         localStorage.setItem("removeheader", "1");
       }
       this.toastr.success("Your bill was successfully created",'Success');
-      this.router.navigate([]).then(result => {  window.open('/' + ROUTE_VIEW_BILL_ONCALL_EXTRA, '_blank'); });;
+      this.router.navigate([]).then(result => {  window.open('/' + ROUTE_VIEW_BILL_ONCALL_EXTRA, '_blank'); });
     });
   }
   openDailyOTBill(element: any){
@@ -243,7 +243,7 @@ billRegDetails: any[] = [];
       debugger;
       localStorage.setItem("billdata", JSON.stringify(res));
       this.toastr.success("Your bill was successfully created",'Success');
-      this.router.navigateByUrl('/' + ROUTE_DAILY_OT);
+      this.router.navigate([]).then(result => {  window.open('/' + ROUTE_DAILY_OT, '_blank'); });
     });
   }
   openCumulativeBill(element: any){
@@ -278,7 +278,7 @@ billRegDetails: any[] = [];
       debugger;
       localStorage.setItem("billdata", JSON.stringify(res));
       this.toastr.success("Your bill was successfully created",'Success');
-      this.router.navigateByUrl('/' + ROUTE_ABP);
+      this.router.navigate([]).then(result => {  window.open('/' + ROUTE_ABP, '_blank'); });
     });
   }
   openIBNBill(element: any){
@@ -309,7 +309,7 @@ billRegDetails: any[] = [];
       debugger;
       localStorage.setItem("billdata", JSON.stringify(res));
       this.toastr.success("Your bill was successfully created",'Success');
-      this.router.navigateByUrl('/' + ROUTE_VIEW_BILL_CNN);
+      this.router.navigate([]).then(result => {  window.open('/' + ROUTE_VIEW_BILL_CNN, '_blank'); });
     });
   }
   openRelSummaryBill(element: any){
@@ -330,7 +330,7 @@ billRegDetails: any[] = [];
       debugger;
       localStorage.setItem("billdata", JSON.stringify(res));
       this.toastr.success("Your bill was successfully created",'Success');
-      this.router.navigateByUrl('/' + ROUTE_VIEW_BILL_RELIANCE_SUMMARY);
+      this.router.navigate([]).then(result => {  window.open('/' + ROUTE_VIEW_BILL_RELIANCE_SUMMARY, '_blank'); });
     });
   }
   openCoalBill(element: any){
@@ -358,7 +358,7 @@ billRegDetails: any[] = [];
       debugger;
       localStorage.setItem("billdata", JSON.stringify(res));
       this.toastr.success("Your bill was successfully created",'Success');
-      this.router.navigateByUrl('/' + ROUTE_VIEW_BILL_COAL_INDIA);
+      this.router.navigate([]).then(result => {  window.open('/' + ROUTE_VIEW_BILL_COAL_INDIA, '_blank'); });
     });
   }
   openBill(element: any){
@@ -383,7 +383,7 @@ billRegDetails: any[] = [];
       debugger;
       localStorage.setItem("billdata", JSON.stringify(res));
       this.toastr.success("Your bill was successfully created",'Success');
-      this.router.navigateByUrl('/' + ROUTE_VIEW_BILL_RELIANCE_MIS);
+      this.router.navigate([]).then(result => {  window.open('/' + ROUTE_VIEW_BILL_RELIANCE_MIS, '_blank'); });
     });
   }
   openJMSBill(element: any){
@@ -407,7 +407,7 @@ billRegDetails: any[] = [];
       debugger;
       localStorage.setItem("billdata", JSON.stringify(res));
       this.toastr.success("Your bill was successfully created",'Success');
-      this.router.navigateByUrl('/' + ROUTE_VIEW_BILL_RELIANCE_JMS);
+      this.router.navigate([]).then(result => {  window.open('/' + ROUTE_VIEW_BILL_RELIANCE_JMS, '_blank'); });
     });
   }
   deleteBill(billid: any){
