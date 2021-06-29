@@ -62,31 +62,31 @@
     <div style="margin-top: 130px;">
         <table>
             <tr>
-                <th>Sl. No</th>
-                <th>Date</th>
-                <th>Car No. </th>
-                <th>Duty Hour</th>
-                <th>Extra Hour</th>
-                <th>Total KM</th>
-                <th>Parking</th>
+                <th style="text-align:center;">Sl. No</th>
+                <th style="text-align:center;">Date</th>
+                <th style="text-align:center;">Car No. </th>
+                <th style="text-align:center;">Duty Hour</th>
+                <th style="text-align:center;">Extra Hour</th>
+                <th style="text-align:center;">Total KM</th>
+                <th style="text-align:center;">Parking</th>
             </tr>
             <tr *ngFor="let row of billdetails.body">
-                <td>{{row.sl}}</td>
-                <td>{{row.dutydate}}</td>
-                <td>{{row.carno}}</td>
-                <td>{{row.timerange}}</td>
-                <td>{{row.hour}}</td>
-                <td>{{row.km}}</td>
-                <td>{{row.parking}}</td>
+                <td style="text-align:center;">{{row.sl}}</td>
+                <td style="text-align:center;">{{row.dutydate}}</td>
+                <td style="text-align:center;">{{row.carno}}</td>
+                <td style="text-align:center;">{{row.timerange}}</td>
+                <td style="text-align:center;">{{row.hour}}</td>
+                <td style="text-align:center;">{{row.km}}</td>
+                <td style="text-align:center;">{{row.parking}}</td>
             </tr>
             <tr>
-                <th>Total</th>
+                <th style="text-align:center;">Total</th>
                 <th></th>
                 <th></th>
                 <th></th>
-                <th>{{billdetails.bodytotal.hour}}</th>
-                <th>{{billdetails.bodytotal.km}}</th>
-                <th>{{billdetails.bodytotal.parking}}</th>
+                <th style="text-align:center;">{{billdetails.bodytotal.hour}}</th>
+                <th style="text-align:center;">{{billdetails.bodytotal.km}}</th>
+                <th style="text-align:center;">{{billdetails.bodytotal.parking}}</th>
             </tr>
         </table>
     </div>
