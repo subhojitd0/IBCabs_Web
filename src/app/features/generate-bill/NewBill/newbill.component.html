@@ -105,13 +105,13 @@
         </div>
         <div class="row">
             <div class="col-sm-6" *ngIf="showNightStart">
-                <label *ngIf="format !== '10'">Night Start Time</label>
-                <label *ngIf="format === '10'">Duty Start Time</label>
+                <label *ngIf="billDetails.format !== '10'">Night Start Time</label>
+                <label *ngIf="billDetails.format === '10'">Duty Start Time</label>
                 <input name="nightstart" type="time" class="form-control" placeholder="Enter GST number" [(ngModel)]="billDetails.nightstart">
             </div>
             <div class="col-sm-6" *ngIf="showNightEnd">
-                <label *ngIf="format !== '10'">Night End Time</label>
-                <label *ngIf="format === '10'">Duty End Time</label>
+                <label *ngIf="billDetails.format !== '10'">Night End Time</label>
+                <label *ngIf="billDetails.format === '10'">Duty End Time</label>
                 <input name="nightto" type="time" class="form-control" placeholder="Enter PAN Number" [(ngModel)]="billDetails.nightend">
             </div>
         </div>
