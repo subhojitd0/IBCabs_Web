@@ -155,6 +155,7 @@ billRegDetails: any[] = [];
     
   }
   openTimesBill(element: any){
+    localStorage.setItem("removeheader", "0");
     debugger;
     let json = {
       party: element.party,
@@ -218,6 +219,7 @@ billRegDetails: any[] = [];
     });
   }
   openDailyOTBill(element: any){
+    localStorage.setItem("removeheader", "0");
     debugger;
     let json = {
       party: element.party,
@@ -247,6 +249,7 @@ billRegDetails: any[] = [];
     });
   }
   openCumulativeBill(element: any){
+    localStorage.setItem("removeheader", "0");
     let month = element.billto.substr(5,2);
     if(month.startsWith("0")){
       month = month.replace("0","");
@@ -282,6 +285,7 @@ billRegDetails: any[] = [];
     });
   }
   openIBNBill(element: any){
+    localStorage.setItem("removeheader", "0");
     debugger;
     let json = {
       party: element.party,
@@ -314,6 +318,7 @@ billRegDetails: any[] = [];
   }
   openRelSummaryBill(element: any){
     debugger;
+    localStorage.setItem("removeheader", "0");
     let json = {
       from: element.billfrom,
       to: element.billto,
@@ -334,6 +339,7 @@ billRegDetails: any[] = [];
     });
   }
   openCoalBill(element: any){
+    localStorage.setItem("removeheader", "0");
     debugger;
     let json = {
       party: element.party,
@@ -362,6 +368,7 @@ billRegDetails: any[] = [];
     });
   }
   openBill(element: any){
+    localStorage.setItem("removeheader", "0");
     debugger;
     let json = {
       party: element.party,
@@ -387,6 +394,7 @@ billRegDetails: any[] = [];
     });
   }
   openJMSBill(element: any){
+    localStorage.setItem("removeheader", "0");
     debugger;
     let json = {
       party: element.party,
