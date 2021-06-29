@@ -55,6 +55,7 @@ billRegDetails: any[] = [];
     
    }
    ngOnInit() : void {
+    localStorage.setItem("removeheader", "0");
     var yr = localStorage.getItem('billregyear');
     var month = localStorage.getItem('billregmonth');
     if(yr && month){
@@ -209,8 +210,11 @@ billRegDetails: any[] = [];
     this.apiService.post(BILL_ONCALL_EXTRA_API, json).then((res: any)=>{ 
       debugger;
       localStorage.setItem("billdata", JSON.stringify(res));
+      if(res.body.length > 60){
+        localStorage.setItem("removeheader", "1");
+      }
       this.toastr.success("Your bill was successfully created",'Success');
-      this.router.navigateByUrl('/' + ROUTE_VIEW_BILL_ONCALL_EXTRA);
+      this.router.navigate([]).then(result => {  window.open('/' + ROUTE_VIEW_BILL_ONCALL_EXTRA, '_blank'); });;
     });
   }
   openDailyOTBill(element: any){

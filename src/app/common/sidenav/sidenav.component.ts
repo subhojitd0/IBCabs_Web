@@ -22,10 +22,12 @@ export class SideNavComponent implements OnInit {
   reportto: string;
   userrole: string;
   matadorurl: string = "";
+  removeheader: string;
   constructor(private router: Router) { }
 
   ngOnInit(): void {
     debugger;
+    this.removeheader = localStorage.getItem("removeheader");
     this.loggedin = JSON.parse(localStorage.getItem('loggedin'));
     this.pagerefresh = JSON.parse(localStorage.getItem('pagerefresh'));
     this.dashboardurl = "/" + ROUTE_DASHBOARD;

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -11,6 +11,7 @@ import jspdf, { jsPDF } from 'jspdf';
 import html2canvas from 'html2canvas';
 import { ROUTE_CAR, ROUTE_GENERATE_BILL, ROUTE_OWNER } from 'src/shared/constants/constant';
 import { BillUploadComponent } from '../bill-upload/bill-upload.component';
+import * as XLSX from 'xlsx';
 export interface iBillDet {
   sl: string;
   dutydate: string;
@@ -71,6 +72,7 @@ export class SaveBill implements iSaveBill {
   styleUrls: ['./oncall-a.component.css']
 })
 export class OnCallBillAComponent implements OnInit {
+  @ViewChild('table') table: ElementRef;
   billno: any;
   billdate: any;
   billdetails: any;
@@ -88,10 +90,12 @@ export class OnCallBillAComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
   displayedColumns: string[] = ['sl', 'dutydate', 'reportto', 'carno', 'cartype', 'hour', 'km', 'rate', 'amount', 'parking', 'outstation'];
   dataSource: MatTableDataSource<BillDet>;
+  removeheader: string;
   constructor(private router: Router,private apiService: ApiService, public dialog: MatDialog, private toastr: ToastrService) {
     
    }
    ngOnInit(){
+    this.removeheader = localStorage.getItem("removeheader");
     this.billgst = localStorage.getItem("billgst");
     this.billdetails = JSON.parse(localStorage.getItem("billdata"));
     this.billfrom = localStorage.getItem("billfrom");
@@ -162,6 +166,15 @@ export class OnCallBillAComponent implements OnInit {
         }
       });
      }
+   }
+   export(){
+    const ws: XLSX.WorkSheet=XLSX.utils.table_to_sheet(this.table.nativeElement);
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Bill');
+    
+    
+    XLSX.writeFile(wb, 'OnCallBill.xlsx');
+    this.toastr.success("Excel generation successful");
    }
    exportAsPDF(div_id)
   {

@@ -1,56 +1,55 @@
+<mat-toolbar *ngIf="removeheader != '1'" color="primary" class="example-toolbar">
+    <button mat-icon-button (click)="isExpanded = !isExpanded"><mat-icon>menu</mat-icon></button>
+    <h1 class="example-app-name">IB Cabs Portal</h1>
 
-<mat-toolbar color="primary" class="example-toolbar">
-	<button mat-icon-button (click)="isExpanded = !isExpanded"><mat-icon>menu</mat-icon></button>
-	<h1 class="example-app-name">IB Cabs Portal</h1>
-
-	<span fxFlex></span>
- 	<button mat-icon-button *ngIf="pagerefresh == '1'" [matMenuTriggerFor]="dropdownMenu">
+    <span fxFlex></span>
+    <button mat-icon-button *ngIf="pagerefresh == '1'" [matMenuTriggerFor]="dropdownMenu">
   	  <mat-icon>more_vert</mat-icon>
   	</button>
 
 </mat-toolbar>
-<mat-sidenav-container class="example-container" autosize  style="cursor: pointer !important;">
-	<mat-sidenav *ngIf="pagerefresh == '1'" #sidenav class="example-sidenav" mode="side" opened="true" (mouseenter)="mouseenter()" (mouseleave)="mouseleave()">
-		<mat-nav-list>
-			<mat-list-item >
-				<span class="full-width" *ngIf="isExpanded || isShowing"><a routerLink={{dashboardurl}}> Dashboard </a></span>
-				<mat-icon mat-list-icon>home</mat-icon>
-			</mat-list-item>
-			<mat-list-item >
-				<span class="full-width" *ngIf="isExpanded || isShowing"><a routerLink={{ownerurl}}> Owner </a></span>
-				<mat-icon mat-list-icon>commute</mat-icon>
-			</mat-list-item>
-			<mat-list-item >
-				<span class="full-width" *ngIf="isExpanded || isShowing"><a routerLink={{partyurl}}> Party </a></span>
-				<mat-icon mat-list-icon>face</mat-icon>
-			</mat-list-item>
-			<mat-list-item >
-				<span class="full-width" *ngIf="isExpanded || isShowing"><a routerLink={{driverurl}}> Driver </a></span>
-				<mat-icon mat-list-icon>supervised_user_circle</mat-icon>
-			</mat-list-item>
-			<mat-list-item >
-				<span class="full-width" *ngIf="isExpanded || isShowing"><a routerLink={{reportto}}> Report To </a></span>
-				<mat-icon mat-list-icon>supervisor_account</mat-icon>
-			</mat-list-item>
-			<mat-list-item >
-				<span class="full-width" *ngIf="isExpanded || isShowing"><a routerLink={{matadorurl}}> Matador Rates </a></span>
-				<mat-icon mat-list-icon>directions_bus</mat-icon>
-			</mat-list-item>
-			<mat-list-item >
-				<span class="full-width" *ngIf="isExpanded || isShowing"><a routerLink={{generatebillurl}}> Bill </a></span>
-				<mat-icon mat-list-icon>description</mat-icon>
-			</mat-list-item>
-			<mat-list-item (click)="showSubmenu = !showSubmenu" class="parent">
-				<span class="full-width" *ngIf="isExpanded || isShowing"> Daily Duty - Rental Details &nbsp;&nbsp;&nbsp;&nbsp;
+<mat-sidenav-container class="example-container" autosize style="cursor: pointer !important;">
+    <mat-sidenav *ngIf="pagerefresh == '1' && removeheader != '1'" #sidenav class="example-sidenav" mode="side" opened="true" (mouseenter)="mouseenter()" (mouseleave)="mouseleave()">
+        <mat-nav-list>
+            <mat-list-item>
+                <span class="full-width" *ngIf="isExpanded || isShowing"><a routerLink={{dashboardurl}}> Dashboard </a></span>
+                <mat-icon mat-list-icon>home</mat-icon>
+            </mat-list-item>
+            <mat-list-item>
+                <span class="full-width" *ngIf="isExpanded || isShowing"><a routerLink={{ownerurl}}> Owner </a></span>
+                <mat-icon mat-list-icon>commute</mat-icon>
+            </mat-list-item>
+            <mat-list-item>
+                <span class="full-width" *ngIf="isExpanded || isShowing"><a routerLink={{partyurl}}> Party </a></span>
+                <mat-icon mat-list-icon>face</mat-icon>
+            </mat-list-item>
+            <mat-list-item>
+                <span class="full-width" *ngIf="isExpanded || isShowing"><a routerLink={{driverurl}}> Driver </a></span>
+                <mat-icon mat-list-icon>supervised_user_circle</mat-icon>
+            </mat-list-item>
+            <mat-list-item>
+                <span class="full-width" *ngIf="isExpanded || isShowing"><a routerLink={{reportto}}> Report To </a></span>
+                <mat-icon mat-list-icon>supervisor_account</mat-icon>
+            </mat-list-item>
+            <mat-list-item>
+                <span class="full-width" *ngIf="isExpanded || isShowing"><a routerLink={{matadorurl}}> Matador Rates </a></span>
+                <mat-icon mat-list-icon>directions_bus</mat-icon>
+            </mat-list-item>
+            <mat-list-item>
+                <span class="full-width" *ngIf="isExpanded || isShowing"><a routerLink={{generatebillurl}}> Bill </a></span>
+                <mat-icon mat-list-icon>description</mat-icon>
+            </mat-list-item>
+            <mat-list-item (click)="showSubmenu = !showSubmenu" class="parent">
+                <span class="full-width" *ngIf="isExpanded || isShowing"> Daily Duty - Rental Details &nbsp;&nbsp;&nbsp;&nbsp;
 					&nbsp;&nbsp;&nbsp;&nbsp; </span>
-				<mat-icon mat-list-icon>work_outline</mat-icon>
-				<mat-icon class="menu-button" [ngClass]="{'rotated' : showSubmenu}" *ngIf="isExpanded || isShowing">expand_more</mat-icon>
-			</mat-list-item>
-			<div class="submenu" [ngClass]="{'expanded' : showSubmenu}" *ngIf="isShowing || isExpanded">
-				<a mat-list-item routerLink={{addddrurl}}>Add New Office Duty</a>
-				<a mat-list-item routerLink={{addwalkingurl}}>Add New Walkin Duty</a>
-				<a mat-list-item routerLink={{viewddrurl}}>View / Edit Duty</a>
-			<!--	<a mat-list-item href="/party">Party Individual</a>
+                <mat-icon mat-list-icon>work_outline</mat-icon>
+                <mat-icon class="menu-button" [ngClass]="{'rotated' : showSubmenu}" *ngIf="isExpanded || isShowing">expand_more</mat-icon>
+            </mat-list-item>
+            <div class="submenu" [ngClass]="{'expanded' : showSubmenu}" *ngIf="isShowing || isExpanded">
+                <a mat-list-item routerLink={{addddrurl}}>Add New Office Duty</a>
+                <a mat-list-item routerLink={{addwalkingurl}}>Add New Walkin Duty</a>
+                <a mat-list-item routerLink={{viewddrurl}}>View / Edit Duty</a>
+                <!--	<a mat-list-item href="/party">Party Individual</a>
 				
 			
 					<a mat-list-item href="...">Submenu Item 2</a>
@@ -63,37 +62,37 @@
 					<mat-list-item>SubSubmenu Item 2</mat-list-item>
 				</div>
 			-->
-			</div>
-			
-			
-		</mat-nav-list>
+            </div>
 
-    
-	</mat-sidenav>
 
-	<div class="example-sidenav-content">
-    <router-outlet></router-outlet>
-  </div>
+        </mat-nav-list>
+
+
+    </mat-sidenav>
+
+    <div class="example-sidenav-content">
+        <router-outlet></router-outlet>
+    </div>
 
 </mat-sidenav-container>
 
 
 
 <mat-menu #dropdownMenu x-position="before">
-	<a mat-menu-item href="" (click)="onLogout()">
-	  <mat-icon>exit_to_app</mat-icon>
-	  <span>Logout</span>
-	</a>
-	<a *ngIf="userrole === 'ibcabs'" mat-menu-item (click)="createuser()">
-		<mat-icon>person_add</mat-icon>
-		<span>Create New User</span>
-	  </a>
-	  <a *ngIf="userrole === 'ibcabs'" mat-menu-item (click)="userrights()">
-		<mat-icon>settings_applications</mat-icon>
-		<span>Give User RIghts</span>
-	  </a>
-	<a mat-menu-item href="" routerLink="/">
-	  <mat-icon>info_outline</mat-icon>
-	  <span>About</span>
-	</a>
-  </mat-menu>
+    <a mat-menu-item href="" (click)="onLogout()">
+        <mat-icon>exit_to_app</mat-icon>
+        <span>Logout</span>
+    </a>
+    <a *ngIf="userrole === 'ibcabs'" mat-menu-item (click)="createuser()">
+        <mat-icon>person_add</mat-icon>
+        <span>Create New User</span>
+    </a>
+    <a *ngIf="userrole === 'ibcabs'" mat-menu-item (click)="userrights()">
+        <mat-icon>settings_applications</mat-icon>
+        <span>Give User RIghts</span>
+    </a>
+    <a mat-menu-item href="" routerLink="/">
+        <mat-icon>info_outline</mat-icon>
+        <span>About</span>
+    </a>
+</mat-menu>

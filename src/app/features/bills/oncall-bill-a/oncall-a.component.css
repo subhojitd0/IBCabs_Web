@@ -173,6 +173,17 @@ th {
     hyphens: auto;
 }
 
+.mat-drawer-content {
+    overflow: hidden !important;
+}
+
+@media print {
+    .container {
+        height: auto !important;
+        overflow: visible !important;
+    }
+}
+
 .mat-column-reportto {
     word-wrap: break-word !important;
     white-space: unset !important;
