@@ -141,6 +141,7 @@ export class NewBillComponent implements OnInit {
       this.showCustomFA = true;
       this.showCustomFAVal = true;
       this.showTotalCal = true;
+      this.showDayRate = false;
     }
     else if(this.billDetails.format === "2"){ //B
       this.showParty = true;
@@ -157,6 +158,8 @@ export class NewBillComponent implements OnInit {
       this.showYear = false;
       this.showCustomFA = true;
       this.showCustomFAVal = true;
+      this.showDayRate = false;
+      this.showTotalCal = false;
     }
     else if(this.billDetails.format === "3"){ //C
       this.showParty = true;
@@ -173,6 +176,8 @@ export class NewBillComponent implements OnInit {
       this.showYear = false;
       this.showCustomFA = true;
       this.showCustomFAVal = true;
+      this.showTotalCal = false;
+      this.showDayRate = false;
     }
     else if(this.billDetails.format === "4"){ //D0
       this.showParty = true;
@@ -189,6 +194,8 @@ export class NewBillComponent implements OnInit {
       this.showYear = false;
       this.showCustomFA = false;
       this.showCustomFAVal = false;
+      this.showTotalCal = false;
+      this.showDayRate = false;
     }
     else if(this.billDetails.format === "5"){ //D1
       this.showParty = true;
@@ -205,6 +212,8 @@ export class NewBillComponent implements OnInit {
       this.showYear = false;
       this.showCustomFA = false;
       this.showCustomFAVal = false;
+      this.showDayRate = false;
+      this.showTotalCal = false;
     }
     else if(this.billDetails.format === "6"){ //D2
       this.showParty = true;
@@ -221,6 +230,8 @@ export class NewBillComponent implements OnInit {
       this.showYear = false;
       this.showCustomFA = false;
       this.showCustomFAVal = false;
+      this.showTotalCal = false;
+      this.showDayRate = false;
     }
     else if(this.billDetails.format === "7"){ //C9 - NOT SAVED
       this.showParty = true;
@@ -237,6 +248,8 @@ export class NewBillComponent implements OnInit {
       this.showYear = true;
       this.showCustomFA = false;
       this.showCustomFAVal = false;
+      this.showTotalCal = false;
+      this.showDayRate = false;
     }
     else if(this.billDetails.format === "8"){ //E
       this.showParty = false;
@@ -253,6 +266,8 @@ export class NewBillComponent implements OnInit {
       this.showYear = true;
       this.showCustomFA = true;
       this.showCustomFAVal = true;
+      this.showTotalCal = false;
+      this.showDayRate = false;
     }
     else if(this.billDetails.format === "9"){ //F
       this.showParty = true;
@@ -269,6 +284,8 @@ export class NewBillComponent implements OnInit {
       this.showYear = false;
       this.showCustomFA = true;
       this.showCustomFAVal = true;
+      this.showTotalCal = false;
+      this.showDayRate = false;
     }
     else if(this.billDetails.format === "10"){ //G
       this.showParty = true;
