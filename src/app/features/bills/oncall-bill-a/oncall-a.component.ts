@@ -161,9 +161,10 @@ export class OnCallBillAComponent implements OnInit {
           debugger;
           if(res.status === "success"){
             localStorage.setItem('selectedbillregid', res.id);
-            this.exportAsPDF("printdiv");
+           // this.exportAsPDF("printdiv");
             this.isConfirmVisible = false;
             this.toastr.success("Your bill was successfully created. Total " + res.count + " duty slips were updated" ,'Success');
+            this.router.navigateByUrl('/' + ROUTE_GENERATE_BILL);
         }
       });
      }
