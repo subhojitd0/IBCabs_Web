@@ -261,7 +261,8 @@ billRegDetails: any[] = [];
       gsttype: element.gsttype,
       parkinggst: element.parkinggst,
       customfa: element.fa,
-      customfavalue: element.favalue
+      customfavalue: element.favalue,
+      billCalType: element.billCalType
     }
     localStorage.setItem("billmonth", month);
     localStorage.setItem("billfa", element.fa);
@@ -277,6 +278,7 @@ billRegDetails: any[] = [];
     localStorage.setItem("nightend", element.nightend);
     localStorage.setItem("billnumber", element.billnumber);
     localStorage.setItem("billdate", element.billdate);
+    localStorage.setItem("billcaltype", element.billCalType);
     this.apiService.post(ABP_API, json).then((res: any)=>{ 
       debugger;
       localStorage.setItem("billdata", JSON.stringify(res));

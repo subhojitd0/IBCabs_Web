@@ -90,6 +90,7 @@ export class NewBillComponent implements OnInit {
   showCustomFAVal: boolean = false;
   showTotalCal: boolean = false;
   showDayRate: boolean = false;
+  showTotalCalABP: boolean = false;
   constructor(private router: Router, private apiService: ApiService, private toastr: ToastrService) {
     this.billDetails = new newbill();
    }
@@ -142,6 +143,7 @@ export class NewBillComponent implements OnInit {
       this.showCustomFAVal = true;
       this.showTotalCal = true;
       this.showDayRate = false;
+      this.showTotalCalABP = false;
     }
     else if(this.billDetails.format === "2"){ //B
       this.showParty = true;
@@ -160,6 +162,7 @@ export class NewBillComponent implements OnInit {
       this.showCustomFAVal = true;
       this.showDayRate = false;
       this.showTotalCal = false;
+      this.showTotalCalABP = false;
     }
     else if(this.billDetails.format === "3"){ //C
       this.showParty = true;
@@ -177,6 +180,7 @@ export class NewBillComponent implements OnInit {
       this.showCustomFA = true;
       this.showCustomFAVal = true;
       this.showTotalCal = false;
+      this.showTotalCalABP = false;
       this.showDayRate = false;
     }
     else if(this.billDetails.format === "4"){ //D0
@@ -194,6 +198,7 @@ export class NewBillComponent implements OnInit {
       this.showYear = false;
       this.showCustomFA = false;
       this.showCustomFAVal = false;
+      this.showTotalCalABP = false;
       this.showTotalCal = false;
       this.showDayRate = false;
     }
@@ -214,6 +219,7 @@ export class NewBillComponent implements OnInit {
       this.showCustomFAVal = false;
       this.showDayRate = false;
       this.showTotalCal = false;
+      this.showTotalCalABP = false;
     }
     else if(this.billDetails.format === "6"){ //D2
       this.showParty = true;
@@ -232,6 +238,7 @@ export class NewBillComponent implements OnInit {
       this.showCustomFAVal = false;
       this.showTotalCal = false;
       this.showDayRate = false;
+      this.showTotalCalABP = false;
     }
     else if(this.billDetails.format === "7"){ //C9 - NOT SAVED
       this.showParty = true;
@@ -250,8 +257,9 @@ export class NewBillComponent implements OnInit {
       this.showCustomFAVal = false;
       this.showTotalCal = false;
       this.showDayRate = false;
+      this.showTotalCalABP = false;
     }
-    else if(this.billDetails.format === "8"){ //E
+    else if(this.billDetails.format === "8"){ //E - ABP
       this.showParty = false;
       this.showPartyMaster = true;
       this.showBillSubject = true;
@@ -268,8 +276,9 @@ export class NewBillComponent implements OnInit {
       this.showCustomFAVal = true;
       this.showTotalCal = false;
       this.showDayRate = false;
+      this.showTotalCalABP = true;
     }
-    else if(this.billDetails.format === "9"){ //F
+    else if(this.billDetails.format === "9"){ //F - Daily OT
       this.showParty = true;
       this.showPartyMaster = false;
       this.showBillSubject = true;
@@ -285,9 +294,10 @@ export class NewBillComponent implements OnInit {
       this.showCustomFA = true;
       this.showCustomFAVal = true;
       this.showTotalCal = false;
+      this.showTotalCalABP = false;
       this.showDayRate = false;
     }
-    else if(this.billDetails.format === "10"){ //G
+    else if(this.billDetails.format === "10"){ //G - Times
       this.showParty = true;
       this.showPartyMaster = false;
       this.showBillSubject = true;
@@ -304,6 +314,7 @@ export class NewBillComponent implements OnInit {
       this.showCustomFAVal = true;
       this.showTotalCal = false;
       this.showDayRate = true;
+      this.showTotalCalABP = false;
     }
   }
   somethingChanged(){

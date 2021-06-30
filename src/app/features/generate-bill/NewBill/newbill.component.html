@@ -227,6 +227,17 @@
                     </mat-option>
                 </mat-select>
             </div>
+            <div class="col-sm-6" *ngIf="showTotalCalABP">
+                <label>Calculate Bill on</label>
+                <mat-select name="month" [(value)]="billDetails.billCalType">
+                    <mat-option value="0">
+                        ABP Format
+                    </mat-option>
+                    <mat-option value="1">
+                        Times Format ( Each Day calculation)
+                    </mat-option>
+                </mat-select>
+            </div>
             <div class="col-sm-6" *ngIf="showDayRate">
                 <label>Day Rate</label>
                 <input name="dayrate" (blur)="somethingChanged()" type="text" class="form-control" [(ngModel)]="billDetails.billCalType">
