@@ -113,6 +113,7 @@ billRegDetails: any[] = [];
     this.loading = false;
    }
   downloadBill(bill: any){
+    this.toastr.info("Please wait while we are generating the bill");
     debugger;
     if(bill.billtype === "D0"){
       this.openBill(bill);
