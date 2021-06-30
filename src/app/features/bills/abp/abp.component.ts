@@ -57,6 +57,7 @@ export interface iSaveBill {
   amount: string;
   fa: string;
   favalue: string;
+  billCalType: any;
 }
 export class SaveBill implements iSaveBill {
   billnumber: string;
@@ -75,6 +76,7 @@ export class SaveBill implements iSaveBill {
   amount: string;
   fa: string;
   favalue: string;
+  billCalType: any;
 }
 @Component({
   selector: 'app-abp',
@@ -108,6 +110,7 @@ export class AbpComponent implements OnInit {
     this.billgst = localStorage.getItem("billgst");
     let billdate = localStorage.getItem("billdate");
     let billno = localStorage.getItem("billnumber");
+    let billcalltype = localStorage.getItem("billcaltype");
     if(billdate){
       this.isConfirmVisible = false;
       this.billdate = billdate;
@@ -156,6 +159,7 @@ export class AbpComponent implements OnInit {
     
    }
    save(){
+    let billcalltype = localStorage.getItem("billcaltype");
      if(!(this.billno && this.billdate)){
       alert("Please enter a proper bill number and bill date to proceed");
      }
@@ -176,6 +180,7 @@ export class AbpComponent implements OnInit {
       billSave.favalue=this.billdetails.tail.customfavalue;
       billSave.amount = this.billdetails.tail.grosstotal;
       billSave.mode = "1";
+      billSave.billCalType = billcalltype;
       this.apiService.post(BILL_API, billSave).then((res: any)=>{ 
           debugger;
           if(res.status === "success"){
