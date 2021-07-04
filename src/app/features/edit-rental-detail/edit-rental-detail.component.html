@@ -127,11 +127,11 @@
     <mat-form-field class="mid" *ngIf="!isBulkEdit">
         <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search Duty">
     </mat-form-field> <br/> <br/>
-    <span (click)="selectall()" [ngClass]="selecteditem == 'ALL' ? 'tab-css-selected' : 'tab-css'"> All Duties </span>
-    <span (click)="selectstage1()" [ngClass]="selecteditem == 'STAGE-1' ? 'tab-css-selected' : 'tab-css'"> Duties Assigned </span>
-    <span (click)="selectstage2()" [ngClass]="selecteditem == 'STAGE-2' ? 'tab-css-selected' : 'tab-css'"> Car Assigned Duties </span>
-    <span (click)="selectstage3()" [ngClass]="selecteditem == 'STAGE-3' ? 'tab-css-selected' : 'tab-css'"> Completed Duties </span>
-    <span (click)="selectstage4()" [ngClass]="selecteditem == 'STAGE-4' ? 'tab-css-selected' : 'tab-css'"> Approved Duties </span>
+    <span (click)="selectall()" [ngClass]="selecteditem == 'ALL' ? 'tab-css-selected sticky' : 'tab-css sticky'"> All Duties </span>
+    <span (click)="selectstage1()" [ngClass]="selecteditem == 'STAGE-1' ? 'tab-css-selected sticky2' : 'tab-css sticky2'"> Duties Assigned </span>
+    <span (click)="selectstage2()" [ngClass]="selecteditem == 'STAGE-2' ? 'tab-css-selected sticky3' : 'tab-css sticky3'"> Car Assigned Duties </span>
+    <span (click)="selectstage3()" [ngClass]="selecteditem == 'STAGE-3' ? 'tab-css-selected sticky4' : 'tab-css sticky4'"> Completed Duties </span>
+    <span (click)="selectstage4()" [ngClass]="selecteditem == 'STAGE-4' ? 'tab-css-selected sticky5' : 'tab-css sticky5'"> Approved Duties </span>
     <span style="margin-left: 20px;
                 font-weight: 500;
                 font-size: 17px;
