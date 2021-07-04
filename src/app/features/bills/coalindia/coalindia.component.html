@@ -1,70 +1,67 @@
-        <div class="center">
-          <p style="cursor: pointer; margin-right: 5px;" (click)="exportAsPDF('printdiv');"><img height="70" src="http://ibcabs.com/bills/new/assets/img/download.png"></p>
-          <p *ngIf="isConfirmVisible" style="cursor: pointer; margin-right: 5px" (click)="save();"><img height="70" src="http://ibcabs.com/bills/new/assets/img/confirm.png"></p>
+<div class="center">
+    <p style="cursor: pointer; margin-right: 5px;" (click)="exportAsPDF('printdiv');"><img height="70" src="http://ibcabs.com/bills/new/assets/img/download.png"></p>
+    <p *ngIf="isConfirmVisible" style="cursor: pointer; margin-right: 5px" (click)="save();"><img height="70" src="http://ibcabs.com/bills/new/assets/img/confirm.png"></p>
+</div>
+<div class="container" id="printdiv" style="max-width: 1400px; min-height: 2000px; max-height: 10000px;">
+    <p id="header">TAX INVOICE</p>
+    <div id="identity" class="row col-xs-12">
+        <div class="col-xs-1">
+            <img src="http://ibcabs.com/bills/new/assets/img/ib.jpg" style="height:90px;width:90px;margin-top:-8px;">
         </div>
-        <div class="container" id="printdiv" style="max-width: 1400px; min-height: 2000px; max-height: 10000px;">
-          <p id="header">TAX INVOICE</p>
-          <div id="identity" class="row col-xs-12" >
-            <div class="col-xs-1">
-              <img src="http://ibcabs.com/bills/new/assets/img/ib.jpg" style="height:90px;width:90px;margin-top:-8px;">
-            </div>
-            <div class="col-xs-8">
-                  <p id="address" style="font-size:20px;">Registered Office : 195/2,Park Street, Kolkata - 700017.<br>
-                      Zonal Office: 86A, Tollygunge Road, Kolkata-700033.<br>
-                      Mobile: 9830800776, Tel: (033) 2424 6551, (033) 4007 8545<br>
-                      Email: indranilb@ibcabs.com, admin@ibcabs.com. Visit us at: www.ibcabs.com<br></p>
-            </div>
-              <div class="col-xs-3 gst">
-                  
-              </div>
-            
-            
-            </div>
-            <div id="customer" [ngStyle]="{'margin-top.px':marginTop, 'margin-bottom.px': marginTop}" class="row" [style.display]="'block'">
-              <div id="customer-title" class="col-xs-4" style="margin-right: 0px; max-width: 700px">
-                  To<br><br>
-                        <b>{{billdetails.head[0].billto}}</b><br/><br/>
-                        <b>USER : {{billdetails.head[0].reportto}}</b><br/><br/>
-                        {{billdetails.head[0].billaddress}}<br/><br/>
-                  GST :<span style="margin-right: 10px;">{{billdetails.head[0].gst}}</span><span>PAN: {{billdetails.head[0].pan}}</span><br/><br/>
-                  <span><b>Subject:   {{billdetails.head[0].subject}}</b></span>
-              </div>
-              <!-- <div class="col-xs-4" style="width: 20%;">
+        <div class="col-xs-8">
+            <p id="address" style="font-size:20px;">Registered Office : 195/2,Park Street, Kolkata - 700017.<br> Zonal Office: 86A, Tollygunge Road, Kolkata-700033.<br> Mobile: 9830800776, Tel: (033) 2424 6551, (033) 4007 8545<br> Email: indranilb@ibcabs.com, admin@ibcabs.com. Visit us at:
+                www.ibcabs.com<br></p>
+        </div>
+        <div class="col-xs-3 gst">
+
+        </div>
+
+
+    </div>
+    <div id="customer" [ngStyle]="{'margin-top.px':marginTop, 'margin-bottom.px': marginTop}" class="row" [style.display]="'block'">
+        <div id="customer-title" class="col-xs-4" style="margin-right: 0px; max-width: 700px">
+            To<br><br>
+            <b>{{billdetails.head[0].billto}}</b><br/><br/>
+            <b>USER : {{billdetails.head[0].reportto}}</b><br/><br/> {{billdetails.head[0].billaddress}}
+            <br/><br/> GST :<span style="margin-right: 10px;">{{billdetails.head[0].gst}}</span><span>PAN: {{billdetails.head[0].pan}}</span><br/><br/>
+            <span><b>Subject:   {{billdetails.head[0].subject}}</b></span>
+        </div>
+        <!-- <div class="col-xs-4" style="width: 20%;">
 
               </div> -->
-              <div  class="col-xs-4" style="float: right;margin-top: 70px;">
-                <table id="meta">
-                  <tbody>
+        <div class="col-xs-4" style="float: right;margin-top: 70px;">
+            <table id="meta">
+                <tbody>
                     <tr>
-                      <td class="meta-head"><b>Bill No.</b></td>
-                      <td style="text-align: center;"><input style="border:none;text-align: center;" matInput type="text" [(ngModel)]="billno" required></td>
+                        <td class="meta-head"><b>Bill No.</b></td>
+                        <td style="text-align: center;"><input style="border:none;text-align: center;" matInput type="text" [(ngModel)]="billno" required></td>
                     </tr>
                     <tr>
                         <td class="meta-head"><b>Bill Date</b></td>
                         <td style="text-align: center;"><input style="border:none;text-align: center;" matInput type="text" [(ngModel)]="billdate" required></td>
                     </tr>
-    
+
                     <tr>
                         <td class="meta-head"><b>Billing Period</b></td>
-                        <td>From: {{billfrom}}  To: {{billto}}</td>
+                        <td>From: {{billfrom}} To: {{billto}}</td>
                     </tr>
-  
-                  </tbody>
-                </table>
-              </div>
-            
-            </div>
-            <br/><br/><br/>
-          <!-- <mat-card>
+
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+    <br/><br/><br/>
+    <!-- <mat-card>
             <mat-card-header>
               <div mat-card-avatar class="avatar-image-partyhead"></div>
               <mat-card-title>Bill Register</mat-card-title>
               <mat-card-subtitle>View, Delete and View the Bills Here.</mat-card-subtitle>
             </mat-card-header>
           </mat-card> -->
-          <div style="margin-top: 170px;"> 
-            <table #table style="font-weight:500; font-size: 18px;">
-              <tr>
+    <div style="margin-top: 170px;">
+        <table #table style="font-weight:500; font-size: 18px;">
+            <tr>
                 <th>Sl No.</th>
                 <th>Slip No.</th>
                 <th>Duty Date</th>
@@ -77,8 +74,8 @@
                 <th>Amount</th>
                 <th>Parking</th>
                 <th>Outstation</th>
-              </tr>
-              <tr *ngFor="let row of billdetails.body">
+            </tr>
+            <tr *ngFor="let row of billdetails.body">
                 <td>{{row.sl}}</td>
                 <td>{{row.slipno}}</td>
                 <td>{{row.dutydate}}</td>
@@ -91,78 +88,78 @@
                 <td>{{row.amount}}</td>
                 <td>{{row.parking}}</td>
                 <td>{{row.outstation}}</td>
-              </tr>
-            </table>
-            </div>
+            </tr>
+        </table>
+    </div>
 
-            <div [ngStyle]="{'margin-top.px':marginTop}" id="customer" style="display: block;" class="row">
-              <br><br>
-            <div id="customer-title" class="col-xs-3" style="max-width: 500px;">
-              <table *ngIf="billgst !== '2'">
+    <div [ngStyle]="{'margin-top.px':marginTop}" id="customer" style="display: block;" class="row">
+        <br><br>
+        <div id="customer-title" class="col-xs-3" style="max-width: 500px;">
+            <table *ngIf="billgst !== '2'">
                 <tbody>
-                  <tr>
-                    <th class="meta-head" colspan="2" style="text-align: center !important;"><b>GST CALCULATION</b></th>
-                  </tr>
-                  <tr>
-                      <td class="meta-head" style="text-align: left !important;">Taxable Amount : Rs.</td>
-                      <td class="meta-content" style="text-align: left !important;">{{billdetails.gst[0].taxableamount}}</td>
-                  </tr>
-                  <tr>
-                      <td class="meta-head" style="text-align: left !important;">CGST @2.5% : Rs.</td>
-                      <td class="meta-content" style="text-align: left !important;">{{billdetails.gst[0].cgst}}</td>
-                  </tr>
-                  <tr>
-                      <td class="meta-head" style="text-align: left !important;">SGST @2.5% : Rs.</td>
-                      <td class="meta-content" style="text-align: left !important;">{{billdetails.gst[0].sgst}}</td>
-                  </tr>
-                  <tr>
-                      <td class="meta-head" style="text-align: left !important;">IGST @0% : Rs.</td>
-                      <td class="meta-content" style="text-align: left !important;">{{billdetails.gst[0].igst}}</td>
-                  </tr>
-                  <tr>
-                      <td class="meta-head" style="text-align: left !important;">Total GST Amount : Rs.</td>
-                      <td class="meta-content" style="text-align: left !important;">{{billdetails.gst[0].total}}</td>
-                  </tr>
+                    <tr>
+                        <th class="meta-head" colspan="2" style="text-align: center !important;"><b>GST CALCULATION</b></th>
+                    </tr>
+                    <tr>
+                        <td class="meta-head" style="text-align: left !important;">Taxable Amount : Rs.</td>
+                        <td class="meta-content" style="text-align: left !important;">{{billdetails.gst[0].taxableamount}}</td>
+                    </tr>
+                    <tr>
+                        <td class="meta-head" style="text-align: left !important;">CGST @2.5% : Rs.</td>
+                        <td class="meta-content" style="text-align: left !important;">{{billdetails.gst[0].cgst}}</td>
+                    </tr>
+                    <tr>
+                        <td class="meta-head" style="text-align: left !important;">SGST @2.5% : Rs.</td>
+                        <td class="meta-content" style="text-align: left !important;">{{billdetails.gst[0].sgst}}</td>
+                    </tr>
+                    <tr>
+                        <td class="meta-head" style="text-align: left !important;">IGST @0% : Rs.</td>
+                        <td class="meta-content" style="text-align: left !important;">{{billdetails.gst[0].igst}}</td>
+                    </tr>
+                    <tr>
+                        <td class="meta-head" style="text-align: left !important;">Total GST Amount : Rs.</td>
+                        <td class="meta-content" style="text-align: left !important;">{{billdetails.gst[0].total}}</td>
+                    </tr>
                 </tbody>
-              </table> 
-              <br>
-              
-                  
-              <table *ngIf="billgst !== '2'">
+            </table>
+            <br>
+
+
+            <table *ngIf="billgst !== '2'">
                 <tbody>
-                  <tr>
-                    <td colspan="3" style="text-align: center !important;"><b> GST Amount in words: </b><br/>{{gstamountinwords}}</td>
-                  </tr>
+                    <tr>
+                        <td colspan="3" style="text-align: center !important;"><b> GST Amount in words: </b><br/>{{gstamountinwords}}</td>
+                    </tr>
                 </tbody>
-              </table> 
-              <br/>
-              <table *ngIf="billgst !== '2'">
+            </table>
+            <br/>
+            <table *ngIf="billgst !== '2'">
                 <tbody>
-                  <tr>
-                    <td colspan="3" style="text-align: center !important;">PAN:AHOPB6443K</td>
-                  </tr>
-                  <tr>
-                    <td colspan="3" style="text-align: center !important;">GSTIN:19AHOPB6443K1ZZ</td>
-                  </tr>
-                  <tr>
-                    <td colspan="3" style="text-align: center !important;">SAC Code:996601</td>
-                  </tr>
+                    <tr>
+                        <td colspan="3" style="text-align: center !important;">PAN:AHOPB6443K</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" style="text-align: center !important;">GSTIN:19AHOPB6443K1ZZ</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" style="text-align: center !important;">SAC Code:996601</td>
+                    </tr>
                 </tbody>
                 <br/>
-                
-              </table>
 
-              <span *ngIf="billgst !== '2'" style="font-weight: normal;text-align: left !important;">GST WIll BE PAID BY SERVICE RECIPIENT UNDER R.C.M VIDE NOTIFICATION NO : 22/2019<br/>ITC HAS NOT BEEN AVAILED</span> <br/><br/>
-                <span>Enclose. : {{totalno}} no. of original duty slips</span>
+            </table>
 
-              <br>
-                          
-                   
-            </div>
+            <span *ngIf="billgst !== '2'" style="font-weight: normal;text-align: left !important;">GST WIll BE PAID BY SERVICE RECIPIENT UNDER R.C.M VIDE NOTIFICATION NO : 22/2019<br/>ITC HAS NOT BEEN AVAILED</span> <br/><br/>
+            <span>Enclose. : {{totalno}} no. of original duty slips</span>
 
-            <div class="col-xs-6" style="float: right;">
-              <table id="meta">
-                  <tbody>
+            <br>
+
+
+        </div>
+
+        <div class="col-xs-6" style="float: right;">
+            <table id="meta">
+                <tbody>
                     <tr>
                         <td></td>
                         <td class="meta-head" style="text-align: right !important;">Subtotal: Rs.</td>
@@ -174,7 +171,7 @@
                         <td class="meta-content" style="text-align: left !important;">{{billdetails.tail[0].parking}}</td>
                     </tr>
                     <tr>
-                        <td style="text-align:left !important">Outstation charge for: {{billdetails.tail[0].outstationdays}} days &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;  @ Rs. {{billdetails.tail[0].outstationrate}}</td>
+                        <td style="text-align:left !important">Outstation charge for: {{billdetails.tail[0].outstationdays}} days &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; @ Rs. {{billdetails.tail[0].outstationrate}}</td>
                         <td class="meta-head" style="text-align: right !important;">Outstation Amount: Rs.</td>
                         <td class="meta-content" style="text-align: left !important;">{{billdetails.tail[0].outstation}}</td>
                     </tr>
@@ -184,16 +181,17 @@
                         <td class="meta-content" style="text-align: left !important;">{{billdetails.tail[0].grosstotal}}</td>
                     </tr>
                     <tr>
-                      <td></td>
-                      <td class="meta-head" style="text-align: right !important;"><b>Rounded Gross Amount: Rs.</b></td>
-                      <td class="meta-content" style="text-align: left !important;">{{roundedgross}}.00</td>
+                        <td></td>
+                        <td class="meta-head" style="text-align: right !important;"><b>Rounded Gross Amount: Rs.</b></td>
+                        <td class="meta-content" style="text-align: left !important;">{{roundedgross}}.00</td>
                     </tr>
-                  </tbody>
-                </table>
-                <p style="float: right;margin-top: 50px;font-weight: bold; font-size: 20px;">Amount in words: <br/>{{amountInWord}}</p>
-               <br> <p style="margin-top: 200px;margin-left:800px;font-weight: bold; font-size: 15px;">For IB Cabs</p>
-            </div>
-              </div>
-
-            
+                </tbody>
+            </table>
+            <p style="float: right;margin-top: 50px;font-weight: bold; font-size: 20px;">Amount in words: <br/>{{amountInWord}}</p>
+            <br>
+            <p style="margin-top: 200px;margin-left:800px;font-weight: bold; font-size: 15px;">For IB Cabs</p>
         </div>
+    </div>
+
+
+</div>

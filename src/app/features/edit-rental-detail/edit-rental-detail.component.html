@@ -1,13 +1,13 @@
 <div class="loading-screen-wrapper" *ngIf="loading">
-  <div class="loading-screen-icon">
-    Loading...
-  </div>
+    <div class="loading-screen-icon">
+        Loading...
+    </div>
 </div>
-        <div class="container" style="max-width: 1400px;">
-          <mat-card>
-            <mat-card-header>
-              <div mat-card-avatar class="avatar-image-partyhead"></div>
-              <mat-card-title>Rental Details for  
+<div class="container" style="max-width: 1400px;">
+    <mat-card>
+        <mat-card-header>
+            <div mat-card-avatar class="avatar-image-partyhead"></div>
+            <mat-card-title>Rental Details for
                 <select (change)="onChangeMonth($event.target.value)" [value]="month">
                   <option value="1">
                     January
@@ -45,8 +45,7 @@
                   <option value="12">
                     December
                   </option>
-                </select>
-                - 
+                </select> -
                 <select (change)="onChangeYear($event.target.value)" [value]="year">
                   <option value="2020">
                     2020
@@ -57,8 +56,7 @@
                   <option value="2022">
                     2022
                   </option>
-                </select>
-                &nbsp; &nbsp; &nbsp;Filter By :
+                </select> &nbsp; &nbsp; &nbsp;Filter By :
                 <select (change)="onChangeFilter($event.target.value)" [value]="filterby">
                   <option value="party">
                     Party
@@ -75,67 +73,66 @@
                   <option value="owner">
                     Vendor
                   </option>
-                </select>
-                &nbsp; &nbsp; &nbsp;Value :
+                </select> &nbsp; &nbsp; &nbsp;Value :
                 <mat-form-field *ngIf="filterby==='party'">
-                  <input name="partyfilter" type="text" [(ngModel)]="filterval" [formControl]="partyselect" [matAutocomplete]="party" matInput placeholder="Enter Party">
-                  <mat-autocomplete (optionSelected)="onChangeFilterVal($event)" #party="matAutocomplete">
-                    <mat-option *ngFor="let option of partylist | async" [value]="option" >
-                      {{option}}
-                    </mat-option>
-                  </mat-autocomplete>
+                    <input name="partyfilter" type="text" [(ngModel)]="filterval" [formControl]="partyselect" [matAutocomplete]="party" matInput placeholder="Enter Party">
+                    <mat-autocomplete (optionSelected)="onChangeFilterVal($event)" #party="matAutocomplete">
+                        <mat-option *ngFor="let option of partylist | async" [value]="option">
+                            {{option}}
+                        </mat-option>
+                    </mat-autocomplete>
                 </mat-form-field>
                 <mat-form-field *ngIf="filterby==='driver'">
-                  <input type="text"  name="driverfilter" [(ngModel)]="filterval" [formControl]="driverselect" [matAutocomplete]="driver" matInput placeholder="Enter Driver">
-                  <mat-autocomplete (optionSelected)="onChangeFilterVal($event)" #driver="matAutocomplete">
-                    <mat-option *ngFor="let option of driverlist | async" [value]="option" >
-                      {{option}}
-                    </mat-option>
-                  </mat-autocomplete>
+                    <input type="text" name="driverfilter" [(ngModel)]="filterval" [formControl]="driverselect" [matAutocomplete]="driver" matInput placeholder="Enter Driver">
+                    <mat-autocomplete (optionSelected)="onChangeFilterVal($event)" #driver="matAutocomplete">
+                        <mat-option *ngFor="let option of driverlist | async" [value]="option">
+                            {{option}}
+                        </mat-option>
+                    </mat-autocomplete>
                 </mat-form-field>
                 <mat-form-field *ngIf="filterby==='report'">
-                  <input type="text" name="reportfilter"  [(ngModel)]="filterval" [formControl]="reportselect" [matAutocomplete]="report" matInput placeholder="Enter Report To">
-                  <mat-autocomplete (optionSelected)="onChangeFilterVal($event)" #report="matAutocomplete">
-                    <mat-option *ngFor="let option of reportlist | async" [value]="option" >
-                      {{option}}
-                    </mat-option>
-                  </mat-autocomplete>
+                    <input type="text" name="reportfilter" [(ngModel)]="filterval" [formControl]="reportselect" [matAutocomplete]="report" matInput placeholder="Enter Report To">
+                    <mat-autocomplete (optionSelected)="onChangeFilterVal($event)" #report="matAutocomplete">
+                        <mat-option *ngFor="let option of reportlist | async" [value]="option">
+                            {{option}}
+                        </mat-option>
+                    </mat-autocomplete>
                 </mat-form-field>
                 <mat-form-field *ngIf="filterby==='car'">
-                  <input type="text" name="carfilter"  [(ngModel)]="filtervalue" [formControl]="carselect" [matAutocomplete]="car" matInput placeholder="Enter Car">
-                  <mat-autocomplete (optionSelected)="onChangeFilterVal($event)" #car="matAutocomplete">
-                    <mat-option *ngFor="let option of carlist | async" [value]="option" >
-                      {{option}}
-                    </mat-option>
-                  </mat-autocomplete>
+                    <input type="text" name="carfilter" [(ngModel)]="filtervalue" [formControl]="carselect" [matAutocomplete]="car" matInput placeholder="Enter Car">
+                    <mat-autocomplete (optionSelected)="onChangeFilterVal($event)" #car="matAutocomplete">
+                        <mat-option *ngFor="let option of carlist | async" [value]="option">
+                            {{option}}
+                        </mat-option>
+                    </mat-autocomplete>
                 </mat-form-field>
                 <mat-form-field *ngIf="filterby==='owner'">
-                  <input type="text" name="ownerfilter"  [(ngModel)]="filtervalue" [formControl]="ownerselect" [matAutocomplete]="owner" matInput placeholder="Enter Owner">
-                  <mat-autocomplete (optionSelected)="onChangeFilterVal($event)" #owner="matAutocomplete">
-                    <mat-option *ngFor="let option of ownerlist | async" [value]="option" >
-                      {{option}}
-                    </mat-option>
-                  </mat-autocomplete>
+                    <input type="text" name="ownerfilter" [(ngModel)]="filtervalue" [formControl]="ownerselect" [matAutocomplete]="owner" matInput placeholder="Enter Owner">
+                    <mat-autocomplete (optionSelected)="onChangeFilterVal($event)" #owner="matAutocomplete">
+                        <mat-option *ngFor="let option of ownerlist | async" [value]="option">
+                            {{option}}
+                        </mat-option>
+                    </mat-autocomplete>
                 </mat-form-field>
-                <button style="margin-left: 40px;" *ngIf ="filterby && filtervalue" mat-stroked-button (click)="checkddr()">Check DDR</button>
+                <button style="margin-left: 40px;" *ngIf="filterby && filtervalue" mat-stroked-button (click)="checkddr()">Check DDR</button>
                 <button style="margin-left: 40px;" mat-stroked-button (click)="exportddr()">Export DDR</button>
-              </mat-card-title>
-              <mat-card-subtitle>Add, Update, Delete and View the daily duties Here.</mat-card-subtitle>
-            </mat-card-header>
-          </mat-card>
-              <button mat-stroked-button (click)="newduty()">Create New Duty</button>
-              <button  mat-stroked-button style="margin-left: 10px" (click)="showbulkedit()" *ngIf="!isBulkEdit">Do Bulk Edit</button>
-              <button  mat-stroked-button style="margin-left: 10px" (click)="showsingleedit()" *ngIf="isBulkEdit">Do Single Edit</button>
-              <button  mat-stroked-button style="margin-left: 10px" (click)="savebulkedit()" *ngIf="isBulkEdit">Save Bulk Edit</button>
-              <mat-form-field class="mid" *ngIf="!isBulkEdit">
-                  <input matInput (keyup)="applyFilter($event.target.value)"  placeholder="Search Duty">
-                </mat-form-field> <br/> <br/>
-                <span (click)="selectall()" [ngClass]="selecteditem == 'ALL' ? 'tab-css-selected' : 'tab-css'"> All Duties </span> 
-                <span (click)="selectstage1()" [ngClass]="selecteditem == 'STAGE-1' ? 'tab-css-selected' : 'tab-css'"> Duties Assigned </span> 
-                <span (click)="selectstage2()" [ngClass]="selecteditem == 'STAGE-2' ? 'tab-css-selected' : 'tab-css'"> Car Assigned Duties </span>
-                <span (click)="selectstage3()" [ngClass]="selecteditem == 'STAGE-3' ? 'tab-css-selected' : 'tab-css'"> Completed Duties </span>
-                <span (click)="selectstage4()" [ngClass]="selecteditem == 'STAGE-4' ? 'tab-css-selected' : 'tab-css'"> Approved Duties </span>
-                <span style="margin-left: 20px;
+            </mat-card-title>
+            <mat-card-subtitle>Add, Update, Delete and View the daily duties Here.</mat-card-subtitle>
+        </mat-card-header>
+    </mat-card>
+    <button mat-stroked-button (click)="newduty()">Create New Duty</button>
+    <button mat-stroked-button style="margin-left: 10px" (click)="showbulkedit()" *ngIf="!isBulkEdit">Do Bulk Edit</button>
+    <button mat-stroked-button style="margin-left: 10px" (click)="showsingleedit()" *ngIf="isBulkEdit">Do Single Edit</button>
+    <button mat-stroked-button style="margin-left: 10px" (click)="savebulkedit()" *ngIf="isBulkEdit">Save Bulk Edit</button>
+    <mat-form-field class="mid" *ngIf="!isBulkEdit">
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search Duty">
+    </mat-form-field> <br/> <br/>
+    <span (click)="selectall()" [ngClass]="selecteditem == 'ALL' ? 'tab-css-selected' : 'tab-css'"> All Duties </span>
+    <span (click)="selectstage1()" [ngClass]="selecteditem == 'STAGE-1' ? 'tab-css-selected' : 'tab-css'"> Duties Assigned </span>
+    <span (click)="selectstage2()" [ngClass]="selecteditem == 'STAGE-2' ? 'tab-css-selected' : 'tab-css'"> Car Assigned Duties </span>
+    <span (click)="selectstage3()" [ngClass]="selecteditem == 'STAGE-3' ? 'tab-css-selected' : 'tab-css'"> Completed Duties </span>
+    <span (click)="selectstage4()" [ngClass]="selecteditem == 'STAGE-4' ? 'tab-css-selected' : 'tab-css'"> Approved Duties </span>
+    <span style="margin-left: 20px;
                 font-weight: 500;
                 font-size: 17px;
                 color: rgb(255 255 255);
@@ -144,183 +141,192 @@
                 right: 45%;
                 height: 0px;
                 z-index: 9999;" *ngIf="isBulkEdit"> KM Diff - {{tkm}}   &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;  HR Diff - {{thr}} </span>
-                
-               
 
-                <br/><br/>
-                <mat-table [dataSource]="dataSource" matSort *ngIf="!isBulkEdit">
-                  <!-- ID Column -->
-                  <ng-container matColumnDef="dutydt">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header> Date  </mat-header-cell>
-                    <mat-cell *matCellDef="let row"> {{row.dutydate}} </mat-cell>
-                  </ng-container>
-              
-                  <!-- Name Column -->
-                  <ng-container matColumnDef="party">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header> Party </mat-header-cell>
-                    <mat-cell *matCellDef="let row"> {{row.party}} </mat-cell>
-                  </ng-container>
-              
-                  <!-- Color Column -->
-                  <!-- <ng-container matColumnDef="reportto">
+
+
+    <br/><br/>
+    <mat-table [dataSource]="dataSource" matSort *ngIf="!isBulkEdit">
+        <!-- ID Column -->
+        <ng-container matColumnDef="dutydt">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Date </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.dutydate}} </mat-cell>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="party">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Party </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.party}} </mat-cell>
+        </ng-container>
+
+        <!-- Color Column -->
+        <!-- <ng-container matColumnDef="reportto">
                     <mat-header-cell *matHeaderCellDef mat-sort-header> Report To </mat-header-cell>
                     <mat-cell *matCellDef="let row"> {{row.reporttoname}} </mat-cell>
                   </ng-container> -->
-  
-                  <!-- Color Column -->
-                  <ng-container matColumnDef="carno">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header> Car </mat-header-cell>
-                    <mat-cell *matCellDef="let row"> {{row.carnumber}} </mat-cell>
-                  </ng-container>
 
-                  <!-- Color Column -->
-                  <ng-container matColumnDef="statusval">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header> Status </mat-header-cell>
-                    <mat-cell *matCellDef="let row"> 
-                      <span *ngIf="row.status == '0'" class="yellow-icon" (click)="edit(row.dutyid)"> Pending Driver Assign</span> 
-                      <span *ngIf="row.status == '1'" class="orange-icon" (click)="edit(row.dutyid)"> Pending Driver Input</span> 
-                      <span *ngIf="row.status == '2'" class="blue-icon" (click)="approve(row.dutyid)"> Pending Approval</span> 
-                      <span *ngIf="row.status == '3'" class="green-icon"> Bill Generated</span>  
-                    </mat-cell>
-                  </ng-container>
-  
-                  <ng-container matColumnDef="options">
-                      <mat-header-cell *matHeaderCellDef mat-sort-header> Options </mat-header-cell>
-                      <mat-cell *matCellDef="let row" [style.color]="row.option">
-                          <span *ngIf="ddrrole === '1'"  style="margin-left: 10px; margin-right: 10px; cursor: pointer;" class="material-icons" (click)="sendMessage(row.dutyid)">
+        <!-- Color Column -->
+        <ng-container matColumnDef="carno">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Car </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.carnumber}} </mat-cell>
+        </ng-container>
+
+        <!-- Color Column -->
+        <ng-container matColumnDef="statusval">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Status </mat-header-cell>
+            <mat-cell *matCellDef="let row">
+                <span *ngIf="row.status == '0'" class="yellow-icon" (click)="edit(row.dutyid)"> Pending Driver Assign</span>
+                <span *ngIf="row.status == '1'" class="orange-icon" (click)="edit(row.dutyid)"> Pending Driver Input</span>
+                <span *ngIf="row.status == '2'" class="blue-icon" (click)="approve(row.dutyid)"> Pending Approval</span>
+                <span *ngIf="row.status == '3'" class="green-icon"> Bill Generated</span>
+            </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="options">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Options </mat-header-cell>
+            <mat-cell *matCellDef="let row" [style.color]="row.option">
+                <span *ngIf="ddrrole === '1'" style="margin-left: 10px; margin-right: 10px; cursor: pointer;" class="material-icons" (click)="sendMessage(row.dutyid)">
                               message
                           </span> |
-                          <span *ngIf="ddrrole === '1' && row.status !== '3'"  style="margin-left: 10px; margin-right: 10px; cursor: pointer;" class="material-icons" (click)="deleteduty(row.dutyid)">
+                <span *ngIf="ddrrole === '1' && row.status !== '3'" style="margin-left: 10px; margin-right: 10px; cursor: pointer;" class="material-icons" (click)="deleteduty(row.dutyid)">
                               delete
-                          </span>    
-                      </mat-cell>
-                    </ng-container>
-              
-                  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-                  <mat-row *matRowDef="let row; columns: displayedColumns;">
-                  </mat-row>
-                </mat-table>
-              <mat-paginator *ngIf="!isBulkEdit" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
-  
+                          </span>
+            </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;">
+        </mat-row>
+    </mat-table>
+    <mat-paginator *ngIf="!isBulkEdit" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
 
 
-              <mat-table class="bulktable" [dataSource]="bulkDataSource" matSort *ngIf="isBulkEdit" style="width:140%;">
 
-                <ng-container matColumnDef="isselected">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header> <input type="checkbox" (change)="selectallduty()">  </mat-header-cell>
-                  <mat-cell *matCellDef="let row"> <input type="checkbox" [(ngModel)]="row.isSelected"> </mat-cell>
-                </ng-container>
-                <!-- ID Column -->
-                <ng-container matColumnDef="dutydate">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header> Date  </mat-header-cell>
-                  <mat-cell *matCellDef="let row"> {{row.dutydate}} </mat-cell>
-                </ng-container>
-            
-                <!-- Name Column -->
-                <ng-container matColumnDef="partyname">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header> Party </mat-header-cell>
-                  <mat-cell *matCellDef="let row"> {{row.party}} </mat-cell>
-                </ng-container>
-            
-                <!-- Color Column -->
-                <ng-container matColumnDef="reportto">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header> Report To </mat-header-cell>
-                  <mat-cell *matCellDef="let row"> {{row.reporttoname}} </mat-cell>
-                </ng-container>
+    <mat-table class="bulktable" [dataSource]="bulkDataSource" matSort *ngIf="isBulkEdit" style="width:140%;">
 
-                <ng-container matColumnDef="driver">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header> Driver </mat-header-cell>
-                  <mat-cell *matCellDef="let row"> 
-                    <mat-form-field>
-                    <input type="text" [(ngModel)]="row.driver"  (ngModelChange)="filterDriver($event)" [matAutocomplete]="autodriver" matInput placeholder="Select Driver">
+        <ng-container matColumnDef="isselected">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> <input type="checkbox" (change)="selectallduty()"> </mat-header-cell>
+            <mat-cell *matCellDef="let row"> <input type="checkbox" [(ngModel)]="row.isSelected"> </mat-cell>
+        </ng-container>
+        <!-- ID Column -->
+        <ng-container matColumnDef="dutydate">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Date </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.dutydate}} </mat-cell>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="partyname">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Party </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.party}} </mat-cell>
+        </ng-container>
+
+        <!-- Color Column -->
+        <ng-container matColumnDef="reportto">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Report To </mat-header-cell>
+            <mat-cell *matCellDef="let row">
+                <mat-form-field>
+                    <input type="text" name="reporttoauto" [(ngModel)]="row.reporttoname" (ngModelChange)="filterReport($event)" [matAutocomplete]="autoreport" matInput placeholder="Select Report To">
+                    <mat-autocomplete #autoreport="matAutocomplete">
+                        <mat-option *ngFor="let option of allreport" [value]="option">
+                            {{option}}
+                        </mat-option>
+                    </mat-autocomplete>
+                </mat-form-field>
+            </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="driver">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Driver </mat-header-cell>
+            <mat-cell *matCellDef="let row">
+                <mat-form-field>
+                    <input type="text" [(ngModel)]="row.driver" (ngModelChange)="filterDriver($event)" [matAutocomplete]="autodriver" matInput placeholder="Select Driver">
                     <mat-autocomplete #autodriver="matAutocomplete" (optionSelected)="changedriver()">
-                      <mat-option *ngFor="let option of alldrivernames" [value]="option" >
-                        {{option}}
-                      </mat-option>
+                        <mat-option *ngFor="let option of alldrivernames" [value]="option">
+                            {{option}}
+                        </mat-option>
                     </mat-autocomplete>
-                  </mat-form-field>
-                  </mat-cell>
-                </ng-container>
-                
-                <!-- Color Column -->
-                <ng-container matColumnDef="carnumber">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header> Car </mat-header-cell>
-                  <mat-cell *matCellDef="let row">
-                    <mat-form-field>
-                    <input type="text" [(ngModel)]="row.carnum"  (ngModelChange)="filterCar($event)" [matAutocomplete]="autocar" matInput placeholder="Enter Car Number">
-                    <mat-autocomplete #autocar="matAutocomplete" (optionSelected)="changecar()">
-                      <mat-option *ngFor="let option of allcarno" [value]="option" >
-                        {{option}}
-                      </mat-option>
-                    </mat-autocomplete>
-                  </mat-form-field>
-                  </mat-cell>
-                </ng-container>
+                </mat-form-field>
+            </mat-cell>
+        </ng-container>
 
-                <ng-container matColumnDef="cartype">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header> Type</mat-header-cell>
-                  <mat-cell *matCellDef="let row">
-                    <mat-form-field>
+        <!-- Color Column -->
+        <ng-container matColumnDef="carnumber">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Car </mat-header-cell>
+            <mat-cell *matCellDef="let row">
+                <mat-form-field>
+                    <input type="text" [(ngModel)]="row.carnum" (ngModelChange)="filterCar($event)" [matAutocomplete]="autocar" matInput placeholder="Enter Car Number">
+                    <mat-autocomplete #autocar="matAutocomplete" (optionSelected)="changecar()">
+                        <mat-option *ngFor="let option of allcarno" [value]="option">
+                            {{option}}
+                        </mat-option>
+                    </mat-autocomplete>
+                </mat-form-field>
+            </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="cartype">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Type</mat-header-cell>
+            <mat-cell *matCellDef="let row">
+                <mat-form-field>
                     <input type="text" [(ngModel)]="row.cartype" (ngModelChange)="filterCarType($event)" [matAutocomplete]="autocartype" matInput placeholder="Enter Car Type">
                     <mat-autocomplete #autocartype="matAutocomplete">
-                      <mat-option *ngFor="let option of allcartype" [value]="option" >
-                        {{option}}
-                      </mat-option>
+                        <mat-option *ngFor="let option of allcartype" [value]="option">
+                            {{option}}
+                        </mat-option>
                     </mat-autocomplete>
-                  </mat-form-field>
-                  </mat-cell>
-                </ng-container>
+                </mat-form-field>
+            </mat-cell>
+        </ng-container>
 
-                <ng-container matColumnDef="goutkm">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header> Out KM </mat-header-cell>
-                  <mat-cell *matCellDef="let row"> 
-                    <input type="number" matInput [(ngModel)]="row.goutkm" (blur)="caltotal(row)"/>
-                  </mat-cell>
-                </ng-container>
-                <ng-container matColumnDef="ginkm">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header> In KM </mat-header-cell>
-                  <mat-cell *matCellDef="let row"> 
-                    <input type="number" matInput [(ngModel)]="row.ginkm" (blur)="caltotal(row)"/>
-                  </mat-cell>
-                </ng-container>
-                <ng-container matColumnDef="gouttime">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header> Out Time </mat-header-cell>
-                  <mat-cell *matCellDef="let row"> 
-                    <input type="datetime-local" matInput [(ngModel)]="row.gouttime" (blur)="caltotal(row)"/>
-                  </mat-cell>
-                </ng-container>
-                <ng-container matColumnDef="gintime">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header> In Time </mat-header-cell>
-                  <mat-cell *matCellDef="let row"> 
-                    <input type="datetime-local" matInput [(ngModel)]="row.gintime" (blur)="caltotal(row)" />
-                  </mat-cell>
-                </ng-container>
-                <ng-container matColumnDef="parking">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header> Parking </mat-header-cell>
-                  <mat-cell *matCellDef="let row"> 
-                    <input type="number" matInput [(ngModel)]="row.parking"/>
-                  </mat-cell>
-                </ng-container>
-                <ng-container matColumnDef="outstation">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header> Out Days </mat-header-cell>
-                  <mat-cell *matCellDef="let row"> 
-                    <input type="number" matInput [(ngModel)]="row.outstation" />
-                  </mat-cell>
-                </ng-container>
-                <ng-container matColumnDef="night">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header> Night </mat-header-cell>
-                  <mat-cell *matCellDef="let row"> 
-                    <input type="number" matInput [(ngModel)]="row.nightcharge"/>
-                  </mat-cell>
-                </ng-container>
-                <ng-container matColumnDef="slip">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header> Slip No. </mat-header-cell>
-                  <mat-cell *matCellDef="let row"> 
-                    <input type="text" matInput [(ngModel)]="row.slipno" (blur)="caltotal(row)"/>
-                  </mat-cell>
-                </ng-container>
-                <!-- Color Column -->
-                <!-- <ng-container matColumnDef="status">
+        <ng-container matColumnDef="goutkm">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Out KM </mat-header-cell>
+            <mat-cell *matCellDef="let row">
+                <input type="number" matInput [(ngModel)]="row.goutkm" (blur)="caltotal(row)" />
+            </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="ginkm">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> In KM </mat-header-cell>
+            <mat-cell *matCellDef="let row">
+                <input type="number" matInput [(ngModel)]="row.ginkm" (blur)="caltotal(row)" />
+            </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="gouttime">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Out Time </mat-header-cell>
+            <mat-cell *matCellDef="let row">
+                <input type="datetime-local" matInput [(ngModel)]="row.gouttime" (blur)="caltotal(row)" />
+            </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="gintime">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> In Time </mat-header-cell>
+            <mat-cell *matCellDef="let row">
+                <input type="datetime-local" matInput [(ngModel)]="row.gintime" (blur)="caltotal(row)" />
+            </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="parking">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Parking </mat-header-cell>
+            <mat-cell *matCellDef="let row">
+                <input type="number" matInput [(ngModel)]="row.parking" />
+            </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="outstation">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Out Days </mat-header-cell>
+            <mat-cell *matCellDef="let row">
+                <input type="number" matInput [(ngModel)]="row.outstation" />
+            </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="night">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Night </mat-header-cell>
+            <mat-cell *matCellDef="let row">
+                <input type="number" matInput [(ngModel)]="row.nightcharge" />
+            </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="slip">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Slip No. </mat-header-cell>
+            <mat-cell *matCellDef="let row">
+                <input type="text" matInput [(ngModel)]="row.slipno" (blur)="caltotal(row)" />
+            </mat-cell>
+        </ng-container>
+        <!-- Color Column -->
+        <!-- <ng-container matColumnDef="status">
                   <mat-header-cell *matHeaderCellDef mat-sort-header> Status </mat-header-cell>
                   <mat-cell *matCellDef="let row"> 
                     <span *ngIf="row.status == '0'" class="yellow-icon"> Pending Driver Assign</span> 
@@ -330,7 +336,7 @@
                   </mat-cell>
                 </ng-container> -->
 
-                <!-- <ng-container matColumnDef="options">
+        <!-- <ng-container matColumnDef="options">
                     <mat-header-cell *matHeaderCellDef mat-sort-header> Options </mat-header-cell>
                     <mat-cell *matCellDef="let row" [style.color]="row.option">
                         <span style="margin-left: 10px; margin-right: 10px; cursor: pointer;" class="material-icons" (click)="edit(row.dutyid)">
@@ -341,14 +347,11 @@
                         </span>    
                     </mat-cell>
                   </ng-container> -->
-            
-                <mat-header-row *matHeaderRowDef="bulkdisplayedColumns"></mat-header-row>
-                <mat-row *matRowDef="let row; columns: bulkdisplayedColumns;" 
-                [ngClass]="{'highlight' : row.isSelected}"
-                >
-                </mat-row>
-              </mat-table>
-              <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" *ngIf="isBulkEdit"></mat-paginator>
-  
-          </div>
-  
+
+        <mat-header-row *matHeaderRowDef="bulkdisplayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: bulkdisplayedColumns;" [ngClass]="{'highlight' : row.isSelected}">
+        </mat-row>
+    </mat-table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" *ngIf="isBulkEdit"></mat-paginator>
+
+</div>

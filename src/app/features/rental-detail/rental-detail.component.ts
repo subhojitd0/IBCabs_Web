@@ -321,6 +321,11 @@ export class RentalDetailComponent implements OnInit {
     //report
     this.filteredOptionsReport = this.firstFormGroup.get('ReportControl').valueChanges.pipe(startWith(''),map(value => this._filterReport(value)));
   }
+  changeNote(){
+    if(this.rentalAdd.centerName === "Others"){
+      this.rentalAdd.note = "Airport";
+    }
+  }
   public _filterParty(value: string): string[] {
     const filterValue = value.toLowerCase();
     return this.partynames.filter(client => client.toLowerCase().includes(filterValue));

@@ -94,6 +94,8 @@ export class EditRentalDetailComponent implements OnInit {
   filteredOptionsCar: Observable<any[]>;
   filteredOptionsCarType: Observable<any[]>;
   filteredOptionsDriver: Observable<any[]>;
+  filteredOptionsReport: Observable<string[]>;
+  reporttos: any;
   carFormControl: FormControl;
   carTypeFormControl: FormControl;
   driverFormControl: FormControl;
@@ -274,6 +276,10 @@ exportddr(){
   filterDriver(val: any){
     debugger;
     this.alldrivernames = this.alldrivers.filter(x=>x.drivername.toString().toLowerCase().includes(val.toString().toLowerCase())).map(y=>y.drivername);;
+  }
+  filterReport(val: any){
+    debugger;
+    this.allreport = this.allreportto.filter(x=>x.report.toString().toLowerCase().includes(val.toString().toLowerCase())).map(y=>y.report);;
   }
    showbulkedit(){
      this.loading = true;

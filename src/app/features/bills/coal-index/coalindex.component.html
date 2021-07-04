@@ -1,81 +1,80 @@
 <div class="center">
     <p style="cursor: pointer; margin-right: 5px;" (click)="exportAsPDF('printdiv');"><img height="70" src="http://ibcabs.com/bills/new/assets/img/download.png"></p>
     <!-- <p *ngIf="isConfirmVisible" style="cursor: pointer; margin-right: 5px" (click)="save();"><img height="70" src="http://ibcabs.com/bills/new/assets/img/confirm.png"></p> -->
-  </div>
-  <div class="container" id="printdiv" style="max-width: 1400px; min-height: 2000px; max-height: 10000px;">
-    <div id="identity" class="row col-xs-12" >
-      <div class="col-xs-1">
-        <img src="http://ibcabs.com/bills/new/assets/img/ib.jpg" style="height:90px;width:90px;margin-top:-8px;">
-      </div>
-      <div class="col-xs-8">
-            <p id="address" style="font-size:20px;">Registered Office : 195/2,Park Street, Kolkata - 700017.<br>
-                Zonal Office: 86A, Tollygunge Road, Kolkata-700033.<br>
-                Mobile: 9830800776, Tel: (033) 2424 6551, (033) 4007 8545<br>
-                Email: indranilb@ibcabs.com, admin@ibcabs.com. Visit us at: www.ibcabs.com<br></p>
-      </div>
+</div>
+<div class="container" id="printdiv" style="max-width: 1400px; min-height: 2000px; max-height: 10000px;">
+    <div id="identity" class="row col-xs-12">
+        <div class="col-xs-1">
+            <img src="http://ibcabs.com/bills/new/assets/img/ib.jpg" style="height:90px;width:90px;margin-top:-8px;">
+        </div>
+        <div class="col-xs-8">
+            <p id="address" style="font-size:20px;">Registered Office : 195/2,Park Street, Kolkata - 700017.<br> Zonal Office: 86A, Tollygunge Road, Kolkata-700033.<br> Mobile: 9830800776, Tel: (033) 2424 6551, (033) 4007 8545<br> Email: indranilb@ibcabs.com, admin@ibcabs.com. Visit us at:
+                www.ibcabs.com
+                <br></p>
+        </div>
 
-      </div>
-      <br/><br/>
+    </div>
+    <br/><br/>
     <div class="tax-invoice">
-      <table>
-        <tr>
-          <td colspan="5" style="text-align: center;"><b><u>INDEX</u></b></td>
-        </tr>
-        <tr>
-          <td colspan="5" style="text-align: center;"><b><u>Bill for {{month}}-{{year}}</u></b></td>
-        </tr>
-        <tr>
-          <td colspan="5">
-            <p>
-              To<br/>
-              {{billdetails.result.head[0].party}}<br/>
-              {{billdetails.result.head[0].address}}<br/>
-            </p>
-          </td>
-        </tr>
-        <tr>
-          <th style="text-align: center;">Sl. No</th>
-          <th style="text-align: center;">Bill No.</th>
-          <th style="text-align: center;">Bill Date</th>
-          <th style="text-align: center;">Name Of Guest</th>
-          <th style="text-align: center;">Bill Amount</th>
-        </tr>
-        <tr *ngFor="let row of data">
-          <td style="text-align: center;">{{row.slno}}</td>
-          <td style="text-align: center;">{{row.billnum}}</td>
-          <td style="text-align: center;">{{row.billdate}}</td>
-          <td style="text-align: center;">{{row.reportto}}</td>
-          <td style="text-align: center;">{{row.amount}}</td>
-        </tr>
+        <table>
+            <tr>
+                <td colspan="5" style="text-align: center;"><b><u>INDEX</u></b></td>
+            </tr>
+            <tr>
+                <td colspan="5" style="text-align: center;"><b><u>Bill for {{month}}-{{year}}</u></b></td>
+            </tr>
+            <tr>
+                <td colspan="5">
+                    <p>
+                        To<br/> {{billdetails.result.head[0].party}}
+                        <br/> {{billdetails.result.head[0].address}}
+                        <br/>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <th style="text-align: center;">Sl. No</th>
+                <th style="text-align: center;">Bill No.</th>
+                <th style="text-align: center;">Bill Date</th>
+                <th style="text-align: center;">Name Of Guest</th>
+                <th style="text-align: center;">Bill Amount</th>
+            </tr>
+            <tr *ngFor="let row of data">
+                <td style="text-align: center;">{{row.slno}}</td>
+                <td style="text-align: center;">{{row.billnum}}</td>
+                <td style="text-align: center;">{{row.billdate}}</td>
+                <td style="text-align: center;">{{row.reportto}}</td>
+                <td style="text-align: center;">{{row.amount}}</td>
+            </tr>
 
-        <tr>
-          <th style="text-align: center;">TOTAL</th>
-          <th></th>
-          <th></th>
-          <th></th>
-          <th style="text-align: center;">{{billdetails.result.tail}}</th>
-        </tr>
-        <tr>
-          <td colspan="7">
-            <p style="margin-top: 30px; float: right; margin-right:30px;">Thank You</p>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <p><span style="float: left; margin-left:30px;">________________________</span><span style="float: right; margin-right:30px;">____________________________</span></p>
-            <br/>
-            <br/>
-            <p><span style="float: left; margin-left:30px;">Receiver Sign & Seal</span><span style="float: right; margin-right:30px;">Authorised Signatory</span></p>
-          </td>
-        </tr>
-      </table>
+            <tr>
+                <th style="text-align: center;">TOTAL</th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th style="text-align: center;">{{billdetails.result.tail}}</th>
+            </tr>
+            <tr>
+                <td colspan="7">
+                    <p style="margin-top: 30px; float: right; margin-right:30px;">Thank You</p>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <p><span style="float: left; margin-left:30px;">________________________</span><span style="float: right; margin-right:30px;">____________________________</span></p>
+                    <br/>
+                    <br/>
+                    <p><span style="float: left; margin-left:30px;">Receiver Sign & Seal</span><span style="float: right; margin-right:30px;">Authorised Signatory</span></p>
+                </td>
+            </tr>
+        </table>
     </div>
 
 
-  </div>
+</div>
