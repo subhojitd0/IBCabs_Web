@@ -1,63 +1,57 @@
-        <div class="center">
-          <p style="cursor: pointer; margin-right: 5px;" (click)="exportAsPDF('printdiv');"><img height="70" src="http://ibcabs.com/bills/new/assets/img/download.png"></p>
-          <p *ngIf="isConfirmVisible" style="cursor: pointer; margin-right: 5px" (click)="save();"><img height="70" src="http://ibcabs.com/bills/new/assets/img/confirm.png"></p>
+<div class="center" *ngIf="removeheader !== '1'">
+    <p style="cursor: pointer; margin-right: 5px;" (click)="exportAsPDF('printdiv');"><img height="70" src="http://ibcabs.com/bills/new/assets/img/download.png"></p>
+    <p *ngIf="isConfirmVisible" style="cursor: pointer; margin-right: 5px" (click)="save();"><img height="70" src="http://ibcabs.com/bills/new/assets/img/confirm.png"></p>
+</div>
+<div class="container" id="printdiv" style="max-width: 1400px; min-height: 2000px; max-height: 10000px;">
+    <div id="identity" class="row col-xs-12">
+        <div class="col-xs-1">
+            <img src="http://ibcabs.com/bills/new/assets/img/ib.jpg" style="height:90px;width:90px;margin-top:-8px;">
         </div>
-        <div class="container" id="printdiv" style="max-width: 1400px; min-height: 2000px; max-height: 10000px;">
-          <div id="identity" class="row col-xs-12" >
-              <div class="col-xs-1">
-                <img src="http://ibcabs.com/bills/new/assets/img/ib.jpg" style="height:90px;width:90px;margin-top:-8px;">
-              </div>
-              <div class="col-xs-12">
-                <p id="address"><span style="font-size:40px;font-style:italic;color:rgb(26, 26, 124);"><b>IB CABS</b></span>
-                  <span style="margin-left:15px;font-weight:800;font-size:20px;">Registered Office : 195/2,Park Street, Kolkata - 700017. 
+        <div class="col-xs-12">
+            <p id="address"><span style="font-size:40px;font-style:italic;color:rgb(26, 26, 124);"><b>IB CABS</b></span>
+                <span style="margin-left:15px;font-weight:800;font-size:20px;">Registered Office : 195/2,Park Street, Kolkata - 700017. 
                         Zonal Office: 86A, Tollygunge Road, Kolkata-700033.<br>
-                        <hr style="width:138%;margin:5px;border:1.4px solid rgb(196, 23, 23);"/>
+                        <hr style="width:104%;margin:5px;border:1.4px solid rgb(196, 23, 23);"/>
                         Mobile: 9830800776, Tel: (033) 2424 6551, (033) 4007 8545<br>
                         Email: indranilb@ibcabs.com, admin@ibcabs.com. Visit us at: www.ibcabs.com<br></span></p>
-              </div>
-            
-            </div>
-            <br/><br/>
-          <div class="tax-invoice">
-            <table>
-              <tr>
+        </div>
+
+    </div>
+    <br/><br/>
+    <div class="tax-invoice">
+        <table>
+            <tr>
                 <td colspan="7" style="text-align: center;font-size:25px;"><b><u>TAX INVOICE</u></b></td>
-              </tr>
-              <tr>
+            </tr>
+            <tr>
                 <td colspan="7"></td>
-              </tr>
-              <tr>
+            </tr>
+            <tr>
                 <td>
 
                 </td>
                 <td style="vertical-align:text-top;">
-                  <p>
-                    Vendor Name: M/s IB CABS<br/>
-                    Contact Person - Mr Shambhu Pal<br/>
-                    Vendor Code: 3195876<br/>
-                  </p>
+                    <p>
+                        Vendor Name: M/s IB CABS<br/> Contact Person - Mr Shambhu Pal<br/> Vendor Code: 3195876<br/>
+                    </p>
                 </td>
                 <td colspan="3">
-                  <p>
-                    <b>Regd. Office:</b><br/>
-                    195/2 Park Street,<br/>
-                    Kolkata - 700017<br/>
-                    Cell No. +91 9830800776<br/>
-                    E-Mail: admin@ibcabs.com<br/>
-                    <b>
+                    <p>
+                        <b>Regd. Office:</b><br/> 195/2 Park Street,<br/> Kolkata - 700017<br/> Cell No. +91 9830800776<br/> E-Mail: admin@ibcabs.com<br/>
+                        <b>
                       CIN: <br/>
                       STATE: West Bengal<br/>
                       STATE CODE: 19<br/>
                       INCOME TAX PAN NO. AHOPB6443K<br/>
                       GST Reg No: 19AHOPB6443K1ZZ
                     </b>
-                  </p>
+                    </p>
                 </td>
                 <td colspan="2">
-                  <p>
-                    <b>
-                      Invoice No : &nbsp;&nbsp;&nbsp; <input type="text" [(ngModel)]="billno" style="width:50%;border:none;"/><br/>
-                      Date: &nbsp;&nbsp;&nbsp; <input type="date" [(ngModel)]="billdate" style="border:none;"/><br/>
+                    <p>
+                        <b>
+                      Invoice No : &nbsp; <input type="text" [(ngModel)]="billno" style="width:50%;border:none;"/><br/>
+                      Date: &nbsp;&nbsp;&nbsp; <input type="date" [(ngModel)]="billdate" style="border:none; width: 52%; margin-left: 38px;"/><br/>
                       <br/>
                       <br/>
                       <br/>
@@ -65,40 +59,31 @@
                       Car Hiring Services<br/>
                       ( Period from {{fromdate}} to {{todate}} )
                     </b>
-                  </p>
+                    </p>
                 </td>
-              </tr>
-              <tr>
+            </tr>
+            <tr>
                 <td colspan="7"></td>
-              </tr>
-              <tr>
+            </tr>
+            <tr>
                 <td>
-                  
+
                 </td>
                 <td colspan="2">
-                  <b>
+                    <b>
                   To<br/>
                   M/s. RELIANCE PROJECTS & PROPERTY MANAGEMENT<br/>
                   SERVICES LIMITED.<br/>
-                  </b>
-                  17th and 18th Floor, Tower II, Godrej Waterside. Plot no. 5,<br/>
-                  Block DP, Sector- V, Dist North 24 Parganas,, P.S Electronics<br/>
-                  Complex, Salt Lake City, KOLKATA, Kolkata, West Bengal<br/>
-                  700091<br/>
+                  </b> 17th and 18th Floor, Tower II, Godrej Waterside. Plot no. 5,<br/> Block DP, Sector- V, Dist North 24 Parganas,, P.S Electronics<br/> Complex, Salt Lake City, KOLKATA, Kolkata, West Bengal<br/> 700091
+                    <br/>
                 </td>
                 <td colspan="2">
-                  Ref. Work Order No.: <b>540030799</b><br/>
-                  Dated - <b>24.05.2021</b><br/>
-                  Service Desc: Vehicle Hiring Services<br/>
-                  Buyer GSTIN: <b>19AAJCR6636B1Z9</b><br/>
-                  STATE: West Bengal<br/>
-                  State Code: 19<br/>
-                  INCOME TX PAN NO: <b>AAJCR6636B</b><br/>
+                    Ref. Work Order No.: <b>540030799</b><br/> Dated - <b>24.05.2021</b><br/> Service Desc: Vehicle Hiring Services<br/> Buyer GSTIN: <b>19AAJCR6636B1Z9</b><br/> STATE: West Bengal<br/> State Code: 19<br/> INCOME TX PAN NO: <b>AAJCR6636B</b><br/>
                 </td>
                 <td></td>
                 <td></td>
-              </tr>
-              <tr>
+            </tr>
+            <tr>
                 <td>S.No.</td>
                 <td style="text-align: center;">DESCRIPTION</td>
                 <td>SAC CODE No. / CATEGORY</td>
@@ -106,91 +91,91 @@
                 <td>PLACE OF BUSINESS OF SUPPLIER</td>
                 <td></td>
                 <td style="text-align: center;">Amount( Rs. )</td>
-              </tr>
-              <tr>
+            </tr>
+            <tr>
                 <td>1</td>
-                <td>Monthly & On Call Car Hiring Services for <b>COMPACT - <br/> SEDAN-INDIGO OR EQUIVALENT</b> ( Period from {{fromdate}} to {{todate}} ) As per JMS Sheet ID: <b>{{jmsdzire}}</b></td>
+                <td>Monthly & On Call Car Hiring Services for <b>COMPACT - <br/> SEDAN-INDIGO OR EQUIVALENT</b> ( Period from {{dzirefrom}} to {{dzireto}} ) As per JMS Sheet ID: <b>{{jmsdzire}}</b></td>
                 <td rowspan="3" style="text-align: center;">996601_05</td>
                 <td rowspan="3" style="text-align: center;">Kolkata</td>
                 <td rowspan="3" style="text-align: center;">Kolkata</td>
                 <td></td>
                 <td style="text-align: center;">{{amountdzire}}</td>
-              </tr>
-              <tr>
+            </tr>
+            <tr>
                 <td>2</td>
-                <td>Monthly & On Call Car Hiring Services for <b>SUV-XYLO <br/>OR EQUIVALENT</b> ( Period from {{fromdate}} to {{todate}} ) As per JMS Sheet ID: <b>{{jmssuv}}</b></td>
-                
+                <td>Monthly & On Call Car Hiring Services for <b>SUV-XYLO <br/>OR EQUIVALENT</b> ( Period from {{suvfrom}} to {{suvto}} ) As per JMS Sheet ID: <b>{{jmssuv}}</b></td>
+
                 <td></td>
                 <td style="text-align: center;">{{amountsuv}}</td>
-              </tr>
-              <tr>
+            </tr>
+            <tr>
                 <td>3</td>
-                <td>Monthly & On Call Car Hiring Services for <b>PREMIUM <br/> SUV-INNOVA OR EQUIVALENT</b> ( Period from {{fromdate}} to {{todate}} ) As per JMS Sheet ID: <b>{{jmsinnova}}</b></td>
-                
+                <td>Monthly & On Call Car Hiring Services for <b>PREMIUM <br/> SUV-INNOVA OR EQUIVALENT</b> ( Period from {{innovafrom}} to {{innovato}} ) As per JMS Sheet ID: <b>{{jmsinnova}}</b></td>
+
                 <td></td>
                 <td style="text-align: center;">{{amountinnova}}</td>
-              </tr>
-              <tr>
+            </tr>
+            <tr>
                 <td style="text-align: center;" colspan="4">GST to be paid by recipient under reverse charge</td>
                 <td style="text-align: center;">TAXABLE VALUE</td>
                 <td></td>
                 <td style="text-align: center;">{{roundedamount}}</td>
-              </tr>
-              <tr>
+            </tr>
+            <tr>
                 <td style="text-align: right" colspan="3">CGST @ 2.5%</td>
                 <td style="text-align: center;">{{cgst}}</td>
                 <td></td>
                 <td></td>
                 <td>-</td>
-              </tr>
-              <tr>
+            </tr>
+            <tr>
                 <td style="text-align: right" colspan="3">SGST @ 2.5%</td>
                 <td style="text-align: center;">{{sgst}}</td>
                 <td></td>
                 <td></td>
                 <td>-</td>
-              </tr>
-              <tr>
+            </tr>
+            <tr>
                 <td colspan="2">Total GST Amount</td>
                 <td style="text-align: center;">Total</td>
                 <td style="text-align: center;"><b>{{roundedtax}}</b></td>
                 <td></td>
                 <td></td>
                 <td>-</td>
-              </tr>
-              <tr>
+            </tr>
+            <tr>
                 <td colspan="4">{{gstinwords}}</td>
                 <td></td>
                 <td></td>
                 <td>-</td>
-              </tr>
-              <tr>
+            </tr>
+            <tr>
                 <td colspan="4"></td>
                 <td style="text-align: center;">TOTAL AMOUNT</td>
                 <td></td>
                 <td style="text-align: center;"><b>{{roundedamount}}</b></td>
-              </tr>
-              <tr>
+            </tr>
+            <tr>
                 <td colspan="7">{{totalmountinwords}}</td>
-              </tr>
-              <tr>
+            </tr>
+            <tr>
                 <td colspan="7">
-                  <p style="margin-top: 20px; margin-right:40px; float: right;">For M/S IB CABS</p>
-                  <br/>
-                  <br/>
-                  <br/>
-                  <br/>
-                  <br/>
-                  <br/><br/><br/>
-               
-                  
-                  <br/>
-                  <br/>
-                  <p><span style="float: left; margin-left:40px;">PREPARED BY</span><span style="float: right; margin-right:40px;">( AUTHORIZED SIGNATURE )</span></p>
-                </td>
-              </tr>
-            </table>
-          </div>
+                    <p style="margin-top: 20px; margin-right:40px; float: right;">For M/S IB CABS</p>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/><br/><br/>
 
-            
-        </div>
+
+                    <br/>
+                    <br/>
+                    <p><span style="float: left; margin-left:40px;">PREPARED BY</span><span style="float: right; margin-right:40px;">( AUTHORIZED SIGNATURE )</span></p>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+
+</div>

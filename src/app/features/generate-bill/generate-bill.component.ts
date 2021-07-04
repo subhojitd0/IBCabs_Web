@@ -336,6 +336,7 @@ billRegDetails: any[] = [];
     localStorage.setItem("billparty", element.party);
     this.apiService.post(BILL_RELIANCE_API, json).then((res: any)=>{ 
       debugger;
+      localStorage.setItem("removeheader", "1");
       localStorage.setItem("billdata", JSON.stringify(res));
       this.toastr.success("Your bill was successfully created",'Success');
       this.router.navigate([]).then(result => {  window.open('/' + ROUTE_VIEW_BILL_RELIANCE_SUMMARY, '_blank'); });

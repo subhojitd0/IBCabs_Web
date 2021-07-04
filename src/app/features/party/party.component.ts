@@ -52,6 +52,7 @@ export class PartyComponent implements OnInit {
     this.dataSource = new MatTableDataSource(party); */
    }
    ngOnInit() : void {
+    localStorage.setItem('partycopy', '0');
     this.partyrole = localStorage.getItem("enterparty");
     this.approve = localStorage.getItem("approve");
     this.delete = localStorage.getItem("delete");
@@ -110,6 +111,72 @@ export class PartyComponent implements OnInit {
     });
     this.router.events.subscribe(() => {
       dialogRef.close();
+    });
+  }
+  copyParty(id: any, type: any){
+    var r = confirm("Are you sure that you want to copy this party to create a new party ? This will make the current party end date to today");
+    if (r == true) {
+      if(type === "Package"){
+        this.editPackageWise(id);
+      }
+      else{
+        this.editSlabWise(id);
+      }
+    }
+  }
+  editSlabWise(id: any){
+    var json = 
+      {
+        "mode":4,
+        "partyheadcode": id
+      } 
+      localStorage.setItem('selectedpartyheadid', id);
+      localStorage.setItem('partycopy', '1');
+      const dialogRef = this.dialog.open(AddPartyHeadComponent);
+
+      dialogRef.afterClosed().subscribe(result => {
+        console.log(`Dialog closed`);
+      });
+      this.router.events.subscribe(() => {
+        dialogRef.close();
+      });
+
+  }
+  editPackageWise(id: any){
+    var json = 
+    {
+      "mode":4,
+      "partyheadcode": id
+    } 
+    this.apiService.post(PARTY_HEAD_API, json).then((res: any)=>{ 
+      if(res.hasOwnProperty('error')){
+        this.toastr.error("You cannot edit the selected party", "Error");
+        location.reload();
+      }
+      else{
+        let partyheaddetails = res;
+        partyheaddetails.mode = 2;
+        partyheaddetails.starttime = partyheaddetails.starttime.substr(0,5);
+        partyheaddetails.endtime = partyheaddetails.endtime.substr(0,5);
+        partyheaddetails.partyheadid = id;
+        let dateT = new Date();
+        let newDate = new Date(dateT.setDate(dateT.getDate()-1)).toLocaleDateString();
+        partyheaddetails.todate = newDate.split('/')[2] + "-" + newDate.split('/')[1] + "-" + newDate.split('/')[0];
+        this.toastr.info("Please wait while we are saving your data",'Information');
+        this.apiService.post(PARTY_HEAD_API, partyheaddetails).then((res: any)=>{ 
+          this.toastr.success("Your data was successfully edited",'Success');
+          localStorage.setItem('selectedpartyheadid', id);
+          localStorage.setItem('partycopy', '1');
+          const dialogRef = this.dialog.open(AddPartyHeadComponent);
+
+          dialogRef.afterClosed().subscribe(result => {
+            console.log(`Dialog closed`);
+          });
+          this.router.events.subscribe(() => {
+            dialogRef.close();
+          });
+        });
+      }
     });
   }
   deleteParty(id: any){

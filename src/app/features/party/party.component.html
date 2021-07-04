@@ -1,57 +1,59 @@
-
-        <div class="container">
-        <mat-card>
-          <mat-card-header>
+<div class="container">
+    <mat-card>
+        <mat-card-header>
             <div mat-card-avatar class="avatar-image-partyhead"></div>
             <mat-card-title>Party Head</mat-card-title>
             <mat-card-subtitle>Add, Update, Delete and View the Party Heads Here.</mat-card-subtitle>
-          </mat-card-header>
-        </mat-card>
-            <button *ngIf="partyrole === '1'" mat-stroked-button (click)="openDialog(0)">Create New Party Head</button>
+        </mat-card-header>
+    </mat-card>
+    <button *ngIf="partyrole === '1'" mat-stroked-button (click)="openDialog(0)">Create New Party Head</button>
 
-            <mat-form-field class="mid">
-                <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search Party Head">
-              </mat-form-field>
-              <mat-table [dataSource]="dataSource" matSort>
+    <mat-form-field class="mid">
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search Party Head">
+    </mat-form-field>
+    <mat-table [dataSource]="dataSource" matSort>
 
-                <!-- ID Column -->
-                <ng-container matColumnDef="headcode">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header> No.  </mat-header-cell>
-                  <mat-cell *matCellDef="let row"> {{row.headcode}} </mat-cell>
-                </ng-container>
-            
-                <!-- Name Column -->
-                <ng-container matColumnDef="name">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
-                  <mat-cell *matCellDef="let row"> {{row.name}} </mat-cell>
-                </ng-container>
-            
-                <!-- Color Column -->
-                <ng-container matColumnDef="ratetype">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header> Pricing </mat-header-cell>
-                  <mat-cell *matCellDef="let row"> {{row.ratetype}} </mat-cell>
-                </ng-container>
+        <!-- ID Column -->
+        <ng-container matColumnDef="headcode">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> No. </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.headcode}} </mat-cell>
+        </ng-container>
 
-                <ng-container matColumnDef="option">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header> Options </mat-header-cell>
-                    <mat-cell *matCellDef="let row" [style.color]="row.option">
-                        <span *ngIf="partyrole === '1'" style="margin-left: 10px; margin-right: 10px; cursor: pointer;" class="material-icons" (click)="openDialog(row.headcode)">
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.name}} </mat-cell>
+        </ng-container>
+
+        <!-- Color Column -->
+        <ng-container matColumnDef="ratetype">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Pricing </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.ratetype}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="option">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Options </mat-header-cell>
+            <mat-cell *matCellDef="let row" [style.color]="row.option">
+                <span *ngIf="partyrole === '1'" style="margin-left: 10px; margin-right: 10px; cursor: pointer;" class="material-icons" (click)="openDialog(row.headcode)">
                             create
-                        </span> 
-                        <span *ngIf="partyrole === '1' && delete === '1'" style="margin-left: 10px; margin-right: 10px; cursor: pointer;" class="material-icons" (click)="deleteParty(row.headcode)">
+                        </span>
+                <span *ngIf="partyrole === '1' && delete === '1'" style="margin-left: 10px; margin-right: 10px; cursor: pointer;" class="material-icons" (click)="deleteParty(row.headcode)">
                           | &nbsp; delete
-                        </span> 
-                      <!--   |<span *ngIf="userRole === '1'" style="margin-left: 10px; margin-right: 10px; cursor: pointer;" class="material-icons" (click)="approveParty(row.headcode)">
+                        </span>
+                <span *ngIf="partyrole === '1'" style="margin-left: 10px; margin-right: 10px; cursor: pointer;" class="material-icons" (click)="copyParty(row.headcode, row.ratetype)">
+                          | &nbsp; content_copy
+                        </span>
+                <!--   |<span *ngIf="userRole === '1'" style="margin-left: 10px; margin-right: 10px; cursor: pointer;" class="material-icons" (click)="approveParty(row.headcode)">
                           done
-                      </span>   -->  
-                    </mat-cell>
-                  </ng-container>
-            
-                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-                <mat-row *matRowDef="let row; columns: displayedColumns;">
-                </mat-row>
-              </mat-table>
-            <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+                      </span>   -->
+            </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;">
+        </mat-row>
+    </mat-table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
 
 
-        </div>
+</div>

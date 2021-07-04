@@ -102,10 +102,18 @@ export class RelinceSummaryComponent implements OnInit {
   roundedamount: number;
   roundedtax: number;
   party: string;
+  removeheader: string;
+  suvfrom: any;
+  suvto: any;
+  innovafrom: any;
+  innovato: any;
+  dzirefrom: any;
+  dzireto: any;
   constructor(private router: Router,private apiService: ApiService, public dialog: MatDialog, private toastr: ToastrService) {
     
    }
    ngOnInit(){
+    this.removeheader = localStorage.getItem("removeheader");
     let billdate = localStorage.getItem("billdate");
     let billno = localStorage.getItem("billnumber");
     if(billdate){
@@ -126,14 +134,20 @@ export class RelinceSummaryComponent implements OnInit {
       if(this.party.toString().includes("SUV")){
         this.jmssuv = this.billdetails.jmsno;
         this.amountsuv= this.billdetails.amount;
+        this.suvfrom = this.fromdate;
+        this.suvto = this.todate;
       }
       else if(this.party.toString().includes("INNOVA")){
         this.jmsinnova= this.billdetails.jmsno;
         this.amountinnova= this.billdetails.amount;
+        this.innovafrom = this.fromdate;
+        this.innovato = this.todate;
       }
       else{
         this.jmsdzire = this.billdetails.jmsno;
         this.amountdzire= this.billdetails.amount;
+        this.dzirefrom = this.fromdate;
+        this.dzireto = this.todate;
       }
       this.taxable= "";
       this.cgst= this.billdetails.cgst;
@@ -170,6 +184,7 @@ export class RelinceSummaryComponent implements OnInit {
       this.fontSize = 20 + this.marginTop * 0.03;*/
        localStorage.setItem("billdate","");
        localStorage.setItem("billnumber","");
+       localStorage.setItem("removeheader", "0");
     }
     
    }
