@@ -27,8 +27,11 @@ th {
 }
 
 .sticky {
-    position: fixed;
-    top: 50%;
+    position: sticky;
+    top: 5px;
+    margin-bottom: 10px;
+    /* position: fixed;
+    top: 50%; */
     width: auto;
     height: 0px;
     text-align: right;
@@ -37,18 +40,22 @@ th {
 }
 
 .sticky6 {
-    position: fixed;
-    top: 50%;
+    position: sticky;
+    top: 5px;
+    /* position: fixed;
+    top: 50%; */
     width: auto;
     height: 0px;
     text-align: right;
     z-index: 9999;
-    margin-top: 0px;
+    margin-top: -30px;
 }
 
 .sticky2 {
-    position: fixed;
-    top: 50%;
+    position: sticky;
+    top: 5px;
+    /* position: fixed;
+    top: 50%; */
     width: auto;
     left: 198px;
     height: 0px;
@@ -58,20 +65,23 @@ th {
 }
 
 .sticky7 {
-    position: fixed;
-    top: 50%;
+    position: sticky;
+    top: 5px;
+    /* position: fixed;
+    top: 50%; */
     width: auto;
-    left: 198px;
     height: 0px;
     text-align: right;
     z-index: 9999;
-    margin-top: 0px;
-    margin-left: 20px;
+    margin-top: -30px;
+    margin-left: 10px;
 }
 
 .sticky3 {
-    position: fixed;
-    top: 50%;
+    position: sticky;
+    top: 5px;
+    /*  position: fixed;
+    top: 50%; */
     width: auto;
     left: 330px;
     height: 0px;
@@ -81,20 +91,23 @@ th {
 }
 
 .sticky8 {
-    position: fixed;
-    top: 50%;
+    position: sticky;
+    top: 5px;
+    /* position: fixed;
+    top: 50%; */
     width: auto;
-    left: 330px;
     height: 0px;
     text-align: right;
     z-index: 9999;
-    margin-top: 0px;
-    margin-left: 20px;
+    margin-top: -30px;
+    margin-left: 10px;
 }
 
 .sticky4 {
-    position: fixed;
-    top: 50%;
+    position: sticky;
+    top: 5px;
+    /* position: fixed;
+    top: 50%; */
     width: auto;
     left: 488px;
     height: 0px;
@@ -104,8 +117,10 @@ th {
 }
 
 .sticky5 {
-    position: fixed;
-    top: 50%;
+    position: sticky;
+    top: 5px;
+    /* position: fixed;
+    top: 50%; */
     width: auto;
     left: 630px;
     height: 0px;
@@ -138,7 +153,6 @@ table {
 
 .tab-css {
     padding: 10px;
-    padding-bottom: 30px;
     background: #e3dada;
     border: 1px solid #d4c7c7;
     border-radius: 5px;
@@ -149,7 +163,6 @@ table {
 
 .tab-css-selected {
     padding: 10px;
-    padding-bottom: 30px;
     color: white;
     background: #3f51b5;
     border: 1px solid #d4c7c7;
@@ -193,7 +206,7 @@ table {
 
 mat-header-row {
     position: sticky;
-    top: 5px;
+    top: 60px;
     background: rgb(218, 218, 218);
     z-index: 999;
 }

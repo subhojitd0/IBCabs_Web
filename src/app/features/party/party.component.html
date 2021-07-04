@@ -40,7 +40,7 @@
                 <span *ngIf="partyrole === '1' && delete === '1'" style="margin-left: 10px; margin-right: 10px; cursor: pointer;" class="material-icons" (click)="deleteParty(row.headcode)">
                           | &nbsp; delete
                         </span>
-                <span *ngIf="partyrole === '1'" style="margin-left: 10px; margin-right: 10px; cursor: pointer;" class="material-icons" (click)="copyParty(row.headcode, row.ratetype)">
+                <span *ngIf="partyrole === '1' && row.ratetype === 'Package'" style="margin-left: 10px; margin-right: 10px; cursor: pointer;" class="material-icons" (click)="copyParty(row.headcode, row.ratetype)">
                           | &nbsp; content_copy
                         </span>
                 <!--   |<span *ngIf="userRole === '1'" style="margin-left: 10px; margin-right: 10px; cursor: pointer;" class="material-icons" (click)="approveParty(row.headcode)">

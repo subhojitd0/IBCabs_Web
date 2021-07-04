@@ -120,19 +120,26 @@
             <mat-card-subtitle>Add, Update, Delete and View the daily duties Here.</mat-card-subtitle>
         </mat-card-header>
     </mat-card>
-    <button mat-stroked-button (click)="newduty()">Create New Duty</button>
-    <button mat-stroked-button style="margin-left: 10px" (click)="showbulkedit()" *ngIf="!isBulkEdit">Do Bulk Edit</button>
-    <button mat-stroked-button style="margin-left: 10px" (click)="showsingleedit()" *ngIf="isBulkEdit">Do Single Edit</button>
-    <button mat-stroked-button style="margin-left: 10px" (click)="savebulkedit()" *ngIf="isBulkEdit">Save Bulk Edit</button>
     <mat-form-field class="mid" *ngIf="!isBulkEdit">
         <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search Duty">
     </mat-form-field> <br/> <br/>
-    <span (click)="selectall()" [ngClass]="selecteditem == 'ALL' ? 'tab-css-selected sticky' : 'tab-css sticky'"> All Duties </span>
-    <span (click)="selectstage1()" [ngClass]="selecteditem == 'STAGE-1' ? 'tab-css-selected sticky2' : 'tab-css sticky2'"> Duties Assigned </span>
-    <span (click)="selectstage2()" [ngClass]="selecteditem == 'STAGE-2' ? 'tab-css-selected sticky3' : 'tab-css sticky3'"> Car Assigned Duties </span>
-    <span (click)="selectstage3()" [ngClass]="selecteditem == 'STAGE-3' ? 'tab-css-selected sticky4' : 'tab-css sticky4'"> Completed Duties </span>
-    <span (click)="selectstage4()" [ngClass]="selecteditem == 'STAGE-4' ? 'tab-css-selected sticky5' : 'tab-css sticky5'"> Approved Duties </span>
-    <span style="margin-left: 20px;
+    <p style="position: sticky;
+    top: 0px;
+    margin-top: 6px;
+    background: #ffffff;
+    z-index: 9999;
+    padding: 20px;
+    width: 100%;">
+        <span class="tab-css sticky6" (click)="newduty()">Create New Duty</span>
+        <span class="tab-css sticky7" (click)="showbulkedit()" *ngIf="!isBulkEdit">Do Bulk Edit</span>
+        <span class="tab-css sticky7" (click)="showsingleedit()" *ngIf="isBulkEdit">Do Single Edit</span>
+        <span class="tab-css sticky8" (click)="savebulkedit()" *ngIf="isBulkEdit">Save Bulk Edit</span>
+        <span (click)="selectall()" [ngClass]="selecteditem == 'ALL' ? 'tab-css-selected sticky' : 'tab-css sticky'"> All Duties </span>
+        <span (click)="selectstage1()" [ngClass]="selecteditem == 'STAGE-1' ? 'tab-css-selected sticky2' : 'tab-css sticky2'"> Duties Assigned </span>
+        <span (click)="selectstage2()" [ngClass]="selecteditem == 'STAGE-2' ? 'tab-css-selected sticky3' : 'tab-css sticky3'"> Car Assigned Duties </span>
+        <span (click)="selectstage3()" [ngClass]="selecteditem == 'STAGE-3' ? 'tab-css-selected sticky4' : 'tab-css sticky4'"> Completed Duties </span>
+        <span (click)="selectstage4()" [ngClass]="selecteditem == 'STAGE-4' ? 'tab-css-selected sticky5' : 'tab-css sticky5'"> Approved Duties </span>
+        <span style="margin-left: 20px;
                 font-weight: 500;
                 font-size: 17px;
                 color: rgb(255 255 255);
@@ -143,9 +150,9 @@
                 z-index: 9999;" *ngIf="isBulkEdit"> KM Diff - {{tkm}}   &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;  HR Diff - {{thr}} </span>
 
 
-
+    </p>
     <br/><br/>
-    <mat-table [dataSource]="dataSource" matSort *ngIf="!isBulkEdit">
+    <mat-table style="margin-top: -40px" [dataSource]="dataSource" matSort *ngIf="!isBulkEdit">
         <!-- ID Column -->
         <ng-container matColumnDef="dutydt">
             <mat-header-cell *matHeaderCellDef mat-sort-header> Date </mat-header-cell>
@@ -201,7 +208,7 @@
 
 
 
-    <mat-table class="bulktable" [dataSource]="bulkDataSource" matSort *ngIf="isBulkEdit" style="width:140%;">
+    <mat-table class="bulktable" [dataSource]="bulkDataSource" matSort *ngIf="isBulkEdit" style="width:140%; margin-top: -40px">
 
         <ng-container matColumnDef="isselected">
             <mat-header-cell *matHeaderCellDef mat-sort-header> <input type="checkbox" (change)="selectallduty()"> </mat-header-cell>

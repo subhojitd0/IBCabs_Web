@@ -163,13 +163,13 @@ export class AddPartyHeadComponent implements OnInit {
     if(copy === "1"){
       this.partyheaddetails.mode = 1;
       this.partyheaddetails.partyheadid = 0;
-      if(this.partyheaddetails.ratetype === 1){
+      /* if(this.partyheaddetails.ratetype === 1){
         this.partyheaddetails.fromdate = this.partyheaddetails.todate;
         let dateT = new Date(this.partyheaddetails.fromdate);
         let newDate = dateT.toLocaleDateString();
         this.partyheaddetails.todate = "2099" + "-" + newDate.split('/')[1] + "-" + newDate.split('/')[0];
         this.partyheaddetails.fromdate = newDate.split('/')[2]  + "-" + newDate.split('/')[1] + "-" + newDate.split('/')[0];
-      }
+      } */
     }
     this.toastr.info("Please wait while we are saving your data",'Information');
     this.apiService.post(PARTY_HEAD_API, this.partyheaddetails).then((res: any)=>{ 

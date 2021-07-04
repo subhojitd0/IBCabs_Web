@@ -154,7 +154,7 @@ export class OnCallBillAComponent implements OnInit {
       billSave.subject =  localStorage.getItem("billsubject");
       billSave.gsttype = localStorage.getItem("billgst");
       billSave.parkingtype = localStorage.getItem("billparking");
-      billSave.billtype = "b";
+      billSave.billtype = "B";
       billSave.total = this.roundedgross;
       billSave.mode = "1";
       this.apiService.post(BILL_API, billSave).then((res: any)=>{ 

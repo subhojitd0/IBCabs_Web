@@ -136,7 +136,7 @@ billRegDetails: any[] = [];
     else if(bill.billtype === "E"){
       this.openCumulativeBill(bill);
     }
-    else if(bill.billtype === "b"){
+    else if(bill.billtype === "B"){
       this.openOnCallBill(bill);
     }
     else if(bill.billtype === "G"){
