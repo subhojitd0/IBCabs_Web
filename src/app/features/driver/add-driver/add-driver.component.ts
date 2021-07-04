@@ -97,7 +97,8 @@ export class AddDriverComponent implements OnInit {
    }
   savedriver(){
     debugger;
-    this.driverDetails.isActive = true;
+    if(this.driverDetails.license){
+      this.driverDetails.isActive = true;
     if(this.driverDetails.mode != 2)
     {
       this.driverDetails.mode = 1;
@@ -108,5 +109,11 @@ export class AddDriverComponent implements OnInit {
       //this.router.navigateByUrl('/' + ROUTE_DRIVER);
       location.reload();
     });
+    }
+    else
+    {
+      this.toastr.error("Please Enter a Valid License Number!")
+    }
+    
   }
 }

@@ -318,8 +318,7 @@ export class NewBillComponent implements OnInit {
     }
   }
   somethingChanged(){
-    if(this.billDetails.format === '3')
-    {
+    if(this.showReportTo){
       if(!this.billDetails.party){
         this.toastr.info("Please select a party for report to filter");
       }
