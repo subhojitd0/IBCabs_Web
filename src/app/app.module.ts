@@ -67,6 +67,7 @@ import { AbpComponent } from './features/bills/abp/abp.component';
 import { DDRExportComponent } from './features/ddr-export/ddrexport.component';
 import { DailyOTComponent } from './features/bills/daily-ot/dailyot.component';
 import { TimesBillComponent } from './features/bills/times/times.component';
+import { BillhComponent } from './features/bills/billh/billh.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -112,7 +113,8 @@ import { TimesBillComponent } from './features/bills/times/times.component';
     AbpComponent,
     DDRExportComponent,
     DailyOTComponent,
-    TimesBillComponent
+    TimesBillComponent,
+    BillhComponent
   ],
   imports: [
     BrowserModule,
