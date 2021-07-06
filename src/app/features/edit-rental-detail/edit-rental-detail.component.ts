@@ -128,6 +128,7 @@ export class EditRentalDetailComponent implements OnInit {
     
    }
    ngOnInit() : void {
+    localStorage.setItem('selectedduty', "0");
     this.ddrrole = localStorage.getItem("enterddr");
     this.approverole = localStorage.getItem("approve");
     this.delete = localStorage.getItem("delete");

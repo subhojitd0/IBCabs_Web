@@ -63,10 +63,13 @@ export class AddSlabComponent implements OnInit {
   slabdetails: SlabDetails;
   cartypes: any;
   allcartype: any;
+  allcars: any;
+  allcarno: any;
   constructor(private router: Router, private apiService: ApiService, private toastr: ToastrService) {
     let partyheadname = localStorage.getItem('selectedpartyheadname'); 
     let partycode = localStorage.getItem('selectedpartyheadid');
     this.cartypes = JSON.parse(localStorage.getItem('allcartypes'));
+    this.allcars = JSON.parse(localStorage.getItem('allcars'));
     this.slabdetails = new SlabDetails();
     this.slabdetails.headname = partyheadname;
     this.slabdetails.partyheadcode = partycode;
@@ -74,10 +77,15 @@ export class AddSlabComponent implements OnInit {
    ngOnInit() : void {
     this.cartypes = JSON.parse(localStorage.getItem('allcartypes'));
     this.allcartype = this.cartypes.map(x=>x.car);
+    this.allcarno = this.allcars.map(x=>x.carno);
      }
      filterCarType(val: any){
       debugger;
       this.allcartype = this.cartypes.filter(x=>x.car.toString().toLowerCase().includes(val.toString().toLowerCase())).map(y=>y.car);;
+    }
+    filterCar(val: any){
+      debugger;
+      this.allcarno = this.allcars.filter(x=>x.carno.toString().toLowerCase().includes(val.toString().toLowerCase())).map(y=>y.carno);;
     }
   savepartyrate(){
     debugger;

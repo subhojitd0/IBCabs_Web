@@ -46,6 +46,9 @@ export interface NewRental {
   nightcharge:string,
   dutyid: string,
   replace: string,
+  dutytype: string,
+  pickuploc: string,
+  droploc: string
 }
 export class RentalAdd implements NewRental {
   mode: string;
@@ -79,6 +82,9 @@ export class RentalAdd implements NewRental {
   dutystatus: string;
   dutyid: string;
   replace: string;
+  dutytype: string;
+  pickuploc: string;
+  droploc: string;
 }
 
 @Component({
@@ -168,6 +174,7 @@ export class RentalDetailComponent implements OnInit {
           this.rentalAdd.mode = "2";
           this.rentalAdd.dutyid = id;
         }
+        this.rentalAdd.dutytype = "0";
         this.apiService.post(RENTAL_DETAIL_API_OFFICE, this.rentalAdd).then((res: any)=>{ 
           this.toastr.success("Your data was successfully saved",'Success');
           this.router.navigateByUrl('/' + ROUTE_VIEW_DDR);
@@ -213,6 +220,7 @@ export class RentalDetailComponent implements OnInit {
           this.rentalAdd.mode = "2";
           this.rentalAdd.dutyid = id;
         }
+        this.rentalAdd.dutytype = "0";
         this.apiService.post(RENTAL_DETAIL_API_OFFICE, this.rentalAdd).then((res: any)=>{ 
           this.toastr.success("Your data was successfully saved",'Success');
           localStorage.setItem('selectedduty', res.dutyid);
@@ -251,6 +259,7 @@ export class RentalDetailComponent implements OnInit {
           this.rentalAdd.mode = "2";
           this.rentalAdd.dutyid = id;
         }
+        this.rentalAdd.dutytype = "0";
       this.apiService.post(RENTAL_DETAIL_API_OFFICE, this.rentalAdd).then((res: any)=>{ 
         this.toastr.success("Your data was successfully saved",'Success');
         localStorage.setItem('selectedduty', "0");
@@ -415,7 +424,6 @@ export class RentalDetailComponent implements OnInit {
       this.apiService.post(RENTAL_DETAIL_API_OFFICE, json).then((res: any)=>{ 
         debugger;
         this.rentalAdd = res;
-        
         if(this.rentalAdd.center == 0){
           this.rentalAdd.centerName = "Tollygunge";
         }
