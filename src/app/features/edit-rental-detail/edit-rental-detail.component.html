@@ -129,12 +129,12 @@
     background: #ffffff;
     z-index: 9999;
     padding: 20px;
-    width: 100%;">
+    width: 140%;">
         <span class="tab-css sticky6" (click)="newduty()">Create New Duty</span>
         <span class="tab-css sticky7" (click)="showbulkedit()" *ngIf="!isBulkEdit">Do Bulk Edit</span>
         <span class="tab-css sticky7" (click)="showsingleedit()" *ngIf="isBulkEdit">Do Single Edit</span>
-        <span class="tab-css sticky8" (click)="savebulkedit()" *ngIf="isBulkEdit">Save Bulk Edit</span>
-        <span (click)="selectall()" [ngClass]="selecteditem == 'ALL' ? 'tab-css-selected sticky' : 'tab-css sticky'"> All Duties </span>
+        <span class="tab-css sticky8" style="margin-left: 100px;" (click)="savebulkedit()" *ngIf="isBulkEdit">Save Bulk Edit</span>
+        <span style="margin-left: 100px;" (click)="selectall()" [ngClass]="selecteditem == 'ALL' ? 'tab-css-selected sticky' : 'tab-css sticky'"> All Duties </span>
         <span (click)="selectstage1()" [ngClass]="selecteditem == 'STAGE-1' ? 'tab-css-selected sticky2' : 'tab-css sticky2'"> Duties Assigned </span>
         <span (click)="selectstage2()" [ngClass]="selecteditem == 'STAGE-2' ? 'tab-css-selected sticky3' : 'tab-css sticky3'"> Car Assigned Duties </span>
         <span (click)="selectstage3()" [ngClass]="selecteditem == 'STAGE-3' ? 'tab-css-selected sticky4' : 'tab-css sticky4'"> Completed Duties </span>
