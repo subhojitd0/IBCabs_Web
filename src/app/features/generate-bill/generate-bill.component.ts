@@ -333,8 +333,7 @@ billRegDetails: any[] = [];
       nightstart: element.nightstart,
       nightend: element.nightend,
       gsttype: element.gsttype,
-      parkinggst: element.parkinggst,
-      billCalType: element.billCalType
+      parkinggst: element.parkinggst
     }
     localStorage.setItem("billfrom", element.billfrom);
     localStorage.setItem("billto", element.billto);

@@ -331,7 +331,7 @@ export class NewBillComponent implements OnInit {
       this.showYear = false;
       this.showCustomFA = true;
       this.showCustomFAVal = true;
-      this.showTotalCal = true;
+      this.showTotalCal = false;
       this.showDayRate = false;
       this.showTotalCalABP = false;
     }

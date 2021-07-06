@@ -103,7 +103,6 @@ export class BillhComponent implements OnInit {
     this.billgst = localStorage.getItem("billgst");
     let billdate = localStorage.getItem("billdate");
     let billno = localStorage.getItem("billnumber");
-    let billcalltype = localStorage.getItem("billcaltype");
     if(billdate){
       this.isConfirmVisible = false;
       this.billdate = billdate;
@@ -136,9 +135,9 @@ export class BillhComponent implements OnInit {
          substringVal = this.billdetails.tail[0].grosstotal.toString().substr(0, index);
       substringVal = substringVal.toString().replace(',',''); */
       this.amountInWord = this.apiService.convertAmountToWord(this.roundedgross);
-      if(billcalltype === '0'){
+      /* if(billcalltype === '0'){
         this.billdetails.tail[0].monthlycontract = "0.00";
-      }
+      } */
       this.billf=new Date(this.billfrom);
       this.billt=new Date(this.billto);
       localStorage.removeItem("billnumber");
