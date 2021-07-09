@@ -72,7 +72,7 @@
             <!-- Name Column -->
             <ng-container matColumnDef="dutydate">
                 <mat-header-cell *matHeaderCellDef mat-sort-header> Date </mat-header-cell>
-                <mat-cell *matCellDef="let row"> {{row.dutydate}} </mat-cell>
+                <mat-cell *matCellDef="let row"> {{row.dutydate | date:'dd/MM/yyyy'}} </mat-cell>
             </ng-container>
 
             <!-- Color Column -->

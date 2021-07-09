@@ -10,7 +10,8 @@
         </div>
         <div class="col-xs-8">
             <p id="address" style="font-size:20px;">Registered Office : 195/2,Park Street, Kolkata - 700017.<br> Zonal Office: 86A, Tollygunge Road, Kolkata-700033.<br> Mobile: 9830800776, Tel: (033) 2424 6551, (033) 4007 8545<br> Email: indranilb@ibcabs.com, admin@ibcabs.com. Visit us at:
-                www.ibcabs.com<br></p>
+                www.ibcabs.com
+                <br></p>
         </div>
         <div class="col-xs-3 gst">
 
@@ -78,7 +79,7 @@
             <tr *ngFor="let row of billdetails.body">
                 <td>{{row.sl}}</td>
                 <td>{{row.slipno}}</td>
-                <td>{{row.dutydate}}</td>
+                <td>{{row.dutydate | date:'dd/MM/yyyy'}}</td>
                 <td>{{row.reportto}}</td>
                 <td>{{row.carno}}</td>
                 <td>{{row.cartype}}</td>

@@ -1,37 +1,35 @@
-        <div class="center">
-          <p style="cursor: pointer; margin-right: 5px;" (click)="exportAsPDF('printdiv');"><img height="70" src="http://ibcabs.com/bills/new/assets/img/download.png"></p>
-          <p style="cursor: pointer; margin-right: 5px" (click)="save();"><img height="70" src="http://ibcabs.com/bills/new/assets/img/confirm.png"></p>
+<div class="center">
+    <p style="cursor: pointer; margin-right: 5px;" (click)="exportAsPDF('printdiv');"><img height="70" src="http://ibcabs.com/bills/new/assets/img/download.png"></p>
+    <p style="cursor: pointer; margin-right: 5px" (click)="save();"><img height="70" src="http://ibcabs.com/bills/new/assets/img/confirm.png"></p>
+</div>
+<div class="container" id="printdiv" style="max-width: 1500px; min-height: 1400px; max-height: 10000px;">
+    <p id="header">MIS for {{this.billparty}}</p>
+    <div id="identity" class="row col-xs-12">
+        <div class="col-xs-1">
+            <img src="http://ibcabs.com/bills/new/assets/img/ib.jpg" style="height:90px;width:90px;margin-top:-8px;">
         </div>
-        <div class="container" id="printdiv" style="max-width: 1500px; min-height: 1400px; max-height: 10000px;">
-          <p id="header">MIS for {{this.billparty}}</p>
-          <div id="identity" class="row col-xs-12" >
-            <div class="col-xs-1">
-              <img src="http://ibcabs.com/bills/new/assets/img/ib.jpg" style="height:90px;width:90px;margin-top:-8px;">
-            </div>
-            <div class="col-xs-8">
-                  <p id="address" style="font-size:20px;">Registered Office : 195/2,Park Street, Kolkata - 700017.<br>
-                      Zonal Office: 86A, Tollygunge Road, Kolkata-700033.<br>
-                      Mobile: 9830800776, Tel: (033) 2424 6551, (033) 4007 8545<br>
-                      Email: indranilb@ibcabs.com, admin@ibcabs.com. Visit us at: www.ibcabs.com<br></p>
-            </div>
-              <div class="col-xs-3 gst">
-                  
-              </div>
-            
-            
-            </div>
-            <div id="customer" [ngStyle]="{'margin-top.px':marginTop, 'margin-bottom.px': marginTop}" class="row" [style.display]="'block'">
-              <!-- <div id="customer-title" class="col-xs-4" style="margin-right: 0px; max-width: 500px">
+        <div class="col-xs-8">
+            <p id="address" style="font-size:20px;">Registered Office : 195/2,Park Street, Kolkata - 700017.<br> Zonal Office: 86A, Tollygunge Road, Kolkata-700033.<br> Mobile: 9830800776, Tel: (033) 2424 6551, (033) 4007 8545<br> Email: indranilb@ibcabs.com, admin@ibcabs.com. Visit us at:
+                www.ibcabs.com<br></p>
+        </div>
+        <div class="col-xs-3 gst">
+
+        </div>
+
+
+    </div>
+    <div id="customer" [ngStyle]="{'margin-top.px':marginTop, 'margin-bottom.px': marginTop}" class="row" [style.display]="'block'">
+        <!-- <div id="customer-title" class="col-xs-4" style="margin-right: 0px; max-width: 500px">
                   To<br>
                         <b>{{billdetails.head[0].billto}}</b><br/><br/>
                         {{billdetails.head[0].billaddress}}<br/><br/>
                   GST :<span style="margin-right: 10px;">{{billdetails.head[0].gst}}</span><span>PAN: {{billdetails.head[0].pan}}</span><br/><br/>
                   <span>Subject:   {{billdetails.head[0].subject}}</span>
               </div> -->
-              <!-- <div class="col-xs-4" style="width: 20%;">
+        <!-- <div class="col-xs-4" style="width: 20%;">
 
               </div> -->
-              <!-- <div  class="col-xs-4" style="float: right;">
+        <!-- <div  class="col-xs-4" style="float: right;">
                 <table id="meta">
                   <tbody>
                     <tr>
@@ -51,113 +49,113 @@
                   </tbody>
                 </table>
               </div> -->
-            </div>
-            <br/><br/>
-          <!-- <mat-card>
+    </div>
+    <br/><br/>
+    <!-- <mat-card>
             <mat-card-header>
               <div mat-card-avatar class="avatar-image-partyhead"></div>
               <mat-card-title>Bill Register</mat-card-title>
               <mat-card-subtitle>View, Delete and View the Bills Here.</mat-card-subtitle>
             </mat-card-header>
           </mat-card> -->
-          <div style="margin-top: 15px;"> 
-              <mat-table [dataSource]="dataSource" matSort>
+    <div style="margin-top: 15px;">
+        <mat-table [dataSource]="dataSource" matSort>
 
-                <!-- ID Column -->
-                <ng-container matColumnDef="sl">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header> Sl. </mat-header-cell>
-                  <mat-cell *matCellDef="let row"> {{row.sl}} </mat-cell>
-                </ng-container>
-            
-                <!-- Name Column -->
-                <ng-container matColumnDef="dutydate">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header> Duty Date </mat-header-cell>
-                  <mat-cell *matCellDef="let row"> {{row.dutydate}} </mat-cell>
-                </ng-container>
+            <!-- ID Column -->
+            <ng-container matColumnDef="sl">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Sl. </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{row.sl}} </mat-cell>
+            </ng-container>
 
-                <ng-container matColumnDef="reportto">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header> Officer Name </mat-header-cell>
-                  <mat-cell *matCellDef="let row"> {{row.reportto}} </mat-cell>
-                </ng-container>
-            
-                <!-- Color Column -->
-                <ng-container matColumnDef="carno">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header> Car No. </mat-header-cell>
-                  <mat-cell *matCellDef="let row"> {{row.carno}} </mat-cell>
-                </ng-container>
+            <!-- Name Column -->
+            <ng-container matColumnDef="dutydate">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Duty Date </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{row.dutydate | date:'dd/MM/yyyy'}} </mat-cell>
+            </ng-container>
 
-                <ng-container matColumnDef="cartype">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header> Car Type </mat-header-cell>
-                  <mat-cell *matCellDef="let row"> {{row.cartype}} </mat-cell>
-                </ng-container>
+            <ng-container matColumnDef="reportto">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Officer Name </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{row.reportto}} </mat-cell>
+            </ng-container>
 
-                <!-- Color Column -->
-                <ng-container matColumnDef="stkm">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header> St. KM </mat-header-cell>
-                  <mat-cell *matCellDef="let row"> {{row.startkm}} </mat-cell>
-                </ng-container>
+            <!-- Color Column -->
+            <ng-container matColumnDef="carno">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Car No. </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{row.carno}} </mat-cell>
+            </ng-container>
 
-                <ng-container matColumnDef="enkm">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header> End KM </mat-header-cell>
-                  <mat-cell *matCellDef="let row"> {{row.endkm}} </mat-cell>
-                </ng-container>
+            <ng-container matColumnDef="cartype">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Car Type </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{row.cartype}} </mat-cell>
+            </ng-container>
 
-                <!-- Color Column -->
-                <ng-container matColumnDef="sthr">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header> St. Hr. </mat-header-cell>
-                  <mat-cell *matCellDef="let row"> {{row.starthour.toString().substr(row.starthour.toString().length - 8, 5)}} </mat-cell>
-                </ng-container>
+            <!-- Color Column -->
+            <ng-container matColumnDef="stkm">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> St. KM </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{row.startkm}} </mat-cell>
+            </ng-container>
 
-                <ng-container matColumnDef="enhr">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header> End Hr. </mat-header-cell>
-                  <mat-cell *matCellDef="let row"> {{row.endhour.toString().substr(row.endhour.toString().length - 8, 5)}}</mat-cell>
-                </ng-container>
+            <ng-container matColumnDef="enkm">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> End KM </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{row.endkm}} </mat-cell>
+            </ng-container>
 
-                <!-- ID Column -->
-                <ng-container matColumnDef="hour">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header> Tot Hr.  </mat-header-cell>
-                  <mat-cell *matCellDef="let row"> {{row.hour}} </mat-cell>
-                </ng-container>
-            
-                <!-- Name Column -->
-                <ng-container matColumnDef="km">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header> Net KM </mat-header-cell>
-                  <mat-cell *matCellDef="let row"> {{row.km}} </mat-cell>
-                </ng-container>
+            <!-- Color Column -->
+            <ng-container matColumnDef="sthr">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> St. Hr. </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{row.starthour.toString().substr(row.starthour.toString().length - 8, 5)}} </mat-cell>
+            </ng-container>
 
-                <ng-container matColumnDef="owner">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header> Vendor </mat-header-cell>
-                  <mat-cell *matCellDef="let row"> {{row.owner}} </mat-cell>
-                </ng-container>
+            <ng-container matColumnDef="enhr">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> End Hr. </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{row.endhour.toString().substr(row.endhour.toString().length - 8, 5)}}</mat-cell>
+            </ng-container>
 
-                <ng-container matColumnDef="exhr">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header> Ex. Hr. </mat-header-cell>
-                  <mat-cell *matCellDef="let row"> {{row.extrahour}} </mat-cell>
-                </ng-container>
-            
-                <!-- Color Column -->
-                <ng-container matColumnDef="parking">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header> Parking </mat-header-cell>
-                  <mat-cell *matCellDef="let row"> {{row.parking}} </mat-cell>
-                </ng-container>
+            <!-- ID Column -->
+            <ng-container matColumnDef="hour">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Tot Hr. </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{row.hour}} </mat-cell>
+            </ng-container>
 
-                <ng-container matColumnDef="outstation">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header> Outstation </mat-header-cell>
-                  <mat-cell *matCellDef="let row"> {{row.outstation}} </mat-cell>
-                </ng-container>
+            <!-- Name Column -->
+            <ng-container matColumnDef="km">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Net KM </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{row.km}} </mat-cell>
+            </ng-container>
 
-                <ng-container matColumnDef="night">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header> Night </mat-header-cell>
-                  <mat-cell *matCellDef="let row"> {{row.night}}</mat-cell>
-                </ng-container>
+            <ng-container matColumnDef="owner">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Vendor </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{row.owner}} </mat-cell>
+            </ng-container>
 
-                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-                <mat-row *matRowDef="let row; columns: displayedColumns;">
-                </mat-row>
-              </mat-table>
-            </div>
+            <ng-container matColumnDef="exhr">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Ex. Hr. </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{row.extrahour}} </mat-cell>
+            </ng-container>
 
-            <!-- <div [ngStyle]="{'margin-top.px':marginTop}" id="customer" style="display: block;" class="row">
+            <!-- Color Column -->
+            <ng-container matColumnDef="parking">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Parking </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{row.parking}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="outstation">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Outstation </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{row.outstation}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="night">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Night </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{row.night}}</mat-cell>
+            </ng-container>
+
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;">
+            </mat-row>
+        </mat-table>
+    </div>
+
+    <!-- <div [ngStyle]="{'margin-top.px':marginTop}" id="customer" style="display: block;" class="row">
               <br><br>
             <div id="customer-title" class="col-xs-3" style="max-width: 300px;">
               <table>
@@ -254,5 +252,5 @@
                 <p style="float: right;margin-top: 300px;font-weight: bold; font-size: 15px;">For IB Cabs</p>
             </div>
               </div> -->
-              
-        </div>
+
+</div>

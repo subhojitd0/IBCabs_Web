@@ -1,252 +1,252 @@
-        <div class="center">
-          <!-- <p style="cursor: pointer; margin-right: 5px;" (click)="exportAsPDF('printdiv');"><img height="70" src="./../../../../assets/img/download.png"></p> -->
-          <p *ngIf="isConfirmVisible" style="cursor: pointer; margin-right: 5px" (click)="save();"><img height="70" src="http://ibcabs.com/bills/new/assets/img/confirm.png"></p>
-        </div>
-        <div class="container" id="printdiv" style="max-width: 1400px; min-height: 1200px; max-height: 10000px;">
-          <p id="header" style="width: 160%">JMS FOR {{billparty}} {{month}} {{year}}</p>
-          <button  mat-stroked-button style="margin-left: 10px" (click)="export()"> Export To Excel</button> <br/> <br/>
-          <mat-form-field>
-            <p> JMS Bill No.</p>
-            <input type="text" matInput name="name" [(ngModel)]="jmsno">
-          </mat-form-field>
-          <mat-form-field style="margin-left: 20px">
-            <p> JMS Bill Date</p>
-            <input type="date" matInput name="date" [(ngModel)]="jmsdate">
-          </mat-form-field>
-          
-            <br/><br/>
-          <table style="width: 160%; margin-right: 30px;" #table>
-            <tr>
-              <td></td>
-              <td></td>
-              <td>State</td>
-              <td></td>
-              <td>Kolkata</td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <td></td>
-              <td></td>
-              <td>ARC No.</td>
-              <td></td>
-              <td>550022786</td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <td></td>
-              <td></td>
-              <td>Work Order No. / Frame Order No.</td>
-              <td></td>
-              <td>540030799</td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <td></td>
-              <td></td>
-              <td>Vendor Code</td>
-              <td></td>
-              <td>3198576</td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <td></td>
-              <td></td>
-              <td>IMS No.</td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <td></td>
-              <td></td>
-              <td>Period</td>
-              <td></td>
-              <td>{{this.billfrom}} to {{this.billto}}</td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <td></td>
-              <td></td>
-              <td  style="text-align: center" colspan="3">Service Category Description ------------------------></td>
-              <td></td>
-              <td></td>
-              <td  style="text-align: center" colspan="12">{{cardesc}}</td>
-            </tr>
-            <tr>
-              <td></td>
-              <td></td>
-              <td  style="text-align: center" colspan="3">Service Category Description ------------------------></td>
-              <td></td>
-              <td></td>
-              <td  style="text-align: center" colspan="2">CHRG MONTHLY FIX VEHICLE - {{billdetails[0].head[0].monthlyhour}}H - 30D - {{billdetails[0].head[0].monthlykm}}KM </td>
-              <td  style="text-align: center" colspan="2">CHRG MONTHLY FIX VEHICLE - EXTRA KMS</td>
-              <td  style="text-align: center" colspan="2">CHRG MONTHLY FIX VEHICLE - EXTRA HRS</td>
-              <td  style="text-align: center" colspan="2">NIGHT HALT CHARGES</td>
-              <td  style="text-align: center" colspan="2">OUTSTATION CHARGES</td>
-              <td  style="text-align: center" colspan="2">TOLL PARKING CHARGES ON ACTUAL BASIS</td>
-            </tr>
-            <tr>
-              <td></td>
-              <td></td>
-              <td  style="text-align: center" colspan="3">Rate ------------------------></td>
-              <td></td>
-              <td></td>
-              <td  style="text-align: center" colspan="2">{{billdetails[0].head[0].monthlypackage}}</td>
-              <td  style="text-align: center" colspan="2">{{billdetails[0].head[0].extrakmrate}}</td>
-              <td  style="text-align: center" colspan="2">{{billdetails[0].head[0].extrahourrate}}</td>
-              <td  style="text-align: center" colspan="2">{{billdetails[0].head[0].nightrate}}</td>
-              <td  style="text-align: center" colspan="2">{{billdetails[0].head[0].outstationrate}}</td>
-              <td  style="text-align: center" colspan="2"></td>
-            </tr>
-            <tr>
-              <td>Sl No.</td>
-              <td>City</td>
-              <td>User Name</td>
-              <td>Vehicle No.</td>
-              <td>Site Type ( Office / JC / DC / Warehouse )</td>
-              <td>BE / BU / Cost Centre</td>
-              <td>Real Estate Key</td>
-              <td>Total Qty</td>
-              <td>Amount</td>
-              <td>Total Qty</td>
-              <td>Amount</td>
-              <td>Total Qty</td>
-              <td>Amount</td>
-              <td>Total Qty</td>
-              <td>Amount</td>
-              <td>Total Qty</td>
-              <td>Amount</td>
-              <td>Total Qty</td>
-              <td>Amount</td>
-            </tr>
-            <tr *ngFor="let row of billdetails[0].body">
-              <td>{{row.slno}}</td>
-              <td>Kolkata</td>
-              <td>{{row.user}}</td>
-              <td>{{row.car}}</td>
-              <td>Office</td>
-              <td>11101277</td>
-              <td>RO 6011/11101277/11300000</td>
-              <td>{{row.packagequantity}}</td>
-              <td>{{row.packageamount}}</td>
-              <td>{{row.extrakmquantity}}</td>
-              <td>{{row.extrakmamount}}</td>
-              <td>{{row.extrahrquantity}}</td>
-              <td>{{row.extrahramount}}</td>
-              <td>{{row.nightquantity}}</td>
-              <td>{{row.nightamount}}</td>
-              <td>{{row.outstationquantity}}</td>
-              <td>{{row.outstationamount}}</td>
-              <td>{{row.parkingquantity}}</td>
-              <td>{{row.parkingamount}}</td>
-            </tr>
-            <tr style="font-weight: bold">
-              <td></td>
-              <td></td>
-              <td style="text-align: center" colspan="3">Sub Total</td>
-              <td></td>
-              <td></td>
-              <td>{{billdetails[0].tail[0].totalquantity}}</td>
-              <td>{{billdetails[0].tail[0].totalpackage}}</td>
-              <td>{{billdetails[0].tail[0].totalextrakm}}</td>
-              <td>{{billdetails[0].tail[0].totalextrakmamount}}</td>
-              <td>{{billdetails[0].tail[0].totalextrahr}}</td>
-              <td>{{billdetails[0].tail[0].totalextrahramount}}</td>
-              <td>{{billdetails[0].tail[0].totalnight}}</td>
-              <td>{{billdetails[0].tail[0].totalnightamount}}</td>
-              <td>{{billdetails[0].tail[0].totaloutstation}}</td>
-              <td>{{billdetails[0].tail[0].totaloutstationamount}}</td>
-              <td>{{billdetails[0].tail[0].totalparking}}</td>
-              <td>{{billdetails[0].tail[0].totalparkingamount}}</td>
-            </tr>
-            <tr  style="font-weight: bold; font-size: 16px">
-              <td></td>
-              <td></td>
-              <td  style="text-align: center" colspan="3">Total Amount Of Services</td>
-              <td></td>
-              <td></td>
-              <td  style="text-align: center" colspan="12">{{billdetails[0].total}}</td>
-            </tr>
-          </table>
-            <!-- <div [ngStyle]="{'margin-top.px':marginTop}" id="customer" style="display: block;" class="row">
+<div class="center">
+    <!-- <p style="cursor: pointer; margin-right: 5px;" (click)="exportAsPDF('printdiv');"><img height="70" src="./../../../../assets/img/download.png"></p> -->
+    <p *ngIf="isConfirmVisible" style="cursor: pointer; margin-right: 5px" (click)="save();"><img height="70" src="http://ibcabs.com/bills/new/assets/img/confirm.png"></p>
+</div>
+<div class="container" id="printdiv" style="max-width: 1400px; min-height: 1200px; max-height: 10000px;">
+    <p id="header" style="width: 160%">JMS FOR {{billparty}} {{month}} {{year}}</p>
+    <button mat-stroked-button style="margin-left: 10px" (click)="export()"> Export To Excel</button> <br/> <br/>
+    <mat-form-field>
+        <p> JMS Bill No.</p>
+        <input type="text" matInput name="name" [(ngModel)]="jmsno">
+    </mat-form-field>
+    <mat-form-field style="margin-left: 20px">
+        <p> JMS Bill Date</p>
+        <input type="date" matInput name="date" [(ngModel)]="jmsdate">
+    </mat-form-field>
+
+    <br/><br/>
+    <table style="width: 160%; margin-right: 30px;" #table>
+        <tr>
+            <td></td>
+            <td></td>
+            <td>State</td>
+            <td></td>
+            <td>Kolkata</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td>ARC No.</td>
+            <td></td>
+            <td>550022786</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td>Work Order No. / Frame Order No.</td>
+            <td></td>
+            <td>540030799</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td>Vendor Code</td>
+            <td></td>
+            <td>3198576</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td>IMS No.</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td>Period</td>
+            <td></td>
+            <td>{{this.billfrom | date:'dd/MM/yyyy'}} to {{this.billto | date:'dd/MM/yyyy'}}</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td style="text-align: center" colspan="3">Service Category Description ------------------------></td>
+            <td></td>
+            <td></td>
+            <td style="text-align: center" colspan="12">{{cardesc}}</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td style="text-align: center" colspan="3">Service Category Description ------------------------></td>
+            <td></td>
+            <td></td>
+            <td style="text-align: center" colspan="2">CHRG MONTHLY FIX VEHICLE - {{billdetails[0].head[0].monthlyhour}}H - 30D - {{billdetails[0].head[0].monthlykm}}KM </td>
+            <td style="text-align: center" colspan="2">CHRG MONTHLY FIX VEHICLE - EXTRA KMS</td>
+            <td style="text-align: center" colspan="2">CHRG MONTHLY FIX VEHICLE - EXTRA HRS</td>
+            <td style="text-align: center" colspan="2">NIGHT HALT CHARGES</td>
+            <td style="text-align: center" colspan="2">OUTSTATION CHARGES</td>
+            <td style="text-align: center" colspan="2">TOLL PARKING CHARGES ON ACTUAL BASIS</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td style="text-align: center" colspan="3">Rate ------------------------></td>
+            <td></td>
+            <td></td>
+            <td style="text-align: center" colspan="2">{{billdetails[0].head[0].monthlypackage}}</td>
+            <td style="text-align: center" colspan="2">{{billdetails[0].head[0].extrakmrate}}</td>
+            <td style="text-align: center" colspan="2">{{billdetails[0].head[0].extrahourrate}}</td>
+            <td style="text-align: center" colspan="2">{{billdetails[0].head[0].nightrate}}</td>
+            <td style="text-align: center" colspan="2">{{billdetails[0].head[0].outstationrate}}</td>
+            <td style="text-align: center" colspan="2"></td>
+        </tr>
+        <tr>
+            <td>Sl No.</td>
+            <td>City</td>
+            <td>User Name</td>
+            <td>Vehicle No.</td>
+            <td>Site Type ( Office / JC / DC / Warehouse )</td>
+            <td>BE / BU / Cost Centre</td>
+            <td>Real Estate Key</td>
+            <td>Total Qty</td>
+            <td>Amount</td>
+            <td>Total Qty</td>
+            <td>Amount</td>
+            <td>Total Qty</td>
+            <td>Amount</td>
+            <td>Total Qty</td>
+            <td>Amount</td>
+            <td>Total Qty</td>
+            <td>Amount</td>
+            <td>Total Qty</td>
+            <td>Amount</td>
+        </tr>
+        <tr *ngFor="let row of billdetails[0].body">
+            <td>{{row.slno}}</td>
+            <td>Kolkata</td>
+            <td>{{row.user}}</td>
+            <td>{{row.car}}</td>
+            <td>Office</td>
+            <td>11101277</td>
+            <td>RO 6011/11101277/11300000</td>
+            <td>{{row.packagequantity}}</td>
+            <td>{{row.packageamount}}</td>
+            <td>{{row.extrakmquantity}}</td>
+            <td>{{row.extrakmamount}}</td>
+            <td>{{row.extrahrquantity}}</td>
+            <td>{{row.extrahramount}}</td>
+            <td>{{row.nightquantity}}</td>
+            <td>{{row.nightamount}}</td>
+            <td>{{row.outstationquantity}}</td>
+            <td>{{row.outstationamount}}</td>
+            <td>{{row.parkingquantity}}</td>
+            <td>{{row.parkingamount}}</td>
+        </tr>
+        <tr style="font-weight: bold">
+            <td></td>
+            <td></td>
+            <td style="text-align: center" colspan="3">Sub Total</td>
+            <td></td>
+            <td></td>
+            <td>{{billdetails[0].tail[0].totalquantity}}</td>
+            <td>{{billdetails[0].tail[0].totalpackage}}</td>
+            <td>{{billdetails[0].tail[0].totalextrakm}}</td>
+            <td>{{billdetails[0].tail[0].totalextrakmamount}}</td>
+            <td>{{billdetails[0].tail[0].totalextrahr}}</td>
+            <td>{{billdetails[0].tail[0].totalextrahramount}}</td>
+            <td>{{billdetails[0].tail[0].totalnight}}</td>
+            <td>{{billdetails[0].tail[0].totalnightamount}}</td>
+            <td>{{billdetails[0].tail[0].totaloutstation}}</td>
+            <td>{{billdetails[0].tail[0].totaloutstationamount}}</td>
+            <td>{{billdetails[0].tail[0].totalparking}}</td>
+            <td>{{billdetails[0].tail[0].totalparkingamount}}</td>
+        </tr>
+        <tr style="font-weight: bold; font-size: 16px">
+            <td></td>
+            <td></td>
+            <td style="text-align: center" colspan="3">Total Amount Of Services</td>
+            <td></td>
+            <td></td>
+            <td style="text-align: center" colspan="12">{{billdetails[0].total}}</td>
+        </tr>
+    </table>
+    <!-- <div [ngStyle]="{'margin-top.px':marginTop}" id="customer" style="display: block;" class="row">
               <br><br>
             <div id="customer-title" class="col-xs-3" style="max-width: 300px;">
               <table>
@@ -344,5 +344,5 @@
             </div>
               </div> -->
 
-            
-        </div>
+
+</div>

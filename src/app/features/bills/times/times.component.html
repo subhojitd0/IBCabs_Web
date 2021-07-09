@@ -72,7 +72,7 @@
             </tr>
             <tr *ngFor="let row of billdetails.body">
                 <td style="text-align:center;">{{row.sl}}</td>
-                <td style="text-align:center;">{{row.dutydate}}</td>
+                <td style="text-align:center;">{{row.dutydate | date:'dd/MM/yyyy'}}</td>
                 <td style="text-align:center;">{{row.carno}}</td>
                 <td style="text-align:center;">{{row.timerange}}</td>
                 <td style="text-align:center;">{{row.hour}}</td>
