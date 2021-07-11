@@ -32,6 +32,7 @@ export const ROUTE_EXPORT_DDR = "bills/new/export";
 export const ROUTE_DAILY_OT = "bills/new/daily-ot";
 export const ROUTE_TIMES_BILL = "bills/new/times-format";
 export const ROUTE_VIEW_BILL_H = "bills/new/bill-h";
+export const ROUTE_VIEW_BILL_I = "bills/new/walkin";
 
 //Production New
 /* export const ROUTE_BASIC = "newbill";

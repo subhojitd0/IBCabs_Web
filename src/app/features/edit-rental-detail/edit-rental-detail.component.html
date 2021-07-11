@@ -185,6 +185,7 @@
                 <span *ngIf="row.status == '1'" class="orange-icon" (click)="edit(row.dutyid)"> Pending Driver Input</span>
                 <span *ngIf="row.status == '2'" class="blue-icon" (click)="approve(row.dutyid)"> Pending Approval</span>
                 <span *ngIf="row.status == '3'" class="green-icon"> Bill Generated</span>
+                <span *ngIf="row.status == '4'" class="green-icon"> Owner Paid</span>
             </mat-cell>
         </ng-container>
 
@@ -212,7 +213,7 @@
 
         <ng-container matColumnDef="isselected">
             <mat-header-cell *matHeaderCellDef mat-sort-header> <input type="checkbox" (change)="selectallduty()"> </mat-header-cell>
-            <mat-cell *matCellDef="let row"> <input type="checkbox" [(ngModel)]="row.isSelected"> </mat-cell>
+            <mat-cell *matCellDef="let row"> <input [disabled]="row.status === '3' || row.status === '4'" type="checkbox" [(ngModel)]="row.isSelected"> </mat-cell>
         </ng-container>
         <!-- ID Column -->
         <ng-container matColumnDef="dutydate">

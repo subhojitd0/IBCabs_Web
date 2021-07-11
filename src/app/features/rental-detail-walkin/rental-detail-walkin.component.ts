@@ -41,7 +41,7 @@ export interface NewRental {
   ginkm:string,
   goutkm:string,
   parking:string,
-  outstationtype:string,
+  billamount:string,
   outstation:string,
   nightcharge:string,
   dutyid: string,
@@ -84,7 +84,7 @@ export class RentalAdd implements NewRental {
   ginkm:string;
   goutkm:string;
   parking:string;
-  outstationtype:string;
+  billamount:string;
   outstation:string;
   nightcharge:string;
   dutystatus: string;
@@ -219,7 +219,7 @@ export class RentalDetailWalkinComponent implements OnInit  {
       this.rentalAdd.mode = "1";
     }
     var ot = "0";
-    this.rentalAdd.outstationtype = "0";
+    //this.rentalAdd.outstationtype = "0";
     var json = 
       {
         "mode":4,
@@ -262,7 +262,7 @@ export class RentalDetailWalkinComponent implements OnInit  {
       this.rentalAdd.mode = "1";
     }
     var ot = "0";
-    this.rentalAdd.outstationtype = "0";
+    //this.rentalAdd.outstationtype = "0";
     var json = 
       {
         "mode":4,

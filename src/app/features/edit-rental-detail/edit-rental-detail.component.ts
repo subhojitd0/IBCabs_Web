@@ -44,7 +44,7 @@ export interface EditRentalDetail {
   ginkm:string;
   goutkm:string;
   parking:string;
-  outstationtype:string;
+  billamount:string;
   outstation:string;
   nightcharge:string;
   options: string;
@@ -308,7 +308,7 @@ exportddr(){
         var ot=0;
         this.apiService.post(PARTY_HEAD_API, jsonParty).then((res: any)=>{ 
           ot = res.outstation;
-          element.outstationtype = ot;
+          //element.outstationtype = ot;
           //element.outstation = (parseInt(element.outstation) / parseInt(ot.toString())).toString();
         });
         if(element.gintime)
@@ -354,10 +354,11 @@ exportddr(){
     this.toastr.info("Please wait while we are saving your request",'Information');
      debugger;
      var allparties = JSON.parse(localStorage.getItem('allparties'));
+     // && ( x.status !== '3' || x.status !== '4')
      var data = (this as any).mastereditrentaldetails.filter(x=>x.isSelected);
      data.forEach(async element => {
         //element.outstation = (parseInt(element.outstation) * parseInt(element.outstationtype.toString())).toString();
-        element.outstationtype = 0;
+        //element.outstationtype = 0;
       });
      this.apiService.post(RENTAL_DETAIL_API_OFFICE_BULKEDIT, data).then((res: any)=>{ 
        debugger;
@@ -404,7 +405,8 @@ exportddr(){
    selectallduty(){
      this.selectallval = !this.selectallval;
      this.editRentalDetails.forEach(element => {
-       element.isSelected = this.selectallval;
+       if(element.status !== '3' && element.status !== '4')
+          element.isSelected = this.selectallval;
      });
    }
    setJson(){

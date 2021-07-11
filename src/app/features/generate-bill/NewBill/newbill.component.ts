@@ -3,10 +3,10 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import {ApiService} from '../../../../shared/services/service';
-import {ABP_API, BILL_API_H, BILL_CNN_API, BILL_ONCALL_COAL_INDIA_API, BILL_ONCALL_EXTRA_API, BILL_RELIANCE_API, BILL_TIMES_API, DAILY_OT_API, EXTRA_API, OWNER_API, PARTY_HEAD_API} from '../../../../shared/services/api.url-helper';
+import {ABP_API, BILL_API_H, BILL_API_I, BILL_CNN_API, BILL_ONCALL_COAL_INDIA_API, BILL_ONCALL_EXTRA_API, BILL_RELIANCE_API, BILL_TIMES_API, DAILY_OT_API, EXTRA_API, OWNER_API, PARTY_HEAD_API} from '../../../../shared/services/api.url-helper';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
-import { ROUTE_ABP, ROUTE_COAL_INDEX, ROUTE_DAILY_OT, ROUTE_OWNER, ROUTE_TIMES_BILL, ROUTE_VIEW_BILL_CNN, ROUTE_VIEW_BILL_COAL_INDIA, ROUTE_VIEW_BILL_H, ROUTE_VIEW_BILL_ONCALL_EXTRA, ROUTE_VIEW_BILL_RELIANCE_JMS, ROUTE_VIEW_BILL_RELIANCE_MIS, ROUTE_VIEW_BILL_RELIANCE_SUMMARY } from 'src/shared/constants/constant';
+import { ROUTE_ABP, ROUTE_COAL_INDEX, ROUTE_DAILY_OT, ROUTE_OWNER, ROUTE_TIMES_BILL, ROUTE_VIEW_BILL_CNN, ROUTE_VIEW_BILL_COAL_INDIA, ROUTE_VIEW_BILL_H, ROUTE_VIEW_BILL_I, ROUTE_VIEW_BILL_ONCALL_EXTRA, ROUTE_VIEW_BILL_RELIANCE_JMS, ROUTE_VIEW_BILL_RELIANCE_MIS, ROUTE_VIEW_BILL_RELIANCE_SUMMARY } from 'src/shared/constants/constant';
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
@@ -333,7 +333,25 @@ export class NewBillComponent implements OnInit {
       this.showCustomFAVal = true;
       this.showTotalCal = false;
       this.showDayRate = false;
-
+    }
+    else if(this.billDetails.format === "12"){ //B
+      this.showParty = true;
+      this.showPartyMaster = false;
+      this.showBillSubject = true;
+      this.showBillFrom = true;
+      this.showBillTo = true;
+      this.showReportTo = false;
+      this.showNightStart = false;
+      this.showNightEnd = false;
+      this.showGstType = true;
+      this.showParkingGST = true;
+      this.showMonth = false;
+      this.showYear = false;
+      this.showCustomFA = true;
+      this.showCustomFAVal = true;
+      this.showDayRate = false;
+      this.showTotalCal = false;
+      this.showTotalCalABP = false;
     }
   }
   somethingChanged(){
@@ -442,6 +460,10 @@ export class NewBillComponent implements OnInit {
     if(this.billDetails.format == "11"){
       billApi = BILL_API_H;
       redirectApi = ROUTE_VIEW_BILL_H;
+    }
+    if(this.billDetails.format == "12"){
+      billApi = BILL_API_I;
+      redirectApi = ROUTE_VIEW_BILL_I;
     }
     debugger;
     this.toastr.info("Please wait while we are generating your bill",'Information');

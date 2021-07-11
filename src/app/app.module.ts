@@ -68,6 +68,7 @@ import { DDRExportComponent } from './features/ddr-export/ddrexport.component';
 import { DailyOTComponent } from './features/bills/daily-ot/dailyot.component';
 import { TimesBillComponent } from './features/bills/times/times.component';
 import { BillhComponent } from './features/bills/billh/billh.component';
+import { WalkinBillComponent } from './features/bills/walkin/walkin-bill.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -114,7 +115,8 @@ import { BillhComponent } from './features/bills/billh/billh.component';
     DDRExportComponent,
     DailyOTComponent,
     TimesBillComponent,
-    BillhComponent
+    BillhComponent,
+    WalkinBillComponent
   ],
   imports: [
     BrowserModule,

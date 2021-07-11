@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ROUTE_ABP, ROUTE_ADD_DDR, ROUTE_ADD_DDR_WALKIN, ROUTE_BASIC, ROUTE_CAR, ROUTE_CHECK_DDR, ROUTE_COAL_INDEX, ROUTE_DAILY_OT, ROUTE_DASHBOARD, ROUTE_DRIVER, ROUTE_DRIVER_OT, ROUTE_EXPORT_DDR, ROUTE_GENERATE_BILL, ROUTE_MATADOR, ROUTE_NEW_USER, ROUTE_OWNER, ROUTE_PARTY, ROUTE_RATE, ROUTE_REPORTO, ROUTE_TIMES_BILL, ROUTE_USER_RIGHTS, ROUTE_VIEW_BILL_CNN, ROUTE_VIEW_BILL_CNN_CONTRACT, ROUTE_VIEW_BILL_COAL_INDIA, ROUTE_VIEW_BILL_H, ROUTE_VIEW_BILL_ONCALL_EXTRA, ROUTE_VIEW_BILL_RELIANCE_JMS, ROUTE_VIEW_BILL_RELIANCE_MIS, ROUTE_VIEW_BILL_RELIANCE_SUMMARY, ROUTE_VIEW_DDR } from 'src/shared/constants/constant';
+import { ROUTE_ABP, ROUTE_ADD_DDR, ROUTE_ADD_DDR_WALKIN, ROUTE_BASIC, ROUTE_CAR, ROUTE_CHECK_DDR, ROUTE_COAL_INDEX, ROUTE_DAILY_OT, ROUTE_DASHBOARD, ROUTE_DRIVER, ROUTE_DRIVER_OT, ROUTE_EXPORT_DDR, ROUTE_GENERATE_BILL, ROUTE_MATADOR, ROUTE_NEW_USER, ROUTE_OWNER, ROUTE_PARTY, ROUTE_RATE, ROUTE_REPORTO, ROUTE_TIMES_BILL, ROUTE_USER_RIGHTS, ROUTE_VIEW_BILL_CNN, ROUTE_VIEW_BILL_CNN_CONTRACT, ROUTE_VIEW_BILL_COAL_INDIA, ROUTE_VIEW_BILL_H, ROUTE_VIEW_BILL_I, ROUTE_VIEW_BILL_ONCALL_EXTRA, ROUTE_VIEW_BILL_RELIANCE_JMS, ROUTE_VIEW_BILL_RELIANCE_MIS, ROUTE_VIEW_BILL_RELIANCE_SUMMARY, ROUTE_VIEW_DDR } from 'src/shared/constants/constant';
 import { AbpComponent } from './features/bills/abp/abp.component';
 import { BillhComponent } from './features/bills/billh/billh.component';
 import { CoalIndexComponent } from './features/bills/coal-index/coalindex.component';
@@ -13,6 +13,7 @@ import { RelianceJMSComponent } from './features/bills/reliance/jms/jms.componen
 import { RelianceMISComponent } from './features/bills/reliance/mis/mis.component';
 import { RelinceSummaryComponent } from './features/bills/reliance/summary/summary.component';
 import { TimesBillComponent } from './features/bills/times/times.component';
+import { WalkinBillComponent } from './features/bills/walkin/walkin-bill.component';
 import { CarComponent } from './features/car/car.component';
 import { CheckDdrComponent } from './features/check-ddr/checkddr.component';
 import { UserComponent } from './features/create-user/user.component';
@@ -152,6 +153,10 @@ const routes: Routes = [
   {
     path: ROUTE_VIEW_BILL_H,
     component:BillhComponent
+  },
+  {
+    path: ROUTE_VIEW_BILL_I,
+    component:WalkinBillComponent
   }
   
 ];
