@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import {Router} from '@angular/router';
-import { ROUTE_ADD_DDR, ROUTE_ADD_DDR_WALKIN, ROUTE_BASIC, ROUTE_DASHBOARD, ROUTE_DRIVER, ROUTE_GENERATE_BILL, ROUTE_MATADOR, ROUTE_NEW_USER, ROUTE_OWNER, ROUTE_PARTY, ROUTE_REPORTO, ROUTE_USER_RIGHTS, ROUTE_VIEW_DDR } from 'src/shared/constants/constant';
+import { ROUTE_ADD_DDR, ROUTE_ADD_DDR_WALKIN, ROUTE_BASIC, ROUTE_DASHBOARD, ROUTE_DRIVER, ROUTE_GENERATE_BILL, ROUTE_GENERATE_VENDOR_BILL, ROUTE_MATADOR, ROUTE_NEW_USER, ROUTE_OWNER, ROUTE_PARTY, ROUTE_REPORTO, ROUTE_USER_RIGHTS, ROUTE_VENDOR_BILL, ROUTE_VIEW_DDR } from 'src/shared/constants/constant';
 
 @Component({
   selector: 'app-sidenav',
@@ -23,6 +23,7 @@ export class SideNavComponent implements OnInit {
   userrole: string;
   matadorurl: string = "";
   removeheader: string;
+  generatevendorbillurl: string;
   constructor(private router: Router) { }
 
   ngOnInit(): void {
@@ -40,6 +41,7 @@ export class SideNavComponent implements OnInit {
     this.generatebillurl = "/" + ROUTE_GENERATE_BILL;
     this.reportto = "/" + ROUTE_REPORTO;
     this.matadorurl = "/" + ROUTE_MATADOR;
+    this.generatevendorbillurl = "/" + ROUTE_GENERATE_VENDOR_BILL;
     this.userrole = localStorage.getItem("loggedinuser");
     if(!this.loggedin)
     {

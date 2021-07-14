@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ROUTE_ABP, ROUTE_ADD_DDR, ROUTE_ADD_DDR_WALKIN, ROUTE_BASIC, ROUTE_CAR, ROUTE_CHECK_DDR, ROUTE_COAL_INDEX, ROUTE_DAILY_OT, ROUTE_DASHBOARD, ROUTE_DRIVER, ROUTE_DRIVER_OT, ROUTE_EXPORT_DDR, ROUTE_GENERATE_BILL, ROUTE_MATADOR, ROUTE_NEW_USER, ROUTE_OWNER, ROUTE_PARTY, ROUTE_RATE, ROUTE_REPORTO, ROUTE_TIMES_BILL, ROUTE_USER_RIGHTS, ROUTE_VIEW_BILL_CNN, ROUTE_VIEW_BILL_CNN_CONTRACT, ROUTE_VIEW_BILL_COAL_INDIA, ROUTE_VIEW_BILL_H, ROUTE_VIEW_BILL_I, ROUTE_VIEW_BILL_ONCALL_EXTRA, ROUTE_VIEW_BILL_RELIANCE_JMS, ROUTE_VIEW_BILL_RELIANCE_MIS, ROUTE_VIEW_BILL_RELIANCE_SUMMARY, ROUTE_VIEW_DDR } from 'src/shared/constants/constant';
+import { ROUTE_ABP, ROUTE_ADD_DDR, ROUTE_ADD_DDR_WALKIN, ROUTE_BASIC, ROUTE_CAR, ROUTE_CHECK_DDR, ROUTE_COAL_INDEX, ROUTE_DAILY_OT, ROUTE_DASHBOARD, ROUTE_DRIVER, ROUTE_DRIVER_OT, ROUTE_EXPORT_DDR, ROUTE_GENERATE_BILL, ROUTE_GENERATE_VENDOR_BILL, ROUTE_MATADOR, ROUTE_NEW_USER, ROUTE_OWNER, ROUTE_PARTY, ROUTE_RATE, ROUTE_REPORTO, ROUTE_TIMES_BILL, ROUTE_USER_RIGHTS, ROUTE_VENDOR_BILL, ROUTE_VIEW_BILL_CNN, ROUTE_VIEW_BILL_CNN_CONTRACT, ROUTE_VIEW_BILL_COAL_INDIA, ROUTE_VIEW_BILL_H, ROUTE_VIEW_BILL_I, ROUTE_VIEW_BILL_ONCALL_EXTRA, ROUTE_VIEW_BILL_RELIANCE_JMS, ROUTE_VIEW_BILL_RELIANCE_MIS, ROUTE_VIEW_BILL_RELIANCE_SUMMARY, ROUTE_VIEW_DDR } from 'src/shared/constants/constant';
 import { AbpComponent } from './features/bills/abp/abp.component';
 import { BillhComponent } from './features/bills/billh/billh.component';
 import { CoalIndexComponent } from './features/bills/coal-index/coalindex.component';
@@ -32,6 +32,8 @@ import { RentalDetailWalkinComponent } from './features/rental-detail-walkin/ren
 import { RentalDetailComponent } from './features/rental-detail/rental-detail.component';
 import { ReportToComponent } from './features/reportto/reportto.component';
 import { UserRightComponent } from './features/user-rights/user-right.component';
+import { VendorBillComponent } from './features/vendor-bill/bills/vendorbill.component';
+import { GenarateVendorBillComponent } from './features/vendor-bill/generate-bill.component';
 
 const routes: Routes = [
   {
@@ -77,6 +79,10 @@ const routes: Routes = [
   {
     path: ROUTE_GENERATE_BILL,
     component:GenarateBillComponent
+  },
+  {
+    path: ROUTE_GENERATE_VENDOR_BILL,
+    component:GenarateVendorBillComponent
   },
   {
     path: ROUTE_VIEW_BILL_CNN,
@@ -157,6 +163,10 @@ const routes: Routes = [
   {
     path: ROUTE_VIEW_BILL_I,
     component:WalkinBillComponent
+  },
+  {
+    path: ROUTE_VENDOR_BILL,
+    component: VendorBillComponent
   }
   
 ];

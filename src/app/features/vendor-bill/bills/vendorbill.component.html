@@ -1,0 +1,68 @@
+<div class="center">
+    <!-- <p style="cursor: pointer; margin-right: 5px;" (click)="exportAsPDF('printdiv');"><img height="70" src="http://ibcabs.com/bills/new/assets/img/download.png"></p>
+    <p *ngIf="isConfirmVisible" style="cursor: pointer; margin-right: 5px" (click)="save();"><img height="70" src="http://ibcabs.com/bills/new/assets/img/confirm.png"></p> -->
+</div>
+<div class="container" id="printdiv" style="max-width: 1400px; min-height: 2000px; max-height: 10000px;">
+    <p id="header">VENDOR INVOICE - {{vendorname}}</p>
+    <div id="customer" class="row" style="padding-top: 20px;">
+        <div class="col-xs-4">
+            Comments : <input name="comment" type="text" [(ngModel)]="comments">
+        </div>
+        <div class="col-xs-4" style="padding-left: 20px; padding-right: 20px">
+            Total Amount : <input name="total" type="text" [(ngModel)]="total">
+        </div>
+        <div class="col-xs-4" *ngIf="isConfirmVisible">
+            <button mat-stroked-button (click)="save()">Save as draft</button>&nbsp; &nbsp;
+            <button mat-stroked-button (click)="submit()">Submit & Confirm</button>&nbsp; &nbsp;
+        </div>
+
+    </div>
+    <div *ngFor="let row of alldata" style="margin-top: 30px;">
+        <h1><u><b>Bill for Car No - {{row.carno}}</b></u></h1>
+        <table style="font-size: 20px;">
+            <tr>
+                <th>Sl No.</th>
+                <th>Month</th>
+                <th>Car No</th>
+                <th>Car Type</th>
+                <th>Company</th>
+                <th>Client</th>
+                <th>Total Hr</th>
+                <th>Total KM</th>
+                <th>Parking</th>
+                <th>Bill Id</th>
+                <th style="width: 10%">Amount</th>
+            </tr>
+            <tr *ngFor="let childrow of row.data">
+                <td>{{childrow.sl}}</td>
+                <td>{{childrow.dutydate}}</td>
+                <td>{{childrow.carno}}</td>
+                <td>{{childrow.cartype}}</td>
+                <td>{{childrow.party}}</td>
+                <td>{{childrow.reportto}}</td>
+                <td>{{childrow.totalhr}}</td>
+                <td>{{childrow.totalkm}}</td>
+                <td>{{childrow.parking}}</td>
+                <td>{{childrow.billnumber}}</td>
+                <td>
+                    <input [disabled]="isConfirmVisible" style="width: 100%;border:none;text-align: center;" (blur)="changeamount(childrow)" matInput type="text" [(ngModel)]="childrow.amount">
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- <div [ngStyle]="{'margin-top.px':marginTop}" id="customer" style="display: block;" class="row">
+        <br><br>
+        <div id="customer-title" class="col-xs-3" style="max-width: 500px;">
+            <br>
+
+
+            <br/>
+
+            <span>Enclose. : {{totalno}} no. of original duty slips</span>
+
+        </div>
+    </div> -->
+
+
+</div>

@@ -1,0 +1,133 @@
+<div class="loading-screen-wrapper" *ngIf="loading">
+    <div class="loading-screen-icon">
+        Loading...
+    </div>
+</div>
+<div class="container">
+    <mat-card>
+        <mat-card-header>
+            <div mat-card-avatar class="avatar-image-partyhead"></div>
+            <mat-card-title>Vendor Register for
+
+                <select (change)="onChangeMonth($event.target.value)" [value]="month">
+                <!-- <option value="all">
+                  ALL
+                </option> -->
+                <option value="01">
+                  January
+                </option>
+                <option value="02">
+                  February
+                </option>
+                <option value="03">
+                  March
+                </option>
+                <option value="04">
+                  April
+                </option>
+                <option value="05">
+                  May
+                </option>
+                <option value="06">
+                  June
+                </option>
+                <option value="07">
+                  July
+                </option>
+                <option value="08">
+                  August
+                </option>
+                <option value="09">
+                  September
+                </option>
+                <option value="10">
+                  October
+                </option>
+                <option value="11">
+                  November
+                </option>
+                <option value="12">
+                  December
+                </option>
+              </select> -
+                <select (change)="onChangeYear($event.target.value)" [value]="year">
+                <!-- <option value="all">
+                  ALL
+                </option> -->
+                <option value="2020">
+                  2020
+                </option>
+                <option value="2021">
+                  2021
+                </option>
+                <option value="2022">
+                  2022
+                </option>
+                <option value="2023">
+                  2023
+                </option>
+                <option value="2024">
+                  2024
+                </option>
+                <option value="2025">
+                  2025
+                </option>
+                <option value="2026">
+                  2026
+                </option>
+                <option value="2027">
+                  2027
+                </option>
+              </select>
+            </mat-card-title>
+            <mat-card-subtitle>View, Delete and View the Bills Here.</mat-card-subtitle>
+        </mat-card-header>
+    </mat-card>
+    <button *ngIf="billrole === '1'" mat-stroked-button (click)="openDialog(0)">Create New Vendor Bill</button>
+    <mat-form-field class="mid" style="margin-left: 25%;">
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search Bill">
+    </mat-form-field>
+    <mat-table [dataSource]="dataSource" matSort style="margin-left:-10%;width:130%;">
+
+        <!-- ID Column -->
+        <ng-container matColumnDef="vendor">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Owner Name </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.ownername}} </mat-cell>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="startdate">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Start Date </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.startdate}} </mat-cell>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="enddate">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> End Date </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.enddate}} </mat-cell>
+        </ng-container>
+
+        <!-- Color Column -->
+        <ng-container matColumnDef="amount">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Amount </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.amount}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="option">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Options </mat-header-cell>
+            <mat-cell *matCellDef="let row" [style.color]="row.option">
+                <span style="margin-left: 10px; margin-right: 10px; cursor: pointer;" class="material-icons" (click)="downloadBill(row)">
+                            download
+                        </span>
+                <!-- <span *ngIf="billrole === '1' && delete === '1'" style="margin-left: 10px; margin-right: 10px; cursor: pointer;" class="material-icons" (click)="deleteBill(row.billid)">
+                            delete
+                        </span> -->
+            </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;">
+        </mat-row>
+    </mat-table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+</div>

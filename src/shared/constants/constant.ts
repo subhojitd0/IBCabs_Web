@@ -13,6 +13,7 @@ export const ROUTE_ADD_DDR = "bills/new/add-ddr";
 export const ROUTE_VIEW_DDR = "bills/new/view-ddr";
 export const ROUTE_ADD_DDR_WALKIN = "bills/new/add-ddr-walkin";
 export const ROUTE_GENERATE_BILL = "bills/new/bill-register";
+export const ROUTE_GENERATE_VENDOR_BILL= "bills/new/vendor-register";
 export const ROUTE_VIEW_BILL_CNN = "bills/new/bill/monthlybill-a";
 export const ROUTE_VIEW_BILL_CNN_CONTRACT = "bills/new/bill/monthlycontractbill-a";
 export const ROUTE_VIEW_BILL_ONCALL_EXTRA = "bills/new/bill/oncall-a";
@@ -33,6 +34,7 @@ export const ROUTE_DAILY_OT = "bills/new/daily-ot";
 export const ROUTE_TIMES_BILL = "bills/new/times-format";
 export const ROUTE_VIEW_BILL_H = "bills/new/bill-h";
 export const ROUTE_VIEW_BILL_I = "bills/new/walkin";
+export const ROUTE_VENDOR_BILL = "bills/new/vendor-bill";
 
 //Production New
 /* export const ROUTE_BASIC = "newbill";

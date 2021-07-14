@@ -69,6 +69,9 @@ import { DailyOTComponent } from './features/bills/daily-ot/dailyot.component';
 import { TimesBillComponent } from './features/bills/times/times.component';
 import { BillhComponent } from './features/bills/billh/billh.component';
 import { WalkinBillComponent } from './features/bills/walkin/walkin-bill.component';
+import { NewVendorBillComponent } from './features/vendor-bill/new-bill/newbill.component';
+import { GenarateVendorBillComponent } from './features/vendor-bill/generate-bill.component';
+import { VendorBillComponent } from './features/vendor-bill/bills/vendorbill.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -116,7 +119,10 @@ import { WalkinBillComponent } from './features/bills/walkin/walkin-bill.compone
     DailyOTComponent,
     TimesBillComponent,
     BillhComponent,
-    WalkinBillComponent
+    WalkinBillComponent,
+    NewVendorBillComponent,
+    GenarateVendorBillComponent,
+    VendorBillComponent
   ],
   imports: [
     BrowserModule,

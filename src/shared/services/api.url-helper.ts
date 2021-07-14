@@ -24,3 +24,4 @@ export const DAILY_OT_API ="partybillf.php";
 export const BILL_TIMES_API ="partybillg.php";
 export const BILL_API_H ="partybillh.php";
 export const BILL_API_I ="partybilli.php";
+export const BILL_VENDOR_PAY ="vendorpay.php";
