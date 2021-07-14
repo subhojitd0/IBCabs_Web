@@ -3,7 +3,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import {ApiService} from '../../../../shared/services/service';
-import {BILL_API, BILL_VENDOR_PAY, OWNER_API, PARTY_HEAD_API} from '../../../../shared/services/api.url-helper';
+import {BILL_API, BILL_VENDOR_PAY, BILL_VENDOR_PAY_UPDATE, OWNER_API, PARTY_HEAD_API} from '../../../../shared/services/api.url-helper';
 import {MatDialog} from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
@@ -24,6 +24,8 @@ export interface iBillDet {
   billnumber: string;
   billid: string;
   amount: string;
+  dutycode: string;
+  billtype: string;
 }
 
 export class BillDet implements iBillDet {
@@ -39,6 +41,8 @@ export class BillDet implements iBillDet {
   billnumber: string;
   billid: string;
   amount: string;
+  dutycode: string;
+  billtype: string;
 }
 export interface iCarDet{
   carno: any;
@@ -170,6 +174,8 @@ export class VendorBillComponent implements OnInit {
       });
       this.alldata = carlist;
     }
+    localStorage.removeItem("vendoramount");
+    localStorage.removeItem("vendorcomment");
    }
    changeamount(row: any){
      debugger;
@@ -180,29 +186,22 @@ export class VendorBillComponent implements OnInit {
      this.alldata.filter(x=>x.carno === row.carno)[0].data.filter(x=>x.sl === "Total")[0].amount = totamt;
    }
    save(){
-     /* if(!(this.billno && this.billdate)){
-      alert("Please enter a proper bill number and bill date to proceed");
-     }
-     else{
-      let billSave : SaveBill = new SaveBill();
-      billSave.billdate = this.billdate;
-      billSave.billnumber = this.billno;
-      billSave.billfrom = localStorage.getItem("billfrom");
-      billSave.billto = localStorage.getItem("billto");
-      billSave.party = this.party;
-      billSave.billtype = "D2";
-      billSave.mode = "1";
-      billSave.amount = this.billdetails.billtotal;
-      this.apiService.post(BILL_API, billSave).then((res: any)=>{ 
-          debugger;
-          if(res.status === "success"){
-          //this.exportAsPDF("container");
-          this.isConfirmVisible = false;
-          this.toastr.success("Your bill was successfully created",'Success');
-          this.router.navigateByUrl('/' + ROUTE_GENERATE_BILL);
-        }
-      });
-     } */
+     let updateData: any[] = [];
+     this.alldata.forEach((row: any)=>{
+       row.data.forEach(element => {
+         updateData.push(element);
+       });
+     });
+     debugger;
+    this.apiService.post(BILL_VENDOR_PAY_UPDATE, updateData).then((res: any)=>{ 
+        debugger;
+        /* if(res.result.lengt === "success"){
+        //this.exportAsPDF("container");
+        this.isConfirmVisible = false;
+        this.toastr.success("Your bill was successfully created",'Success');
+        this.router.navigateByUrl('/' + ROUTE_GENERATE_VENDOR_BILL);
+      } */
+    });
    }
    submit(){
     if(!(this.comments && this.total)){
@@ -227,5 +226,8 @@ export class VendorBillComponent implements OnInit {
         }
       });
      }
+   }
+   showbill(childrow: any){
+
    }
 }

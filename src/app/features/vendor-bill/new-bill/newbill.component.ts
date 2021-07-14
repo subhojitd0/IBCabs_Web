@@ -78,6 +78,10 @@ export class NewVendorBillComponent implements OnInit {
             returnVal = 0;
             break;
           }
+          else if(regStartDate >= newStartDate && newEndDate >= regEndDate){
+            returnVal = 0;
+            break;
+          }
           else{
             returnVal = 1;
           }

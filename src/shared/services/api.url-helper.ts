@@ -25,3 +25,4 @@ export const BILL_TIMES_API ="partybillg.php";
 export const BILL_API_H ="partybillh.php";
 export const BILL_API_I ="partybilli.php";
 export const BILL_VENDOR_PAY ="vendorpay.php";
+export const BILL_VENDOR_PAY_UPDATE ="vendorpayupdate.php";

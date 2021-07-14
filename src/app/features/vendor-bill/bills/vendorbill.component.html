@@ -43,9 +43,9 @@
                 <td>{{childrow.totalhr}}</td>
                 <td>{{childrow.totalkm}}</td>
                 <td>{{childrow.parking}}</td>
-                <td>{{childrow.billnumber}}</td>
+                <td style="cursor:pointer" (click)="showbill(childrow)">{{childrow.billnumber}}</td>
                 <td>
-                    <input [disabled]="isConfirmVisible" style="width: 100%;border:none;text-align: center;" (blur)="changeamount(childrow)" matInput type="text" [(ngModel)]="childrow.amount">
+                    <input [disabled]="!isConfirmVisible" style="width: 100%;border:none;text-align: center;" (blur)="changeamount(childrow)" matInput type="text" [(ngModel)]="childrow.amount">
                 </td>
             </tr>
         </table>
