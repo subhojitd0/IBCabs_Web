@@ -50,7 +50,7 @@ export interface iSaveBill {
   gsttype: string;
   parkingtype: string;
   billtype: string;
-  total: string;
+  amount: string;
   mode: string;
 }
 export class SaveBill implements iSaveBill {
@@ -63,7 +63,7 @@ export class SaveBill implements iSaveBill {
   gsttype: string;
   parkingtype: string;
   billtype: string;
-  total: string;
+  amount: string;
   mode: string;
 }
 @Component({
@@ -155,7 +155,7 @@ export class OnCallBillAComponent implements OnInit {
       billSave.gsttype = localStorage.getItem("billgst");
       billSave.parkingtype = localStorage.getItem("billparking");
       billSave.billtype = "B";
-      billSave.total = this.roundedgross;
+      billSave.amount = this.roundedgross;
       billSave.mode = "1";
       this.apiService.post(BILL_API, billSave).then((res: any)=>{ 
           debugger;

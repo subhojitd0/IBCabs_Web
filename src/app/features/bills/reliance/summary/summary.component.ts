@@ -201,7 +201,7 @@ export class RelinceSummaryComponent implements OnInit {
       billSave.party = this.party;
       billSave.billtype = "D2";
       billSave.mode = "1";
-      billSave.amount = this.billdetails.billtotal;
+      billSave.amount = this.billdetails.amount;
       this.apiService.post(BILL_API, billSave).then((res: any)=>{ 
           debugger;
           if(res.status === "success"){

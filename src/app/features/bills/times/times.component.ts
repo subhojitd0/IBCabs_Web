@@ -48,7 +48,7 @@ export interface iSaveBill {
   gsttype: string;
   parkingtype: string;
   billtype: string;
-  total: string;
+  amount: string;
   mode: string;
   billCalType: any;
   nightstart: any;
@@ -64,7 +64,7 @@ export class SaveBill implements iSaveBill {
   gsttype: string;
   parkingtype: string;
   billtype: string;
-  total: string;
+  amount: string;
   mode: string;
   billCalType: any;
   nightstart: any;
@@ -158,7 +158,7 @@ export class TimesBillComponent implements OnInit {
       billSave.nightstart = localStorage.getItem("nightstart");
       billSave.nightend = localStorage.getItem("nightend");
       billSave.billtype = "G";
-      billSave.total = this.roundedgross;
+      billSave.amount = this.roundedgross;
       billSave.billCalType = billcalltype;
       billSave.mode = "1";
       this.apiService.post(BILL_API, billSave).then((res: any)=>{ 
