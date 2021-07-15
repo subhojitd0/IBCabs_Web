@@ -138,10 +138,14 @@ export class VendorBillComponent implements OnInit {
   startdate: string;
   enddate: string;
   billRegDetails: any;
+  userrole: string;
+  loading: boolean;
   constructor(private router: Router,private apiService: ApiService, public dialog: MatDialog, private toastr: ToastrService) {
     
    }
    ngOnInit(){
+    this.loading = true;
+    this.userrole = localStorage.getItem("loggedinuser");
     this.billdetails = JSON.parse(localStorage.getItem("vendorbilldata"));
     this.vendorname = localStorage.getItem("vendorname");
     this.vendorcode =   localStorage.getItem("vendorcode");
@@ -173,19 +177,21 @@ export class VendorBillComponent implements OnInit {
         let tothr = 0;
         let totkm = 0;
         let totparking = 0;
+        let totamt = 0;
         carD.data.forEach((dat: any)=>{
           dat.sl = slno + 1;
           slno = slno + 1;
           tothr = parseFloat(dat.totalhr) + tothr;
           totkm = parseFloat(dat.totalkm) + totkm;
           totparking = parseFloat(dat.parking) + totparking;
+          totamt = parseFloat(dat.amount) + totamt;
         })
         let newData={
           sl: "Total",
           totalhr: tothr,
           totalkm: totkm,
           parking: totparking,
-          amount: 0
+          amount: totamt
         }
         carD.data.push(newData);
         carlist.push(carD);
@@ -203,6 +209,7 @@ export class VendorBillComponent implements OnInit {
     });
     localStorage.removeItem("vendoramount");
     localStorage.removeItem("vendorcomment");
+    this.loading = false;
    }
    changeamount(row: any){
      debugger;
@@ -213,6 +220,8 @@ export class VendorBillComponent implements OnInit {
      this.alldata.filter(x=>x.carno === row.carno)[0].data.filter(x=>x.sl === "Total")[0].amount = totamt;
    }
    save(){
+     this.toastr.info("Please wait while we are saving the data");
+     this.loading = true;
      let updateData: any[] = [];
      this.alldata.forEach((row: any)=>{
        row.data.forEach(element => {
@@ -221,7 +230,16 @@ export class VendorBillComponent implements OnInit {
      });
      debugger;
     this.apiService.post(BILL_VENDOR_PAY_UPDATE, updateData).then((res: any)=>{ 
-        debugger;
+        
+        if(res.result.length > 0 && res.result[0].status === "Success"){
+          debugger;
+          this.loading = false;
+          this.toastr.success("Data has been saved successfully");
+        }
+        else{
+          this.toastr.error("There was an error saving your data");
+          this.loading = false;
+        }
         /* if(res.result.lengt === "success"){
         //this.exportAsPDF("container");
         this.isConfirmVisible = false;
