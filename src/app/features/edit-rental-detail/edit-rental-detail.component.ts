@@ -43,6 +43,10 @@ export interface EditRentalDetail {
   gouttime: string;
   ginkm:string;
   goutkm:string;
+  rintime: string;
+  routtime: string;
+  rinkm:string;
+  routkm:string;
   parking:string;
   billamount:string;
   outstation:string;
@@ -88,7 +92,7 @@ export class EditRentalDetailComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   displayedColumns: string[] = ['dutydt', 'party', 'carno', 'statusval', 'options'];
-  bulkdisplayedColumns: string[] = ['isselected','dutydate', 'partyname', 'reportto', 'driver', 'carnumber', 'cartype', 'slip', 'gouttime', 'goutkm', 'gintime', 'ginkm', 'parking', 'outstation'];
+  bulkdisplayedColumns: string[] = ['isselected','dutydate', 'partyname', 'reportto', 'driver', 'carnumber', 'cartype', 'slip', 'gouttime', 'goutkm', 'gintime', 'ginkm', 'routtime', 'routkm', 'rintime', 'rinkm', 'parking', 'outstation'];
   dataSource: MatTableDataSource<RentalDetail>;
   bulkDataSource: MatTableDataSource<EditRentalDetail>;
   filteredOptionsCar: Observable<any[]>;
@@ -321,6 +325,17 @@ exportddr(){
           element.gouttime = element.gouttime.replace(" ","T");
           element.gouttime = element.gouttime.substr(0,element.gouttime.length - 3);
         }
+
+        if(element.rintime)
+        {
+          element.rintime = element.rintime.replace(" ","T");
+          element.rintime = element.rintime.substr(0,element.rintime.length - 3);
+        }
+        if(element.routtime)
+        {
+          element.routtime = element.routtime.replace(" ","T");
+          element.routtime = element.routtime.substr(0,element.routtime.length - 3);
+        }
       
         if(!element.outstation || element.outstation == "NaN")
           element.outstation = "0";
@@ -357,6 +372,40 @@ exportddr(){
      // && ( x.status !== '3' || x.status !== '4')
      var data = (this as any).mastereditrentaldetails.filter(x=>x.isSelected);
      data.forEach(async element => {
+       debugger;
+       //Assignning G values to R 
+       if(element.goutkm && !element.routkm){
+        element.routkm = element.goutkm;
+      }
+      if(element.ginkm && !element.rinkm){
+        element.rinkm = element.ginkm;
+      }
+      if(element.gouttime && element.routtime === "0000-00-00T00:00"){
+        element.routtime = element.gouttime;
+      }
+      if(element.gintime && element.rintime === "0000-00-00T00:00"){
+        element.rintime = element.gintime;
+      }
+  
+      //Assignning R values to G
+      if(!element.goutkm && element.routkm){
+        element.goutkm = element.routkm;
+      }
+      if(!element.ginkm && element.rinkm){
+        element.ginkm = element.rinkm;
+      }
+      if(element.gouttime === "0000-00-00T00:00" && element.routtime){
+        element.gouttime = element.routtime;
+      }
+      if(element.gintime === "0000-00-00T00:00" && element.rintime){
+        element.gintime = element.rintime;
+      }
+      if(element.ginkm === ""){
+        element.rinkm = "";
+      }
+      if(element.goutkm === ""){
+        element.routkm = "";
+      }
         //element.outstation = (parseInt(element.outstation) * parseInt(element.outstationtype.toString())).toString();
         //element.outstationtype = 0;
       });
@@ -451,9 +500,17 @@ exportddr(){
           this.editRentalDetails.gintime = this.editRentalDetails.gintime.replace(" ","T");
           this.editRentalDetails.gintime = this.editRentalDetails.gintime.substr(0,this.editRentalDetails.gintime.length - 3);
         }
-        if(this,this.editRentalDetails.gouttime){
+        if(this.editRentalDetails.gouttime){
           this.editRentalDetails.gouttime = this.editRentalDetails.gouttime.replace(" ","T");
           this.editRentalDetails.gouttime = this.editRentalDetails.gouttime.substr(0,this.editRentalDetails.gouttime.length - 3);
+        }
+        if(this.editRentalDetails.rintime){
+          this.editRentalDetails.rintime = this.editRentalDetails.rintime.replace(" ","T");
+          this.editRentalDetails.rintime = this.editRentalDetails.rintime.substr(0,this.editRentalDetails.rintime.length - 3);
+        }
+        if(this.editRentalDetails.routtime){
+          this.editRentalDetails.routtime = this.editRentalDetails.routtime.replace(" ","T");
+          this.editRentalDetails.routtime = this.editRentalDetails.routtime.substr(0,this.editRentalDetails.routtime.length - 3);
         }
         this.mastereditrentaldetails = res.result;
         this.bulkDataSource = new MatTableDataSource(this.editRentalDetails);

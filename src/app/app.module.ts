@@ -72,6 +72,8 @@ import { WalkinBillComponent } from './features/bills/walkin/walkin-bill.compone
 import { NewVendorBillComponent } from './features/vendor-bill/new-bill/newbill.component';
 import { GenarateVendorBillComponent } from './features/vendor-bill/generate-bill.component';
 import { VendorBillComponent } from './features/vendor-bill/bills/vendorbill.component';
+import { VendorRatesComponent } from './features/vendor-rates/vendorrates.component';
+import { AddVendorSlabComponent } from './features/vendor-rates/add-new-slab/add-slab-head.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -122,7 +124,9 @@ import { VendorBillComponent } from './features/vendor-bill/bills/vendorbill.com
     WalkinBillComponent,
     NewVendorBillComponent,
     GenarateVendorBillComponent,
-    VendorBillComponent
+    VendorBillComponent,
+    VendorRatesComponent,
+    AddVendorSlabComponent
   ],
   imports: [
     BrowserModule,

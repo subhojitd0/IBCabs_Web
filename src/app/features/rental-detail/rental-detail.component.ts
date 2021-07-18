@@ -48,7 +48,11 @@ export interface NewRental {
   replace: string,
   dutytype: string,
   pickuploc: string,
-  droploc: string
+  droploc: string,
+  rintime: string,
+  routtime: string,
+  rinkm:string,
+  routkm:string
 }
 export class RentalAdd implements NewRental {
   mode: string;
@@ -75,6 +79,10 @@ export class RentalAdd implements NewRental {
   gouttime: string;
   ginkm:string;
   goutkm:string;
+  rintime: string;
+  routtime: string;
+  rinkm:string;
+  routkm:string;
   parking:string;
   billamount:string;
   outstation:string;
@@ -157,6 +165,8 @@ export class RentalDetailComponent implements OnInit {
     }
     var ot = "0";
     //this.rentalAdd.outstationtype = "0";
+    this.setGRvalues();
+    
     var json = 
       {
         "mode":4,
@@ -182,6 +192,41 @@ export class RentalDetailComponent implements OnInit {
       });
     }
   }
+  setGRvalues(){
+    //Assignning G values to R 
+    if(this.rentalAdd.goutkm && !this.rentalAdd.routkm){
+      this.rentalAdd.routkm = this.rentalAdd.goutkm;
+    }
+    if(this.rentalAdd.ginkm && !this.rentalAdd.rinkm){
+      this.rentalAdd.rinkm = this.rentalAdd.ginkm;
+    }
+    if(this.rentalAdd.gouttime && (this.rentalAdd.routtime === undefined || this.rentalAdd.routtime === "0000-00-00T00:00")){
+      this.rentalAdd.routtime = this.rentalAdd.gouttime;
+    }
+    if(this.rentalAdd.gintime && (this.rentalAdd.rintime === undefined || this.rentalAdd.rintime === "0000-00-00T00:00" )){
+      this.rentalAdd.rintime = this.rentalAdd.gintime;
+    }
+
+    //Assignning R values to G
+    if(!this.rentalAdd.goutkm && this.rentalAdd.routkm){
+      this.rentalAdd.goutkm = this.rentalAdd.routkm;
+    }
+    if(!this.rentalAdd.ginkm && this.rentalAdd.rinkm){
+      this.rentalAdd.ginkm = this.rentalAdd.rinkm;
+    }
+    if((this.rentalAdd.gouttime === undefined  || this.rentalAdd.gouttime === "0000-00-00T00:00" ) && this.rentalAdd.routtime){
+      this.rentalAdd.gouttime = this.rentalAdd.routtime;
+    }
+    if((this.rentalAdd.gintime === undefined  || this.rentalAdd.gintime === "0000-00-00T00:00" ) && this.rentalAdd.rintime){
+      this.rentalAdd.gintime = this.rentalAdd.rintime;
+    }
+    if(this.rentalAdd.ginkm === ""){
+      this.rentalAdd.rinkm = "";
+    }
+    if(this.rentalAdd.goutkm === ""){
+      this.rentalAdd.routkm = "";
+    }
+  }
   savedata(stepper: MatStepper, step: any){
     let id = localStorage.getItem('selectedduty');
     if(this.isValid(step)){
@@ -199,6 +244,7 @@ export class RentalDetailComponent implements OnInit {
       this.rentalAdd.mode = "1";
     }
     var ot = "0";
+    this.setGRvalues();
     //this.rentalAdd.outstationtype = "0";
     var json = 
       {
@@ -260,6 +306,7 @@ export class RentalDetailComponent implements OnInit {
           this.rentalAdd.dutyid = id;
         }
         this.rentalAdd.dutytype = "0";
+        this.setGRvalues();
       this.apiService.post(RENTAL_DETAIL_API_OFFICE, this.rentalAdd).then((res: any)=>{ 
         this.toastr.success("Your data was successfully saved",'Success');
         localStorage.setItem('selectedduty', "0");
@@ -277,7 +324,11 @@ export class RentalDetailComponent implements OnInit {
       return (this.rentalAdd.driver && this.rentalAdd.drivernum && this.rentalAdd.carnum && this.rentalAdd.cartype && this.rentalAdd.replace);
     }
     if(step === "3"){
-      return (this.rentalAdd.ginkm && this.rentalAdd.goutkm && this.rentalAdd.gintime && this.rentalAdd.gouttime && this.rentalAdd.outstation && this.rentalAdd.parking );
+      return ((this.rentalAdd.ginkm || this.rentalAdd.rinkm) && 
+      (this.rentalAdd.goutkm || this.rentalAdd.routkm) && 
+      (this.rentalAdd.gintime || this.rentalAdd.rintime) && 
+      (this.rentalAdd.gouttime || this.rentalAdd.routtime) && 
+      this.rentalAdd.outstation && this.rentalAdd.parking );
     }
   }
   changeparty(){
@@ -410,6 +461,10 @@ export class RentalDetailComponent implements OnInit {
       GINKMControl: ['', Validators.required],
       GOUTTIMEControl: ['', Validators.required],
       GOUTKMControl: ['', Validators.required],
+      RINTIMEControl: [''],
+      RINKMControl: [''],
+      ROUTTIMEControl: [''],
+      ROUTKMControl: [''],
       ParkingControl: ['', Validators.required],
       OutstationControl: ['', Validators.required]
     });
@@ -452,7 +507,15 @@ export class RentalDetailComponent implements OnInit {
           this.rentalAdd.gouttime = this.rentalAdd.gouttime.replace(" ","T");
           this.rentalAdd.gouttime = this.rentalAdd.gouttime.substr(0,this.rentalAdd.gouttime.length - 3);
         }
-
+        if(this.rentalAdd.rintime){
+          this.rentalAdd.rintime = this.rentalAdd.rintime.replace(" ","T");
+          this.rentalAdd.rintime = this.rentalAdd.rintime.substr(0,this.rentalAdd.rintime.length - 3);
+        }
+          
+        if(this,this.rentalAdd.routtime){
+          this.rentalAdd.routtime = this.rentalAdd.routtime.replace(" ","T");
+          this.rentalAdd.routtime = this.rentalAdd.routtime.substr(0,this.rentalAdd.routtime.length - 3);
+        }
         /* if(this.rentalAdd.outstation != "NaN")
           this.rentalAdd.outstation = (parseFloat(this.rentalAdd.outstation) / parseFloat(ot.toString())).toString();
         else
@@ -481,6 +544,8 @@ export class RentalDetailComponent implements OnInit {
       });
     }
     else{
+      this.rentalAdd.rinkm = "";
+      this.rentalAdd.routkm = "";
       this.rentalAdd.replace = "NO SUBSTITUTE";
       //this.rentalAdd.dutydate = 
       localStorage.setItem('selectedduty', "0");

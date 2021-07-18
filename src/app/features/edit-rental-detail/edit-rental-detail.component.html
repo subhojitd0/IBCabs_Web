@@ -309,6 +309,30 @@
                 <input type="datetime-local" matInput [(ngModel)]="row.gintime" (blur)="caltotal(row)" />
             </mat-cell>
         </ng-container>
+        <ng-container matColumnDef="routkm">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Release Out KM </mat-header-cell>
+            <mat-cell *matCellDef="let row">
+                <input type="number" matInput [(ngModel)]="row.routkm" />
+            </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="rinkm">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Release In KM </mat-header-cell>
+            <mat-cell *matCellDef="let row">
+                <input type="number" matInput [(ngModel)]="row.rinkm" />
+            </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="routtime">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Release Out Time </mat-header-cell>
+            <mat-cell *matCellDef="let row">
+                <input type="datetime-local" matInput [(ngModel)]="row.routtime" />
+            </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="rintime">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Release In Time </mat-header-cell>
+            <mat-cell *matCellDef="let row">
+                <input type="datetime-local" matInput [(ngModel)]="row.rintime" />
+            </mat-cell>
+        </ng-container>
         <ng-container matColumnDef="parking">
             <mat-header-cell *matHeaderCellDef mat-sort-header> Parking </mat-header-cell>
             <mat-cell *matCellDef="let row">

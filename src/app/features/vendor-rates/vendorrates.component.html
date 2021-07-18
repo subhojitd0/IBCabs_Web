@@ -1,0 +1,71 @@
+
+        <div class="container">
+          <mat-card>
+            <mat-card-header>
+              <div mat-card-avatar class="avatar-image-rate"></div>
+              <mat-card-title>Party Rates for {{ partyheadname }}</mat-card-title>
+              <mat-card-subtitle>The figures displayed below in slab are in the order of ( KM / KMRate - HR / HRRate )</mat-card-subtitle>
+            </mat-card-header>
+          </mat-card>
+
+
+            <button style="margin-right: 10px" mat-stroked-button (click)="backtopartyhead()" >Back to Party Head</button>
+            <button mat-stroked-button (click)="opendialog()" >Create New Party Rate</button>
+            
+
+            <mat-form-field class="mid">
+                <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search Party Slab">
+              </mat-form-field><br/>
+              
+              <br/>
+              <mat-table style="margin-top: 10px" [dataSource]="dataSource" matSort>
+
+                <!-- ID Column -->
+                <ng-container matColumnDef="car">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> Car  </mat-header-cell>
+                  <mat-cell *matCellDef="let row"> {{row.car}} </mat-cell>
+                </ng-container>
+            
+                <!-- Name Column -->
+                <ng-container matColumnDef="slab1">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> First Slab</mat-header-cell>
+                  <mat-cell *matCellDef="let row"> {{row.slab1}} </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="slab2">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Second Slab </mat-header-cell>
+                    <mat-cell *matCellDef="let row"> {{row.slab2}} </mat-cell>
+                  </ng-container>
+
+                  <!-- <ng-container matColumnDef="slab3">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Third Slab </mat-header-cell>
+                    <mat-cell *matCellDef="let row"> {{row.slab3}} </mat-cell>
+                  </ng-container> -->
+
+                  <ng-container matColumnDef="slabrest">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Rest Slabs </mat-header-cell>
+                    <mat-cell *matCellDef="let row"> {{row.slabrest}} </mat-cell>
+                  </ng-container>
+
+                  <ng-container matColumnDef="datespan">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Date </mat-header-cell>
+                    <mat-cell *matCellDef="let row"> {{row.datespan}} </mat-cell>
+                  </ng-container>
+
+                <ng-container matColumnDef="option">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Options </mat-header-cell>
+                    <mat-cell *matCellDef="let row" [style.color]="row.option">
+                        <span style="margin-left: 10px; margin-right: 10px; cursor: pointer;" class="material-icons" (click)="deleteRate(row.slabcode)">
+                            delete
+                        </span>    
+                    </mat-cell>
+                  </ng-container>
+            
+                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: displayedColumns;">
+                </mat-row>
+              </mat-table>
+            <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+
+
+        </div>
