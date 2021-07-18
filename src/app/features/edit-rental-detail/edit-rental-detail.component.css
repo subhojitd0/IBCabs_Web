@@ -288,7 +288,7 @@ mat-header-row {
 .mat-column-driver {
     word-wrap: break-word !important;
     white-space: unset !important;
-    flex: 0 0 10% !important;
+    flex: 0 0 9% !important;
     width: 8% !important;
     overflow-wrap: break-word;
     word-wrap: break-word;
@@ -302,7 +302,7 @@ mat-header-row {
 .mat-column-carnumber {
     word-wrap: break-word !important;
     white-space: unset !important;
-    flex: 0 0 10% !important;
+    flex: 0 0 8% !important;
     width: 8% !important;
     overflow-wrap: break-word;
     word-wrap: break-word;
@@ -316,7 +316,7 @@ mat-header-row {
 .mat-column-cartype {
     word-wrap: break-word !important;
     white-space: unset !important;
-    flex: 0 0 8% !important;
+    flex: 0 0 7% !important;
     width: 8% !important;
     overflow-wrap: break-word;
     word-wrap: break-word;
@@ -330,7 +330,7 @@ mat-header-row {
 .mat-column-goutkm {
     word-wrap: break-word !important;
     white-space: unset !important;
-    flex: 0 0 5% !important;
+    flex: 0 0 3% !important;
     width: 8% !important;
     overflow-wrap: break-word;
     word-wrap: break-word;
@@ -344,7 +344,7 @@ mat-header-row {
 .mat-column-ginkm {
     word-wrap: break-word !important;
     white-space: unset !important;
-    flex: 0 0 5% !important;
+    flex: 0 0 3% !important;
     width: 8% !important;
     overflow-wrap: break-word;
     word-wrap: break-word;
@@ -358,7 +358,7 @@ mat-header-row {
 .mat-column-gouttime {
     word-wrap: break-word !important;
     white-space: unset !important;
-    flex: 0 0 10% !important;
+    flex: 0 0 9% !important;
     width: 10% !important;
     overflow-wrap: break-word;
     word-wrap: break-word;
@@ -372,7 +372,7 @@ mat-header-row {
 .mat-column-gintime {
     word-wrap: break-word !important;
     white-space: unset !important;
-    flex: 0 0 10% !important;
+    flex: 0 0 9% !important;
     width: 10% !important;
     overflow-wrap: break-word;
     word-wrap: break-word;
@@ -386,7 +386,7 @@ mat-header-row {
 .mat-column-routkm {
     word-wrap: break-word !important;
     white-space: unset !important;
-    flex: 0 0 5% !important;
+    flex: 0 0 3% !important;
     width: 8% !important;
     overflow-wrap: break-word;
     word-wrap: break-word;
@@ -400,7 +400,7 @@ mat-header-row {
 .mat-column-rinkm {
     word-wrap: break-word !important;
     white-space: unset !important;
-    flex: 0 0 5% !important;
+    flex: 0 0 3% !important;
     width: 8% !important;
     overflow-wrap: break-word;
     word-wrap: break-word;
@@ -414,7 +414,7 @@ mat-header-row {
 .mat-column-routtime {
     word-wrap: break-word !important;
     white-space: unset !important;
-    flex: 0 0 10% !important;
+    flex: 0 0 8% !important;
     width: 10% !important;
     overflow-wrap: break-word;
     word-wrap: break-word;
@@ -428,7 +428,7 @@ mat-header-row {
 .mat-column-rintime {
     word-wrap: break-word !important;
     white-space: unset !important;
-    flex: 0 0 10% !important;
+    flex: 0 0 8% !important;
     width: 10% !important;
     overflow-wrap: break-word;
     word-wrap: break-word;

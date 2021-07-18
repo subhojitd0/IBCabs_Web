@@ -3,7 +3,7 @@
         Loading...
     </div>
 </div>
-<div class="container" style="max-width: 1400px;">
+<div class="container" style="max-width: 1700px;">
     <mat-card>
         <mat-card-header>
             <div mat-card-avatar class="avatar-image-partyhead"></div>
@@ -129,7 +129,7 @@
     background: #ffffff;
     z-index: 9999;
     padding: 20px;
-    width: 140%;">
+    width: 190%;">
         <span class="tab-css sticky6" (click)="newduty()">Create New Duty</span>
         <span class="tab-css sticky7" (click)="showbulkedit()" *ngIf="!isBulkEdit">Do Bulk Edit</span>
         <span class="tab-css sticky7" (click)="showsingleedit()" *ngIf="isBulkEdit">Do Single Edit</span>
@@ -209,7 +209,7 @@
 
 
 
-    <mat-table class="bulktable" [dataSource]="bulkDataSource" matSort *ngIf="isBulkEdit" style="width:140%; margin-top: -40px">
+    <mat-table class="bulktable" [dataSource]="bulkDataSource" matSort *ngIf="isBulkEdit" style="width:190%; margin-top: -40px">
 
         <ng-container matColumnDef="isselected">
             <mat-header-cell *matHeaderCellDef mat-sort-header> <input type="checkbox" (change)="selectallduty()"> </mat-header-cell>
@@ -310,25 +310,25 @@
             </mat-cell>
         </ng-container>
         <ng-container matColumnDef="routkm">
-            <mat-header-cell *matHeaderCellDef mat-sort-header> Release Out KM </mat-header-cell>
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Rel Out KM </mat-header-cell>
             <mat-cell *matCellDef="let row">
                 <input type="number" matInput [(ngModel)]="row.routkm" />
             </mat-cell>
         </ng-container>
         <ng-container matColumnDef="rinkm">
-            <mat-header-cell *matHeaderCellDef mat-sort-header> Release In KM </mat-header-cell>
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Rel In KM </mat-header-cell>
             <mat-cell *matCellDef="let row">
                 <input type="number" matInput [(ngModel)]="row.rinkm" />
             </mat-cell>
         </ng-container>
         <ng-container matColumnDef="routtime">
-            <mat-header-cell *matHeaderCellDef mat-sort-header> Release Out Time </mat-header-cell>
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Rel Out Time </mat-header-cell>
             <mat-cell *matCellDef="let row">
                 <input type="datetime-local" matInput [(ngModel)]="row.routtime" />
             </mat-cell>
         </ng-container>
         <ng-container matColumnDef="rintime">
-            <mat-header-cell *matHeaderCellDef mat-sort-header> Release In Time </mat-header-cell>
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Rel In Time </mat-header-cell>
             <mat-cell *matCellDef="let row">
                 <input type="datetime-local" matInput [(ngModel)]="row.rintime" />
             </mat-cell>
