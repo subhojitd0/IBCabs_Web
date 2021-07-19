@@ -271,6 +271,20 @@ mat-header-row {
     hyphens: auto;
 }
 
+.mat-column-slip {
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    flex: 0 0 3% !important;
+    width: 5% !important;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-word;
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+}
+
 .mat-column-reportto {
     word-wrap: break-word !important;
     white-space: unset !important;
@@ -288,7 +302,7 @@ mat-header-row {
 .mat-column-driver {
     word-wrap: break-word !important;
     white-space: unset !important;
-    flex: 0 0 9% !important;
+    flex: 0 0 8% !important;
     width: 8% !important;
     overflow-wrap: break-word;
     word-wrap: break-word;
@@ -316,7 +330,7 @@ mat-header-row {
 .mat-column-cartype {
     word-wrap: break-word !important;
     white-space: unset !important;
-    flex: 0 0 7% !important;
+    flex: 0 0 6% !important;
     width: 8% !important;
     overflow-wrap: break-word;
     word-wrap: break-word;

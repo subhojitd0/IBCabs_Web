@@ -3,23 +3,23 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import {ApiService} from '../../../shared/services/service';
-import {RATE_SLAB_API} from '../../../shared/services/api.url-helper';
+import {VENDOR_RATE} from '../../../shared/services/api.url-helper';
 import {MatDialog} from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 import { AddVendorSlabComponent } from './add-new-slab/add-slab-head.component';
 import { Router } from '@angular/router';
-import { ROUTE_PARTY, ROUTE_RATE } from 'src/shared/constants/constant';
+import { ROUTE_OWNER, ROUTE_PARTY, ROUTE_RATE } from 'src/shared/constants/constant';
 
 export interface RateHead {
-  slabcode: string;
-  ratetype: string;
-  option: string;
-  slab1: string;
-  slab2: string;
-  slab3: string;
-  slabrest: string;
-  car: string;
-  datespan : string;
+  ratecode: string;
+  ownercode: string;
+  party: string;
+  package: string;
+  hourrate: string;
+  kmrate: string;
+  hrkm: string;
+  parking: string;
+  outstation : string;
 }
 
 @Component({
@@ -36,36 +36,35 @@ export class VendorRatesComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
   displayedColumns: string[] = ['car', 'slab1', 'slab2', 'slabrest', 'datespan','option'];
   dataSource: MatTableDataSource<RateHead>;
+  ownerid: any;
   constructor(private router: Router, private apiService: ApiService, public dialog: MatDialog, private toastr: ToastrService) {
-    this.partyheadname = localStorage.getItem('selectedpartyheadname'); 
+    this.partyheadname = localStorage.getItem('selectedvendorname'); 
   }
    ngOnInit() : void {
      debugger;
-    this.partyheadid = JSON.parse(localStorage.getItem('selectedpartyheadid'));
-    if(this.partyheadid && this.partyheadid != "0"){
+     this.ownerid = JSON.parse(localStorage.getItem('selectedownerid'));
+    if(this.ownerid && this.ownerid != "0"){
       var json = 
       {
         "mode": 0,
-        "partyheadcode": this.partyheadid 
+        "ownercode": this.ownerid 
       };
-      this.apiService.post(RATE_SLAB_API, json).then((res: any)=>{ 
+      this.apiService.post(VENDOR_RATE, json).then((res: any)=>{ 
         debugger;
         const rates: RateHead[] = res;
         let i = 0;
         res.forEach((x) => {
-          rates[i].slab1 = x.onekm + "/" + x.onekmrate + " - " + x.onehr + "/" + x.onehrrate;
-          rates[i].slab2 = x.twokm + "/" + x.twokmrate + " - " + x.twohr + "/" + x.twohrrate;
-          //rates[i].slab3 = x.threekm + "/" + x.threekmrate + " - " + x.threehr + "/" + x.threehrrate;
-          rates[i].slabrest = x.restkmrate + " - " + x.resthrrate;
-          rates[i].datespan=x.fromdate+" - "+x.todate;
+          rates[i].parking = x.parking === "1" ? "Yes" : "No";
+          rates[i].outstation = x.outstation === "1" ? "Yes" : "No";
+          rates[i].hrkm= x.hrkm === "1" ? "Yes" : "No";
           i++;
-        })
+        }) 
         this.dataSource = new MatTableDataSource(rates);
       });
     }
    }
    backtopartyhead(){
-    this.router.navigateByUrl('/' + ROUTE_PARTY);
+    this.router.navigateByUrl('/' + ROUTE_OWNER);
    }
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim(); // Remove whitespace
@@ -79,16 +78,16 @@ export class VendorRatesComponent implements OnInit {
       var json = 
       {
         "mode":3,
-        "slabcode": id
+        "ratecode": id
       }
-      this.apiService.post(RATE_SLAB_API, json).then((res: any)=>{ 
+      this.apiService.post(VENDOR_RATE, json).then((res: any)=>{ 
         this.toastr.success("Youe data was successfully deleted",'Success');
         location.reload();
       });
     }
   }
   opendialog(){
-    localStorage.setItem('selectedpartyheadid', this.partyheadid );
+    localStorage.setItem('selectedownerid', this.ownerid );
     const dialogRef = this.dialog.open(AddVendorSlabComponent);
 
     dialogRef.afterClosed().subscribe(result => {

@@ -147,7 +147,7 @@
                 top: 3%;
                 right: 45%;
                 height: 0px;
-                z-index: 9999;" *ngIf="isBulkEdit"> KM Diff - {{tkm}}   &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;  HR Diff - {{thr}} </span>
+                z-index: 9999;" *ngIf="isBulkEdit"> G KM Diff - {{tkm}}   &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;  G HR Diff - {{thr}} </span>
 
 
     </p>
@@ -286,49 +286,49 @@
         </ng-container>
 
         <ng-container matColumnDef="goutkm">
-            <mat-header-cell *matHeaderCellDef mat-sort-header> Out KM </mat-header-cell>
+            <mat-header-cell *matHeaderCellDef mat-sort-header> G Out KM </mat-header-cell>
             <mat-cell *matCellDef="let row">
                 <input type="number" matInput [(ngModel)]="row.goutkm" (blur)="caltotal(row)" />
             </mat-cell>
         </ng-container>
         <ng-container matColumnDef="ginkm">
-            <mat-header-cell *matHeaderCellDef mat-sort-header> In KM </mat-header-cell>
+            <mat-header-cell *matHeaderCellDef mat-sort-header> G In KM </mat-header-cell>
             <mat-cell *matCellDef="let row">
                 <input type="number" matInput [(ngModel)]="row.ginkm" (blur)="caltotal(row)" />
             </mat-cell>
         </ng-container>
         <ng-container matColumnDef="gouttime">
-            <mat-header-cell *matHeaderCellDef mat-sort-header> Out Time </mat-header-cell>
+            <mat-header-cell *matHeaderCellDef mat-sort-header> G Out Time </mat-header-cell>
             <mat-cell *matCellDef="let row">
                 <input type="datetime-local" matInput [(ngModel)]="row.gouttime" (blur)="caltotal(row)" />
             </mat-cell>
         </ng-container>
         <ng-container matColumnDef="gintime">
-            <mat-header-cell *matHeaderCellDef mat-sort-header> In Time </mat-header-cell>
+            <mat-header-cell *matHeaderCellDef mat-sort-header> G In Time </mat-header-cell>
             <mat-cell *matCellDef="let row">
                 <input type="datetime-local" matInput [(ngModel)]="row.gintime" (blur)="caltotal(row)" />
             </mat-cell>
         </ng-container>
         <ng-container matColumnDef="routkm">
-            <mat-header-cell *matHeaderCellDef mat-sort-header> Rel Out KM </mat-header-cell>
+            <mat-header-cell *matHeaderCellDef mat-sort-header> REP KM </mat-header-cell>
             <mat-cell *matCellDef="let row">
                 <input type="number" matInput [(ngModel)]="row.routkm" />
             </mat-cell>
         </ng-container>
         <ng-container matColumnDef="rinkm">
-            <mat-header-cell *matHeaderCellDef mat-sort-header> Rel In KM </mat-header-cell>
+            <mat-header-cell *matHeaderCellDef mat-sort-header> RLS KM </mat-header-cell>
             <mat-cell *matCellDef="let row">
                 <input type="number" matInput [(ngModel)]="row.rinkm" />
             </mat-cell>
         </ng-container>
         <ng-container matColumnDef="routtime">
-            <mat-header-cell *matHeaderCellDef mat-sort-header> Rel Out Time </mat-header-cell>
+            <mat-header-cell *matHeaderCellDef mat-sort-header> REP Time </mat-header-cell>
             <mat-cell *matCellDef="let row">
                 <input type="datetime-local" matInput [(ngModel)]="row.routtime" />
             </mat-cell>
         </ng-container>
         <ng-container matColumnDef="rintime">
-            <mat-header-cell *matHeaderCellDef mat-sort-header> Rel In Time </mat-header-cell>
+            <mat-header-cell *matHeaderCellDef mat-sort-header> RLS Time </mat-header-cell>
             <mat-cell *matCellDef="let row">
                 <input type="datetime-local" matInput [(ngModel)]="row.rintime" />
             </mat-cell>

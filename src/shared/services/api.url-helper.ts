@@ -26,3 +26,4 @@ export const BILL_API_H ="partybillh.php";
 export const BILL_API_I ="partybilli.php";
 export const BILL_VENDOR_PAY ="vendorpay.php";
 export const BILL_VENDOR_PAY_UPDATE ="vendorpayupdate.php";
+export const VENDOR_RATE ="ownerrate.php";

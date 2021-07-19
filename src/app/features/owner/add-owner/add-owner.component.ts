@@ -6,7 +6,7 @@ import {ApiService} from '../../../../shared/services/service';
 import {OWNER_API, PARTY_HEAD_API} from '../../../../shared/services/api.url-helper';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
-import { ROUTE_OWNER } from 'src/shared/constants/constant';
+import { ROUTE_OWNER, ROUTE_VENDOR_RATE } from 'src/shared/constants/constant';
 
 export interface OwnerDetails {
   ownername: string,
@@ -65,6 +65,11 @@ export class AddOwnerComponent implements OnInit {
    }
    ngOnInit() : void {
     
+   }
+   openvendorrates(){
+    debugger;
+    localStorage.setItem('selectedvendorname', this.ownerDetails.ownername);
+    this.router.navigateByUrl('/' + ROUTE_VENDOR_RATE);
    }
   saveowner(){
     if(this.ownerDetails.pan){

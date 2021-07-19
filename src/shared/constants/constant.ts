@@ -35,6 +35,7 @@ export const ROUTE_TIMES_BILL = "bills/new/times-format";
 export const ROUTE_VIEW_BILL_H = "bills/new/bill-h";
 export const ROUTE_VIEW_BILL_I = "bills/new/walkin";
 export const ROUTE_VENDOR_BILL = "bills/new/vendor-bill";
+export const ROUTE_VENDOR_RATE = "bills/new/vendor-rates";
 
 //Production New
 /* export const ROUTE_BASIC = "newbill";
