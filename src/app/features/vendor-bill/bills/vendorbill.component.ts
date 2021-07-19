@@ -140,6 +140,7 @@ export class VendorBillComponent implements OnInit {
   billRegDetails: any;
   userrole: string;
   loading: boolean;
+  showsubmit: boolean = false;
   constructor(private router: Router,private apiService: ApiService, public dialog: MatDialog, private toastr: ToastrService) {
     
    }
@@ -235,6 +236,7 @@ export class VendorBillComponent implements OnInit {
           debugger;
           this.loading = false;
           this.toastr.success("Data has been saved successfully");
+          this.showsubmit  = true;
         }
         else{
           this.toastr.error("There was an error saving your data");

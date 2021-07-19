@@ -18,7 +18,7 @@
         </div>
         <div class="col-xs-4" *ngIf="isConfirmVisible">
             <button mat-stroked-button (click)="save()">Save as draft</button>&nbsp; &nbsp;
-            <button mat-stroked-button (click)="submit()">Submit & Confirm</button>&nbsp; &nbsp;
+            <button *ngIf="showsubmit" mat-stroked-button (click)="submit()">Submit & Confirm</button>&nbsp; &nbsp;
         </div>
 
     </div>
