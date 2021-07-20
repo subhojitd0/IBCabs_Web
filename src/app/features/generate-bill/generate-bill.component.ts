@@ -204,6 +204,7 @@ billRegDetails: any[] = [];
       to: element.billto,
       format: "12",
       mode: "1",
+      reportto: element.reportto,
       gsttype: element.gsttype,
       parkinggst: element.parkinggst
     }
@@ -218,9 +219,7 @@ billRegDetails: any[] = [];
     this.apiService.post(BILL_API_I, json).then((res: any)=>{ 
       debugger;
       localStorage.setItem("billdata", JSON.stringify(res));
-      if(res.body.length > 60){
-        localStorage.setItem("removeheader", "1");
-      }
+      localStorage.setItem("removeheader", "1");
       this.toastr.success("Your bill was successfully created",'Success');
       this.router.navigate([]).then(result => {  window.open('/' + ROUTE_VIEW_BILL_I, '_blank'); });
     });

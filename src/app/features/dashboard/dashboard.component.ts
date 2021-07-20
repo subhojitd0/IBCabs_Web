@@ -42,6 +42,13 @@ export class DashboardComponent implements OnInit {
     this.apiService.post(OWNER_API, json).then((res: any)=>{ 
       localStorage.setItem("allowners", JSON.stringify(res.result));
     });
+    var jsonooked = 
+    {
+      "mode": 3
+    };
+    this.apiService.post(EXTRA_API, jsonooked).then((res: any)=>{ 
+      localStorage.setItem("allbookedby", JSON.stringify(res.result));
+    });
     if(this.pagerefrsh == "0"){
       localStorage.setItem('pagerefresh', "1");
       location.reload();

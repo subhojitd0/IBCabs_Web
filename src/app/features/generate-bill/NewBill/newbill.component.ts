@@ -91,19 +91,28 @@ export class NewBillComponent implements OnInit {
   showTotalCal: boolean = false;
   showDayRate: boolean = false;
   showTotalCalABP: boolean = false;
+  showbookedby: boolean = false;
+  allbookedby: any;
+  bookedbyselect: FormControl;
+  bookedbylist: Observable<string[]>;
+  allbookedbynames: any;
   constructor(private router: Router, private apiService: ApiService, private toastr: ToastrService) {
     this.billDetails = new newbill();
    }
    ngOnInit() : void {
+    this.allbookedby = JSON.parse(localStorage.getItem("allbookedby"));
     this.allparties = JSON.parse(localStorage.getItem('allparties'));
     this.allreports = JSON.parse(localStorage.getItem('allreportto'));
     this.partynames = this.allparties.map(x=>x.name);
     this.reportnames = this.allreports.map(x=>x.report);
     this.partymasternamestemp = this.allparties.map(x=>x.master);
     this.partymasternames = [...new Set(this.partymasternamestemp)];
+    this.allbookedbynames = this.allbookedby.map(x=>x.bookedby);
     this.partyselect = new FormControl();
+    this.bookedbyselect = new FormControl();
     this.partymasterselect = new FormControl();
     this.reportselect = new FormControl();
+    this.bookedbylist = this.bookedbyselect.valueChanges.pipe(startWith(''),map(value => this._filterBooked(value)));
     this.partylist = this.partyselect.valueChanges.pipe(startWith(''),map(value => this._filterParty(value)));
     this.partymasterlist = this.partymasterselect.valueChanges.pipe(startWith(''),map(value => this._filterPartyMaster(value)));
     this.reportlist = this.reportselect.valueChanges.pipe(startWith(''),map(value => this._filterReport(value)));
@@ -112,6 +121,10 @@ export class NewBillComponent implements OnInit {
     this.billDetails.parkinggst = "0";
     this.billDetails.format = "1";
     this.showFields();
+   }
+   public _filterBooked(value: string): string[]{
+    const filterValue = value.toLowerCase();
+    return this.allbookedbynames.filter(client => client.toLowerCase().includes(filterValue));
    }
    public _filterParty(value: string): string[] {
     const filterValue = value.toLowerCase();
@@ -144,6 +157,7 @@ export class NewBillComponent implements OnInit {
       this.showTotalCal = true;
       this.showDayRate = false;
       this.showTotalCalABP = false;
+      this.showbookedby = false;
     }
     else if(this.billDetails.format === "2"){ //B
       this.showParty = true;
@@ -163,6 +177,7 @@ export class NewBillComponent implements OnInit {
       this.showDayRate = false;
       this.showTotalCal = false;
       this.showTotalCalABP = false;
+      this.showbookedby = false;
     }
     else if(this.billDetails.format === "3"){ //C
       this.showParty = true;
@@ -182,6 +197,7 @@ export class NewBillComponent implements OnInit {
       this.showTotalCal = false;
       this.showTotalCalABP = false;
       this.showDayRate = false;
+      this.showbookedby = false;
     }
     else if(this.billDetails.format === "4"){ //D0
       this.showParty = true;
@@ -201,6 +217,7 @@ export class NewBillComponent implements OnInit {
       this.showTotalCalABP = false;
       this.showTotalCal = false;
       this.showDayRate = false;
+      this.showbookedby = false;
     }
     else if(this.billDetails.format === "5"){ //D1
       this.showParty = true;
@@ -220,6 +237,7 @@ export class NewBillComponent implements OnInit {
       this.showDayRate = false;
       this.showTotalCal = false;
       this.showTotalCalABP = false;
+      this.showbookedby = false;
     }
     else if(this.billDetails.format === "6"){ //D2
       this.showParty = true;
@@ -239,6 +257,7 @@ export class NewBillComponent implements OnInit {
       this.showTotalCal = false;
       this.showDayRate = false;
       this.showTotalCalABP = false;
+      this.showbookedby = false;
     }
     else if(this.billDetails.format === "7"){ //C9 - NOT SAVED
       this.showParty = true;
@@ -258,6 +277,7 @@ export class NewBillComponent implements OnInit {
       this.showTotalCal = false;
       this.showDayRate = false;
       this.showTotalCalABP = false;
+      this.showbookedby = false;
     }
     else if(this.billDetails.format === "8"){ //E - ABP
       this.showParty = false;
@@ -277,6 +297,7 @@ export class NewBillComponent implements OnInit {
       this.showTotalCal = false;
       this.showDayRate = false;
       this.showTotalCalABP = true;
+      this.showbookedby = false;
     }
     else if(this.billDetails.format === "9"){ //F - Daily OT
       this.showParty = true;
@@ -296,6 +317,7 @@ export class NewBillComponent implements OnInit {
       this.showTotalCal = false;
       this.showTotalCalABP = false;
       this.showDayRate = false;
+      this.showbookedby = false;
     }
     else if(this.billDetails.format === "10"){ //G - Times
       this.showParty = true;
@@ -315,6 +337,7 @@ export class NewBillComponent implements OnInit {
       this.showTotalCal = false;
       this.showDayRate = true;
       this.showTotalCalABP = false;
+      this.showbookedby = false;
     }
     else if(this.billDetails.format === "11"){ //A
       this.showParty = true;
@@ -333,9 +356,10 @@ export class NewBillComponent implements OnInit {
       this.showCustomFAVal = true;
       this.showTotalCal = false;
       this.showDayRate = false;
+      this.showbookedby = false;
     }
     else if(this.billDetails.format === "12"){ //B
-      this.showParty = true;
+      this.showParty = false;
       this.showPartyMaster = false;
       this.showBillSubject = true;
       this.showBillFrom = true;
@@ -352,6 +376,7 @@ export class NewBillComponent implements OnInit {
       this.showDayRate = false;
       this.showTotalCal = false;
       this.showTotalCalABP = false;
+      this.showbookedby = true;
     }
   }
   somethingChanged(){
@@ -464,6 +489,7 @@ export class NewBillComponent implements OnInit {
     if(this.billDetails.format == "12"){
       billApi = BILL_API_I;
       redirectApi = ROUTE_VIEW_BILL_I;
+      localStorage.setItem("removeheader", "1");
     }
     debugger;
     this.toastr.info("Please wait while we are generating your bill",'Information');
@@ -486,7 +512,7 @@ export class NewBillComponent implements OnInit {
       debugger;
       localStorage.setItem("billdata", JSON.stringify(res));
       this.toastr.success("Your bill was successfully created",'Success');
-      this.router.navigateByUrl('/' + redirectApi);
+      this.router.navigate([]).then(result => {  window.open('/' + redirectApi, '_blank'); });
     });
   }
 
