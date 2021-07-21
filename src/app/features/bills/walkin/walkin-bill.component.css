@@ -244,3 +244,6 @@ th {
 #meta {
     font-size: 20px;
 }
+
+th { border: 1px solid; padding: 5px ;border:1px solid black; font-size: 19px;}
+td { border: 1px solid; padding: 5px ;border:1px solid black; font-size: 18px;}

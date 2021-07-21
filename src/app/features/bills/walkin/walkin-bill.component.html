@@ -3,7 +3,7 @@
     <p *ngIf="isConfirmVisible" style="cursor: pointer; margin-right: 5px" (click)="save();"><img height="70" src="http://ibcabs.com/bills/new/assets/img/confirm.png"></p>
 </div>
 <div class="container" id="printdiv" style="max-width: 1400px; min-height: 2000px; max-height: 100000px;">
-    <p id="header">TAX INVOICE</p>
+    <p id="header">INVOICE</p>
     <div *ngIf="billgst !== '2'" id="identity" class="row col-xs-12">
         <div class="col-xs-1">
             <img src="http://ibcabs.com/bills/new/assets/img/ib.jpg" style="height:90px;width:90px;margin-top:-8px;">
@@ -146,10 +146,10 @@
                     </tr>
                 </tbody>
                 <br/>
-                <span *ngIf="billgst !== '2'" style="font-weight: bold">GST WIll BE PAID BY SERVICE RECIPIENT UNDER R.C.M VIDE NOTIFICATION NO : 22/2019<br/>ITC HAS NOT BEEN AVAILED</span> <br/><br/>
-                <span *ngIf="billgst !== '2'">Enclose. : {{totalno}} no. of original duty slips</span>
+                
+                
             </table>
-
+            <span>Enclose. : {{totalno}} no. of original duty slips</span>
             <br>
 
 
@@ -186,7 +186,7 @@
                 </tbody>
             </table>
             <p style="float:right;margin-top: 50px;font-weight: bold; font-size: 20px;">Amount in words: <br/>{{amountInWord}}</p>
-            <p style="margin-left:700px;margin-top: 300px;font-weight: bold; font-size: 15px;">For IB Cabs</p>
+            <p *ngIf="billgst !== '2'" style="margin-left:700px;margin-top: 300px;font-weight: bold; font-size: 15px;">For IB Cabs</p>
         </div>
     </div>
 
