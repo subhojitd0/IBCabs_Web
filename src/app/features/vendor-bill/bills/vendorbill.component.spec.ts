@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CoalIndexComponent } from "./coalindex.component";
+import { VendorBillComponent } from "./vendorbill.component";
 
-describe('RelinceSummaryComponent', () => {
-  let component: CoalIndexComponent;
-  let fixture: ComponentFixture<CoalIndexComponent>;
+describe('VendorBillComponent', () => {
+  let component: VendorBillComponent;
+  let fixture: ComponentFixture<VendorBillComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CoalIndexComponent ]
+      declarations: [ VendorBillComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CoalIndexComponent);
+    fixture = TestBed.createComponent(VendorBillComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

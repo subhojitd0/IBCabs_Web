@@ -36,7 +36,7 @@
                 <th>Total KM</th>
                 <th>Parking</th>
                 <th>Bill Id</th>
-                <th style="width: 10%">Amount</th>
+                <th *ngIf="userrole === 'ibcabs'" style="width: 10%">Amount</th>
             </tr>
             <tr *ngFor="let childrow of row.data">
                 <td>{{childrow.sl}}</td>
@@ -49,7 +49,7 @@
                 <td>{{childrow.totalkm}}</td>
                 <td>{{childrow.parking}}</td>
                 <td style="cursor:pointer" (click)="showbill(childrow)">{{childrow.billnumber}}</td>
-                <td>
+                <td *ngIf="userrole === 'ibcabs'">
                     <input [disabled]="!isConfirmVisible" style="width: 100%;border:none;text-align: center;" (blur)="changeamount(childrow)" matInput type="text" [(ngModel)]="childrow.amount">
                 </td>
             </tr>
