@@ -9,7 +9,7 @@
 </div>
 <div class="container" id="printdiv" style="max-width: 1400px; min-height: 2000px; max-height: 10000px;">
     <p id="header">VENDOR INVOICE - {{vendorname}}</p>
-    <div *ngIf="userrole === 'ibcabs'" id="customer" class="row" style="padding-top: 20px;">
+    <div id="customer" class="row" style="padding-top: 20px;">
         <div class="col-xs-4">
             Comments : <input name="comment" type="text" [(ngModel)]="comments">
         </div>
@@ -18,7 +18,7 @@
         </div>
         <div class="col-xs-4" *ngIf="isConfirmVisible">
             <button mat-stroked-button (click)="save()">Save as draft</button>&nbsp; &nbsp;
-            <button *ngIf="showsubmit" mat-stroked-button (click)="submit()">Submit & Confirm</button>&nbsp; &nbsp;
+            <button *ngIf="showsubmit && userrole === 'ibcabs'" mat-stroked-button (click)="submit()">Submit & Confirm</button>&nbsp; &nbsp;
         </div>
 
     </div>
@@ -36,7 +36,7 @@
                 <th>Total KM</th>
                 <th>Parking</th>
                 <th>Bill Id</th>
-                <th *ngIf="userrole === 'ibcabs'" style="width: 10%">Amount</th>
+                <th style="width: 10%">Amount</th>
             </tr>
             <tr *ngFor="let childrow of row.data">
                 <td>{{childrow.sl}}</td>
@@ -49,7 +49,7 @@
                 <td>{{childrow.totalkm}}</td>
                 <td>{{childrow.parking}}</td>
                 <td style="cursor:pointer" (click)="showbill(childrow)">{{childrow.billnumber}}</td>
-                <td *ngIf="userrole === 'ibcabs'">
+                <td>
                     <input [disabled]="!isConfirmVisible" style="width: 100%;border:none;text-align: center;" (blur)="changeamount(childrow)" matInput type="text" [(ngModel)]="childrow.amount">
                 </td>
             </tr>
