@@ -116,7 +116,7 @@ billRegDetails: any[] = [];
       ownername: element.ownername,
       startdate: element.startdate,
       enddate: element.enddate,
-      ownercode: element.ownercode,
+      ownercode: element.ownerid,
       mode: "1",
     }
     localStorage.setItem("vendorname", element.ownername);

@@ -157,10 +157,12 @@ export class VendorBillComponent implements OnInit {
     if(amount){
       this.isConfirmVisible = false;
       this.total = amount;
+      this.showsubmit = true;
     }
     if(comment){
       this.isConfirmVisible = false;
       this.comments = comment;
+      this.showsubmit = true;
     }
     /* this.party = localStorage.getItem("billparty");
     this.billdetails = JSON.parse(localStorage.getItem("billdata"));
