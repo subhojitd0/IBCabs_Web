@@ -73,7 +73,7 @@ export class AddVendorSlabComponent implements OnInit {
     debugger;
     this.slabdetails.parking = this.slabdetails.parking ? "1" : "0";
     this.slabdetails.outstation = this.slabdetails.outstation ? "1" : "0";
-    this.slabdetails.hrkm = this.slabdetails.hrkm ? "1" : "0";
+    //this.slabdetails.hrkm = this.slabdetails.hrkm ? "1" : "0";
     this.slabdetails.mode = 1;
     this.toastr.info("Please wait while we are saving your data",'Information');
     this.apiService.post(VENDOR_RATE, this.slabdetails).then((res: any)=>{ 

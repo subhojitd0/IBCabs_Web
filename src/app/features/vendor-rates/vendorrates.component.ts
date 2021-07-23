@@ -56,7 +56,7 @@ export class VendorRatesComponent implements OnInit {
         res.forEach((x) => {
           rates[i].parking = x.parking === "1" ? "Yes" : "No";
           rates[i].outstation = x.outstation === "1" ? "Yes" : "No";
-          rates[i].hrkm= x.hrkm === "1" ? "Yes" : "No";
+          rates[i].hrkm= x.hrkm === "1" ? "Hr OR KM" : x.hrkm === "2" ? "HR AND KM" : "No";
           i++;
         }) 
         this.dataSource = new MatTableDataSource(rates);

@@ -46,7 +46,17 @@
         <div class="row">
             <div class="col-sm-4 form-inline">
                 <span style="margin-right: 10px">Include extra Hr/KM<br/></span>
-                <input name="2ndslabkm" type="checkbox" class="form-control" id="amount" placeholder="2nd Slab KM Value" [(ngModel)]="slabdetails.hrkm">
+                <mat-select [(value)]="slabdetails.hrkm">
+                    <mat-option value="0">
+                        No inclusion
+                    </mat-option>
+                    <mat-option value="1">
+                        Hr OR KM
+                    </mat-option>
+                    <mat-option value="2">
+                        Hr AND KM
+                    </mat-option>
+                </mat-select>
             </div>
             <div class="col-sm-4 form-inline">
                 <span style="margin-right: 10px">Include parking<br/></span>
