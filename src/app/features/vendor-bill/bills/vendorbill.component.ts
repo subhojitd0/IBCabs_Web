@@ -184,6 +184,7 @@ export class VendorBillComponent implements OnInit {
         carD.data.forEach((dat: any)=>{
           dat.sl = slno + 1;
           slno = slno + 1;
+          dat.amount = dat.amount.toString().replace(',','');
           tothr = parseFloat(dat.totalhr) + tothr;
           totkm = parseFloat(dat.totalkm) + totkm;
           totparking = parseFloat(dat.parking) + totparking;

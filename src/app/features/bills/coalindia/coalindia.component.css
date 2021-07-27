@@ -1,44 +1,44 @@
-.container{
-    width:100%;
+.container {
+    width: 100%;
 }
 
-.mat-stroked-button{
+.mat-stroked-button {
     margin-top: 40px;
     margin-bottom: 10px;
     background-color: silver;
 }
 
-.mat-card{
-    margin-top:20px;
-    margin-bottom:20px;
+.mat-card {
+    margin-top: 20px;
+    margin-bottom: 20px;
     background-color: #3f51b5;
-    color:white;
+    color: white;
 }
 
 .avatar-image-partyhead {
     background-image: url('https://images.unsplash.com/photo-1566909629119-f60df5a7a201?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2250&q=80');
     background-size: cover;
-  }
-
-.row{
-    padding:10px;
 }
 
-.full{
-    width:100%;
+.row {
+    padding: 10px;
 }
 
-.mid{
-    width:80%;
-    padding-left:40%;
+.full {
+    width: 100%;
+}
+
+.mid {
+    width: 80%;
+    padding-left: 40%;
 }
 
 table {
     width: 100%;
     text-align: center;
-  }
+}
 
-  #header{
+#header {
     height: 30px;
     width: 100%;
     margin: 0px;
@@ -49,175 +49,177 @@ table {
     text-decoration: uppercase;
     letter-spacing: 8px;
     padding: 8px 0px;
-  }
-  #customer-title {
-    font-size: 16px;
+}
+
+#customer-title {
+    font-size: 20px;
     /* font-weight: bold; */
     float: left;
 }
-.mat-header-cell{
+
+.mat-header-cell {
     font-weight: bold;
-    font-size: 20px;
+    font-size: 22px;
     color: black;
     border: 1px solid;
     padding-left: 5px;
     justify-content: center;
 }
 
-.mat-cell{
+.mat-cell {
     color: black;
     border: 1px solid;
     padding-left: 5px;
     /* font-weight: bold; */
-    font-size: 20px;
+    font-size: 22px;
     justify-content: center;
 }
 
-table>tr{
+table>tr {
     border: 1px solid;
 }
-.mat-row, .mat-footer-row, .mat-header-row {
+
+.mat-row,
+.mat-footer-row,
+.mat-header-row {
     min-height: 30px;
     text-align: center;
     color: black;
     border-bottom-width: 0px !important;
 }
-td, th { border: 1px solid; padding: 5px }
+
+td,
+th {
+    border: 1px solid;
+    padding: 5px
+}
 
 .mat-row:last-child {
     /* font-weight: bold; */
-  }
+}
 
-  .center{
+.center {
     position: fixed;
     top: 50%;
     right: 0px;
     width: 115px;
     height: 0px;
-    text-align:right;
-    z-index:9999;
-      margin-top:-15px;
-  }
-  
-  .center a{
-                  transform: rotate(-90deg);
-                  -webkit-transform: rotate(-90deg); 
-                  -moz-transform: rotate(-90deg); 
-                  -o-transform: rotate(-90deg); 
-                  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
-                  display: block; 
-                  background: #06c; 
-                 text-align:center;
-                  height: 15px; 
-                  width: 165px;
-                  padding: 8px 16px;
-                  color: #fff; 
-                  font-family: Arial, sans-serif; 
-                  font-size: 17px; 
-                  font-weight: bold; 
-                  text-decoration: none; 
-                  border-bottom: solid 1px #333; border-left: solid 1px #333; border-right: solid 1px #fff;
-          
-  }
-  
-  .center a:hover { 
-                  background: #CCC; 
-              }
-
-.mat-column-sl{
-word-wrap: break-word !important;
-white-space: unset !important;
-flex: 0 0 6% !important;
-width: 8% !important;
-overflow-wrap: break-word;
-word-wrap: break-word;
-
-word-break: break-word;
-
--ms-hyphens: auto;
--moz-hyphens: auto;
--webkit-hyphens: auto;
-hyphens: auto;
+    text-align: right;
+    z-index: 9999;
+    margin-top: -15px;
 }
 
-.mat-column-dutydate{
+.center a {
+    transform: rotate(-90deg);
+    -webkit-transform: rotate(-90deg);
+    -moz-transform: rotate(-90deg);
+    -o-transform: rotate(-90deg);
+    filter: progid: DXImageTransform.Microsoft.BasicImage(rotation=3);
+    display: block;
+    background: #06c;
+    text-align: center;
+    height: 15px;
+    width: 165px;
+    padding: 8px 16px;
+    color: #fff;
+    font-family: Arial, sans-serif;
+    font-size: 19px;
+    font-weight: bold;
+    text-decoration: none;
+    border-bottom: solid 1px #333;
+    border-left: solid 1px #333;
+    border-right: solid 1px #fff;
+}
+
+.center a:hover {
+    background: #CCC;
+}
+
+.mat-column-sl {
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    flex: 0 0 6% !important;
+    width: 8% !important;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-word;
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+}
+
+.mat-column-dutydate {
     word-wrap: break-word !important;
     white-space: unset !important;
     flex: 0 0 11% !important;
     width: 8% !important;
     overflow-wrap: break-word;
     word-wrap: break-word;
-    
     word-break: break-word;
-    
     -ms-hyphens: auto;
     -moz-hyphens: auto;
     -webkit-hyphens: auto;
     hyphens: auto;
-    }
-    .mat-column-reportto{
-        word-wrap: break-word !important;
-        white-space: unset !important;
-        flex: 0 0 12% !important;
-        width: 8% !important;
-        overflow-wrap: break-word;
-        word-wrap: break-word;
-        
-        word-break: break-word;
-        
-        -ms-hyphens: auto;
-        -moz-hyphens: auto;
-        -webkit-hyphens: auto;
-        hyphens: auto;
-        }
+}
 
-    .mat-column-carno{
-        word-wrap: break-word !important;
-        white-space: unset !important;
-        flex: 0 0 11% !important;
-        width: 8% !important;
-        overflow-wrap: break-word;
-        word-wrap: break-word;
-        
-        word-break: break-word;
-        
-        -ms-hyphens: auto;
-        -moz-hyphens: auto;
-        -webkit-hyphens: auto;
-        hyphens: auto;
-        }
-        .mat-column-outstation{
-            word-wrap: break-word !important;
-            white-space: unset !important;
-            flex: 0 0 11% !important;
-            width: 8% !important;
-            overflow-wrap: break-word;
-            word-wrap: break-word;
-            
-            word-break: break-word;
-            
-            -ms-hyphens: auto;
-            -moz-hyphens: auto;
-            -webkit-hyphens: auto;
-            hyphens: auto;
-            }
-        .mat-column-cartype{
-            word-wrap: break-word !important;
-            white-space: unset !important;
-            flex: 0 0 8% !important;
-            width: 8% !important;
-            overflow-wrap: break-word;
-            word-wrap: break-word;
-            
-            word-break: break-word;
-            
-            -ms-hyphens: auto;
-            -moz-hyphens: auto;
-            -webkit-hyphens: auto;
-            hyphens: auto;
-            }
-        
+.mat-column-reportto {
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    flex: 0 0 12% !important;
+    width: 8% !important;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-word;
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+}
 
-#customer-title, #meta{
-    font-size: 20px; 
+.mat-column-carno {
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    flex: 0 0 11% !important;
+    width: 8% !important;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-word;
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+}
+
+.mat-column-outstation {
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    flex: 0 0 11% !important;
+    width: 8% !important;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-word;
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+}
+
+.mat-column-cartype {
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    flex: 0 0 8% !important;
+    width: 8% !important;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-word;
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+}
+
+#customer-title,
+#meta {
+    font-size: 22px;
 }
