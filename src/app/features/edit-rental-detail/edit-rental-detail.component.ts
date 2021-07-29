@@ -9,7 +9,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {STEPPER_GLOBAL_OPTIONS} from '@angular/cdk/stepper';
-import { ROUTE_ADD_DDR, ROUTE_CHECK_DDR, ROUTE_EXPORT_DDR, ROUTE_VIEW_DDR } from 'src/shared/constants/constant';
+import { ROUTE_ADD_DDR, ROUTE_ADD_DDR_WALKIN, ROUTE_CHECK_DDR, ROUTE_EXPORT_DDR, ROUTE_VIEW_DDR } from 'src/shared/constants/constant';
 import { MessageModalComponent } from './message-modal/message-modal.component';
 import { ConfirmationModalComponent } from './confirmation-modal/confirmation-modal.component';
 import { Observable, Subject } from 'rxjs';
@@ -617,9 +617,16 @@ exportddr(){
     //moment.duration(moment(row.gintime, "HH:mm:ss").diff(moment(row.gouttime, "HH:mm:ss"))).asMinutes() / 60
   }
 
-  edit(id: any) {
-    localStorage.setItem('selectedduty', id);
-    this.router.navigateByUrl('/' + ROUTE_ADD_DDR);
+  edit(id: any, party: any) {
+    if(party === "WALK IN(ON CALL)"){
+      localStorage.setItem('selectedduty', id);
+      this.router.navigateByUrl('/' + ROUTE_ADD_DDR_WALKIN);
+    }
+    else{
+      localStorage.setItem('selectedduty', id);
+      this.router.navigateByUrl('/' + ROUTE_ADD_DDR);
+    }
+    
   }
   newduty(){
     this.router.navigateByUrl('/' + ROUTE_ADD_DDR);

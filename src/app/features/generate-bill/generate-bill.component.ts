@@ -247,7 +247,7 @@ billRegDetails: any[] = [];
     this.apiService.post(BILL_ONCALL_EXTRA_API, json).then((res: any)=>{ 
       debugger;
       localStorage.setItem("billdata", JSON.stringify(res));
-      if(res.body.length > 60){
+      if(res.body.length > 27){
         localStorage.setItem("removeheader", "1");
       }
       this.toastr.success("Your bill was successfully created",'Success');

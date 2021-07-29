@@ -181,8 +181,8 @@
         <ng-container matColumnDef="statusval">
             <mat-header-cell *matHeaderCellDef mat-sort-header> Status </mat-header-cell>
             <mat-cell *matCellDef="let row">
-                <span *ngIf="row.status == '0'" class="yellow-icon" (click)="edit(row.dutyid)"> Pending Driver Assign</span>
-                <span *ngIf="row.status == '1'" class="orange-icon" (click)="edit(row.dutyid)"> Pending Driver Input</span>
+                <span *ngIf="row.status == '0'" class="yellow-icon" (click)="edit(row.dutyid, row.party)"> Pending Driver Assign</span>
+                <span *ngIf="row.status == '1'" class="orange-icon" (click)="edit(row.dutyid, row.party)"> Pending Driver Input</span>
                 <span *ngIf="row.status == '2'" class="blue-icon" (click)="approve(row.dutyid)"> Pending Approval</span>
                 <span *ngIf="row.status == '3'" class="green-icon"> Bill Generated</span>
                 <span *ngIf="row.status == '4'" class="green-icon"> Owner Paid</span>
