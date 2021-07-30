@@ -64,6 +64,7 @@
             <tr>
                 <th style="text-align: center;">Sl. No</th>
                 <th style="text-align: center;">Duty Date</th>
+                <th style="text-align: center;">Slip No.</th>
                 <th style="text-align: center;">Report To</th>
                 <th style="text-align: center;">Car No. </th>
                 <th style="text-align: center;">Car Type</th>
@@ -77,6 +78,7 @@
             <tr *ngFor="let row of billdetails.body">
                 <td style="text-align: center;">{{row.sl}}</td>
                 <td style="text-align: center;">{{row.dutydate | date:'dd/MM/yyyy'}}</td>
+                <td style="text-align: center;">{{row.slipno}}</td>
                 <td style="text-align: center;">{{row.reportto}}</td>
                 <td style="text-align: center;">{{row.carno}}</td>
                 <td style="text-align: center;">{{row.cartype}}</td>

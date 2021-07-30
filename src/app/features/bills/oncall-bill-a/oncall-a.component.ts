@@ -24,6 +24,7 @@ export interface iBillDet {
   outstation: string;
   km: number;
   parking: string;
+  slipno: string;
 }
 
 export class BillDet implements iBillDet {
@@ -38,6 +39,7 @@ export class BillDet implements iBillDet {
     outstation: string;
     km: number;
     parking: string;
+    slipno: string;
 }
 
 export interface iSaveBill {
