@@ -202,6 +202,11 @@
                         <td class="meta-head" style="text-align: right !important;">Outstation Amount: Rs.</td>
                         <td class="meta-content">{{billdetails.tail[0].outstation}}</td>
                     </tr>
+                    <tr *ngIf="billdetails.tail[0].customfa">
+                        <td></td>
+                        <td class="meta-head" style="text-align: right !important;">{{billdetails.tail[0].customfa}}</td>
+                        <td class="meta-content">{{billdetails.tail[0].customfavalue}}</td>
+                    </tr>
                     <tr>
                         <td style="text-align:left !important">Night Bata ({{billdetails.tail[0].nightstart}} hrs to {{billdetails.tail[0].nightend}} hrs) for {{billdetails.tail[0].nightcount}} nights @ Rs. {{billdetails.tail[0].nightrate}}</td>
                         <td class="meta-head" style="text-align: right !important;">Amount: Rs.</td>

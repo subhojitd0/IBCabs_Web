@@ -52,6 +52,8 @@ export interface iSaveBill {
   nightstart:any;
   nightend:any;
   billCalType: any;
+  fa: any;
+  favalue: any;
 }
 export class SaveBill implements iSaveBill {
   billnumber: string;
@@ -74,6 +76,8 @@ export class SaveBill implements iSaveBill {
   nightstart:any;
   nightend:any;
   billCalType: any;
+  fa: any;
+  favalue: any;
 }
 @Component({
   selector: 'app-billh',
@@ -165,6 +169,8 @@ export class BillhComponent implements OnInit {
       billSave.totalhr = this.billdetails.bodytotal[0].hour;
       billSave.totalkm = this.billdetails.bodytotal[0].km;
       billSave.outstation = this.billdetails.bodytotal[0].outstation;
+      billSave.fa= this.billdetails.tail[0].customfa;
+      billSave.favalue=this.billdetails.tail[0].customfavalue;
       billSave.nightstart = localStorage.getItem("nightstart");
       billSave.nightend = localStorage.getItem("nightend");
       billSave.billCalType = billcalltype;

@@ -365,7 +365,9 @@ billRegDetails: any[] = [];
       nightstart: element.nightstart,
       nightend: element.nightend,
       gsttype: element.gsttype,
-      parkinggst: element.parkinggst
+      parkinggst: element.parkinggst,
+      customfa: element.fa,
+      customfavalue: element.favalue,
     }
     localStorage.setItem("billfrom", element.billfrom);
     localStorage.setItem("billto", element.billto);
@@ -378,6 +380,8 @@ billRegDetails: any[] = [];
     localStorage.setItem("billnumber", element.billnumber);
     localStorage.setItem("billdate", element.billdate);
     localStorage.setItem("billcaltype", element.billCalType);
+    localStorage.setItem("billfa", element.fa);
+    localStorage.setItem("billfaval", element.favalue);
     this.apiService.post(BILL_API_H, json).then((res: any)=>{ 
       debugger;
       localStorage.setItem("billdata", JSON.stringify(res));
