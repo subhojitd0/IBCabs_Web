@@ -143,6 +143,7 @@ export class MonthlyBillAComponent implements OnInit {
       this.billt=new Date(this.billto);
       localStorage.removeItem("billnumber");
       localStorage.removeItem("billdate");
+      localStorage.setItem("removeheader", "0");
     }
     
    }

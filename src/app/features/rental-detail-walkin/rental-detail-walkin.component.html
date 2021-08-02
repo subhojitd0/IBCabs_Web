@@ -148,14 +148,19 @@
             <br/>
 
             <mat-form-field style="width: 40%; margin-right: 40px;">
-                <mat-label>Flight No. / Train No.</mat-label>
-                <input matInput placeholder="Enter Flight / Train no." formControlName="FlightControl" [(ngModel)]="rentalAdd.transportinfo">
+                <mat-label>Select Desired Car Type</mat-label>
+                <input [(ngModel)]="rentalAdd.transportinfo" [matAutocomplete]="autocartypesingle" matInput placeholder="Enter Car Type" formControlName="FlightControl" required>
+                <mat-autocomplete #autocartypesingle="matAutocomplete">
+                    <mat-option *ngFor="let option of filteredOptionsCarType | async" [value]="option">
+                        {{option}}
+                    </mat-option>
+                </mat-autocomplete>
             </mat-form-field>
 
 
 
             <mat-form-field style="width: 40%; margin-right: 40px;">
-                <mat-label>Notes / Remarks</mat-label>
+                <mat-label>Party GST</mat-label>
                 <input matInput placeholder="Enter Notes / Remarks here" [(ngModel)]="rentalAdd.note" formControlName="NotesControl">
             </mat-form-field>
             <br/>

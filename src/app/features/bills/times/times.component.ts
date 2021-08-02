@@ -137,6 +137,7 @@ export class TimesBillComponent implements OnInit {
       this.fontSize = 20 + this.marginTop * 0.03;
       localStorage.removeItem("billnumber");
       localStorage.removeItem("billdate");
+      localStorage.setItem("removeheader", "0");
     }
     
    }

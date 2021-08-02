@@ -388,6 +388,7 @@ export class RentalDetailWalkinComponent implements OnInit  {
     this.filteredOptionsCarSub = this.secondFormGroup.get('SubCarNumberControl').valueChanges.pipe(startWith(''),map(value => this._filterCarSub(value)));
     //cartype
     this.filteredOptionsCarType = this.secondFormGroup.get('CarTypeControl').valueChanges.pipe(startWith(''),map(value => this._filterCarType(value)));
+    this.filteredOptionsCarType = this.firstFormGroup.get('FlightControl').valueChanges.pipe(startWith(''),map(value => this._filterCarType(value)));
     //driver
     this.filteredOptionsDriver = this.secondFormGroup.get('DriverControl').valueChanges.pipe(startWith(''),map(value => this._filterDriver(value)));
     //report
@@ -466,7 +467,7 @@ export class RentalDetailWalkinComponent implements OnInit  {
       GOUTTimeBufferControl: [],
       GINKMBufferControl: [],
       GINTimeBufferControl: [],
-      FlightControl: [],
+      FlightControl: ['', Validators.required],
       NotesControl: [],
       PickupControl: [],
       DropControl: []

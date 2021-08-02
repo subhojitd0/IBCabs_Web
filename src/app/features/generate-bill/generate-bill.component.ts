@@ -192,6 +192,7 @@ billRegDetails: any[] = [];
       debugger;
       localStorage.setItem("billdata", JSON.stringify(res));
       this.toastr.success("Your bill was successfully created",'Success');
+      localStorage.setItem("removeheader", "1");
       this.router.navigate([]).then(result => {  window.open('/' + ROUTE_TIMES_BILL, '_blank'); });
     });
   }
@@ -247,7 +248,7 @@ billRegDetails: any[] = [];
     this.apiService.post(BILL_ONCALL_EXTRA_API, json).then((res: any)=>{ 
       debugger;
       localStorage.setItem("billdata", JSON.stringify(res));
-      if(res.body.length > 27){
+      if(res.body.length > 0){
         localStorage.setItem("removeheader", "1");
       }
       this.toastr.success("Your bill was successfully created",'Success');
@@ -281,6 +282,7 @@ billRegDetails: any[] = [];
       debugger;
       localStorage.setItem("billdata", JSON.stringify(res));
       this.toastr.success("Your bill was successfully created",'Success');
+      localStorage.setItem("removeheader", "1");
       this.router.navigate([]).then(result => {  window.open('/' + ROUTE_DAILY_OT, '_blank'); });
     });
   }
@@ -319,6 +321,7 @@ billRegDetails: any[] = [];
       debugger;
       localStorage.setItem("billdata", JSON.stringify(res));
       this.toastr.success("Your bill was successfully created",'Success');
+      localStorage.setItem("removeheader", "1");
       this.router.navigate([]).then(result => {  window.open('/' + ROUTE_ABP, '_blank'); });
     });
   }
@@ -351,6 +354,7 @@ billRegDetails: any[] = [];
       debugger;
       localStorage.setItem("billdata", JSON.stringify(res));
       this.toastr.success("Your bill was successfully created",'Success');
+      localStorage.setItem("removeheader", "1");
       this.router.navigate([]).then(result => {  window.open('/' + ROUTE_VIEW_BILL_CNN, '_blank'); });
     });
   }
@@ -386,6 +390,7 @@ billRegDetails: any[] = [];
       debugger;
       localStorage.setItem("billdata", JSON.stringify(res));
       this.toastr.success("Your bill was successfully created",'Success');
+      localStorage.setItem("removeheader", "1");
       this.router.navigate([]).then(result => {  window.open('/' + ROUTE_VIEW_BILL_H, '_blank'); });
     });
   }
@@ -438,6 +443,7 @@ billRegDetails: any[] = [];
       debugger;
       localStorage.setItem("billdata", JSON.stringify(res));
       this.toastr.success("Your bill was successfully created",'Success');
+      localStorage.setItem("removeheader", "1");
       this.router.navigate([]).then(result => {  window.open('/' + ROUTE_VIEW_BILL_COAL_INDIA, '_blank'); });
     });
   }
@@ -464,6 +470,7 @@ billRegDetails: any[] = [];
       debugger;
       localStorage.setItem("billdata", JSON.stringify(res));
       this.toastr.success("Your bill was successfully created",'Success');
+      localStorage.setItem("removeheader", "1");
       this.router.navigate([]).then(result => {  window.open('/' + ROUTE_VIEW_BILL_RELIANCE_MIS, '_blank'); });
     });
   }

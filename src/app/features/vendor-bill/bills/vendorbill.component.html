@@ -45,8 +45,12 @@
                 <td>{{childrow.cartype}}</td>
                 <td>{{childrow.party}}</td>
                 <td>{{childrow.reportto}}</td>
-                <td>{{childrow.totalhr}}</td>
-                <td>{{childrow.totalkm}}</td>
+                <td>
+                    <input style="width: 100%;border:none;text-align: center;" matInput type="text" [(ngModel)]="childrow.totalhr">
+                </td>
+                <td>
+                    <input style="width: 100%;border:none;text-align: center;" matInput type="text" [(ngModel)]="childrow.totalkm">
+                </td>
                 <td>{{childrow.parking}}</td>
                 <td style="cursor:pointer" (click)="showbill(childrow)">{{childrow.billnumber}}</td>
                 <td>

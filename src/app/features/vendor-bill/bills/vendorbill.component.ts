@@ -141,6 +141,7 @@ export class VendorBillComponent implements OnInit {
   userrole: string;
   loading: boolean;
   showsubmit: boolean = false;
+  gTotal = 0;
   constructor(private router: Router,private apiService: ApiService, public dialog: MatDialog, private toastr: ToastrService) {
     
    }
@@ -197,10 +198,12 @@ export class VendorBillComponent implements OnInit {
           parking: totparking,
           amount: totamt
         }
+        this.gTotal = this.gTotal + totamt; 
         carD.data.push(newData);
         carlist.push(carD);
       });
       this.alldata = carlist;
+      this.total = this.gTotal;
     }
     var json = 
     {
@@ -229,6 +232,8 @@ export class VendorBillComponent implements OnInit {
      let updateData: any[] = [];
      this.alldata.forEach((row: any)=>{
        row.data.forEach(element => {
+         element.hr = element.totalhr;
+         element.km = element.totalkm;
          updateData.push(element);
        });
      });
