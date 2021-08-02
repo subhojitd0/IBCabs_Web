@@ -125,7 +125,8 @@ export class OnCallBillAComponent implements OnInit {
       this.dataSource = new MatTableDataSource(this.billdetails.body);
       //localStorage.setItem("billdata", "");
       this.totalno = this.billdetails.body.length;
-      this.roundedgross = Math.round(parseFloat(this.billdetails.tail[0].grosstotal.toString().replace(',','')));
+      let newStr = this.billdetails.tail[0].grosstotal.toString().split(',').join('');
+      this.roundedgross = Math.round(parseFloat(newStr));
       /* let index = this.billdetails.tail[0].grosstotal.toString().indexOf('.');
       let substringVal = this.billdetails.tail[0].grosstotal;
       if(index > 0)
