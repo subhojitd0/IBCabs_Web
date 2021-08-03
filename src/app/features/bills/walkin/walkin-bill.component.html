@@ -82,8 +82,9 @@
                 <td style="text-align: center;">{{row.reportto}}</td>
                 <td style="text-align: center;">{{row.carno}}</td>
                 <td style="text-align: center;">{{row.cartype}}</td>
-                <td style="text-align: center;">{{row.hour}}</td>
-                <td style="text-align: center;">{{row.km}}</td>
+                <td *ngIf="row.ispackage === 1" colspan="2" style="text-align: center;">{{row.packagefor}}</td>
+                <td *ngIf="row.ispackage === 0" style="text-align: center;">{{row.hour}}</td>
+                <td *ngIf="row.ispackage === 0" style="text-align: center;">{{row.km}}</td>
                 <td style="text-align: center;">{{row.rate}}</td>
                 <td style="text-align: center;">{{row.amount}}</td>
                 <td style="text-align: center;">{{row.parking}}</td>

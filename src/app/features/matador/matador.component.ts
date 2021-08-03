@@ -17,6 +17,7 @@ export interface User {
   carno: string;
   dutydate: string;
   rate: string;
+  packagefor: string;
 }
 
 @Component({
@@ -30,7 +31,7 @@ export class MatadorComponent implements OnInit {
   carid: string = "0";
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  displayedColumns: string[] = ['date', 'carno', 'rate', 'option'];
+  displayedColumns: string[] = ['date', 'carno', 'rate', 'packagefor', 'option'];
   dataSource: MatTableDataSource<User>;
   username: any;
   password: any;
@@ -42,6 +43,7 @@ export class MatadorComponent implements OnInit {
   allcarno: any;
   allcars: any;
   delete: string;
+  packagefor: any;
   constructor(private router: Router, private apiService: ApiService, public dialog: MatDialog, private toastr: ToastrService) {
     /* this.ownername = localStorage.getItem('selectedownername');  */
     this.carselect = new FormControl();
@@ -112,6 +114,7 @@ export class MatadorComponent implements OnInit {
        "dutydate": this.name,
        "carno": this.username,
        "rate": this.password.toString(),
+       "packagefor": this.packagefor,
        "mode": "1"
      }
      this.apiService.post(MATADOR_API, json).then((res: any)=>{ 
