@@ -96,7 +96,7 @@
     <div [ngStyle]="{'margin-top.px':marginTop}" id="customer" style="display: block;" class="row">
         <br><br>
         <div id="customer-title" class="col-xs-3" style="max-width: 300px;">
-            <table *ngIf="billgst !== '2'">
+            <!-- <table *ngIf="billgst !== '2'">
                 <tbody>
                     <tr>
                         <th class="meta-head" colspan="2" style="text-align: center !important;"><b>GST CALCULATION</b></th>
@@ -133,7 +133,7 @@
                     </tr>
                 </tbody>
             </table>
-            <br/><br/>
+            <br/><br/> -->
             <table *ngIf="billgst !== '2'">
                 <tbody>
                     <tr>
@@ -166,6 +166,21 @@
                     </tr>
                     <tr>
                         <td></td>
+                        <td class="meta-head" style="text-align: right !important;">CGST @2.5% : Rs.</td>
+                        <td class="meta-content">{{billdetails.gst[0].cgst}}</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td class="meta-head" style="text-align: right !important;">SGST @2.5% : Rs.</td>
+                        <td class="meta-content">{{billdetails.gst[0].sgst}}</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td class="meta-head" style="text-align: right !important;">IGST @0% : Rs.</td>
+                        <td class="meta-content">{{billdetails.gst[0].igst}}</td>
+                    </tr>
+                    <tr>
+                        <td></td>
                         <td class="meta-head" style="text-align: right !important;">Total Parking: Rs.</td>
                         <td class="meta-content">{{billdetails.tail[0].parking}}</td>
                     </tr>
@@ -177,7 +192,7 @@
                     <tr>
                         <td></td>
                         <td class="meta-head" style="text-align: right !important;">Gross Amount: Rs.</td>
-                        <td class="meta-content">{{billdetails.tail[0].grosstotal}}</td>
+                        <td class="meta-content">{{normalgross}}</td>
                     </tr>
                     <tr>
                         <td></td>

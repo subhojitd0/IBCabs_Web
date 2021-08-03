@@ -93,6 +93,7 @@ export class WalkinBillComponent implements OnInit {
   displayedColumns: string[] = ['sl', 'dutydate', 'reportto', 'carno', 'cartype', 'hour', 'km', 'rate', 'amount', 'parking', 'outstation'];
   dataSource: MatTableDataSource<BillDet>;
   removeheader: string;
+  normalgross: number;
   constructor(private router: Router,private apiService: ApiService, public dialog: MatDialog, private toastr: ToastrService) {
     
    }
@@ -131,7 +132,9 @@ export class WalkinBillComponent implements OnInit {
       if(index > 0)
          substringVal = this.billdetails.tail[0].grosstotal.toString().substr(0, index);
       substringVal = substringVal.toString().replace(',',''); */
+      this.normalgross = parseFloat(this.billdetails.tail[0].grosstotal.toString().replace(',','')) + parseFloat(this.billdetails.gst[0].total.toString().replace(',',''));
       let gstRounded = Math.round(parseFloat(this.billdetails.gst[0].total.toString().replace(',','')));
+      this.roundedgross = this.roundedgross + gstRounded;
       this.amountInWord = this.apiService.convertAmountToWord(this.roundedgross);
       this.gstamountinwords = this.apiService.convertAmountToWord(gstRounded);
       this.marginTop = 30;
