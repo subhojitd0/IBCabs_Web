@@ -128,10 +128,13 @@ export class EditRentalDetailComponent implements OnInit {
   allowners: any;
   allownername: any;
   selectallval: boolean = false;
+  date: any;
+  dates: any[] = ["ALL",1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31];
   constructor(private cdRef:ChangeDetectorRef, private router: Router,private apiService: ApiService, public dialog: MatDialog, private toastr: ToastrService) {
     
    }
    ngOnInit() : void {
+     this.date = "all";
     localStorage.setItem('selectedduty', "0");
     this.ddrrole = localStorage.getItem("enterddr");
     this.approverole = localStorage.getItem("approve");
@@ -148,6 +151,7 @@ export class EditRentalDetailComponent implements OnInit {
      this.cartypes = JSON.parse(localStorage.getItem('allcartypes'));
      var yr = localStorage.getItem('rentalyr');
      var month = localStorage.getItem('rentalmonth');
+     var dt = localStorage.getItem('rentaldate');
      var filterby = localStorage.getItem('rentalfilterby');
      var filterval = localStorage.getItem('rentalfilterval');
      this.allparties = JSON.parse(localStorage.getItem('allparties'));
@@ -174,11 +178,13 @@ export class EditRentalDetailComponent implements OnInit {
      if(yr && month){
       this.month = month;
       this.year = yr;
+      this.date = dt;
      }
      else{
       this.month = new Date().getMonth() + 1;
       this.year = new Date().getFullYear();
       localStorage.setItem("rentalmonth", this.month);
+      localStorage.setItem('rentaldate', this.date);
       localStorage.setItem("rentalyr", this.year);
       localStorage.setItem("rentalfilterby", this.filterby);
       localStorage.setItem("rentalfilterval", this.filtervalue);
@@ -425,6 +431,11 @@ exportddr(){
     this.year = val;
     this.setJson();
    }
+   onChangeDay(val){
+    this.loading = true;
+    this.date = val;
+    this.setJson();
+   }
    onChangeFilter(val){
     this.loading = true;
     this.filterby = val;
@@ -460,6 +471,7 @@ exportddr(){
    }
    setJson(){
     localStorage.setItem("rentalmonth", this.month);
+    localStorage.setItem("rentaldate", this.date);
     localStorage.setItem("rentalyr", this.year);
     localStorage.setItem("rentalfilterby", this.filterby);
     localStorage.setItem("rentalfilterval", this.filtervalue);
@@ -491,6 +503,9 @@ exportddr(){
       this.apiService.post(RENTAL_DETAIL_API_OFFICE, json).then((res: any)=>{ 
         debugger;
         this.editRentalDetails = res.result;
+        if(this.date !== "ALL"){
+          this.editRentalDetails = this.editRentalDetails.filter(x=>new Date(x.dutydate).getDate().toString() === this.date.toString());
+        }
         this.allcars = JSON.parse(localStorage.getItem('allcars'));
         this.alldrivers = JSON.parse(localStorage.getItem('alldrivers'));
         this.editRentalDetails.forEach(element => {
@@ -522,6 +537,9 @@ exportddr(){
       this.apiService.post(RENTAL_DETAIL_API_OFFICE, json).then((res: any)=>{ 
         debugger;
         this.rentalDetails = res.result;
+        if(this.date !== "ALL"){
+          this.rentalDetails = this.rentalDetails.filter(x=>new Date(x.dutydate).getDate().toString() === this.date.toString());
+        }
         this.masterrentaldetails = res.result;
         this.dataSource = new MatTableDataSource(this.rentalDetails);
         localStorage.setItem("rentaldetails", JSON.stringify(res.result));

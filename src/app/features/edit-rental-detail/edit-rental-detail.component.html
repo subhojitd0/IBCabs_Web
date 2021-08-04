@@ -56,7 +56,12 @@
                   <option value="2022">
                     2022
                   </option>
-                </select> &nbsp; &nbsp; &nbsp;Filter By :
+                </select> -
+                <select (change)="onChangeDay($event.target.value)" [value]="date">
+                    <option *ngFor="let row of dates" [value]="row">
+                      {{row}}
+                    </option>
+                  </select> &nbsp; &nbsp; &nbsp;Filter By :
                 <select (change)="onChangeFilter($event.target.value)" [value]="filterby">
                   <option value="party">
                     Party
