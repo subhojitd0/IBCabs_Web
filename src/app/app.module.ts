@@ -74,6 +74,7 @@ import { GenarateVendorBillComponent } from './features/vendor-bill/generate-bil
 import { VendorBillComponent } from './features/vendor-bill/bills/vendorbill.component';
 import { VendorRatesComponent } from './features/vendor-rates/vendorrates.component';
 import { AddVendorSlabComponent } from './features/vendor-rates/add-new-slab/add-slab-head.component';
+import { OriginalVendorBillComponent } from './features/vendor-bill/original-bill/vendorbill.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -126,7 +127,8 @@ import { AddVendorSlabComponent } from './features/vendor-rates/add-new-slab/add
     GenarateVendorBillComponent,
     VendorBillComponent,
     VendorRatesComponent,
-    AddVendorSlabComponent
+    AddVendorSlabComponent,
+    OriginalVendorBillComponent
   ],
   imports: [
     BrowserModule,

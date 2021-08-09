@@ -7,7 +7,7 @@ import {ABP_API, BILL_API, BILL_API_H, BILL_API_I, BILL_CNN_API, BILL_ONCALL_COA
 import {MatDialog} from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
-import { ROUTE_ABP, ROUTE_CAR, ROUTE_DAILY_OT, ROUTE_OWNER, ROUTE_TIMES_BILL, ROUTE_VENDOR_BILL, ROUTE_VIEW_BILL_CNN, ROUTE_VIEW_BILL_COAL_INDIA, ROUTE_VIEW_BILL_H, ROUTE_VIEW_BILL_I, ROUTE_VIEW_BILL_ONCALL_EXTRA, ROUTE_VIEW_BILL_RELIANCE_JMS, ROUTE_VIEW_BILL_RELIANCE_MIS, ROUTE_VIEW_BILL_RELIANCE_SUMMARY } from 'src/shared/constants/constant';
+import { ROUTE_ABP, ROUTE_CAR, ROUTE_DAILY_OT, ROUTE_OWNER, ROUTE_TIMES_BILL, ROUTE_VENDOR_BILL, ROUTE_VENDOR_BILL_ORIGINAL, ROUTE_VIEW_BILL_CNN, ROUTE_VIEW_BILL_COAL_INDIA, ROUTE_VIEW_BILL_H, ROUTE_VIEW_BILL_I, ROUTE_VIEW_BILL_ONCALL_EXTRA, ROUTE_VIEW_BILL_RELIANCE_JMS, ROUTE_VIEW_BILL_RELIANCE_MIS, ROUTE_VIEW_BILL_RELIANCE_SUMMARY } from 'src/shared/constants/constant';
 import { NewVendorBillComponent } from './new-bill/newbill.component';
 import html2canvas from 'html2canvas';
 import jspdf from 'jspdf';
@@ -105,10 +105,37 @@ billRegDetails: any[] = [];
     this.dataSource = new MatTableDataSource(billReg);
     this.loading = false;
    }
+   downloadOriginalBill(bill: any){
+    this.toastr.info("Please wait while we are generating the bill");
+    debugger;
+    this.openOriginalBill(bill);
+   }
   downloadBill(bill: any){
     this.toastr.info("Please wait while we are generating the bill");
     debugger;
     this.openVendorBill(bill);
+  }
+  openOriginalBill(element: any){
+    debugger;
+    let json = {
+      ownername: element.ownername,
+      startdate: element.startdate,
+      enddate: element.enddate,
+      ownercode: element.ownerid,
+      mode: "1",
+    }
+    localStorage.setItem("vendorname", element.ownername);
+    localStorage.setItem("vendorcode", element.ownercode);
+    localStorage.setItem("vendorfrom", element.startdate);
+    localStorage.setItem("vendorto", element.enddate);
+    localStorage.setItem("vendoramount", element.amount);
+    localStorage.setItem("vendorcomment", element.details);
+    this.apiService.post(BILL_VENDOR_PAY, json).then((res: any)=>{ 
+      debugger;
+      localStorage.setItem("vendorbilldata", JSON.stringify(res));
+      this.toastr.success("Your bill was successfully created",'Success');
+      this.router.navigate([]).then(result => {  window.open('/' + ROUTE_VENDOR_BILL_ORIGINAL, '_blank'); });
+    });
   }
   openVendorBill(element: any){
     debugger;

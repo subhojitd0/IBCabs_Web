@@ -113,15 +113,21 @@
             <mat-cell *matCellDef="let row"> {{row.amount}} </mat-cell>
         </ng-container>
 
+        <ng-container matColumnDef="original">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Original Bill </mat-header-cell>
+            <mat-cell *matCellDef="let row" [style.color]="row.option">
+                <span style="margin-left: 10px; margin-right: 10px; cursor: pointer;" (click)="downloadOriginalBill(row)">
+                View Original Bill
+            </span>
+            </mat-cell>
+        </ng-container>
+
         <ng-container matColumnDef="option">
             <mat-header-cell *matHeaderCellDef mat-sort-header> Options </mat-header-cell>
             <mat-cell *matCellDef="let row" [style.color]="row.option">
                 <span style="margin-left: 10px; margin-right: 10px; cursor: pointer;" class="material-icons" (click)="downloadBill(row)">
-                            download
-                        </span>
-                <!-- <span *ngIf="billrole === '1' && delete === '1'" style="margin-left: 10px; margin-right: 10px; cursor: pointer;" class="material-icons" (click)="deleteBill(row.billid)">
-                            delete
-                        </span> -->
+                    download
+                </span>
             </mat-cell>
         </ng-container>
 

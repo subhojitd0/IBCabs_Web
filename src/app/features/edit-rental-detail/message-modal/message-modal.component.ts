@@ -43,6 +43,20 @@ export class MessageModalComponent implements OnInit {
      this.phoneNumbers = [];
      debugger;
     if(this.selectedType == "BookingConfirmation"){
+      this.phoneNumbers.push(this.rentalDetails.reporttonum);
+      let body = BOOKING_ID_CONFIRM_MESSAGE_TEMPLATE;
+      body = body.split("%20").join(" ");
+      body = body.split("%0A").join(" .");
+      body = body.split("%3A").join(": ");
+      body = body.split("%2C").join(".");
+      body = body.replace("{0}", this.rentalDetails.dutyid);
+      body = body.replace("{1}", this.rentalDetails.bookedby);
+      body = body.replace("{2}", this.rentalDetails.dutydate);
+      body = body.replace("{3}", this.rentalDetails.dutytime.substr(0,5));
+      body = body.replace("{4}", this.rentalDetails.transportinfo);
+      this.message = body;
+    }
+    if(this.selectedType == "BookingConfirmationBooked"){
       this.phoneNumbers.push(this.rentalDetails.bookedbycontact);
       let body = BOOKING_ID_CONFIRM_MESSAGE_TEMPLATE;
       body = body.split("%20").join(" ");
@@ -53,7 +67,7 @@ export class MessageModalComponent implements OnInit {
       body = body.replace("{1}", this.rentalDetails.bookedby);
       body = body.replace("{2}", this.rentalDetails.dutydate);
       body = body.replace("{3}", this.rentalDetails.dutytime.substr(0,5));
-      body = body.replace("{4}", "To be Assigned");
+      body = body.replace("{4}", this.rentalDetails.transportinfo);
       this.message = body;
     }
     if(this.selectedType == "Driver"){
