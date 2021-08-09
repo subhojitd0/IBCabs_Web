@@ -10,7 +10,7 @@
 <div class="container" id="printdiv" style="max-width: 1400px; min-height: 2000px; max-height: 10000px;">
     <p id="header">VENDOR INVOICE - {{vendorname}}</p>
     <div id="customer" class="row" style="padding-top: 20px;">
-        <div *ngIf="showsubmit && userrole === 'ibcabs'" class="col-xs-4">
+        <!-- <div *ngIf="showsubmit && userrole === 'ibcabs'" class="col-xs-4">
             Comments : <input name="comment" type="text" [(ngModel)]="comments">
         </div>
         <div *ngIf="showsubmit && userrole === 'ibcabs'" class="col-xs-4" style="padding-left: 20px; padding-right: 20px">
@@ -19,7 +19,7 @@
         <div class="col-xs-4" *ngIf="isConfirmVisible">
             <button mat-stroked-button (click)="save()">Save as draft</button>&nbsp; &nbsp;
             <button *ngIf="showsubmit && userrole === 'ibcabs'" mat-stroked-button (click)="submit()">Submit & Confirm</button>&nbsp; &nbsp;
-        </div>
+        </div> -->
 
     </div>
     <div *ngFor="let row of alldata" style="margin-top: 30px;">
@@ -45,19 +45,13 @@
                 <td>{{childrow.cartype}}</td>
                 <td>{{childrow.party}}</td>
                 <td>{{childrow.reportto}}</td>
-                <td>
-                    <input style="width: 100%;border:none;text-align: center;" matInput type="text" [(ngModel)]="childrow.totalhr">
-                </td>
-                <td>
-                    <input style="width: 100%;border:none;text-align: center;" matInput type="text" [(ngModel)]="childrow.totalkm">
-                </td>
+                <td>{{childrow.totalhr}}</td>
+                <td>{{childrow.totalkm}}</td>
                 <td>{{childrow.parking}}</td>
                 <td style="color: #8c8cde;
                 cursor: pointer;
                 text-decoration: underline;" (click)="showbill(childrow)">{{childrow.billnumber}}</td>
-                <td>
-                    <input [disabled]="!isConfirmVisible" style="width: 100%;border:none;text-align: center;" (blur)="changeamount(childrow)" matInput type="text" [(ngModel)]="childrow.amount">
-                </td>
+                <td>{{childrow.amount}}</td>
             </tr>
         </table>
     </div>

@@ -35,7 +35,7 @@ billRegDetails: any[] = [];
   isSlab:boolean=false;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  displayedColumns: string[] = ['vendor', 'startdate','enddate', 'amount','option'];
+  displayedColumns: string[] = ['vendor', 'startdate','enddate', 'amount','original','option'];
   dataSource: MatTableDataSource<BillRegister>;
   billrole: string;
   approve: string;
@@ -122,7 +122,7 @@ billRegDetails: any[] = [];
       startdate: element.startdate,
       enddate: element.enddate,
       ownercode: element.ownerid,
-      mode: "1",
+      mode: "3",
     }
     localStorage.setItem("vendorname", element.ownername);
     localStorage.setItem("vendorcode", element.ownercode);
