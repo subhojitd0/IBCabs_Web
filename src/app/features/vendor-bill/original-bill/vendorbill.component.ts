@@ -89,7 +89,7 @@ export class SaveBill implements iSaveBill {
   mode: any;
 }
 @Component({
-  selector: 'app-vendorbill',
+  selector: 'app-originalvendorbill',
   templateUrl: './vendorbill.component.html',
   styleUrls: ['./vendorbill.component.css']
 })
