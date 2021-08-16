@@ -22,6 +22,7 @@
         </div>
 
     </div>
+    <button mat-stroked-button (click)="downloadOriginalBill()">View Original Bill</button>
     <div *ngFor="let row of alldata" style="margin-top: 30px;">
         <h1><u><b>Bill for Car No - {{row.carno}}</b></u></h1>
         <table style="font-size: 20px;">
@@ -39,25 +40,29 @@
                 <th style="width: 10%">Amount</th>
             </tr>
             <tr *ngFor="let childrow of row.data">
-                <td>{{childrow.sl}}</td>
-                <td>{{childrow.dutydate}}</td>
-                <td>{{childrow.carno}}</td>
-                <td>{{childrow.cartype}}</td>
-                <td>{{childrow.party}}</td>
-                <td>{{childrow.reportto}}</td>
-                <td>
+                <td *ngIf="childrow.extra === 0">{{childrow.sl}}</td>
+                <td *ngIf="childrow.extra === 0">{{childrow.dutydate}}</td>
+                <td *ngIf="childrow.extra === 0">{{childrow.carno}}</td>
+                <td *ngIf="childrow.extra === 0">{{childrow.cartype}}</td>
+                <td *ngIf="childrow.extra === 0">{{childrow.party}}</td>
+                <td *ngIf="childrow.extra === 0">{{childrow.reportto}}</td>
+                <td *ngIf="childrow.extra === 0">
                     <input style="width: 100%;border:none;text-align: center;" matInput type="text" [(ngModel)]="childrow.totalhr">
                 </td>
-                <td>
+                <td *ngIf="childrow.extra === 0">
                     <input style="width: 100%;border:none;text-align: center;" matInput type="text" [(ngModel)]="childrow.totalkm">
                 </td>
-                <td>{{childrow.parking}}</td>
-                <td style="color: #8c8cde;
+                <td *ngIf="childrow.extra === 0">{{childrow.parking}}</td>
+                <td *ngIf="childrow.extra === 0" style="color: #8c8cde;
                 cursor: pointer;
                 text-decoration: underline;" (click)="showbill(childrow)">{{childrow.billnumber}}</td>
-                <td>
+                <td *ngIf="childrow.extra === 0">
                     <input [disabled]="!isConfirmVisible" style="width: 100%;border:none;text-align: center;" (blur)="changeamount(childrow)" matInput type="text" [(ngModel)]="childrow.amount">
                 </td>
+            </tr>
+            <tr *ngFor="let extrarow of row.data">
+                <td *ngIf="extrarow.extra === 1" colspan="10"><input style="width: 100%;border:none;text-align: center;" type="text" [(ngModel)]="extrarow.totalhr"></td>
+                <td *ngIf="extrarow.extra === 1"><input type="text" style="width: 100%;border:none;text-align: center;" (blur)="changeextra(extrarow)" [(ngModel)]="extrarow.amount"></td>
             </tr>
         </table>
     </div>

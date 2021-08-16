@@ -9,7 +9,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import jspdf from 'jspdf';
 import html2canvas from 'html2canvas';
-import { ROUTE_ABP, ROUTE_CAR, ROUTE_DAILY_OT, ROUTE_GENERATE_BILL, ROUTE_GENERATE_VENDOR_BILL, ROUTE_OWNER, ROUTE_TIMES_BILL, ROUTE_VIEW_BILL_CNN, ROUTE_VIEW_BILL_COAL_INDIA, ROUTE_VIEW_BILL_H, ROUTE_VIEW_BILL_I, ROUTE_VIEW_BILL_ONCALL_EXTRA, ROUTE_VIEW_BILL_RELIANCE_JMS, ROUTE_VIEW_BILL_RELIANCE_MIS, ROUTE_VIEW_BILL_RELIANCE_SUMMARY } from 'src/shared/constants/constant';
+import { ROUTE_ABP, ROUTE_CAR, ROUTE_DAILY_OT, ROUTE_GENERATE_BILL, ROUTE_GENERATE_VENDOR_BILL, ROUTE_OWNER, ROUTE_TIMES_BILL, ROUTE_VENDOR_BILL_ORIGINAL, ROUTE_VIEW_BILL_CNN, ROUTE_VIEW_BILL_COAL_INDIA, ROUTE_VIEW_BILL_H, ROUTE_VIEW_BILL_I, ROUTE_VIEW_BILL_ONCALL_EXTRA, ROUTE_VIEW_BILL_RELIANCE_JMS, ROUTE_VIEW_BILL_RELIANCE_MIS, ROUTE_VIEW_BILL_RELIANCE_SUMMARY } from 'src/shared/constants/constant';
 
 export interface iBillDet {
   sl: string;
@@ -133,15 +133,28 @@ export class VendorBillComponent implements OnInit {
   alldata: any[];
   comments: any;
   total: any;
-  vendorname: string;
+  vendorname: string = "";
   vendorcode: string;
-  startdate: string;
-  enddate: string;
+  startdate: string = "";
+  enddate: string = "";
   billRegDetails: any;
   userrole: string;
   loading: boolean;
   showsubmit: boolean = false;
   gTotal = 0;
+  defaultnote = {
+    "dutycode" : "0",
+    "vendor" : this.vendorname,
+    "amount": 0,
+    "totalhr": "",
+    "totalkm": 0,
+    "start": this.startdate,
+    "end": this.enddate,
+    "car": "",
+    "extra": 1,
+    "sl": ""
+  }
+  extradetails: any[] = [];
   constructor(private router: Router,private apiService: ApiService, public dialog: MatDialog, private toastr: ToastrService) {
     
    }
@@ -165,13 +178,9 @@ export class VendorBillComponent implements OnInit {
       this.comments = comment;
       this.showsubmit = true;
     }
-    /* this.party = localStorage.getItem("billparty");
-    this.billdetails = JSON.parse(localStorage.getItem("billdata"));
-    this.month = this.monthNames[localStorage.getItem("billmonth")];
-    this.year = localStorage.getItem("billyear"); */
-    debugger;
     const carlist : CarDet[] = [];
     if(this.billdetails){
+      let tempextradetails = this.billdetails.extra; //extra detail for all
       let uniqueCars = [...new Set(this.billdetails.result.map(x=>x.carno))];
       uniqueCars.forEach((car: any)=>{
         let carD = new CarDet();
@@ -185,6 +194,10 @@ export class VendorBillComponent implements OnInit {
         carD.data.forEach((dat: any)=>{
           dat.sl = slno + 1;
           slno = slno + 1;
+          dat.car = "";
+          dat.startdate = "0";
+          dat.enddate = "0";
+          dat.extra = 0;
           dat.amount = dat.amount.toString().replace(',','');
           tothr = parseFloat(dat.totalhr) + tothr;
           totkm = parseFloat(dat.totalkm) + totkm;
@@ -195,13 +208,65 @@ export class VendorBillComponent implements OnInit {
           sl: "Total",
           totalhr: tothr,
           totalkm: totkm,
+          extra: 0,
           parking: totparking,
-          amount: totamt
+          //amount: totamt
         }
-        this.gTotal = this.gTotal + totamt; 
+    
         carD.data.push(newData);
+        
+        if(tempextradetails && tempextradetails.length > 0){
+          let count = 0;
+        tempextradetails.filter(x=>x.car === car).forEach(element => {
+            let json = {
+              "sl": count,
+              "dutycode" : element.noteid,
+              "vendor" : this.vendorname,
+              "amount": element.amount,
+              "totalhr": element.note,
+              "totalkm": element.amount,
+              "startdate": this.startdate,
+              "enddate": this.enddate,
+              "car": car,
+              "extra": 1
+            }
+            totamt = totamt + parseFloat(element.amount);
+            this.extradetails.push(json);
+            
+            carD.data.push(json);
+            count = count + 1;
+          });
+        }
+        let extracount = 5 - this.extradetails.filter(x=>x.car === car).length;
+        for(let j=0; j<extracount; j++){
+          let note = {
+            "dutycode" : "0",
+            "vendor" : this.vendorname,
+            "amount": 0,
+            "totalhr": "",
+            "totalkm": 0,
+            "startdate": this.startdate,
+            "enddate": this.enddate,
+            "car": car,
+            "extra": 1,
+            "sl": (extracount + j).toString()
+          }
+          this.extradetails.push(note);
+          carD.data.push(note);
+        }
+        let newJsonTotal={
+          sl: "Total Amount",
+          amount: totamt,
+          extra: 1,
+          hr: "Total Amount",
+          totalhr: "Total Amount"   
+          //amount: totamt
+        }
+        carD.data.push(newJsonTotal);
         carlist.push(carD);
+        this.gTotal = this.gTotal + totamt;
       });
+
       this.alldata = carlist;
       this.total = this.gTotal;
     }
@@ -221,25 +286,66 @@ export class VendorBillComponent implements OnInit {
    changeamount(row: any){
      debugger;
      let totamt = 0;
-     this.alldata.filter(x=>x.carno === row.carno)[0].data.filter(x=>x.sl !== "Total").forEach(element => {
+     this.alldata.filter(x=>x.carno === row.carno)[0].data.filter(x=>x.sl !== "Total" && x.sl !== "Total Amount").forEach(element => {
       totamt = totamt + parseFloat(element.amount);
      });
-     this.alldata.filter(x=>x.carno === row.carno)[0].data.filter(x=>x.sl === "Total")[0].amount = totamt;
+     this.alldata.filter(x=>x.carno === row.carno)[0].data.filter(x=>x.sl === "Total Amount")[0].amount = totamt;
    }
+   changeextra(row: any){
+    debugger;
+    let totamt = 0;
+    this.alldata.filter(x=>x.carno === row.car)[0].data.filter(x=>x.sl !== "Total" && x.sl !== "Total Amount").forEach(element => {
+     totamt = totamt + parseFloat(element.amount);
+    });
+    //this.gTotal = totamt;
+    this.alldata.filter(x=>x.carno === row.car)[0].data.filter(x=>x.sl === "Total Amount")[0].amount = totamt;
+   }
+   downloadOriginalBill(){
+    this.toastr.info("Please wait while we are generating the bill");
+    debugger;
+    this.openOriginalBill();
+   }
+   openOriginalBill(){
+    debugger;
+    let json = {
+      ownername: this.vendorname,
+      startdate: this.startdate,
+      enddate: this.enddate,
+      ownercode: this.vendorcode,
+      mode: "3",
+    }
+    localStorage.setItem("vendorname", this.vendorname);
+    localStorage.setItem("vendorcode", this.vendorcode);
+    localStorage.setItem("vendorfrom", this.startdate);
+    localStorage.setItem("vendorto", this.enddate);
+    this.apiService.post(BILL_VENDOR_PAY, json).then((res: any)=>{ 
+      debugger;
+      localStorage.setItem("vendorbilldata", JSON.stringify(res));
+      this.toastr.success("Your bill was successfully created",'Success');
+      this.router.navigate([]).then(result => {  window.open('/' + ROUTE_VENDOR_BILL_ORIGINAL, '_blank'); });
+    });
+  }
    save(){
      this.toastr.info("Please wait while we are saving the data");
      this.loading = true;
      let updateData: any[] = [];
      this.alldata.forEach((row: any)=>{
        row.data.forEach(element => {
-         element.hr = element.totalhr;
-         element.km = element.totalkm;
+         if(element.extra === 1){
+          element.hr = element.totalhr;
+          element.km = element.car;
+         }
+         else{
+          element.hr = element.totalhr;
+          element.km = element.totalkm;
+         }
+         
          updateData.push(element);
        });
      });
      debugger;
     this.apiService.post(BILL_VENDOR_PAY_UPDATE, updateData).then((res: any)=>{ 
-        
+        debugger;
         if(res.result.length > 0 && res.result[0].status === "Success"){
           debugger;
           this.loading = false;
@@ -250,12 +356,6 @@ export class VendorBillComponent implements OnInit {
           this.toastr.error("There was an error saving your data");
           this.loading = false;
         }
-        /* if(res.result.lengt === "success"){
-        //this.exportAsPDF("container");
-        this.isConfirmVisible = false;
-        this.toastr.success("Your bill was successfully created",'Success');
-        this.router.navigateByUrl('/' + ROUTE_GENERATE_VENDOR_BILL);
-      } */
     });
    }
    submit(){

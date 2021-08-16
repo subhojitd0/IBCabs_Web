@@ -95,6 +95,7 @@ export class NewVendorBillComponent implements OnInit {
       return false;
     }
   }
+  
   generateBill(){
     if(this.validateDate()){
       this.billDetails.ownercode = this.allparties.filter(x=>x.ownername === this.billDetails.ownername)[0].ownercode;
