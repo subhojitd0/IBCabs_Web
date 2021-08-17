@@ -96,6 +96,8 @@ export class NewBillComponent implements OnInit {
   bookedbyselect: FormControl;
   bookedbylist: Observable<string[]>;
   allbookedbynames: any;
+  billregdata: any[] = [];
+  specificPartyReg: any[] = [];
   constructor(private router: Router, private apiService: ApiService, private toastr: ToastrService) {
     this.billDetails = new newbill();
    }
@@ -437,83 +439,172 @@ export class NewBillComponent implements OnInit {
     debugger;
     let billApi = "";
     let redirectApi = "";
+    if(this.validateDate()){
+      if(this.billDetails.format == "1"){
+        billApi = BILL_CNN_API;
+        redirectApi = ROUTE_VIEW_BILL_CNN;
+      }
+      if(this.billDetails.format == "2"){
+        billApi = BILL_ONCALL_EXTRA_API;
+        redirectApi = ROUTE_VIEW_BILL_ONCALL_EXTRA;
+        //redirectApi = ROUTE_VIEW_BILL_RELIANCE_JMS;
+      }
+      if(this.billDetails.format == "3"){
+        billApi = BILL_ONCALL_COAL_INDIA_API;
+        redirectApi = ROUTE_VIEW_BILL_COAL_INDIA;
+      }
+      if(this.billDetails.format == "4"){
+        billApi = BILL_RELIANCE_API;
+        redirectApi = ROUTE_VIEW_BILL_RELIANCE_MIS;
+        this.billDetails.mode = "0";
+      }
+      if(this.billDetails.format == "5"){
+        billApi = BILL_RELIANCE_API;
+        redirectApi = ROUTE_VIEW_BILL_RELIANCE_JMS;
+        this.billDetails.mode = "1";
+      }
+      if(this.billDetails.format == "6"){
+        billApi = BILL_RELIANCE_API;
+        redirectApi = ROUTE_VIEW_BILL_RELIANCE_SUMMARY;
+        this.billDetails.mode = "2";
+      }
+      if(this.billDetails.format == "7"){
+        billApi = EXTRA_API;
+        redirectApi = ROUTE_COAL_INDEX;
+        this.billDetails.mode = "2";
+        localStorage.setItem("removeheader", "1");
+      }
+      if(this.billDetails.format == "8"){
+        billApi = ABP_API;
+        redirectApi = ROUTE_ABP;
+      }
+      if(this.billDetails.format == "9"){
+        billApi = DAILY_OT_API;
+        redirectApi = ROUTE_DAILY_OT;
+      }
+      if(this.billDetails.format == "10"){
+        billApi = BILL_TIMES_API;
+        redirectApi = ROUTE_TIMES_BILL;
+      }
+      if(this.billDetails.format == "11"){
+        billApi = BILL_API_H;
+        redirectApi = ROUTE_VIEW_BILL_H;
+      }
+      if(this.billDetails.format == "12"){
+        billApi = BILL_API_I;
+        redirectApi = ROUTE_VIEW_BILL_I;
+        localStorage.setItem("removeheader", "1");
+      }
+      debugger;
+      this.toastr.info("Please wait while we are generating your bill",'Information');
+      localStorage.setItem("billfrom", this.billDetails.from);
+      localStorage.setItem("billto", this.billDetails.to);
+      localStorage.setItem("billparty", this.billDetails.party);
+      localStorage.setItem("billsubject", this.billDetails.subject);
+      localStorage.setItem("billgst", this.billDetails.gsttype);
+      localStorage.setItem("billparking", this.billDetails.parkinggst);
+      localStorage.setItem("billreportto", this.billDetails.reportto);
+      localStorage.setItem("nightstart", this.billDetails.nightstart);
+      localStorage.setItem("nightend", this.billDetails.nightend);
+      localStorage.setItem("billmonth", this.billDetails.month);
+      localStorage.setItem("billyear", this.billDetails.year);
+      localStorage.setItem("billfa", this.billDetails.customfa);
+      localStorage.setItem("billfaval", this.billDetails.customfavalue);
+      localStorage.setItem("billpartymaster", this.billDetails.partymaster);
+      localStorage.setItem("billcaltype", this.billDetails.billCalType);
+      this.apiService.post(billApi, this.billDetails).then((res: any)=>{ 
+        debugger;
+        localStorage.setItem("billdata", JSON.stringify(res));
+        this.toastr.success("Your bill was successfully created",'Success');
+        this.router.navigate([]).then(result => {  window.open('/' + redirectApi, '_blank'); });
+      });
+    }
+    else{
+      this.toastr.error("You already have a bill within this period",'Error');
+    }
+  }
+  validateDate(){
+    return true;
+    /* this.billregdata = JSON.parse(localStorage.getItem("billregdata"));
+    let returnVal = 0;
+    this.specificPartyReg = this.getfilterdata();
+    //checking if date exists
+    let newStartDate = new Date(this.billDetails.from);
+    let newEndDate = new Date(this.billDetails.to);
+    if(this.specificPartyReg.length === 0 ) { returnVal = 1; }
+    else {
+      for( var element in this.specificPartyReg){
+        let regStartDate = new Date(this.specificPartyReg[element].billfrom);
+        let regEndDate = new Date(this.specificPartyReg[element].billto);
+        if(newStartDate >= regStartDate && newEndDate <= regEndDate){
+          returnVal = 0;
+          break;
+        }
+        else{
+          if(regStartDate <= newStartDate && newStartDate <= regEndDate){
+            returnVal = 0;
+            break;
+          }
+          else if(regStartDate <= newEndDate && newEndDate <= regEndDate){
+            returnVal = 0;
+            break;
+          }
+          else if(regStartDate >= newStartDate && newEndDate >= regEndDate){
+            returnVal = 0;
+            break;
+          }
+          else{
+            returnVal = 1;
+          }
+        }
+      }
+    }
+    if(returnVal === 1){
+      return true;
+    }
+    else{
+      return false;
+    } */
+  }
+  /* getfilterdata(){
+    let returnarr = [];
     if(this.billDetails.format == "1"){
-      billApi = BILL_CNN_API;
-      redirectApi = ROUTE_VIEW_BILL_CNN;
+      returnarr = this.billregdata.filter(x=>x.ownername === this.billDetails.ownername);
     }
     if(this.billDetails.format == "2"){
-      billApi = BILL_ONCALL_EXTRA_API;
-      redirectApi = ROUTE_VIEW_BILL_ONCALL_EXTRA;
-      //redirectApi = ROUTE_VIEW_BILL_RELIANCE_JMS;
+      returnarr = this.billregdata.filter(x=>x.ownername === this.billDetails.ownername);
     }
     if(this.billDetails.format == "3"){
-      billApi = BILL_ONCALL_COAL_INDIA_API;
-      redirectApi = ROUTE_VIEW_BILL_COAL_INDIA;
+      returnarr = this.billregdata.filter(x=>x.ownername === this.billDetails.ownername);
     }
     if(this.billDetails.format == "4"){
-      billApi = BILL_RELIANCE_API;
-      redirectApi = ROUTE_VIEW_BILL_RELIANCE_MIS;
-      this.billDetails.mode = "0";
+      returnarr = this.billregdata.filter(x=>x.ownername === this.billDetails.ownername);
     }
     if(this.billDetails.format == "5"){
-      billApi = BILL_RELIANCE_API;
-      redirectApi = ROUTE_VIEW_BILL_RELIANCE_JMS;
-      this.billDetails.mode = "1";
+      returnarr = this.billregdata.filter(x=>x.ownername === this.billDetails.ownername);
     }
     if(this.billDetails.format == "6"){
-      billApi = BILL_RELIANCE_API;
-      redirectApi = ROUTE_VIEW_BILL_RELIANCE_SUMMARY;
-      this.billDetails.mode = "2";
+      returnarr = this.billregdata.filter(x=>x.ownername === this.billDetails.ownername);
     }
     if(this.billDetails.format == "7"){
-      billApi = EXTRA_API;
-      redirectApi = ROUTE_COAL_INDEX;
-      this.billDetails.mode = "2";
+      returnarr = this.billregdata.filter(x=>x.ownername === this.billDetails.ownername);
     }
     if(this.billDetails.format == "8"){
-      billApi = ABP_API;
-      redirectApi = ROUTE_ABP;
+      returnarr = this.billregdata.filter(x=>x.ownername === this.billDetails.ownername);
     }
     if(this.billDetails.format == "9"){
-      billApi = DAILY_OT_API;
-      redirectApi = ROUTE_DAILY_OT;
+      returnarr = this.billregdata.filter(x=>x.ownername === this.billDetails.ownername);
     }
     if(this.billDetails.format == "10"){
-      billApi = BILL_TIMES_API;
-      redirectApi = ROUTE_TIMES_BILL;
+      returnarr = this.billregdata.filter(x=>x.ownername === this.billDetails.ownername);
     }
     if(this.billDetails.format == "11"){
-      billApi = BILL_API_H;
-      redirectApi = ROUTE_VIEW_BILL_H;
+      returnarr = this.billregdata.filter(x=>x.ownername === this.billDetails.ownername);
     }
     if(this.billDetails.format == "12"){
-      billApi = BILL_API_I;
-      redirectApi = ROUTE_VIEW_BILL_I;
-      localStorage.setItem("removeheader", "1");
+      returnarr = this.billregdata.filter(x=>x.ownername === this.billDetails.ownername);
     }
-    debugger;
-    this.toastr.info("Please wait while we are generating your bill",'Information');
-    localStorage.setItem("billfrom", this.billDetails.from);
-    localStorage.setItem("billto", this.billDetails.to);
-    localStorage.setItem("billparty", this.billDetails.party);
-    localStorage.setItem("billsubject", this.billDetails.subject);
-    localStorage.setItem("billgst", this.billDetails.gsttype);
-    localStorage.setItem("billparking", this.billDetails.parkinggst);
-    localStorage.setItem("billreportto", this.billDetails.reportto);
-    localStorage.setItem("nightstart", this.billDetails.nightstart);
-    localStorage.setItem("nightend", this.billDetails.nightend);
-    localStorage.setItem("billmonth", this.billDetails.month);
-    localStorage.setItem("billyear", this.billDetails.year);
-    localStorage.setItem("billfa", this.billDetails.customfa);
-    localStorage.setItem("billfaval", this.billDetails.customfavalue);
-    localStorage.setItem("billpartymaster", this.billDetails.partymaster);
-    localStorage.setItem("billcaltype", this.billDetails.billCalType);
-    this.apiService.post(billApi, this.billDetails).then((res: any)=>{ 
-      debugger;
-      localStorage.setItem("billdata", JSON.stringify(res));
-      this.toastr.success("Your bill was successfully created",'Success');
-      this.router.navigate([]).then(result => {  window.open('/' + redirectApi, '_blank'); });
-    });
-  }
-
+    
+    return returnarr;
+  } */
 }

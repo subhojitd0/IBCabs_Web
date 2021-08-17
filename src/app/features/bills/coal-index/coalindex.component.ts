@@ -129,6 +129,7 @@ export class CoalIndexComponent implements OnInit {
       //   reportto: "",
       //   amount: this.billdetails.result.tail
       // })
+      localStorage.setItem("removeheader", "0");
     }
     
    }
