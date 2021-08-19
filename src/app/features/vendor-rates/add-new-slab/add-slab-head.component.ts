@@ -19,6 +19,7 @@ export interface ISlabDetails {
   parking: string;
   outstation: string;
   ownername: string;
+  cartype: string;
 }
 export class SlabDetails implements ISlabDetails {
   mode: number;
@@ -31,6 +32,7 @@ export class SlabDetails implements ISlabDetails {
   parking: string;
   outstation: string;
   ownername: string;
+  cartype: string;
 }
 
 @Component({
@@ -64,6 +66,10 @@ export class AddVendorSlabComponent implements OnInit {
      filterParty(val: any){
       debugger;
       this.partynames = this.allparties.filter(x=>x.name.toString().toLowerCase().includes(val.toString().toLowerCase())).map(y=>y.name);;
+    }
+    filterCarType(val: any){
+      debugger;
+      this.allcartype = this.cartypes.filter(x=>x.car.toString().toLowerCase().includes(val.toString().toLowerCase())).map(y=>y.car);;
     }
     filterCar(val: any){
       debugger;

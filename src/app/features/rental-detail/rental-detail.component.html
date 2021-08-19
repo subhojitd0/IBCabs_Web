@@ -124,15 +124,6 @@
         <form [formGroup]="secondFormGroup">
             <ng-template matStepLabel>Fill out the driver details</ng-template>
             <mat-form-field style="width: 15%; margin-right: 20px;">
-                <mat-label>Select Driver</mat-label>
-                <input [(ngModel)]="rentalAdd.driver" [matAutocomplete]="autodriver" matInput placeholder="Select Driver" formControlName="DriverControl" required>
-                <mat-autocomplete #autodriver="matAutocomplete" (optionSelected)="changedriver()">
-                    <mat-option *ngFor="let option of filteredOptionsDriver | async" [value]="option">
-                        {{option}}
-                    </mat-option>
-                </mat-autocomplete>
-            </mat-form-field>
-            <mat-form-field style="width: 15%; margin-right: 40px;">
                 <mat-label>Select Car Type</mat-label>
                 <input [(ngModel)]="rentalAdd.cartype" [matAutocomplete]="autocartypesingle" matInput placeholder="Enter Car Type" formControlName="CarTypeControl" required>
                 <mat-autocomplete #autocartypesingle="matAutocomplete">
@@ -150,6 +141,17 @@
                     </mat-option>
                 </mat-autocomplete>
             </mat-form-field>
+            <mat-form-field style="width: 15%; margin-right: 40px;">
+                <mat-label>Select Driver</mat-label>
+                <input [(ngModel)]="rentalAdd.driver" [matAutocomplete]="autodriver" matInput placeholder="Select Driver" formControlName="DriverControl" required>
+                <mat-autocomplete #autodriver="matAutocomplete" (optionSelected)="changedriver()">
+                    <mat-option *ngFor="let option of filteredOptionsDriver | async" [value]="option">
+                        {{option}}
+                    </mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+
+
             <mat-form-field style="width: 15%; margin-right: 40px;">
                 <mat-label>Select Substitute Car</mat-label>
                 <input [(ngModel)]="rentalAdd.replace" [matAutocomplete]="autocarsub" matInput placeholder="Enter Substitute Car Number" formControlName="SubCarNumberControl" required>

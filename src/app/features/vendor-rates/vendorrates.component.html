@@ -24,6 +24,10 @@
             <mat-header-cell *matHeaderCellDef mat-sort-header> Party </mat-header-cell>
             <mat-cell *matCellDef="let row"> {{row.party}} </mat-cell>
         </ng-container>
+        <ng-container matColumnDef="cartype">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Car Type </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.cartype}} </mat-cell>
+        </ng-container>
 
         <!-- Name Column -->
         <ng-container matColumnDef="slab1">

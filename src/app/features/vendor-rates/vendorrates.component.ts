@@ -34,7 +34,7 @@ export class VendorRatesComponent implements OnInit {
   isSlab:boolean=false;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  displayedColumns: string[] = ['car', 'slab1', 'slab2', 'slabrest', 'datespan','option'];
+  displayedColumns: string[] = ['car', 'cartype', 'slab1', 'slab2', 'slabrest', 'datespan','option'];
   dataSource: MatTableDataSource<RateHead>;
   ownerid: any;
   constructor(private router: Router, private apiService: ApiService, public dialog: MatDialog, private toastr: ToastrService) {
