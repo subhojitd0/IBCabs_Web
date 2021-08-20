@@ -36,6 +36,7 @@
                 <th>Total Hr</th>
                 <th>Total KM</th>
                 <th>Parking</th>
+                <th>Outstation</th>
                 <th>Bill Id</th>
                 <th style="width: 10%">Amount</th>
             </tr>
@@ -53,6 +54,7 @@
                     <input style="width: 100%;border:none;text-align: center;" matInput type="text" [(ngModel)]="childrow.totalkm">
                 </td>
                 <td *ngIf="childrow.extra === 0">{{childrow.parking}}</td>
+                <td *ngIf="childrow.extra === 0">{{childrow.outstation}}</td>
                 <td *ngIf="childrow.extra === 0" style="color: #8c8cde;
                 cursor: pointer;
                 text-decoration: underline;" (click)="showbill(childrow)">{{childrow.billnumber}}</td>

@@ -39,10 +39,17 @@ export class NewVendorBillComponent implements OnInit {
   partynames: any;
   loading: boolean;
   vendorregdata: any;
+  year: string;
+  month: string;
   constructor(private router: Router, private apiService: ApiService, private toastr: ToastrService) {
     this.billDetails = new newbill();
    }
    ngOnInit() : void {
+    this.year = localStorage.getItem("vendorbillregyear");
+    this.month = localStorage.getItem("vendorbillregmonth");
+    let noofdays = new Date(parseInt(this.year), parseInt(this.month), 0).getDate();
+    this.billDetails.startdate = this.year + "-" + this.month + "-" + "01";
+    this.billDetails.enddate = this.year + "-" + this.month + "-" + (noofdays).toString();
     this.vendorregdata = JSON.parse(localStorage.getItem("vendorregdata"));
     this.allparties = JSON.parse(localStorage.getItem('allowners'));
     this.partynames = this.allparties.map(x=>x.ownername);
