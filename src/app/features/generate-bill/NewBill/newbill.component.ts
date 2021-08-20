@@ -141,7 +141,7 @@ export class NewBillComponent implements OnInit {
     return this.reportnames.filter(client => client.toLowerCase().includes(filterValue));
   }
   showFields(){
-    if(this.billDetails.format === "1"){ //A
+    if(this.billDetails.format === "1"){ //A - Party
       this.showParty = true;
       this.showPartyMaster = false;
       this.showBillSubject = true;
@@ -161,7 +161,7 @@ export class NewBillComponent implements OnInit {
       this.showTotalCalABP = false;
       this.showbookedby = false;
     }
-    else if(this.billDetails.format === "2"){ //B
+    else if(this.billDetails.format === "2"){ //B - Party
       this.showParty = true;
       this.showPartyMaster = false;
       this.showBillSubject = true;
@@ -181,7 +181,7 @@ export class NewBillComponent implements OnInit {
       this.showTotalCalABP = false;
       this.showbookedby = false;
     }
-    else if(this.billDetails.format === "3"){ //C
+    else if(this.billDetails.format === "3"){ //C - Party & Report
       this.showParty = true;
       this.showPartyMaster = false;
       this.showBillSubject = true;
@@ -201,7 +201,7 @@ export class NewBillComponent implements OnInit {
       this.showDayRate = false;
       this.showbookedby = false;
     }
-    else if(this.billDetails.format === "4"){ //D0
+    else if(this.billDetails.format === "4"){ //D0 - Party & Report
       this.showParty = true;
       this.showPartyMaster = false;
       this.showBillSubject = true;
@@ -221,7 +221,7 @@ export class NewBillComponent implements OnInit {
       this.showDayRate = false;
       this.showbookedby = false;
     }
-    else if(this.billDetails.format === "5"){ //D1
+    else if(this.billDetails.format === "5"){ //D1 - Party
       this.showParty = true;
       this.showPartyMaster = false;
       this.showBillSubject = false;
@@ -241,7 +241,7 @@ export class NewBillComponent implements OnInit {
       this.showTotalCalABP = false;
       this.showbookedby = false;
     }
-    else if(this.billDetails.format === "6"){ //D2
+    else if(this.billDetails.format === "6"){ //D2 - Party
       this.showParty = true;
       this.showPartyMaster = false;
       this.showBillSubject = false;
@@ -281,7 +281,7 @@ export class NewBillComponent implements OnInit {
       this.showTotalCalABP = false;
       this.showbookedby = false;
     }
-    else if(this.billDetails.format === "8"){ //E - ABP
+    else if(this.billDetails.format === "8"){ //E - ABP - Party Master
       this.showParty = false;
       this.showPartyMaster = true;
       this.showBillSubject = true;
@@ -301,7 +301,7 @@ export class NewBillComponent implements OnInit {
       this.showTotalCalABP = true;
       this.showbookedby = false;
     }
-    else if(this.billDetails.format === "9"){ //F - Daily OT
+    else if(this.billDetails.format === "9"){ //F - Daily OT - Party
       this.showParty = true;
       this.showPartyMaster = false;
       this.showBillSubject = true;
@@ -321,7 +321,7 @@ export class NewBillComponent implements OnInit {
       this.showDayRate = false;
       this.showbookedby = false;
     }
-    else if(this.billDetails.format === "10"){ //G - Times
+    else if(this.billDetails.format === "10"){ //G - Times - Party
       this.showParty = true;
       this.showPartyMaster = false;
       this.showBillSubject = true;
@@ -341,7 +341,7 @@ export class NewBillComponent implements OnInit {
       this.showTotalCalABP = false;
       this.showbookedby = false;
     }
-    else if(this.billDetails.format === "11"){ //A
+    else if(this.billDetails.format === "11"){ //A - Party
       this.showParty = true;
       this.showPartyMaster = false;
       this.showBillSubject = true;
@@ -360,7 +360,7 @@ export class NewBillComponent implements OnInit {
       this.showDayRate = false;
       this.showbookedby = false;
     }
-    else if(this.billDetails.format === "12"){ //B
+    else if(this.billDetails.format === "12"){ //B  - Party
       this.showParty = false;
       this.showPartyMaster = false;
       this.showBillSubject = true;
@@ -524,8 +524,8 @@ export class NewBillComponent implements OnInit {
     }
   }
   validateDate(){
-    return true;
-    /* this.billregdata = JSON.parse(localStorage.getItem("billregdata"));
+    /* return true; */
+    this.billregdata = JSON.parse(localStorage.getItem("billregdata"));
     let returnVal = 0;
     this.specificPartyReg = this.getfilterdata();
     //checking if date exists
@@ -564,47 +564,47 @@ export class NewBillComponent implements OnInit {
     }
     else{
       return false;
-    } */
+    } 
   }
-  /* getfilterdata(){
-    let returnarr = [];
+  getfilterdata(){
+    let returnarr = []; //party //reportto
     if(this.billDetails.format == "1"){
-      returnarr = this.billregdata.filter(x=>x.ownername === this.billDetails.ownername);
+      returnarr = this.billregdata.filter(x=>x.party === this.billDetails.party);
     }
     if(this.billDetails.format == "2"){
-      returnarr = this.billregdata.filter(x=>x.ownername === this.billDetails.ownername);
+      returnarr = this.billregdata.filter(x=>x.party === this.billDetails.party);
     }
     if(this.billDetails.format == "3"){
-      returnarr = this.billregdata.filter(x=>x.ownername === this.billDetails.ownername);
+      returnarr = this.billregdata.filter(x=>x.party === this.billDetails.party && x.reportto === this.billDetails.reportto);
     }
     if(this.billDetails.format == "4"){
-      returnarr = this.billregdata.filter(x=>x.ownername === this.billDetails.ownername);
+      returnarr = this.billregdata.filter(x=>x.party === this.billDetails.party && x.reportto === this.billDetails.reportto);
     }
     if(this.billDetails.format == "5"){
-      returnarr = this.billregdata.filter(x=>x.ownername === this.billDetails.ownername);
+      returnarr = this.billregdata.filter(x=>x.party === this.billDetails.party);
     }
     if(this.billDetails.format == "6"){
-      returnarr = this.billregdata.filter(x=>x.ownername === this.billDetails.ownername);
+      returnarr = this.billregdata.filter(x=>x.party === this.billDetails.party);
     }
-    if(this.billDetails.format == "7"){
+    /* if(this.billDetails.format == "7"){
       returnarr = this.billregdata.filter(x=>x.ownername === this.billDetails.ownername);
-    }
+    } */
     if(this.billDetails.format == "8"){
-      returnarr = this.billregdata.filter(x=>x.ownername === this.billDetails.ownername);
+      returnarr = this.billregdata.filter(x=>x.party === this.billDetails.partymaster);
     }
     if(this.billDetails.format == "9"){
-      returnarr = this.billregdata.filter(x=>x.ownername === this.billDetails.ownername);
+      returnarr = this.billregdata.filter(x=>x.party === this.billDetails.party);
     }
     if(this.billDetails.format == "10"){
-      returnarr = this.billregdata.filter(x=>x.ownername === this.billDetails.ownername);
+      returnarr = this.billregdata.filter(x=>x.party === this.billDetails.party);
     }
     if(this.billDetails.format == "11"){
-      returnarr = this.billregdata.filter(x=>x.ownername === this.billDetails.ownername);
+      returnarr = this.billregdata.filter(x=>x.party === this.billDetails.party);
     }
     if(this.billDetails.format == "12"){
-      returnarr = this.billregdata.filter(x=>x.ownername === this.billDetails.ownername);
-    }
+      returnarr = this.billregdata.filter(x=>x.party === this.billDetails.party);
+    } 
     
     return returnarr;
-  } */
+  }
 }

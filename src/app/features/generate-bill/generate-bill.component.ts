@@ -81,6 +81,7 @@ billRegDetails: any[] = [];
       const billReg: BillRegister[] = res.result;
       this.billRegDetails = res.result;
       this.dataSource = new MatTableDataSource(billReg);
+      localStorage.setItem("billregdata", JSON.stringify(res.result));
       this.setData();
     });
    }
