@@ -50,7 +50,7 @@ export class MessageModalComponent implements OnInit {
       body = body.split("%3A").join(": ");
       body = body.split("%2C").join(".");
       body = body.replace("{0}", this.rentalDetails.dutyid);
-      body = body.replace("{1}", this.rentalDetails.bookedby);
+      body = body.replace("{1}", this.rentalDetails.reporttoname);
       body = body.replace("{2}", this.rentalDetails.dutydate);
       body = body.replace("{3}", this.rentalDetails.dutytime.substr(0,5));
       body = body.replace("{4}", this.rentalDetails.transportinfo);
@@ -110,6 +110,7 @@ export class MessageModalComponent implements OnInit {
      debugger;
     this.phoneNumber = number;
     this.selectedType == "BookingConfirmation" ? this.sendBookingConfirmationMessage() : 
+    this.selectedType == "BookingConfirmationBooked" ? this.sendBookingConfirmationMessageBooked() : 
     this.selectedType == "Driver" ? this.sendDriverMessage() :
     this.selectedType == "CarAssigned" ? this.sendCarAssignedMessage() : "" ;
    }
@@ -118,10 +119,10 @@ export class MessageModalComponent implements OnInit {
     let queryParam = "";
     let body = BOOKING_ID_CONFIRM_MESSAGE_TEMPLATE;
     body = body.replace("{0}", this.rentalDetails.dutyid);
-    body = body.replace("{1}", this.rentalDetails.bookedby);
+    body = body.replace("{1}", this.rentalDetails.reporttoname);
     body = body.replace("{2}", this.rentalDetails.dutydate);
     body = body.replace("{3}", this.rentalDetails.dutytime.substr(0,5));
-    body = body.replace("{4}", "To be Assigned");
+    body = body.replace("{4}", this.rentalDetails.transportinfo);
     queryParam += "method=" + MESSAGE_METHOD;
     queryParam += "&send_to=" + this.phoneNumber;
     //queryParam += "&send_to=9874993247";
@@ -138,7 +139,31 @@ export class MessageModalComponent implements OnInit {
       this.toastr.success("The message has been successfully sent", "Success");
     });
    }
-
+   sendBookingConfirmationMessageBooked(){
+    this.toastr.info("Please wait while we are sending the message", "Information");
+    let queryParam = "";
+    let body = BOOKING_ID_CONFIRM_MESSAGE_TEMPLATE;
+    body = body.replace("{0}", this.rentalDetails.dutyid);
+    body = body.replace("{1}", this.rentalDetails.bookedby);
+    body = body.replace("{2}", this.rentalDetails.dutydate);
+    body = body.replace("{3}", this.rentalDetails.dutytime.substr(0,5));
+    body = body.replace("{4}", this.rentalDetails.transportinfo);
+    queryParam += "method=" + MESSAGE_METHOD;
+    queryParam += "&send_to=" + this.phoneNumber;
+    //queryParam += "&send_to=9874993247";
+    queryParam += "&msg=" + body;
+    queryParam += "&msg_type=" + MESSAGE_TYPE;
+    queryParam += "&userid=" + MESSAGE_USER;
+    queryParam += "&auth_scheme=" + MESSAGE_AUTH_SCHEME;
+    queryParam += "&password=" + MESSAGE_PWD;
+    queryParam += "&v=" + MESSAGE_VERSION;
+    queryParam += "&format=" + MESSAGE_FORMAT;
+    this.toastr.success("The message has been successfully sent", "Success");
+    this.apiService.sendMessage(queryParam).then((data)=>{
+      debugger;
+      this.toastr.success("The message has been successfully sent", "Success");
+    });
+   }
    sendCarAssignedMessage(){
     this.toastr.info("Please wait while we are sending the message", "Information");
     let queryParam = "";
@@ -150,7 +175,7 @@ export class MessageModalComponent implements OnInit {
     body = body.replace("{4}", this.rentalDetails.drivernum);
     body = body.replace("{5}", this.rentalDetails.dutydate);
     body = body.replace("{6}", this.rentalDetails.dutytime.substr(0,5));
-    body = body.replace("{7}", this.rentalDetails.reporttoname);
+    body = body.replace("{7}", this.rentalDetails.pickuploc);
     queryParam += "method=" + MESSAGE_METHOD;
     queryParam += "&send_to=" + this.phoneNumber;
     //queryParam += "&send_to=9874993247";
@@ -179,7 +204,7 @@ export class MessageModalComponent implements OnInit {
     body = body.replace("{4}", this.rentalDetails.cartype);
     body = body.replace("{5}", this.rentalDetails.dutydate);
     body = body.replace("{6}", this.rentalDetails.dutytime.substr(0,5));
-    body = body.replace("{7}", this.rentalDetails.reporttoname);
+    body = body.replace("{7}", this.rentalDetails.pickuploc);
     queryParam += "method=" + MESSAGE_METHOD;
     queryParam += "&send_to=" + this.phoneNumber;
     //queryParam += "&send_to=9874993247";
