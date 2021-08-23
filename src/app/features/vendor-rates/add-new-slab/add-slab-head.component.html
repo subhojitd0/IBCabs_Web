@@ -30,7 +30,7 @@
                     <mat-label>Choose Party</mat-label>
                     <input name="slabwise" type="text" [(ngModel)]="slabdetails.party" (ngModelChange)="filterParty($event)" [matAutocomplete]="autocartype" matInput placeholder="Enter Party">
                     <mat-autocomplete #autocartype="matAutocomplete">
-                        <mat-option value="0">ALL</mat-option>
+                        <mat-option value="ALL">ALL</mat-option>
                         <mat-option *ngFor="let option of partynames" [value]="option">
                             {{option}}
                         </mat-option>

@@ -17,6 +17,9 @@
             <mat-option value="CarAssigned" *ngIf="this.rentalDetails.dutystatus !== '0'">
                 REPORT TO - Car Assigned
             </mat-option>
+            <mat-option value="CarAssignedBooked" *ngIf="this.rentalDetails.dutystatus !== '0'">
+                BOOKED BY - Car Assigned
+            </mat-option>
         </mat-select>
     </div>
     <div style="margin: 20px; padding: 20px">

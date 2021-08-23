@@ -95,7 +95,7 @@ export const ROUTE_COAL_INDEX = "coal-index";*/
 
 export const BOOKING_ID_CONFIRM_MESSAGE_TEMPLATE = "Booking%20ID%20{0}%20Confirmed%20for%0APassenger%20{1}%0Afor%20Date%20{2}%20at%20{3}%0AVehicle%20{4}%0AVehicle%20and%20driver%20details%20will%20be%20send%20to%20you%20before%20the%20pickup%20time.%0ARegards%20IB%20CABS%0ATEL%3A%20033%2024246551%2C%20Mob%3A%209830800776";
 export const CAR_ASSIGNED_MESSAGE_TEMPLATE = "Dear%20Customer%0AThanks%20for%20choosing%20IB%20CABS%0AYour%20booking%20Details%20are%20%3A%0ABooking%20ID%20{0}%0AVehicle%20{1}%20{2}%0ADriver%20Name%20{3}%0ADriver%20Contact%20Number%20{4}%0Awill%20report%20at%20Date%20{5}%20at%20{6}%0AReporting%20Address%20{7}%0ARegards%20IB%20CABS%0ATEL%3A%20033%2024246551%2C%20Mob%3A%209830800776";
-export const DRIVER_MESSAGE_TEMPLATE = "Passenger%20Details%0ABooking%20ID%20{0}%0AName%20{1}%20MobileNumber{2}%0AVehicle%20{3}%20{4}%0ADate%20{5}%0AReporting%20Time%20{6}%0AReporting%20Address%20{7}";
+export const DRIVER_MESSAGE_TEMPLATE = "Passenger%20Details%0ABooking%20ID%20{0}%0AName%20{1}%20MobileNumber{2}%0AVehicle%20{3}%20{4}%0ADate%20{5}%0AReporting%20Time%20{6}%0AReporting%20Address%20{7}%0ARegards%20IB%20CABS%0ATEL%3A%20033%2024246551%2C%20Mob%3A%209830800776";
 
 export const MESSAGE_METHOD = "SendMessage";
 export const MESSAGE_TYPE = "TEXT";
