@@ -78,8 +78,8 @@ export class MessageModalComponent implements OnInit {
       body = body.split("%3A").join(": ");
       body = body.split("%2C").join(".");
       body = body.replace("{0}", this.rentalDetails.dutyid);
-      body = body.replace("{1}", this.rentalDetails.bookedby);
-      body = body.replace("{2}", this.rentalDetails.bookedbycontact);
+      body = body.replace("{1}", this.rentalDetails.reporttoname);
+      body = body.replace("{2}", this.rentalDetails.reporttonum);
       body = body.replace("{3}", this.rentalDetails.carnum);
       body = body.replace("{4}", this.rentalDetails.cartype);
       body = body.replace("{5}", this.rentalDetails.dutydate);
@@ -105,7 +105,7 @@ export class MessageModalComponent implements OnInit {
       this.message = body;
     } 
     if(this.selectedType == "CarAssignedBooked"){
-      this.phoneNumbers.push(this.rentalDetails.reporttonum);
+      this.phoneNumbers.push(this.rentalDetails.bookedbycontact);
       let body = CAR_ASSIGNED_MESSAGE_TEMPLATE;
       body = body.split("%20").join(" ");
       body = body.split("%0A").join(" .");
@@ -245,8 +245,8 @@ export class MessageModalComponent implements OnInit {
     let queryParam = "";
     let body = DRIVER_MESSAGE_TEMPLATE;
     body = body.replace("{0}", this.rentalDetails.dutyid);
-    body = body.replace("{1}", this.rentalDetails.bookedby);
-    body = body.replace("{2}", this.rentalDetails.bookedbycontact);
+    body = body.replace("{1}", this.rentalDetails.reporttoname);
+    body = body.replace("{2}", this.rentalDetails.reporttonum);
     body = body.replace("{3}", this.rentalDetails.carnum);
     body = body.replace("{4}", this.rentalDetails.cartype);
     body = body.replace("{5}", this.rentalDetails.dutydate);
