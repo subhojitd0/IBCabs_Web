@@ -197,6 +197,7 @@ export class VendorBillComponent implements OnInit {
           dat.car = "";
           dat.startdate = "0";
           dat.enddate = "0";
+          dat.vendor = "0";
           dat.extra = 0;
           dat.amount = dat.amount.toString().replace(',','');
           tothr = parseFloat(dat.totalhr) + tothr;
@@ -336,6 +337,7 @@ export class VendorBillComponent implements OnInit {
           element.km = element.car;
          }
          else{
+          element.vendor = "0";
           element.hr = element.totalhr;
           element.km = element.totalkm;
          }
