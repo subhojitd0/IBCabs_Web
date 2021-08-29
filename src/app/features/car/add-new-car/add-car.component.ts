@@ -20,6 +20,8 @@ export interface CarDetails {
   cf: string,
   billmode: string,
   fixamount: string
+  fromdate: string;
+  todate: string;
 }
 
 export class car implements CarDetails{
@@ -34,6 +36,8 @@ export class car implements CarDetails{
   cf: string;
   billmode: string;
   fixamount: string;
+  fromdate: string;
+  todate: string;
 }
 @Component({
   selector: 'app-add-car',
@@ -74,6 +78,8 @@ export class AddCarComponent implements OnInit {
           this.carDetails.puc =  res.pucdate;
           this.carDetails.cf =  res.cfdate;
           this.carDetails.rc =  res.rcdate;
+          this.carDetails.fromdate=  res.fromdate;
+          this.carDetails.todate  =res.todate;
           this.billmodeyes = res.billmode ? true: false;
           this.billmodeno = res.billmode ? false: true;
           //this.carDetails.tax = this.carDetails.tax.substr(8,2) + "-" + this.carDetails.tax.substr(4,2) + "-" + this.carDetails.tax.substr(0,4);
@@ -82,6 +88,8 @@ export class AddCarComponent implements OnInit {
       });
     }
     else{
+      this.carDetails.fromdate=  "2020-01-01";
+          this.carDetails.todate  ="2099-01-01";
       localStorage.setItem('selectedcarid', "0");
     }
    }
