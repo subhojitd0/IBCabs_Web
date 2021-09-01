@@ -199,7 +199,7 @@ export class VendorBillComponent implements OnInit {
           dat.enddate = "0";
           dat.vendor = "0";
           dat.extra = 0;
-          dat.amount = dat.amount.toString().replace(',','');
+          dat.amount = (dat.amount.toString() === "0.01" || dat.amount.toString() === "0.01") ? "0.00": dat.amount.toString().replace(',','');
           tothr = parseFloat(dat.totalhr) + tothr;
           totkm = parseFloat(dat.totalkm) + totkm;
           totparking = parseFloat(dat.parking) + totparking;

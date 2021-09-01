@@ -20,6 +20,8 @@ export interface ISlabDetails {
   outstation: string;
   ownername: string;
   cartype: string;
+  fromdate: string;
+  todate: string;
 }
 export class SlabDetails implements ISlabDetails {
   mode: number;
@@ -33,6 +35,8 @@ export class SlabDetails implements ISlabDetails {
   outstation: string;
   ownername: string;
   cartype: string;
+  fromdate: string;
+  todate: string;
 }
 
 @Component({
@@ -57,9 +61,12 @@ export class AddVendorSlabComponent implements OnInit {
     this.slabdetails = new SlabDetails();
     this.slabdetails.ownername = vedorname;
     this.slabdetails.ownercode = vendorcode;
+    this.slabdetails.fromdate=  "2020-01-01";
+    this.slabdetails.todate  ="2099-01-01";
    }
    ngOnInit() : void {
     this.cartypes = JSON.parse(localStorage.getItem('allcartypes'));
+    this.allcars = JSON.parse(localStorage.getItem('allcars'));
     this.allcartype = this.cartypes.map(x=>x.car);
     this.allcarno = this.allcars.map(x=>x.carno);
      }
