@@ -3,11 +3,11 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import {ApiService} from '../../../shared/services/service';
-import {ABP_API, BILL_API, BILL_API_H, BILL_API_I, BILL_CNN_API, BILL_ONCALL_COAL_INDIA_API, BILL_ONCALL_EXTRA_API, BILL_RELIANCE_API, BILL_TIMES_API, DAILY_OT_API, OWNER_API, PARTY_HEAD_API} from '../../../shared/services/api.url-helper';
+import {ABP_API, BILL_API, BILL_API_H, BILL_API_I, BILL_API_J, BILL_CNN_API, BILL_ONCALL_COAL_INDIA_API, BILL_ONCALL_EXTRA_API, BILL_RELIANCE_API, BILL_TIMES_API, DAILY_OT_API, OWNER_API, PARTY_HEAD_API} from '../../../shared/services/api.url-helper';
 import {MatDialog} from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
-import { ROUTE_ABP, ROUTE_CAR, ROUTE_DAILY_OT, ROUTE_OWNER, ROUTE_TIMES_BILL, ROUTE_VIEW_BILL_CNN, ROUTE_VIEW_BILL_COAL_INDIA, ROUTE_VIEW_BILL_H, ROUTE_VIEW_BILL_I, ROUTE_VIEW_BILL_ONCALL_EXTRA, ROUTE_VIEW_BILL_RELIANCE_JMS, ROUTE_VIEW_BILL_RELIANCE_MIS, ROUTE_VIEW_BILL_RELIANCE_SUMMARY } from 'src/shared/constants/constant';
+import { ROUTE_ABP, ROUTE_CAR, ROUTE_DAILY_OT, ROUTE_OWNER, ROUTE_TIMES_BILL, ROUTE_VIEW_BILL_CNN, ROUTE_VIEW_BILL_COAL_INDIA, ROUTE_VIEW_BILL_H, ROUTE_VIEW_BILL_I, ROUTE_VIEW_BILL_J, ROUTE_VIEW_BILL_ONCALL_EXTRA, ROUTE_VIEW_BILL_RELIANCE_JMS, ROUTE_VIEW_BILL_RELIANCE_MIS, ROUTE_VIEW_BILL_RELIANCE_SUMMARY } from 'src/shared/constants/constant';
 import { NewBillComponent } from './NewBill/newbill.component';
 import { AdvancedBillComponent } from './AdvancedBill/advancedbill.component';
 import html2canvas from 'html2canvas';
@@ -148,6 +148,9 @@ billRegDetails: any[] = [];
     }
     else if(bill.billtype === "I"){
       this.openWalkinBill(bill);
+    }
+    else if(bill.billtype === "J"){
+      this.openBillJ(bill);
     }
     else{
       localStorage.setItem("billmodalbody", bill.path);
@@ -324,6 +327,45 @@ billRegDetails: any[] = [];
       this.toastr.success("Your bill was successfully created",'Success');
       localStorage.setItem("removeheader", "1");
       this.router.navigate([]).then(result => {  window.open('/' + ROUTE_ABP, '_blank'); });
+    });
+  }
+  openBillJ(element: any){
+    localStorage.setItem("removeheader", "0");
+    let month = element.billto.substr(5,2);
+    if(month.startsWith("0")){
+      month = month.replace("0","");
+    }
+    let json = {
+      partymaster: element.party,
+      month: month,
+      format: "1",
+      gsttype: element.gsttype,
+      parkinggst: element.parkinggst,
+      customfa: element.fa,
+      customfavalue: element.favalue,
+      billCalType: element.billCalType
+    }
+    localStorage.setItem("billmonth", month);
+    localStorage.setItem("billfa", element.fa);
+    localStorage.setItem("billfaval", element.favalue);
+    localStorage.setItem("billpartymaster", element.party);
+    localStorage.setItem("billfrom", element.billfrom);
+    localStorage.setItem("billto", element.billto);
+    localStorage.setItem("billparty", element.party);
+    localStorage.setItem("billreportto", element.reportto);
+    localStorage.setItem("billgst", element.gsttype);
+    localStorage.setItem("billparking", element.parkinggst);
+    localStorage.setItem("nightstart", element.nightstart);
+    localStorage.setItem("nightend", element.nightend);
+    localStorage.setItem("billnumber", element.billnumber);
+    localStorage.setItem("billdate", element.billdate);
+    localStorage.setItem("billcaltype", element.billCalType);
+    this.apiService.post(BILL_API_J, json).then((res: any)=>{ 
+      debugger;
+      localStorage.setItem("billdata", JSON.stringify(res));
+      this.toastr.success("Your bill was successfully created",'Success');
+      localStorage.setItem("removeheader", "1");
+      this.router.navigate([]).then(result => {  window.open('/' + ROUTE_VIEW_BILL_J, '_blank'); });
     });
   }
   openIBNBill(element: any){

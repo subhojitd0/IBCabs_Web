@@ -3,10 +3,10 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import {ApiService} from '../../../../shared/services/service';
-import {ABP_API, BILL_API_H, BILL_API_I, BILL_CNN_API, BILL_ONCALL_COAL_INDIA_API, BILL_ONCALL_EXTRA_API, BILL_RELIANCE_API, BILL_TIMES_API, DAILY_OT_API, EXTRA_API, OWNER_API, PARTY_HEAD_API} from '../../../../shared/services/api.url-helper';
+import {ABP_API, BILL_API_H, BILL_API_I, BILL_API_J, BILL_CNN_API, BILL_ONCALL_COAL_INDIA_API, BILL_ONCALL_EXTRA_API, BILL_RELIANCE_API, BILL_TIMES_API, DAILY_OT_API, EXTRA_API, OWNER_API, PARTY_HEAD_API} from '../../../../shared/services/api.url-helper';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
-import { ROUTE_ABP, ROUTE_COAL_INDEX, ROUTE_DAILY_OT, ROUTE_OWNER, ROUTE_TIMES_BILL, ROUTE_VIEW_BILL_CNN, ROUTE_VIEW_BILL_COAL_INDIA, ROUTE_VIEW_BILL_H, ROUTE_VIEW_BILL_I, ROUTE_VIEW_BILL_ONCALL_EXTRA, ROUTE_VIEW_BILL_RELIANCE_JMS, ROUTE_VIEW_BILL_RELIANCE_MIS, ROUTE_VIEW_BILL_RELIANCE_SUMMARY } from 'src/shared/constants/constant';
+import { ROUTE_ABP, ROUTE_COAL_INDEX, ROUTE_DAILY_OT, ROUTE_OWNER, ROUTE_TIMES_BILL, ROUTE_VIEW_BILL_CNN, ROUTE_VIEW_BILL_COAL_INDIA, ROUTE_VIEW_BILL_H, ROUTE_VIEW_BILL_I, ROUTE_VIEW_BILL_J, ROUTE_VIEW_BILL_ONCALL_EXTRA, ROUTE_VIEW_BILL_RELIANCE_JMS, ROUTE_VIEW_BILL_RELIANCE_MIS, ROUTE_VIEW_BILL_RELIANCE_SUMMARY } from 'src/shared/constants/constant';
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
@@ -281,7 +281,7 @@ export class NewBillComponent implements OnInit {
       this.showTotalCalABP = false;
       this.showbookedby = false;
     }
-    else if(this.billDetails.format === "8"){ //E - ABP - Party Master
+    else if(this.billDetails.format === "8" || this.billDetails.format === "13"){ //E - ABP - Party Master
       this.showParty = false;
       this.showPartyMaster = true;
       this.showBillSubject = true;
@@ -495,6 +495,10 @@ export class NewBillComponent implements OnInit {
         redirectApi = ROUTE_VIEW_BILL_I;
         localStorage.setItem("removeheader", "1");
       }
+      if(this.billDetails.format == "13"){
+        billApi = BILL_API_J;
+        redirectApi = ROUTE_VIEW_BILL_J;
+      }
       debugger;
       this.toastr.info("Please wait while we are generating your bill",'Information');
       localStorage.setItem("billfrom", this.billDetails.from);
@@ -589,7 +593,7 @@ export class NewBillComponent implements OnInit {
     /* if(this.billDetails.format == "7"){
       returnarr = this.billregdata.filter(x=>x.ownername === this.billDetails.ownername);
     } */
-    if(this.billDetails.format == "8"){
+    if(this.billDetails.format == "8" || this.billDetails.format == "13"){
       returnarr = this.billregdata.filter(x=>x.party === this.billDetails.partymaster);
     }
     if(this.billDetails.format == "9"){
