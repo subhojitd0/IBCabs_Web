@@ -48,10 +48,10 @@
                 <td *ngIf="childrow.extra === 0">{{childrow.party}}</td>
                 <td *ngIf="childrow.extra === 0">{{childrow.reportto}}</td>
                 <td *ngIf="childrow.extra === 0">
-                    <input style="width: 100%;border:none;text-align: center;" matInput type="text" [(ngModel)]="childrow.totalhr">
+                    <input style="width: 100%;border:none;text-align: center;" matInput type="text" (blur)="changeamount(childrow)" [(ngModel)]="childrow.totalhr">
                 </td>
                 <td *ngIf="childrow.extra === 0">
-                    <input style="width: 100%;border:none;text-align: center;" matInput type="text" [(ngModel)]="childrow.totalkm">
+                    <input style="width: 100%;border:none;text-align: center;" matInput type="text" (blur)="changeamount(childrow)" [(ngModel)]="childrow.totalkm">
                 </td>
                 <td *ngIf="childrow.extra === 0">{{childrow.parking}}</td>
                 <td *ngIf="childrow.extra === 0">{{childrow.outstation}}</td>

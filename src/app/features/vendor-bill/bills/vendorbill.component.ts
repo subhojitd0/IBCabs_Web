@@ -68,6 +68,8 @@ export interface iCarDet{
 export class CarDet implements iCarDet{
   carno: any;
   data: any[];
+  tothr: any;
+  totkm: any;
 }
 
 export interface iSaveBill {
@@ -155,6 +157,8 @@ export class VendorBillComponent implements OnInit {
     "sl": ""
   }
   extradetails: any[] = [];
+  tothr = 0;
+  totkm = 0;
   constructor(private router: Router,private apiService: ApiService, public dialog: MatDialog, private toastr: ToastrService) {
     
    }
@@ -187,8 +191,10 @@ export class VendorBillComponent implements OnInit {
         carD.carno = car;
         carD.data = this.billdetails.result.filter(x=>x.carno === car);
         let slno = 0;
-        let tothr = 0;
-        let totkm = 0;
+        carD.tothr = 0;
+        carD.totkm = 0;
+        /* let tothr = 0;
+        let totkm = 0; */
         let totparking = 0;
         let totamt = 0;
         carD.data.forEach((dat: any)=>{
@@ -200,15 +206,15 @@ export class VendorBillComponent implements OnInit {
           dat.vendor = "0";
           dat.extra = 0;
           dat.amount = (dat.amount.toString() === "0.01" || dat.amount.toString() === "0.01") ? "0.00": dat.amount.toString().replace(',','');
-          tothr = parseFloat(dat.totalhr) + tothr;
-          totkm = parseFloat(dat.totalkm) + totkm;
+          carD.tothr = parseFloat(dat.totalhr) + carD.tothr;
+          carD.totkm = parseFloat(dat.totalkm) + carD.totkm;
           totparking = parseFloat(dat.parking) + totparking;
           totamt = parseFloat(dat.amount) + totamt;
         })
         let newData={
           sl: "Total",
-          totalhr: tothr,
-          totalkm: totkm,
+          totalhr: carD.tothr,
+          totalkm: carD.totkm,
           extra: 0,
           parking: totparking,
           //amount: totamt
@@ -287,10 +293,20 @@ export class VendorBillComponent implements OnInit {
    changeamount(row: any){
      debugger;
      let totamt = 0;
+     let totkm = 0;
+     let tothr = 0;
      this.alldata.filter(x=>x.carno === row.carno)[0].data.filter(x=>x.sl !== "Total" && x.sl !== "Total Amount").forEach(element => {
       totamt = totamt + parseFloat(element.amount);
+      debugger;
+      if(element.extra === 0){
+        totkm = totkm + parseFloat(element.totalkm);
+        tothr = tothr + parseFloat(element.totalhr === "" ? 0 : element.totalhr);
+      }
      });
      this.alldata.filter(x=>x.carno === row.carno)[0].data.filter(x=>x.sl === "Total Amount")[0].amount = totamt;
+     this.alldata.filter(x=>x.carno === row.carno)[0].data.filter(x=>x.sl === "Total")[0].totalhr = tothr;
+     this.alldata.filter(x=>x.carno === row.carno)[0].data.filter(x=>x.sl === "Total")[0].totalkm = totkm;
+     
    }
    changeextra(row: any){
     debugger;
