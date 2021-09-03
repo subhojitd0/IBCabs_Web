@@ -11,9 +11,10 @@
     <p id="header">VENDOR INVOICE - {{vendorname}}</p>
     <div id="customer" class="row" style="padding-top: 20px;">
         <div *ngIf="showsubmit && userrole === 'ibcabs'" class="col-xs-4">
+            <!-- && userrole === 'ibcabs' -->
             Comments : <input name="comment" type="text" [(ngModel)]="comments">
         </div>
-        <div *ngIf="showsubmit && userrole === 'ibcabs'" class="col-xs-4" style="padding-left: 20px; padding-right: 20px">
+        <div *ngIf="showsubmit" class="col-xs-4" style="padding-left: 20px; padding-right: 20px">
             Total Amount : <input name="total" type="text" [(ngModel)]="total">
         </div>
         <div class="col-xs-4" *ngIf="isConfirmVisible">

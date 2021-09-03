@@ -105,6 +105,7 @@ export class NewVendorBillComponent implements OnInit {
   
   generateBill(){
     if(this.validateDate()){
+      debugger;
       this.billDetails.ownercode = this.allparties.filter(x=>x.ownername === this.billDetails.ownername)[0].ownercode;
       let billApi = BILL_VENDOR_PAY;
       let redirectApi = ROUTE_VENDOR_BILL;

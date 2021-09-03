@@ -147,7 +147,7 @@ billRegDetails: any[] = [];
       mode: "1",
     }
     localStorage.setItem("vendorname", element.ownername);
-    localStorage.setItem("vendorcode", element.ownercode);
+    localStorage.setItem("vendorcode", element.ownerid);
     localStorage.setItem("vendorfrom", element.startdate);
     localStorage.setItem("vendorto", element.enddate);
     localStorage.setItem("vendoramount", element.amount);
