@@ -96,6 +96,8 @@ export class AirIndiaComponent implements OnInit {
   marginTop: any;
   fontSize: any;
   billgst: any;
+  replace: number = 0;
+  dry: number = 0;
   isConfirmVisible: any = true;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -140,6 +142,12 @@ export class AirIndiaComponent implements OnInit {
       this.billdetails.body.forEach(element =>{
         this.count = this.count + 1;
         element.slno = this.count;
+        if(element.package === "0"){
+          this.replace = this.replace +1;
+        }
+        else{
+          this.dry = this.dry +1;
+        }
       });
       /* let billTot : BillDet = new BillDet();
       billTot.carno = "Total";

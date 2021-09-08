@@ -60,7 +60,7 @@
               <mat-card-subtitle>View, Delete and View the Bills Here.</mat-card-subtitle>
             </mat-card-header>
           </mat-card> -->
-    <div style="margin-top: 200px;">
+    <div style="margin-top: 200px; margin-bottom: 100px;">
         <table>
             <tr>
                 <th style="text-align: center;">Sl. No</th>
@@ -86,23 +86,93 @@
                 <td style="text-align: center;">{{row.parking}}</td>
                 <td style="text-align: center;">{{row.rowtotal}}</td> -->
             </tr>
-            <!-- <tr>
-                <th style="text-align: center;">Sub Total: Rs.</th>
-                <th></th>
-                <th></th>
-                <th style="text-align: center;">{{billdetails.bodytotal.package}}</th>
-                <th style="text-align: center;">{{billdetails.bodytotal.actualhour}}</th>
-                <th style="text-align: center;">{{billdetails.bodytotal.actualkm}}</th>
-                <th></th>
-                <th style="text-align: center;">{{billdetails.bodytotal.extramoney}}</th>
-                <th style="text-align: center;">{{billdetails.bodytotal.subtotal}}</th>
-                <th style="text-align: center;">{{billdetails.bodytotal.outstation}}</th>
-                <th style="text-align: center;">{{billdetails.bodytotal.parking}}</th>
-                <th></th>
-            </tr> -->
+            <tr>
+                <td *ngIf="isConfirmVisible" colspan="5" style="text-align:right"> Dry Car rent for all {{dry}} cars Rs. &nbsp;</td>
+                <td *ngIf="!isConfirmVisible" colspan="4" style="text-align:right"> Dry Car rent for all {{dry}} cars Rs. &nbsp;</td>
+                <td> {{billdetails.bodytotal.package}} </td>
+            </tr>
+            <tr>
+                <td *ngIf="isConfirmVisible" colspan="5" style="text-align:right"> Total run for {{dry}} cars & {{replace}} cars in the month {{billdetails.bodytotal.actualkm}} KM &nbsp;</td>
+                <td *ngIf="!isConfirmVisible" colspan="4" style="text-align:right"> Dry Car rent for all {{dry}} cars Rs. &nbsp;</td>
+                <td> </td>
+            </tr>
+            <tr>
+                <td *ngIf="isConfirmVisible" colspan="5" style="text-align:right">{{billdetails.tail.customfa}}&nbsp;</td>
+                <td *ngIf="!isConfirmVisible" colspan="4" style="text-align:right">{{billdetails.tail.customfa}}&nbsp;</td>
+                <td> {{billdetails.tail.customfavalue}} </td>
+            </tr>
+            <tr>
+                <td *ngIf="isConfirmVisible" colspan="5" style="text-align:right"> Sub Total Rs.&nbsp;</td>
+                <td *ngIf="!isConfirmVisible" colspan="4" style="text-align:right"> Sub Total Rs.&nbsp;</td>
+                <td> {{billdetails.tail.subtotal}} </td>
+            </tr>
+            <tr>
+                <td *ngIf="isConfirmVisible" colspan="5" style="text-align:right"> Rounded Off Rs.&nbsp;</td>
+                <td *ngIf="!isConfirmVisible" colspan="4" style="text-align:right"> Rounded Off Rs.&nbsp;</td>
+                <td> {{billdetails.tail.subtotal}} </td>
+            </tr>
+
+            <tr>
+                <td colspan="2" style="text-align:center"> PAN:AHOPB6443K</td>
+                <td rowspan="3" *ngIf="isConfirmVisible" colspan="4" style="text-align:right"> </td>
+                <td rowspan="3" *ngIf="!isConfirmVisible" colspan="3"> </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="text-align:center"> GSTIN:19AHOPB6443K1ZZ</td>
+                <!-- <td *ngIf="isConfirmVisible" colspan="4" style="text-align:right"> </td>
+                <td *ngIf="!isConfirmVisible" colspan="3"> </td> -->
+            </tr>
+            <tr>
+                <td colspan="2" style="text-align:center"> SAC Code:996601.</td>
+                <!-- <td *ngIf="isConfirmVisible" colspan="4" style="text-align:right"> </td>
+                <td *ngIf="!isConfirmVisible" colspan="3"> </td> -->
+            </tr>
+            <tr>
+                <td *ngIf="isConfirmVisible" colspan="6" style="text-align:right"> </td>
+                <td *ngIf="!isConfirmVisible" colspan="5"> </td>
+            </tr>
+            <tr>
+                <td style="text-align:center"> Taxable Amount : Rs.</td>
+                <td style="text-align:center"> {{billdetails.gst.taxableamount}}</td>
+                <td rowspan="5" *ngIf="isConfirmVisible" colspan="4" style="text-align:right"> </td>
+                <td rowspan="5" *ngIf="!isConfirmVisible" colspan="3"> </td>
+            </tr>
+            <tr>
+                <td style="text-align:center"> CGST @ 2.5% : Rs.</td>
+                <td style="text-align:center"> {{billdetails.gst.cgst}}</td>
+                <!-- <td *ngIf="isConfirmVisible" colspan="4" style="text-align:right"> </td>
+                <td *ngIf="!isConfirmVisible" colspan="3"> </td> -->
+            </tr>
+            <tr>
+                <td style="text-align:center"> SGST @ 2.5% : Rs.</td>
+                <td style="text-align:center"> {{billdetails.gst.sgst}}</td>
+                <!-- <td *ngIf="isConfirmVisible" colspan="4" style="text-align:right"> </td>
+                <td *ngIf="!isConfirmVisible" colspan="3"> </td> -->
+            </tr>
+            <tr>
+                <td style="text-align:center"> IGST @ 5% : Rs.</td>
+                <td style="text-align:center"> {{billdetails.gst.igst}}</td>
+                <!-- <td *ngIf="isConfirmVisible" colspan="4" style="text-align:right"> </td>
+                <td *ngIf="!isConfirmVisible" colspan="3"> </td> -->
+            </tr>
+            <tr>
+                <td style="text-align:center"> Total GST Amount : Rs.</td>
+                <td style="text-align:center"> {{billdetails.gst.total}}</td>
+                <!-- <td *ngIf="isConfirmVisible" colspan="4" style="text-align:right"> </td>
+                <td *ngIf="!isConfirmVisible" colspan="3"> </td> -->
+            </tr>
+            <tr>
+                <td *ngIf="isConfirmVisible" colspan="6" style="text-align:left"> GST WIll BE PAID BY SERVICE RECIPIENT UNDER R.C.M VIDE NOTIFICATION NO : 22/2019</td>
+                <td *ngIf="!isConfirmVisible" colspan="5">GST WIll BE PAID BY SERVICE RECIPIENT UNDER R.C.M VIDE NOTIFICATION NO : 22/2019 </td>
+            </tr>
+            <tr>
+                <td> Amount in words Rs.</td>
+                <td *ngIf="isConfirmVisible" colspan="5" style="text-align:left"> {{amountInWord}}</td>
+                <td *ngIf="!isConfirmVisible" colspan="4">{{amountInWord}}</td>
+            </tr>
         </table>
     </div>
-    <p style="margin-top: 30px;font-weight: bold; font-size: 20px;">Amount in words: <br/>{{amountInWord}}</p>
+    <!-- <p style="margin-top: 30px;font-weight: bold; font-size: 20px;">Amount in words: <br/>{{amountInWord}}</p>
     <div id="customer" style="display: block; margin-top: 25px;;" class="row">
         <br>
         <div id="customer-title" class="col-xs-3">
@@ -173,15 +243,15 @@
                         <td class="meta-head" style="text-align: right !important;">Actual Bill Amount Rs.</td>
                         <td class="meta-content">{{billdetails.tail.actualbill}}</td>
                     </tr>
-                    <!-- <tr>
+                     <tr>
                         <td class="meta-head" style="text-align: right !important;">Over Time During Month Rs.</td>
                         <td class="meta-content">{{billdetails.tail.overtime}}</td>
                     </tr> -->
-                    <tr *ngIf="billdetails.tail.customfa">
-                        <td class="meta-head" style="text-align: right !important;">{{billdetails.tail.customfa}}</td>
-                        <td class="meta-content">{{billdetails.tail.customfavalue}}</td>
-                    </tr>
-                    <!-- <tr>
+    <!-- <tr *ngIf="billdetails.tail.customfa">
+        <td class="meta-head" style="text-align: right !important;">{{billdetails.tail.customfa}}</td>
+        <td class="meta-content">{{billdetails.tail.customfavalue}}</td>
+    </tr> -->
+    <!-- <tr>
                         <td class="meta-head" style="text-align: right !important;">Subtotal Rs.</td>
                         <td class="meta-content">{{billdetails.tail.subtotal}}</td>
                     </tr>
@@ -193,20 +263,20 @@
                         <td class="meta-head" style="text-align: right !important;"><b>Outstation charge for: {{billdetails.tail.outstationdays}} days  @ Rs. {{billdetails.tail.outstationrate}} &nbsp;&nbsp; Rs.</b></td>
                         <td class="meta-content">{{billdetails.tail.outstationamount}}</td>
                     </tr> -->
-                    <tr>
-                        <td class="meta-head" style="text-align: right !important;"><b>Gross Amount Rs.</b></td>
-                        <td class="meta-content">{{billdetails.tail.subtotal}}</td>
-                    </tr>
-                    <tr>
-                        <td class="meta-head" style="text-align: right !important;"><b>Rounded Gross Amount Rs.</b></td>
-                        <td class="meta-content">{{billdetails.tail.subtotal}}</td>
-                    </tr>
-                </tbody>
-            </table>
+    <!-- <tr>
+        <td class="meta-head" style="text-align: right !important;"><b>Gross Amount Rs.</b></td>
+        <td class="meta-content">{{billdetails.tail.subtotal}}</td>
+    </tr>
+    <tr>
+        <td class="meta-head" style="text-align: right !important;"><b>Rounded Gross Amount Rs.</b></td>
+        <td class="meta-content">{{billdetails.tail.subtotal}}</td>
+    </tr>
+    </tbody>
+    </table>
 
-            <p style="float: right;margin-top: 100px;font-weight: bold; font-size: 15px;">For IB Cabs</p>
-        </div>
-    </div>
+    <p style="float: right;margin-top: 100px;font-weight: bold; font-size: 15px;">For IB Cabs</p>
+</div>
+</div> -->
 
 
 </div>
