@@ -78,7 +78,8 @@
                 <td style="text-align: center;">{{row.hour}}</td>
                 <td style="text-align: center;">{{row.km}}</td>
                 <td style="text-align: center;">{{row.parking}}</td>
-                <td style="text-align: center;">{{row.outstation}}</td>
+                <td *ngIf="row.outstation !== ''" style="text-align: center;">{{row.outstation}}</td>
+                <td *ngIf="row.outstation === ''" style="text-align: center;">0</td>
             </tr>
         </table>
     </div>
