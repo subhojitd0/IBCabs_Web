@@ -103,6 +103,10 @@ export class BillJComponent implements OnInit {
   dataSource: MatTableDataSource<BillDet>;
   count: number;
   month: string;
+  extrakm: any;
+  extrahr: any;
+  extrahrrate: any;
+  extrakmrate: any;
   constructor(private router: Router,private apiService: ApiService, public dialog: MatDialog, private toastr: ToastrService) {
     
    }

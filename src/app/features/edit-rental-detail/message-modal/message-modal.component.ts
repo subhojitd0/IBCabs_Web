@@ -57,7 +57,7 @@ export class MessageModalComponent implements OnInit {
       this.message = body;
     }
     if(this.selectedType == "BookingConfirmationBooked"){
-      this.phoneNumbers.push(this.rentalDetails.bookedbycontact);
+      this.phoneNumbers.push(this.rentalDetails.reporttonum);
       let body = BOOKING_ID_CONFIRM_MESSAGE_TEMPLATE;
       body = body.split("%20").join(" ");
       body = body.split("%0A").join(" .");

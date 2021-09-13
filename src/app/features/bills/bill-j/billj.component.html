@@ -186,42 +186,46 @@
             <table id="meta">
                 <tbody>
                     <tr>
-                        <td class="meta-head" style="text-align: right !important;">Actual Bill Amount Rs.</td>
+                        <td></td>
+                        <td class="meta-head" style="text-align: right !important;">Mothly Contract Rs.</td>
                         <td class="meta-content">{{billdetails.tail.actualbill}}</td>
                     </tr>
                     <tr>
-                        <td class="meta-head" style="text-align: right !important;"><b>Extra Hour charge for: {{billdetails.tail.extrahour}} hrs &nbsp;&nbsp; Rs.</b></td>
+                        <td class="meta-head" style="text-align: left !important;"><b>HR Limit: {{billdetails.tail.hrlimit}} HR.        Extra HR: {{billdetails.tail.extrahour}}        @ Rs. {{billdetails.tail.extrahrrate}}   &nbsp;</b></td>
+                        <td style="text-align: right !important;">Amount Rs.</td>
                         <td class="meta-content">{{billdetails.tail.extrahourmoney}}</td>
                     </tr>
                     <tr>
-                        <td class="meta-head" style="text-align: right !important;"><b>Extra KM charge for: {{billdetails.tail.extrakm}} kms &nbsp;&nbsp; Rs.</b></td>
+                        <td class="meta-head" style="text-align: left !important;"><b>KM Limit: {{billdetails.tail.kmlimit}} KM.        Extra KM: {{billdetails.tail.extrakm}}        @ Rs. {{billdetails.tail.extrakmrate}}   &nbsp;</b></td>
+                        <td style="text-align: right !important;">Amount Rs.</td>
                         <td class="meta-content">{{billdetails.tail.extrakmmoney}}</td>
                     </tr>
-                    <tr>
-                        <td class="meta-head" style="text-align: right !important;">Extra HR & KM During Month Rs.</td>
-                        <td class="meta-content">{{billdetails.tail.overtime}}</td>
-                    </tr>
-                    <tr *ngIf="billdetails.tail.customfa">
+                    <!-- <tr *ngIf="billdetails.tail.customfa">
                         <td class="meta-head" style="text-align: right !important;">{{billdetails.tail.customfa}}</td>
                         <td class="meta-content">{{billdetails.tail.customfavalue}}</td>
-                    </tr>
+                    </tr> -->
                     <tr>
+                        <td></td>
                         <td class="meta-head" style="text-align: right !important;">Subtotal Rs.</td>
                         <td class="meta-content">{{billdetails.tail.subtotal}}</td>
                     </tr>
                     <tr>
+                        <td></td>
                         <td class="meta-head" style="text-align: right !important;"><b>Total Parking Rs.</b></td>
                         <td class="meta-content">{{billdetails.tail.parking}}</td>
                     </tr>
                     <tr>
-                        <td class="meta-head" style="text-align: right !important;"><b>Outstation charge for: {{billdetails.tail.outstationdays}} days  @ Rs. {{billdetails.tail.outstationrate}} &nbsp;&nbsp; Rs.</b></td>
+                        <td class="meta-head" style="text-align: left !important;"><b>Outstation charge for: {{billdetails.tail.outstationdays}} days  @ Rs. {{billdetails.tail.outstationrate}} &nbsp;&nbsp; Rs.</b></td>
+                        <td style="text-align: right !important;">Outstation Amount</td>
                         <td class="meta-content">{{billdetails.tail.outstationamount}}</td>
                     </tr>
                     <tr>
+                        <td></td>
                         <td class="meta-head" style="text-align: right !important;"><b>Gross Amount Rs.</b></td>
                         <td class="meta-content">{{billdetails.tail.grosstotal}}.00</td>
                     </tr>
                     <tr>
+                        <td></td>
                         <td class="meta-head" style="text-align: right !important;"><b>Rounded Gross Amount Rs.</b></td>
                         <td class="meta-content">{{billdetails.tail.grosstotal}}.00</td>
                     </tr>

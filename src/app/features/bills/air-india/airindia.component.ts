@@ -148,6 +148,9 @@ export class AirIndiaComponent implements OnInit {
         else{
           this.dry = this.dry +1;
         }
+        if(element.particulars.includes("Replacement Car")){
+          element.slno = "R";
+        }
       });
       /* let billTot : BillDet = new BillDet();
       billTot.carno = "Total";

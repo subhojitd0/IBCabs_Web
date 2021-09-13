@@ -67,7 +67,7 @@
                 <th style="text-align: center;">Vehicle No.</th>
                 <th style="text-align: center;">Notes</th>
                 <th *ngIf="isConfirmVisible" style="text-align: center;">Actual KM</th>
-                <th style="text-align: center;">Vendor KM</th>
+                <th style="text-align: center;">Approved KM</th>
                 <th style="text-align: center;">Dry Car Rate ( Rs. )</th>
                 <!--   <th style="text-align: center;">Outstation</th>
                 <th style="text-align: center;">Parking</th>
@@ -92,7 +92,7 @@
                 <td style="text-align:center"> {{billdetails.bodytotal.package}} </td>
             </tr>
             <tr>
-                <td *ngIf="isConfirmVisible" colspan="5" style="text-align:right"> Total run for {{dry}} cars & {{replace}} cars in the month {{billdetails.bodytotal.actualkm}} KM &nbsp;</td>
+                <td *ngIf="isConfirmVisible" colspan="5" style="text-align:right"> Total run for {{dry}} cars & {{replace}} replacement cars in the month {{billdetails.bodytotal.actualkm}} KM &nbsp;</td>
                 <td *ngIf="!isConfirmVisible" colspan="4" style="text-align:right"> Dry Car rent for all {{dry}} cars Rs. &nbsp;</td>
                 <td> </td>
             </tr>
@@ -169,6 +169,14 @@
                 <td> Amount in words Rs.</td>
                 <td *ngIf="isConfirmVisible" colspan="5" style="text-align:left"> {{amountInWord}}</td>
                 <td *ngIf="!isConfirmVisible" colspan="4">{{amountInWord}}</td>
+            </tr>
+            <tr>
+                <td *ngIf="isConfirmVisible" colspan="6" style="text-align:left"> </td>
+                <td *ngIf="!isConfirmVisible" colspan="5"></td>
+            </tr>
+            <tr>
+                <td *ngIf="isConfirmVisible" colspan="6" style="text-align:left">Enclose : {{billdetails.tail.dutyslip}} original duty slips & rosters </td>
+                <td *ngIf="!isConfirmVisible" colspan="5">Enclose : {{billdetails.tail.dutyslip}} original duty slips & rosters</td>
             </tr>
         </table>
     </div>
