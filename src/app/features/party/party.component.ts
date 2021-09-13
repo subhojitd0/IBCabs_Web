@@ -161,7 +161,7 @@ export class PartyComponent implements OnInit {
         partyheaddetails.partyheadid = id;
         let dateT = new Date();
         let newDate = new Date(dateT.setDate(dateT.getDate()-1)).toLocaleDateString();
-        partyheaddetails.todate = newDate.split('/')[2] + "-" + newDate.split('/')[1] + "-" + newDate.split('/')[0];
+        partyheaddetails.todate = newDate.split('/')[2] + "-" + newDate.split('/')[0] + "-" + newDate.split('/')[1];
         this.toastr.info("Please wait while we are saving your data",'Information');
         this.apiService.post(PARTY_HEAD_API, partyheaddetails).then((res: any)=>{ 
           this.toastr.success("Your data was successfully edited",'Success');

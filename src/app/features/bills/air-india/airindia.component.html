@@ -65,7 +65,7 @@
             <tr>
                 <th style="text-align: center;">Sl. No</th>
                 <th style="text-align: center;">Vehicle No.</th>
-                <th style="text-align: center;">Notes</th>
+                <th style="text-align: center;">Particulars</th>
                 <th *ngIf="isConfirmVisible" style="text-align: center;">Actual KM</th>
                 <th style="text-align: center;">Approved KM</th>
                 <th style="text-align: center;">Dry Car Rate ( Rs. )</th>
@@ -92,8 +92,8 @@
                 <td style="text-align:center"> {{billdetails.bodytotal.package}} </td>
             </tr>
             <tr>
-                <td *ngIf="isConfirmVisible" colspan="5"> <span style="float: left">Total run for {{dry}} cars & {{replace}} replacement cars in the month </span><span style="float: right">{{billdetails.bodytotal.actualkm}} KM &nbsp;</span></td>
-                <td *ngIf="!isConfirmVisible" colspan="4"> <span style="float: left">Total run for {{dry}} cars & {{replace}} replacement cars in the month </span><span style="float: right">{{billdetails.bodytotal.actualkm}} KM &nbsp;</span></td>
+                <td *ngIf="isConfirmVisible" colspan="5"> <span style="float: left;margin-left: 200px;">Total run for {{dry}} cars & {{replace}} replacement cars in the month </span><span style="float: right">{{billdetails.bodytotal.actualkm}} KM &nbsp;</span></td>
+                <td *ngIf="!isConfirmVisible" colspan="4"> <span style="float: left;margin-left: 200px">Total run for {{dry}} cars & {{replace}} replacement cars in the month </span><span style="float: right">{{billdetails.bodytotal.actualkm}} KM &nbsp;</span></td>
                 <td> </td>
             </tr>
             <tr>

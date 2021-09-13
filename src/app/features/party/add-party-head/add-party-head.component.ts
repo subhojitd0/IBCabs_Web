@@ -171,6 +171,7 @@ export class AddPartyHeadComponent implements OnInit {
         this.partyheaddetails.fromdate = newDate.split('/')[2]  + "-" + newDate.split('/')[1] + "-" + newDate.split('/')[0];
       } */
     }
+    debugger;
     this.toastr.info("Please wait while we are saving your data",'Information');
     this.apiService.post(PARTY_HEAD_API, this.partyheaddetails).then((res: any)=>{ 
       this.toastr.success("Youe data was successfully saved",'Success');
