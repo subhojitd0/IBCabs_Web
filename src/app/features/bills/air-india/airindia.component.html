@@ -92,8 +92,8 @@
                 <td style="text-align:center"> {{billdetails.bodytotal.package}} </td>
             </tr>
             <tr>
-                <td *ngIf="isConfirmVisible" colspan="5" style="text-align:right"> Total run for {{dry}} cars & {{replace}} replacement cars in the month {{billdetails.bodytotal.actualkm}} KM &nbsp;</td>
-                <td *ngIf="!isConfirmVisible" colspan="4" style="text-align:right"> Dry Car rent for all {{dry}} cars Rs. &nbsp;</td>
+                <td *ngIf="isConfirmVisible" colspan="5"> <span style="float: left">Total run for {{dry}} cars & {{replace}} replacement cars in the month </span><span style="float: right">{{billdetails.bodytotal.actualkm}} KM &nbsp;</span></td>
+                <td *ngIf="!isConfirmVisible" colspan="4"> <span style="float: left">Total run for {{dry}} cars & {{replace}} replacement cars in the month </span><span style="float: right">{{billdetails.bodytotal.actualkm}} KM &nbsp;</span></td>
                 <td> </td>
             </tr>
             <tr>
