@@ -74,11 +74,11 @@
                 <th style="text-align: center;">Total Amount</th> -->
             </tr>
             <tr *ngFor="let row of billdetails.body">
-                <td style="text-align: center;">{{row.slno}}</td>
+                <td style="text-align: center;width:15%;">{{row.slno}}</td>
                 <td style="text-align: center;">{{row.carnum}}</td>
-                <td style="text-align: center;">{{row.particulars}}</td>
+                <td style="text-align: center;width: 35%;"><input style="width:100%;border:none;text-align: center;" matInput type="text" [(ngModel)]="row.particulars"></td>
                 <td *ngIf="isConfirmVisible" style="text-align: center;">{{row.actualkm}}</td>
-                <td style="text-align: center;"><input style="border:none;text-align: center;" matInput type="text" [(ngModel)]="row.vendorkm"></td>
+                <td style="text-align: center;width:20%;"><input style="border:none;text-align: center;" matInput type="text" [(ngModel)]="row.vendorkm"></td>
                 <td style="text-align: center;">{{row.package}}</td>
                 <!-- <td style="text-align: center;">{{row.extramoney}}</td>
                 <td style="text-align: center;">{{row.subtotal}}</td>
@@ -92,8 +92,8 @@
                 <td style="text-align:center"> {{billdetails.bodytotal.package}} </td>
             </tr>
             <tr>
-                <td *ngIf="isConfirmVisible" colspan="5"> <span style="float: left;margin-left: 200px;">Total run for {{dry}} cars & {{replace}} replacement cars in the month </span><span style="float: right">{{billdetails.bodytotal.actualkm}} KM &nbsp;</span></td>
-                <td *ngIf="!isConfirmVisible" colspan="4"> <span style="float: left;margin-left: 200px">Total run for {{dry}} cars & {{replace}} replacement cars in the month </span><span style="float: right">{{billdetails.bodytotal.actualkm}} KM &nbsp;</span></td>
+                <td *ngIf="isConfirmVisible" colspan="5"> <span style="float: left;margin-left: 600px;">Total run for {{dry}} cars & {{replace}} replacement cars in the month </span><span style="float: right">{{billdetails.bodytotal.actualkm}} KM &nbsp;</span></td>
+                <td *ngIf="!isConfirmVisible" colspan="4"> <span style="float: left;margin-left: 600px">Total run for {{dry}} cars & {{replace}} replacement cars in the month </span><span style="float: right">{{billdetails.bodytotal.actualkm}} KM &nbsp;</span></td>
                 <td> </td>
             </tr>
             <tr>
