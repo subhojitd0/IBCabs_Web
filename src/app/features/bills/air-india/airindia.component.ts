@@ -105,6 +105,7 @@ export class AirIndiaComponent implements OnInit {
   dataSource: MatTableDataSource<BillDet>;
   count: number;
   month: string;
+  amoutroud: number;
   constructor(private router: Router,private apiService: ApiService, public dialog: MatDialog, private toastr: ToastrService) {
     
    }
@@ -142,7 +143,7 @@ export class AirIndiaComponent implements OnInit {
       this.billdetails.body.forEach(element =>{
         this.count = this.count + 1;
         element.slno = this.count;
-        if(element.package === "0"){
+        if(element.package === "0.00" || element.package === "0"){
           this.replace = this.replace +1;
         }
         else{
@@ -171,8 +172,9 @@ export class AirIndiaComponent implements OnInit {
       substringVal = substringVal.toString().replace(',',''); */
       //let total = parseFloat(this.billdetails.tail.actualbill.toString().replace(',','')) + parseFloat(this.billdetails.tail.customfavalue ? this.billdetails.tail.customfavalue.toString().replace(',',''): 0);
      //this.billdetails.tail.grosstotal = total;
+      this.amoutroud = Math.round(parseFloat(this.billdetails.tail.subtotal.toString().replace(',','').replace(',','')));
       let gstRounded = Math.round(parseFloat(this.billdetails.gst.total.toString().replace(',','')));
-      this.amountInWord = this.apiService.convertAmountToWord(this.billdetails.tail.subtotal.toString().replace(',','').replace(',',''));
+      this.amountInWord = this.apiService.convertAmountToWord(this.amoutroud);
       this.gstamountinwords = this.apiService.convertAmountToWord(gstRounded);
       this.marginTop = (31-this.totalno)*2.5;
       this.fontSize = 20 + this.marginTop * 0.03;

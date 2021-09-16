@@ -112,6 +112,10 @@
             <mat-header-cell *matHeaderCellDef mat-sort-header> Amount </mat-header-cell>
             <mat-cell *matCellDef="let row"> {{row.amount}} </mat-cell>
         </ng-container>
+        <ng-container matColumnDef="details">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Details </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.details}} </mat-cell>
+        </ng-container>
 
         <ng-container matColumnDef="original">
             <mat-header-cell *matHeaderCellDef mat-sort-header> Original Bill </mat-header-cell>

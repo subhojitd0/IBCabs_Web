@@ -35,7 +35,7 @@ billRegDetails: any[] = [];
   isSlab:boolean=false;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  displayedColumns: string[] = ['vendor', 'startdate','enddate', 'amount','original','option'];
+  displayedColumns: string[] = ['vendor', 'startdate','enddate', 'amount','details','original','option'];
   dataSource: MatTableDataSource<BillRegister>;
   billrole: string;
   approve: string;
