@@ -119,6 +119,7 @@ export class NewVendorBillComponent implements OnInit {
       this.apiService.post(billApi, this.billDetails).then((res: any)=>{ 
         debugger;
         localStorage.setItem("vendorbilldata", JSON.stringify(res));
+        localStorage.setItem("vendorbillsave", "0");
         this.toastr.success("Your bill was successfully created",'Success');
         this.router.navigateByUrl('/' + redirectApi);
       });

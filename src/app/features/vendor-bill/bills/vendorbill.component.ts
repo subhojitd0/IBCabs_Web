@@ -159,27 +159,54 @@ export class VendorBillComponent implements OnInit {
   extradetails: any[] = [];
   tothr = 0;
   totkm = 0;
+  amount: string;
+  comment: string;
   constructor(private router: Router,private apiService: ApiService, public dialog: MatDialog, private toastr: ToastrService) {
     
    }
    ngOnInit(){
     this.loading = true;
     this.userrole = localStorage.getItem("loggedinuser");
-    this.billdetails = JSON.parse(localStorage.getItem("vendorbilldata"));
+    
     this.vendorname = localStorage.getItem("vendorname");
     this.vendorcode =   localStorage.getItem("vendorcode");
     this.startdate =   localStorage.getItem("vendorfrom");
     this.enddate =   localStorage.getItem("vendorto");
-    let amount = localStorage.getItem("vendoramount");
-    let comment = localStorage.getItem("vendorcomment");
-    if(amount){
+    this.amount = localStorage.getItem("vendoramount");
+    this.comment = localStorage.getItem("vendorcomment");
+    let vendorsave = localStorage.getItem("vendorbillsave");
+    if(vendorsave === "1"){
+      this.showsubmit = true;
+      var json = {
+        ownername: this.vendorname,
+        startdate: this.startdate,
+        enddate: this.enddate,
+        ownercode: this.vendorcode,
+        mode: "1"
+      };
+      this.apiService.post(BILL_VENDOR_PAY, json).then((res: any)=>{ 
+        debugger;
+        localStorage.setItem("vendorbilldata", JSON.stringify(res));
+        this.toastr.success("Your bill was successfully created",'Success');
+        this.startprocess();
+      });
+    }
+    else{
+      this.showsubmit = false;
+      this.startprocess();
+    }
+    
+   }
+   startprocess(){
+    this.billdetails = JSON.parse(localStorage.getItem("vendorbilldata"));
+    if(this.amount){
       this.isConfirmVisible = false;
-      this.total = amount;
+      this.total = this.amount;
       this.showsubmit = true;
     }
-    if(comment){
+    if(this.comment){
       this.isConfirmVisible = false;
-      this.comments = comment;
+      this.comments = this.comment;
       this.showsubmit = true;
     }
     const carlist : CarDet[] = [];
@@ -277,11 +304,11 @@ export class VendorBillComponent implements OnInit {
       this.alldata = carlist;
       this.total = this.gTotal;
     }
-    var json = 
+    var json2 = 
     {
       "mode": 0
     };
-    this.apiService.post(BILL_API, json).then((res: any)=>{ 
+    this.apiService.post(BILL_API, json2).then((res: any)=>{ 
       debugger;
       const billReg: BillRegister[] = res.result;
       this.billRegDetails = res.result;
@@ -368,7 +395,8 @@ export class VendorBillComponent implements OnInit {
           debugger;
           this.loading = false;
           this.toastr.success("Data has been saved successfully");
-          this.showsubmit  = true;
+          localStorage.setItem("vendorbillsave", "1");
+          location.reload();
         }
         else{
           this.toastr.error("There was an error saving your data");
