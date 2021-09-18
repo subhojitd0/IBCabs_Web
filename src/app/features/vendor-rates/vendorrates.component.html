@@ -28,6 +28,10 @@
             <mat-header-cell *matHeaderCellDef mat-sort-header> Car Type </mat-header-cell>
             <mat-cell *matCellDef="let row"> {{row.cartype}} </mat-cell>
         </ng-container>
+        <ng-container matColumnDef="carnum">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Car Number </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.carnum}} </mat-cell>
+        </ng-container>
 
         <!-- Name Column -->
         <ng-container matColumnDef="slab1">
@@ -36,7 +40,7 @@
         </ng-container>
 
         <ng-container matColumnDef="slab2">
-            <mat-header-cell *matHeaderCellDef mat-sort-header> Hr/KM Included </mat-header-cell>
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Hr/KM Incl</mat-header-cell>
             <mat-cell *matCellDef="let row"> {{row.hrkm}} </mat-cell>
         </ng-container>
 
@@ -46,12 +50,12 @@
                   </ng-container> -->
 
         <ng-container matColumnDef="slabrest">
-            <mat-header-cell *matHeaderCellDef mat-sort-header> Outstation Included </mat-header-cell>
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Outstation</mat-header-cell>
             <mat-cell *matCellDef="let row"> {{row.outstation}} </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="datespan">
-            <mat-header-cell *matHeaderCellDef mat-sort-header> Parking Included </mat-header-cell>
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Parking</mat-header-cell>
             <mat-cell *matCellDef="let row"> {{row.parking}} </mat-cell>
         </ng-container>
 

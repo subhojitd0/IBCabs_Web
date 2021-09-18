@@ -23,7 +23,7 @@
         </div>
 
     </div>
-    <button mat-stroked-button (click)="downloadOriginalBill()">View Original Bill</button>
+    <button *ngIf="isConfirmVisible" mat-stroked-button (click)="downloadOriginalBill()">View Original Bill</button>
     <div *ngFor="let row of alldata" style="margin-top: 30px;">
         <h1><u><b>Bill for Car No - {{row.carno}}</b></u></h1>
         <table style="font-size: 20px;">
@@ -67,6 +67,7 @@
                 <td *ngIf="extrarow.extra === 1" colspan="11"><input style="width: 100%;border:none;text-align: center;" type="text" [(ngModel)]="extrarow.totalhr"></td>
                 <td *ngIf="extrarow.extra === 1"><input type="text" style="width: 100%;border:none;text-align: center;" (blur)="changeextra(extrarow)" [(ngModel)]="extrarow.amount"></td>
             </tr>
+
         </table>
     </div>
 

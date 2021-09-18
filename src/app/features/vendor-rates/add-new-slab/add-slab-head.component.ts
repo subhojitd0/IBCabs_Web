@@ -37,6 +37,7 @@ export class SlabDetails implements ISlabDetails {
   cartype: string;
   fromdate: string;
   todate: string;
+  carnum: string;
 }
 
 @Component({

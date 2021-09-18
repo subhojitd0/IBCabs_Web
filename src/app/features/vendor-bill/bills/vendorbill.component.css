@@ -59,15 +59,16 @@ table {
 }
 
 #header {
+    text-decoration: underline;
     height: 30px;
     width: 100%;
     margin: 0px;
     background: #222;
     text-align: center;
     color: white;
-    font: bold 14px Helvetica, Sans-Serif;
+    font: bold 18px Helvetica, Sans-Serif;
     text-decoration: uppercase;
-    letter-spacing: 8px;
+    letter-spacing: 4px;
     padding: 8px 0px;
 }
 

@@ -13,9 +13,27 @@
             <div class="col-sm-12">
                 <mat-form-field appearance="fill" class="full">
                     <mat-label>Choose Car Type</mat-label>
-                    <input name="slabwise" type="text" [(ngModel)]="slabdetails.cartype" (ngModelChange)="filterCar($event)" [matAutocomplete]="autocar" matInput placeholder="Enter Car Type">
+                    <input name="slabwise" type="text" [(ngModel)]="slabdetails.cartype" (ngModelChange)="filterCarType($event)" [matAutocomplete]="autocar" matInput placeholder="Enter Car Type">
                     <mat-autocomplete #autocar="matAutocomplete">
                         <mat-option *ngFor="let option of allcartype" [value]="option">
+                            {{option}}
+                        </mat-option>
+                    </mat-autocomplete>
+                </mat-form-field>
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <mat-form-field appearance="fill" class="full">
+                    <mat-label>Choose Car Number</mat-label>
+                    <input name="carwise" type="text" [(ngModel)]="slabdetails.carnum" (ngModelChange)="filterCar($event)" [matAutocomplete]="autocar1" matInput placeholder="Enter Car Number">
+                    <mat-autocomplete #autocar1="matAutocomplete">
+                        <mat-option value="ALL">
+                            ALL
+                        </mat-option>
+                        <mat-option *ngFor="let option of allcarno" [value]="option">
                             {{option}}
                         </mat-option>
                     </mat-autocomplete>

@@ -138,6 +138,7 @@ billRegDetails: any[] = [];
     });
   }
   openVendorBill(element: any){
+    localStorage.setItem("removeheader", "1");
     debugger;
     let json = {
       ownername: element.ownername,
@@ -147,6 +148,7 @@ billRegDetails: any[] = [];
       mode: "1",
     }
     localStorage.setItem("vendorname", element.ownername);
+    localStorage.setItem("vendorfinal", "1");
     localStorage.setItem("vendorcode", element.ownerid);
     localStorage.setItem("vendorfrom", element.startdate);
     localStorage.setItem("vendorto", element.enddate);

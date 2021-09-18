@@ -161,13 +161,20 @@ export class VendorBillComponent implements OnInit {
   totkm = 0;
   amount: string;
   comment: string;
+  vendorfinal: string;
+  isConfirmed: boolean = false;
   constructor(private router: Router,private apiService: ApiService, public dialog: MatDialog, private toastr: ToastrService) {
     
    }
    ngOnInit(){
     this.loading = true;
     this.userrole = localStorage.getItem("loggedinuser");
-    
+    this.vendorfinal = localStorage.getItem("vendorfinal");
+    debugger;
+    console.log("vedor : " , this.vendorfinal);
+    if(this.vendorfinal && this.vendorfinal === "1"){
+      this.isConfirmed = true;
+    }
     this.vendorname = localStorage.getItem("vendorname");
     this.vendorcode =   localStorage.getItem("vendorcode");
     this.startdate =   localStorage.getItem("vendorfrom");
