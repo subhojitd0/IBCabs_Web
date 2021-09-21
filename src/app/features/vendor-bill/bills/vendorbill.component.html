@@ -43,17 +43,19 @@
             </tr>
             <tr *ngFor="let childrow of row.data">
                 <td *ngIf="childrow.extra === 0">{{childrow.sl}}</td>
-                <td *ngIf="childrow.extra === 0">{{childrow.dutydate}}</td>
+                <td *ngIf="childrow.extra === 0">{{childrow.dutydate | date:'dd/MM/yyyy'}}</td>
                 <td *ngIf="childrow.extra === 0">{{childrow.carno}}</td>
                 <td *ngIf="childrow.extra === 0">{{childrow.cartype}}</td>
                 <td *ngIf="childrow.extra === 0">{{childrow.party}}</td>
                 <td *ngIf="childrow.extra === 0">{{childrow.reportto}}</td>
-                <td *ngIf="childrow.extra === 0">
+                <td *ngIf="childrow.extra === 0 && isConfirmVisible">
                     <input style="width: 100%;border:none;text-align: center;" matInput type="text" (blur)="changeamount(childrow)" [(ngModel)]="childrow.totalhr">
                 </td>
-                <td *ngIf="childrow.extra === 0">
+                <td *ngIf="childrow.extra === 0 && !isConfirmVisible">{{childrow.totalhr}}</td>
+                <td *ngIf="childrow.extra === 0 && isConfirmVisible">
                     <input style="width: 100%;border:none;text-align: center;" matInput type="text" (blur)="changeamount(childrow)" [(ngModel)]="childrow.totalkm">
                 </td>
+                <td *ngIf="childrow.extra === 0 && !isConfirmVisible">{{childrow.totalkm}}</td>
                 <td *ngIf="childrow.extra === 0">{{childrow.parking}}</td>
                 <td *ngIf="childrow.extra === 0">{{childrow.outstation}}</td>
                 <td *ngIf="childrow.extra === 0" style="color: #8c8cde;

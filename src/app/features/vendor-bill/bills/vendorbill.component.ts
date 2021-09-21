@@ -309,7 +309,7 @@ export class VendorBillComponent implements OnInit {
       });
 
       this.alldata = carlist;
-      this.total = this.gTotal;
+      this.total = Math.round(this.gTotal);
     }
     var json2 = 
     {
