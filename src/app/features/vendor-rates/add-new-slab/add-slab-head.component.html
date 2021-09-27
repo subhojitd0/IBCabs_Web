@@ -98,19 +98,36 @@
             </div>
 
             <div class="col-sm-4 form-inline">
-                <span style="margin-right: 10px">Include outstation<br/></span>
-                <input name="2ndslabhr" type="checkbox" class="form-control" id="amount" placeholder="2nd Slab HR Value" [(ngModel)]="slabdetails.outstation">
+                <span style="margin-right: 10px">Outstation<br/></span>
+                <input name="2ndslabhr" class="form-control" id="amount" placeholder="Outstation Value" [(ngModel)]="slabdetails.outstation">
             </div>
         </div>
         <div class="row">
-            <div class="col-sm-6">
+            <div class="col-sm-3">
 
                 <label for="start">Start Date</label>
                 <input name="from" type="date" class="form-control" id="from" placeholder="From Date" [(ngModel)]="slabdetails.fromdate">
             </div>
-            <div class="col-sm-6">
+            <div class="col-sm-3">
                 <label for="start">End Date</label>
                 <input name="to" type="date" class="form-control" id="to" placeholder="To Date" [(ngModel)]="slabdetails.todate">
+            </div>
+            <div class="col-sm-5">
+                <label for="start">Include Garage Time</label>
+                <mat-select [(value)]="slabdetails.grg">
+                    <mat-option value="0">
+                        Include None
+                    </mat-option>
+                    <mat-option value="1">
+                        Include Garage Out
+                    </mat-option>
+                    <mat-option value="2">
+                        Include Garage In
+                    </mat-option>
+                    <mat-option value="3">
+                        Include Both
+                    </mat-option>
+                </mat-select>
             </div>
         </div>
         <div class="row">

@@ -22,6 +22,7 @@ export interface ISlabDetails {
   cartype: string;
   fromdate: string;
   todate: string;
+  grg: string;
 }
 export class SlabDetails implements ISlabDetails {
   mode: number;
@@ -32,12 +33,13 @@ export class SlabDetails implements ISlabDetails {
   kmrate: string;
   hrkm: string;
   parking: string;
-  outstation: string;
+  outstation: string = "0";
   ownername: string;
   cartype: string;
   fromdate: string;
   todate: string;
   carnum: string;
+  grg: string;
 }
 
 @Component({
@@ -86,7 +88,7 @@ export class AddVendorSlabComponent implements OnInit {
   savepartyrate(){
     debugger;
     this.slabdetails.parking = this.slabdetails.parking ? "1" : "0";
-    this.slabdetails.outstation = this.slabdetails.outstation ? "1" : "0";
+    this.slabdetails.outstation = this.slabdetails.outstation ? this.slabdetails.outstation : "0";
     //this.slabdetails.hrkm = this.slabdetails.hrkm ? "1" : "0";
     this.slabdetails.mode = 1;
     this.toastr.info("Please wait while we are saving your data",'Information');
