@@ -55,7 +55,7 @@ export class VendorRatesComponent implements OnInit {
         let i = 0;
         res.forEach((x) => {
           rates[i].parking = x.parking === "1" ? "Yes" : "No";
-          rates[i].outstation = x.outstation === "1" ? "Yes" : "No";
+          rates[i].outstation = x.outstation;
           rates[i].hrkm= x.hrkm === "1" ? "Hr OR KM" : x.hrkm === "2" ? "HR AND KM" : "No";
           i++;
         }) 
@@ -81,12 +81,13 @@ export class VendorRatesComponent implements OnInit {
         "ratecode": id
       }
       this.apiService.post(VENDOR_RATE, json).then((res: any)=>{ 
-        this.toastr.success("Youe data was successfully deleted",'Success');
+        this.toastr.success("Your data was successfully deleted",'Success');
         location.reload();
       });
     }
   }
-  opendialog(){
+  opendialog(id: any){
+    localStorage.setItem('selectedrateid', id );
     localStorage.setItem('selectedownerid', this.ownerid );
     const dialogRef = this.dialog.open(AddVendorSlabComponent);
 
