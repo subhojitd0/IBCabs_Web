@@ -9,7 +9,7 @@
 
 
     <button style="margin-right: 10px" mat-stroked-button (click)="backtopartyhead()">Back to Owner</button>
-    <button mat-stroked-button (click)="opendialog()">Create New Owner Rate</button>
+    <button mat-stroked-button (click)="opendialog('0')">Create New Owner Rate</button>
 
 
     <mat-form-field class="mid">
@@ -62,8 +62,11 @@
         <ng-container matColumnDef="option">
             <mat-header-cell *matHeaderCellDef mat-sort-header> Options </mat-header-cell>
             <mat-cell *matCellDef="let row" [style.color]="row.option">
+                <span style="margin-left: 10px; margin-right: 10px; cursor: pointer;" class="material-icons" (click)="opendialog(row.ratecode)">
+                    create
+                </span>
                 <span style="margin-left: 10px; margin-right: 10px; cursor: pointer;" class="material-icons" (click)="deleteRate(row.ratecode)">
-                            delete
+                           | delete
                         </span>
             </mat-cell>
         </ng-container>

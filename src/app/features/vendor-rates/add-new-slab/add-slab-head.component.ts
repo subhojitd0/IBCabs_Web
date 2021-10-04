@@ -56,8 +56,10 @@ export class AddVendorSlabComponent implements OnInit {
   allcarno: any;
   allparties: any;
   partynames: any;
+  ratecode: string;
   constructor(private router: Router, private apiService: ApiService, private toastr: ToastrService) {
     let vedorname = localStorage.getItem('selectedvendorname'); 
+    this.ratecode = localStorage.getItem('selectedrateid');
     let vendorcode = localStorage.getItem('selectedownerid');
     this.allparties = JSON.parse(localStorage.getItem('allparties'));
     this.partynames = this.allparties.map(x=>x.name);
@@ -66,6 +68,15 @@ export class AddVendorSlabComponent implements OnInit {
     this.slabdetails.ownercode = vendorcode;
     this.slabdetails.fromdate=  "2020-01-01";
     this.slabdetails.todate  ="2099-01-01";
+    if(this.ratecode !== "0"){
+      var json = {
+        mode: "4",
+        ratecode: this.ratecode
+      }
+      this.apiService.post(VENDOR_RATE, json).then((res: any)=>{ 
+        this.slabdetails = res[0];
+      });
+    }
    }
    ngOnInit() : void {
     this.cartypes = JSON.parse(localStorage.getItem('allcartypes'));
@@ -91,6 +102,7 @@ export class AddVendorSlabComponent implements OnInit {
     this.slabdetails.outstation = this.slabdetails.outstation ? this.slabdetails.outstation : "0";
     //this.slabdetails.hrkm = this.slabdetails.hrkm ? "1" : "0";
     this.slabdetails.mode = 1;
+    if(this.ratecode !== "0") this.slabdetails.mode = 2;
     this.toastr.info("Please wait while we are saving your data",'Information');
     this.apiService.post(VENDOR_RATE, this.slabdetails).then((res: any)=>{ 
       this.toastr.success("Youe data was successfully saved",'Success');
