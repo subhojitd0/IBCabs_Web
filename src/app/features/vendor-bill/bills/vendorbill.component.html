@@ -9,8 +9,8 @@
 </div>
 <div class="container" id="printdiv" style="max-width: 1400px; min-height: 2000px; max-height: 10000px;">
     <p id="header">VENDOR INVOICE - {{vendorname}}</p>
-    <div id="customer" class="row" style="padding-top: 20px;">
-        <div *ngIf="showsubmit && userrole === 'ibcabs'" class="col-xs-4">
+    <div id="customer" class="row" style="padding-top: 20px; font-size: 20px !important;">
+        <div *ngIf="showsubmit && userrole === 'ibcabs'" class="col-xs-4" >
             <!-- && userrole === 'ibcabs' -->
             Comments : <input name="comment" type="text" [(ngModel)]="comments">
         </div>
