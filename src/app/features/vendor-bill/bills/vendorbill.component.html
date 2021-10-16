@@ -39,6 +39,7 @@
                 <th>Parking</th>
                 <th>Outstation</th>
                 <th>Bill Id</th>
+                <th *ngIf="isConfirmVisible">Original Amount</th>
                 <th style="width: 10%">Amount</th>
             </tr>
             <tr *ngFor="let childrow of row.data">
@@ -61,6 +62,7 @@
                 <td *ngIf="childrow.extra === 0" style="color: #8c8cde;
                 cursor: pointer;
                 text-decoration: underline;" (click)="showbill(childrow)">{{childrow.billnumber}}</td>
+                <td *ngIf="isConfirmVisible">{{childrow.oriamount}}</td>
                 <td *ngIf="childrow.extra === 0">
                     <input [disabled]="!isConfirmVisible" style="width: 100%;border:none;text-align: center;" (blur)="changeamount(childrow)" matInput type="text" [(ngModel)]="childrow.amount">
                 </td>

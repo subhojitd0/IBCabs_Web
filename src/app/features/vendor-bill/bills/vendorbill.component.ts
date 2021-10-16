@@ -202,7 +202,7 @@ export class VendorBillComponent implements OnInit {
       this.showsubmit = false;
       this.startprocess();
     }
-    
+    localStorage.setItem("removeheader", "0");
    }
    startprocess(){
     this.billdetails = JSON.parse(localStorage.getItem("vendorbilldata"));

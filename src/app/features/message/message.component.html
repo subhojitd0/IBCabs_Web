@@ -1,0 +1,122 @@
+<div fxLayoutAlign="center center" fxFlexFill class="row main-div">
+    <mat-card class="row" fxFlex="25">
+        <mat-toolbar color="primary">Message E-Board</mat-toolbar>
+        <div class="row">
+            <div class="form-div" [formGroup]="firstFormGroup">
+                <div class="row">
+                    <div class="col-sm-5">
+                        <mat-form-field style="width: 80%; margin-right: 20px;">
+                            <mat-label>Party</mat-label>
+                            <input (blur)="msgdisplay()" name="partymaster" formControlName="PartyControl" matInput placeholder="Enter the party name here" [(ngModel)]="msg.party">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-sm-5">
+                        <mat-form-field style="width: 80%; margin-right: 20px;">
+                            <mat-label>Party Number</mat-label>
+                            <input (blur)="msgdisplay()" name="partynumber" formControlName="PartyNumberControl" matInput placeholder="Enter the party number here" [(ngModel)]="msg.partynumber">
+                        </mat-form-field>
+                    </div>
+                </div>
+                <!-- <div class="row">
+                    
+                </div> -->
+                <div class="row">
+                    <div class="col-sm-5">
+                        <mat-form-field style="width: 80%; margin-right: 20px;">
+                            <mat-label>Select Car Type</mat-label>
+                            <input (blur)="msgdisplay()" [(ngModel)]="msg.cartype" [matAutocomplete]="autocartypesingle" matInput placeholder="Enter Car Type" formControlName="CarTypeControl" required>
+                            <mat-autocomplete #autocartypesingle="matAutocomplete">
+                                <mat-option *ngFor="let option of filteredOptionsCarType | async" [value]="option">
+                                    {{option}}
+                                </mat-option>
+                            </mat-autocomplete>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-sm-5">
+                        <mat-form-field style="width: 80%; margin-right: 20px;">
+                            <mat-label>Select Car Number</mat-label>
+                            <input (blur)="msgdisplay()" [(ngModel)]="msg.carnumber" [matAutocomplete]="autocar" matInput placeholder="Enter Car Number" formControlName="CarNumberControl" required>
+                            <mat-autocomplete #autocar="matAutocomplete">
+                                <mat-option *ngFor="let option of filteredOptionsCar | async" [value]="option">
+                                    {{option}}
+                                </mat-option>
+                            </mat-autocomplete>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <!--  <div class="row">
+                    
+                </div> -->
+                <div class="row">
+                    <div class="col-sm-5">
+                        <mat-form-field style="width: 80%; margin-right: 20px;">
+                            <mat-label>Select Driver</mat-label>
+                            <input (blur)="msgdisplay()" [(ngModel)]="msg.driver" [matAutocomplete]="autodriver" matInput placeholder="Select Driver" formControlName="DriverControl" required>
+                            <mat-autocomplete #autodriver="matAutocomplete" (optionSelected)="changedriver()">
+                                <mat-option *ngFor="let option of filteredOptionsDriver | async" [value]="option">
+                                    {{option}}
+                                </mat-option>
+                            </mat-autocomplete>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-sm-5">
+                        <mat-form-field style="width: 80%; margin-right: 20px;">
+                            <mat-label>Driver Contact</mat-label>
+                            <input (blur)="msgdisplay()" [(ngModel)]="msg.drivernumber" matInput placeholder="Enter Driver Contact Number" formControlName="DriverContactControl" required>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <!-- <div class="row">
+                    
+                </div> -->
+
+                <div>
+                    <div>
+                        <!-- <span style="font-size: 15px">Number : {{number}}</span> <br/>-->
+                        <span style="font-size: 15px">Message to Driver : <br/>
+                          {{message}}
+                        </span> <br/><br/>
+                        <button *ngIf="showdriver" style="padding: 10px;
+                      width: 100%;
+                      border-radius: 5px;
+                      background:#3f51b5;
+                      color: white" (click)="sendmessagebtndriver()">Send Driver Message</button> <br/>
+                        <br/><br/><span style="font-size: 15px">Message to Party : <br/>
+                        {{partymessage}}
+                      </span> <br/><br/>
+                        <button *ngIf="showpassenger" style="padding: 10px;
+                      width: 100%;
+                      border-radius: 5px;
+                      background:#3f51b5;
+                      color: white" (click)="sendmessagebtnpassenger()">Send Passenger Message</button><br/><br/>
+                    </div>
+                </div>
+            </div>
+            <div class="display-div">
+                <p style="padding: 20px;
+                background: #3f51b5;
+                color: white;
+                font-size: 16px;
+                font-weight: bold;">Message History</p>
+                <table style="width: 100%;">
+                    <tr style="background: black; color: white;">
+                        <th>Party</th>
+                        <th>Party Number</th>
+                        <th>Driver</th>
+                        <th>Driver</th>
+                        <th>Car</th>
+                    </tr>
+                    <tr *ngFor="let row of msglist">
+                        <!-- *ngIf="row.msgtype === '0'" style="background: #ffb16f;"
+                        *ngIf="row.msgtype === '1'" style="background: #a3ffa3;" -->
+                        <td>{{row.party}}</td>
+                        <td>{{row.partynumber}}</td>
+                        <td>{{row.driver}}</td>
+                        <td>{{row.drivernumber}}</td>
+                        <td>{{row.carnumber}}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </mat-card>
+</div>

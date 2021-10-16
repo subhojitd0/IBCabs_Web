@@ -2,6 +2,7 @@ export const API_URL = "http://ibcabs.com/bills/api/";
 export const MESSAGE_URL = " http://enterprise.smsgupshup.com/GatewayAPI/rest?";
 
 //Production Old
+export const ROUTE_MESSAGE= "bills/new/message";
 export const ROUTE_BASIC = "bills/new";
 export const ROUTE_DASHBOARD = "bills/new/dashboard";
 export const ROUTE_PARTY = "bills/new/party";

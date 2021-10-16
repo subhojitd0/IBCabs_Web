@@ -77,6 +77,7 @@ import { AddVendorSlabComponent } from './features/vendor-rates/add-new-slab/add
 import { OriginalVendorBillComponent } from './features/vendor-bill/original-bill/vendorbill.component';
 import { BillJComponent } from './features/bills/bill-j/billj.component';
 import { AirIndiaComponent } from './features/bills/air-india/airindia.component';
+import { MessageComponent } from './features/message/message.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -132,7 +133,8 @@ import { AirIndiaComponent } from './features/bills/air-india/airindia.component
     AddVendorSlabComponent,
     OriginalVendorBillComponent,
     BillJComponent,
-    AirIndiaComponent
+    AirIndiaComponent,
+    MessageComponent
   ],
   imports: [
     BrowserModule,
