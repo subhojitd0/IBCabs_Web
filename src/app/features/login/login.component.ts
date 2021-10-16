@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {ApiService} from '../../../shared/services/service';
 import { ToastrService } from 'ngx-toastr';
-import {LOGIN_API} from '../../../shared/services/api.url-helper';
+import {CAR_API, DRIVER_API, EXTRA_API, LOGIN_API} from '../../../shared/services/api.url-helper';
 import { ROUTE_BASIC, ROUTE_DASHBOARD, ROUTE_MESSAGE } from 'src/shared/constants/constant';
 
 @Component({
@@ -36,8 +36,22 @@ export class LoginComponent implements OnInit {
       "password":this.password
     };
     if(this.username === "msg" && this.password === "msg1234"){
-      localStorage.setItem("removeheader", "1");
-      this.router.navigate([]).then(result => {  window.open('/' + ROUTE_MESSAGE, '_blank'); });
+      this.apiService.post(EXTRA_API, json).then((res: any)=>{ 
+        localStorage.setItem("allcartypes", JSON.stringify(res.result));
+      });
+      var jsoncar = 
+      {
+        "mode": 5
+      };
+      this.apiService.post(CAR_API, jsoncar).then((res: any)=>{ 
+        localStorage.setItem("allcars", JSON.stringify(res.result));
+      });
+      this.apiService.post(DRIVER_API, json).then((res: any)=>{ 
+        localStorage.setItem("alldrivers", JSON.stringify(res.result));
+        localStorage.setItem("removeheader", "1");
+        this.router.navigate([]).then(result => {  window.open('/' + ROUTE_MESSAGE, '_blank'); });
+      });
+      
     }
     else{
       this.apiService.post(LOGIN_API, json).then((res: any)=>{ 

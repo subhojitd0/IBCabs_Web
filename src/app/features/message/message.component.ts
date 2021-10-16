@@ -169,36 +169,42 @@ export class MessageComponent implements OnInit {
     return this.allcarno.filter(client => client.toLowerCase().includes(filterValue));
   }
   sendmessagebtndriver(){
-    this.toastr.info("Please wait while we are sending the message", "Information");
-    let queryParam = "";
-    this.formdrivermsg();
-    queryParam += "method=" + MESSAGE_METHOD;
-    queryParam += "&send_to=" + this.msg.drivernumber;
-    //queryParam += "&send_to=9874993247";
-    queryParam += "&msg=" + this.message;
-    queryParam += "&msg_type=" + MESSAGE_TYPE;
-    queryParam += "&userid=" + MESSAGE_USER;
-    queryParam += "&auth_scheme=" + MESSAGE_AUTH_SCHEME;
-    queryParam += "&password=" + MESSAGE_PWD;
-    queryParam += "&v=" + MESSAGE_VERSION;
-    queryParam += "&format=" + MESSAGE_FORMAT;
-    debugger;
-    //this.toastr.success("The message has been successfully sent", "Success");
-    this.apiService.sendMessage(queryParam).then((data)=>{
-    }); 
-    this.toastr.success("The message has been successfully sent", "Success");
-      //Call our API
-    this.msg.msgtype = "0";
-    this.msg.mode = 1;
-    this.msg.msgdate = new Date().getUTCFullYear() + "/" + (new Date().getUTCMonth() + 1) + "/" + new Date().getUTCDate();
-    this.apiService.post(MSG_API, this.msg).then((res: any)=>{ 
+    if(!(this.msg.party && this.msg.partynumber && this.msg.driver && this.msg.drivernumber && this.msg.carnumber && this.msg.cartype)){
+      this.toastr.error("Please enter all the details before sending message", "Error");
+    }
+    else{
+      this.toastr.info("Please wait while we are sending the message", "Information");
+      let queryParam = "";
+      this.formdrivermsg();
+      queryParam += "method=" + MESSAGE_METHOD;
+      queryParam += "&send_to=" + this.msg.drivernumber;
+      //queryParam += "&send_to=9874993247";
+      queryParam += "&msg=" + this.message;
+      queryParam += "&msg_type=" + MESSAGE_TYPE;
+      queryParam += "&userid=" + MESSAGE_USER;
+      queryParam += "&auth_scheme=" + MESSAGE_AUTH_SCHEME;
+      queryParam += "&password=" + MESSAGE_PWD;
+      queryParam += "&v=" + MESSAGE_VERSION;
+      queryParam += "&format=" + MESSAGE_FORMAT;
       debugger;
-      if(res.status === "success"){
-        //Set for next message display
-        /* this.showdriver = false;
-        this.showpassenger = true; */
-      }
-    });
+      //this.toastr.success("The message has been successfully sent", "Success");
+      this.apiService.sendMessage(queryParam).then((data)=>{
+      }); 
+      this.toastr.success("The message has been successfully sent", "Success");
+        //Call our API
+      this.msg.msgtype = "0";
+      this.msg.mode = 1;
+      this.msg.msgdate = new Date().getUTCFullYear() + "/" + (new Date().getUTCMonth() + 1) + "/" + new Date().getUTCDate();
+      this.apiService.post(MSG_API, this.msg).then((res: any)=>{ 
+        debugger;
+        if(res.status === "success"){
+          //Set for next message display
+          /* this.showdriver = false;
+          this.showpassenger = true; */
+        }
+      });
+    }
+    
   }
   reset(){
     this.msg.msgdate = "";
@@ -214,30 +220,35 @@ export class MessageComponent implements OnInit {
     this.showpassenger = true;
   }
   sendmessagebtnpassenger(){
-    let queryParam = "";
-    this.formpassengermsg();
-    queryParam += "method=" + MESSAGE_METHOD;
-    queryParam += "&send_to=" + this.msg.partynumber;
-    //queryParam += "&send_to=9874993247";
-    queryParam += "&msg=" + this.partymessage;
-    queryParam += "&msg_type=" + MESSAGE_TYPE;
-    queryParam += "&userid=" + MESSAGE_USER;
-    queryParam += "&auth_scheme=" + MESSAGE_AUTH_SCHEME;
-    queryParam += "&password=" + MESSAGE_PWD;
-    queryParam += "&v=" + MESSAGE_VERSION;
-    queryParam += "&format=" + MESSAGE_FORMAT;
-    debugger;
-    this.apiService.sendMessage(queryParam).then((data)=>{
-    });
-    this.toastr.success("The message has been successfully sent", "Success");
-      //Call our API
-    this.msg.msgtype = "1";
-    this.msg.mode = 1;
-    this.msg.msgdate = new Date().getUTCFullYear() + "/" + (new Date().getUTCMonth() + 1) + "/" + new Date().getUTCDate();
-    this.apiService.post(MSG_API, this.msg).then((res: any)=>{ 
+    if(!(this.msg.party && this.msg.partynumber && this.msg.driver && this.msg.drivernumber && this.msg.carnumber && this.msg.cartype)){
+      this.toastr.error("Please enter all the details before sending message", "Error");
+    }
+    else{
+      let queryParam = "";
+      this.formpassengermsg();
+      queryParam += "method=" + MESSAGE_METHOD;
+      queryParam += "&send_to=" + this.msg.partynumber;
+      //queryParam += "&send_to=9874993247";
+      queryParam += "&msg=" + this.partymessage;
+      queryParam += "&msg_type=" + MESSAGE_TYPE;
+      queryParam += "&userid=" + MESSAGE_USER;
+      queryParam += "&auth_scheme=" + MESSAGE_AUTH_SCHEME;
+      queryParam += "&password=" + MESSAGE_PWD;
+      queryParam += "&v=" + MESSAGE_VERSION;
+      queryParam += "&format=" + MESSAGE_FORMAT;
       debugger;
-      if(res.status === "success"){
-      }
-    });
+      this.apiService.sendMessage(queryParam).then((data)=>{
+      });
+      this.toastr.success("The message has been successfully sent", "Success");
+        //Call our API
+      this.msg.msgtype = "1";
+      this.msg.mode = 1;
+      this.msg.msgdate = new Date().getUTCFullYear() + "/" + (new Date().getUTCMonth() + 1) + "/" + new Date().getUTCDate();
+      this.apiService.post(MSG_API, this.msg).then((res: any)=>{ 
+        debugger;
+        if(res.status === "success"){
+        }
+      });
+    }
   }
 }
