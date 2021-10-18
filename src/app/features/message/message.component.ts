@@ -17,7 +17,8 @@ export interface imsg {
   carnumber: string,
   cartype: string,
   msgtype: string,
-  mode:any
+  mode:any,
+  msgtime: any
 }
 
 export class msgclass implements imsg{
@@ -30,6 +31,7 @@ export class msgclass implements imsg{
   cartype: string;
   msgtype: string;
   mode: any;
+  msgtime: any;
 }
 
 @Component({
@@ -47,6 +49,7 @@ export class MessageComponent implements OnInit {
   CarNumberControl: FormControl;
   PartyControl: FormControl;
   PartyNumberControl: FormControl;
+  MsgTimeControl: FormControl;
   allcartype: any;
   alldrivernames: any;
   allcarno: any;
@@ -68,10 +71,11 @@ export class MessageComponent implements OnInit {
     this.firstFormGroup = this._formBuilder.group({
       PartyControl: [],
       PartyNumberControl: [],
+      MsgTimeControl: [],
       DriverControl: ['', Validators.required],
       DriverContactControl: ['', Validators.required],
       CarTypeControl: ['', Validators.required],
-      CarNumberControl: ['', Validators.required],
+      CarNumberControl: ['', Validators.required]
     });
     /* this.DriverControl = new FormControl();
     this.DriverContactControl = new FormControl();
@@ -137,7 +141,7 @@ export class MessageComponent implements OnInit {
     body = body.replace("{3}", this.msg.carnumber);
     body = body.replace("{4}", this.msg.cartype);
     body = body.replace("{5}", new Date().getUTCFullYear() + "/" + (new Date().getUTCMonth() + 1) + "/" + new Date().getUTCDate());
-    body = body.replace("{6}", "00:00");
+    body = body.replace("{6}", this.msg.msgtime);
     body = body.replace("{7}", "Kolkata Airport");
     this.message = body;
   }
@@ -153,7 +157,7 @@ export class MessageComponent implements OnInit {
     body = body.replace("{3}", this.msg.driver);
     body = body.replace("{4}", this.msg.drivernumber);
     body = body.replace("{5}", new Date().getUTCFullYear() + "/" + (new Date().getUTCMonth() + 1) + "/" + new Date().getUTCDate());
-    body = body.replace("{6}", "00:00");
+    body = body.replace("{6}", this.msg.msgtime);
     body = body.replace("{7}", "Kolkata Airport");
     this.partymessage = body;
   }
@@ -217,6 +221,7 @@ export class MessageComponent implements OnInit {
     this.msg.cartype = "";
     this.msg.msgtype = "";
     this.msg.mode = "";
+    this.msg.msgtime = "";
     this.showdriver = true;
     this.showpassenger = true;
   }
