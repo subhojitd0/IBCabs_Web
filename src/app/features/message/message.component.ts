@@ -104,6 +104,7 @@ export class MessageComponent implements OnInit {
     }
   }
   ngOnInit(): void {
+    this.reset();
     this.msg.mode = 0;
     this.apiService.post(MSG_API, this.msg).then((res: any)=>{ 
       this.msglist = res.result;

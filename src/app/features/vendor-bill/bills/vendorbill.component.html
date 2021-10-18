@@ -62,13 +62,14 @@
                 <td *ngIf="childrow.extra === 0" style="color: #8c8cde;
                 cursor: pointer;
                 text-decoration: underline;" (click)="showbill(childrow)">{{childrow.billnumber}}</td>
-                <td *ngIf="isConfirmVisible">{{childrow.oriamount}}</td>
+                <td *ngIf="childrow.extra === 0 && isConfirmVisible">{{childrow.oriamount}}</td>
                 <td *ngIf="childrow.extra === 0">
                     <input [disabled]="!isConfirmVisible" style="width: 100%;border:none;text-align: center;" (blur)="changeamount(childrow)" matInput type="text" [(ngModel)]="childrow.amount">
                 </td>
             </tr>
             <tr *ngFor="let extrarow of row.data">
-                <td *ngIf="extrarow.extra === 1" colspan="11"><input style="width: 100%;border:none;text-align: center;" type="text" [(ngModel)]="extrarow.totalhr"></td>
+                <td *ngIf="extrarow.extra === 1 && isConfirmVisible" colspan="12"><input style="width: 100%;border:none;text-align: center;" type="text" [(ngModel)]="extrarow.totalhr"></td>
+                <td *ngIf="extrarow.extra === 1 && !isConfirmVisible" colspan="11"><input style="width: 100%;border:none;text-align: center;" type="text" [(ngModel)]="extrarow.totalhr"></td>
                 <td *ngIf="extrarow.extra === 1"><input type="text" style="width: 100%;border:none;text-align: center;" (blur)="changeextra(extrarow)" [(ngModel)]="extrarow.amount"></td>
             </tr>
 
