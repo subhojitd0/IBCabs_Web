@@ -220,6 +220,10 @@ export class MessageComponent implements OnInit {
     this.showdriver = true;
     this.showpassenger = true;
   }
+  logout(){
+    localStorage.clear();
+    this.router.navigateByUrl('/' + ROUTE_BASIC);
+  }
   sendmessagebtnpassenger(){
     if(!(this.msg.party && this.msg.partynumber && this.msg.driver && this.msg.drivernumber && this.msg.carnumber && this.msg.cartype)){
       this.toastr.error("Please enter all the details before sending message", "Error");

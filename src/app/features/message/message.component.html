@@ -1,6 +1,6 @@
 <div fxLayoutAlign="center center" fxFlexFill class="row main-div">
     <mat-card class="row" fxFlex="25">
-        <mat-toolbar color="primary">Message E-Board</mat-toolbar>
+        <mat-toolbar color="primary">Message E-Board <span style="margin-left: 15px; float: right; border: 1px solid black; padding-left: 10px; padding-right: 10px; cursor: pointer;" (click)="logout()">Log Out</span></mat-toolbar>
         <div class="row">
             <div class="form-div" [formGroup]="firstFormGroup">
                 <div class="row">
