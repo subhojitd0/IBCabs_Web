@@ -352,7 +352,8 @@ exportddr(){
       });
       
       this.editRentalDetails = this.mastereditrentaldetails;
-      this.bulkDataSource = new MatTableDataSource(this.mastereditrentaldetails);
+      let filtered = this.mastereditrentaldetails.filter(x=>new Date(x.dutydate).getDate().toString() === this.date.toString());
+      this.bulkDataSource = new MatTableDataSource(filtered);
       localStorage.setItem("editrentaldetails", JSON.stringify(res.result));
       this.loading = false;
     });
