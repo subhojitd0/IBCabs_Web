@@ -1,16 +1,16 @@
-        <!-- <div class="center">
+<!-- <div class="center">
           <p style="cursor: pointer; margin-right: 5px;" (click)="exportAsPDF('printdiv');"><img height="70" src="http://ibcabs.com/bills/new/assets/img/download.png"></p>
           <p *ngIf="isConfirmVisible" style="cursor: pointer; margin-right: 5px" (click)="save();"><img height="70" src="http://ibcabs.com/bills/new/assets/img/confirm.png"></p>
         </div> -->
-        <div class="container"  style="max-width: 1500px; min-height: 2000px; max-height: 10000px;">
-          <button  mat-stroked-button style="margin-left: 10px" (click)="export()"> Export To Excel</button>
-          <button  mat-stroked-button style="margin-left: 10px" (click)="exportAsPDF('printdiv')"> Export To PDF</button>
+<div class="container" style="max-width: 1500px; min-height: 2000px; max-height: 10000px;">
+    <button mat-stroked-button style="margin-left: 10px" (click)="export()"> Export To Excel</button>
+    <button mat-stroked-button style="margin-left: 10px" (click)="exportAsPDF('printdiv')"> Export To PDF</button>
 
-          
-          <div style="margin-top: 60px;" id="printdiv">
-            <p id="header">DRIVER OT for {{driver}}</p>
-            <table #table style="margin-top: 30px;">
-              <tr>
+
+    <div style="margin-top: 60px;" id="printdiv">
+        <p id="header">OT for {{driver}} for the period {{from | date:'dd/MM/yyyy'}} to {{to | date:'dd/MM/yyyy'}}</p>
+        <table #table style="margin-top: 30px;">
+            <tr>
                 <th>Sl No.</th>
                 <th>Duty Date</th>
                 <th>Car No.</th>
@@ -22,8 +22,8 @@
                 <th>Over Time</th>
                 <th>Total KM</th>
                 <th>Outstation</th>
-              </tr>
-              <tr *ngFor="let row of dataset">
+            </tr>
+            <tr *ngFor="let row of dataset">
                 <td>{{row.slno}}</td>
                 <td>{{row.dutydate}}</td>
                 <td>{{row.carnum}}</td>
@@ -35,9 +35,9 @@
                 <td>{{row.ot}}</td>
                 <td>{{row.km}}</td>
                 <td>{{row.out}}</td>
-              </tr>
-            </table>
-              
-            </div>
+            </tr>
+        </table>
 
-        </div>
+    </div>
+
+</div>

@@ -78,6 +78,7 @@ import { OriginalVendorBillComponent } from './features/vendor-bill/original-bil
 import { BillJComponent } from './features/bills/bill-j/billj.component';
 import { AirIndiaComponent } from './features/bills/air-india/airindia.component';
 import { MessageComponent } from './features/message/message.component';
+import { LogoutComponent } from './features/logout/logout.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -134,7 +135,8 @@ import { MessageComponent } from './features/message/message.component';
     OriginalVendorBillComponent,
     BillJComponent,
     AirIndiaComponent,
-    MessageComponent
+    MessageComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,

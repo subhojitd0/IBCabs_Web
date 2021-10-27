@@ -40,6 +40,7 @@ export const ROUTE_VIEW_BILL_K = "bills/new/bill-k";
 export const ROUTE_VENDOR_BILL = "bills/new/vendor-bill";
 export const ROUTE_VENDOR_RATE = "bills/new/vendor-rates";
 export const ROUTE_VENDOR_BILL_ORIGINAL= "bills/new/original-vendor-bill";
+export const ROUTE_REFRESH= "bills/new/refresh";
 
 //Production New
 /* export const ROUTE_BASIC = "newbill";
