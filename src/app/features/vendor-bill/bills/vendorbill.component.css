@@ -63,13 +63,15 @@ table {
     height: 30px;
     width: 100%;
     margin: 0px;
-    
+    background: #fff;
     text-align: center;
     color: black;
-    font: bold 22px Helvetica, Sans-Serif;
+    font: bold 24px Helvetica, Sans-Serif;
+    -webkit-text-decoration: uppercase;
     text-decoration: uppercase;
     letter-spacing: 4px;
     padding: 8px 0px;
+    margin-bottom: 30px;
 }
 
 #customer-title {

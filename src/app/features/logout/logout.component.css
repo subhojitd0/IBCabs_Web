@@ -1,0 +1,17 @@
+.main-div mat-card{
+    padding:0px;
+    margin-top:10%;
+}
+
+.login-form{
+    padding:20px;
+}
+.mat-card{
+    max-width: 60% !important;
+}
+.ng-star-inserted{
+    width : 90% !important;
+  }
+.main-div{
+    width: 95% !important;
+}

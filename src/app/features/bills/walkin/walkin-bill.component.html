@@ -184,6 +184,11 @@
                         <td class="meta-head" style="text-align: right !important;">Total Parking: Rs.</td>
                         <td class="meta-content">{{billdetails.tail[0].parking}}</td>
                     </tr>
+                    <tr *ngIf="billdetails.tail[0].customfa">
+                        <td></td>
+                        <td class="meta-head" style="text-align: right !important;">{{billdetails.tail[0].customfa}}</td>
+                        <td class="meta-content">{{billdetails.tail[0].customfavalue}}</td>
+                    </tr>
                     <tr>
                         <td style="text-align:left !important">Outstation charge for: {{billdetails.tail[0].outstationdays}} days &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; @ Rs. {{billdetails.tail[0].outstationrate}}</td>
                         <td class="meta-head" style="text-align: right !important;">Outstation Amount: Rs.</td>

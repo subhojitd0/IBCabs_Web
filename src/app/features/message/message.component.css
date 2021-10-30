@@ -1,0 +1,58 @@
+.main-div mat-card {
+    padding: 0px;
+    margin-top: 0%;
+}
+
+.login-form {
+    padding: 20px;
+}
+
+.mat-card {
+    max-width: 90% !important;
+}
+
+.ng-star-inserted {
+    width: 90% !important;
+}
+
+.main-div {
+    width: 95% !important;
+}
+
+.display-div {
+    border-left: 1px solid;
+    padding: 20px;
+    border-radius: 5px;
+    height: 520px;
+    overflow: scroll;
+    margin: 30px;
+    width: 40%;
+    margin-left: 10px !important;
+}
+
+.form-div {
+    height: 520px;
+    margin: 30px;
+    margin-left: 40px !important;
+    width: 45%;
+    overflow: scroll;
+}
+
+table>tr {
+    border: 1px solid;
+}
+
+td {
+    border: 1px solid;
+    padding-left: 5px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-weight: 500;
+}
+
+th {
+    border: 1px solid;
+    padding-left: 5px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}

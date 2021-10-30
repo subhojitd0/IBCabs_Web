@@ -9,8 +9,8 @@
 </div>
 <div class="container" id="printdiv" style="max-width: 1400px; min-height: 2000px; max-height: 10000px;">
     <p id="header">VENDOR INVOICE - {{vendorname}}</p>
-    <div id="customer" class="row" style="padding-top: 20px; font-size: 20px !important;">
-        <div *ngIf="showsubmit && userrole === 'ibcabs'" class="col-xs-4" >
+    <div id="customer" class="row" style="padding-top: 20px;font-size: 20px;">
+        <div *ngIf="showsubmit && userrole === 'ibcabs'" class="col-xs-4">
             <!-- && userrole === 'ibcabs' -->
             Comments : <input name="comment" type="text" [(ngModel)]="comments">
         </div>
@@ -39,6 +39,7 @@
                 <th>Parking</th>
                 <th>Outstation</th>
                 <th>Bill Id</th>
+                <th *ngIf="isConfirmVisible">Original Amount</th>
                 <th style="width: 10%">Amount</th>
             </tr>
             <tr *ngFor="let childrow of row.data">
@@ -61,12 +62,14 @@
                 <td *ngIf="childrow.extra === 0" style="color: #8c8cde;
                 cursor: pointer;
                 text-decoration: underline;" (click)="showbill(childrow)">{{childrow.billnumber}}</td>
+                <td *ngIf="childrow.extra === 0 && isConfirmVisible">{{childrow.oriamount}}</td>
                 <td *ngIf="childrow.extra === 0">
                     <input [disabled]="!isConfirmVisible" style="width: 100%;border:none;text-align: center;" (blur)="changeamount(childrow)" matInput type="text" [(ngModel)]="childrow.amount">
                 </td>
             </tr>
             <tr *ngFor="let extrarow of row.data">
-                <td *ngIf="extrarow.extra === 1" colspan="11"><input style="width: 100%;border:none;text-align: center;" type="text" [(ngModel)]="extrarow.totalhr"></td>
+                <td *ngIf="extrarow.extra === 1 && isConfirmVisible" colspan="12"><input style="width: 100%;border:none;text-align: center;" type="text" [(ngModel)]="extrarow.totalhr"></td>
+                <td *ngIf="extrarow.extra === 1 && !isConfirmVisible" colspan="11"><input style="width: 100%;border:none;text-align: center;" type="text" [(ngModel)]="extrarow.totalhr"></td>
                 <td *ngIf="extrarow.extra === 1"><input type="text" style="width: 100%;border:none;text-align: center;" (blur)="changeextra(extrarow)" [(ngModel)]="extrarow.amount"></td>
             </tr>
 

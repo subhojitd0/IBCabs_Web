@@ -2,6 +2,7 @@ export const API_URL = "http://ibcabs.com/bills/api/";
 export const MESSAGE_URL = " http://enterprise.smsgupshup.com/GatewayAPI/rest?";
 
 //Production Old
+export const ROUTE_MESSAGE= "bills/new/message";
 export const ROUTE_BASIC = "bills/new";
 export const ROUTE_DASHBOARD = "bills/new/dashboard";
 export const ROUTE_PARTY = "bills/new/party";
@@ -39,6 +40,7 @@ export const ROUTE_VIEW_BILL_K = "bills/new/bill-k";
 export const ROUTE_VENDOR_BILL = "bills/new/vendor-bill";
 export const ROUTE_VENDOR_RATE = "bills/new/vendor-rates";
 export const ROUTE_VENDOR_BILL_ORIGINAL= "bills/new/original-vendor-bill";
+export const ROUTE_REFRESH= "bills/new/refresh";
 
 //Production New
 /* export const ROUTE_BASIC = "newbill";

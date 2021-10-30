@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ROUTE_ABP, ROUTE_ADD_DDR, ROUTE_ADD_DDR_WALKIN, ROUTE_BASIC, ROUTE_CAR, ROUTE_CHECK_DDR, ROUTE_COAL_INDEX, ROUTE_DAILY_OT, ROUTE_DASHBOARD, ROUTE_DRIVER, ROUTE_DRIVER_OT, ROUTE_EXPORT_DDR, ROUTE_GENERATE_BILL, ROUTE_GENERATE_VENDOR_BILL, ROUTE_MATADOR, ROUTE_NEW_USER, ROUTE_OWNER, ROUTE_PARTY, ROUTE_RATE, ROUTE_REPORTO, ROUTE_TIMES_BILL, ROUTE_USER_RIGHTS, ROUTE_VENDOR_BILL, ROUTE_VENDOR_BILL_ORIGINAL, ROUTE_VENDOR_RATE, ROUTE_VIEW_BILL_CNN, ROUTE_VIEW_BILL_CNN_CONTRACT, ROUTE_VIEW_BILL_COAL_INDIA, ROUTE_VIEW_BILL_H, ROUTE_VIEW_BILL_I, ROUTE_VIEW_BILL_J, ROUTE_VIEW_BILL_K, ROUTE_VIEW_BILL_ONCALL_EXTRA, ROUTE_VIEW_BILL_RELIANCE_JMS, ROUTE_VIEW_BILL_RELIANCE_MIS, ROUTE_VIEW_BILL_RELIANCE_SUMMARY, ROUTE_VIEW_DDR } from 'src/shared/constants/constant';
+import { ROUTE_ABP, ROUTE_ADD_DDR, ROUTE_ADD_DDR_WALKIN, ROUTE_BASIC, ROUTE_CAR, ROUTE_CHECK_DDR, ROUTE_COAL_INDEX, ROUTE_DAILY_OT, ROUTE_DASHBOARD, ROUTE_DRIVER, ROUTE_DRIVER_OT, ROUTE_EXPORT_DDR, ROUTE_GENERATE_BILL, ROUTE_GENERATE_VENDOR_BILL, ROUTE_MATADOR, ROUTE_MESSAGE, ROUTE_NEW_USER, ROUTE_OWNER, ROUTE_PARTY, ROUTE_RATE, ROUTE_REFRESH, ROUTE_REPORTO, ROUTE_TIMES_BILL, ROUTE_USER_RIGHTS, ROUTE_VENDOR_BILL, ROUTE_VENDOR_BILL_ORIGINAL, ROUTE_VENDOR_RATE, ROUTE_VIEW_BILL_CNN, ROUTE_VIEW_BILL_CNN_CONTRACT, ROUTE_VIEW_BILL_COAL_INDIA, ROUTE_VIEW_BILL_H, ROUTE_VIEW_BILL_I, ROUTE_VIEW_BILL_J, ROUTE_VIEW_BILL_K, ROUTE_VIEW_BILL_ONCALL_EXTRA, ROUTE_VIEW_BILL_RELIANCE_JMS, ROUTE_VIEW_BILL_RELIANCE_MIS, ROUTE_VIEW_BILL_RELIANCE_SUMMARY, ROUTE_VIEW_DDR } from 'src/shared/constants/constant';
 import { AbpComponent } from './features/bills/abp/abp.component';
 import { AirIndiaComponent } from './features/bills/air-india/airindia.component';
 import { BillJComponent } from './features/bills/bill-j/billj.component';
@@ -26,7 +26,9 @@ import { DriverOTComponent } from './features/driverot/driverot.component';
 import { EditRentalDetailComponent } from './features/edit-rental-detail/edit-rental-detail.component';
 import { GenarateBillComponent } from './features/generate-bill/generate-bill.component';
 import { LoginComponent } from './features/login/login.component';
+import { LogoutComponent } from './features/logout/logout.component';
 import { MatadorComponent } from './features/matador/matador.component';
+import { MessageComponent } from './features/message/message.component';
 import { OwnerComponent } from './features/owner/owner.component';
 import { PartyRatesComponent } from './features/party-rates/partyrates.component';
 import { PartyComponent } from './features/party/party.component';
@@ -187,6 +189,14 @@ const routes: Routes = [
   {
     path: ROUTE_VIEW_BILL_K,
     component: AirIndiaComponent
+  },
+  {
+    path: ROUTE_MESSAGE,
+    component: MessageComponent
+  },
+  {
+    path: ROUTE_REFRESH,
+    component: LogoutComponent
   }
   
 ];
