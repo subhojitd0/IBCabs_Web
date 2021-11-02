@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import {ApiService} from '../../../shared/services/service';
 import { ToastrService } from 'ngx-toastr';
 import {DRIVER_API, LOGIN_API, MSG_API} from '../../../shared/services/api.url-helper';
-import { CAR_ASSIGNED_MESSAGE_TEMPLATE, DRIVER_MESSAGE_TEMPLATE, MESSAGE_AUTH_SCHEME, MESSAGE_FORMAT, MESSAGE_METHOD, MESSAGE_PWD, MESSAGE_TYPE, MESSAGE_USER, MESSAGE_VERSION, ROUTE_BASIC, ROUTE_DASHBOARD } from 'src/shared/constants/constant';
+import { CAR_ASSIGNED_AIRPORT_TEMPLATE, CAR_ASSIGNED_MESSAGE_TEMPLATE, DRIVER_MESSAGE_AIRPORT_TEMPLATE, DRIVER_MESSAGE_TEMPLATE, MESSAGE_AUTH_SCHEME, MESSAGE_FORMAT, MESSAGE_METHOD, MESSAGE_PWD, MESSAGE_TYPE, MESSAGE_USER, MESSAGE_VERSION, ROUTE_BASIC, ROUTE_DASHBOARD } from 'src/shared/constants/constant';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
@@ -18,7 +18,8 @@ export interface imsg {
   cartype: string,
   msgtype: string,
   mode:any,
-  msgtime: any
+  msgtime: any,
+  reporting: any
 }
 
 export class msgclass implements imsg{
@@ -32,6 +33,7 @@ export class msgclass implements imsg{
   msgtype: string;
   mode: any;
   msgtime: any;
+  reporting: any;
 }
 
 @Component({
@@ -50,6 +52,7 @@ export class MessageComponent implements OnInit {
   PartyControl: FormControl;
   PartyNumberControl: FormControl;
   MsgTimeControl: FormControl;
+  ReportingControl: FormControl;
   allcartype: any;
   alldrivernames: any;
   allcarno: any;
@@ -72,6 +75,7 @@ export class MessageComponent implements OnInit {
       PartyControl: [],
       PartyNumberControl: [],
       MsgTimeControl: [],
+      ReportingControl: [],
       DriverControl: ['', Validators.required],
       DriverContactControl: ['', Validators.required],
       CarTypeControl: ['', Validators.required],
@@ -130,35 +134,57 @@ export class MessageComponent implements OnInit {
 
   }
   formdrivermsg(){
-    let body = DRIVER_MESSAGE_TEMPLATE;
+    let body = DRIVER_MESSAGE_AIRPORT_TEMPLATE;
     body = body.split("%20").join(" ");
     body = body.split("%0A").join(" .");
     body = body.split("%3A").join(": ");
     body = body.split("%2C").join(".");
     body = body.replace("{0}", "1");
-    body = body.replace("{1}", this.msg.party);
-    body = body.replace("{2}", this.msg.partynumber);
-    body = body.replace("{3}", this.msg.carnumber);
-    body = body.replace("{4}", this.msg.cartype);
-    body = body.replace("{5}", new Date().getUTCFullYear() + "/" + (new Date().getUTCMonth() + 1) + "/" + new Date().getUTCDate());
+    body = body.replace("{1}", this.msg.driver);
+    body = body.replace("{2}", "");
+    body = body.replace("{3}", "");
+    body = body.replace("{4}", this.msg.carnumber);
+    body = body.replace("{5}", "");
+    body = body.replace("{6}", "");
+    body = body.replace("{7}", this.msg.party);
+    body = body.replace("{8}", "");
+    body = body.replace("{9}", "");
+    body = body.replace("{10}", new Date().getUTCFullYear() + "/" + (new Date().getUTCMonth() + 1) + "/" + new Date().getUTCDate());
+    body = body.replace("{11}", this.msg.msgtime);
+    body = body.replace("{12}", this.msg.reporting);
+    body = body.replace("{13}", "");
+    body = body.replace("{14}", "");
+    body = body.replace("{15}", "");
+    /* body = body.replace("{8}", this.msg.cartype);
+    body = body.replace("{9}", new Date().getUTCFullYear() + "/" + (new Date().getUTCMonth() + 1) + "/" + new Date().getUTCDate());
     body = body.replace("{6}", this.msg.msgtime);
-    body = body.replace("{7}", "Kolkata Airport");
+    body = body.replace("{7}", "Kolkata Airport"); */
     this.message = body;
   }
   formpassengermsg(){
-    let body = CAR_ASSIGNED_MESSAGE_TEMPLATE;
+    let body = CAR_ASSIGNED_AIRPORT_TEMPLATE;
     body = body.split("%20").join(" ");
     body = body.split("%0A").join(" .");
     body = body.split("%3A").join(": ");
     body = body.split("%2C").join(".");
-    body = body.replace("{0}", "1");
-    body = body.replace("{1}", this.msg.carnumber);
-    body = body.replace("{2}", this.msg.cartype);
-    body = body.replace("{3}", this.msg.driver);
-    body = body.replace("{4}", this.msg.drivernumber);
-    body = body.replace("{5}", new Date().getUTCFullYear() + "/" + (new Date().getUTCMonth() + 1) + "/" + new Date().getUTCDate());
-    body = body.replace("{6}", this.msg.msgtime);
-    body = body.replace("{7}", "Kolkata Airport");
+    body = body.replace("{0}", this.msg.party);
+    body = body.replace("{1}", "");
+    body = body.replace("{2}", "");
+    body = body.replace("{3}", "1");
+    body = body.replace("{4}", new Date().getUTCFullYear() + "/" + (new Date().getUTCMonth() + 1) + "/" + new Date().getUTCDate());
+    body = body.replace("{5}", this.msg.msgtime);
+    body = body.replace("{6}", this.msg.reporting);
+    body = body.replace("{7}", "");
+    body = body.replace("{8}", "");
+    body = body.replace("{9}", "");
+    body = body.replace("{10}", this.msg.driver);
+    body = body.replace("{11}", "");
+    body = body.replace("{12}", "");
+    body = body.replace("{13}", this.msg.drivernumber);
+    body = body.replace("{14}", "");
+    body = body.replace("{15}", this.msg.carnumber);
+    body = body.replace("{16}", "");
+    body = body.replace("{17}", "");
     this.partymessage = body;
   }
   public _filterCarType(value: string): string[] {

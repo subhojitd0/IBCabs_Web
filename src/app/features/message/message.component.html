@@ -67,10 +67,16 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-sm-12">
+                    <div class="col-sm-5">
                         <mat-form-field style="width: 80%; margin-right: 20px;">
                             <mat-label>Reporting Time</mat-label>
                             <input [(ngModel)]="msg.msgtime" (blur)="msgdisplay()" type="time" matInput placeholder="Enter Reporting Time" formControlName="MsgTimeControl" required>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-sm-5">
+                        <mat-form-field style="width: 80%; margin-right: 20px;">
+                            <mat-label>Reporting Place</mat-label>
+                            <input [(ngModel)]="msg.reporting" (blur)="msgdisplay()" type="text" matInput placeholder="Enter Reporting Place" formControlName="ReportingControl" required>
                         </mat-form-field>
                     </div>
                 </div>
