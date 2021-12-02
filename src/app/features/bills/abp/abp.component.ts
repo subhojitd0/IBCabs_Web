@@ -142,14 +142,14 @@ export class AbpComponent implements OnInit {
       //this.dataSource = new MatTableDataSource(this.billdetails.body);
       //localStorage.setItem("billdata", "");
       //this.totalno = this.billdetails.body.length;
-      //this.roundedgross = Math.round(parseFloat(this.billdetails.tail[0].grosstotal.toString().replace(',','')));
+      this.roundedgross = Math.round(parseFloat(this.billdetails.tail.grosstotal.toString().replace(',','')));
       /* let index = this.billdetails.tail[0].grosstotal.toString().indexOf('.');
       let substringVal = this.billdetails.tail[0].grosstotal;
       if(index > 0)
          substringVal = this.billdetails.tail[0].grosstotal.toString().substr(0, index);
       substringVal = substringVal.toString().replace(',',''); */
       let gstRounded = Math.round(parseFloat(this.billdetails.gst.total.toString().replace(',','')));
-      this.amountInWord = this.apiService.convertAmountToWord(this.billdetails.tail.grosstotal);
+      this.amountInWord = this.apiService.convertAmountToWord(this.roundedgross);
       this.gstamountinwords = this.apiService.convertAmountToWord(gstRounded);
       this.marginTop = (31-this.totalno)*2.5;
       this.fontSize = 20 + this.marginTop * 0.03;
