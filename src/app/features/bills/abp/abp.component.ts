@@ -142,7 +142,8 @@ export class AbpComponent implements OnInit {
       //this.dataSource = new MatTableDataSource(this.billdetails.body);
       //localStorage.setItem("billdata", "");
       //this.totalno = this.billdetails.body.length;
-      this.roundedgross = Math.round(parseFloat(this.billdetails.tail.grosstotal.toString().replace(',','')));
+      //this.roundedgross = Math.round(parseFloat(this.billdetails.tail.grosstotal.toString().replace(',','')));
+      this.roundedgross = this.billdetails.tail.grosstotal.toString().replace(',','');
       /* let index = this.billdetails.tail[0].grosstotal.toString().indexOf('.');
       let substringVal = this.billdetails.tail[0].grosstotal;
       if(index > 0)

@@ -101,6 +101,8 @@ export class NewVendorBillComponent implements OnInit {
     else{
       return false;
     }
+
+    //return true;
   }
   
   generateBill(){

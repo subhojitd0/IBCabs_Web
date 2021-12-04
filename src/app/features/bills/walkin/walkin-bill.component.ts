@@ -53,6 +53,8 @@ export interface iSaveBill {
   total: string;
   mode: string;
   reportto: string;
+  fa: string;
+  favalue: string;
 }
 export class SaveBill implements iSaveBill {
   billnumber: string;
@@ -67,6 +69,8 @@ export class SaveBill implements iSaveBill {
   total: string;
   mode: string;
   reportto: string;
+  fa: string;
+  favalue: string;
 }
 @Component({
   selector: 'app-walkin-bill',
@@ -164,6 +168,8 @@ export class WalkinBillComponent implements OnInit {
       billSave.parkingtype = localStorage.getItem("billparking");
       billSave.billtype = "I";
       billSave.reportto = localStorage.getItem("billreportto");
+      billSave.fa= this.billdetails.tail.customfa;
+      billSave.favalue=this.billdetails.tail.customfavalue;
       billSave.total = this.roundedgross;
       billSave.mode = "1";
       this.apiService.post(BILL_API, billSave).then((res: any)=>{ 
