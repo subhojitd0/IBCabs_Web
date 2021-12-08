@@ -57,14 +57,24 @@ export class MessageModalComponent implements OnInit {
       this.message = body;
     }
     if(this.selectedType == "BookingConfirmationBooked"){
-      this.phoneNumbers.push(this.rentalDetails.reporttonum);
+      if(this.rentalDetails.dutytype === "1"){
+        this.phoneNumbers.push(this.rentalDetails.bookedbycontact);
+      }
+      else{
+        this.phoneNumbers.push(this.rentalDetails.reporttonum);
+      }
       let body = BOOKING_ID_CONFIRM_MESSAGE_TEMPLATE;
       body = body.split("%20").join(" ");
       body = body.split("%0A").join(" .");
       body = body.split("%3A").join(": ");
       body = body.split("%2C").join(".");
       body = body.replace("{0}", this.rentalDetails.dutyid);
-      body = body.replace("{1}", this.rentalDetails.bookedby);
+      if(this.rentalDetails.dutytype === "1"){
+        body = body.replace("{1}", this.rentalDetails.reporttoname);
+      }
+      else{
+        body = body.replace("{1}", this.rentalDetails.bookedby);
+      }
       body = body.replace("{2}", this.rentalDetails.dutydate);
       body = body.replace("{3}", this.rentalDetails.dutytime.substr(0,5));
       body = body.replace("{4}",  this.rentalDetails.transportinfo === "" ? "Vehicle to be assigned" : this.rentalDetails.transportinfo);
@@ -162,7 +172,12 @@ export class MessageModalComponent implements OnInit {
     let queryParam = "";
     let body = BOOKING_ID_CONFIRM_MESSAGE_TEMPLATE;
     body = body.replace("{0}", this.rentalDetails.dutyid);
-    body = body.replace("{1}", this.rentalDetails.bookedby);
+    if(this.rentalDetails.dutytype === "1"){
+      body = body.replace("{1}", this.rentalDetails.reporttoname);
+    }
+    else{
+      body = body.replace("{1}", this.rentalDetails.bookedby);
+    }
     body = body.replace("{2}", this.rentalDetails.dutydate);
     body = body.replace("{3}", this.rentalDetails.dutytime.substr(0,5));
     body = body.replace("{4}", this.rentalDetails.transportinfo);
