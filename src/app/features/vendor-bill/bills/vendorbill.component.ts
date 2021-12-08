@@ -231,6 +231,7 @@ export class VendorBillComponent implements OnInit {
         let totkm = 0; */
         let totparking = 0;
         let totamt = 0;
+        let totori = 0;
         carD.data.forEach((dat: any)=>{
           dat.sl = slno + 1;
           slno = slno + 1;
@@ -244,13 +245,15 @@ export class VendorBillComponent implements OnInit {
           carD.totkm = parseFloat(dat.totalkm) + carD.totkm;
           totparking = parseFloat(dat.parking) + totparking;
           totamt = parseFloat(dat.amount) + totamt;
+          totori = parseFloat(dat.oriamount) + totori;
         })
         let newData={
           sl: "Total",
           totalhr: carD.tothr,
           totalkm: carD.totkm,
           extra: 0,
-          parking: totparking,
+          parking: totparking.toFixed(2),
+          oriamount: totori.toFixed(2)
           //amount: totamt
         }
     
