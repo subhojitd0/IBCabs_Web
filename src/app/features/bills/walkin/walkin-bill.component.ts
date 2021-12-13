@@ -168,8 +168,8 @@ export class WalkinBillComponent implements OnInit {
       billSave.parkingtype = localStorage.getItem("billparking");
       billSave.billtype = "I";
       billSave.reportto = localStorage.getItem("billreportto");
-      billSave.fa= this.billdetails.tail.customfa;
-      billSave.favalue=this.billdetails.tail.customfavalue;
+      billSave.fa= this.billdetails.tail[0].customfa;
+      billSave.favalue=this.billdetails.tail[0].customfavalue;
       billSave.total = this.roundedgross;
       billSave.mode = "1";
       this.apiService.post(BILL_API, billSave).then((res: any)=>{ 
