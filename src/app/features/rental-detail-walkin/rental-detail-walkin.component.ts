@@ -3,7 +3,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import {ApiService} from '../../../shared/services/service';
-import {DRIVER_API, PARTY_HEAD_API, RENTAL_DETAIL_API_OFFICE} from '../../../shared/services/api.url-helper';
+import {DRIVER_API, PARTY_HEAD_API, RENTAL_DETAIL_API_WALKIN} from '../../../shared/services/api.url-helper';
 import {MatDialog} from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
@@ -22,8 +22,8 @@ export interface NewRental {
   party : string,
   bookedby: string,
   bookedbycontact: string,
-  reporttoname: string,
-  reporttonum: string,
+  reporttonamea: string,
+  reporttonuma: string,
   goutbeforetime: string,
   ginbeforetime: string,
   goutbeforekm: string,
@@ -46,17 +46,21 @@ export interface NewRental {
   nightcharge:string,
   dutyid: string,
   replace: string,
-  reporttoname_2: string,
-  reporttonum_2: string,
-  reporttoname_3: string,
-  reporttonum_3: string,
-  reporttoname_4: string,
-  reporttonum_4: string,
-  reporttoname_5: string,
-  reporttonum_5: string,
+  reporttonameb: string,
+  reporttonumb: string,
+  reporttonamec: string,
+  reporttonumc: string,
+  reporttonamed: string,
+  reporttonumd: string,
+  reporttonamee: string,
+  reporttonume: string,
   pickuploc: string,
   droploc: string,
-  dutytype: string
+  dutytype: string,
+  rintime: string,
+  routtime: string,
+  rinkm:string,
+  routkm:string
 }
 export class RentalAdd implements NewRental {
   mode: string;
@@ -65,8 +69,8 @@ export class RentalAdd implements NewRental {
   party : string;
   bookedby: string;
   bookedbycontact: string;
-  reporttoname: string;
-  reporttonum: string;
+  reporttonamea: string;
+  reporttonuma: string;
   goutbeforetime: string;
   ginbeforetime: string;
   goutbeforekm: string;
@@ -90,17 +94,21 @@ export class RentalAdd implements NewRental {
   dutystatus: string;
   dutyid: string;
   replace: string;
-  reporttoname_2: string;
-  reporttonum_2: string;
-  reporttoname_3: string;
-  reporttonum_3: string;
-  reporttoname_4: string;
-  reporttonum_4: string;
-  reporttoname_5: string;
-  reporttonum_5: string;
+  reporttonameb: string;
+  reporttonumb: string;
+  reporttonamec: string;
+  reporttonumc: string;
+  reporttonamed: string;
+  reporttonumd: string;
+  reporttonamee: string;
+  reporttonume: string;
   pickuploc: string;
   droploc: string;
   dutytype: string;
+  rintime: string;
+  routtime: string;
+  rinkm:string;
+  routkm:string;
 }
 
 @Component({
@@ -159,6 +167,41 @@ export class RentalDetailWalkinComponent implements OnInit  {
       dialogRef.close();
     });
   }
+  setGRvalues(){
+    //Assignning G values to R 
+    if(this.rentalAdd.goutkm && !this.rentalAdd.routkm){
+      this.rentalAdd.routkm = this.rentalAdd.goutkm;
+    }
+    if(this.rentalAdd.ginkm && !this.rentalAdd.rinkm){
+      this.rentalAdd.rinkm = this.rentalAdd.ginkm;
+    }
+    if(this.rentalAdd.gouttime && (this.rentalAdd.routtime === undefined || this.rentalAdd.routtime === "0000-00-00T00:00")){
+      this.rentalAdd.routtime = this.rentalAdd.gouttime;
+    }
+    if(this.rentalAdd.gintime && (this.rentalAdd.rintime === undefined || this.rentalAdd.rintime === "0000-00-00T00:00" )){
+      this.rentalAdd.rintime = this.rentalAdd.gintime;
+    }
+
+    //Assignning R values to G
+    if(!this.rentalAdd.goutkm && this.rentalAdd.routkm){
+      this.rentalAdd.goutkm = this.rentalAdd.routkm;
+    }
+    if(!this.rentalAdd.ginkm && this.rentalAdd.rinkm){
+      this.rentalAdd.ginkm = this.rentalAdd.rinkm;
+    }
+    if((this.rentalAdd.gouttime === undefined  || this.rentalAdd.gouttime === "0000-00-00T00:00" ) && this.rentalAdd.routtime){
+      this.rentalAdd.gouttime = this.rentalAdd.routtime;
+    }
+    if((this.rentalAdd.gintime === undefined  || this.rentalAdd.gintime === "0000-00-00T00:00" ) && this.rentalAdd.rintime){
+      this.rentalAdd.gintime = this.rentalAdd.rintime;
+    }
+    if(this.rentalAdd.ginkm === ""){
+      this.rentalAdd.rinkm = "";
+    }
+    if(this.rentalAdd.goutkm === ""){
+      this.rentalAdd.routkm = "";
+    }
+  }
   addreportto(){
     if(this.report2visible){
       if(this.report3visible){
@@ -181,6 +224,16 @@ export class RentalDetailWalkinComponent implements OnInit  {
     else{
       this.report2visible = true;
     }
+  }
+  checkreportto(){
+    if(this.rentalAdd.reporttonameb)
+      this.report2visible = true;
+    if(this.rentalAdd.reporttonamec)
+      this.report3visible = true;
+    if(this.rentalAdd.reporttonamed)
+      this.report4visible = true;
+    if(this.rentalAdd.reporttonamee)
+      this.report5visible = true;
   }
   removereportto(){
     if(this.report5visible){
@@ -219,6 +272,7 @@ export class RentalDetailWalkinComponent implements OnInit  {
       this.rentalAdd.mode = "1";
     }
     var ot = "0";
+    this.setGRvalues();
     //this.rentalAdd.outstationtype = "0";
     var json = 
       {
@@ -238,7 +292,7 @@ export class RentalDetailWalkinComponent implements OnInit  {
           this.rentalAdd.dutyid = id;
         }
         this.rentalAdd.dutytype = "1";
-        this.apiService.post(RENTAL_DETAIL_API_OFFICE, this.rentalAdd).then((res: any)=>{ 
+        this.apiService.post(RENTAL_DETAIL_API_WALKIN, this.rentalAdd).then((res: any)=>{ 
           this.toastr.success("Your data was successfully saved",'Success');
           this.router.navigateByUrl('/' + ROUTE_VIEW_DDR);
         });
@@ -262,6 +316,7 @@ export class RentalDetailWalkinComponent implements OnInit  {
       this.rentalAdd.mode = "1";
     }
     var ot = "0";
+    this.setGRvalues();
     //this.rentalAdd.outstationtype = "0";
     var json = 
       {
@@ -284,7 +339,7 @@ export class RentalDetailWalkinComponent implements OnInit  {
           this.rentalAdd.dutyid = id;
         }
         this.rentalAdd.dutytype = "1";
-        this.apiService.post(RENTAL_DETAIL_API_OFFICE, this.rentalAdd).then((res: any)=>{ 
+        this.apiService.post(RENTAL_DETAIL_API_WALKIN, this.rentalAdd).then((res: any)=>{ 
           this.toastr.success("Your data was successfully saved",'Success');
           localStorage.setItem('selectedduty', res.dutyid);
           //location.reload();
@@ -323,7 +378,8 @@ export class RentalDetailWalkinComponent implements OnInit  {
           this.rentalAdd.dutyid = id;
         }
         this.rentalAdd.dutytype = "1";
-      this.apiService.post(RENTAL_DETAIL_API_OFFICE, this.rentalAdd).then((res: any)=>{ 
+        this.setGRvalues();
+      this.apiService.post(RENTAL_DETAIL_API_WALKIN, this.rentalAdd).then((res: any)=>{ 
         this.toastr.success("Your data was successfully saved",'Success');
         localStorage.setItem('selectedduty', "0");
         location.reload();
@@ -334,13 +390,16 @@ export class RentalDetailWalkinComponent implements OnInit  {
     if(step === "save")
       return true;
     if(step === "1"){
-      return (this.rentalAdd.party && this.rentalAdd.dutydate && this.rentalAdd.dutytime && this.rentalAdd.centerName && this.rentalAdd.reporttoname);
+      return (this.rentalAdd.party && this.rentalAdd.dutydate && this.rentalAdd.dutytime && this.rentalAdd.centerName && this.rentalAdd.reporttonamea);
     }
     if(step === "2"){
       return (this.rentalAdd.driver && this.rentalAdd.drivernum && this.rentalAdd.carnum && this.rentalAdd.cartype && this.rentalAdd.replace);
     }
     if(step === "3"){
-      return (this.rentalAdd.ginkm && this.rentalAdd.goutkm && this.rentalAdd.gintime && this.rentalAdd.gouttime && this.rentalAdd.outstation && this.rentalAdd.parking );
+      return ((this.rentalAdd.ginkm || this.rentalAdd.rinkm) && 
+      (this.rentalAdd.goutkm || this.rentalAdd.routkm) && 
+      (this.rentalAdd.gintime || this.rentalAdd.rintime) && 
+      (this.rentalAdd.gouttime || this.rentalAdd.routtime) && this.rentalAdd.parking );
     }
   }
   changeparty(){
@@ -354,7 +413,7 @@ export class RentalDetailWalkinComponent implements OnInit  {
         this.rentalAdd.goutbeforetime = res.garagein;
         this.rentalAdd.ginbeforetime = res.garageout;
         this.rentalAdd.goutbeforekm = res.kmout;
-        this.rentalAdd.reporttoname = res.reportto;
+        this.rentalAdd.reporttonamea = res.reportto;
         this.rentalAdd.dutytime = res.starttime ? res.starttime.substr(0,5) : "";
       });
   }
@@ -484,6 +543,10 @@ export class RentalDetailWalkinComponent implements OnInit  {
       GINKMControl: ['', Validators.required],
       GOUTTIMEControl: ['', Validators.required],
       GOUTKMControl: ['', Validators.required],
+      RINTIMEControl: [''],
+      RINKMControl: [''],
+      ROUTTIMEControl: [''],
+      ROUTKMControl: [''],
       ParkingControl: ['', Validators.required],
       OutstationControl: ['', Validators.required]
     });
@@ -495,7 +558,7 @@ export class RentalDetailWalkinComponent implements OnInit  {
         "mode":"4",
         "dutyid": dutyid
       };
-      this.apiService.post(RENTAL_DETAIL_API_OFFICE, json).then((res: any)=>{ 
+      this.apiService.post(RENTAL_DETAIL_API_WALKIN, json).then((res: any)=>{ 
         debugger;
         this.rentalAdd = res;
         
@@ -549,7 +612,7 @@ export class RentalDetailWalkinComponent implements OnInit  {
           this.stepper.next();
           this.stepper.next();
         }
-        
+        this.checkreportto();
         localStorage.setItem("rentaldetails", JSON.stringify(res.result));
         //localStorage.setItem('selectedduty', "0");
         });

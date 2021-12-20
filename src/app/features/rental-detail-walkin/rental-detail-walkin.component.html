@@ -48,7 +48,7 @@
 
             <mat-form-field style="width: 15%; margin-right: 10px;">
                 <mat-label>Report Name</mat-label>
-                <input matInput placeholder="Enter the report to name here" [matAutocomplete]="autoreport" [(ngModel)]="rentalAdd.reporttoname" formControlName="ReportControl" required>
+                <input matInput placeholder="Enter the report to name here" [matAutocomplete]="autoreport" [(ngModel)]="rentalAdd.reporttonamea" formControlName="ReportControl" required>
                 <mat-autocomplete #autoreport="matAutocomplete">
                     <mat-option *ngFor="let option of filteredOptionsReport | async" [value]="option">
                         {{option}}
@@ -57,55 +57,55 @@
             </mat-form-field>
             <mat-form-field style="width: 10%; margin-right: 10px;">
                 <mat-label>Report Contact</mat-label>
-                <input matInput type="number" placeholder="Enter the report to contact no. here" [(ngModel)]="rentalAdd.reporttonum" formControlName="ReportContactControl">
+                <input matInput type="number" placeholder="Enter the report to contact no. here" [(ngModel)]="rentalAdd.reporttonuma" formControlName="ReportContactControl">
             </mat-form-field>
             <button *ngIf="ddrrole === '1'" class="btn-first" mat-button (click)="savedata(stepper, '1')">Save Duty & Continue</button>
-            <!-- <button *ngIf="ddrrole === '1'"   class="btn-second" mat-button (click)="savedatacreate(stepper, '1')">Save & Create New</button> -->
+            <button *ngIf="ddrrole === '1'" class="btn-second" mat-button (click)="savedatacreate(stepper, '1')">Save & Create New</button>
             <br/>
-            <!-- <button class="btn-first" style="margin-right: 20px;" *ngIf="!report5visible" mat-button (click)="addreportto()">Add Report To</button>
+            <button class="btn-first" style="margin-right: 20px;" *ngIf="!report5visible" mat-button (click)="addreportto()">Add Report To</button>
             <button class="btn-second" style="margin-right: 20px;" *ngIf="report2visible" mat-button (click)="removereportto()">Remove Report To</button>
             <br/>
 
             <mat-form-field *ngIf="report2visible" style="width: 40%; margin-right: 40px;">
                 <mat-label>Report To Name</mat-label>
-                <input matInput placeholder="Enter the report to name here" [(ngModel)]="rentalAdd.reporttoname_2" formControlName="ReportControl2">
+                <input matInput placeholder="Enter the report to name here" [(ngModel)]="rentalAdd.reporttonameb" formControlName="ReportControl2">
             </mat-form-field>
             <mat-form-field *ngIf="report2visible" style="width: 40%; margin-right: 40px;">
                 <mat-label>Report To Contact Number</mat-label>
-                <input matInput type="number" placeholder="Enter the report to contact no. here" [(ngModel)]="rentalAdd.reporttonum_2" formControlName="ReportContactControl2">
+                <input matInput type="number" placeholder="Enter the report to contact no. here" [(ngModel)]="rentalAdd.reporttonumb" formControlName="ReportContactControl2">
                 <br/>
             </mat-form-field>
 
 
             <mat-form-field *ngIf="report3visible" style="width: 40%; margin-right: 40px;">
                 <mat-label>Report To Name</mat-label>
-                <input matInput placeholder="Enter the report to name here" [(ngModel)]="rentalAdd.reporttoname_3" formControlName="ReportControl3">
+                <input matInput placeholder="Enter the report to name here" [(ngModel)]="rentalAdd.reporttonamec" formControlName="ReportControl3">
             </mat-form-field>
             <mat-form-field *ngIf="report3visible" style="width: 40%; margin-right: 40px;">
                 <mat-label>Report To Contact Number</mat-label>
-                <input matInput type="number" placeholder="Enter the report to contact no. here" [(ngModel)]="rentalAdd.reporttonum_3" formControlName="ReportContactControl3">
+                <input matInput type="number" placeholder="Enter the report to contact no. here" [(ngModel)]="rentalAdd.reporttonumc" formControlName="ReportContactControl3">
                 <br/>
             </mat-form-field>
 
             <mat-form-field *ngIf="report4visible" style="width: 40%; margin-right: 40px;">
                 <mat-label>Report To Name</mat-label>
-                <input matInput placeholder="Enter the report to name here" [(ngModel)]="rentalAdd.reporttoname_4" formControlName="ReportControl4">
+                <input matInput placeholder="Enter the report to name here" [(ngModel)]="rentalAdd.reporttonamed" formControlName="ReportControl4">
             </mat-form-field>
             <mat-form-field *ngIf="report4visible" style="width: 40%; margin-right: 40px;">
                 <mat-label>Report To Contact Number</mat-label>
-                <input matInput type="number" placeholder="Enter the report to contact no. here" [(ngModel)]="rentalAdd.reporttonum_4" formControlName="ReportContactControl4">
+                <input matInput type="number" placeholder="Enter the report to contact no. here" [(ngModel)]="rentalAdd.reporttonumd" formControlName="ReportContactControl4">
                 <br/>
             </mat-form-field>
 
             <mat-form-field *ngIf="report5visible" style="width: 40%; margin-right: 40px;">
                 <mat-label>Report To Name</mat-label>
-                <input matInput placeholder="Enter the report to name here" [(ngModel)]="rentalAdd.reporttoname_5" formControlName="ReportControl5">
+                <input matInput placeholder="Enter the report to name here" [(ngModel)]="rentalAdd.reporttonamee" formControlName="ReportControl5">
             </mat-form-field>
             <mat-form-field *ngIf="report5visible" style="width: 40%; margin-right: 40px;">
                 <mat-label>Report To Contact Number</mat-label>
-                <input matInput type="number" placeholder="Enter the report to contact no. here" [(ngModel)]="rentalAdd.reporttonum_5" formControlName="ReportContactControl5">
+                <input matInput type="number" placeholder="Enter the report to contact no. here" [(ngModel)]="rentalAdd.reporttonume" formControlName="ReportContactControl5">
                 <br/>
-            </mat-form-field><br/> -->
+            </mat-form-field><br/>
             <mat-form-field style="width: 40%; margin-right: 40px;">
                 <mat-label>Pick Up Location</mat-label>
                 <input matInput placeholder="Enter the pickup location here" [(ngModel)]="rentalAdd.pickuploc" formControlName="PickupControl">
@@ -254,12 +254,32 @@
             <br/>
 
             <mat-form-field style="width: 40%; margin-right: 40px;">
+                <mat-label>Reporting Time</mat-label>
+                <input matInput [(ngModel)]="rentalAdd.routtime" type="datetime-local" formControlName="ROUTTIMEControl" required>
+            </mat-form-field>
+            <mat-form-field style="width: 40%; margin-right: 40px;">
+                <mat-label>Reporting KM</mat-label>
+                <input matInput [(ngModel)]="rentalAdd.routkm" type="number" formControlName="ROUTKMControl" required>
+            </mat-form-field>
+            <br/>
+
+            <mat-form-field style="width: 40%; margin-right: 40px;">
                 <mat-label>Garage In Time</mat-label>
                 <input matInput [(ngModel)]="rentalAdd.gintime" type="datetime-local" formControlName="GINTIMEControl" required>
             </mat-form-field>
             <mat-form-field style="width: 40%; margin-right: 40px;">
                 <mat-label>Garage In KM</mat-label>
                 <input matInput [(ngModel)]="rentalAdd.ginkm" type="number" formControlName="GINKMControl" required>
+            </mat-form-field>
+            <br/>
+
+            <mat-form-field style="width: 40%; margin-right: 40px;">
+                <mat-label>Releasing Time</mat-label>
+                <input matInput [(ngModel)]="rentalAdd.rintime" type="datetime-local" formControlName="RINTIMEControl">
+            </mat-form-field>
+            <mat-form-field style="width: 40%; margin-right: 40px;">
+                <mat-label>Releasing KM</mat-label>
+                <input matInput [(ngModel)]="rentalAdd.rinkm" type="number" formControlName="RINKMControl">
             </mat-form-field>
             <br/>
 

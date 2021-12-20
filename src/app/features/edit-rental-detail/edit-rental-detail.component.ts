@@ -616,15 +616,23 @@ exportddr(){
     this.dataSource = new MatTableDataSource(this.rentalDetails);
     }
   }
-  approve(id){
+  approve(id: any, party: any){
     /* localStorage.setItem('selectedrentalid', id ); */
     /* const dialogRefConf = this.dialog.open(ConfirmationModalComponent);
 
     dialogRefConf.afterClosed().subscribe(result => {
       console.log(`Dialog closed`);
     }); */
-    localStorage.setItem('selectedduty', id);
-    this.router.navigateByUrl('/' + ROUTE_ADD_DDR);
+    if(party === "WALK IN(ON CALL)"){
+      localStorage.setItem('selectedduty', id);
+      this.router.navigateByUrl('/' + ROUTE_ADD_DDR_WALKIN);
+    }
+    else{
+      localStorage.setItem('selectedduty', id);
+      this.router.navigateByUrl('/' + ROUTE_ADD_DDR);
+    }
+    /* localStorage.setItem('selectedduty', id);
+    this.router.navigateByUrl('/' + ROUTE_ADD_DDR); */
   }
 
   caltotal(row)
