@@ -95,13 +95,13 @@ export class RentalAdd implements NewRental {
   dutyid: string;
   replace: string;
   reporttonameb: string;
-  reporttonumb: string;
+  reporttonumb: string = "";
   reporttonamec: string;
-  reporttonumc: string;
+  reporttonumc: string = "";
   reporttonamed: string;
-  reporttonumd: string;
+  reporttonumd: string = "";
   reporttonamee: string;
-  reporttonume: string;
+  reporttonume: string = "";
   pickuploc: string;
   droploc: string;
   dutytype: string;

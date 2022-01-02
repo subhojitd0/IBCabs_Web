@@ -133,7 +133,13 @@ export class CoalIndiaComponent implements OnInit {
       this.billdetails.body.push(billTot); */
       this.dataSource = new MatTableDataSource(this.billdetails.body);
       //localStorage.setItem("billdata", "");
-      this.totalno = this.billdetails.body.length;
+      this.totalno = 0;
+      this.billdetails.body.forEach(element => {
+        this.totalno = this.totalno + 1;
+        if(element.carno.toString().indexOf('/')>0){
+          this.totalno = this.totalno + 1;
+        }
+      });
       this.roundedgross = Math.round(parseFloat(this.billdetails.tail[0].grosstotal.toString().replace(',','')));
       /* let index = this.billdetails.tail[0].grosstotal.toString().indexOf('.');
       let substringVal = this.billdetails.tail[0].grosstotal;
