@@ -24,7 +24,9 @@ export interface DriverDetails {
     panUrl: string,
     photoUrl: string,
     licenseUrl: string,
-    adhaarUrl: string
+    adhaarUrl: string,
+    username: string,
+    password: string
   }
 
 export class driver implements DriverDetails{
@@ -44,6 +46,8 @@ export class driver implements DriverDetails{
   photoUrl: string;
   licenseUrl: string;
   adhaarUrl: string;
+  username: string;
+  password: string;
 }
 @Component({
   selector: 'app-add-driver',
