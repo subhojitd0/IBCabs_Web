@@ -447,7 +447,8 @@ export class RentalDetailComponent implements OnInit {
       GINKMBufferControl: [],
       GINTimeBufferControl: [],
       FlightControl: [],
-      NotesControl: []
+      NotesControl: [],
+      PickUpLocControl: []
     });
     this.secondFormGroup = this._formBuilder.group({
       DriverControl: ['', Validators.required],

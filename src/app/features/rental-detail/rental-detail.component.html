@@ -59,6 +59,10 @@
                 <mat-label>Report Contact</mat-label>
                 <input matInput type="number" placeholder="Enter the report to contact no. here" [(ngModel)]="rentalAdd.reporttonum" formControlName="ReportContactControl">
             </mat-form-field>
+            <mat-form-field style="width: 10%; margin-right: 10px;">
+                <mat-label>Reporting Place</mat-label>
+                <input matInput type="text" placeholder="Enter the reporting place" [(ngModel)]="rentalAdd.pickuploc" formControlName="PickUpLocControl">
+            </mat-form-field>
             <button *ngIf="ddrrole === '1'" class="btn-first" mat-button (click)="savedata(stepper, '1')">Save Duty & Continue</button>
             <!-- <button *ngIf="ddrrole === '1'"   class="btn-second" mat-button (click)="savedatacreate(stepper, '1')">Save & Create New</button> -->
             <br/>
