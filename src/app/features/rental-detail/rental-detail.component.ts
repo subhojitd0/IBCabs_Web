@@ -52,7 +52,8 @@ export interface NewRental {
   rintime: string,
   routtime: string,
   rinkm:string,
-  routkm:string
+  routkm:string,
+  signature: string
 }
 export class RentalAdd implements NewRental {
   mode: string;
@@ -93,6 +94,7 @@ export class RentalAdd implements NewRental {
   dutytype: string;
   pickuploc: string;
   droploc: string;
+  signature: string;
 }
 
 @Component({
