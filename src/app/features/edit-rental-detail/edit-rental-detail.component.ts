@@ -54,6 +54,7 @@ export interface EditRentalDetail {
   options: string;
   status: string;
   slipo: string;
+  da: string;
 }
 
 export interface RentalDetail {
@@ -91,7 +92,7 @@ export class EditRentalDetailComponent implements OnInit {
   allparties: any;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  displayedColumns: string[] = ['dutydt', 'party', 'carno', 'statusval', 'options'];
+  displayedColumns: string[] = ['dutydt', 'party', 'carno', 'statusval', 'accept', 'options'];
   bulkdisplayedColumns: string[] = ['isselected','dutydate', 'partyname', 'reportto', 'driver', 'carnumber', 'cartype', 'slip', 'gouttime', 'goutkm', 'routtime', 'routkm', 'rintime', 'rinkm', 'gintime', 'ginkm', 'parking', 'outstation'];
   dataSource: MatTableDataSource<RentalDetail>;
   bulkDataSource: MatTableDataSource<EditRentalDetail>;

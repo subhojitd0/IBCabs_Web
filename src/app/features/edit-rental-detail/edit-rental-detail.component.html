@@ -194,6 +194,14 @@
             </mat-cell>
         </ng-container>
 
+        <ng-container matColumnDef="accept">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Acceptance Status </mat-header-cell>
+            <mat-cell *matCellDef="let row">
+                <span *ngIf="row.da == '0'" class="yellow-icon"> Not Accepted</span>
+                <span *ngIf="row.da == '1'" class="green-icon"> Accepted</span>
+            </mat-cell>
+        </ng-container>
+
         <ng-container matColumnDef="options">
             <mat-header-cell *matHeaderCellDef mat-sort-header> Options </mat-header-cell>
             <mat-cell *matCellDef="let row" [style.color]="row.option">
