@@ -105,7 +105,7 @@ export class MonthlyContractAComponent implements OnInit {
           let gst = ( 2.5 * parseFloat(this.contractAmount)) / 100;
           this.cgstAmount = gst.toString();
           this.sgstAmount = gst.toString();
-          this.totalwithgst = parseFloat(this.contractAmount) + gst + gst;
+          this.totalwithgst = gst + gst;
         }
         else{
           this.igstpercentage = "5";
