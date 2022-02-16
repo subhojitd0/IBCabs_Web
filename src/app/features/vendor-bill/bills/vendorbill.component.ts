@@ -171,7 +171,7 @@ export class VendorBillComponent implements OnInit {
     this.userrole = localStorage.getItem("loggedinuser");
     this.vendorfinal = localStorage.getItem("vendorfinal");
     debugger;
-    console.log("vedor : " , this.vendorfinal);
+    console.log("vendor : " , this.vendorfinal);
     if(this.vendorfinal && this.vendorfinal === "1"){
       this.isConfirmed = true;
     }
@@ -182,7 +182,7 @@ export class VendorBillComponent implements OnInit {
     this.amount = localStorage.getItem("vendoramount");
     this.comment = localStorage.getItem("vendorcomment");
     let vendorsave = localStorage.getItem("vendorbillsave");
-    if(vendorsave === "1"){
+    if(vendorsave === "1" || this.userrole === "ibcabs"){
       this.showsubmit = true;
       var json = {
         ownername: this.vendorname,
