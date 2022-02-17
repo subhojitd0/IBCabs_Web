@@ -157,8 +157,10 @@ export class EditRentalDetailComponent implements OnInit {
      var filterval = localStorage.getItem('rentalfilterval');
      this.allparties = JSON.parse(localStorage.getItem('allparties'));
      this.alldrivers = JSON.parse(localStorage.getItem('alldrivers'));
+     this.driverlogic();
      this.allowners = JSON.parse(localStorage.getItem('allowners'));
      this.allcars = JSON.parse(localStorage.getItem('allcars'));
+     this.carlogic();
      this.alldrivernames = this.alldrivers.map(x=>x.drivername);
      this.allcarno = this.allcars.map(x=>x.carno);
      this.allcartype = this.cartypes.map(x=>x.car);
@@ -655,6 +657,28 @@ exportddr(){
       this.router.navigateByUrl('/' + ROUTE_ADD_DDR);
     }
     
+  }
+  carlogic(){
+    debugger;
+    let validcars = [];
+    this.allcars.forEach(element => {
+      if(new Date() < new Date(element.puc) && new Date() < new Date(element.tax) && new Date() < new Date(element.ins)){
+        validcars.push(element);
+      }
+    });
+    this.allcars = [];
+    this.allcars = validcars;
+  }
+  driverlogic(){
+    debugger;
+    let validdrivers = [];
+    this.alldrivers.forEach(element => {
+      if(element.licenseExpiry != "0000-00-00" && new Date() < new Date(element.licenseExpiry)){
+        validdrivers.push(element);
+      }
+    });
+    this.alldrivers = [];
+    this.alldrivers = validdrivers;
   }
   newduty(){
     this.router.navigateByUrl('/' + ROUTE_ADD_DDR);

@@ -412,6 +412,28 @@ export class RentalDetailComponent implements OnInit {
     const filterValue = value.toLowerCase();
     return this.alldrivernames.filter(client => client.toString().toLowerCase().includes(filterValue));
   }
+  carlogic(){
+    debugger;
+    let validcars = [];
+    this.allcars.forEach(element => {
+      if(new Date() < new Date(element.puc) && new Date() < new Date(element.tax) && new Date() < new Date(element.ins)){
+        validcars.push(element);
+      }
+    });
+    this.allcars = [];
+    this.allcars = validcars;
+  }
+  driverlogic(){
+    debugger;
+    let validdrivers = [];
+    this.alldrivers.forEach(element => {
+      if(element.licenseExpiry != "0000-00-00" && new Date() < new Date(element.licenseExpiry)){
+        validdrivers.push(element);
+      }
+    });
+    this.alldrivers = [];
+    this.alldrivers = validdrivers;
+  }
   ngOnInit() {
     debugger;
     this.ddrrole = localStorage.getItem("enterddr");
@@ -420,11 +442,13 @@ export class RentalDetailComponent implements OnInit {
     this.rentalAdd = new RentalAdd();
     this.allparties = JSON.parse(localStorage.getItem('allparties'));
     this.allcars = JSON.parse(localStorage.getItem('allcars'));
+    this.carlogic();
     this.alldrivers = JSON.parse(localStorage.getItem('alldrivers'));
+    this.driverlogic();
     this.cartypes = JSON.parse(localStorage.getItem('allcartypes'));
     this.allreportto = JSON.parse(localStorage.getItem('allreportto'));
     this.alldrivernames = this.alldrivers.map(x=>x.drivername);
-     this.allcarno = this.allcars.map(x=>x.carno);
+     this.allcarno = this.allcars.filter.map(x=>x.carno);
     this.allcarnosub.push("NO SUBSTITUTE");
     this.allcarnosub.push("SUBSTITUTE CAR");
     this.allcars.map(x=>x.carno).filter((element: any)=>{
