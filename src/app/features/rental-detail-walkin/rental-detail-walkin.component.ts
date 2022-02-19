@@ -512,7 +512,7 @@ export class RentalDetailWalkinComponent implements OnInit  {
     this.rentalAdd = new RentalAdd();
     this.allparties = JSON.parse(localStorage.getItem('allparties'));
     this.allcars = JSON.parse(localStorage.getItem('allcars'));
-    this.carlogic();
+    //this.carlogic();
     this.alldrivers = JSON.parse(localStorage.getItem('alldrivers'));
     this.driverlogic();
     this.cartypes = JSON.parse(localStorage.getItem('allcartypes'));

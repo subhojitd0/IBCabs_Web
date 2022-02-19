@@ -160,7 +160,7 @@ export class EditRentalDetailComponent implements OnInit {
      this.driverlogic();
      this.allowners = JSON.parse(localStorage.getItem('allowners'));
      this.allcars = JSON.parse(localStorage.getItem('allcars'));
-     this.carlogic();
+     //this.carlogic();
      this.alldrivernames = this.alldrivers.map(x=>x.drivername);
      this.allcarno = this.allcars.map(x=>x.carno);
      this.allcartype = this.cartypes.map(x=>x.car);
