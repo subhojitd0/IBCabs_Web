@@ -310,7 +310,7 @@ export class VendorBillComponent implements OnInit {
         carlist.push(carD);
         this.gTotal = this.gTotal + totamt;
       });
-
+      debugger;
       this.alldata = carlist;
       this.total = Math.round(this.gTotal);
     }
@@ -522,8 +522,11 @@ export class VendorBillComponent implements OnInit {
       to: element.billto,
       format: "12",
       mode: "1",
+      reportto: element.reportto,
       gsttype: element.gsttype,
-      parkinggst: element.parkinggst
+      parkinggst: element.parkinggst,
+      customfa: element.fa,
+      customfavalue: element.favalue
     }
     localStorage.setItem("billfrom", element.billfrom);
     localStorage.setItem("billto", element.billto);
@@ -533,6 +536,8 @@ export class VendorBillComponent implements OnInit {
     localStorage.setItem("billsubject", element.subject);
     localStorage.setItem("billnumber", element.billnumber);
     localStorage.setItem("billdate", element.billdate);
+    localStorage.setItem("billfa", element.fa);
+    localStorage.setItem("billfaval", element.favalue);
     this.apiService.post(BILL_API_I, json).then((res: any)=>{ 
       debugger;
       localStorage.setItem("billdata", JSON.stringify(res));
