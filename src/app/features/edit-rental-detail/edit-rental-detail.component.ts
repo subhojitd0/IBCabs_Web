@@ -384,6 +384,7 @@ exportddr(){
      data.forEach(async element => {
        debugger;
        //Assignning G values to R 
+       data.f = "w";
        if(element.goutkm && !element.routkm){
         element.routkm = element.goutkm;
       }
@@ -419,6 +420,7 @@ exportddr(){
         //element.outstation = (parseInt(element.outstation) * parseInt(element.outstationtype.toString())).toString();
         //element.outstationtype = 0;
       });
+
      this.apiService.post(RENTAL_DETAIL_API_OFFICE_BULKEDIT, data).then((res: any)=>{ 
        debugger;
        this.toastr.success("Your data was successfully saved",'Success');
@@ -690,7 +692,8 @@ exportddr(){
       var json = 
       {
         "mode":3,
-        "dutyid": id
+        "dutyid": id,
+        "f":"w"
       }
       this.apiService.post(RENTAL_DETAIL_API_OFFICE, json).then((res: any)=>{ 
         this.toastr.success("Your data was successfully saved",'Success');

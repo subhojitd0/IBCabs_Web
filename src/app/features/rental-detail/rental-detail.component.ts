@@ -53,7 +53,8 @@ export interface NewRental {
   routtime: string,
   rinkm:string,
   routkm:string,
-  signature: string
+  signature: string,
+  f: string
 }
 export class RentalAdd implements NewRental {
   mode: string;
@@ -95,6 +96,7 @@ export class RentalAdd implements NewRental {
   pickuploc: string;
   droploc: string;
   signature: string;
+  f: string;
 }
 
 @Component({
@@ -187,6 +189,7 @@ export class RentalDetailComponent implements OnInit {
           this.rentalAdd.dutyid = id;
         }
         this.rentalAdd.dutytype = "0";
+        this.rentalAdd.f = "w";
         this.apiService.post(RENTAL_DETAIL_API_OFFICE, this.rentalAdd).then((res: any)=>{ 
           this.toastr.success("Your data was successfully saved",'Success');
           this.router.navigateByUrl('/' + ROUTE_VIEW_DDR);
@@ -269,6 +272,7 @@ export class RentalDetailComponent implements OnInit {
           this.rentalAdd.dutyid = id;
         }
         this.rentalAdd.dutytype = "0";
+        this.rentalAdd.f = "w";
         this.apiService.post(RENTAL_DETAIL_API_OFFICE, this.rentalAdd).then((res: any)=>{ 
           this.toastr.success("Your data was successfully saved",'Success');
           localStorage.setItem('selectedduty', res.dutyid);
@@ -308,6 +312,7 @@ export class RentalDetailComponent implements OnInit {
           this.rentalAdd.dutyid = id;
         }
         this.rentalAdd.dutytype = "0";
+        this.rentalAdd.f = "w";
         this.setGRvalues();
       this.apiService.post(RENTAL_DETAIL_API_OFFICE, this.rentalAdd).then((res: any)=>{ 
         this.toastr.success("Your data was successfully saved",'Success');

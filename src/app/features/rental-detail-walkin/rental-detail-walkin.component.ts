@@ -60,7 +60,8 @@ export interface NewRental {
   rintime: string,
   routtime: string,
   rinkm:string,
-  routkm:string
+  routkm:string,
+  f: string
 }
 export class RentalAdd implements NewRental {
   mode: string;
@@ -109,6 +110,7 @@ export class RentalAdd implements NewRental {
   routtime: string;
   rinkm:string;
   routkm:string;
+  f: string;
 }
 
 @Component({
@@ -292,6 +294,7 @@ export class RentalDetailWalkinComponent implements OnInit  {
           this.rentalAdd.dutyid = id;
         }
         this.rentalAdd.dutytype = "1";
+        this.rentalAdd.f = "w";
         this.apiService.post(RENTAL_DETAIL_API_WALKIN, this.rentalAdd).then((res: any)=>{ 
           this.toastr.success("Your data was successfully saved",'Success');
           this.router.navigateByUrl('/' + ROUTE_VIEW_DDR);
@@ -339,6 +342,7 @@ export class RentalDetailWalkinComponent implements OnInit  {
           this.rentalAdd.dutyid = id;
         }
         this.rentalAdd.dutytype = "1";
+        this.rentalAdd.f = "w";
         this.apiService.post(RENTAL_DETAIL_API_WALKIN, this.rentalAdd).then((res: any)=>{ 
           this.toastr.success("Your data was successfully saved",'Success');
           localStorage.setItem('selectedduty', res.dutyid);
@@ -378,6 +382,7 @@ export class RentalDetailWalkinComponent implements OnInit  {
           this.rentalAdd.dutyid = id;
         }
         this.rentalAdd.dutytype = "1";
+        this.rentalAdd.f = "w";
         this.setGRvalues();
       this.apiService.post(RENTAL_DETAIL_API_WALKIN, this.rentalAdd).then((res: any)=>{ 
         this.toastr.success("Your data was successfully saved",'Success');
