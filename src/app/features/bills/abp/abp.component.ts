@@ -144,6 +144,7 @@ export class AbpComponent implements OnInit {
       //this.totalno = this.billdetails.body.length;
       //this.roundedgross = Math.round(parseFloat(this.billdetails.tail.grosstotal.toString().replace(',','')));
       this.roundedgross = this.billdetails.tail.grosstotal.toString().replace(',','');
+      this.roundedgross = Math.round(this.roundedgross).toString();
       /* let index = this.billdetails.tail[0].grosstotal.toString().indexOf('.');
       let substringVal = this.billdetails.tail[0].grosstotal;
       if(index > 0)
