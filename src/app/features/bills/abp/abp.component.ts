@@ -154,6 +154,7 @@ export class AbpComponent implements OnInit {
       this.gstamountinwords = this.apiService.convertAmountToWord(gstRounded);
       this.marginTop = (31-this.totalno)*2.5;
       this.fontSize = 20 + this.marginTop * 0.03;
+      this.roundedgross = this.roundedgross.indexOf(".") > 0 ? this.roundedgross : this.roundedgross + ".00";
       localStorage.removeItem("billnumber");
       localStorage.removeItem("billdate");
       localStorage.setItem("removeheader", "0");

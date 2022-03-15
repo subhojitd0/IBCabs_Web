@@ -105,7 +105,8 @@ export class GenerateOTComponent implements OnInit {
     localStorage.setItem("driverfrom", this.billDetails.from);
     localStorage.setItem("driverto", this.billDetails.to);
     this.toastr.success("Your bill was successfully created",'Success');
-    this.router.navigateByUrl('/' + redirectApi);
+    debugger;
+    this.router.navigate([]).then(result => {  window.open('/' + redirectApi, '_blank'); });
   }
 
 }
