@@ -81,8 +81,11 @@ export class AdvancedBillComponent implements OnInit {
   generateBill(){
     debugger;
     let redirectApi = "";
-    if((this.billDetails.party.includes("IBN") && this.billDetails.party.includes("MONTHLY")) || 
-    (this.billDetails.party.includes("CNN") && this.billDetails.party.includes("-M-"))){
+    //this.billDetails.party.includes("IBN") &&
+    //this.billDetails.party.includes("CNN") && 
+    
+    if( (this.billDetails.party.includes("MONTHLY")) || 
+    (this.billDetails.party.includes("M-"))){
       redirectApi = ROUTE_VIEW_BILL_CNN_CONTRACT;
     }
     debugger;
