@@ -84,7 +84,7 @@ export class TimesBillComponent implements OnInit {
   billfrom: any;
   billto: any;
   gstamountinwords: any;
-  totalno: any;
+  totalno: number = 0;
   marginTop: any;
   fontSize: any;
   billgst: any;
@@ -113,6 +113,12 @@ export class TimesBillComponent implements OnInit {
     }
     debugger;
     if(this.billdetails){
+      this.billdetails.body.forEach(element => {
+        this.totalno = this.totalno + 1;
+        if(element.carno.indexOf('/') > 0){
+          this.totalno = this.totalno + 1;
+        }
+      });
       /* let billTot : BillDet = new BillDet();
       billTot.carno = "Total";
       billTot.sl = "";
@@ -123,7 +129,7 @@ export class TimesBillComponent implements OnInit {
       this.billdetails.body.push(billTot); */
       this.dataSource = new MatTableDataSource(this.billdetails.body);
       //localStorage.setItem("billdata", "");
-      this.totalno = this.billdetails.body.length;
+      //this.totalno = this.billdetails.body.length;
       this.roundedgross = Math.round(parseFloat(this.billdetails.tail.grosstotal.toString().replace(',','')));
       /* let index = this.billdetails.tail[0].grosstotal.toString().indexOf('.');
       let substringVal = this.billdetails.tail[0].grosstotal;

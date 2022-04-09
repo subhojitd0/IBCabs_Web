@@ -89,6 +89,7 @@ export class AbpComponent implements OnInit {
   billdetails: any;
   amountInWord: any;
   roundedgross: any;
+  normalgross: any;
   billfrom: any;
   billto: any;
   gstamountinwords: any;
@@ -144,6 +145,7 @@ export class AbpComponent implements OnInit {
       //this.totalno = this.billdetails.body.length;
       //this.roundedgross = Math.round(parseFloat(this.billdetails.tail.grosstotal.toString().replace(',','')));
       this.roundedgross = this.billdetails.tail.grosstotal.toString().replace(',','');
+      this.normalgross = this.roundedgross;
       this.roundedgross = Math.round(this.roundedgross).toString();
       /* let index = this.billdetails.tail[0].grosstotal.toString().indexOf('.');
       let substringVal = this.billdetails.tail[0].grosstotal;
@@ -156,6 +158,7 @@ export class AbpComponent implements OnInit {
       this.marginTop = (31-this.totalno)*2.5;
       this.fontSize = 20 + this.marginTop * 0.03;
       this.roundedgross = this.roundedgross.indexOf(".") > 0 ? this.roundedgross : this.roundedgross + ".00";
+      this.normalgross = this.normalgross.indexOf(".") > 0 ? this.normalgross : this.normalgross + ".00";
       localStorage.removeItem("billnumber");
       localStorage.removeItem("billdate");
       localStorage.setItem("removeheader", "0");
