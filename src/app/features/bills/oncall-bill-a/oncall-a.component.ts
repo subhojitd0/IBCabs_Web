@@ -25,6 +25,8 @@ export interface iBillDet {
   km: number;
   parking: string;
   slipno: string;
+  fa: string;
+  favalue: string;
 }
 
 export class BillDet implements iBillDet {
@@ -40,6 +42,8 @@ export class BillDet implements iBillDet {
     km: number;
     parking: string;
     slipno: string;
+    fa: string;
+  favalue: string;
 }
 
 export interface iSaveBill {
@@ -54,6 +58,8 @@ export interface iSaveBill {
   billtype: string;
   amount: string;
   mode: string;
+  fa: string;
+  favalue: string;
 }
 export class SaveBill implements iSaveBill {
   billnumber: string;
@@ -67,6 +73,8 @@ export class SaveBill implements iSaveBill {
   billtype: string;
   amount: string;
   mode: string;
+  fa: string;
+  favalue: string;
 }
 @Component({
   selector: 'app-oncall-a',
@@ -165,6 +173,8 @@ export class OnCallBillAComponent implements OnInit {
       billSave.parkingtype = localStorage.getItem("billparking");
       billSave.billtype = "B";
       billSave.amount = this.roundedgross;
+      billSave.fa= this.billdetails.tail[0].customfa;
+      billSave.favalue=this.billdetails.tail[0].customfavalue;
       billSave.mode = "1";
       this.apiService.post(BILL_API, billSave).then((res: any)=>{ 
           debugger;

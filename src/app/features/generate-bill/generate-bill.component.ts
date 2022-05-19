@@ -246,7 +246,9 @@ billRegDetails: any[] = [];
       format: "2",
       mode: "1",
       gsttype: element.gsttype,
-      parkinggst: element.parkinggst
+      parkinggst: element.parkinggst,
+      customfa: element.fa,
+      customfavalue: element.favalue
     }
     localStorage.setItem("billfrom", element.billfrom);
     localStorage.setItem("billto", element.billto);
@@ -256,6 +258,8 @@ billRegDetails: any[] = [];
     localStorage.setItem("billsubject", element.subject);
     localStorage.setItem("billnumber", element.billnumber);
     localStorage.setItem("billdate", element.billdate);
+    localStorage.setItem("billfa", element.fa);
+    localStorage.setItem("billfaval", element.favalue);
     this.apiService.post(BILL_ONCALL_EXTRA_API, json).then((res: any)=>{ 
       debugger;
       localStorage.setItem("billdata", JSON.stringify(res));
