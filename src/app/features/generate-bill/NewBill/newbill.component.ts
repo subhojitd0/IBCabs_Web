@@ -28,7 +28,8 @@ export interface inewbill {
   partymaster: string,
   customfa: string,
   customfavalue: string,
-  billCalType: string
+  billCalType: string,
+  fuelOpt: string
 }
 
 export class newbill implements inewbill{
@@ -49,6 +50,7 @@ export class newbill implements inewbill{
   customfa: string;
   customfavalue: string;
   billCalType: string;
+  fuelOpt: string;
 }
 @Component({
   selector: 'app-newbill',
@@ -92,6 +94,7 @@ export class NewBillComponent implements OnInit {
   showDayRate: boolean = false;
   showTotalCalABP: boolean = false;
   showbookedby: boolean = false;
+  fuelOption: boolean = false;
   allbookedby: any;
   bookedbyselect: FormControl;
   bookedbylist: Observable<string[]>;
@@ -180,6 +183,7 @@ export class NewBillComponent implements OnInit {
       this.showTotalCal = false;
       this.showTotalCalABP = false;
       this.showbookedby = false;
+      this.fuelOption = true;
     }
     else if(this.billDetails.format === "3"){ //C - Party & Report
       this.showParty = true;

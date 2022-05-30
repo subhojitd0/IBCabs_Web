@@ -27,6 +27,7 @@ export interface iBillDet {
   slipno: string;
   fa: string;
   favalue: string;
+  fuelopt: string;
 }
 
 export class BillDet implements iBillDet {
@@ -44,6 +45,7 @@ export class BillDet implements iBillDet {
     slipno: string;
     fa: string;
   favalue: string;
+  fuelopt: string;
 }
 
 export interface iSaveBill {
@@ -60,6 +62,7 @@ export interface iSaveBill {
   mode: string;
   fa: string;
   favalue: string;
+  fuelopt: string;
 }
 export class SaveBill implements iSaveBill {
   billnumber: string;
@@ -75,6 +78,7 @@ export class SaveBill implements iSaveBill {
   mode: string;
   fa: string;
   favalue: string;
+  fuelopt: string;
 }
 @Component({
   selector: 'app-oncall-a',
@@ -175,6 +179,7 @@ export class OnCallBillAComponent implements OnInit {
       billSave.amount = this.roundedgross;
       billSave.fa= this.billdetails.tail[0].customfa;
       billSave.favalue=this.billdetails.tail[0].customfavalue;
+      billSave.fuelopt=this.billdetails.tail[0].driverbata;
       billSave.mode = "1";
       this.apiService.post(BILL_API, billSave).then((res: any)=>{ 
           debugger;

@@ -267,6 +267,17 @@
                 <label>Day Rate</label>
                 <input name="dayrate" (blur)="somethingChanged()" type="text" class="form-control" [(ngModel)]="billDetails.billCalType">
             </div>
+            <div class="col-sm-6" *ngIf="fuelOption">
+                <label>Calculate driver bata based on Fuel Option for Vodafone Rate</label>
+                <mat-select name="month" [(value)]="billDetails.fuelOpt">
+                    <mat-option value="0">
+                        No
+                    </mat-option>
+                    <mat-option value="1">
+                        Yes
+                    </mat-option>
+                </mat-select>
+            </div>
         </div>
 
         <div class="row">

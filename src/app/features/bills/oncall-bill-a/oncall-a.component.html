@@ -158,15 +158,21 @@
         <div class="col-xs-6" style="float: right;">
             <table id="meta">
                 <tbody>
+
+                    <tr>
+                        <td></td>
+                        <td class="meta-head" style="text-align: right !important;">Subtotal: Rs.</td>
+                        <td class="meta-content">{{billdetails.tail[0].subtotal}}</td>
+                    </tr>
                     <tr *ngIf="billdetails.tail[0].customfa">
                         <td></td>
                         <td class="meta-head" style="text-align: right !important;">{{billdetails.tail[0].customfa}}</td>
                         <td class="meta-content">{{billdetails.tail[0].customfavalue}}</td>
                     </tr>
-                    <tr>
+                    <tr *ngIf="billdetails.tail[0].driverbata && billdetails.tail[0].driverbata != '1.00'">
                         <td></td>
-                        <td class="meta-head" style="text-align: right !important;">Subtotal: Rs.</td>
-                        <td class="meta-content">{{billdetails.tail[0].subtotal}}</td>
+                        <td class="meta-head" style="text-align: right !important;">Driver Bata</td>
+                        <td class="meta-content">{{billdetails.tail[0].driverbata}}</td>
                     </tr>
                     <tr>
                         <td></td>
