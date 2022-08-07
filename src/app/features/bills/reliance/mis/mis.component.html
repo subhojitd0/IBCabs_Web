@@ -1,5 +1,5 @@
 <div class="center">
-    <p style="cursor: pointer; margin-right: 5px;" (click)="exportAsPDF('printdiv');"><img height="70" src="http://ibcabs.com/bills/new/assets/img/download.png"></p>
+    <p style="cursor: pointer; margin-right: 5px;" (click)="export();"><img height="70" src="http://ibcabs.com/bills/new/assets/img/download.png"></p>
     <p style="cursor: pointer; margin-right: 5px" (click)="save();"><img height="70" src="http://ibcabs.com/bills/new/assets/img/confirm.png"></p>
 </div>
 <div class="container" id="printdiv" style="max-width: 1500px; min-height: 1400px; max-height: 10000px;">
@@ -60,100 +60,45 @@
             </mat-card-header>
           </mat-card> -->
     <div style="margin-top: 15px;">
-        <mat-table [dataSource]="dataSource" matSort>
 
-            <!-- ID Column -->
-            <ng-container matColumnDef="sl">
-                <mat-header-cell *matHeaderCellDef mat-sort-header> Sl. </mat-header-cell>
-                <mat-cell *matCellDef="let row"> {{row.sl}} </mat-cell>
-            </ng-container>
-
-            <!-- Name Column -->
-            <ng-container matColumnDef="dutydate">
-                <mat-header-cell *matHeaderCellDef mat-sort-header> Duty Date </mat-header-cell>
-                <mat-cell *matCellDef="let row"> {{row.dutydate | date:'dd/MM/yyyy'}} </mat-cell>
-            </ng-container>
-
-            <ng-container matColumnDef="reportto">
-                <mat-header-cell *matHeaderCellDef mat-sort-header> Officer Name </mat-header-cell>
-                <mat-cell *matCellDef="let row"> {{row.reportto}} </mat-cell>
-            </ng-container>
-
-            <!-- Color Column -->
-            <ng-container matColumnDef="carno">
-                <mat-header-cell *matHeaderCellDef mat-sort-header> Car No. </mat-header-cell>
-                <mat-cell *matCellDef="let row"> {{row.carno}} </mat-cell>
-            </ng-container>
-
-            <ng-container matColumnDef="cartype">
-                <mat-header-cell *matHeaderCellDef mat-sort-header> Car Type </mat-header-cell>
-                <mat-cell *matCellDef="let row"> {{row.cartype}} </mat-cell>
-            </ng-container>
-
-            <!-- Color Column -->
-            <ng-container matColumnDef="stkm">
-                <mat-header-cell *matHeaderCellDef mat-sort-header> St. KM </mat-header-cell>
-                <mat-cell *matCellDef="let row"> {{row.startkm}} </mat-cell>
-            </ng-container>
-
-            <ng-container matColumnDef="enkm">
-                <mat-header-cell *matHeaderCellDef mat-sort-header> End KM </mat-header-cell>
-                <mat-cell *matCellDef="let row"> {{row.endkm}} </mat-cell>
-            </ng-container>
-
-            <!-- Color Column -->
-            <ng-container matColumnDef="sthr">
-                <mat-header-cell *matHeaderCellDef mat-sort-header> St. Hr. </mat-header-cell>
-                <mat-cell *matCellDef="let row"> {{row.starthour.toString().substr(row.starthour.toString().length - 8, 5)}} </mat-cell>
-            </ng-container>
-
-            <ng-container matColumnDef="enhr">
-                <mat-header-cell *matHeaderCellDef mat-sort-header> End Hr. </mat-header-cell>
-                <mat-cell *matCellDef="let row"> {{row.endhour.toString().substr(row.endhour.toString().length - 8, 5)}}</mat-cell>
-            </ng-container>
-
-            <!-- ID Column -->
-            <ng-container matColumnDef="hour">
-                <mat-header-cell *matHeaderCellDef mat-sort-header> Tot Hr. </mat-header-cell>
-                <mat-cell *matCellDef="let row"> {{row.hour}} </mat-cell>
-            </ng-container>
-
-            <!-- Name Column -->
-            <ng-container matColumnDef="km">
-                <mat-header-cell *matHeaderCellDef mat-sort-header> Net KM </mat-header-cell>
-                <mat-cell *matCellDef="let row"> {{row.km}} </mat-cell>
-            </ng-container>
-
-            <ng-container matColumnDef="owner">
-                <mat-header-cell *matHeaderCellDef mat-sort-header> Vendor </mat-header-cell>
-                <mat-cell *matCellDef="let row"> {{row.owner}} </mat-cell>
-            </ng-container>
-
-            <ng-container matColumnDef="exhr">
-                <mat-header-cell *matHeaderCellDef mat-sort-header> Ex. Hr. </mat-header-cell>
-                <mat-cell *matCellDef="let row"> {{row.extrahour}} </mat-cell>
-            </ng-container>
-
-            <!-- Color Column -->
-            <ng-container matColumnDef="parking">
-                <mat-header-cell *matHeaderCellDef mat-sort-header> Parking </mat-header-cell>
-                <mat-cell *matCellDef="let row"> {{row.parking}} </mat-cell>
-            </ng-container>
-
-            <ng-container matColumnDef="outstation">
-                <mat-header-cell *matHeaderCellDef mat-sort-header> Outstation </mat-header-cell>
-                <mat-cell *matCellDef="let row"> {{row.outstation}} </mat-cell>
-            </ng-container>
-
-            <ng-container matColumnDef="night">
-                <mat-header-cell *matHeaderCellDef mat-sort-header> Night </mat-header-cell>
-                <mat-cell *matCellDef="let row"> {{row.night}}</mat-cell>
-            </ng-container>
-
-            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-            <mat-row *matRowDef="let row; columns: displayedColumns;">
-            </mat-row>
-        </mat-table>
+        <table #table>
+            <tr>
+                <th>Sl. </th>
+                <th>Duty Date</th>
+                <th>Officer Name</th>
+                <th>Car No.</th>
+                <th>Car Type</th>
+                <th>St. KM</th>
+                <th>End KM</th>
+                <th>St. Hr.</th>
+                <th>End Hr.</th>
+                <th>Tot Hr.</th>
+                <th>Net KM</th>
+                <th>Vendor</th>
+                <th>Ex. Hr.</th>
+                <th>Parking</th>
+                <th>Outstation</th>
+                <th>Night</th>
+            </tr>
+            <tr *ngFor="let row of billArray">
+                <td>{{row.sl}}</td>
+                <td>{{row.dutydate | date:'dd/MM/yyyy'}}</td>
+                <td>{{row.reportto}}</td>
+                <td>{{row.carno}}</td>
+                <td>{{row.cartype}}</td>
+                <td>{{row.startkm}}</td>
+                <td>{{row.endkm}}</td>
+                <td>{{row.starthour.toString().substr(row.starthour.toString().length - 8, 5)}}</td>
+                <td>{{row.endhour.toString().substr(row.endhour.toString().length - 8, 5)}}</td>
+                <td>{{row.hour}}</td>
+                <td>{{row.km}}</td>
+                <td>{{row.owner}}</td>
+                <td>{{row.extrahour}}</td>
+                <td>{{row.parking}}</td>
+                <td>{{row.outstation}}</td>
+                <td>{{row.night}}</td>
+            </tr>
+        </table>
     </div>
 
     <!-- <div [ngStyle]="{'margin-top.px':marginTop}" id="customer" style="display: block;" class="row">

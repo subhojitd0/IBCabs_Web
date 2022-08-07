@@ -81,7 +81,7 @@ export class SaveBill implements iSaveBill {
   styleUrls: ['./mis.component.css']
 })
 export class RelianceMISComponent implements OnInit {
-  /* @ViewChild('table') table: ElementRef; */
+  @ViewChild('table') table: ElementRef; 
   billno: any;
   billdate: any;
   billdetails: any;
@@ -94,6 +94,7 @@ export class RelianceMISComponent implements OnInit {
   totalno: any;
   marginTop: any;
   fontSize: any;
+  billArray: any;
   isConfirmVisible: any = true;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -110,14 +111,14 @@ export class RelianceMISComponent implements OnInit {
     debugger;
     if(this.billdetails){
       debugger;
-      let billArray = [];
+      this.billArray = [];
       this.billdetails[0].record.forEach((val: any)=>{
-        billArray.push(val);
+        this.billArray.push(val);
       });
       this.billdetails[0].total.forEach((val: any)=>{
-        billArray.push(val);
+        this.billArray.push(val);
       });
-      billArray.forEach((val: any)=>{
+      this.billArray.forEach((val: any)=>{
         val.outstation = val.outstation === "NaN" ? "0": val.outstation;
       })
       /* billArray.push(this.billdetails[0].record);
@@ -130,9 +131,9 @@ export class RelianceMISComponent implements OnInit {
       billTot.km = this.billdetails.bodytotal[0].km;
       billTot.parking = this.billdetails.bodytotal[0].parking;
       this.billdetails.body.push(billTot); */
-      this.dataSource = new MatTableDataSource(billArray);
+      this.dataSource = new MatTableDataSource(this.billArray);
       //localStorage.setItem("billdata", "");
-      this.totalno = billArray.length;
+      this.totalno = this.billArray.length;
       /* this.roundedgross = Math.round(parseFloat(this.billdetails.tail[0].grosstotal.toString().replace(',','')));
       /* let index = this.billdetails.tail[0].grosstotal.toString().indexOf('.');
       let substringVal = this.billdetails.tail[0].grosstotal;
@@ -147,6 +148,17 @@ export class RelianceMISComponent implements OnInit {
       localStorage.setItem("removeheader", "0");
     }
     
+   }
+   export()
+   {
+     const ws: XLSX.WorkSheet=XLSX.utils.table_to_sheet(this.table.nativeElement);
+     const wb: XLSX.WorkBook = XLSX.utils.book_new();
+     XLSX.utils.book_append_sheet(wb, ws, 'MIS');
+     
+     
+     XLSX.writeFile(wb, 'MIS.xlsx');
+     this.toastr.success("Excel generation successful");
+     
    }
 /*    save()
 {
