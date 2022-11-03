@@ -189,16 +189,13 @@ export class CoalIndiaComponent implements OnInit {
       billSave.reportto = this.billdetails.head[0].reportto;
       billSave.outstation = this.billdetails.tail[0].outstation.toString();
       billSave.mode = "1";
-      this.downloadPFDServer("printdiv", billSave);
-      /* this.apiService.post(BILL_API, billSave).then((res: any)=>{ 
+      //this.downloadPFDServer("printdiv", billSave);
+      this.apiService.post(BILL_API, billSave).then((res: any)=>{ 
           debugger;
-          if(res.status === "success"){
-          //this.exportAsPDF("container");
           this.isConfirmVisible = false;
           this.toastr.success("Your bill was successfully created",'Success');
-          
-        }
-      }); */
+          this.router.navigateByUrl('/' + ROUTE_GENERATE_BILL);
+      });
      }
    }
    downloadPFDServer(div_id, billData: SaveBill){
