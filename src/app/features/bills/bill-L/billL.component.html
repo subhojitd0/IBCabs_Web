@@ -98,13 +98,13 @@
                 <td style="text-align: center;">{{row.actualkm}}</td>
                 <td *ngIf="row.sl == '1' && option24 == 'K'" style="text-align: center;" rowspan="4">{{extra24}}</td>
                 <td *ngIf="row.sl == '1' && option24 == 'K'" style="text-align: center;" rowspan="4">{{extra24moneybykm}}</td>
-                <td *ngIf="row.sl == '1' && option24 == 'K'" style="text-align: center;" rowspan="4">{{subtotal24}}</td>
+                <td *ngIf="row.sl == '1' && option24 == 'K'" style="text-align: center;" rowspan="4">{{subtotal24}}.00</td>
                 <td *ngIf="option24 == 'H'" style="text-align: center;">{{row.extrarun}}</td>
-                <td *ngIf="option24 == 'H'" style="text-align: center;">{{row.extramoney}}</td>
+                <td *ngIf="option24 == 'H'" style="text-align: center;">{{row.extrahrmoney}}</td>
                 <td *ngIf="option24 == 'H'" style="text-align: center;">{{row.subtotal}}</td>
                 <td style="text-align: center;">{{row.outstation}}</td>
                 <td style="text-align: center;">{{row.parking}}</td>
-                <td *ngIf="row.sl == '1' && option24 == 'K'" style="text-align: center;" rowspan="4">{{total24}}</td>
+                <td *ngIf="row.sl == '1' && option24 == 'K'" style="text-align: center;" rowspan="4">{{total24}}.00</td>
                 <td *ngIf="option24 == 'H'" style="text-align: center;">{{row.rowtotal}}</td>
             </tr>
             <tr *ngFor="let row of duration12duties">
@@ -116,13 +116,13 @@
                 <td style="text-align: center;">{{row.actualkm}}</td>
                 <td *ngIf="row.sl == '1' && option12 == 'K'" style="text-align: center;" rowspan="4">{{extra12}}</td>
                 <td *ngIf="row.sl == '1' && option12 == 'K'" style="text-align: center;" rowspan="4">{{extra12moneybykm}}</td>
-                <td *ngIf="row.sl == '1' && option12 == 'K'" style="text-align: center;" rowspan="4">{{subtotal12}}</td>
+                <td *ngIf="row.sl == '1' && option12 == 'K'" style="text-align: center;" rowspan="4">{{subtotal12}}.00</td>
                 <td *ngIf="option12 == 'H'" style="text-align: center;">{{row.extrarun}}</td>
-                <td *ngIf="option12 == 'H'" style="text-align: center;">{{row.extramoney}}</td>
+                <td *ngIf="option12 == 'H'" style="text-align: center;">{{row.extrahrmoney}}</td>
                 <td *ngIf="option12 == 'H'" style="text-align: center;">{{row.subtotal}}</td>
                 <td style="text-align: center;">{{row.outstation}}</td>
                 <td style="text-align: center;">{{row.parking}}</td>
-                <td *ngIf="row.sl == '1' && option12 == 'K'" style="text-align: center;" rowspan="4">{{total12}}</td>
+                <td *ngIf="row.sl == '1' && option12 == 'K'" style="text-align: center;" rowspan="4">{{total12}}.00</td>
                 <td *ngIf="option12 == 'H'" style="text-align: center;">{{row.rowtotal}}</td>
             </tr>
             <tr>
@@ -133,7 +133,7 @@
                 <th style="text-align: center;">{{billdetails.bodytotal.actualhour}}</th>
                 <th style="text-align: center;">{{billdetails.bodytotal.actualkm}}</th>
                 <th></th>
-                <th style="text-align: center;">{{billdetails.bodytotal.extramoney}}</th>
+                <th style="text-align: center;">{{totalovertime}}</th>
                 <th style="text-align: center;">{{billdetails.bodytotal.subtotal}}</th>
                 <th style="text-align: center;">{{billdetails.bodytotal.outstation}}</th>
                 <th style="text-align: center;">{{billdetails.bodytotal.parking}}</th>
@@ -214,7 +214,7 @@
                     </tr>
                     <tr>
                         <td class="meta-head" style="text-align: right !important;">Over Time During Month Rs.</td>
-                        <td class="meta-content">{{billdetails.tail.overtime}}</td>
+                        <td class="meta-content">{{totalovertime}}.00</td>
                     </tr>
                     <tr *ngIf="billdetails.tail.customfa">
                         <td class="meta-head" style="text-align: right !important;">{{billdetails.tail.customfa}}</td>
@@ -222,7 +222,7 @@
                     </tr>
                     <tr>
                         <td class="meta-head" style="text-align: right !important;">Subtotal Rs.</td>
-                        <td class="meta-content">{{billdetails.tail.subtotal}}</td>
+                        <td class="meta-content">{{totalsubtotal}}.00</td>
                     </tr>
                     <tr>
                         <td class="meta-head" style="text-align: right !important;"><b>Total Parking Rs.</b></td>
@@ -234,7 +234,7 @@
                     </tr>
                     <tr>
                         <td class="meta-head" style="text-align: right !important;"><b>Gross Amount Rs.</b></td>
-                        <td class="meta-content">{{normalgross}}</td>
+                        <td class="meta-content">{{totalgross}}</td>
                     </tr>
                     <tr>
                         <td class="meta-head" style="text-align: right !important;"><b>Rounded Gross Amount Rs.</b></td>

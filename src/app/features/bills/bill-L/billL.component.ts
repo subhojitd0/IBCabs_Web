@@ -11,7 +11,6 @@ import jspdf from 'jspdf';
 import html2canvas from 'html2canvas';
 import { ROUTE_CAR, ROUTE_GENERATE_BILL, ROUTE_OWNER } from 'src/shared/constants/constant';
 import { BillUploadComponent } from '../bill-upload/bill-upload.component';
-import { parse } from 'path';
 
 export interface iBillDet {
   sl: string;
@@ -119,6 +118,9 @@ export class BillLComponent implements OnInit {
   total24: number = 0;
   subtotal12: number = 0;
   total12: number = 0;
+  totalovertime : number = 0;
+  totalsubtotal: number = 0;
+  totalgross: number = 0;
   constructor(private router: Router,private apiService: ApiService, public dialog: MatDialog, private toastr: ToastrService) {
     
    }
@@ -172,6 +174,7 @@ export class BillLComponent implements OnInit {
         let hrdiff = parseFloat(element.actualhour) - parseFloat(element.monthlyhour);
         element.extrarun = hrdiff;
         let hrMoney = hrdiff * parseFloat(element.extramoneyhour);
+        element.extrahrmoney = hrMoney;
         extra24moneybyhr = extra24moneybyhr + hrMoney;
         duration24actualKM = duration24actualKM + parseFloat(element.actualkm);
         duration24totalKM = duration24totalKM + parseFloat(element.monthlykm);
@@ -187,6 +190,7 @@ export class BillLComponent implements OnInit {
         let hrdiff = parseFloat(element.actualhour) - parseFloat(element.monthlyhour);
         element.extrarun = hrdiff;
         let hrMoney = hrdiff * parseFloat(element.extramoneyhour);
+        element.extrahrmoney = hrMoney;
         extra12moneybyhr = extra12moneybyhr + hrMoney;
         duration12actualKM = duration12actualKM + parseFloat(element.actualkm);
         duration12totalKM = duration12totalKM + parseFloat(element.monthlykm);
@@ -202,20 +206,26 @@ export class BillLComponent implements OnInit {
 
       if(extra12moneybyhr > this.extra12moneybykm){
         this.option12 = "H";
+        this.totalovertime = this.totalovertime + extra12moneybyhr;
       }
       else{
         this.option12 = "K";
         this.extra12 = duration12actualKM - duration12totalKM;
-        this.total12 = this.subtotal12 + this.total12 + this.extra12moneybykm;
+        this.subtotal12 = this.subtotal12 + this.extra12moneybykm;
+        this.total12 = this.subtotal12 + this.total12 ;
+        this.totalovertime = this.totalovertime + this.extra12moneybykm;
       }
 
       if(extra24moneybyhr > this.extra24moneybykm){
         this.option24 = "H";
+        this.totalovertime = this.totalovertime + extra24moneybyhr;
       }
       else{
         this.option24 = "K";
         this.extra24 = duration24actualKM - duration24totalKM;
-        this.total24 = this.subtotal24 + this.total24 + this.extra24moneybykm;
+        this.subtotal24 = this.subtotal24 + this.extra24moneybykm;
+        this.total24 = this.subtotal24 + this.total24;
+        this.totalovertime = this.totalovertime + this.extra24moneybykm;
       }
 
       this.count24 = this.billdetails.body.filter(x=>x.duration === 24).length;
@@ -223,10 +233,12 @@ export class BillLComponent implements OnInit {
       this.billdetails.body.forEach(element =>{
           this.count = this.count + 1;
       });
-      
+      debugger;
+      this.totalsubtotal = parseFloat(this.billdetails.bodytotal.package) + this.totalovertime;
+      this.totalgross = this.totalsubtotal + Math.round(parseFloat(this.billdetails.tail.parking.toString().replace(',',''))) + Math.round(parseFloat(this.billdetails.tail.outstationamount.toString().replace(',','')));
       this.roundedgross = this.billdetails.tail.grosstotal.toString().replace(',','');
       this.normalgross = this.roundedgross;
-      this.roundedgross = Math.round(this.roundedgross).toString();
+      this.roundedgross = Math.round(this.totalgross).toString();
       
       let gstRounded = Math.round(parseFloat(this.billdetails.gst.total.toString().replace(',','')));
       this.amountInWord = this.apiService.convertAmountToWord(this.roundedgross);
