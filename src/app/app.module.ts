@@ -79,6 +79,7 @@ import { BillJComponent } from './features/bills/bill-j/billj.component';
 import { AirIndiaComponent } from './features/bills/air-india/airindia.component';
 import { MessageComponent } from './features/message/message.component';
 import { LogoutComponent } from './features/logout/logout.component';
+import { BillLComponent } from './features/bills/bill-L/billL.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -136,7 +137,8 @@ import { LogoutComponent } from './features/logout/logout.component';
     BillJComponent,
     AirIndiaComponent,
     MessageComponent,
-    LogoutComponent
+    LogoutComponent,
+    BillLComponent
   ],
   imports: [
     BrowserModule,

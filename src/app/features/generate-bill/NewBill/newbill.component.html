@@ -51,6 +51,9 @@
                     <mat-option value="14">
                         Bill K - Air India
                     </mat-option>
+                    <mat-option value="15">
+                        Bill L - Cumulative ABP Format
+                    </mat-option>
                 </mat-select>
             </div>
         </div>
@@ -91,7 +94,7 @@
         </div>
 
 
-        <div class="row" *ngIf="billDetails.format !== '7' && billDetails.format !== '8'">
+        <div class="row" *ngIf="billDetails.format !== '7' && billDetails.format !== '8' && billDetails.format !== '15'">
             <div class="col-sm-6" *ngIf="showBillFrom">
                 <label>Bill Date From</label>
                 <input name="billfrom" (blur)="somethingChanged()" type="date" class="form-control" placeholder="Enter Contact Number" [(ngModel)]="billDetails.from">
