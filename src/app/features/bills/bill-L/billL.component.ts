@@ -121,6 +121,8 @@ export class BillLComponent implements OnInit {
   totalovertime : number = 0;
   totalsubtotal: number = 0;
   totalgross: number = 0;
+  km24diff: number;
+  km12diff: number;
   constructor(private router: Router,private apiService: ApiService, public dialog: MatDialog, private toastr: ToastrService) {
     
    }
@@ -201,8 +203,10 @@ export class BillLComponent implements OnInit {
       });
 
       debugger;
-      this.extra24moneybykm = (duration24actualKM - duration24totalKM) * kmrate24;
-      this.extra12moneybykm = (duration12actualKM - duration12totalKM) * kmrate12;
+      this.km24diff = (duration24actualKM - duration24totalKM) > 0 ? (duration24actualKM - duration24totalKM) : 0;
+      this.km12diff = (duration12actualKM - duration12totalKM) > 0 ? (duration12actualKM - duration12totalKM) : 0;
+      this.extra24moneybykm = this.km24diff * kmrate24;
+      this.extra12moneybykm = this.km12diff * kmrate12;
 
       if(extra12moneybyhr > this.extra12moneybykm){
         this.option12 = "H";
@@ -236,8 +240,6 @@ export class BillLComponent implements OnInit {
       debugger;
       this.totalsubtotal = parseFloat(this.billdetails.bodytotal.package) + this.totalovertime;
       this.totalgross = this.totalsubtotal + Math.round(parseFloat(this.billdetails.tail.parking.toString().replace(',',''))) + Math.round(parseFloat(this.billdetails.tail.outstationamount.toString().replace(',','')));
-      this.roundedgross = this.billdetails.tail.grosstotal.toString().replace(',','');
-      this.normalgross = this.roundedgross;
       this.roundedgross = Math.round(this.totalgross).toString();
       
       let gstRounded = Math.round(parseFloat(this.billdetails.gst.total.toString().replace(',','')));

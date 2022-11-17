@@ -96,7 +96,7 @@
                 <td style="text-align: center;">{{row.package}}</td>
                 <td style="text-align: center;">{{row.actualhour}}</td>
                 <td style="text-align: center;">{{row.actualkm}}</td>
-                <td *ngIf="row.sl == '1' && option24 == 'K'" style="text-align: center;" rowspan="4">{{extra24}}</td>
+                <td *ngIf="row.sl == '1' && option24 == 'K'" style="text-align: center;" rowspan="4">{{km24diff}}</td>
                 <td *ngIf="row.sl == '1' && option24 == 'K'" style="text-align: center;" rowspan="4">{{extra24moneybykm}}</td>
                 <td *ngIf="row.sl == '1' && option24 == 'K'" style="text-align: center;" rowspan="4">{{subtotal24}}.00</td>
                 <td *ngIf="option24 == 'H'" style="text-align: center;">{{row.extrarun}}</td>
@@ -114,7 +114,7 @@
                 <td style="text-align: center;">{{row.package}}</td>
                 <td style="text-align: center;">{{row.actualhour}}</td>
                 <td style="text-align: center;">{{row.actualkm}}</td>
-                <td *ngIf="row.sl == '1' && option12 == 'K'" style="text-align: center;" rowspan="4">{{extra12}}</td>
+                <td *ngIf="row.sl == '1' && option12 == 'K'" style="text-align: center;" rowspan="4">{{km12diff}}</td>
                 <td *ngIf="row.sl == '1' && option12 == 'K'" style="text-align: center;" rowspan="4">{{extra12moneybykm}}</td>
                 <td *ngIf="row.sl == '1' && option12 == 'K'" style="text-align: center;" rowspan="4">{{subtotal12}}.00</td>
                 <td *ngIf="option12 == 'H'" style="text-align: center;">{{row.extrarun}}</td>
