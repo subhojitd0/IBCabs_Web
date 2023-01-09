@@ -51,6 +51,8 @@ export interface iSaveBill {
   reportto: any;
   nightstart:any;
   nightend:any;
+  fa: string;
+  favalue: string;
 }
 export class SaveBill implements iSaveBill {
   billnumber: string;
@@ -72,6 +74,8 @@ export class SaveBill implements iSaveBill {
   reportto: any;
   nightstart:any;
   nightend:any;
+  fa: string;
+  favalue: string;
 }
 @Component({
   selector: 'app-dailyot',
@@ -160,6 +164,8 @@ export class DailyOTComponent implements OnInit {
       billSave.outstation = this.billdetails.bodytotal[0].outstation;
       billSave.nightstart = localStorage.getItem("nightstart");
       billSave.nightend = localStorage.getItem("nightend");
+      billSave.fa= this.billdetails.tail[0].customfa;
+      billSave.favalue=this.billdetails.tail[0].customfavalue;
       billSave.mode = "1";
 
       this.apiService.post(BILL_API, billSave).then((res: any)=>{ 

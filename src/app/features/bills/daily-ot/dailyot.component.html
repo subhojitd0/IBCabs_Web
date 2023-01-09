@@ -195,6 +195,11 @@
                         <td class="meta-head" style="text-align: right !important;">Subtotal: Rs.</td>
                         <td class="meta-content">{{billdetails.tail[0].subtotal}}</td>
                     </tr>
+                    <tr *ngIf="billdetails.tail[0].customfa">
+                        <td></td>
+                        <td class="meta-head" style="text-align: right !important;">{{billdetails.tail[0].customfa}}</td>
+                        <td class="meta-content">{{billdetails.tail[0].customfavalue}}</td>
+                    </tr>
                     <tr>
                         <td></td>
                         <td class="meta-head" style="text-align: right !important;">Total Parking: Rs.</td>

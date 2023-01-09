@@ -1,15 +1,15 @@
 <div class="loading-screen-wrapper" *ngIf="loading">
-  <div class="loading-screen-icon">
-    Loading...
-  </div>
+    <div class="loading-screen-icon">
+        Loading...
+    </div>
 </div>
-        <div class="container">
-        <mat-card>
-          <mat-card-header>
+<div class="container">
+    <mat-card>
+        <mat-card-header>
             <div mat-card-avatar class="avatar-image-partyhead"></div>
-            <mat-card-title>Bill Register for 
+            <mat-card-title>Bill Register for
 
-              <select (change)="onChangeMonth($event.target.value)" [value]="month">
+                <select (change)="onChangeMonth($event.target.value)" [value]="month">
                 <!-- <option value="all">
                   ALL
                 </option> -->
@@ -49,9 +49,8 @@
                 <option value="12">
                   December
                 </option>
-              </select>
-              - 
-              <select (change)="onChangeYear($event.target.value)" [value]="year">
+              </select> -
+                <select (change)="onChangeYear($event.target.value)" [value]="year">
                 <!-- <option value="all">
                   ALL
                 </option> -->
@@ -79,74 +78,82 @@
                 <option value="2027">
                   2027
                 </option>
+                <option value="2028">
+                  2028
+                </option>
+                <option value="2029">
+                  2029
+                </option>
+                <option value="2030">
+                  2030
+                </option>
               </select>
             </mat-card-title>
             <mat-card-subtitle>View, Delete and View the Bills Here.</mat-card-subtitle>
-          </mat-card-header>
-        </mat-card>
-            <button *ngIf="billrole === '1'" mat-stroked-button (click)="openDialog(0)">Create New Bill</button>
-            <button *ngIf="billrole === '1'" style="margin-left: 10px;" mat-stroked-button (click)="openAdvancedDialog(0)">Create Advanced Bill</button>
-            <mat-form-field class="mid" style="margin-left: 25%;">
-                <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search Bill">
-              </mat-form-field>
-              <mat-table [dataSource]="dataSource" matSort style="margin-left:-10%;width:130%;">
+        </mat-card-header>
+    </mat-card>
+    <button *ngIf="billrole === '1'" mat-stroked-button (click)="openDialog(0)">Create New Bill</button>
+    <button *ngIf="billrole === '1'" style="margin-left: 10px;" mat-stroked-button (click)="openAdvancedDialog(0)">Create Advanced Bill</button>
+    <mat-form-field class="mid" style="margin-left: 25%;">
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search Bill">
+    </mat-form-field>
+    <mat-table [dataSource]="dataSource" matSort style="margin-left:-10%;width:130%;">
 
-                <!-- ID Column -->
-                <ng-container matColumnDef="billid">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header> Sl No.  </mat-header-cell>
-                  <mat-cell *matCellDef="let row"> {{row.billid}} </mat-cell>
-                </ng-container>
-            
-                <!-- Name Column -->
-                <ng-container matColumnDef="billnumber">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header> Bill No. </mat-header-cell>
-                  <mat-cell *matCellDef="let row"> {{row.billnumber}} </mat-cell>
-                </ng-container>
-            
-                <!-- Color Column -->
-                <ng-container matColumnDef="party">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header> Party </mat-header-cell>
-                  <mat-cell *matCellDef="let row"> {{row.party}} </mat-cell>
-                </ng-container>
-                <!-- ID Column -->
-                <ng-container matColumnDef="billfrom">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header> Bill From  </mat-header-cell>
-                  <mat-cell *matCellDef="let row"> {{row.billfrom}} </mat-cell>
-                </ng-container>
-            
-                <!-- Name Column -->
-                <ng-container matColumnDef="billto">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header> Bill To </mat-header-cell>
-                  <mat-cell *matCellDef="let row"> {{row.billto}} </mat-cell>
-                </ng-container>
-            
-                <!-- Color Column -->
-                <ng-container matColumnDef="billdate">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header> Generated On </mat-header-cell>
-                  <mat-cell *matCellDef="let row"> {{row.billdate}} </mat-cell>
-                </ng-container>
+        <!-- ID Column -->
+        <ng-container matColumnDef="billid">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Sl No. </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.billid}} </mat-cell>
+        </ng-container>
 
-                <ng-container matColumnDef="option">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header> Options </mat-header-cell>
-                    <mat-cell *matCellDef="let row" [style.color]="row.option">
-                        <span style="margin-left: 10px; margin-right: 10px; cursor: pointer;" class="material-icons" (click)="downloadBill(row)">
+        <!-- Name Column -->
+        <ng-container matColumnDef="billnumber">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Bill No. </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.billnumber}} </mat-cell>
+        </ng-container>
+
+        <!-- Color Column -->
+        <ng-container matColumnDef="party">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Party </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.party}} </mat-cell>
+        </ng-container>
+        <!-- ID Column -->
+        <ng-container matColumnDef="billfrom">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Bill From </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.billfrom}} </mat-cell>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="billto">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Bill To </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.billto}} </mat-cell>
+        </ng-container>
+
+        <!-- Color Column -->
+        <ng-container matColumnDef="billdate">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Generated On </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.billdate}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="option">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Options </mat-header-cell>
+            <mat-cell *matCellDef="let row" [style.color]="row.option">
+                <span style="margin-left: 10px; margin-right: 10px; cursor: pointer;" class="material-icons" (click)="downloadBill(row)">
                             download
                         </span> |
-                        <span *ngIf="billrole === '1' && delete === '1'" style="margin-left: 10px; margin-right: 10px; cursor: pointer;" class="material-icons" (click)="deleteBill(row.billid)">
+                <span *ngIf="billrole === '1' && delete === '1'" style="margin-left: 10px; margin-right: 10px; cursor: pointer;" class="material-icons" (click)="deleteBill(row.billid)">
                             delete
-                        </span>    
-                    </mat-cell>
-                  </ng-container>
-            
-                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-                <mat-row *matRowDef="let row; columns: displayedColumns;">
-                </mat-row>
-              </mat-table>
-            <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+                        </span>
+            </mat-cell>
+        </ng-container>
 
-            <div *ngFor="let option of billRegDetails" style="display: none;">
-              <div [innerHTML]="option.path" id="{{ option.billid }}">
-              </div>
-            </div>
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;">
+        </mat-row>
+    </mat-table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+
+    <div *ngFor="let option of billRegDetails" style="display: none;">
+        <div [innerHTML]="option.path" id="{{ option.billid }}">
         </div>
-        
+    </div>
+</div>

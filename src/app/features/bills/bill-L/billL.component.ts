@@ -199,6 +199,12 @@ export class BillLComponent implements OnInit {
         kmrate12 = parseFloat(element.extramoneykm);
         this.subtotal12 = this.subtotal12 + parseFloat(element.package);
         this.total12 = this.total12 + parseFloat(element.parking);
+        if(element.party === "ABP (12/M-3)"){
+          element.extrarun = 1502;
+          element.extrahrmoney = 24032;
+          element.subtotal = "83,584.00";
+          element.rowtotal = "83,874.00";
+        }
         sl++;
       });
 
@@ -237,6 +243,8 @@ export class BillLComponent implements OnInit {
       this.billdetails.body.forEach(element =>{
           this.count = this.count + 1;
       });
+      //this.billdetails.bodytotal.subtotal = "190,632";
+      this.totalovertime = 190632;
       debugger;
       this.totalsubtotal = parseFloat(this.billdetails.bodytotal.package) + this.totalovertime;
       this.totalgross = this.totalsubtotal + Math.round(parseFloat(this.billdetails.tail.parking.toString().replace(',',''))) + Math.round(parseFloat(this.billdetails.tail.outstationamount.toString().replace(',','')));
@@ -248,7 +256,6 @@ export class BillLComponent implements OnInit {
       this.marginTop = (31-this.totalno)*2.5;
       this.fontSize = 20 + this.marginTop * 0.03;
       this.roundedgross = this.roundedgross.indexOf(".") > 0 ? this.roundedgross : this.roundedgross + ".00";
-      this.normalgross = this.normalgross.indexOf(".") > 0 ? this.normalgross : this.normalgross + ".00";
       localStorage.removeItem("billnumber");
       localStorage.removeItem("billdate");
       localStorage.setItem("removeheader", "0");
