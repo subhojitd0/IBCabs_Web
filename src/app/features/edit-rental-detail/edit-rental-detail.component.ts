@@ -699,8 +699,9 @@ exportddr(){
       });
     }
   }
-  sendMessage(id: any){
+  sendMessage(id: any, party: any){
     localStorage.setItem('selectedrentalid', id );
+    localStorage.setItem('selectedrentalparty', party );
     const dialogRef = this.dialog.open(MessageModalComponent);
 
     dialogRef.afterClosed().subscribe(result => {

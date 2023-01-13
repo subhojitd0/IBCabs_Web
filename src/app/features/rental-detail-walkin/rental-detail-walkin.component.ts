@@ -61,7 +61,8 @@ export interface NewRental {
   routtime: string,
   rinkm:string,
   routkm:string,
-  f: string
+  f: string,
+  pg: string
 }
 export class RentalAdd implements NewRental {
   mode: string;
@@ -111,6 +112,7 @@ export class RentalAdd implements NewRental {
   rinkm:string;
   routkm:string;
   f: string;
+  pg: string = "update";
 }
 
 @Component({
@@ -291,6 +293,7 @@ export class RentalDetailWalkinComponent implements OnInit  {
         }
         else{
           this.rentalAdd.mode = "2";
+          this.rentalAdd.pg = "";
           this.rentalAdd.dutyid = id;
           this.rentalAdd.f = "w";
         }
@@ -339,6 +342,7 @@ export class RentalDetailWalkinComponent implements OnInit  {
         }
         else{
           this.rentalAdd.mode = "2";
+          this.rentalAdd.pg = "";
           this.rentalAdd.dutyid = id;
           this.rentalAdd.f = "w";
         }
@@ -380,6 +384,7 @@ export class RentalDetailWalkinComponent implements OnInit  {
         }
         else{
           this.rentalAdd.mode = "2";
+          this.rentalAdd.pg = "";
           this.rentalAdd.dutyid = id;
           this.rentalAdd.f = "w";
         }
@@ -611,6 +616,7 @@ export class RentalDetailWalkinComponent implements OnInit  {
         this.apiService.post(PARTY_HEAD_API, jsonParty).then((res: any)=>{ 
           ot = res.outstation;
           this.rentalAdd.mode = "2";
+          this.rentalAdd.pg = "";
           debugger;
         if(this.rentalAdd.gintime){
           this.rentalAdd.gintime = this.rentalAdd.gintime.replace(" ","T");
