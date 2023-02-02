@@ -135,6 +135,7 @@ export class BillLComponent implements OnInit {
     let billdate = localStorage.getItem("billdate");
     let billno = localStorage.getItem("billnumber");
     let billcalltype = localStorage.getItem("billcaltype");
+    let billYear = localStorage.getItem("billyear");
     if(billdate){
       this.isConfirmVisible = false;
       this.billdate = billdate;
@@ -147,8 +148,8 @@ export class BillLComponent implements OnInit {
     this.billfrom = localStorage.getItem("billfrom");
     this.billto = localStorage.getItem("billto");
     this.month = localStorage.getItem("billmonth");
-    this.billfrom = new Date(new Date().getFullYear(), parseInt(this.month)-1, 1,10,0);
-    this.billto = new Date(new Date().getFullYear(), parseInt(this.month), 0,10,0); 
+    this.billfrom = new Date(parseInt(billYear), parseInt(this.month)-1, 1,10,0);
+    this.billto = new Date(parseInt(billYear), parseInt(this.month), 0,10,0); 
     debugger;
     
     if(this.billdetails){
@@ -199,12 +200,12 @@ export class BillLComponent implements OnInit {
         kmrate12 = parseFloat(element.extramoneykm);
         this.subtotal12 = this.subtotal12 + parseFloat(element.package);
         this.total12 = this.total12 + parseFloat(element.parking);
-        if(element.party === "ABP (12/M-3)"){
+        /* if(element.party === "ABP (12/M-3)"){
           element.extrarun = 1502;
           element.extrahrmoney = 24032;
           element.subtotal = "83,584.00";
           element.rowtotal = "83,874.00";
-        }
+        } */
         sl++;
       });
 
