@@ -188,12 +188,29 @@ export class BillLComponent implements OnInit {
       });
 
       sl = 1;
+      let tot12Km = 0;
+      let actual12Km = 0;
+      this.duration12duties.forEach(element => {
+        actual12Km = actual12Km + parseFloat(element.actualkm);
+        tot12Km = tot12Km + parseFloat(element.monthlykm);
+      });
       this.duration12duties.forEach(element => {
         element.sl = sl;
         let hrdiff = parseFloat(element.actualhour) - parseFloat(element.monthlyhour);
         element.extrarun = hrdiff;
         let hrMoney = hrdiff * parseFloat(element.extramoneyhour);
         element.extrahrmoney = hrMoney;
+        if(tot12Km < actual12Km){
+          let duration12actualKM1 = parseFloat(element.actualkm);
+          let duration12totalKM1 = parseFloat(element.monthlykm);
+          let kmrate121 = parseFloat(element.extramoneykm);
+          let extrakmrate = kmrate121 * (duration12actualKM1 - duration12totalKM1);
+          if(extrakmrate > hrMoney){
+            element.extrarun = (duration12actualKM1 - duration12totalKM1);
+            element.extrahrmoney = extrakmrate;
+            hrMoney = extrakmrate; 
+          }
+        }
         extra12moneybyhr = extra12moneybyhr + hrMoney;
         duration12actualKM = duration12actualKM + parseFloat(element.actualkm);
         duration12totalKM = duration12totalKM + parseFloat(element.monthlykm);
@@ -214,7 +231,7 @@ export class BillLComponent implements OnInit {
       this.km12diff = (duration12actualKM - duration12totalKM) > 0 ? (duration12actualKM - duration12totalKM) : 0;
       this.extra24moneybykm = this.km24diff * kmrate24;
       this.extra12moneybykm = this.km12diff * kmrate12;
-
+      debugger;
       if(extra12moneybyhr > this.extra12moneybykm){
         this.option12 = "H";
         this.totalovertime = this.totalovertime + extra12moneybyhr;
@@ -245,7 +262,7 @@ export class BillLComponent implements OnInit {
           this.count = this.count + 1;
       });
       //this.billdetails.bodytotal.subtotal = "190,632";
-      this.totalovertime = 190632;
+      //this.totalovertime = 190632;
       debugger;
       this.totalsubtotal = parseFloat(this.billdetails.bodytotal.package) + this.totalovertime;
       this.totalgross = this.totalsubtotal + Math.round(parseFloat(this.billdetails.tail.parking.toString().replace(',',''))) + Math.round(parseFloat(this.billdetails.tail.outstationamount.toString().replace(',','')));
@@ -278,7 +295,7 @@ export class BillLComponent implements OnInit {
       //billSave.subject =  localStorage.getItem("billsubject");
       billSave.gsttype = localStorage.getItem("billgst");
       billSave.parkingtype = localStorage.getItem("billparking");
-      billSave.billtype = "E";
+      billSave.billtype = "L";
       billSave.totalhr = this.billdetails.bodytotal.actualhour;
       billSave.totalkm = this.billdetails.bodytotal.actualkm;
       billSave.fa= this.billdetails.tail.customfa;
