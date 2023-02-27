@@ -104,6 +104,12 @@ export class MessageComponent implements OnInit {
         this.msg.drivernumber = res.contact;
       });
   }
+  fillnumber(){
+    if(this.msglist.filter(x=>x.party === this.msg.party)){
+      this.msg.partynumber = this.msglist.filter(x=>x.party === this.msg.party)[0].partynumber;
+    }
+    this.msgdisplay();
+  }
   msgdisplay(){
     if(this.showdriver){
       this.formdrivermsg();
