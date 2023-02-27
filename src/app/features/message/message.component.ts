@@ -57,6 +57,7 @@ export class MessageComponent implements OnInit {
   alldrivernames: any;
   allcarno: any;
   filteredOptionsCar: Observable<any[]>;
+  filteredOptionsParty: Observable<any[]>;
   filteredOptionsCarType: Observable<any[]>;
   filteredOptionsDriver: Observable<any[]>;
   alldrivers: any;
@@ -68,6 +69,7 @@ export class MessageComponent implements OnInit {
   message: string;
   msglist : msgclass[] = [];
   partymessage: string;
+  allparty: string[];
   constructor(private _formBuilder: FormBuilder,private router: Router,private apiService: ApiService, private toastr: ToastrService) {
     debugger;
     this.msg = new msgclass();
@@ -116,6 +118,8 @@ export class MessageComponent implements OnInit {
     this.msg.mode = 0;
     this.apiService.post(MSG_API, this.msg).then((res: any)=>{ 
       this.msglist = res.result;
+      this.allparty = this.msglist.map(x=>x.party);
+      this.filteredOptionsParty = this.firstFormGroup.get('PartyControl').valueChanges.pipe(startWith(''),map(value => this._filterParty(value)));
     });
     this.allcars = JSON.parse(localStorage.getItem('allcars'));
     this.alldrivers = JSON.parse(localStorage.getItem('alldrivers'));
@@ -155,6 +159,9 @@ export class MessageComponent implements OnInit {
     body = body.replace("{13}", "");
     body = body.replace("{14}", "");
     body = body.replace("{15}", "");
+    body = body.replace("{16}", "");
+    body = body.replace("{18}", this.msg.partynumber);
+    body = body.replace("{17}", "");
     /* body = body.replace("{8}", this.msg.cartype);
     body = body.replace("{9}", new Date().getUTCFullYear() + "/" + (new Date().getUTCMonth() + 1) + "/" + new Date().getUTCDate());
     body = body.replace("{6}", this.msg.msgtime);
@@ -198,6 +205,10 @@ export class MessageComponent implements OnInit {
   public _filterCar(value: string): string[] {
     const filterValue = value.toLowerCase();
     return this.allcarno.filter(client => client.toLowerCase().includes(filterValue));
+  }
+  public _filterParty(value: string): string[] {
+    const filterValue = value.toLowerCase();
+    return this.allparty.filter(client => client.toLowerCase().includes(filterValue));
   }
   sendmessagebtndriver(){
     if(!(this.msg.party && this.msg.partynumber && this.msg.driver && this.msg.drivernumber && this.msg.carnumber && this.msg.cartype)){

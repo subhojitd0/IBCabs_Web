@@ -103,7 +103,8 @@ export const CAR_ASSIGNED_MESSAGE_TEMPLATE = "Dear%20Customer%0AThanks%20for%20c
 export const DRIVER_MESSAGE_TEMPLATE = "Passenger%20Details%0ABooking%20ID%20{0}%0AName%20{1}%20MobileNumber{2}%0AVehicle%20{3}%20{4}%0ADate%20{5}%0AReporting%20Time%20{6}%0AReporting%20Address%20{7}%0ARegards%20IB%20CABS%0ATEL%3A%20033%2024246551%2C%20Mob%3A%209830800776";
 
 export const CAR_ASSIGNED_AIRPORT_TEMPLATE = "Dear%20{0}%20{1}%20{2}%20your%20cab%20booking%20ID%20is%20{3}%20for%20{4}%20at%20{5}%0AReporting%20at%3A%20{6}%20{7}%20{8}%20{9}%0ADriver%3A%20{10}%20{11}%20{12}%20%20%20contact%20no%3A%20{13}%20{14}%0AVehicle%20no%3A%20{15}%20{16}%20{17}%0AThanking%20you,%0Awww.ibcabs.com%0ASupport(NTA)%3A%209830117241";
-export const DRIVER_MESSAGE_AIRPORT_TEMPLATE = "Booking%20ID%3A%20{0}%0ADear%20{1}%20{2}%20{3}%20Car%20no%3A%20{4}%20{5}%20{6}%0AYour%20duty%20for%20{7}%20{8}%20{9}%20on%20{10}%20at%20{11}%0AReporting%20at%3A%20{12}%20{13}%20{14}%20{15}%0AThanking%20you,%0Awww.ibcabs.com/%209830117241";
+//export const DRIVER_MESSAGE_AIRPORT_TEMPLATE = "Booking%20ID%3A%20{0}%0ADear%20{1}%20{2}%20{3}%20Car%20no%3A%20{4}%20{5}%20{6}%0AYour%20duty%20for%20{7}%20{8}%20{9}%20on%20{10}%20at%20{11}%0AReporting%20at%3A%20{12}%20{13}%20{14}%20{15}%0AThanking%20you,%0Awww.ibcabs.com/%209830117241";
+export const DRIVER_MESSAGE_AIRPORT_TEMPLATE = "Booking%20ID%3A%20{0}%0ADear%20{1}%20{2}%20{3}%20Car%20no%3A%20{4}%20{5}%20{6}%0AYour%20duty%20for%20{7}%20{8}%20{9}%20Contact%20no%20%3A%20{16}%20{17}%20{18}%20on%20{10}%20at%20{11}%0AReporting%20at%3A%20{12}%20{13}%20{14}%20{15}%0AThanking%20you,%0Awww.ibcabs.com/%209830117241";
 
 export const MESSAGE_METHOD = "SendMessage";
 export const MESSAGE_TYPE = "TEXT";

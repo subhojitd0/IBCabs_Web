@@ -7,7 +7,12 @@
                     <div class="col-sm-5">
                         <mat-form-field style="width: 80%; margin-right: 20px;">
                             <mat-label>Party</mat-label>
-                            <input (blur)="msgdisplay()" name="partymaster" formControlName="PartyControl" matInput placeholder="Enter the party name here" [(ngModel)]="msg.party">
+                            <input type="text" (blur)="msgdisplay()" name="partymaster" placeholder="Enter the party name here" formControlName="PartyControl" matInput [(ngModel)]="msg.party" [matAutocomplete]="auto">
+                            <mat-autocomplete #auto="matAutocomplete">
+                                <mat-option *ngFor="let option of filteredOptionsParty | async" [value]="option">
+                                    {{option}}
+                                </mat-option>
+                            </mat-autocomplete>
                         </mat-form-field>
                     </div>
                     <div class="col-sm-5">

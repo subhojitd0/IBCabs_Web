@@ -24,7 +24,7 @@
                 <mat-label>Party Name</mat-label>
                 <input [matAutocomplete]="auto" matInput placeholder="Enter the party name here" [(ngModel)]="rentalAdd.party" formControlName="PartyControl" required>
                 <mat-autocomplete #auto="matAutocomplete" (optionSelected)="changeparty()">
-                    <mat-option *ngFor="let option of partylist | async" [value]="option">
+                    <mat-option *ngFor="let option of partylist" [value]="option">
                         {{option}}
                     </mat-option>
                 </mat-autocomplete>
