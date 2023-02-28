@@ -149,7 +149,7 @@ export class CoalIndiaComponent implements OnInit {
       let gstRounded = Math.round(parseFloat(this.billdetails.gst[0].total.toString().replace(',','')));
       this.amountInWord = this.apiService.convertAmountToWord(this.roundedgross);
       this.gstamountinwords = this.apiService.convertAmountToWord(gstRounded);
-      this.marginTop = (31-this.totalno)*2.5;
+      this.marginTop = (31- this.totalno) > 0 ? (31-this.totalno)*2.5 : 0;
       this.fontSize = 20 + this.marginTop * 0.03;
       localStorage.removeItem("billnumber");
       localStorage.removeItem("billdate");
