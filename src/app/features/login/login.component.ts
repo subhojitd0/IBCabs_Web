@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
       "username":this.username,
       "password":this.password
     };
-    if(this.username === "msg" && this.password === "msg1234"){
+    if(this.username === "airindia" && this.password === "airindia123"){
       this.apiService.post(EXTRA_API, json).then((res: any)=>{ 
         localStorage.setItem("allcartypes", JSON.stringify(res.result));
       });

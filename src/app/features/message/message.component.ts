@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {ApiService} from '../../../shared/services/service';
 import { ToastrService } from 'ngx-toastr';
-import {DRIVER_API, LOGIN_API, MSG_API} from '../../../shared/services/api.url-helper';
+import {DRIVER_API, LOGIN_API, MSG_API, PARTY_HEAD_API} from '../../../shared/services/api.url-helper';
 import { CAR_ASSIGNED_AIRPORT_TEMPLATE, CAR_ASSIGNED_MESSAGE_TEMPLATE, DRIVER_MESSAGE_AIRPORT_TEMPLATE, DRIVER_MESSAGE_TEMPLATE, MESSAGE_AUTH_SCHEME, MESSAGE_FORMAT, MESSAGE_METHOD, MESSAGE_PWD, MESSAGE_TYPE, MESSAGE_USER, MESSAGE_VERSION, ROUTE_BASIC, ROUTE_DASHBOARD } from 'src/shared/constants/constant';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
@@ -70,9 +70,19 @@ export class MessageComponent implements OnInit {
   msglist : msgclass[] = [];
   partymessage: string;
   allparty: string[];
+  partylist: any;
   constructor(private _formBuilder: FormBuilder,private router: Router,private apiService: ApiService, private toastr: ToastrService) {
     debugger;
     this.msg = new msgclass();
+    var json = 
+    {
+      "mode": 0
+    };
+    this.apiService.post(PARTY_HEAD_API, json).then((res: any)=>{ 
+      this.partylist = res.result;
+      this.allparty = this.partylist.map(x=>x.name);
+      this.filteredOptionsParty = this.firstFormGroup.get('PartyControl').valueChanges.pipe(startWith(''),map(value => this._filterParty(value)));
+    });
     this.firstFormGroup = this._formBuilder.group({
       PartyControl: [],
       PartyNumberControl: [],
@@ -105,8 +115,9 @@ export class MessageComponent implements OnInit {
       });
   }
   fillnumber(){
-    if(this.msglist.filter(x=>x.party === this.msg.party)){
-      this.msg.partynumber = this.msglist.filter(x=>x.party === this.msg.party)[0].partynumber;
+    debugger;
+    if(this.partylist.filter(x=>x.name === this.msg.party)){
+      this.msg.partynumber = this.partylist.filter(x=>x.name === this.msg.party)[0].contact;
     }
     this.msgdisplay();
   }
@@ -124,8 +135,6 @@ export class MessageComponent implements OnInit {
     this.msg.mode = 0;
     this.apiService.post(MSG_API, this.msg).then((res: any)=>{ 
       this.msglist = res.result;
-      this.allparty = this.msglist.map(x=>x.party);
-      this.filteredOptionsParty = this.firstFormGroup.get('PartyControl').valueChanges.pipe(startWith(''),map(value => this._filterParty(value)));
     });
     this.allcars = JSON.parse(localStorage.getItem('allcars'));
     this.alldrivers = JSON.parse(localStorage.getItem('alldrivers'));
