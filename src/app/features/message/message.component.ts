@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {ApiService} from '../../../shared/services/service';
 import { ToastrService } from 'ngx-toastr';
-import {DRIVER_API, LOGIN_API, MSG_API, PARTY_HEAD_API} from '../../../shared/services/api.url-helper';
+import {DRIVER_API, LOGIN_API, MSG_API, PARTY_HEAD_API, REPORT_TO_API} from '../../../shared/services/api.url-helper';
 import { CAR_ASSIGNED_AIRPORT_TEMPLATE, CAR_ASSIGNED_MESSAGE_TEMPLATE, DRIVER_MESSAGE_AIRPORT_TEMPLATE, DRIVER_MESSAGE_TEMPLATE, MESSAGE_AUTH_SCHEME, MESSAGE_FORMAT, MESSAGE_METHOD, MESSAGE_PWD, MESSAGE_TYPE, MESSAGE_USER, MESSAGE_VERSION, ROUTE_BASIC, ROUTE_DASHBOARD } from 'src/shared/constants/constant';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
@@ -78,9 +78,9 @@ export class MessageComponent implements OnInit {
     {
       "mode": 0
     };
-    this.apiService.post(PARTY_HEAD_API, json).then((res: any)=>{ 
+    this.apiService.post(REPORT_TO_API, json).then((res: any)=>{ 
       this.partylist = res.result;
-      this.allparty = this.partylist.map(x=>x.name);
+      this.allparty = this.partylist.map(x=>x.report);
       this.filteredOptionsParty = this.firstFormGroup.get('PartyControl').valueChanges.pipe(startWith(''),map(value => this._filterParty(value)));
     });
     this.firstFormGroup = this._formBuilder.group({
@@ -116,8 +116,8 @@ export class MessageComponent implements OnInit {
   }
   fillnumber(){
     debugger;
-    if(this.partylist.filter(x=>x.name === this.msg.party)){
-      this.msg.partynumber = this.partylist.filter(x=>x.name === this.msg.party)[0].contact;
+    if(this.partylist.filter(x=>x.report === this.msg.party)){
+      this.msg.partynumber = this.partylist.filter(x=>x.report === this.msg.party)[0].contact;
     }
     this.msgdisplay();
   }
