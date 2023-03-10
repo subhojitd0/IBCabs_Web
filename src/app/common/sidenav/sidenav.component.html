@@ -11,55 +11,63 @@
 <mat-sidenav-container class="example-container" autosize style="cursor: pointer !important;">
     <mat-sidenav *ngIf="pagerefresh == '1' && removeheader != '1'" #sidenav class="example-sidenav" mode="side" opened="true" (mouseenter)="mouseenter()" (mouseleave)="mouseleave()">
         <mat-nav-list>
-            <mat-list-item>
-                <span class="full-width" *ngIf="isExpanded || isShowing"><a routerLink={{dashboardurl}}> Dashboard </a></span>
+            <mat-list-item *ngIf="!dashboardair">
+                <span class="full-width" *ngIf="(isExpanded || isShowing)"><a routerLink={{dashboardurl}}> Dashboard </a></span>
                 <mat-icon mat-list-icon>home</mat-icon>
             </mat-list-item>
-            <mat-list-item>
-                <span class="full-width" *ngIf="isExpanded || isShowing"><a routerLink={{ownerurl}}> Owner </a></span>
+            <mat-list-item *ngIf="dashboardair">
+                <span class="full-width" *ngIf="(isExpanded || isShowing)"><a routerLink={{dashboardurl}}> Party Dashboard </a></span>
+                <mat-icon mat-list-icon>home</mat-icon>
+            </mat-list-item>
+            <mat-list-item *ngIf="enterowner">
+                <span class="full-width" *ngIf="(isExpanded || isShowing)"><a routerLink={{ownerurl}}> Owner </a></span>
                 <mat-icon mat-list-icon>commute</mat-icon>
             </mat-list-item>
-            <mat-list-item>
-                <span class="full-width" *ngIf="isExpanded || isShowing"><a routerLink={{partyurl}}> Party </a></span>
+            <mat-list-item *ngIf="enterparty">
+                <span class="full-width" *ngIf="(isExpanded || isShowing)"><a routerLink={{partyurl}}> Party </a></span>
                 <mat-icon mat-list-icon>face</mat-icon>
             </mat-list-item>
-            <mat-list-item>
-                <span class="full-width" *ngIf="isExpanded || isShowing"><a routerLink={{driverurl}}> Driver </a></span>
+            <mat-list-item *ngIf="enterdriver">
+                <span class="full-width" *ngIf="(isExpanded || isShowing)"><a routerLink={{driverurl}}> Driver </a></span>
                 <mat-icon mat-list-icon>supervised_user_circle</mat-icon>
             </mat-list-item>
-            <mat-list-item>
-                <span class="full-width" *ngIf="isExpanded || isShowing"><a routerLink={{reportto}}> Report To </a></span>
+            <mat-list-item *ngIf="enterreportto">
+                <span class="full-width" *ngIf="(isExpanded || isShowing)"><a routerLink={{reportto}}> Report To </a></span>
                 <mat-icon mat-list-icon>supervisor_account</mat-icon>
             </mat-list-item>
-            <mat-list-item>
-                <span class="full-width" *ngIf="isExpanded || isShowing"><a routerLink={{matadorurl}}> Matador Rates </a></span>
+            <mat-list-item *ngIf="entermatadorrate">
+                <span class="full-width" *ngIf="(isExpanded || isShowing)"><a routerLink={{matadorurl}}> Matador Rates </a></span>
                 <mat-icon mat-list-icon>directions_bus</mat-icon>
             </mat-list-item>
-            <mat-list-item>
-                <span class="full-width" *ngIf="isExpanded || isShowing"><a routerLink={{generatebillurl}}> Bill </a></span>
+            <mat-list-item *ngIf="message">
+                <span class="full-width" *ngIf="(isExpanded || isShowing)"><a routerLink={{messageurl}}> Message Portal </a></span>
+                <mat-icon mat-list-icon>supervised_user_circle</mat-icon>
+            </mat-list-item>
+            <mat-list-item *ngIf="viewbill">
+                <span class="full-width" *ngIf="(isExpanded || isShowing)"><a routerLink={{generatebillurl}}> Bill </a></span>
                 <mat-icon mat-list-icon>description</mat-icon>
             </mat-list-item>
-            <mat-list-item>
+            <mat-list-item *ngIf="viewvendorbill">
                 <span class="full-width" *ngIf="(isExpanded || isShowing)"><a routerLink={{generatevendorbillurl}}> Vendor Bill </a></span>
                 <mat-icon mat-list-icon>description</mat-icon>
             </mat-list-item>
-            <mat-list-item (click)="showSubmenu = !showSubmenu" class="parent">
-                <span class="full-width" *ngIf="isExpanded || isShowing"> Daily Duty - Rental Details &nbsp;&nbsp;&nbsp;&nbsp;
+            <mat-list-item *ngIf="enterddr || enterddrwalkin || viewddr" (click)="showSubmenu = !showSubmenu" class="parent">
+                <span class="full-width" *ngIf="(isExpanded || isShowing)"> Daily Duty - Rental Details &nbsp;&nbsp;&nbsp;&nbsp;
 					&nbsp;&nbsp;&nbsp;&nbsp; </span>
                 <mat-icon mat-list-icon>work_outline</mat-icon>
-                <mat-icon class="menu-button" [ngClass]="{'rotated' : showSubmenu}" *ngIf="isExpanded || isShowing">expand_more</mat-icon>
+                <mat-icon class="menu-button" [ngClass]="{'rotated' : showSubmenu}" *ngIf="(isExpanded || isShowing) && (enterddr || enterddrwalkin || viewddr)">expand_more</mat-icon>
             </mat-list-item>
             <div class="submenu" [ngClass]="{'expanded' : showSubmenu}" *ngIf="isShowing || isExpanded">
-                <a mat-list-item routerLink={{addddrurl}}>Add New Office Duty</a>
-                <a mat-list-item routerLink={{addwalkingurl}}>Add New Walkin Duty</a>
-                <a mat-list-item routerLink={{viewddrurl}}>View / Edit Duty</a>
+                <a mat-list-item *ngIf="enterddr" routerLink={{addddrurl}}>Add New Office Duty</a>
+                <a mat-list-item *ngIf="enterddrwalkin" routerLink={{addwalkingurl}}>Add New Walkin Duty</a>
+                <a mat-list-item *ngIf="viewddr" routerLink={{viewddrurl}}>View / Edit Duty</a>
                 <!--	<a mat-list-item href="/party">Party Individual</a>
 				
 			
 					<a mat-list-item href="...">Submenu Item 2</a>
 				<mat-list-item (click)="showSubSubMenu = !showSubSubMenu" class="parent">
-					<span class="full-width" *ngIf="isExpanded || isShowing">Nested Menu</span>
-					<mat-icon class="menu-button" [ngClass]="{'rotated' : showSubSubMenu}" *ngIf="isExpanded || isShowing">expand_more</mat-icon>
+					<span class="full-width" *ngIf="(isExpanded || isShowing) && viewbill">Nested Menu</span>
+					<mat-icon class="menu-button" [ngClass]="{'rotated' : showSubSubMenu}" *ngIf="(isExpanded || isShowing) && viewbill">expand_more</mat-icon>
 				</mat-list-item>
 				<div class="submenu" [ngClass]="{'expanded' : showSubSubMenu}" *ngIf="isShowing || isExpanded">
 					<mat-list-item>SubSubmenu Item 1</mat-list-item>

@@ -35,26 +35,20 @@ export class LoginComponent implements OnInit {
       "username":this.username,
       "password":this.password
     };
-    if(this.username === "airindia" && this.password === "airindia123"){
-      this.apiService.post(EXTRA_API, json).then((res: any)=>{ 
-        localStorage.setItem("allcartypes", JSON.stringify(res.result));
-      });
-      var jsoncar = 
-      {
-        "mode": 5
-      };
-      this.apiService.post(CAR_API, jsoncar).then((res: any)=>{ 
-        localStorage.setItem("allcars", JSON.stringify(res.result));
-      });
-      this.apiService.post(DRIVER_API, json).then((res: any)=>{ 
-        localStorage.setItem("alldrivers", JSON.stringify(res.result));
-        localStorage.setItem("removeheader", "1");
-        this.router.navigate([]).then(result => {  window.open('/' + ROUTE_MESSAGE, '_blank'); });
-      });
-      
-    }
-    else{
       this.apiService.post(LOGIN_API, json).then((res: any)=>{ 
+        this.apiService.post(EXTRA_API, json).then((res: any)=>{ 
+          localStorage.setItem("allcartypes", JSON.stringify(res.result));
+        });
+        var jsoncar = 
+        {
+          "mode": 5
+        };
+        this.apiService.post(CAR_API, jsoncar).then((res: any)=>{ 
+          localStorage.setItem("allcars", JSON.stringify(res.result));
+        });
+        this.apiService.post(DRIVER_API, json).then((res: any)=>{ 
+          localStorage.setItem("alldrivers", JSON.stringify(res.result));
+        });
         if(res.hasOwnProperty('error')){
           this.toastr.error("You have entered wrong credentials",'Error');
         }
@@ -68,6 +62,17 @@ export class LoginComponent implements OnInit {
             localStorage.setItem("enterowner", res.enterowner);
             localStorage.setItem("enterparty", res.enterparty);
             localStorage.setItem("payowner", res.payowner);
+            localStorage.setItem("for", res.for);
+            localStorage.setItem("viewbill", res.viewbill);
+            localStorage.setItem("enterdriver", res.enterdriver);
+            localStorage.setItem("enterreportto", res.enterreportto);
+            localStorage.setItem("entermatadorrate", res.entermatadorrate);
+            localStorage.setItem("viewvendorbill", res.viewvendorbill);
+            localStorage.setItem("enterddrwalkin", res.enterddrwalkin);
+            localStorage.setItem("viewddr", res.viewddr);
+            localStorage.setItem("message", res.message);
+            localStorage.setItem("dashboardair", res.dashboardair);
+
             this.toastr.success("Login Successful! Welcome " + res.username,'Success');
             localStorage.setItem('loggedinuser', res.username);
             /* this.router.navigateByUrl('/' + ROUTE_BASIC); */
@@ -75,7 +80,6 @@ export class LoginComponent implements OnInit {
           }
         }
       });
-    }
     
   }
 }
