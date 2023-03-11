@@ -1,1 +1,212 @@
-<p>dashboard works!</p>
+<div *ngIf="aindia && loading" class="loading-screen-wrapper">
+    <div class="loading-screen-icon">
+        Loading...
+    </div>
+</div>
+<div *ngIf="aindia" class="container" style="max-width: 1700px;">
+    <mat-card>
+        <mat-card-header>
+            <!-- <div mat-card-avatar class="avatar-image-partyhead"></div> -->
+            <mat-card-title>Rental Details for
+                <select (change)="onChangeMonth($event.target.value)" [value]="month">
+                  <option value="1">
+                    January
+                  </option>
+                  <option value="2">
+                    February
+                  </option>
+                  <option value="3">
+                    March
+                  </option>
+                  <option value="4">
+                    April
+                  </option>
+                  <option value="5">
+                    May
+                  </option>
+                  <option value="6">
+                    June
+                  </option>
+                  <option value="7">
+                    July
+                  </option>
+                  <option value="8">
+                    August
+                  </option>
+                  <option value="9">
+                    September
+                  </option>
+                  <option value="10">
+                    October
+                  </option>
+                  <option value="11">
+                    November
+                  </option>
+                  <option value="12">
+                    December
+                  </option>
+                </select> -
+                <select (change)="onChangeYear($event.target.value)" [value]="year">
+                  <option value="2020">
+                    2020
+                  </option>
+                  <option value="2021">
+                    2021
+                  </option>
+                  <option value="2022">
+                    2022
+                  </option>
+                  <option value="2023">
+                    2023
+                  </option>
+                  <option value="2024">
+                    2024
+                  </option>
+                  <option value="2025">
+                    2025
+                  </option>
+                  <option value="2026">
+                    2026
+                  </option>
+                  <option value="2027">
+                    2027
+                  </option>
+                  <option value="2028">
+                    2028
+                  </option>
+                  <option value="2029">
+                    2029
+                  </option>
+                  <option value="2030">
+                    2030
+                  </option>
+                </select> -
+                <select (change)="onChangeDay($event.target.value)" [value]="date">
+                    <option *ngFor="let row of dates" [value]="row">
+                      {{row}}
+                    </option>
+                  </select> &nbsp; &nbsp; &nbsp;Filter By :
+                <select (change)="onChangeFilter($event.target.value)" [value]="filterby">
+                  <!-- <option value="party">
+                    Party
+                  </option> -->
+                  <option value="driver">
+                    Driver
+                  </option>
+                  <option value="car">
+                    Car
+                  </option>
+                  <option value="report">
+                    Report To
+                  </option>
+                  <!-- <option value="owner">
+                    Vendor
+                  </option> -->
+                </select> &nbsp; &nbsp; &nbsp;Value :
+                <!-- <mat-form-field *ngIf="filterby==='party'">
+                    <input name="partyfilter" type="text" [(ngModel)]="filterval" [formControl]="partyselect" [matAutocomplete]="party" matInput placeholder="Enter Party">
+                    <mat-autocomplete (optionSelected)="onChangeFilterVal($event)" #party="matAutocomplete">
+                        <mat-option *ngFor="let option of partylist | async" [value]="option">
+                            {{option}}
+                        </mat-option>
+                    </mat-autocomplete>
+                </mat-form-field> -->
+                <mat-form-field *ngIf="filterby==='driver'">
+                    <input type="text" name="driverfilter" [(ngModel)]="filterval" [formControl]="driverselect" [matAutocomplete]="driver" matInput placeholder="Enter Driver">
+                    <mat-autocomplete (optionSelected)="onChangeFilterVal($event)" #driver="matAutocomplete">
+                        <mat-option *ngFor="let option of driverlist | async" [value]="option">
+                            {{option}}
+                        </mat-option>
+                    </mat-autocomplete>
+                </mat-form-field>
+                <mat-form-field *ngIf="filterby==='report'">
+                    <input type="text" name="reportfilter" [(ngModel)]="filterval" [formControl]="reportselect" [matAutocomplete]="report" matInput placeholder="Enter Report To">
+                    <mat-autocomplete (optionSelected)="onChangeFilterVal($event)" #report="matAutocomplete">
+                        <mat-option *ngFor="let option of reportlist | async" [value]="option">
+                            {{option}}
+                        </mat-option>
+                    </mat-autocomplete>
+                </mat-form-field>
+                <mat-form-field *ngIf="filterby==='car'">
+                    <input type="text" name="carfilter" [(ngModel)]="filtervalue" [formControl]="carselect" [matAutocomplete]="car" matInput placeholder="Enter Car">
+                    <mat-autocomplete (optionSelected)="onChangeFilterVal($event)" #car="matAutocomplete">
+                        <mat-option *ngFor="let option of carlist | async" [value]="option">
+                            {{option}}
+                        </mat-option>
+                    </mat-autocomplete>
+                </mat-form-field>
+                <!--  <mat-form-field *ngIf="filterby==='owner'">
+                    <input type="text" name="ownerfilter" [(ngModel)]="filtervalue" [formControl]="ownerselect" [matAutocomplete]="owner" matInput placeholder="Enter Owner">
+                    <mat-autocomplete (optionSelected)="onChangeFilterVal($event)" #owner="matAutocomplete">
+                        <mat-option *ngFor="let option of ownerlist | async" [value]="option">
+                            {{option}}
+                        </mat-option>
+                    </mat-autocomplete>
+                </mat-form-field> -->
+            </mat-card-title>
+        </mat-card-header>
+    </mat-card>
+    <br/><br/>
+    <mat-table style="margin-top: -40px" [dataSource]="dataSource" matSort>
+        <!-- ID Column -->
+        <ng-container matColumnDef="dutydt">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Date </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.dutydate}} </mat-cell>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="party">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Party </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.party}} </mat-cell>
+        </ng-container>
+
+        <!-- Color Column -->
+        <!-- <ng-container matColumnDef="reportto">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Report To </mat-header-cell>
+                    <mat-cell *matCellDef="let row"> {{row.reporttoname}} </mat-cell>
+                  </ng-container> -->
+
+        <!-- Color Column -->
+        <ng-container matColumnDef="carno">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Car </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.carnumber}} </mat-cell>
+        </ng-container>
+
+        <!-- Color Column -->
+        <ng-container matColumnDef="statusval">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Status </mat-header-cell>
+            <mat-cell *matCellDef="let row">
+                <span *ngIf="row.status == '0'" class="yellow-icon" (click)="edit(row.dutyid, row.party)"> Pending Driver Assign</span>
+                <span *ngIf="row.status == '1'" class="orange-icon" (click)="edit(row.dutyid, row.party)"> Pending Driver Input</span>
+                <span *ngIf="row.status == '2'" class="blue-icon" (click)="approve(row.dutyid, row.party)"> Pending Approval</span>
+                <span *ngIf="row.status == '3'" class="green-icon"> Bill Generated</span>
+                <span *ngIf="row.status == '4'" class="green-icon"> Owner Paid</span>
+            </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="accept">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Acceptance Status </mat-header-cell>
+            <mat-cell *matCellDef="let row">
+                <span *ngIf="row.da == '0'" class="yellow-icon"> Not Accepted</span>
+                <span *ngIf="row.da == '1'" class="green-icon"> Accepted</span>
+            </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="options">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Options </mat-header-cell>
+            <mat-cell *matCellDef="let row" [style.color]="row.option">
+                <span *ngIf="ddrrole === '1'" style="margin-left: 10px; margin-right: 10px; cursor: pointer;" class="material-icons" (click)="sendMessage(row.dutyid, row.party)">
+                              message
+                          </span> |
+                <span *ngIf="ddrrole === '1' && row.status !== '3'" style="margin-left: 10px; margin-right: 10px; cursor: pointer;" class="material-icons" (click)="deleteduty(row.dutyid)">
+                              delete
+                          </span>
+            </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;">
+        </mat-row>
+    </mat-table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+</div>

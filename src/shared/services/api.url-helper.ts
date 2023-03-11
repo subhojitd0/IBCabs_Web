@@ -7,6 +7,7 @@ export const DRIVER_API = "driver.php";
 export const RENTAL_DETAIL_API_OFFICE = "ddroffice.php";
 export const RENTAL_DETAIL_API_WALKIN = "ddrwalkin.php";
 export const RENTAL_DETAIL_API_OFFICE_BULKEDIT = "ddrofficerowedit.php";
+export const RENTAL_DETAIL_API_DASHBOARD = "dashboardai.php";
 export const EXTRA_API = "extra.php";
 export const BILL_API = "billregister.php";
 export const BILL_CNN_API = "partybilla.php";
