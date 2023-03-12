@@ -344,7 +344,7 @@ mat-header-row {
 .mat-column-goutkm {
     word-wrap: break-word !important;
     white-space: unset !important;
-    flex: 0 0 3% !important;
+    flex: 0 0 6% !important;
     width: 8% !important;
     overflow-wrap: break-word;
     word-wrap: break-word;
@@ -358,7 +358,7 @@ mat-header-row {
 .mat-column-ginkm {
     word-wrap: break-word !important;
     white-space: unset !important;
-    flex: 0 0 3% !important;
+    flex: 0 0 6% !important;
     width: 8% !important;
     overflow-wrap: break-word;
     word-wrap: break-word;
@@ -372,7 +372,7 @@ mat-header-row {
 .mat-column-gouttime {
     word-wrap: break-word !important;
     white-space: unset !important;
-    flex: 0 0 9% !important;
+    flex: 0 0 11% !important;
     width: 10% !important;
     overflow-wrap: break-word;
     word-wrap: break-word;
@@ -386,7 +386,7 @@ mat-header-row {
 .mat-column-gintime {
     word-wrap: break-word !important;
     white-space: unset !important;
-    flex: 0 0 9% !important;
+    flex: 0 0 11% !important;
     width: 10% !important;
     overflow-wrap: break-word;
     word-wrap: break-word;
@@ -411,39 +411,11 @@ mat-header-row {
     hyphens: auto;
 }
 
-.mat-column-rinkm {
+.mat-column-carno {
     word-wrap: break-word !important;
     white-space: unset !important;
-    flex: 0 0 3% !important;
+    flex: 0 0 8% !important;
     width: 8% !important;
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-    word-break: break-word;
-    -ms-hyphens: auto;
-    -moz-hyphens: auto;
-    -webkit-hyphens: auto;
-    hyphens: auto;
-}
-
-.mat-column-routtime {
-    word-wrap: break-word !important;
-    white-space: unset !important;
-    flex: 0 0 8% !important;
-    width: 10% !important;
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-    word-break: break-word;
-    -ms-hyphens: auto;
-    -moz-hyphens: auto;
-    -webkit-hyphens: auto;
-    hyphens: auto;
-}
-
-.mat-column-rintime {
-    word-wrap: break-word !important;
-    white-space: unset !important;
-    flex: 0 0 8% !important;
-    width: 10% !important;
     overflow-wrap: break-word;
     word-wrap: break-word;
     word-break: break-word;

@@ -45,8 +45,7 @@ export class DashboardComponent implements OnInit {
   allparties: any;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  displayedColumns: string[] = ['dutydt', 'party', 'carno', 'statusval', 'accept', 'options'];
-  bulkdisplayedColumns: string[] = ['isselected','dutydate', 'partyname', 'reportto', 'driver', 'carnumber', 'cartype', 'slip', 'gouttime', 'goutkm', 'routtime', 'routkm', 'rintime', 'rinkm', 'gintime', 'ginkm', 'parking', 'outstation'];
+  displayedColumns: string[] = ['dutydt', 'carno', 'driver', 'reportto', 'goutkm', 'gouttime', 'ginkm', 'gintime', 'statusval', 'accept'];
   dataSource: MatTableDataSource<RentalDetail>;
   filteredOptionsCar: Observable<any[]>;
   filteredOptionsCarType: Observable<any[]>;
@@ -91,9 +90,16 @@ export class DashboardComponent implements OnInit {
 
     this.init(); //Initialize the app with localstorage and sessionstorage values
     this.aindia = localStorage.getItem("dashboardair") === "1" ? true : false;
+    let timervariale = 60000;
     if(this.aindia){
       this.dashboarddutyshow();
     }
+    setInterval(() => {
+      if(this.aindia){
+        this.dashboarddutyshow();
+      }
+    }, timervariale);
+    
   }
 
   init(){

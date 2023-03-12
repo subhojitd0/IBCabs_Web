@@ -155,9 +155,29 @@
         </ng-container>
 
         <!-- Name Column -->
-        <ng-container matColumnDef="party">
-            <mat-header-cell *matHeaderCellDef mat-sort-header> Party </mat-header-cell>
-            <mat-cell *matCellDef="let row"> {{row.party}} </mat-cell>
+        <ng-container matColumnDef="driver">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Driver </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.driver}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="reportto">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Report To </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.reporttoname}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="goutkm">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Out KM </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.goutkm}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="gouttime">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Out Time </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.gouttime}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="ginkm">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> In KM </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.ginkm}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="gintime">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> In Time </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.gintime}} </mat-cell>
         </ng-container>
 
         <!-- Color Column -->
@@ -169,7 +189,7 @@
         <!-- Color Column -->
         <ng-container matColumnDef="carno">
             <mat-header-cell *matHeaderCellDef mat-sort-header> Car </mat-header-cell>
-            <mat-cell *matCellDef="let row"> {{row.carnumber}} </mat-cell>
+            <mat-cell *matCellDef="let row"> {{row.carnum}} </mat-cell>
         </ng-container>
 
         <!-- Color Column -->
@@ -191,19 +211,6 @@
                 <span *ngIf="row.da == '1'" class="green-icon"> Accepted</span>
             </mat-cell>
         </ng-container>
-
-        <ng-container matColumnDef="options">
-            <mat-header-cell *matHeaderCellDef mat-sort-header> Options </mat-header-cell>
-            <mat-cell *matCellDef="let row" [style.color]="row.option">
-                <span *ngIf="ddrrole === '1'" style="margin-left: 10px; margin-right: 10px; cursor: pointer;" class="material-icons" (click)="sendMessage(row.dutyid, row.party)">
-                              message
-                          </span> |
-                <span *ngIf="ddrrole === '1' && row.status !== '3'" style="margin-left: 10px; margin-right: 10px; cursor: pointer;" class="material-icons" (click)="deleteduty(row.dutyid)">
-                              delete
-                          </span>
-            </mat-cell>
-        </ng-container>
-
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
         <mat-row *matRowDef="let row; columns: displayedColumns;">
         </mat-row>
