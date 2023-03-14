@@ -12,17 +12,35 @@ export interface imsg {
   msgdate: string,
   party: string,
   partynumber: string,
+  msgtime: any,
+  reporting: any,
+  party2: string,
+  partynumber2: string,
+  msgtime2: any,
+  reporting2: any,
+  party3: string,
+  partynumber3: string,
+  msgtime3: any,
+  reporting3: any,
   driver: string,
   drivernumber: string,
   carnumber: string,
   cartype: string,
   msgtype: string,
   mode:any,
-  msgtime: any,
-  reporting: any
+  flight:any
 }
 
 export class msgclass implements imsg{
+  party2: string;
+  partynumber2: string;
+  msgtime2: any;
+  reporting2: any;
+  party3: string;
+  partynumber3: string;
+  msgtime3: any;
+  reporting3: any;
+  flight: any;
   msgdate: string;
   party: string;
   partynumber: string;
@@ -49,15 +67,29 @@ export class MessageComponent implements OnInit {
   DriverContactControl: FormControl;
   CarTypeControl: FormControl;
   CarNumberControl: FormControl;
+  //Party1
   PartyControl: FormControl;
   PartyNumberControl: FormControl;
   MsgTimeControl: FormControl;
   ReportingControl: FormControl;
+  //Party2
+  PartyControl2: FormControl;
+  PartyNumberControl2: FormControl;
+  MsgTimeControl2: FormControl;
+  ReportingControl2: FormControl;
+  //Party3
+  PartyControl3: FormControl;
+  PartyNumberControl3: FormControl;
+  MsgTimeControl3: FormControl;
+  ReportingControl3: FormControl;
+
   allcartype: any;
   alldrivernames: any;
   allcarno: any;
   filteredOptionsCar: Observable<any[]>;
   filteredOptionsParty: Observable<any[]>;
+  filteredOptionsParty2: Observable<any[]>;
+  filteredOptionsParty3: Observable<any[]>;
   filteredOptionsCarType: Observable<any[]>;
   filteredOptionsDriver: Observable<any[]>;
   alldrivers: any;
@@ -82,12 +114,22 @@ export class MessageComponent implements OnInit {
       this.partylist = res.result;
       this.allparty = this.partylist.map(x=>x.report);
       this.filteredOptionsParty = this.firstFormGroup.get('PartyControl').valueChanges.pipe(startWith(''),map(value => this._filterParty(value)));
+      this.filteredOptionsParty2 = this.firstFormGroup.get('PartyControl2').valueChanges.pipe(startWith(''),map(value => this._filterParty(value)));
+      this.filteredOptionsParty3 = this.firstFormGroup.get('PartyControl3').valueChanges.pipe(startWith(''),map(value => this._filterParty(value)));
     });
     this.firstFormGroup = this._formBuilder.group({
       PartyControl: [],
       PartyNumberControl: [],
       MsgTimeControl: [],
       ReportingControl: [],
+      PartyControl2: [],
+      PartyNumberControl2: [],
+      MsgTimeControl2: [],
+      ReportingControl2: [],
+      PartyControl3: [],
+      PartyNumberControl3: [],
+      MsgTimeControl3: [],
+      ReportingControl3: [],
       DriverControl: ['', Validators.required],
       DriverContactControl: ['', Validators.required],
       CarTypeControl: ['', Validators.required],
@@ -116,8 +158,20 @@ export class MessageComponent implements OnInit {
   }
   fillnumber(){
     debugger;
-    if(this.partylist.filter(x=>x.report === this.msg.party)){
-      this.msg.partynumber = this.partylist.filter(x=>x.report === this.msg.party)[0].contact;
+    if(this.msg.party){
+      if(this.partylist.filter(x=>x.report === this.msg.party)){
+        this.msg.partynumber = this.partylist.filter(x=>x.report === this.msg.party)[0].contact;
+      }
+    }
+    if(this.msg.party2){
+      if(this.partylist.filter(x=>x.report === this.msg.party2)){
+        this.msg.partynumber2 = this.partylist.filter(x=>x.report === this.msg.party2)[0].contact;
+      }
+    }
+    if(this.msg.party3){
+      if(this.partylist.filter(x=>x.report === this.msg.party3)){
+        this.msg.partynumber3 = this.partylist.filter(x=>x.report === this.msg.party3)[0].contact;
+      }
     }
     this.msgdisplay();
   }

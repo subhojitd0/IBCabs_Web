@@ -190,6 +190,7 @@ export class RentalDetailComponent implements OnInit {
           this.rentalAdd.f = "w";
         }
         this.rentalAdd.dutytype = "0";
+        this.rentalAdd.signature = "";
         this.apiService.post(RENTAL_DETAIL_API_OFFICE, this.rentalAdd).then((res: any)=>{ 
           this.toastr.success("Your data was successfully saved",'Success');
           this.router.navigateByUrl('/' + ROUTE_VIEW_DDR);

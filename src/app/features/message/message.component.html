@@ -3,8 +3,9 @@
         <mat-toolbar color="primary">Message E-Board <span style="margin-left: 15px; float: right; border: 1px solid black; padding-left: 10px; padding-right: 10px; cursor: pointer;" (click)="logout()">Log Out</span></mat-toolbar>
         <div class="row">
             <div class="form-div" [formGroup]="firstFormGroup">
+                <b>Passenger 1 Details</b> <br/>
                 <div class="row">
-                    <div class="col-sm-5">
+                    <div class="col-sm-3">
                         <mat-form-field style="width: 80%; margin-right: 20px;">
                             <mat-label>Party</mat-label>
                             <input type="text" (blur)="fillnumber()" name="partymaster" placeholder="Enter the party name here" formControlName="PartyControl" matInput [(ngModel)]="msg.party" [matAutocomplete]="auto">
@@ -15,10 +16,88 @@
                             </mat-autocomplete>
                         </mat-form-field>
                     </div>
-                    <div class="col-sm-5">
+                    <div class="col-sm-3">
                         <mat-form-field style="width: 80%; margin-right: 20px;">
                             <mat-label>Party Number</mat-label>
                             <input (blur)="msgdisplay()" name="partynumber" formControlName="PartyNumberControl" matInput placeholder="Enter the party number here" [(ngModel)]="msg.partynumber">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-sm-3">
+                        <mat-form-field style="width: 80%; margin-right: 20px;">
+                            <mat-label>Reporting Time</mat-label>
+                            <input [(ngModel)]="msg.msgtime" (blur)="msgdisplay()" type="time" matInput placeholder="Enter Reporting Time" formControlName="MsgTimeControl" required>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-sm-3">
+                        <mat-form-field style="width: 80%; margin-right: 20px;">
+                            <mat-label>Reporting Place</mat-label>
+                            <input [(ngModel)]="msg.reporting" (blur)="msgdisplay()" type="text" matInput placeholder="Enter Reporting Place" formControlName="ReportingControl" required>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <b>Passenger 2 Details</b> <br/>
+                <div class="row">
+
+                    <div class="col-sm-3">
+                        <mat-form-field style="width: 80%; margin-right: 20px;">
+                            <mat-label>Party</mat-label>
+                            <input type="text" (blur)="fillnumber()" name="partymaster2" placeholder="Enter the party name here" formControlName="PartyControl2" matInput [(ngModel)]="msg.party2" [matAutocomplete]="auto2">
+                            <mat-autocomplete #auto2="matAutocomplete">
+                                <mat-option *ngFor="let option of filteredOptionsParty2 | async" [value]="option">
+                                    {{option}}
+                                </mat-option>
+                            </mat-autocomplete>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-sm-3">
+                        <mat-form-field style="width: 80%; margin-right: 20px;">
+                            <mat-label>Party Number</mat-label>
+                            <input (blur)="msgdisplay()" name="partynumber2" formControlName="PartyNumberControl2" matInput placeholder="Enter the party number here" [(ngModel)]="msg.partynumber2">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-sm-3">
+                        <mat-form-field style="width: 80%; margin-right: 20px;">
+                            <mat-label>Reporting Time</mat-label>
+                            <input [(ngModel)]="msg.msgtime2" (blur)="msgdisplay()" type="time" matInput placeholder="Enter Reporting Time" formControlName="MsgTimeControl2" required>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-sm-3">
+                        <mat-form-field style="width: 80%; margin-right: 20px;">
+                            <mat-label>Reporting Place</mat-label>
+                            <input [(ngModel)]="msg.reporting2" (blur)="msgdisplay()" type="text" matInput placeholder="Enter Reporting Place" formControlName="ReportingControl2" required>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <b>Passenger 3 Details</b> <br/>
+                <div class="row">
+
+                    <div class="col-sm-3">
+                        <mat-form-field style="width: 80%; margin-right: 20px;">
+                            <mat-label>Party</mat-label>
+                            <input type="text" (blur)="fillnumber()" name="partymaster3" placeholder="Enter the party name here" formControlName="PartyControl3" matInput [(ngModel)]="msg.party3" [matAutocomplete]="auto3">
+                            <mat-autocomplete #auto3="matAutocomplete">
+                                <mat-option *ngFor="let option of filteredOptionsParty3 | async" [value]="option">
+                                    {{option}}
+                                </mat-option>
+                            </mat-autocomplete>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-sm-3">
+                        <mat-form-field style="width: 80%; margin-right: 20px;">
+                            <mat-label>Party Number</mat-label>
+                            <input (blur)="msgdisplay()" name="partynumber3" formControlName="PartyNumberControl3" matInput placeholder="Enter the party number here" [(ngModel)]="msg.partynumber3">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-sm-3">
+                        <mat-form-field style="width: 80%; margin-right: 20px;">
+                            <mat-label>Reporting Time</mat-label>
+                            <input [(ngModel)]="msg.msgtime3" (blur)="msgdisplay()" type="time" matInput placeholder="Enter Reporting Time" formControlName="MsgTimeControl3" required>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-sm-3">
+                        <mat-form-field style="width: 80%; margin-right: 20px;">
+                            <mat-label>Reporting Place</mat-label>
+                            <input [(ngModel)]="msg.reporting3" (blur)="msgdisplay()" type="text" matInput placeholder="Enter Reporting Place" formControlName="ReportingControl3" required>
                         </mat-form-field>
                     </div>
                 </div>
@@ -26,7 +105,7 @@
                     
                 </div> -->
                 <div class="row">
-                    <div class="col-sm-5">
+                    <div class="col-sm-3">
                         <mat-form-field style="width: 80%; margin-right: 20px;">
                             <mat-label>Select Car Type</mat-label>
                             <input (blur)="msgdisplay()" [(ngModel)]="msg.cartype" [matAutocomplete]="autocartypesingle" matInput placeholder="Enter Car Type" formControlName="CarTypeControl" required>
@@ -37,7 +116,7 @@
                             </mat-autocomplete>
                         </mat-form-field>
                     </div>
-                    <div class="col-sm-5">
+                    <div class="col-sm-3">
                         <mat-form-field style="width: 80%; margin-right: 20px;">
                             <mat-label>Select Car Number</mat-label>
                             <input (blur)="msgdisplay()" [(ngModel)]="msg.carnumber" [matAutocomplete]="autocar" matInput placeholder="Enter Car Number" formControlName="CarNumberControl" required>
@@ -48,12 +127,7 @@
                             </mat-autocomplete>
                         </mat-form-field>
                     </div>
-                </div>
-                <!--  <div class="row">
-                    
-                </div> -->
-                <div class="row">
-                    <div class="col-sm-5">
+                    <div class="col-sm-3">
                         <mat-form-field style="width: 80%; margin-right: 20px;">
                             <mat-label>Select Driver</mat-label>
                             <input (blur)="msgdisplay()" [(ngModel)]="msg.driver" [matAutocomplete]="autodriver" matInput placeholder="Select Driver" formControlName="DriverControl" required>
@@ -64,7 +138,7 @@
                             </mat-autocomplete>
                         </mat-form-field>
                     </div>
-                    <div class="col-sm-5">
+                    <div class="col-sm-3">
                         <mat-form-field style="width: 80%; margin-right: 20px;">
                             <mat-label>Driver Contact</mat-label>
                             <input (blur)="msgdisplay()" [(ngModel)]="msg.drivernumber" matInput placeholder="Enter Driver Contact Number" formControlName="DriverContactControl" required>
@@ -72,39 +146,50 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-sm-5">
+                    <div class="col-sm-12">
                         <mat-form-field style="width: 80%; margin-right: 20px;">
-                            <mat-label>Reporting Time</mat-label>
-                            <input [(ngModel)]="msg.msgtime" (blur)="msgdisplay()" type="time" matInput placeholder="Enter Reporting Time" formControlName="MsgTimeControl" required>
-                        </mat-form-field>
-                    </div>
-                    <div class="col-sm-5">
-                        <mat-form-field style="width: 80%; margin-right: 20px;">
-                            <mat-label>Reporting Place</mat-label>
-                            <input [(ngModel)]="msg.reporting" (blur)="msgdisplay()" type="text" matInput placeholder="Enter Reporting Place" formControlName="ReportingControl" required>
+                            <mat-label>Flight Details</mat-label>
+                            <input [(ngModel)]="msg.msgtime" (blur)="msgdisplay()" type="text" matInput placeholder="Enter Flight Details" formControlName="MsgTimeControl" required>
                         </mat-form-field>
                     </div>
                 </div>
 
                 <div>
                     <div>
+                        <b>Send Message to</b> <br/><br/>
+                        <button *ngIf="showdriver" style="padding: 10px;
+                      width: 20% !important;
+                      border-radius: 5px;
+                      background:#3f51b5;
+                      margin: 10px;
+                      color: white" (click)="sendmessagebtndriver()">Driver</button>
+                        <button *ngIf="showpassenger" style="padding: 10px;
+                      width: 20% !important;
+                      border-radius: 5px;
+                      margin: 10px;
+                      background:#3f51b5;
+                      color: white" (click)="sendmessagebtnpassenger()">Passenger 1</button>
+                        <button *ngIf="showpassenger" style="padding: 10px;
+                      width: 20% !important;
+                      border-radius: 5px;
+                      margin: 10px;
+                      background:#3f51b5;
+                      color: white" (click)="sendmessagebtnpassenger()">Passenger 2</button>
+                        <button *ngIf="showpassenger" style="padding: 10px;
+                      width: 20% !important;
+                      border-radius: 5px;
+                      margin: 10px;
+                      background:#3f51b5;
+                      color: white" (click)="sendmessagebtnpassenger()">Passenger 3</button> <br/><br/>
                         <!-- <span style="font-size: 15px">Number : {{number}}</span> <br/>-->
                         <span style="font-size: 15px">Message to Driver : <br/>
                           {{message}}
                         </span> <br/><br/>
-                        <button *ngIf="showdriver" style="padding: 10px;
-                      width: 100%;
-                      border-radius: 5px;
-                      background:#3f51b5;
-                      color: white" (click)="sendmessagebtndriver()">Send Driver Message</button> <br/>
+                        <br/>
                         <br/><br/><span style="font-size: 15px">Message to Party : <br/>
                         {{partymessage}}
                       </span> <br/><br/>
-                        <button *ngIf="showpassenger" style="padding: 10px;
-                      width: 100%;
-                      border-radius: 5px;
-                      background:#3f51b5;
-                      color: white" (click)="sendmessagebtnpassenger()">Send Passenger Message</button><br/><br/>
+                        <br/><br/>
                     </div>
                 </div>
             </div>
@@ -117,18 +202,14 @@
                 <table style="width: 100%;">
                     <tr style="background: black; color: white;">
                         <th>Party</th>
-                        <th>Party Number</th>
-                        <th>Driver</th>
                         <th>Driver</th>
                         <th>Car</th>
                     </tr>
                     <tr *ngFor="let row of msglist">
                         <!-- *ngIf="row.msgtype === '0'" style="background: #ffb16f;"
                         *ngIf="row.msgtype === '1'" style="background: #a3ffa3;" -->
-                        <td>{{row.party}}</td>
-                        <td>{{row.partynumber}}</td>
-                        <td>{{row.driver}}</td>
-                        <td>{{row.drivernumber}}</td>
+                        <td>{{row.party}} ( {{row.partynumber}} )</td>
+                        <td>{{row.driver}} ( {{row.drivernumber}} )</td>
                         <td>{{row.carnumber}}</td>
                     </tr>
                 </table>
