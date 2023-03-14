@@ -87,9 +87,9 @@
                     </option>
                   </select> &nbsp; &nbsp; &nbsp;Filter By :
                 <select (change)="onChangeFilter($event.target.value)" [value]="filterby">
-                  <!-- <option value="party">
+                  <option value="party">
                     Party
-                  </option> -->
+                  </option>
                   <option value="driver">
                     Driver
                   </option>
@@ -103,14 +103,14 @@
                     Vendor
                   </option> -->
                 </select> &nbsp; &nbsp; &nbsp;Value :
-                <!-- <mat-form-field *ngIf="filterby==='party'">
+                <mat-form-field *ngIf="filterby==='party'">
                     <input name="partyfilter" type="text" [(ngModel)]="filterval" [formControl]="partyselect" [matAutocomplete]="party" matInput placeholder="Enter Party">
                     <mat-autocomplete (optionSelected)="onChangeFilterVal($event)" #party="matAutocomplete">
                         <mat-option *ngFor="let option of partylist | async" [value]="option">
                             {{option}}
                         </mat-option>
                     </mat-autocomplete>
-                </mat-form-field> -->
+                </mat-form-field>
                 <mat-form-field *ngIf="filterby==='driver'">
                     <input type="text" name="driverfilter" [(ngModel)]="filterval" [formControl]="driverselect" [matAutocomplete]="driver" matInput placeholder="Enter Driver">
                     <mat-autocomplete (optionSelected)="onChangeFilterVal($event)" #driver="matAutocomplete">
@@ -154,6 +154,11 @@
             <mat-cell *matCellDef="let row"> {{row.dutydate}} </mat-cell>
         </ng-container>
 
+        <ng-container matColumnDef="party">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Party </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.party}} </mat-cell>
+        </ng-container>
+
         <!-- Name Column -->
         <ng-container matColumnDef="driver">
             <mat-header-cell *matHeaderCellDef mat-sort-header> Driver </mat-header-cell>
@@ -179,14 +184,6 @@
             <mat-header-cell *matHeaderCellDef mat-sort-header> In Time </mat-header-cell>
             <mat-cell *matCellDef="let row"> {{row.gintime}} </mat-cell>
         </ng-container>
-
-        <!-- Color Column -->
-        <!-- <ng-container matColumnDef="reportto">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header> Report To </mat-header-cell>
-                    <mat-cell *matCellDef="let row"> {{row.reporttoname}} </mat-cell>
-                  </ng-container> -->
-
-        <!-- Color Column -->
         <ng-container matColumnDef="carno">
             <mat-header-cell *matHeaderCellDef mat-sort-header> Car </mat-header-cell>
             <mat-cell *matCellDef="let row"> {{row.carnum}} </mat-cell>
@@ -196,21 +193,18 @@
         <ng-container matColumnDef="statusval">
             <mat-header-cell *matHeaderCellDef mat-sort-header> Status </mat-header-cell>
             <mat-cell *matCellDef="let row">
-                <span *ngIf="row.status == '0'" class="yellow-icon" (click)="edit(row.dutyid, row.party)"> Pending Driver Assign</span>
-                <span *ngIf="row.status == '1'" class="orange-icon" (click)="edit(row.dutyid, row.party)"> Pending Driver Input</span>
+                <span *ngIf="row.status == '1' && row.da == '0'" class="red-icon" (click)="edit(row.dutyid, row.party)"> Not Accepted</span>
+                <span *ngIf="row.status == '1' && row.da == '1' && row.lat2 == '' && row.lat3 == '' && row.lat4 == '' && row.lat1 == ''" class="orange-icon" (click)="edit(row.dutyid, row.party)"> Accepted</span>
+                <span *ngIf="row.status == '1' && row.da == '1' && row.lat2 == '' && row.lat3 == '' && row.lat4 == '' && row.lat1" class="blue-icon" (click)="edit(row.dutyid, row.party)"> Garage Out</span>
+                <span *ngIf="row.status == '1' && row.da == '1' && row.lat3 == '' && row.lat4 == '' && row.lat1 && row.lat2" class="yellow-icon" (click)="edit(row.dutyid, row.party)"> Reported</span>
+                <span *ngIf="row.status == '1' && row.da == '1' && row.lat4 == '' && row.lat2 && row.lat1 && row.lat3" class="pink-icon" (click)="edit(row.dutyid, row.party)"> Released</span>
+                <span *ngIf="row.status == '1' && row.da == '1' && row.lat4" class="green-icon" (click)="edit(row.dutyid, row.party)"> Duty Complete</span>
                 <span *ngIf="row.status == '2'" class="blue-icon" (click)="approve(row.dutyid, row.party)"> Pending Approval</span>
                 <span *ngIf="row.status == '3'" class="green-icon"> Bill Generated</span>
                 <span *ngIf="row.status == '4'" class="green-icon"> Owner Paid</span>
             </mat-cell>
         </ng-container>
 
-        <ng-container matColumnDef="accept">
-            <mat-header-cell *matHeaderCellDef mat-sort-header> Acceptance Status </mat-header-cell>
-            <mat-cell *matCellDef="let row">
-                <span *ngIf="row.da == '0'" class="yellow-icon"> Not Accepted</span>
-                <span *ngIf="row.da == '1'" class="green-icon"> Accepted</span>
-            </mat-cell>
-        </ng-container>
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
         <mat-row *matRowDef="let row; columns: displayedColumns;">
         </mat-row>

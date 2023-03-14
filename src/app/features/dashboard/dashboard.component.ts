@@ -45,7 +45,7 @@ export class DashboardComponent implements OnInit {
   allparties: any;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  displayedColumns: string[] = ['dutydt', 'carno', 'driver', 'reportto', 'goutkm', 'gouttime', 'ginkm', 'gintime', 'statusval', 'accept'];
+  displayedColumns: string[] = ['dutydt', 'party', 'carno', 'driver', 'reportto', 'goutkm', 'gouttime', 'ginkm', 'gintime', 'statusval'];
   dataSource: MatTableDataSource<RentalDetail>;
   filteredOptionsCar: Observable<any[]>;
   filteredOptionsCarType: Observable<any[]>;
@@ -83,17 +83,14 @@ export class DashboardComponent implements OnInit {
   date: any;
   dates: any[] = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31];
   aindia: boolean;
+  partymaster: string;
   
   constructor(private router: Router, private apiService: ApiService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
-
+    this.partymaster = localStorage.getItem("for");
     this.init(); //Initialize the app with localstorage and sessionstorage values
-    this.aindia = localStorage.getItem("dashboardair") === "1" ? true : false;
     let timervariale = 60000;
-    if(this.aindia){
-      this.dashboarddutyshow();
-    }
     setInterval(() => {
       if(this.aindia){
         this.dashboarddutyshow();
@@ -109,9 +106,7 @@ export class DashboardComponent implements OnInit {
     };
     localStorage.setItem('selectedduty', "0");
     this.pagerefrsh = JSON.parse(localStorage.getItem('pagerefresh'));
-    this.apiService.post(PARTY_HEAD_API, json).then((res: any)=>{ 
-      localStorage.setItem("allparties", JSON.stringify(res.result));
-    });
+    
     this.apiService.post(REPORT_TO_API, json).then((res: any)=>{ 
       localStorage.setItem("allreportto", JSON.stringify(res.result));
     });
@@ -137,6 +132,14 @@ export class DashboardComponent implements OnInit {
     };
     this.apiService.post(EXTRA_API, jsonooked).then((res: any)=>{ 
       localStorage.setItem("allbookedby", JSON.stringify(res.result));
+    });
+    this.apiService.post(PARTY_HEAD_API, json).then((res: any)=>{ 
+      localStorage.setItem("allparties", JSON.stringify(res.result));
+      this.aindia = localStorage.getItem("dashboardair") === "1" ? true : false;
+    
+    if(this.aindia){
+      this.dashboarddutyshow();
+    }
     });
     if(this.pagerefrsh == "0"){
       localStorage.setItem('pagerefresh', "1");
@@ -166,6 +169,7 @@ export class DashboardComponent implements OnInit {
      var filterby = localStorage.getItem('rentalfilterby');
      var filterval = localStorage.getItem('rentalfilterval');
      this.allparties = JSON.parse(localStorage.getItem('allparties'));
+     this.allparties = this.allparties.filter(x=>x.master.toLowerCase() == this.partymaster.toLowerCase());
      this.alldrivers = JSON.parse(localStorage.getItem('alldrivers'));
      this.driverlogic();
      this.allowners = JSON.parse(localStorage.getItem('allowners'));
@@ -217,11 +221,14 @@ export class DashboardComponent implements OnInit {
     };
     this.apiService.post(RENTAL_DETAIL_API_DASHBOARD, json).then((res: any)=>{ 
       debugger;
-      this.rentalDetails = res.result;
-      this.masterrentaldetails = res.result;
+      this.rentalDetails = res;
+      if(this.date !== "ALL" && res){
+        this.rentalDetails = this.rentalDetails.filter(x=>new Date(x.dutydate).getDate().toString() === this.date.toString());
+      }
+      this.masterrentaldetails = res;
       this.dataSource = new MatTableDataSource(this.rentalDetails);
       this.dataSource.paginator = this.paginator;
-      localStorage.setItem("rentaldetails", JSON.stringify(res.result));
+      localStorage.setItem("rentaldetails", JSON.stringify(res));
       this.assignAutoComplete();
     });
    
@@ -350,13 +357,13 @@ export class DashboardComponent implements OnInit {
    loadOnChange(json: any){
       this.apiService.post(RENTAL_DETAIL_API_DASHBOARD, json).then((res: any)=>{ 
         debugger;
-        this.rentalDetails = res.result;
-        if(this.date !== "ALL"){
+        this.rentalDetails = res;
+        if(this.date !== "ALL" && res){
           this.rentalDetails = this.rentalDetails.filter(x=>new Date(x.dutydate).getDate().toString() === this.date.toString());
         }
-        this.masterrentaldetails = res.result;
+        this.masterrentaldetails = res;
         this.dataSource = new MatTableDataSource(this.rentalDetails);
-        localStorage.setItem("rentaldetails", JSON.stringify(res.result));
+        localStorage.setItem("rentaldetails", JSON.stringify(res));
         this.loading = false;
       });
    }

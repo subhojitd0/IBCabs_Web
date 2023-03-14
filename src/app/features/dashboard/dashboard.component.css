@@ -172,6 +172,30 @@ table {
     cursor: pointer;
 }
 
+.pink-icon {
+    background: #e5b4a5;
+    padding: 5px 10px 5px 10px;
+    border: 1px solid #e5b4a5;
+    border-radius: 10px;
+    font-weight: 500;
+}
+
+.blue-icon {
+    background: #00f3ff;
+    padding: 5px 10px 5px 10px;
+    border: 1px solid #00f3ff;
+    border-radius: 10px;
+    font-weight: 500;
+}
+
+.red-icon {
+    background: #ff0000;
+    padding: 5px 10px 5px 10px;
+    border: 1px solid #ff0000;
+    border-radius: 10px;
+    font-weight: 500;
+}
+
 .yellow-icon {
     background: yellow;
     padding: 5px 10px 5px 10px;
