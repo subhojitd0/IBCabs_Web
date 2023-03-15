@@ -452,7 +452,20 @@ export class MessageComponent implements OnInit {
       this.msg.msgtype = "1";
       this.msg.mode = 1;
       this.msg.msgdate = new Date().getUTCFullYear() + "/" + (new Date().getUTCMonth() + 1) + "/" + new Date().getUTCDate();
-      this.apiService.post(MSG_API, this.msg).then((res: any)=>{ 
+      let newmsg: msgclass;
+      newmsg.flight = this.msg.flight;
+      newmsg.msgdate = this.msg.msgdate;
+      newmsg.driver = this.msg.driver;
+      newmsg.drivernumber = this.msg.drivernumber;
+      newmsg.carnumber = this.msg.carnumber;
+      newmsg.cartype = this.msg.cartype;
+      newmsg.msgtype = this.msg.msgtype;
+      newmsg.mode = this.msg.mode;
+      newmsg.party = this.msg.party2;
+      newmsg.partynumber = this.msg.partynumber2;
+      newmsg.msgtime = this.msg.msgtime2;
+      newmsg.reporting = this.msg.reporting2;
+      this.apiService.post(MSG_API, newmsg).then((res: any)=>{ 
         debugger;
         if(res.status === "success"){
         }
@@ -484,7 +497,20 @@ export class MessageComponent implements OnInit {
       this.msg.msgtype = "1";
       this.msg.mode = 1;
       this.msg.msgdate = new Date().getUTCFullYear() + "/" + (new Date().getUTCMonth() + 1) + "/" + new Date().getUTCDate();
-      this.apiService.post(MSG_API, this.msg).then((res: any)=>{ 
+      let newmsg: msgclass;
+      newmsg.flight = this.msg.flight;
+      newmsg.msgdate = this.msg.msgdate;
+      newmsg.driver = this.msg.driver;
+      newmsg.drivernumber = this.msg.drivernumber;
+      newmsg.carnumber = this.msg.carnumber;
+      newmsg.cartype = this.msg.cartype;
+      newmsg.msgtype = this.msg.msgtype;
+      newmsg.mode = this.msg.mode;
+      newmsg.party = this.msg.party3;
+      newmsg.partynumber = this.msg.partynumber3;
+      newmsg.msgtime = this.msg.msgtime3;
+      newmsg.reporting = this.msg.reporting3;
+      this.apiService.post(MSG_API, newmsg).then((res: any)=>{ 
         debugger;
         if(res.status === "success"){
         }
