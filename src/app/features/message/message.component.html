@@ -149,7 +149,7 @@
                     <div class="col-sm-12">
                         <mat-form-field style="width: 80%; margin-right: 20px;">
                             <mat-label>Flight Details</mat-label>
-                            <input [(ngModel)]="msg.msgtime" (blur)="msgdisplay()" type="text" matInput placeholder="Enter Flight Details" formControlName="MsgTimeControl" required>
+                            <input [(ngModel)]="msg.flight" (blur)="msgdisplay()" type="text" matInput placeholder="Enter Flight Details" formControlName="FlightControl" required>
                         </mat-form-field>
                     </div>
                 </div>
@@ -174,20 +174,26 @@
                       border-radius: 5px;
                       margin: 10px;
                       background:#3f51b5;
-                      color: white" (click)="sendmessagebtnpassenger()">Passenger 2</button>
+                      color: white" (click)="sendmessagebtnpassenger2()">Passenger 2</button>
                         <button *ngIf="showpassenger" style="padding: 10px;
                       width: 20% !important;
                       border-radius: 5px;
                       margin: 10px;
                       background:#3f51b5;
-                      color: white" (click)="sendmessagebtnpassenger()">Passenger 3</button> <br/><br/>
+                      color: white" (click)="sendmessagebtnpassenger3()">Passenger 3</button> <br/><br/>
                         <!-- <span style="font-size: 15px">Number : {{number}}</span> <br/>-->
-                        <span style="font-size: 15px">Message to Driver : <br/>
+                        <span style="font-size: 15px"><b>Message to Driver : </b><br/>
                           {{message}}
-                        </span> <br/><br/>
+                        </span> <br/>
                         <br/>
-                        <br/><br/><span style="font-size: 15px">Message to Party : <br/>
+                        <br/><br/><span style="font-size: 15px"><b>Message to Passenger 1 : </b><br/>
                         {{partymessage}}
+                      </span> <br/><br/>
+                        <br/><br/><span style="font-size: 15px"><b>Message to Passenger 2 : </b><br/>
+                        {{partymessage2}}
+                      </span> <br/><br/>
+                        <br/><br/><span style="font-size: 15px"><b>Message to Passenger 3 : </b><br/>
+                        {{partymessage3}}
                       </span> <br/><br/>
                         <br/><br/>
                     </div>

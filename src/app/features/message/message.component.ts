@@ -83,6 +83,7 @@ export class MessageComponent implements OnInit {
   MsgTimeControl3: FormControl;
   ReportingControl3: FormControl;
 
+  FlightControl: FormControl;
   allcartype: any;
   alldrivernames: any;
   allcarno: any;
@@ -101,6 +102,8 @@ export class MessageComponent implements OnInit {
   message: string;
   msglist : msgclass[] = [];
   partymessage: string;
+  partymessage2: string;
+  partymessage3: string;
   allparty: string[];
   partylist: any;
   constructor(private _formBuilder: FormBuilder,private router: Router,private apiService: ApiService, private toastr: ToastrService) {
@@ -130,6 +133,7 @@ export class MessageComponent implements OnInit {
       PartyNumberControl3: [],
       MsgTimeControl3: [],
       ReportingControl3: [],
+      FlightControl: [],
       DriverControl: ['', Validators.required],
       DriverContactControl: ['', Validators.required],
       CarTypeControl: ['', Validators.required],
@@ -182,6 +186,8 @@ export class MessageComponent implements OnInit {
     }
     if(this.showpassenger){
       this.formpassengermsg();
+      this.formpassengermsg2();
+      this.formpassengermsg3();
     }
   }
   ngOnInit(): void {
@@ -263,6 +269,60 @@ export class MessageComponent implements OnInit {
     body = body.replace("{17}", "");
     this.partymessage = body;
   }
+
+  formpassengermsg2(){
+    let body = CAR_ASSIGNED_AIRPORT_TEMPLATE;
+    body = body.split("%20").join(" ");
+    body = body.split("%0A").join(" .");
+    body = body.split("%3A").join(": ");
+    body = body.split("%2C").join(".");
+    body = body.replace("{0}", this.msg.party2);
+    body = body.replace("{1}", "");
+    body = body.replace("{2}", "");
+    body = body.replace("{3}", "1");
+    body = body.replace("{4}", new Date().getUTCFullYear() + "/" + (new Date().getUTCMonth() + 1) + "/" + new Date().getUTCDate());
+    body = body.replace("{5}", this.msg.msgtime2);
+    body = body.replace("{6}", this.msg.reporting2);
+    body = body.replace("{7}", "");
+    body = body.replace("{8}", "");
+    body = body.replace("{9}", "");
+    body = body.replace("{10}", this.msg.driver);
+    body = body.replace("{11}", "");
+    body = body.replace("{12}", "");
+    body = body.replace("{13}", this.msg.drivernumber);
+    body = body.replace("{14}", "");
+    body = body.replace("{15}", this.msg.carnumber);
+    body = body.replace("{16}", "");
+    body = body.replace("{17}", "");
+    this.partymessage2 = body;
+  }
+
+  formpassengermsg3(){
+    let body = CAR_ASSIGNED_AIRPORT_TEMPLATE;
+    body = body.split("%20").join(" ");
+    body = body.split("%0A").join(" .");
+    body = body.split("%3A").join(": ");
+    body = body.split("%2C").join(".");
+    body = body.replace("{0}", this.msg.party3);
+    body = body.replace("{1}", "");
+    body = body.replace("{2}", "");
+    body = body.replace("{3}", "1");
+    body = body.replace("{4}", new Date().getUTCFullYear() + "/" + (new Date().getUTCMonth() + 1) + "/" + new Date().getUTCDate());
+    body = body.replace("{5}", this.msg.msgtime3);
+    body = body.replace("{6}", this.msg.reporting3);
+    body = body.replace("{7}", "");
+    body = body.replace("{8}", "");
+    body = body.replace("{9}", "");
+    body = body.replace("{10}", this.msg.driver);
+    body = body.replace("{11}", "");
+    body = body.replace("{12}", "");
+    body = body.replace("{13}", this.msg.drivernumber);
+    body = body.replace("{14}", "");
+    body = body.replace("{15}", this.msg.carnumber);
+    body = body.replace("{16}", "");
+    body = body.replace("{17}", "");
+    this.partymessage3 = body;
+  }
   public _filterCarType(value: string): string[] {
     const filterValue = value.toLowerCase();
     return this.allcartype.filter(client => client.toLowerCase().includes(filterValue));
@@ -280,7 +340,7 @@ export class MessageComponent implements OnInit {
     return this.allparty.filter(client => client.toLowerCase().includes(filterValue));
   }
   sendmessagebtndriver(){
-    if(!(this.msg.party && this.msg.partynumber && this.msg.driver && this.msg.drivernumber && this.msg.carnumber && this.msg.cartype)){
+    if(!(this.msg.party && this.msg.partynumber && this.msg.msgtime && this.msg.reporting && this.msg.driver && this.msg.drivernumber && this.msg.carnumber && this.msg.cartype)){
       this.toastr.error("Please enter all the details before sending message", "Error");
     }
     else{
@@ -336,7 +396,7 @@ export class MessageComponent implements OnInit {
     this.router.navigateByUrl('/' + ROUTE_BASIC);
   }
   sendmessagebtnpassenger(){
-    if(!(this.msg.party && this.msg.partynumber && this.msg.driver && this.msg.drivernumber && this.msg.carnumber && this.msg.cartype)){
+    if(!(this.msg.party && this.msg.partynumber && this.msg.msgtime && this.msg.reporting && this.msg.flight && this.msg.driver && this.msg.drivernumber && this.msg.carnumber && this.msg.cartype)){
       this.toastr.error("Please enter all the details before sending message", "Error");
     }
     else{
@@ -346,6 +406,70 @@ export class MessageComponent implements OnInit {
       queryParam += "&send_to=" + this.msg.partynumber;
       //queryParam += "&send_to=9874993247";
       queryParam += "&msg=" + this.partymessage;
+      queryParam += "&msg_type=" + MESSAGE_TYPE;
+      queryParam += "&userid=" + MESSAGE_USER;
+      queryParam += "&auth_scheme=" + MESSAGE_AUTH_SCHEME;
+      queryParam += "&password=" + MESSAGE_PWD;
+      queryParam += "&v=" + MESSAGE_VERSION;
+      queryParam += "&format=" + MESSAGE_FORMAT;
+      debugger;
+      this.apiService.sendMessage(queryParam).then((data)=>{
+      });
+      this.toastr.success("The message has been successfully sent", "Success");
+        //Call our API
+      this.msg.msgtype = "1";
+      this.msg.mode = 1;
+      this.msg.msgdate = new Date().getUTCFullYear() + "/" + (new Date().getUTCMonth() + 1) + "/" + new Date().getUTCDate();
+      this.apiService.post(MSG_API, this.msg).then((res: any)=>{ 
+        debugger;
+        if(res.status === "success"){
+        }
+      });
+    }
+  }
+  sendmessagebtnpassenger2(){
+    if(!(this.msg.party2 && this.msg.partynumber2 && this.msg.msgtime2 && this.msg.reporting2 && this.msg.flight && this.msg.driver && this.msg.drivernumber && this.msg.carnumber && this.msg.cartype)){
+      this.toastr.error("Please enter all the details before sending message", "Error");
+    }
+    else{
+      let queryParam = "";
+      this.formpassengermsg2();
+      queryParam += "method=" + MESSAGE_METHOD;
+      queryParam += "&send_to=" + this.msg.partynumber2;
+      //queryParam += "&send_to=9874993247";
+      queryParam += "&msg=" + this.partymessage2;
+      queryParam += "&msg_type=" + MESSAGE_TYPE;
+      queryParam += "&userid=" + MESSAGE_USER;
+      queryParam += "&auth_scheme=" + MESSAGE_AUTH_SCHEME;
+      queryParam += "&password=" + MESSAGE_PWD;
+      queryParam += "&v=" + MESSAGE_VERSION;
+      queryParam += "&format=" + MESSAGE_FORMAT;
+      debugger;
+      this.apiService.sendMessage(queryParam).then((data)=>{
+      });
+      this.toastr.success("The message has been successfully sent", "Success");
+        //Call our API
+      this.msg.msgtype = "1";
+      this.msg.mode = 1;
+      this.msg.msgdate = new Date().getUTCFullYear() + "/" + (new Date().getUTCMonth() + 1) + "/" + new Date().getUTCDate();
+      this.apiService.post(MSG_API, this.msg).then((res: any)=>{ 
+        debugger;
+        if(res.status === "success"){
+        }
+      });
+    }
+  }
+  sendmessagebtnpassenger3(){
+    if(!(this.msg.party3 && this.msg.partynumber3 && this.msg.msgtime3 && this.msg.reporting3 && this.msg.flight && this.msg.driver && this.msg.drivernumber && this.msg.carnumber && this.msg.cartype)){
+      this.toastr.error("Please enter all the details before sending message", "Error");
+    }
+    else{
+      let queryParam = "";
+      this.formpassengermsg3();
+      queryParam += "method=" + MESSAGE_METHOD;
+      queryParam += "&send_to=" + this.msg.partynumber3;
+      //queryParam += "&send_to=9874993247";
+      queryParam += "&msg=" + this.partymessage3;
       queryParam += "&msg_type=" + MESSAGE_TYPE;
       queryParam += "&userid=" + MESSAGE_USER;
       queryParam += "&auth_scheme=" + MESSAGE_AUTH_SCHEME;
