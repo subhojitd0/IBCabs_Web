@@ -106,6 +106,9 @@
                 <mat-form-field *ngIf="filterby==='party'">
                     <input name="partyfilter" type="text" [(ngModel)]="filterval" [formControl]="partyselect" [matAutocomplete]="party" matInput placeholder="Enter Party">
                     <mat-autocomplete (optionSelected)="onChangeFilterVal($event)" #party="matAutocomplete">
+                        <mat-option value="all">
+                            ALL
+                        </mat-option>
                         <mat-option *ngFor="let option of partylist | async" [value]="option">
                             {{option}}
                         </mat-option>
@@ -203,6 +206,11 @@
                 <span *ngIf="row.status == '3'" class="green-icon"> Bill Generated</span>
                 <span *ngIf="row.status == '4'" class="green-icon"> Owner Paid</span>
             </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="sign">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Signature </mat-header-cell>
+            <mat-cell *matCellDef="let row"> <img height="90px" [src]="row.signature"> </mat-cell>
         </ng-container>
 
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

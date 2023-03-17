@@ -45,7 +45,7 @@ export class DashboardComponent implements OnInit {
   allparties: any;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  displayedColumns: string[] = ['dutydt', 'party', 'carno', 'driver', 'reportto', 'goutkm', 'gouttime', 'ginkm', 'gintime', 'statusval'];
+  displayedColumns: string[] = ['dutydt', 'party', 'carno', 'driver', 'reportto', 'goutkm', 'gouttime', 'ginkm', 'gintime', 'statusval', 'sign'];
   dataSource: MatTableDataSource<RentalDetail>;
   filteredOptionsCar: Observable<any[]>;
   filteredOptionsCarType: Observable<any[]>;
