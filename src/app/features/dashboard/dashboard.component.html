@@ -173,7 +173,7 @@
         </ng-container>
         <ng-container matColumnDef="goutkm">
             <mat-header-cell *matHeaderCellDef mat-sort-header> Out KM </mat-header-cell>
-            <mat-cell *matCellDef="let row"> {{row.goutkm}} </mat-cell>
+            <mat-cell *matCellDef="let row"><a href="{{'https://maps.google.com/?q='+row.lat2+','+row.long2}}" target="_blank"> {{row.goutkm}} </a></mat-cell>
         </ng-container>
         <ng-container matColumnDef="gouttime">
             <mat-header-cell *matHeaderCellDef mat-sort-header> Out Time </mat-header-cell>
@@ -181,7 +181,7 @@
         </ng-container>
         <ng-container matColumnDef="ginkm">
             <mat-header-cell *matHeaderCellDef mat-sort-header> In KM </mat-header-cell>
-            <mat-cell *matCellDef="let row"> {{row.ginkm}} </mat-cell>
+            <mat-cell *matCellDef="let row"><a href="{{'https://maps.google.com/?q='+row.lat3+','+row.long3}}" target="_blank">  {{row.ginkm}} </a></mat-cell>
         </ng-container>
         <ng-container matColumnDef="gintime">
             <mat-header-cell *matHeaderCellDef mat-sort-header> In Time </mat-header-cell>
