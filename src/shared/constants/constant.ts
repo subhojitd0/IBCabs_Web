@@ -1,4 +1,4 @@
-export const API_URL = "http://ibcabs.com/bills/api/";
+export const API_URL = "https://ibcabs.in/bills/api/";
 export const MESSAGE_URL = " http://enterprise.smsgupshup.com/GatewayAPI/rest?";
 
 //Production Old
