@@ -7,7 +7,8 @@
         "build": "ng build --watch",
         "test": "ng test",
         "lint": "ng lint",
-        "e2e": "ng e2e"
+        "e2e": "ng e2e",
+        "setup":"set NODE_OPTIONS=--openssl-legacy-provider"
     },
     "private": true,
     "dependencies": {
