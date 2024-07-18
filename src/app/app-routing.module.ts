@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ROUTE_ABP, ROUTE_ADD_DDR, ROUTE_ADD_DDR_WALKIN, ROUTE_BASIC, ROUTE_CAR, ROUTE_CHECK_DDR, ROUTE_COAL_INDEX, ROUTE_DAILY_OT, ROUTE_DASHBOARD, ROUTE_DRIVER, ROUTE_DRIVER_OT, ROUTE_EXPORT_DDR, ROUTE_GENERATE_BILL, ROUTE_GENERATE_VENDOR_BILL, ROUTE_MATADOR, ROUTE_MESSAGE, ROUTE_NEW_USER, ROUTE_OWNER, ROUTE_PARTY, ROUTE_RATE, ROUTE_REFRESH, ROUTE_REPORTO, ROUTE_TIMES_BILL, ROUTE_USER_RIGHTS, ROUTE_VENDOR_BILL, ROUTE_VENDOR_BILL_ORIGINAL, ROUTE_VENDOR_RATE, ROUTE_VIEW_BILL_CNN, ROUTE_VIEW_BILL_CNN_CONTRACT, ROUTE_VIEW_BILL_COAL_INDIA, ROUTE_VIEW_BILL_H, ROUTE_VIEW_BILL_I, ROUTE_VIEW_BILL_J, ROUTE_VIEW_BILL_K, ROUTE_VIEW_BILL_L, ROUTE_VIEW_BILL_ONCALL_EXTRA, ROUTE_VIEW_BILL_RELIANCE_JMS, ROUTE_VIEW_BILL_RELIANCE_MIS, ROUTE_VIEW_BILL_RELIANCE_SUMMARY, ROUTE_VIEW_DDR } from 'src/shared/constants/constant';
+import { ROUTE_ABP, ROUTE_ADD_DDR, ROUTE_ADD_DDR_WALKIN, ROUTE_BASIC, ROUTE_CAR, ROUTE_CHECK_DDR, ROUTE_COAL_INDEX, ROUTE_DAILY_OT, ROUTE_DASHBOARD, ROUTE_DRIVER, ROUTE_DRIVER_OT, ROUTE_EXPORT_DDR, ROUTE_GENERATE_BILL, ROUTE_GENERATE_VENDOR_BILL, ROUTE_MATADOR, ROUTE_MESSAGE, ROUTE_NEW_USER, ROUTE_OWNER, ROUTE_PARTY, ROUTE_RATE, ROUTE_REFRESH, ROUTE_REPORTO, ROUTE_TIMES_BILL, ROUTE_USER_RIGHTS, ROUTE_VENDOR_BILL, ROUTE_VENDOR_BILL_ORIGINAL, ROUTE_VENDOR_RATE, ROUTE_VIEW_BILL_CNN, ROUTE_VIEW_BILL_CNN_CONTRACT, ROUTE_VIEW_BILL_COAL_INDIA, ROUTE_VIEW_BILL_H, ROUTE_VIEW_BILL_I, ROUTE_VIEW_BILL_J, ROUTE_VIEW_BILL_K, ROUTE_VIEW_BILL_L, ROUTE_VIEW_BILL_ONCALL_EXTRA,ROUTE_VIEW_BILL_PACKAGE_EXTRA, ROUTE_VIEW_BILL_RELIANCE_JMS, ROUTE_VIEW_BILL_RELIANCE_MIS, ROUTE_VIEW_BILL_RELIANCE_SUMMARY, ROUTE_VIEW_BILL_SLAB_EXTRA, ROUTE_VIEW_DDR } from 'src/shared/constants/constant';
 import { AbpComponent } from './features/bills/abp/abp.component';
 import { AirIndiaComponent } from './features/bills/air-india/airindia.component';
 import { BillJComponent } from './features/bills/bill-j/billj.component';
@@ -12,6 +12,7 @@ import { DailyOTComponent } from './features/bills/daily-ot/dailyot.component';
 import { MonthlyBillAComponent } from './features/bills/monthly-bill-a/monthly-a.component';
 import { MonthlyContractAComponent } from './features/bills/mothly-contract-a/monthly-contract-a.component';
 import { OnCallBillAComponent } from './features/bills/oncall-bill-a/oncall-a.component';
+import { OncallBillPackComponent } from './features/bills/oncall-bill-pack/oncall-bill-pack.component';
 import { RelianceJMSComponent } from './features/bills/reliance/jms/jms.component';
 import { RelianceMISComponent } from './features/bills/reliance/mis/mis.component';
 import { RelinceSummaryComponent } from './features/bills/reliance/summary/summary.component';
@@ -41,6 +42,7 @@ import { VendorBillComponent } from './features/vendor-bill/bills/vendorbill.com
 import { GenarateVendorBillComponent } from './features/vendor-bill/generate-bill.component';
 import { OriginalVendorBillComponent } from './features/vendor-bill/original-bill/vendorbill.component';
 import { VendorRatesComponent } from './features/vendor-rates/vendorrates.component';
+import { OncallBillSlabComponent } from './features/bills/oncall-bill-slab/oncall-bill-slab.component';
 
 const routes: Routes = [
   {
@@ -102,6 +104,14 @@ const routes: Routes = [
   {
     path: ROUTE_VIEW_BILL_ONCALL_EXTRA,
     component:OnCallBillAComponent
+  },
+  {
+    path: ROUTE_VIEW_BILL_PACKAGE_EXTRA,
+    component:OncallBillPackComponent
+  },
+  {
+    path: ROUTE_VIEW_BILL_SLAB_EXTRA,
+    component:OncallBillSlabComponent
   },
   {
     path: ROUTE_REPORTO,

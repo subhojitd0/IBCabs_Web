@@ -80,6 +80,8 @@ import { AirIndiaComponent } from './features/bills/air-india/airindia.component
 import { MessageComponent } from './features/message/message.component';
 import { LogoutComponent } from './features/logout/logout.component';
 import { BillLComponent } from './features/bills/bill-L/billL.component';
+import { OncallBillPackComponent } from './features/bills/oncall-bill-pack/oncall-bill-pack.component';
+import { OncallBillSlabComponent } from './features/bills/oncall-bill-slab/oncall-bill-slab.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -138,7 +140,9 @@ import { BillLComponent } from './features/bills/bill-L/billL.component';
     AirIndiaComponent,
     MessageComponent,
     LogoutComponent,
-    BillLComponent
+    BillLComponent,
+    OncallBillPackComponent,
+    OncallBillSlabComponent
   ],
   imports: [
     BrowserModule,
