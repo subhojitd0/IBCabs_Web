@@ -258,7 +258,9 @@ billRegDetails: any[] = [];
       parkinggst: element.parkinggst,
       customfa: element.fa,
       customfavalue: element.favalue,
-      fuelopt: element.fuelopt
+      fuelopt: element.fuelopt,
+      nightstart:element.nightstart,
+      nightend:element.nightend
     }
     localStorage.setItem("billfrom", element.billfrom);
     localStorage.setItem("billto", element.billto);
@@ -271,6 +273,8 @@ billRegDetails: any[] = [];
     localStorage.setItem("billfa", element.fa);
     localStorage.setItem("billfaval", element.favalue);
     localStorage.setItem("fuelopt", element.fuelopt);
+    localStorage.setItem("nightstart", element.nightstart);
+    localStorage.setItem("nightend", element.nightend);
     this.apiService.post(BILL_ONCALL_EXTRA_API, json).then((res: any)=>{ 
       debugger;
       localStorage.setItem("billdata", JSON.stringify(res));
@@ -295,7 +299,9 @@ billRegDetails: any[] = [];
       parkinggst: element.parkinggst,
       customfa: element.fa,
       customfavalue: element.favalue,
-      fuelopt: element.fuelopt
+      fuelopt: element.fuelopt,
+      nightstart:element.nightstart,
+      nightend:element.nightend
     }
     localStorage.setItem("billfrom", element.billfrom);
     localStorage.setItem("billto", element.billto);
@@ -307,7 +313,9 @@ billRegDetails: any[] = [];
     localStorage.setItem("billdate", element.billdate);
     localStorage.setItem("billfa", element.fa);
     localStorage.setItem("billfaval", element.favalue);
-    localStorage.setItem("fuelopt", element.fuelopt);
+    localStorage.setItem("fuelopt", element.fuelopt);    
+    localStorage.setItem("nightstart", element.nightstart);
+    localStorage.setItem("nightend", element.nightend);
     this.apiService.post(BILL_ONCALL_SLAB_API, json).then((res: any)=>{ 
       debugger;
       localStorage.setItem("billdata", JSON.stringify(res));
@@ -332,7 +340,9 @@ billRegDetails: any[] = [];
       parkinggst: element.parkinggst,
       customfa: element.fa,
       customfavalue: element.favalue,
-      fuelopt: element.fuelopt
+      fuelopt: element.fuelopt,
+      nightstart:element.nightstart,
+      nightend:element.nightend
     }
     localStorage.setItem("billfrom", element.billfrom);
     localStorage.setItem("billto", element.billto);
@@ -345,6 +355,8 @@ billRegDetails: any[] = [];
     localStorage.setItem("billfa", element.fa);
     localStorage.setItem("billfaval", element.favalue);
     localStorage.setItem("fuelopt", element.fuelopt);
+    localStorage.setItem("nightstart", element.nightstart);
+    localStorage.setItem("nightend", element.nightend);
     this.apiService.post(BILL_ONCALL_PACKAGE_API, json).then((res: any)=>{ 
       debugger;
       localStorage.setItem("billdata", JSON.stringify(res));

@@ -28,6 +28,8 @@ export interface iBillDet {
   fa: string;
   favalue: string;
   fuelopt: string;
+  nightstart:any;
+  nightend:any;
 }
 
 export class BillDet implements iBillDet {
@@ -46,6 +48,8 @@ export class BillDet implements iBillDet {
     fa: string;
   favalue: string;
   fuelopt: string;
+  nightstart:any;
+  nightend:any;
 }
 
 export interface iSaveBill {
@@ -63,6 +67,8 @@ export interface iSaveBill {
   fa: string;
   favalue: string;
   fuelopt: string;
+  nightstart:any;
+  nightend:any;
 }
 export class SaveBill implements iSaveBill {
   billnumber: string;
@@ -79,6 +85,8 @@ export class SaveBill implements iSaveBill {
   fa: string;
   favalue: string;
   fuelopt: string;
+  nightstart:any;
+  nightend:any;
 }
 @Component({
   selector: 'app-oncall-a',
@@ -180,6 +188,8 @@ export class OnCallBillAComponent implements OnInit {
       billSave.fa= this.billdetails.tail[0].customfa;
       billSave.favalue=this.billdetails.tail[0].customfavalue;
       billSave.fuelopt=this.billdetails.tail[0].driverbata;
+      billSave.nightstart = localStorage.getItem("nightstart");
+      billSave.nightend = localStorage.getItem("nightend");
       billSave.mode = "1";
       this.apiService.post(BILL_API, billSave).then((res: any)=>{ 
           debugger;
