@@ -48,7 +48,7 @@
 
             <mat-form-field style="width: 15%; margin-right: 10px;">
                 <mat-label>Report Name</mat-label>
-                <input matInput placeholder="Enter the report to name here" [matAutocomplete]="autoreport" [(ngModel)]="rentalAdd.reporttoname" formControlName="ReportControl" required>
+                <input (blur)="populatereportcontact()" matInput placeholder="Enter the report to name here" [matAutocomplete]="autoreport" [(ngModel)]="rentalAdd.reporttoname" formControlName="ReportControl" required>
                 <mat-autocomplete #autoreport="matAutocomplete">
                     <mat-option *ngFor="let option of filteredOptionsReport | async" [value]="option">
                         {{option}}

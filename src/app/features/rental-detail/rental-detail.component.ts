@@ -151,6 +151,15 @@ export class RentalDetailComponent implements OnInit {
       dialogRef.close();
     });
   }
+  populatereportcontact(){
+    if(this.rentalAdd.reporttoname){
+      let reportObject = this.allreportto.filter(x=>x.report === this.rentalAdd.reporttoname);
+      if(reportObject && reportObject.length > 0){
+        this.rentalAdd.reporttonum = reportObject[0].contact;
+      }
+      
+    }
+  }
   savedataandexit(stepper: MatStepper, step: any){
     let id = localStorage.getItem('selectedduty');
     if(this.isValid(step)){

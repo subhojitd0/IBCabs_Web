@@ -285,7 +285,7 @@ billRegDetails: any[] = [];
       this.router.navigate([]).then(result => {  window.open('/' + ROUTE_VIEW_BILL_ONCALL_EXTRA, '_blank'); });
     });
   }
-
+  
   openOnCallSlab(element: any){
     debugger;
     let json = {
@@ -446,6 +446,7 @@ billRegDetails: any[] = [];
   openBillL(element: any){
     localStorage.setItem("removeheader", "0");
     let month = element.billto.substr(5,2);
+    let year = element.billto.substr(0,4);
     if(month.startsWith("0")){
       month = month.replace("0","");
     }
@@ -460,6 +461,7 @@ billRegDetails: any[] = [];
       billCalType: element.billCalType
     }
     localStorage.setItem("billmonth", month);
+    localStorage.setItem("billyear", year);
     localStorage.setItem("billfa", element.fa);
     localStorage.setItem("billfaval", element.favalue);
     localStorage.setItem("billpartymaster", element.party);

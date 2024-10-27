@@ -1,15 +1,15 @@
-        <!-- <div class="center">
-          <p style="cursor: pointer; margin-right: 5px;" (click)="exportAsPDF('printdiv');"><img height="70" src="http://ibcabs.com/bills/new/assets/img/download.png"></p>
-          <p *ngIf="isConfirmVisible" style="cursor: pointer; margin-right: 5px" (click)="save();"><img height="70" src="http://ibcabs.com/bills/new/assets/img/confirm.png"></p>
+<!-- <div class="center">
+          <p style="cursor: pointer; margin-right: 5px;" (click)="exportAsPDF('printdiv');"><img height="70" src="https://ibcabs.in/bills/new/assets/img/download.png"></p>
+          <p *ngIf="isConfirmVisible" style="cursor: pointer; margin-right: 5px" (click)="save();"><img height="70" src="https://ibcabs.in/bills/new/assets/img/confirm.png"></p>
         </div> -->
-        <div class="container" id="printdiv" style="max-width: 1500px; min-height: 2000px; max-height: 10000px;">
-          <p id="header">CHECK DDR</p>
- 
-          <button  mat-stroked-button style="margin-left: 10px" (click)="export()"> Export To Excel</button>
-          <div style="margin-top: 160px;">
-            
-            <table #table>
-              <tr>
+<div class="container" id="printdiv" style="max-width: 1500px; min-height: 2000px; max-height: 10000px;">
+    <p id="header">CHECK DDR</p>
+
+    <button mat-stroked-button style="margin-left: 10px" (click)="export()"> Export To Excel</button>
+    <div style="margin-top: 160px;">
+
+        <table #table>
+            <tr>
                 <th>Date</th>
                 <th>Car No.</th>
                 <th>Car Type</th>
@@ -17,10 +17,10 @@
                 <th>Report To</th>
                 <th>Hour</th>
                 <th>KM</th>
-                <th>Parking</th>
+                <th>Parking/Toll</th>
                 <th>Outstation</th>
-              </tr>
-              <tr *ngFor="let row of dataset">
+            </tr>
+            <tr *ngFor="let row of dataset">
                 <td>{{row.dutydate}}</td>
                 <td>{{row.carnum}}</td>
                 <td>{{row.cartype}}</td>
@@ -30,9 +30,9 @@
                 <td>{{row.totkm}}</td>
                 <td>{{row.parking}}</td>
                 <td>{{row.outs}}</td>
-              </tr>
-            </table>
-              
-            </div>
+            </tr>
+        </table>
 
-        </div>
+    </div>
+
+</div>

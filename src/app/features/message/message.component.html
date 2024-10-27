@@ -31,7 +31,18 @@
                     <div class="col-sm-3">
                         <mat-form-field style="width: 80%; margin-right: 20px;">
                             <mat-label>Reporting Place</mat-label>
-                            <input [(ngModel)]="msg.reporting" (blur)="msgdisplay()" type="text" matInput placeholder="Enter Reporting Place" formControlName="ReportingControl" required>
+                            <input [matAutocomplete]="autoreport" [(ngModel)]="msg.reporting" (blur)="msgdisplay()" type="text" matInput placeholder="Enter Reporting Place" formControlName="ReportingControl" required>
+                            <mat-autocomplete #autoreport="matAutocomplete">
+                                <mat-option value="Taj Hotel">
+                                    TAJ HOTEL
+                                </mat-option>
+                                <mat-option value="Residency">
+                                    RESIDENCY
+                                </mat-option>
+                                <mat-option value="Airport">
+                                    AIRPORT
+                                </mat-option>
+                            </mat-autocomplete>
                         </mat-form-field>
                     </div>
                 </div>
@@ -64,7 +75,18 @@
                     <div class="col-sm-3">
                         <mat-form-field style="width: 80%; margin-right: 20px;">
                             <mat-label>Reporting Place</mat-label>
-                            <input [(ngModel)]="msg.reporting2" (blur)="msgdisplay()" type="text" matInput placeholder="Enter Reporting Place" formControlName="ReportingControl2" required>
+                            <input [matAutocomplete]="autoreport" [(ngModel)]="msg.reporting2" (blur)="msgdisplay()" type="text" matInput placeholder="Enter Reporting Place" formControlName="ReportingControl2" required>
+                            <mat-autocomplete #autoreport="matAutocomplete">
+                                <mat-option value="Taj Hotel">
+                                    TAJ HOTEL
+                                </mat-option>
+                                <mat-option value="Residency">
+                                    RESIDENCY
+                                </mat-option>
+                                <mat-option value="Airport">
+                                    AIRPORT
+                                </mat-option>
+                            </mat-autocomplete>
                         </mat-form-field>
                     </div>
                 </div>
@@ -141,7 +163,18 @@
                     <div class="col-sm-3">
                         <mat-form-field style="width: 80%; margin-right: 20px;">
                             <mat-label>Driver Contact</mat-label>
-                            <input (blur)="msgdisplay()" [(ngModel)]="msg.drivernumber" matInput placeholder="Enter Driver Contact Number" formControlName="DriverContactControl" required>
+                            <input [matAutocomplete]="autoreport" (blur)="msgdisplay()" [(ngModel)]="msg.drivernumber" matInput placeholder="Enter Driver Contact Number" formControlName="DriverContactControl" required>
+                            <mat-autocomplete #autoreport="matAutocomplete">
+                                <mat-option value="Taj Hotel">
+                                    TAJ HOTEL
+                                </mat-option>
+                                <mat-option value="Residency">
+                                    RESIDENCY
+                                </mat-option>
+                                <mat-option value="Airport">
+                                    AIRPORT
+                                </mat-option>
+                            </mat-autocomplete>
                         </mat-form-field>
                     </div>
                 </div>
