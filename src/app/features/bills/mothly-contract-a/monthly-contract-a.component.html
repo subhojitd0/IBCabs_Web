@@ -1,146 +1,142 @@
-        <div class="center">
-          <p style="cursor: pointer; margin-right: 5px;" (click)="exportAsPDF('printdiv');"><img height="70" src="http://ibcabs.com/bills/new/assets/img/download.png"></p>
-          <!-- <p *ngIf="isConfirmVisible" style="cursor: pointer; margin-right: 5px" (click)="save();"><img height="70" src="http://ibcabs.com/bills/new/assets/img/confirm.png"></p> -->
+<div class="center">
+    <p style="cursor: pointer; margin-right: 5px;" (click)="exportAsPDF('printdiv');"><img height="70" src="https://ibcabs.in/bills/new/assets/img/download.png"></p>
+    <!-- <p *ngIf="isConfirmVisible" style="cursor: pointer; margin-right: 5px" (click)="save();"><img height="70" src="https://ibcabs.in/bills/new/assets/img/confirm.png"></p> -->
+</div>
+<div class="container" id="printdiv" style="min-height: 2000px; max-height: 10000px;">
+    <p id="header">TAX INVOICE</p>
+    <div id="identity" class="row col-xs-12">
+        <div class="col-xs-1">
+            <img src="https://ibcabs.in/bills/new/assets/img/ib.jpg" style="height:90px;width:90px;margin-top:-8px;">
         </div>
-        <div class="container" id="printdiv" style="min-height: 2000px; max-height: 10000px;">
-          <p id="header">TAX INVOICE</p>
-          <div id="identity" class="row col-xs-12">
-            <div class="col-xs-1">
-              <img src="http://ibcabs.com/bills/new/assets/img/ib.jpg" style="height:90px;width:90px;margin-top:-8px;">
-            </div>
-            <div class="col-xs-8">
-                  <p id="address" style="font-size:20px;">Registered Office : 195/2,Park Street, Kolkata - 700017.<br>
-                      Zonal Office: 86A, Tollygunge Road, Kolkata-700033.<br>
-                      Mobile: 9830800776, Tel: (033) 2424 6551, (033) 4007 8545<br>
-                      Email: indranilb@ibcabs.com, admin@ibcabs.com. Visit us at: www.ibcabs.com<br></p>
-            </div>
-              <div class="col-xs-3 gst">
-                  
-              </div>
-            
-            
-            </div>
-            
-            <div id="customer" class="row" style="display:block; margin-top: 80px;">
-              <div id="customer-title" class="col-xs-4" style="margin-right: 0px; max-width: 500px; font-size:18px !important;">
-                  To<br>
-                        <b>{{partydetails.billto}}</b><br/><br/>
-                        {{partydetails.billaddress}}<br/><br/>
-                  GST :<span style="font-size:17px; margin-right: 10px;">{{partydetails.gst}}</span><span>PAN: {{partydetails.pan}}</span><br/><br/>
-                  <span style="font-size:16px"></span>
-              </div>
-              <!-- <div class="col-xs-4" style="width: 20%;">
+        <div class="col-xs-8">
+            <p id="address" style="font-size:20px;">Registered Office : 195/2,Park Street, Kolkata - 700017.<br> Zonal Office: 86A, Tollygunge Road, Kolkata-700033.<br> Mobile: 9830800776, Tel: (033) 2424 6551, (033) 4007 8545<br> Email: indranilb@ibcabs.in, admin@ibcabs.in. Visit us at: www.ibcabs.in<br></p>
+        </div>
+        <div class="col-xs-3 gst">
+
+        </div>
+
+
+    </div>
+
+    <div id="customer" class="row" style="display:block; margin-top: 80px;">
+        <div id="customer-title" class="col-xs-4" style="margin-right: 0px; max-width: 500px; font-size:18px !important;">
+            To<br>
+            <b>{{partydetails.billto}}</b><br/><br/> {{partydetails.billaddress}}
+            <br/><br/> GST :<span style="font-size:17px; margin-right: 10px;">{{partydetails.gst}}</span><span>PAN: {{partydetails.pan}}</span><br/><br/>
+            <span style="font-size:16px"></span>
+        </div>
+        <!-- <div class="col-xs-4" style="width: 20%;">
 
               </div> -->
-              <div  class="col-xs-4" style="float: right;">
-                <table id="meta" style="font-size:18px !important;">
-                  <tbody>
+        <div class="col-xs-4" style="float: right;">
+            <table id="meta" style="font-size:18px !important;">
+                <tbody>
                     <tr>
-                      <td class="meta-head"><b>Bill No.</b></td>
-                      <td><input style="border:none; margin-left:28%;width:70%;" matInput type="text" [(ngModel)]="billno" required></td>
+                        <td class="meta-head"><b>Bill No.</b></td>
+                        <td><input style="border:none; margin-left:28%;width:70%;" matInput type="text" [(ngModel)]="billno" required></td>
                     </tr>
                     <tr>
                         <td class="meta-head"><b>Bill Date</b></td>
                         <td><input style="border:none; margin-left:28%;width:70%;" matInput type="text" [(ngModel)]="billdate" required></td>
                     </tr>
-    
+
                     <tr>
                         <td class="meta-head"><b>Billing Period</b></td>
-                        <td>From: {{billf | date:'dd/MM/yyyy'}}   To: {{billt | date:'dd/MM/yyyy'}}</td>
+                        <td>From: {{billf | date:'dd/MM/yyyy'}} To: {{billt | date:'dd/MM/yyyy'}}</td>
                     </tr>
-  
-                  </tbody>
-                </table>
-              </div>
-            
-            </div>
-            <br/><br/>
-          <!-- <mat-card>
+
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+    <br/><br/>
+    <!-- <mat-card>
             <mat-card-header>
               <div mat-card-avatar class="avatar-image-partyhead"></div>
               <mat-card-title>Bill Register</mat-card-title>
               <mat-card-subtitle>View, Delete and View the Bills Here.</mat-card-subtitle>
             </mat-card-header>
           </mat-card> -->
-            <div style="text-align: center; margin-top: 180px; font-size: 18px;"> 
-              <div style="font-weight: bold;">Subject: {{partydetails.billsubject}}</div>
-              <br/>
-              <div>Monthly rate as per contract Rs. {{contractAmount}}</div>
-              <br/>
-              <div>( DUTY PERIOD FROM {{billf|date:'dd/MM/yyyy'}} TO {{billt|date:'dd/MM/yyyy'}} )</div>
-            </div>
+    <div style="text-align: center; margin-top: 180px; font-size: 18px;">
+        <div style="font-weight: bold;">Subject: {{partydetails.billsubject}}</div>
+        <br/>
+        <div>Monthly rate as per contract Rs. {{contractAmount}}</div>
+        <br/>
+        <div>( DUTY PERIOD FROM {{billf|date:'dd/MM/yyyy'}} TO {{billt|date:'dd/MM/yyyy'}} )</div>
+    </div>
 
-            <div id="customer" style="display: block;margin-top: 60px;" class="row">
-              <br><br>
-            <div id="customer-title" class="col-xs-4" style="max-width: 400px;width:100%">
-                
-              <table style="font-size: 18px;">
-                <tbody>
-                  <tr>
-                    <td colspan="3" style="text-align: center !important;">PAN:AHOPB6443K</td>
-                  </tr>
-                  <tr>
-                    <td colspan="3" style="text-align: center !important;">GSTIN:19AHOPB6443K1ZZ</td>
-                  </tr>
-                  <tr>
-                    <td colspan="3" style="text-align: center !important;">SAC Code:996601</td>
-                  </tr>
-                </tbody>
-              </table>
+    <div id="customer" style="display: block;margin-top: 60px;" class="row">
+        <br><br>
+        <div id="customer-title" class="col-xs-4" style="max-width: 400px;width:100%">
 
-              <br>
-                          
-              <table>
+            <table style="font-size: 18px;">
                 <tbody>
-                  <tr>
-                    <th class="meta-head" colspan="2" style="text-align: center !important;"><b>GST CALCULATION</b></th>
-                  </tr>
-                  <tr>
-                      <td class="meta-head" style="text-align: right !important;">Taxable Amount : Rs.</td>
-                      <td class="meta-content">{{contractAmount}}</td>
-                  </tr>
-                  <tr>
-                      <td class="meta-head" style="text-align: right !important;">CGST @{{cgstpercentage}}% : Rs.</td>
-                      <td class="meta-content">{{cgstAmount}}</td>
-                  </tr>
-                  <tr>
-                      <td class="meta-head" style="text-align: right !important;">SGST @{{sgstpercentage}}% : Rs.</td>
-                      <td class="meta-content">{{sgstAmount}}</td>
-                  </tr>
-                  <tr>
-                      <td class="meta-head" style="text-align: right !important;">IGST @{{igstpercentage}}% : Rs.</td>
-                      <td class="meta-content">{{igstAmount}}</td>
-                  </tr>
-                  <tr>
-                      <td class="meta-head" style="text-align: right !important;">Total GST Amount : Rs.</td>
-                      <td class="meta-content">{{totalwithgst}}</td>
-                  </tr>
-                </tbody>
-              </table> 
-              <br>
-              <br>
-                  
-              <table style="font-size: 18px;">
-                <tbody>
-                  <tr>
-                    <td colspan="3" style="text-align: center !important;"><b> ***GST In Reverse Charg : YES. </b></td>
-                  </tr>
-                </tbody>
-              </table>      
-            </div>
-
-            <div class="col-xs-6" style="float: right;max-width: 600px;width:100%; font-size:18px !important;">
-              <table id="meta">
-                  <tbody>
                     <tr>
-                      <td class="meta-head" style="text-align: right !important;"><b>Total Amount: Rs.</b></td>
-                      <td class="meta-content" style="text-align:center;"><b>{{contractAmount}}</b></td>
+                        <td colspan="3" style="text-align: center !important;">PAN:AHOPB6443K</td>
                     </tr>
-                  </tbody>
-                </table>
-                <p style="float: right;margin-top: 50px;font-weight: bold;">Amount in words: <br/>{{amountInWord}}</p>
-            </div>
-              </div>
+                    <tr>
+                        <td colspan="3" style="text-align: center !important;">GSTIN:19AHOPB6443K1ZZ</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" style="text-align: center !important;">SAC Code:996601</td>
+                    </tr>
+                </tbody>
+            </table>
 
-            
+            <br>
+
+            <table>
+                <tbody>
+                    <tr>
+                        <th class="meta-head" colspan="2" style="text-align: center !important;"><b>GST CALCULATION</b></th>
+                    </tr>
+                    <tr>
+                        <td class="meta-head" style="text-align: right !important;">Taxable Amount : Rs.</td>
+                        <td class="meta-content">{{contractAmount}}</td>
+                    </tr>
+                    <tr>
+                        <td class="meta-head" style="text-align: right !important;">CGST @{{cgstpercentage}}% : Rs.</td>
+                        <td class="meta-content">{{cgstAmount}}</td>
+                    </tr>
+                    <tr>
+                        <td class="meta-head" style="text-align: right !important;">SGST @{{sgstpercentage}}% : Rs.</td>
+                        <td class="meta-content">{{sgstAmount}}</td>
+                    </tr>
+                    <tr>
+                        <td class="meta-head" style="text-align: right !important;">IGST @{{igstpercentage}}% : Rs.</td>
+                        <td class="meta-content">{{igstAmount}}</td>
+                    </tr>
+                    <tr>
+                        <td class="meta-head" style="text-align: right !important;">Total GST Amount : Rs.</td>
+                        <td class="meta-content">{{totalwithgst}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <br>
+            <br>
+
+            <table style="font-size: 18px;">
+                <tbody>
+                    <tr>
+                        <td colspan="3" style="text-align: center !important;"><b> ***GST In Reverse Charg : YES. </b></td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
+
+        <div class="col-xs-6" style="float: right;max-width: 600px;width:100%; font-size:18px !important;">
+            <table id="meta">
+                <tbody>
+                    <tr>
+                        <td class="meta-head" style="text-align: right !important;"><b>Total Amount: Rs.</b></td>
+                        <td class="meta-content" style="text-align:center;"><b>{{contractAmount}}</b></td>
+                    </tr>
+                </tbody>
+            </table>
+            <p style="float: right;margin-top: 50px;font-weight: bold;">Amount in words: <br/>{{amountInWord}}</p>
+        </div>
+    </div>
+
+
+</div>

@@ -551,46 +551,52 @@ export class NewBillComponent implements OnInit {
   }
   validateDate(){
     /* return true; */
-    this.billregdata = JSON.parse(localStorage.getItem("billregdata"));
-    let returnVal = 0;
-    this.specificPartyReg = this.getfilterdata();
-    //checking if date exists
-    let newStartDate = new Date(this.billDetails.from);
-    let newEndDate = new Date(this.billDetails.to);
-    if(this.specificPartyReg.length === 0 ) { returnVal = 1; }
-    else {
-      for( var element in this.specificPartyReg){
-        let regStartDate = new Date(this.specificPartyReg[element].billfrom);
-        let regEndDate = new Date(this.specificPartyReg[element].billto);
-        if(newStartDate >= regStartDate && newEndDate <= regEndDate){
-          returnVal = 0;
-          break;
-        }
-        else{
-          if(regStartDate <= newStartDate && newStartDate <= regEndDate){
-            returnVal = 0;
-            break;
-          }
-          else if(regStartDate <= newEndDate && newEndDate <= regEndDate){
-            returnVal = 0;
-            break;
-          }
-          else if(regStartDate >= newStartDate && newEndDate >= regEndDate){
+    if(this.billDetails.format == "2"){
+      return true;
+    }
+    else{
+      this.billregdata = JSON.parse(localStorage.getItem("billregdata"));
+      let returnVal = 0;
+      this.specificPartyReg = this.getfilterdata();
+      //checking if date exists
+      let newStartDate = new Date(this.billDetails.from);
+      let newEndDate = new Date(this.billDetails.to);
+      if(this.specificPartyReg.length === 0 ) { returnVal = 1; }
+      else {
+        for( var element in this.specificPartyReg){
+          let regStartDate = new Date(this.specificPartyReg[element].billfrom);
+          let regEndDate = new Date(this.specificPartyReg[element].billto);
+          if(newStartDate >= regStartDate && newEndDate <= regEndDate){
             returnVal = 0;
             break;
           }
           else{
-            returnVal = 1;
+            if(regStartDate <= newStartDate && newStartDate <= regEndDate){
+              returnVal = 0;
+              break;
+            }
+            else if(regStartDate <= newEndDate && newEndDate <= regEndDate){
+              returnVal = 0;
+              break;
+            }
+            else if(regStartDate >= newStartDate && newEndDate >= regEndDate){
+              returnVal = 0;
+              break;
+            }
+            else{
+              returnVal = 1;
+            }
           }
         }
       }
+      if(returnVal === 1){
+        return true;
+      }
+      else{
+        return false;
+      } 
     }
-    if(returnVal === 1){
-      return true;
-    }
-    else{
-      return false;
-    } 
+    
   }
   getfilterdata(){
     let returnarr = []; //party //reportto

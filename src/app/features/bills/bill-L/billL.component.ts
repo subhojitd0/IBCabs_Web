@@ -264,7 +264,7 @@ export class BillLComponent implements OnInit {
       //this.billdetails.bodytotal.subtotal = "190,632";
       //this.totalovertime = 190632;
       debugger;
-      this.totalsubtotal = parseFloat(this.billdetails.bodytotal.package) + this.totalovertime;
+      this.totalsubtotal = parseFloat(this.billdetails.bodytotal.package) + this.totalovertime + parseFloat( this.billdetails?.tail?.customfavalue ?? 0);
       this.totalgross = this.totalsubtotal + Math.round(parseFloat(this.billdetails.tail.parking.toString().replace(',',''))) + Math.round(parseFloat(this.billdetails.tail.outstationamount.toString().replace(',','')));
       this.roundedgross = Math.round(this.totalgross).toString();
       
