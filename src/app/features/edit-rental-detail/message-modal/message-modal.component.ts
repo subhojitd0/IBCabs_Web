@@ -46,6 +46,7 @@ export class MessageModalComponent implements OnInit {
   ddr3green: boolean = false;
   ddr4green: boolean = false;
   ddr5green: boolean = false;
+  walkinmultiplereport: string;
   constructor(private router: Router,private apiService: ApiService, private toastr: ToastrService) {
     
    }
@@ -64,6 +65,7 @@ export class MessageModalComponent implements OnInit {
       };
       this.apiService.post(api, json).then((res: any)=>{ 
         this.rentalDetails = res;
+        this.walkinmultiplereport = "";
         if(this.selectedParty === "WALK IN(ON CALL)"){
           if(this.rentalDetails.reportida){
             this.reporttonames.push({ id: this.rentalDetails.reportida, name: this.rentalDetails.reporttonamea , num: this.rentalDetails.reporttonuma});
@@ -91,6 +93,7 @@ export class MessageModalComponent implements OnInit {
             this.counter++;
           }
           this.walkinnumbers = this.walkinnumbers.replace(/,*$/, "");
+          this.walkinmultiplereport = this.walkinnumbers;
           var json = 
       {
         "mode":"11",
@@ -124,6 +127,7 @@ export class MessageModalComponent implements OnInit {
     //Report To
     if(this.selectedType == "BookingConfirmation"){
       if(this.selectedParty === "WALK IN(ON CALL)"){
+          this.walkinnumbers = this.walkinmultiplereport;
           let body = BOOKING_ID_CONFIRM_MESSAGE_TEMPLATE;
           body = body.split("%20").join(" ");
           body = body.split("%0A").join(" .");
@@ -157,9 +161,15 @@ export class MessageModalComponent implements OnInit {
     if(this.selectedType == "BookingConfirmationBooked"){
       if(this.rentalDetails.dutytype === "1"){
         this.phoneNumbers.push(this.rentalDetails.bookedbycontact);
+        if(this.selectedParty === "WALK IN(ON CALL)"){
+          this.walkinnumbers = this.rentalDetails.bookedbycontact;
+        }
       }
       else{
         this.phoneNumbers.push(this.rentalDetails.reporttonum);
+        if(this.selectedParty === "WALK IN(ON CALL)"){
+          this.walkinnumbers = this.walkinmultiplereport;
+        }
       }
       let body = BOOKING_ID_CONFIRM_MESSAGE_TEMPLATE;
       body = body.split("%20").join(" ");
@@ -181,6 +191,9 @@ export class MessageModalComponent implements OnInit {
 
     //Driver
     if(this.selectedType == "Driver"){
+      if(this.selectedParty === "WALK IN(ON CALL)"){
+        this.walkinnumbers = this.rentalDetails.drivernum;
+      }
       this.phoneNumbers.push(this.rentalDetails.drivernum);
       let body = DRIVER_MESSAGE_TEMPLATE;
       body = body.split("%20").join(" ");
@@ -200,6 +213,9 @@ export class MessageModalComponent implements OnInit {
 
     //Report To
     if(this.selectedType == "CarAssigned"){
+      if(this.selectedParty === "WALK IN(ON CALL)"){
+        this.walkinnumbers = this.walkinmultiplereport;
+      }
       this.phoneNumbers.push(this.rentalDetails.reporttonum);
       let body = CAR_ASSIGNED_MESSAGE_TEMPLATE;
       body = body.split("%20").join(" ");
@@ -219,6 +235,9 @@ export class MessageModalComponent implements OnInit {
 
     //Booked By
     if(this.selectedType == "CarAssignedBooked"){
+      if(this.selectedParty === "WALK IN(ON CALL)"){
+        this.walkinnumbers = this.rentalDetails.bookedbycontact;
+      }
       this.phoneNumbers.push(this.rentalDetails.bookedbycontact);
       let body = CAR_ASSIGNED_MESSAGE_TEMPLATE;
       body = body.split("%20").join(" ");
