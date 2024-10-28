@@ -11,6 +11,7 @@
         <table #table>
             <tr>
                 <th>Date</th>
+                <th>Slip No</th>
                 <th>Car No.</th>
                 <th>Car Type</th>
                 <th>Party</th>
@@ -22,6 +23,7 @@
             </tr>
             <tr *ngFor="let row of dataset">
                 <td>{{row.dutydate}}</td>
+                <td>{{row.slipno}}</td>
                 <td>{{row.carnum}}</td>
                 <td>{{row.cartype}}</td>
                 <td>{{row.party}}</td>
@@ -29,7 +31,6 @@
                 <td>{{row.tothr}}</td>
                 <td>{{row.totkm}}</td>
                 <td>{{row.parking}}</td>
-                <td>{{row.outs}}</td>
             </tr>
         </table>
 
